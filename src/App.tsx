@@ -1,28 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
-import SideBar from "@/components/shared/Sidebar";
-import NavBar from "@/components/shared/Header";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { useGetMainQuery } from "@/services/mainApi";
-import Loader from "@/components/shared/Loader";
-import { ToastContainer } from "react-toastify";
-import { useUserInfo } from "@/hooks/useUserInfo";
-import { Outlet } from "react-router";
-import { useLocation } from "react-router";
-import { useScrollToTop } from "@/hooks/useScrollToTop";
+import {Outlet} from "react-router";
+import {useLocation} from "react-router";
+import {useTheme} from "@/hooks/useTheme";
+import {ToastContainer} from "react-toastify";
 import Modals from "@/components/shared/modals";
-import { useTheme } from "@/hooks/useTheme";
-import {Button} from "@/components/ui/button";
+import Loader from "@/components/shared/Loader";
+import NavBar from "@/components/shared/Header";
+import SideBar from "@/components/shared/Sidebar";
+import {useUserInfo} from "@/hooks/useUserInfo";
+import {useIsDesktop} from "@/hooks/useIsDesktop";
+import {useGetMainQuery} from "@/services/mainApi";
+import {useScrollToTop} from "@/hooks/useScrollToTop";
+import React, {useEffect, useRef, useState} from "react";
 
 const App: React.FC = () => {
     useUserInfo();
     const [sideBarOpen, toggleSideBar] = useState<boolean>(false);
     const isDesktop = useIsDesktop(1280);
     const [styleVars, setStyleVars] = useState<Record<string, string>>({});
-    const { error, isLoading } = useGetMainQuery();
+    const {error, isLoading} = useGetMainQuery();
     const location = useLocation();
     const containerRef = useRef<HTMLDivElement>(null);
     useScrollToTop(containerRef);
-    const { theme } = useTheme();
+    const {theme} = useTheme();
 
     useEffect(() => {
         toggleSideBar(false);
@@ -48,7 +47,7 @@ const App: React.FC = () => {
     }, []);
 
     if (error || isLoading) {
-        return <Loader />;
+        return <Loader/>;
     }
 
     return (
@@ -58,12 +57,7 @@ const App: React.FC = () => {
                 className={`app ${isDesktop ? "desktop" : "mobile"}`}
                 style={styleVars as React.CSSProperties}
             >
-                <Button  className={''}>Button</Button>
-                <SideBar
-                    isDesktop={isDesktop}
-                    sideBarOpen={sideBarOpen}
-                    toggleSideBar={toggleSideBar}
-                />
+                <SideBar/>
                 <div
                     ref={containerRef}
                     id="container"

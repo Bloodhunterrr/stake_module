@@ -1,4 +1,0 @@
-div#container > iframe {
-    height: var(--app-height,100vh);
-    border: none;
-}
