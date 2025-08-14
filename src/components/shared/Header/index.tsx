@@ -1,5 +1,4 @@
 import {
-    Menu,
     Search as SearchIcon,
     Moon,
     Sun,
@@ -23,7 +22,6 @@ import {
 } from "@/components/ui/dialog.tsx";
 
 import Login from "../login";
-import config from "@/config";
 import SignUp from "../signup";
 import {useState} from "react";
 import {useTheme} from "@/hooks/useTheme";
@@ -32,7 +30,6 @@ import {useNavigate} from "react-router-dom";
 import {Button} from "@/components/ui/button";
 import type {Wallet, User} from "@/types/auth";
 import {currencyList} from "@/utils/currencyList";
-import {useGetMainQuery} from "@/services/mainApi";
 import Search from "@/components/casino/search.tsx";
 import {useLogoutMutation} from "@/services/authApi";
 
@@ -56,102 +53,68 @@ const NavBar = (props: NavBarProps) => {
         (w: Wallet) => w.default
     );
 
-    const {data} = useGetMainQuery();
     const {theme, toggleTheme} = useTheme();
 
     return (
         <>
-            <nav className="bg-background border-b border-border fixed top-0 left-0 right-0 z-50">
-                <div className="flex items-center justify-between h-16 px-4 md:px-8">
-                    <div className="flex items-center space-x-4">
-                        {!props.isDesktop && (
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => props.toggleSideBar(!props.sideBarOpen)}
-                            >
-                                <Menu className="h-5 w-5"/>
-                            </Button>
-                        )}
-                        {!props.sideBarOpen && (
-                            <Button
-                                variant="ghost"
-                                className="p-0"
-                                onClick={() => navigate("/")}
-                            >
-                                <img className="h-8" src={logo} alt="logo"/>
-                            </Button>
-                        )}
-                    </div>
-
-                    <div className="hidden lg:flex items-center space-x-4">
-                        {data?.map((R) =>
-                            !R.is_sportbook && R.subcategories.length === 0 ? null : (
-                                <Button
-                                    key={R.id}
-                                    variant="ghost"
-                                    className="flex items-center space-x-2 text-sm font-medium"
-                                    onClick={() => navigate(`/${R.slug}`)}
-                                >
-                                    <img
-                                        className="h-5 w-5"
-                                        src={config.baseUrl + "/storage/" + R.icon}
-                                        alt={R.name}
-                                    />
-                                    <span>{R.name}</span>
-                                </Button>
-                            )
-                        )}
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                        <Button variant="ghost" size="icon" onClick={() => setSearchModalOpen(true)}>
-                            <SearchIcon className="h-5 w-5"/> {/* Using the renamed SearchIcon */}
+            <div className="flex items-center justify-between h-16">
+                <div className="xl:ml-0 ml-12">
+                    {!props.sideBarOpen && (
+                        <Button
+                            variant="ghost"
+                            className="p-0"
+                            onClick={() => navigate("/")}
+                        >
+                            <img className="h-8" src={logo} alt="logo"/>
                         </Button>
+                    )}
+                </div>
 
-                        <Button variant="ghost" size="icon" onClick={toggleTheme}>
-                            {theme === "dark" ? (
-                                <Sun className="h-5 w-5"/>
-                            ) : (
-                                <Moon className="h-5 w-5"/>
-                            )}
-                        </Button>
 
-                        {user && defaultWallet && (
-                            <div
-                                className="flex items-center space-x-2 px-3 py-1 rounded-full bg-muted text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                    <Button variant="ghost" size="icon" onClick={() => setSearchModalOpen(true)}>
+                        <SearchIcon className="h-5 w-5"/>
+                    </Button>
+
+                    <Button variant="ghost" size="icon" onClick={toggleTheme}>
+                        {theme === "dark" ? (
+                            <Sun className="h-5 w-5"/>
+                        ) : (
+                            <Moon className="h-5 w-5"/>
+                        )}
+                    </Button>
+
+                    {user && defaultWallet && (
+                        <div
+                            className="flex items-center space-x-2 px-3 py-1 rounded-full bg-muted text-sm font-medium">
                                 <span>
                                   {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
                                       minimumFractionDigits: defaultWallet.decimal_places,
                                       maximumFractionDigits: defaultWallet.decimal_places,
                                   })}
                                 </span>
-                                <span className="font-bold">
+                            <span className="font-bold">
                                   {currencyList[defaultWallet.slug.toUpperCase()]?.symbol_native}
                                 </span>
-                            </div>
-                        )}
+                        </div>
+                    )}
 
-                        {user ? (
-                            <ProfileDropdown user={user}/>
-                        ) : (
-                            <>
-                                <Button variant="secondary" onClick={() => setLoginModalOpen(true)}>
-                                    Log in
-                                </Button>
-                                <Button onClick={() => setSignUpModalOpen(true)}>Sign up</Button>
-                            </>
-                        )}
-                    </div>
+                    {user ? (
+                        <ProfileDropdown user={user}/>
+                    ) : (
+                        <>
+                            <Button variant="secondary" onClick={() => setLoginModalOpen(true)}>
+                                Log in
+                            </Button>
+                            <Button onClick={() => setSignUpModalOpen(true)}>Sign up</Button>
+                        </>
+                    )}
                 </div>
-            </nav>
+            </div>
 
             {/* Login Modal */}
             <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
                 <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle>Login</DialogTitle>
-                    </DialogHeader>
                     <Login/>
                 </DialogContent>
             </Dialog>
@@ -159,9 +122,6 @@ const NavBar = (props: NavBarProps) => {
             {/* Sign Up Modal */}
             <Dialog open={signUpModalOpen} onOpenChange={setSignUpModalOpen}>
                 <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle>Sign Up</DialogTitle>
-                    </DialogHeader>
                     <SignUp/>
                 </DialogContent>
             </Dialog>

@@ -1,198 +1,140 @@
+import {z} from 'zod';
+import {useState} from 'react';
+import {toast} from 'react-toastify';
+import {useForm} from 'react-hook-form';
+import {Input} from '@/components/ui/input';
+import {Label} from '@/components/ui/label';
+import {Button} from '@/components/ui/button';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {useLoginMutation} from '@/services/authApi';
+import {Mail, Lock, Eye, EyeOff} from 'lucide-react';
+import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
+
+const loginSchema = z.object({
+    email: z
+        .string()
+        .min(1, {message: 'Email is required.'})
+        .email({message: 'Please enter a valid email address.'}),
+    password: z
+        .string()
+        .min(1, {message: 'Password is required.'})
+        .min(6, {message: 'Password must be at least 6 characters long.'}),
+});
+
+type LoginFormValues = z.infer<typeof loginSchema>;
 
 
-import Envelope  from "@/assets/icons/envelope.svg?react"
-import Locker  from "@/assets/icons/locker.svg?react"
-import EyeOpen  from "@/assets/icons/eye.svg?react"
-import EyeClosed  from "@/assets/icons/eye-hiden.svg?react"
-import { useState, useEffect, useCallback } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { useLoginMutation } from "@/services/authApi";
-import type { LoginRequest } from "@/types/auth";
-import { toast } from "react-toastify";
-
-const Login = () => {
-    const [generalError, setGeneralError] = useState<string | null>(null);
-    const [showPass, setShowPass] = useState<boolean>(false);
-    const [login, { isLoading }] = useLoginMutation();
+export default function Login() {
+    const [showPass, setShowPass] = useState(false);
+    const [login, {isLoading}] = useLoginMutation();
 
     const {
         register,
         handleSubmit,
         setError,
-        getValues,
-        formState: { errors, isDirty },
-    } = useForm<LoginRequest>({
-        mode: "onChange",
+        formState: {errors},
+    } = useForm<LoginFormValues>({
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+        },
     });
 
-    const clearErrorsOnInput = useCallback(() => {
-        setGeneralError(null);
-        if (errors.email) setError('email', { type: '' });
-        if (errors.password) setError('password', { type: '' });
-    }, [errors.email, errors.password, setError]);
-
-    useEffect(() => {
-        if (isDirty) {
-            setGeneralError(null);
-            clearErrorsOnInput()
-        }
-    }, [isDirty, clearErrorsOnInput]);
-
-
-
-    const onSubmit: SubmitHandler<LoginRequest> = async (data) => {
+    const onSubmit = async (data: LoginFormValues) => {
         try {
             await login(data).unwrap();
-        } catch (err: any) {
-            if (err?.status === 401 || err?.data?.message === 'Invalid credentials') {
-                setError('email', {
-                    type: 'manual',
-                    message: ({ id: "Invalid email or password" }),
-                });
-                setError('password', {
-                    type: 'manual',
-                    message: ({ id: "Invalid email or password" }),
-                });
-                return
-            }
-
-            if (err?.status === 404 && err?.data?.message === 'User not found') {
-                setError('email', {
-                    type: 'manual',
-                    message: ({ id: "User not found" }),
-                });
-                return;
-            }
-            const errorMessage = ({ id: "An unexpected error occurred" });
-            setGeneralError(errorMessage);
-            toast.error(errorMessage);
+            toast.success('Login successful!');
+        } catch (err: unknown) {
+            handleLoginError(err);
         }
     };
 
-    const isFieldValid = (fieldName: keyof LoginRequest) => {
-        const value = getValues(fieldName);
-        return isDirty && !errors[fieldName] && Boolean(value);
+    const handleLoginError = (err: unknown) => {
+        const error = err as { data?: { message?: string }; status?: number };
+        const errorMsg = error?.data?.message || 'An unexpected error occurred.';
+        toast.error(errorMsg);
+
+        if (error?.status === 401 || errorMsg === 'Invalid credentials') {
+            setError('password', {
+                type: 'manual',
+                message: 'Invalid email or password.',
+            });
+        } else if (error?.status === 404 && errorMsg === 'User not found') {
+            setError('email', {
+                type: 'manual',
+                message: 'User with this email not found.',
+            });
+        }
     };
 
     return (
-        <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="AuthContainer_content_dDdZq"
-        >
-            <h3
-                className="m-text Header-Semi-Bold-M"
-                data-qa="login_title"
-                style={{  marginBottom: '20px' }}
-            >
-                <div>Welcome back</div>
-            </h3>
+        <div className="flex justify-center items-center">
+            <Card className="w-full max-w-md border-none shadow-none">
+                <CardHeader>
+                    <CardTitle className="text-2xl font-bold text-center">
+                        Welcome back
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
+                        <div className="grid gap-2">
 
-            <div className="common-module_field_etXUF">
-                <div
-                    className={`m-form-field m-form-field--apply ${!generalError && isFieldValid('email') ? 'm-form-field--success' : ''} ${errors.email || generalError ? 'm-form-field--error' : ''
-                        }`}
-                >
-                    <div>
-                        <div className="m-input m-gradient-border m-input--dark m-input--m">
-                            <div className="m-icon-container m-input-prepend">
-                                <Envelope />
-                            </div>
-                            <div className="m-input-content">
-                                <input
-                                    autoComplete="email"
-                                    {...register("email", {
-                                        required: ({ id: "Email is required" }),
-                                        pattern: {
-                                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                            message: ({ id: "Invalid email address" }),
-                                        },
-                                    })}
-                                    aria-invalid={errors.email ? "true" : "false"}
+                            <Label htmlFor={"email"}>Email</Label>
+                            <div className="relative">
+                                <Mail
+                                    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"/>
+                                <Input
+                                    id={'email'}
+                                    type={'text'}
+                                    placeholder={"Enter your email"}
+                                    className="pl-9"
+                                    {...register('email')}
                                 />
-                                <div className="m-input-content-label">
-                                    <div>Enter your email</div>
-                                </div>
+                            </div>
+                            {errors["email"] && (
+                                <p className="text-sm font-medium text-destructive">
+                                    {errors["email"]?.message}
+                                </p>
+                            )}
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="password">Password</Label>
+                            <div className="relative">
+                                <Input
+                                    id="password"
+                                    type={showPass ? 'text' : 'password'}
+                                    autoComplete="current-password"
+                                    className="pr-10 pl-9"
+                                    {...register('password')}
+                                />
+                                <Lock
+                                    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"/>
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPass(!showPass)}
+                                    aria-label={showPass ? 'Hide password' : 'Show password'}
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3"
+                                >
+                                    {showPass ? (
+                                        <Eye className="h-4 w-4 text-muted-foreground"/>
+                                    ) : (
+                                        <EyeOff className="h-4 w-4 text-muted-foreground"/>
+                                    )}
+                                </button>
+                                {errors.password && (
+                                    <p className="text-sm font-medium text-destructive mt-2">
+                                        {errors.password.message}
+                                    </p>
+                                )}
                             </div>
                         </div>
-                        {errors.email && (
-                            <div
-                                className="m-form-field-description"
-                                style={{ color: "var(--color-field-basic-description-error)" }}
-                            >
-                                {errors.email.message}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            <div className="common-module_field_etXUF">
-                <div
-                    className={`m-form-field m-form-field--apply  ${!generalError && isFieldValid('password') ? 'm-form-field--success' : ''} ${errors.password || generalError ? 'm-form-field--error' : ''}`}
-                >
-                    <div className="m-input m-gradient-border m-input--dark m-input--m">
-                        <div className="m-icon-container m-input-prepend">
-                            <Locker />
-                        </div>
-                        <div className="m-input-content">
-                            <input
-                                type={showPass ? "text" : "password"}
-                                autoComplete="current-password"
-                                {...register("password", {
-                                    required: ({ id: "Password is required" }),
-                                    minLength: {
-                                        value: 6,
-                                        message: ({ id: "Password must be at least 6 characters" }),
-                                    },
-                                })}
-                                aria-invalid={errors.password ? "true" : "false"}
-                            />
-                            <div className="m-input-content-label">
-                                <div>Enter your password</div>
-                            </div>
-                        </div>
-                        <div className="m-icon-container m-input-append">
-                            <button
-                                type="button"
-                                onClick={() => setShowPass(!showPass)}
-                                aria-label={showPass ? "Hide password" : "Show password"}
-                            >
-                                {showPass ? <EyeOpen /> : <EyeClosed />}
-                            </button>
-                        </div>
-                    </div>
-                    {errors.password && (
-                        <div
-                            className="m-form-field-description"
-                            style={{ color: "var(--color-field-basic-description-error)" }}
-                        >
-                            {errors.password.message}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {generalError && (
-                <div
-                    className="m-form-field-description"
-                    style={{ color: "var(--color-field-basic-description-error)", marginBottom: '20px' }}
-                    role="alert"
-                >
-                    {generalError}
-                </div>
-            )}
-
-            <div className="common-module_actionsBlock_HQxPC">
-                <button
-                    className="m-button m-gradient-border m-button--primary m-button--m"
-                    type="submit"
-                    disabled={isLoading}
-                >
-                    {isLoading ? <div>Logging in...</div> : <div>Login</div>}
-                </button>
-            </div>
-        </form>
+                        <Button type="submit" className="w-full mt-2" disabled={isLoading}>
+                            {isLoading ? 'Logging in...' : 'Login'}
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
     );
-};
-
-export default Login;
+}

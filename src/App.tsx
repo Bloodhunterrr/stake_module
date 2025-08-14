@@ -16,7 +16,6 @@ const App: React.FC = () => {
     useUserInfo();
     const [sideBarOpen, toggleSideBar] = useState<boolean>(false);
     const isDesktop = useIsDesktop(1280);
-    const [styleVars, setStyleVars] = useState<Record<string, string>>({});
     const {error, isLoading} = useGetMainQuery();
     const location = useLocation();
     const containerRef = useRef<HTMLDivElement>(null);
@@ -27,53 +26,31 @@ const App: React.FC = () => {
         toggleSideBar(false);
     }, [location.pathname]);
 
-    useEffect(() => {
-
-        const calculateHeights = () => {
-            const windowHeight = window.innerHeight;
-
-            setStyleVars({
-                "--m-app-height": `${windowHeight}px`,
-                "--app-height": `${windowHeight}px`,
-            });
-        };
-
-        calculateHeights();
-        window.addEventListener("resize", calculateHeights);
-
-        return () => {
-            window.removeEventListener("resize", calculateHeights);
-        };
-    }, []);
-
     if (error || isLoading) {
         return <Loader/>;
     }
 
     return (
-        <>
-
-            <div
-                className={`app ${isDesktop ? "desktop" : "mobile"}`}
-                style={styleVars as React.CSSProperties}
+        <div className="flex flex-1">
+            <SideBar
+                isDesktop={isDesktop}
+                sideBarOpen={sideBarOpen}
+                toggleSideBar={toggleSideBar}
+            />
+            <main
+                className={`flex-1 transition-all duration-300 ease-in-out
+                            ${isDesktop ? (sideBarOpen ? 'xl:ml-64' : 'xl:ml-0') : 'ml-0'}`}
             >
-                <SideBar/>
-                <div
-                    ref={containerRef}
-                    id="container"
-                    className="isFull m-thin-scrollbar"
-                >
-                    <NavBar
-                        isDesktop={isDesktop}
-                        sideBarOpen={sideBarOpen}
-                        toggleSideBar={toggleSideBar}
-                    />
-                    <Outlet/>
-                </div>
-                <Modals/>
-            </div>
+                <NavBar
+                    isDesktop={isDesktop}
+                    sideBarOpen={sideBarOpen}
+                    toggleSideBar={toggleSideBar}
+                />
+                <Outlet/>
+            </main>
+            <Modals/>
             <ToastContainer theme={theme}/>
-        </>
+        </div>
     );
 };
 

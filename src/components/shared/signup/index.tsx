@@ -1,192 +1,211 @@
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 
-import Envelope  from "@/assets/icons/envelope.svg?react";
-import Locker  from "@/assets/icons/locker.svg?react";
-import EyeOpen  from "@/assets/icons/eye.svg?react";
-import EyeClosed  from "@/assets/icons/eye-hiden.svg?react";
-import { useState, useEffect, useCallback } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
+import {z} from "zod";
+import {useState} from "react";
+import {toast} from "react-toastify";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import {Checkbox} from "@/components/ui/checkbox";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Mail, Lock, Eye, EyeOff} from "lucide-react";
+import {useForm, type SubmitHandler} from "react-hook-form";
 
-type SignUpRequest = {
-  email: string;
-  password: string;
-  promoCode?: string;
-  newsOffers?: boolean;
-  partnerOffers?: boolean;
-};
+const formSchema = z.object({
+    email: z.string().email({
+        message: "Invalid email address.",
+    }),
+    password: z.string().min(6, {
+        message: "Password must be at least 6 characters.",
+    }),
+    promoCode: z.string().optional(),
+    newsOffers: z.boolean().default(false).optional(),
+    partnerOffers: z.boolean().default(false).optional(),
+});
 
-const SignUp = () => {
-  const [generalError, setGeneralError] = useState<string | null>(null);
-  const [showPass, setShowPass] = useState<boolean>(false);
+type SignUpRequest = z.infer<typeof formSchema>;
 
-  const {
-    register,
-    handleSubmit,
-    setError,
-    getValues,
-    formState: { errors, isDirty },
-  } = useForm<SignUpRequest>({
-    mode: "onChange",
-  });
+export default function SignUp() {
+    const [showPass, setShowPass] = useState<boolean>(false);
 
-  const clearErrorsOnInput = useCallback(() => {
-    setGeneralError(null);
-    if (errors.email) setError("email", { type: "" });
-    if (errors.password) setError("password", { type: "" });
-  }, [errors.email, errors.password, setError]);
+    const form = useForm<SignUpRequest>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+            promoCode: "",
+            newsOffers: false,
+            partnerOffers: false,
+        },
+        mode: "onChange",
+    });
 
-  useEffect(() => {
-    if (isDirty) {
-      setGeneralError(null);
-      clearErrorsOnInput();
-    }
-  }, [isDirty, clearErrorsOnInput]);
+    const onSubmit: SubmitHandler<SignUpRequest> = async (data) => {
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            console.log("Sign-up data:", data);
+            toast.info("You have successfully signed up.",);
+        } catch (err) {
+            console.error(err);
+            toast.error("Uh oh! Something went wrong.",);
+        }
+    };
 
-  const onSubmit: SubmitHandler<SignUpRequest> = async (data) => {
-    try {
-      console.log("Sign-up data:", data);
-      toast.success(({ id: "Successfully signed up!" }));
-    } catch (err) {
-      const errorMessage = ({ id: "An unexpected error occurred" });
-      setGeneralError(errorMessage);
-      toast.error(errorMessage);
-    }
-  };
+    return (
+        <div className="flex justify-center items-center">
+            <Card className="w-full max-w-md border-none shadow-none">
+                <CardHeader>
+                    <CardTitle className="text-2xl">Create your account</CardTitle>
+                    <CardDescription>
+                        Enter your details below to create an account.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <div className="relative">
+                                                <Mail
+                                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                                                    size={20}/>
+                                                <Input
+                                                    placeholder="Enter your email"
+                                                    {...field}
+                                                    className="pl-10"
+                                                />
+                                            </div>
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
 
-  const isFieldValid = (fieldName: keyof SignUpRequest) => {
-    const value = getValues(fieldName);
-    return isDirty && !errors[fieldName] && Boolean(value);
-  };
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <div className="relative">
+                                                <Lock
+                                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                                                    size={20}/>
+                                                <Input
+                                                    type={showPass ? "text" : "password"}
+                                                    placeholder="Enter your password"
+                                                    {...field}
+                                                    className="pl-10 pr-10"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setShowPass(!showPass)}
+                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                                                    aria-label={showPass ? "Hide password" : "Show password"}
+                                                >
+                                                    {showPass ? <EyeOff size={20}/> : <Eye size={20}/>}
+                                                </button>
+                                            </div>
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="AuthContainer_content_dDdZq">
-      <h3 className="m-text Header-Semi-Bold-M" style={{ marginBottom: "20px" }}>
-        <div>Create your account</div>
-      </h3>
+                            <FormField
+                                control={form.control}
+                                name="promoCode"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Promo Code (optional)</FormLabel>
+                                        <FormControl>
+                                            <div className="relative">
+                                                <Lock
+                                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                                                    size={20}/>
+                                                <Input
+                                                    placeholder="Enter promo code"
+                                                    {...field}
+                                                    className="pl-10"
+                                                />
+                                            </div>
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
 
-      <div className="common-module_field_etXUF">
-        <div
-          className={`m-form-field m-form-field--apply ${
-            !generalError && isFieldValid("email") ? "m-form-field--success" : ""
-          } ${errors.email || generalError ? "m-form-field--error" : ""}`}
-        >
-          <div>
-            <div className="m-input m-gradient-border m-input--dark m-input--m">
-              <div className="m-icon-container m-input-prepend">
-                <Envelope />
-              </div>
-              <div className="m-input-content">
-                <input
-                  autoComplete="email"
-                  {...register("email", {
-                    required: ({ id: "Email is required" }),
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: ({ id: "Invalid email address" }),
-                    },
-                  })}
-                  aria-invalid={errors.email ? "true" : "false"}
-                />
-                <div className="m-input-content-label">
-                  <div>Enter your email</div>
-                </div>
-              </div>
-            </div>
-            {errors.email && (
-              <div className="m-form-field-description" style={{ color: "var(--color-field-basic-description-error)" }}>
-                {errors.email.message}
-              </div>
-            )}
-          </div>
+                            <div className="space-y-2">
+                                <FormField
+                                    control={form.control}
+                                    name="newsOffers"
+                                    render={({field}) => (
+                                        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                            <FormControl>
+                                                <Checkbox
+                                                    checked={field.value}
+                                                    onCheckedChange={field.onChange}
+                                                />
+                                            </FormControl>
+                                            <div className="space-y-1 leading-none">
+                                                <FormLabel>
+                                                    I would like to receive news and offers.
+                                                </FormLabel>
+                                            </div>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="partnerOffers"
+                                    render={({field}) => (
+                                        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                            <FormControl>
+                                                <Checkbox
+                                                    checked={field.value}
+                                                    onCheckedChange={field.onChange}
+                                                />
+                                            </FormControl>
+                                            <div className="space-y-1 leading-none">
+                                                <FormLabel>
+                                                    I agree to receive offers from our partners.
+                                                </FormLabel>
+                                            </div>
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <Button
+                                type="submit"
+                                className="w-full"
+                                disabled={form.formState.isSubmitting}
+                            >
+                                Sign Up
+                            </Button>
+                        </form>
+                    </Form>
+                </CardContent>
+            </Card>
         </div>
-      </div>
-
-      <div className="common-module_field_etXUF">
-        <div
-          className={`m-form-field m-form-field--apply ${
-            !generalError && isFieldValid("password") ? "m-form-field--success" : ""
-          } ${errors.password || generalError ? "m-form-field--error" : ""}`}
-        >
-          <div className="m-input m-gradient-border m-input--dark m-input--m">
-            <div className="m-icon-container m-input-prepend">
-              <Locker />
-            </div>
-            <div className="m-input-content">
-              <input
-                type={showPass ? "text" : "password"}
-                autoComplete="new-password"
-                {...register("password", {
-                  required: ({ id: "Password is required" }),
-                  minLength: {
-                    value: 6,
-                    message: ({ id: "Password must be at least 6 characters" }),
-                  },
-                })}
-                aria-invalid={errors.password ? "true" : "false"}
-              />
-              <div className="m-input-content-label">
-                <div>Enter your password</div>
-              </div>
-            </div>
-            <div className="m-icon-container m-input-append">
-              <button
-                type="button"
-                onClick={() => setShowPass(!showPass)}
-                aria-label={showPass ? "Hide password" : "Show password"}
-              >
-                {showPass ? <EyeOpen /> : <EyeClosed />}
-              </button>
-            </div>
-          </div>
-          {errors.password && (
-            <div className="m-form-field-description" style={{ color: "var(--color-field-basic-description-error)" }}>
-              {errors.password.message}
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="common-module_field_etXUF">
-        <div
-          className={`m-form-field m-form-field--apply ${
-            isFieldValid("promoCode") ? "m-form-field--success" : ""
-          } ${errors.promoCode ? "m-form-field--error" : ""}`}
-        >
-          <div className="m-input m-gradient-border m-input--dark m-input--m">
-            <div className="m-icon-container m-input-prepend">
-              <Locker />
-            </div>
-            <div className="m-input-content">
-              <input type="text" {...register("promoCode")} autoComplete="off" />
-              <div className="m-input-content-label">
-                <div>Enter promo code</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      {generalError && (
-        <div
-          className="m-form-field-description"
-          style={{ color: "var(--color-field-basic-description-error)", marginBottom: "20px" }}
-          role="alert"
-        >
-          {generalError}
-        </div>
-      )}
-
-      <div className="common-module_actionsBlock_HQxPC">
-        <button
-          className="m-button m-gradient-border m-button--primary m-button--m"
-          type="submit"
-        >
-          <div>Sign Up</div>
-        </button>
-      </div>
-    </form>
-  );
-};
-
-export default SignUp;
+    );
+}
