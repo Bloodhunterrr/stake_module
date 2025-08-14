@@ -1,16 +1,17 @@
-import type {Game} from "@/types/game_list";
-;
+import type { Game } from "@/types/game_list";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useLazyGetPlayQuery } from "@/services/authApi";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
 import { useEffect, useState } from "react";
+
 import Login from "../login";
 import Modal from "../modal";
 import type { User, Wallet } from "@/types/auth";
 import { LoaderSpinner } from "@/components/shared/Loader";
 import { setModal } from "@/slices/sharedSlice";
+import { HeartIcon } from "lucide-react";
 
 const ModalBalanceInfo = ({
   game,
@@ -25,8 +26,6 @@ const ModalBalanceInfo = ({
 
   return (
     <>
-      <div>
-      </div>
       <h2>
         <div>Your balance is </div> 0
       </h2>
@@ -81,9 +80,11 @@ const GameSlot = ({
   const navigate = useNavigate();
   const isDesktop = useIsDesktop();
   const user: User = useAppSelector((state) => state.auth?.user);
-  const [loginModal, setLoginModal] = useState<boolean>(false);
-  const [depositModal, setDepositModal] = useState<boolean>(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const [depositModal, setDepositModal] = useState(false);
+
   const closeLogin = () => setLoginModal(false);
+
   const defaultWallet: Wallet | null =
     user?.wallets?.find((w: Wallet) => w.default) || null;
 
@@ -95,19 +96,16 @@ const GameSlot = ({
 
   const handleGameClick = async () => {
     if (!game?.id) return;
-
     if (!user) return setLoginModal(true);
-
     if (!defaultWallet)
       return toast.error(`Wallet not found! Please check your wallet`);
-
     if (Number(defaultWallet?.balance) < 1) return setDepositModal(true);
 
     try {
       const data = await triggerGetPlay({
         device: isDesktop ? "desktop" : "mobile",
         gameID: game.id,
-        language: 'en',
+        language: "en",
         exit: window.location.origin,
         currency: (defaultWallet?.slug || "eur")?.toUpperCase(),
       }).unwrap();
@@ -116,10 +114,7 @@ const GameSlot = ({
         window.location.href = data?.play_url;
       } else {
         navigate(`/game/${game?.id}`, {
-          state: {
-            play_url: data?.play_url,
-            game,
-          },
+          state: { play_url: data?.play_url, game },
         });
       }
     } catch (error) {
@@ -130,21 +125,55 @@ const GameSlot = ({
 
   if (isLoading) {
     return (
-      <div>
-        Loading...
+      <div className="h-56 bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
+        <div
+          className="w-full h-full bg-center bg-cover"
+          style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
+        />
       </div>
     );
   }
 
   return (
     <>
-      <div onClick={handleGameClick}>
-        <p>{game?.name}</p>
+      <div
+        className="relative h-56 rounded-lg overflow-hidden shadow-lg cursor-pointer group"
+        onClick={handleGameClick}
+      >
+
+        <div
+          className="absolute inset-0 bg-center bg-cover opacity-40"
+          style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})`  }}
+        />
+
+        <img
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          src={game?.image}
+          loading="lazy"
+          alt={game?.name}
+        />
+
+        <HeartIcon className="absolute top-2 right-2 w-5 h-5 text-white opacity-80 hover:opacity-100" />
+
+        <div className="absolute bottom-0 w-full bg-gradient-to-t from-gray-800 via-gray-800/80 to-transparent p-2 text-center">
+          <p className="text-white text-sm font-bold truncate">{game?.name}</p>
+          <p className="text-gray-300 text-xs truncate">
+            {game?.provider_type}
+          </p>
+        </div>
+        {playLoading && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <LoaderSpinner />
+          </div>
+        )}
       </div>
-      {playLoading && <LoaderSpinner />}
+
       {depositModal && (
         <Modal title={null} onClose={() => setDepositModal(false)}>
-          <ModalBalanceInfo game={game} onClose={() => setDepositModal(false)} />
+          <ModalBalanceInfo
+            game={game}
+            onClose={() => setDepositModal(false)}
+          />
         </Modal>
       )}
       {loginModal && (

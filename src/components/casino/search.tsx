@@ -1,15 +1,15 @@
-import  ArrowDownIcon  from "@/assets/icons/arrow-down.svg?react";
-import  SearchIcon  from "@/assets/icons/search.svg?react";
-import  CloseIcon  from "@/assets/icons/close.svg?react";
+import ArrowDownIcon from "@/assets/icons/arrow-down.svg?react";
+import SearchIcon from "@/assets/icons/search.svg?react";
+import CloseIcon from "@/assets/icons/close.svg?react";
 
 import GameListRenderer from "@/routes/casino/gameListRenderer";
 import { useEffect, useState } from "react";
 import "./search.css";
 import { LoaderSpinner } from "@/components/shared/Loader";
-import Modal from "@/components/shared/modal";
 import { useGetMainQuery } from "@/services/mainApi";
-import type {Provider, Subcategory} from "@/types/main";
+import type { Provider, Subcategory } from "@/types/main";
 import AllItemsList from "./allItemsListSearch";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
 
 const useDebounce = (value: string | null, delay: number): string | null => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -60,7 +60,6 @@ const Search = ({
 
   const debouncedSearch = useDebounce(searchQuery, 300);
   const { data: mainData } = useGetMainQuery();
-
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -154,7 +153,7 @@ const Search = ({
       <div className="search-wrapper">
         <div className="m-input m-gradient-border m-input--dark m-input--m search-input">
           <div className="m-icon-container m-input-prepend">
-            <SearchIcon className="m-icon m-icon-loadable" />
+            <SearchIcon className="w-6 h-6" />
           </div>
           <div className="m-input-content">
             <input
@@ -170,7 +169,7 @@ const Search = ({
               onClick={() => setSearchQuery(null)}
               className="m-icon-container m-input-append"
             >
-              <CloseIcon className="m-icon m-icon-loadable" />
+              <CloseIcon className="w-6 h-6" />
             </div>
           )}
         </div>
@@ -310,14 +309,9 @@ const Search = ({
         </div>
       </div>
 
-      {categoryModal && (
-        <Modal
-          width={700}
-          title={`Categories`}
-          onClose={() => setCategoryModal(false)}
-          additionalClass="search-modal search-modal--search"
-          showArrowLeft={true}
-        >
+      <Dialog open={categoryModal} onOpenChange={() => setCategoryModal(false)}>
+        <DialogContent className="overflow-auto max-h-[80%]">
+          <DialogTitle>Categories</DialogTitle>
           <AllItemsList
             items={allSubcategories}
             type="subcategory"
@@ -327,17 +321,12 @@ const Search = ({
               onCloseSearchModal();
             }}
           />
-        </Modal>
-      )}
+        </DialogContent>
+      </Dialog>
 
-      {providerModal && (
-        <Modal
-          width={700}
-          title={`Providers`}
-          onClose={() => setProviderModal(false)}
-          additionalClass="search-modal search-modal--search"
-          showArrowLeft={true}
-        >
+      <Dialog open={providerModal} onOpenChange={() => setProviderModal(false)}>
+        <DialogContent className="overflow-auto max-h-[80%]">
+          <DialogTitle>Providers</DialogTitle>
           <AllItemsList
             items={allProviders}
             type="provider"
@@ -347,8 +336,8 @@ const Search = ({
               onCloseSearchModal();
             }}
           />
-        </Modal>
-      )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

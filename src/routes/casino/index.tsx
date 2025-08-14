@@ -13,6 +13,7 @@ import casinoLiveBanner from "@/assets/images/casino-live-banner.jpg";
 import BigWinsSlider from "@/components/casino/bigWinsSlider";
 import SubcategorySlider from "@/components/casino/subcategorySlider";
 import JackpotBanner from "@/components/casino/jackpotBanner";
+import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 
 const Lobby = () => {
   const { data, error, isLoading } = useGetMainQuery();
@@ -53,11 +54,11 @@ const Lobby = () => {
   }, []);
 
   return (
-    <>
+    <div className="mx-auto gap-5 flex flex-col max-w-[1400px]">
       {categorySlug === "casino-live" && (
         <section>
           <div>
-            <img src={casinoLiveBanner} alt="Banner" />
+            <img src={casinoLiveBanner} alt="Banner" width="100%" />
           </div>
         </section>
       )}
@@ -65,8 +66,7 @@ const Lobby = () => {
       {categorySlug === "casino" && (
         <section>
           <div>
-            <img src={homeBanner} alt="Banner" />
-
+            <img src={homeBanner} alt="Banner" width="100%"/>
           </div>
         </section>
       )}
@@ -85,7 +85,7 @@ const Lobby = () => {
 
       {categorySlug === "casino" && (
         <>
-          {/*<LobbyBannerSlider />*/}
+          <LobbyBannerSlider />
           <BigWinsSlider />
         </>
       )}
@@ -95,7 +95,6 @@ const Lobby = () => {
           const middleIndex = Math.floor(
             activeCategory.subcategories.length / 2
           );
-
 
           if (index === middleIndex - 1) {
             return (
@@ -128,7 +127,7 @@ const Lobby = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

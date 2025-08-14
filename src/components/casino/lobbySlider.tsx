@@ -1,203 +1,190 @@
-import type {Subcategory} from '@/types/main';
-import ArrowUpIcon from '@/assets/icons/arrow-up.svg?react';
-import {useIsDesktop} from '@/hooks/useIsDesktop';
-import {useEffect, useRef, useState} from 'react';
-import {useGetGameListQuery} from '@/services/mainApi';
-import GameSlot from '@/components/shared/slot';
-import type {Game, GameListRequest} from '@/types/game_list';
-import {useNavigate} from 'react-router';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useEffect, useRef, useState } from "react";
+import { useGetGameListQuery } from "@/services/mainApi";
+import GameSlot from "@/components/shared/slot";
+import type { Game } from "@/types/game_list";
+import type { Subcategory } from "@/types/main";
+import { useNavigate } from "react-router";
 
 type LobbySliderProps = {
   categorySlug: string;
   subcategory: Subcategory;
 };
 
-// Animation duration is currently 0, but a non-zero value would improve the UX
-const ANIMATION_DURATION = 300;
+const MOBILE_GAME_LIMIT = 5;
 
-export const DesktopSlider = ({categorySlug, subcategory}: LobbySliderProps) => {
+export const DesktopSlider = ({
+  categorySlug,
+  subcategory,
+}: LobbySliderProps) => {
   const navigate = useNavigate();
   const [offset, setOffset] = useState(0);
 
-  const {
-    data,
-    isLoading: isQueryLoading,
-    isFetching: isQueryFetching,
-  } = useGetGameListQuery(
-      {
-        category_ids: subcategory?.id ? [subcategory.id] : [],
-        device: 'desktop',
-        offset,
-        limit: subcategory.landing_page_game_number,
-      },
-      {skip: !subcategory.id} // Skip the query if subcategory ID is not available
+  const { data, isLoading, isFetching } = useGetGameListQuery(
+    {
+      category_ids: subcategory?.id ? [subcategory.id] : [],
+      device: "desktop",
+      offset,
+      limit: subcategory.landing_page_game_number,
+    },
+    { skip: !subcategory.id }
   );
 
-  const games = isQueryLoading
-      ? Array(subcategory.landing_page_game_number).fill(null)
-      : data?.games ?? [];
+  const games = isLoading
+    ? Array(subcategory.landing_page_game_number).fill(null)
+    : data?.games ?? [];
 
   const handlePrev = () => {
-    setOffset(prevOffset =>
-        Math.max(prevOffset - subcategory.landing_page_game_number, 0)
+    setOffset((prev) =>
+      Math.max(prev - subcategory.landing_page_game_number, 0)
     );
   };
 
   const handleNext = () => {
-    setOffset(prevOffset => prevOffset + subcategory.landing_page_game_number);
+    setOffset((prev) => prev + subcategory.landing_page_game_number);
   };
 
-  const isPrevDisabled = offset === 0 || isQueryFetching;
+  const isPrevDisabled = offset === 0 || isFetching;
   const isNextDisabled =
-      isQueryFetching ||
-      (data?.total !== undefined &&
-          offset + subcategory.landing_page_game_number >= data.total);
+    isFetching ||
+    (data?.total !== undefined &&
+      offset + subcategory.landing_page_game_number >= data.total);
 
   return (
-      <section>
-        <div>
-          <div>
-            <h2>{subcategory.name}</h2>
-          </div>
-          <div>
-            <button
-                onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
-                disabled={isQueryLoading}
+    <section className="w-full mb-8">
+      <div className="flex w-full items-center justify-between mb-3">
+        <h2 className="font-bold mr-auto text-3xl ">{subcategory.name}</h2>
+        <button
+          onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
+          disabled={isLoading}
+          className="flex items-center gap-1 text-sm text-primary hover:underline disabled:opacity-50"
+        >
+          View all {data?.total != null && <span>({data.total})</span>}
+        </button>
+        <div className="hidden md:flex gap-2">
+          <button onClick={handlePrev} disabled={isPrevDisabled}>
+            <ArrowUpIcon className="rotate-270" />
+          </button>
+          <button onClick={handleNext} disabled={isNextDisabled}>
+            <ArrowUpIcon className="rotate-90" />
+          </button>
+        </div>
+      </div>
+
+      <Carousel opts={{ align: "start", loop: false }} className="w-full">
+        <CarouselContent>
+          {games.map((game, index) => (
+            <CarouselItem
+              key={game?.id ?? `skeleton-${index}`}
+              className="basis-1/6 lg:basis-1/7 md:basis-1/4 sm:basis-1/3 "
             >
-              <span>View all</span>
-              {data?.total !== undefined && <span>{data.total}</span>}
-            </button>
-          </div>
-          <div>
-            <div>
-              <button onClick={handlePrev} disabled={isPrevDisabled}>
-                <ArrowUpIcon style={{transform: 'rotate(270deg)'}} />
-              </button>
-            </div>
-            <div>
-              <button onClick={handleNext} disabled={isNextDisabled}>
-                <ArrowUpIcon style={{transform: 'rotate(90deg)'}} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div>
-          {/*
-           Using a key on the container to force a re-render can be a performance concern.
-           A better approach would be to use a transition effect without unmounting the whole list.
-           For this example, I've kept the key, but it's something to be mindful of.
-        */}
-          <div key={`slider-${offset}`}>
-            {games.map((game, index) => (
-                <GameSlot
-                    key={game?.id ?? `skeleton-${index}`}
-                    game={game}
-                    isLoading={isQueryLoading || isQueryFetching}
-                />
-            ))}
-          </div>
-        </div>
-      </section>
+              <GameSlot game={game} isLoading={isLoading || isFetching} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="hidden md:flex" />
+        <CarouselNext className="hidden md:flex" />
+      </Carousel>
+    </section>
   );
 };
 
-const MOBILE_GAME_LIMIT = 5;
-
-const MobileSlider = ({categorySlug, subcategory}: LobbySliderProps) => {
+const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
   const navigate = useNavigate();
   const [games, setGames] = useState<Game[]>([]);
   const [offset, setOffset] = useState(0);
 
-  const {data, isFetching} = useGetGameListQuery(
-      {
-        category_ids: subcategory?.id ? [subcategory.id] : [],
-        device: 'mobile',
-        offset,
-        limit: MOBILE_GAME_LIMIT,
-      },
-      {skip: !subcategory.id}
+  const { data, isFetching } = useGetGameListQuery(
+    {
+      category_ids: subcategory?.id ? [subcategory.id] : [],
+      device: "mobile",
+      offset,
+      limit: MOBILE_GAME_LIMIT,
+    },
+    { skip: !subcategory.id }
   );
 
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!data) return;
-
-    setGames(prev => [...prev, ...data.games]);
-
-    // Reset the offset and games state if the subcategory changes
-    // This is a cleaner way to handle the state reset logic
     if (offset === 0) {
       setGames(data.games);
+    } else {
+      setGames((prev) => [...prev, ...data.games]);
     }
   }, [data, offset]);
 
   useEffect(() => {
-    // Reset state when subcategory changes
     setGames([]);
     setOffset(0);
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollLeft = 0;
-    }
   }, [subcategory.id]);
 
   const hasMore =
-      data?.total !== undefined
-          ? offset + games.length < data.total
-          : games.length === offset + MOBILE_GAME_LIMIT;
+    data?.total !== undefined
+      ? offset + games.length < data.total
+      : games.length === offset + MOBILE_GAME_LIMIT;
 
   const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    const {scrollWidth, scrollLeft, clientWidth} = event.currentTarget;
-    // Check if the user has scrolled to the end of the container
+    const { scrollWidth, scrollLeft, clientWidth } = event.currentTarget;
     if (
-        !isFetching &&
-        hasMore &&
-        scrollWidth - scrollLeft - clientWidth < 100 // A small threshold for "near the end"
+      !isFetching &&
+      hasMore &&
+      scrollWidth - scrollLeft - clientWidth < 100
     ) {
-      setOffset(prev => prev + MOBILE_GAME_LIMIT);
+      setOffset((prev) => prev + MOBILE_GAME_LIMIT);
     }
   };
 
   return (
-      <section>
-        <div>
-          <div>
-            <h6>{subcategory.name}</h6>
-          </div>
-          <div>
-            <button
-                onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
-            >
-              <span>View all</span>
-              {data?.total != null && <span>{data.total}</span>}
-            </button>
-          </div>
-        </div>
-        <div>
-          <div ref={scrollContainerRef} onScroll={handleScroll}>
-            {games.map((game, i) => (
-                <div key={`${game?.id ?? 'skeleton'}-${i}`}>
-                  <GameSlot game={game} isLoading={game === null} />
-                </div>
-            ))}
+    <section className="w-full">
+      <div className="flex items-center w-full justify-between mb-3">
+        <h6 className="font-semibold">{subcategory.name}</h6>
+        <button
+          onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
+          className="text-sm text-primary hover:underline"
+        >
+          View all {data?.total != null && <span>({data.total})</span>}
+        </button>
+      </div>
 
-            {isFetching &&
-                Array.from({length: MOBILE_GAME_LIMIT}).map((_, i) => (
-                    <div key={`sk-${i}`}>
-                      <GameSlot game={null} isLoading={true} />
-                    </div>
-                ))}
+      <div
+        ref={carouselRef}
+        onScroll={handleScroll}
+        className="flex gap-2 overflow-x-auto scrollbar-none"
+      >
+        {games.map((game, i) => (
+          <div
+            key={`${game?.id ?? "skeleton"}-${i}`}
+            className="flex-shrink-0 w-[150px]"
+          >
+            <GameSlot game={game} isLoading={game === null} />
           </div>
-        </div>
-      </section>
+        ))}
+
+        {isFetching &&
+          Array.from({ length: MOBILE_GAME_LIMIT }).map((_, i) => (
+            <div key={`sk-${i}`} className="flex-shrink-0 w-[150px]">
+              <GameSlot game={null} isLoading={true} />
+            </div>
+          ))}
+      </div>
+    </section>
   );
 };
 
 const LobbySlider = (props: LobbySliderProps) => {
   const isDesktop = useIsDesktop();
-
-  if (isDesktop) return <DesktopSlider {...props} />;
-  return <MobileSlider {...props} />;
+  return isDesktop ? <DesktopSlider {...props} /> : <MobileSlider {...props} />;
 };
 
 export default LobbySlider;

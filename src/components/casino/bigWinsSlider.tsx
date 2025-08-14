@@ -1,9 +1,13 @@
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 import win1 from "@/assets/images/big-wins-1.webp";
 import win2 from "@/assets/images/big-wins-2.webp";
-
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-import ArrowUpIcon  from "@/assets/icons/arrow-up.svg?react";
-import { useCallback } from "react";
 
 const slides = [
   {
@@ -45,64 +49,51 @@ const slides = [
 ];
 
 export default function BigWinsSlider() {
-  const isDesktop = useIsDesktop();
-
-
-  const goToPrev = useCallback(() => {}, []);
-  const goToNext = useCallback(() => {}, []);
-
   return (
-    <section>
-      <div>
-        <div>
-          <h2>
-            <div>Big Wins</div>
-          </h2>
-        </div>
+    <section className="relative max-w-[calc(var(--section-width)+10px)] mx-auto">
+      
 
-        {isDesktop && (
-          <div>
-            <div>
-              <button onClick={goToPrev} aria-label="Previous provider">
-                <ArrowUpIcon />
-              </button>
-            </div>
-            <div>
-              <button onClick={goToNext} aria-label="Next provider">
-                <ArrowUpIcon />
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div>
-        {slides.map((slide, index) => (
-          <div key={index}>
-            <div>
-              <img
-                src={slide.image}
-                alt={slide.title}
-                width={80}
-                height={80}
-              />
-              <div>
-                <p>{slide.title}</p>
-                <div>
-                  <img
-                    src={slide.image}
-                    alt=""
-                    width={32}
-                    height={32}
-                  />
-                  <p>@{slide.username}</p>
+      <Carousel
+        opts={{
+          align: "start",
+          loop: false,
+        }}
+        className="w-full"
+      >
+        <CarouselContent>
+          {slides.map((slide, index) => (
+            <CarouselItem
+              key={index}
+              className="basis-1/5 lg:basis-1/5 md:basis-1/3 sm:basis-1/2 p-2"
+            >
+              <div className="flex items-center gap-4 p-3 border rounded-lg bg-background shadow-sm">
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-20 h-20 rounded-md object-cover"
+                />
+                <div className="flex flex-col flex-1">
+                  <p className="font-semibold text-sm">{slide.title}</p>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                    <img
+                      src={slide.image}
+                      alt=""
+                      className="w-6 h-6 rounded-full object-cover"
+                    />
+                    <p>@{slide.username}</p>
+                  </div>
+                  <p className="text-primary font-bold mt-1">{slide.price}</p>
                 </div>
-                <p>{slide.price}</p>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+
+        <div className="flex justify-between mt-2">
+          <CarouselPrevious />
+          <CarouselNext />
+        </div>
+      </Carousel>
     </section>
   );
 }

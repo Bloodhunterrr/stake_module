@@ -39,7 +39,7 @@ const App: React.FC = () => {
             />
             <main
                 className={`flex-1 transition-all duration-300 ease-in-out
-                            ${isDesktop ? (sideBarOpen ? 'xl:ml-64' : 'xl:ml-0') : 'ml-0'}`}
+                            ${isDesktop ? (sideBarOpen ? 'xl:ml-64' : 'xl:ml-20') : 'ml-0'}`}
             >
                 <NavBar
                     isDesktop={isDesktop}

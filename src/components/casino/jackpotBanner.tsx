@@ -297,7 +297,7 @@ const JackpotBanner = () => {
   ];
 
   return (
-    <div className="jackpot-banner">
+    <div className="jackpot-banner rounded-2xl">
       <div className="jackpot-overlay">
         <h1 className="jackpot-title">
           <span className="jackpot-mega">

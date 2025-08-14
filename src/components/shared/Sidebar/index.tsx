@@ -1,185 +1,188 @@
+import { Menu, LifeBuoy } from "lucide-react";
 import {
-    Menu,
-    LifeBuoy,
-} from "lucide-react";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 
-import {useState} from "react";
+import { useState } from "react";
 import SidebarNav from "./sidebar-nav";
-import {Button} from "@/components/ui/button";
-import {ALLOWED_LANGUAGES} from "@/types/lang";
-import {Check, ChevronDown} from "lucide-react";
-import {useGetMainQuery} from "@/services/mainApi";
-import {ScrollArea} from "@/components/ui/scroll-area";
-import {useNavigate, useParams} from "react-router-dom";
-import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { ALLOWED_LANGUAGES } from "@/types/lang";
+import { Check, ChevronDown } from "lucide-react";
+import { useGetMainQuery } from "@/services/mainApi";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useNavigate, useParams } from "react-router-dom";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 type Language = {
-    code: string;
-    name: string;
+  code: string;
+  name: string;
 };
 
 type SidebarProps = {
-    isDesktop: boolean;
-    sideBarOpen: boolean;
-    toggleSideBar: (isOpen: boolean) => void;
+  isDesktop: boolean;
+  sideBarOpen: boolean;
+  toggleSideBar: (isOpen: boolean) => void;
 };
-
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
 function LanguageSwitcher() {
-    const [currentLang, setCurrentLang] = useState<Language>(
-        ALLOWED_LANGUAGES.en
-    );
-    const [open, setOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState<Language>(
+    ALLOWED_LANGUAGES.en
+  );
+  const [open, setOpen] = useState(false);
 
-    const handleLanguageChange = (lang: Language) => {
-        setCurrentLang(lang);
-        setOpen(false);
-    };
+  const handleLanguageChange = (lang: Language) => {
+    setCurrentLang(lang);
+    setOpen(false);
+  };
 
-    return (
-        <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-                <Button
-                    variant="secondary"
-                    className="w-full justify-between rounded-lg font-normal transition-all duration-300 hover:bg-accent"
-                >
-                    <div className="flex items-center space-x-2">
-                        <span>{currentLang.name}</span>
-                    </div>
-                    <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200"/>
-                </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0" align="end">
-                <ScrollArea className="h-40">
-                    <div className="flex flex-col space-y-1 p-1">
-                        {Object.values(ALLOWED_LANGUAGES).map((lang) => (
-                            <Button
-                                key={lang.code}
-                                variant="ghost"
-                                className="w-full justify-between font-normal"
-                                onClick={() => handleLanguageChange(lang)}
-                            >
-                                <span>{lang.name}</span>
-                                {currentLang.code === lang.code && (
-                                    <Check className="h-4 w-4"/>
-                                )}
-                            </Button>
-                        ))}
-                    </div>
-                </ScrollArea>
-            </PopoverContent>
-        </Popover>
-    );
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="secondary"
+          className="w-full justify-between rounded-lg font-normal transition-all duration-300 hover:bg-accent"
+        >
+          <div className="flex items-center space-x-2">
+            <span>{currentLang.name}</span>
+          </div>
+          <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[200px] p-0" align="end">
+        <ScrollArea className="h-40">
+          <div className="flex flex-col space-y-1 p-1">
+            {Object.values(ALLOWED_LANGUAGES).map((lang) => (
+              <Button
+                key={lang.code}
+                variant="ghost"
+                className="w-full justify-between font-normal"
+                onClick={() => handleLanguageChange(lang)}
+              >
+                <span>{lang.name}</span>
+                {currentLang.code === lang.code && (
+                  <Check className="h-4 w-4" />
+                )}
+              </Button>
+            ))}
+          </div>
+        </ScrollArea>
+      </PopoverContent>
+    </Popover>
+  );
 }
 
+export default function Sidebar({
+  isDesktop,
+  sideBarOpen,
+  toggleSideBar,
+}: SidebarProps) {
+  const navigate = useNavigate();
+  const { categorySlug } = useParams<{ categorySlug: string }>();
+  const { data } = useGetMainQuery();
 
-export default function Sidebar({isDesktop, sideBarOpen, toggleSideBar}: SidebarProps) {
-    const navigate = useNavigate();
-    const {categorySlug} = useParams<{ categorySlug: string }>();
-    const {data} = useGetMainQuery();
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    if (!isDesktop) {
+      toggleSideBar(false);
+    }
+  };
 
-    const handleNavigate = (path: string) => {
-        navigate(path);
-        if (!isDesktop) {
-            toggleSideBar(false);
-        }
-    };
-
-    const commonNavContent = (
-        <>
-            <SidebarNav
-                sidebarOpen={isDesktop ? sideBarOpen : true}
-                data={data}
-                categorySlug={categorySlug}
-                onNavigate={handleNavigate}
-            />
-            <div className="mt-auto pt-4 border-t border-border flex flex-col space-y-2">
-                <Button
-                    onClick={() => {
-                        console.log("chat");
-                        if (!isDesktop) toggleSideBar(false);
-                    }}
-                    className={`w-full justify-start rounded-lg font-normal
+  const commonNavContent = (
+    <>
+      <SidebarNav
+        sidebarOpen={isDesktop ? sideBarOpen : true}
+        data={data}
+        categorySlug={categorySlug}
+        onNavigate={handleNavigate}
+      />
+      <div className="mt-auto pt-4 border-t border-border flex flex-col space-y-2">
+        <Button
+          onClick={() => {
+            console.log("chat");
+            if (!isDesktop) toggleSideBar(false);
+          }}
+          className={`w-full justify-start rounded-lg font-normal
                              ${
-                        isDesktop && !sideBarOpen
-                            ? "px-0 size-12 justify-center"
-                            : "px-4"
-                    }`}
-                >
-                    <LifeBuoy
-                        className={`${isDesktop && sideBarOpen ? "mr-3" : ""} h-5 w-5`}
-                    />
-                    {((isDesktop && sideBarOpen) || !isDesktop) && (
-                        <span className="truncate">Support</span>
-                    )}
-                </Button>
-                {((isDesktop && sideBarOpen) || !isDesktop) && <LanguageSwitcher/>}
-            </div>
-        </>
-    );
+                               isDesktop && !sideBarOpen
+                                 ? "px-0 size-12 justify-center"
+                                 : "px-4"
+                             }`}
+        >
+          <LifeBuoy
+            className={`${isDesktop && sideBarOpen ? "mr-3" : ""} h-5 w-5`}
+          />
+          {((isDesktop && sideBarOpen) || !isDesktop) && (
+            <span className="truncate">Support</span>
+          )}
+        </Button>
+        {((isDesktop && sideBarOpen) || !isDesktop) && <LanguageSwitcher />}
+      </div>
+    </>
+  );
 
-    return (
-        <>
-            {isDesktop ? (
-                <div
-                    className={`relative h-full flex-col px-4 transition-all duration-300 ease-in-out fixed top-0 left-0 z-[1000] bg-transparent
+  return (
+    <>
+      {isDesktop ? (
+        <div
+          className={`fixed h-full flex-col px-4 transition-all duration-300 ease-in-out overflow-auto bg-white top-0 left-0 z-[1000] 
                              ${sideBarOpen ? "w-64" : "w-18"} hidden xl:flex`}
-                >
-                    <div
-                        className={`flex items-center ${
-                            sideBarOpen ? "justify-between" : "justify-center"
-                        } p-2 mb-4`}
-                    >
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => toggleSideBar(!sideBarOpen)}
-                            className="shrink-0"
-                        >
-                            <Menu className="h-6 w-6"/>
-                        </Button>
-                        {sideBarOpen && logo && (
-                            <img
-                                src={logo}
-                                alt="logo"
-                                className="h-8 cursor-pointer"
-                                onClick={() => navigate("/")}
-                            />
-                        )}
-                    </div>
-                    {commonNavContent}
-                </div>
-            ) : (
-                <Sheet open={sideBarOpen} onOpenChange={toggleSideBar}>
-                    <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon" className="absolute top-4 left-4 z-50 xl:hidden">
-                            <Menu className="h-6 w-6"/>
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left" className="w-64 p-0 xl:hidden">
-                        <div className="flex items-center justify-between p-4 mb-4">
-                            {logo && (
-                                <img
-                                    src={logo}
-                                    alt="logo"
-                                    className="h-8 cursor-pointer"
-                                    onClick={() => handleNavigate("/")}
-                                />
-                            )}
-                        </div>
-                        <div className="h-[calc(100%-80px)] px-4 flex flex-col">
-                            {commonNavContent}
-                        </div>
-                    </SheetContent>
-                </Sheet>
+        >
+          <div
+            className={`flex items-center ${
+              sideBarOpen ? "justify-between" : "justify-center"
+            } p-2 mb-4`}
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => toggleSideBar(!sideBarOpen)}
+              className="shrink-0"
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
+            {sideBarOpen && logo && (
+              <img
+                src={logo}
+                alt="logo"
+                className="h-8 cursor-pointer"
+                onClick={() => navigate("/")}
+              />
             )}
-        </>
-    );
+          </div>
+          {commonNavContent}
+        </div>
+      ) : (
+        <Sheet open={sideBarOpen} onOpenChange={toggleSideBar}>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 left-4 z-50 xl:hidden"
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-64 p-0 xl:hidden">
+            <div className="flex items-center justify-between p-4 mb-4">
+              {logo && (
+                <img
+                  src={logo}
+                  alt="logo"
+                  className="h-8 cursor-pointer"
+                  onClick={() => handleNavigate("/")}
+                />
+              )}
+            </div>
+            <div className="h-[calc(100%-80px)] px-4 flex flex-col">
+              {commonNavContent}
+            </div>
+          </SheetContent>
+        </Sheet>
+      )}
+    </>
+  );
 }
