@@ -1,0 +1,132 @@
+.PageSectionTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px
+}
+
+.PageSectionTitle-Text {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--color-mid-grey-3)
+}
+
+.PageSectionTitle-Count {
+    margin-left: 8px
+}
+
+.PageSectionTitle-Right {
+    margin-left: auto
+}
+
+.profile-page {
+    display: flex;
+    height: 100%
+}
+
+.mobile .profile-page,
+.tablet .profile-page {
+    padding: 0 0 120px
+}
+
+.mobile .profile-page.Dashboard-LoyaltyPage,
+.tablet .profile-page.Dashboard-LoyaltyPage {
+    padding-bottom: 0
+}
+
+.profile-page__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+    max-width: 100%
+}
+
+.desktop .profile-page__content {
+    padding: 24px 0 16px;
+    height: calc(var(--app-height, 100vh) - var(--nav-height));
+    overflow-y: auto
+}
+
+.profile-page .m-tabs {
+    margin-bottom: 16px;
+    scrollbar-width: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap
+}
+
+.profile-page .m-tabs::-webkit-scrollbar {
+    display: none
+}
+
+.profile-page .m-tabs .m-counter {
+    margin-left: 8px
+}
+
+.profile-page .m-counter.m-button--secondary {
+    --background: var(--color-dark-grey-5);
+    --outline: var(--color-dark-grey-5)
+}
+
+.profile-page .m-info-block {
+    height: auto;
+    background: var(--color-dark-grey-1);
+    border-radius: 16px
+}
+
+.profile-page .m-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap
+}
+
+.profile-page .m-modal {
+    max-height: var(--app-height, 100vh)
+}
+
+.HistoryFilters-Dropdown {
+    max-height: 260px !important
+}
+
+.HistoryFilters-Dropdown {
+    max-height: 260px !important
+}
+
+.profile-nav-mobile {
+    margin: 12px 0 16px
+}
+
+.profile-nav-mobile .m-input-content {
+    display: none
+}
+
+.profile-nav-mobile .m-input-append {
+    margin-left: auto
+}
+
+.profile-nav-mobile .m-input-prepend {
+    color: var(--color-mid-grey-5);
+    pointer-events: none
+}
+
+.profile-nav-mobile__icon {
+    width: 24px;
+    height: 24px
+}
+
+.profile-nav-mobile__item:last-child {
+    margin-top: 4px;
+    position: relative
+}
+
+.profile-nav-mobile__item:last-child:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8px;
+    right: 8px;
+    width: calc(100% - 16px);
+    height: 1px;
+    background: var(--color-dark-grey-3)
+}

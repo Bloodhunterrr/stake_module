@@ -1,0 +1,66 @@
+.general-user-page__user-fields {
+    padding: 12px 12px 4px;
+    background: var(--color-dark-grey-1);
+    border-radius: 16px
+}
+
+.general-user-page__user-fields .m-form-field {
+    margin-bottom: 8px
+}
+
+.general-user-page__error {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-da500)
+}
+
+.general-user-page__submit {
+    margin: 16px 0 0 auto
+}
+
+.general-user-page__subscriptions-title {
+    margin-top: 16px
+}
+
+.general-user-page__subscriptions .m-form-field {
+    padding: 12px 20px
+}
+
+.general-user-page__subscriptions .m-form-field:first-child {
+    border-radius: 16px 16px 0 0
+}
+
+.general-user-page__subscriptions .m-form-field:last-child {
+    border-radius: 0 0 16px 16px
+}
+
+.general-user-page__subscriptions .general-user-page__captcha {
+    flex: 1 1 100%;
+    margin-top: 16px
+}
+
+.general-user-page__label {
+    margin-left: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-white)
+}
+
+.general-user-page__switcher {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    background: var(--color-dark-grey-1);
+    border-bottom: 1px solid var(--color-dark-grey-0);
+    flex-wrap: wrap
+}
+
+.general-user-page__footer {
+    border-radius: 16px;
+    margin-top: 16px
+}
+
+.general-user-page__user-fields.items-grid {
+    grid-row-gap: 0px;
+}

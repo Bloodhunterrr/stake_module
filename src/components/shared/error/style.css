@@ -1,0 +1,33 @@
+.error-page {
+    max-width: 560px;
+    padding-bottom: 0;
+    padding-top: 75px
+}
+
+.error-page__img {
+    max-width: 210px
+}
+
+@media(min-width: 768px) {
+    .error-page__img {
+        max-width:none
+    }
+}
+
+
+.error-page {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    gap: 32px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 120px 16px
+}
+
+.error-page__text {
+    display: flex;
+    flex-flow: column;
+    gap: 10px
+}

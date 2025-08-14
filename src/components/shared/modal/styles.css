@@ -1,0 +1,46 @@
+.m-modal-footer > button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.m-modal-footer {
+    display: block;
+    padding: 10px;
+}
+
+.deposit-section .m-info-block-icon {
+    --info-icon-background: var(--color-da600);
+    --info-icon-gap: 0;
+}
+
+.m-info-block-icon {
+    align-items: center;
+    background: var(--info-icon-background-placeholder, var(--info-icon-background));
+    border-radius: var(--info-icon-radius);
+    display: flex;
+    height: var(--info-icon-size);
+    justify-content: center;
+    margin-bottom: var(--info-icon-gap);
+    width: var(--info-icon-size);
+}
+
+
+.deposit-section .m-info-block-icon {
+    --info-icon-background: var(--color-da600);
+    --info-icon-gap: 0;
+}
+
+.m-info-block-icon {
+    align-items: center;
+    background: var(--info-icon-background-placeholder, var(--info-icon-background));
+    border-radius: var(--info-icon-radius);
+    display: flex;
+    height: var(--info-icon-size);
+    justify-content: center;
+    margin-bottom: var(--info-icon-gap);
+    width: var(--info-icon-size);
+}
+
+.m-info-warning-color {
+    --info-icon-background: var(--color-at400) !important;
+}

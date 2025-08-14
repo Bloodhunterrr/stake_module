@@ -1,0 +1,31 @@
+.pwa-banner {
+    border-radius: 16px;
+    background: linear-gradient(97deg, #0a5566 0%, #501875 94.17%);
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 32px 32px 195px;
+    gap: 32px;
+    overflow: hidden
+}
+
+.mobile .pwa-banner {
+    padding: 16px 100px 16px 16px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+.pwa-banner__image {
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    top: 0;
+    left: 0
+}
+
+.mobile .pwa-banner__image {
+    right: 0;
+    left: unset
+}

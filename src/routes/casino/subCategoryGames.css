@@ -1,0 +1,256 @@
+.grid__columns--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
+.grid__columns--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+
+.grid__column-gap--2 {
+    grid-column-gap: 2px
+}
+
+.grid__column-gap--3 {
+    grid-column-gap: 3px
+}
+
+.grid__column-gap--4 {
+    grid-column-gap: 4px
+}
+
+.grid__column-gap--5 {
+    grid-column-gap: 5px
+}
+
+.grid__column-gap--6 {
+    grid-column-gap: 6px
+}
+
+.grid__column-gap--7 {
+    grid-column-gap: 7px
+}
+
+.grid__column-gap--8 {
+    grid-column-gap: 8px
+}
+
+.grid__column-gap--9 {
+    grid-column-gap: 9px
+}
+
+.grid__column-gap--10 {
+    grid-column-gap: 10px
+}
+
+.grid__column-gap--11 {
+    grid-column-gap: 11px
+}
+
+.grid__column-gap--12 {
+    grid-column-gap: 12px
+}
+
+.grid__column-gap--13 {
+    grid-column-gap: 13px
+}
+
+.grid__column-gap--14 {
+    grid-column-gap: 14px
+}
+
+.grid__column-gap--15 {
+    grid-column-gap: 15px
+}
+
+.grid__column-gap--16 {
+    grid-column-gap: 16px
+}
+
+.items-grid {
+    display: grid;
+    grid-row-gap: 16px
+}
+
+@media(min-width: 768px) {
+    .items-grid--cols2 {
+        grid-template-columns:repeat(2, minmax(0, 1fr))
+    }
+
+    .items-grid--cols3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+
+    .items-grid--cols4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+    }
+
+    .items-grid--cols5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr))
+    }
+
+    .items-grid--cols6 {
+        grid-template-columns: repeat(6, minmax(0, 1fr))
+    }
+
+    .items-grid--cols7 {
+        grid-template-columns: repeat(7, minmax(0, 1fr))
+    }
+
+    .items-grid--cols8 {
+        grid-template-columns: repeat(8, minmax(0, 1fr))
+    }
+
+    .items-grid--cols9 {
+        grid-template-columns: repeat(9, minmax(0, 1fr))
+    }
+}
+
+.items-grid-wrapper {
+    margin: 0 0 var(--gap-l)
+}
+
+.items-grid-header {
+    display: block;
+    align-items: center;
+    margin: var(--gap-s) 0
+}
+
+.items-grid-header--sticky {
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 100;
+    padding: 9px 0;
+    background: var(--color-background-page)
+}
+
+.items-grid-header>*:nth-child(2) {
+    margin-left: auto
+}
+
+.items-grid-showMore {
+    margin-top: var(--gap-m);
+    text-align: center
+}
+
+.items-grid .Card-Results+.Card-DgaPlayers,.items-grid .Card-FooterBtn {
+    display: none
+}
+
+@media(min-width: 1248px) {
+    .items-grid .Card-Results+.Card-DgaPlayers,.items-grid .Card-FooterBtn {
+        display:flex
+    }
+}
+
+.items-grid .Card-TableInfo {
+    padding: 6px
+}
+
+@media(min-width: 768px) {
+    .items-grid .Card-TableInfo {
+        padding:8px 10px
+    }
+}
+
+.items-grid .Card-Result {
+    width: 22px;
+    height: 22px
+}
+
+@media(min-width: 768px) {
+    .items-grid .Card-Result {
+        width:28px;
+        height: 28px
+    }
+}
+
+.payment-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-dark-grey-1);
+    border-radius: 12px;
+    height: 100px
+}
+
+.payment-card>img {
+    max-width: 156px;
+    max-height: 56px;
+    width: 100%
+}
+
+.Provider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-dark-grey-1);
+    box-shadow: 0 0 1px rgba(0,0,0,.32),0 40px 64px rgba(0,0,0,.24);
+    border-radius: 12px;
+    cursor: pointer;
+    height: 112px
+}
+
+.Provider>img {
+    max-width: 156px;
+    max-height: 56px
+}
+
+.mobile .Provider {
+    border-radius: 8px;
+    height: 56px
+}
+
+.tablet .Provider>img,.mobile .Provider>img {
+    max-width: 130px;
+    max-height: 40px
+}
+
+.category-games-section {
+    --gap-l: 8px;
+    margin: 0 0 var(--gap-l)
+}
+
+@media(min-width: 768px) {
+    .category-games-section {
+        --gap-l: 20px
+    }
+}
+
+@media(min-width: 960px) {
+    .category-games-section {
+        --gap-l: 32px
+    }
+}
+
+@media(min-width: 1248px) {
+    .category-games-section {
+        --gap-l: 44px
+    }
+}
+
+.list-header {
+    display: flex;
+    height: 44px;
+    align-items: center
+}
+
+.list-header__button .m-button {
+    padding: 6px;
+    width: 44px;
+    height: 44px;
+    margin-right: 16px
+}
+
+.list-header__sort {
+    margin-left: auto
+}
+
+@media(min-width: 768px) {
+    .list-header__sort {
+        margin-left:34px
+    }
+}
+
+.list-header__sort .m-button {
+    padding: 5px 12px
+}
