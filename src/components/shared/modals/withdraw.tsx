@@ -5,7 +5,6 @@ import type { User, Wallet } from "@/types/auth";
 import { useEffect, useState } from "react";
 import Support  from "@/assets/icons/support.svg?react";
 import { currencyList } from "@/utils/currencyList";
-import config from "@/config";
 import ArrowDown  from "@/assets/icons/arrow-down.svg?react";
 import SearchIcon  from "@/assets/icons/search.svg?react";
 import SingleSelectAutocomplete, {type Option } from "../single-select-autocomplete/single-select-autocomplete";

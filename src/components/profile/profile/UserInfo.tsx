@@ -1,243 +1,136 @@
+import {Label} from "@/components/ui/label.tsx";
+import {Input} from "@/components/ui/input.tsx";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 
-import './UserInfo.css'
-import { useAppSelector } from '@/hooks/rtk';
-import type { User } from '@/types/auth';
-
-const UserInfo = () => {
-    const user: User = useAppSelector(state => state.auth?.user)
-
-    return <>
-        <div className="PageSectionTitle">
-            <div className="PageSectionTitle-Content">
-                <p
-                    className="m-text m-fs18 m-fw600 m-lh140"
-                    style={{ color: "var(--color-light-grey-5)" }}
-                >
-                    <div>Profile info</div>
-                </p>
-                <div className="PageSectionTitle-Text">
-                    <p className="m-text Body-Regular-S">
-                        <div>To edit the data, please contact support</div>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div className="general-user-page__user-fields items-grid items-grid--cols3 grid__column-gap--16">
-            <div className="m-form-field">
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--m username-form-input m-input--disabled"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            type="text"
-                            className="username-form-input m-input--disabled"
-                            autoComplete="nickname"
-                            placeholder={('Username')}
-                            value={user.username}
-                        />
-                        <div className="m-input-content-label"><div>Username</div></div>
-                    </div>
-                </div>
-            </div>
-            <div className="m-form-field">
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            autoComplete="given-name"
-                            type="text"
-                            placeholder={('First name')}
-                            value={user.first_name}
-                        />
-                        <div className="m-input-content-label"><div>First name</div></div>
-                    </div>
-                </div>
-            </div>
-            <div className="m-form-field">
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="last_name"
-                            disabled
-                            autoComplete="family-name"
-                            type="text"
-                            placeholder={('Last name')}
-                            value={user.last_name}
-                        />
-                        <div className="m-input-content-label"><div>Last name</div></div>
-                    </div>
-                </div>
-            </div>
-            <div
-                className="m-form-field profile-phone-field"
-            >
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            type="tel"
-                            autoComplete="tel-national"
-                            placeholder={('Phone number')}
-                            value={user.phone}
-                        />
-                        <div className="m-input-content-label"><div>Phone number</div></div>
-                    </div>
-                </div>
-            </div>
-            <div
-                className="m-form-field profile-email-field"
-            >
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            inputMode="email"
-                            autoComplete="username"
-                            type="text"
-                            placeholder={('Email')}
-                            value={user.email}
-                        />
-                        <div className="m-input-content-label"><div>Email</div></div>
-                    </div>
-                </div>
-            </div>
-            <div className="m-form-field">
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            type="text"
-                            placeholder="DD-MM-YYYY"
-                            value={user.date_of_birth}
-                        />
-                        <div className="m-input-content-label">
-                            <div>Date of Birth</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                className="gender-select-wrapper gender-select-wrapper--default"
-            >
-                <div className="m-form-field gender-field">
-                    <div
-                        className="m-dropdown m-select"
-                    >
-                        <div className="m-dropdown-activator">
-                            <div
-                                className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m has-value"
-
-                            >
-                                <div className="m-input-content">
-                                    <input
-                                        disabled-without-style="true"
-                                        disabled
-                                        className="has-value"
-                                        type="text"
-                                        placeholder={('Gender')}
-                                        value={user.gender}
-                                    />
-                                    <div className="m-input-content-label"><div>Gender</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                className="m-form-field CountrySelect"
-            >
-                <div
-                    className="m-dropdown m-select"
-                >
-                    <div className="m-dropdown-activator">
-                        <div
-                            className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m filterable has-value"
-                        >
-                            <div className="m-input-content">
-                                <input
-                                    disabled-without-style="true"
-                                    disabled
-                                    className="filterable has-value"
-                                    type="text"
-                                    placeholder={('Country')}
-                                    value={user.country}
-                                />
-                                <div className="m-input-content-label"><div>Country</div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="m-form-field">
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            autoComplete="address-level2"
-                            type="text"
-                            placeholder={('City')}
-                            value={user.city}
-                        />
-                        <div className="m-input-content-label"><div>City</div></div>
-                    </div>
-                </div>
-            </div>
-            <div className="m-form-field">
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            autoComplete="address-level2"
-                            type="text"
-                            placeholder={('Address')}
-                            value={user.address}
-                        />
-                        <div className="m-input-content-label"><div>Address</div></div>
-                    </div>
-                </div>
-            </div>
-            <div className="m-form-field">
-                <div
-                    className="m-input m-gradient-border m-input--dark m-input--disabled m-input--m"
-                >
-                    <div className="m-input-content">
-                        <input
-                            data-qa="input"
-                            disabled
-                            autoComplete="postal-code"
-                            type="text"
-                            placeholder={('Postal Code')}
-                            value={user.zip_code}
-                        />
-                        <div className="m-input-content-label"><div>Postal Code</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </>
+interface User {
+    username: string;
+    first_name: string;
+    last_name: string;
+    phone: string;
+    email: string;
+    date_of_birth: string;
+    gender: string;
+    country: string;
+    city: string;
+    address: string;
+    zip_code: string;
 }
 
-export default UserInfo
+const mockUser: User = {
+    username: 'johndoe',
+    first_name: 'John',
+    last_name: 'Doe',
+    phone: '555-123-4567',
+    email: 'john.doe@example.com',
+    date_of_birth: '01-01-1990',
+    gender: 'Male',
+    country: 'United States',
+    city: 'New York',
+    address: '123 Main St',
+    zip_code: '10001',
+};
+
+export default function UserInfo() {
+    const user = mockUser;
+
+    return (
+        <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-background text-foreground min-h-screen font-sans">
+            {/* Title and description section */}
+            <div className="flex flex-col space-y-1.5">
+                <h1 className="text-2xl sm:text-3xl font-bold leading-snug text-primary">
+                    Profile Info
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                    To edit the data, please contact support.
+                </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Username */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="username">Username</Label>
+                    <Input id="username" value={user.username} disabled />
+                </div>
+
+                {/* First Name */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="firstName">First Name</Label>
+                    <Input id="firstName" value={user.first_name} disabled />
+                </div>
+
+                {/* Last Name */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input id="lastName" value={user.last_name} disabled />
+                </div>
+
+                {/* Phone Number */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input id="phone" type="tel" value={user.phone} disabled />
+                </div>
+
+                {/* Email */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" value={user.email} disabled />
+                </div>
+
+                {/* Date of Birth */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="dob">Date of Birth</Label>
+                    <Input id="dob" value={user.date_of_birth} disabled />
+                </div>
+
+                {/* Gender Select */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="gender">Gender</Label>
+                    <Select value={user.gender} disabled>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Male">Male</SelectItem>
+                            <SelectItem value="Female">Female</SelectItem>
+                            <SelectItem value="Non-binary">Non-binary</SelectItem>
+                            <SelectItem value="Prefer not to say">Prefer not to say</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                {/* Country Select */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="country">Country</Label>
+                    <Select value={user.country} disabled>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select country" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="United States">United States</SelectItem>
+                            <SelectItem value="Canada">Canada</SelectItem>
+                            <SelectItem value="Mexico">Mexico</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                {/* City */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="city">City</Label>
+                    <Input id="city" value={user.city} disabled />
+                </div>
+
+                {/* Address */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="address">Address</Label>
+                    <Input id="address" value={user.address} disabled />
+                </div>
+
+                {/* Postal Code */}
+                <div className="flex flex-col space-y-2">
+                    <Label htmlFor="zipCode">Postal Code</Label>
+                    <Input id="zipCode" value={user.zip_code} disabled />
+                </div>
+            </div>
+        </div>
+    );
+}

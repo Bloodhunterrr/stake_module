@@ -1,45 +1,45 @@
+import {cn} from "@/lib/utils";
+import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {Outlet, useNavigate, useLocation} from "react-router-dom";
 
-import { Outlet, useNavigate } from "react-router";
-import { useLocation } from "react-router";
-import './Profile.css'
-
-const Profile = () => {
+export default function Profile() {
     const navigate = useNavigate();
     const location = useLocation();
 
     const tabs = [
-        {
-            label: <div>General</div>,
-            path: "/profile/general",
-        },
-        {
-            label: <div>Security</div>,
-            path: "/profile/security",
-        },
+        {label: "General", path: "/profile/general"},
+        {label: "Security", path: "/profile/security"},
     ];
 
-    return                     <div className="user-page">
-                        <div className="m-text Body-Semi-Bold-XL PageTitle page-title">
-                            <div>Profile</div>
-                        </div>
-                        <div className="m-tabs m-tabs--primary m-tabs--m profile-general-tabs">
+    return (
+        <div className="container mx-auto max-w-4xl py-12 px-4 md:px-6">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground mb-8">
+                Profile
+            </h1>
 
-                            {tabs.map((tab) => (
-                                <div
-                                    key={tab.path}
-                                    className={`m-tabs-item ${location.pathname === tab.path ? "m-tabs-item--active" : ""}`}
-                                    onClick={() => navigate(tab.path)}
-                                >
-                                    <div className="m-tabs-item-content">
-                                        <span>{tab.label}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <div>
-                            <Outlet />
-                        </div>
-                    </div>
+            <Tabs
+                value={location.pathname}
+                onValueChange={(value) => navigate(value)}
+                className="w-full"
+            >
+                <TabsList className="grid w-full grid-cols-2 bg-muted p-1 rounded-lg">
+                    {tabs.map((tab) => (
+                        <TabsTrigger
+                            key={tab.path}
+                            value={tab.path}
+                            className={cn(
+                                "w-full data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm transition-colors duration-200"
+                            )}
+                        >
+                            {tab.label}
+                        </TabsTrigger>
+                    ))}
+                </TabsList>
+            </Tabs>
+
+            <div className="mt-6 rounded-lg border bg-card text-card-foreground p-6">
+                <Outlet/>
+            </div>
+        </div>
+    );
 }
-
-export default Profile

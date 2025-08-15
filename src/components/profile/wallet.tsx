@@ -1,118 +1,140 @@
-import "./wallet.css"
-import LockIcon  from "@/assets/icons/lock.svg?react"
-import CashBackIcon  from "@/assets/icons/cashback-wallet.svg?react"
-import InfoIcon  from "@/assets/icons/info.svg?react"
-import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
-import type { User, Wallet } from "@/types/auth";
-import { currencyList } from "@/utils/currencyList";
-import { useSetDefaultWalletMutation } from "@/services/authApi";
-import { toast } from "react-toastify";
-import { setModal } from "@/slices/sharedSlice";
+import {useState} from "react"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {toast} from "react-toastify"
+import {useAppSelector} from "@/hooks/rtk"
+import {Badge} from "@/components/ui/badge"
+import {Button} from "@/components/ui/button"
+import type {User, Wallet} from "@/types/auth"
+import {InfoIcon, LockIcon} from "lucide-react"
+import {currencyList} from "@/utils/currencyList"
+import Deposit from "@/components/shared/deposit.tsx"
+import Withdraw from "@/components/shared/withdraw.tsx"
+import {useSetDefaultWalletMutation} from "@/services/authApi"
+import CashBackIcon from "@/assets/icons/cashback-wallet.svg?react"
 
+export default function Wallet() {
+    const user: User = useAppSelector((state) => state?.auth?.user)
+    const [setDefaultWallet] = useSetDefaultWalletMutation()
 
-const WalletPage = () => {
-  
-  const user: User = useAppSelector(state => state?.auth?.user)
-  const [setDefaultWallet, { isLoading }] = useSetDefaultWalletMutation()
-  const dispatch = useAppDispatch()
+    const [isDepositOpen, setIsDepositOpen] = useState(false)
+    const [isWithdrawOpen, setIsWithdrawOpen] = useState(false)
+    const [selectedWallet, setSelectedWallet] = useState<Wallet | null>(null)
 
-  return <div className="wallet-page">
-    <div className="PageSectionTitle WalletTitle">
-      <div className="PageSectionTitle-Content">
-        <p
-          className="m-text m-fs18 m-fw600 m-lh140"
-          style={{ color: "var(--color-light-grey-5)" }}
-        >
-          <div>Wallet</div>
-        </p>
-      </div>
-    </div>
-    <div className="wallet-page-row">
-      {user.wallets?.map((w: Wallet) => <div className="WalletCard">
-        <div className="WalletCard-Content">
-          <div className="WalletCardHeader">
-            <button className="WalletCardHeader-Currency">
-              {w.slug.toUpperCase()}
-            </button>
-            <div className="m-dropdown withdrawal-limits-tooltip">
-              <div className="m-dropdown-activator">
-                <button
-                  className={`withdrawal-limits-tooltip__btn m-button m-gradient-border m-button--${w.default ? 'primary' : 'secondary'} m-button--m`}
-                  onClick={() => {
-                    if (w.default) {
-                      toast.warn(('This wallet is already default'));
-                      return;
-                    }
-                    setDefaultWallet({
-                      currency: w.slug.toUpperCase()
-                    })
-                  }}
-                  disabled={isLoading}
-                >
-                  <p
-                    className="m-text m-fs10 m-fw700 m-lh160"
-                    style={{ color: "var(--color-mid-grey-3)" }}
-                  >
-                    {w.default ? <div>Default</div> : <div>Set default</div>}
-                  </p>
-                  <InfoIcon className="m-icon m-icon-loadable" />
-                </button>
-              </div>
+    const handleOpenDeposit = (wallet: Wallet) => {
+        setSelectedWallet(wallet)
+        setIsDepositOpen(true)
+    }
+
+    const handleOpenWithdraw = (wallet: Wallet) => {
+        setSelectedWallet(wallet)
+        setIsWithdrawOpen(true)
+    }
+
+    return (
+        <div className="container mx-auto p-4">
+            <div className="mb-6">
+                <h1 className="text-2xl font-semibold text-gray-500">Wallet</h1>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {user.wallets?.map((w: Wallet) => (
+                    <Card key={w.slug} className="relative overflow-hidden">
+                        <CardHeader className="flex flex-row items-center justify-between p-4 pb-0">
+                            <Badge variant="secondary" className="text-sm font-semibold">
+                                {w.slug.toUpperCase()}
+                            </Badge>
+                            <Button
+                                variant={w.default ? "secondary" : "default"}
+                                size="sm"
+                                onClick={() => {
+                                    if (w.default) {
+                                        toast.warn("This wallet is already default")
+                                        return
+                                    }
+                                    setDefaultWallet({
+                                        currency: w.slug.toUpperCase(),
+                                    })
+                                }}
+                            >
+                                {w.default ? "Default" : "Set default"}
+                                <InfoIcon className="ml-2 h-4 w-4"/>
+                            </Button>
+                        </CardHeader>
+                        <CardContent className="p-4">
+                            <div className="mb-4">
+                                <CardDescription className="text-sm">Total balance</CardDescription>
+                                <CardTitle className="text-3xl font-bold">
+                                    {(+w.balance / 100).toLocaleString("en-EN", {
+                                        minimumFractionDigits: w.decimal_places,
+                                        maximumFractionDigits: w.decimal_places,
+                                    })}{" "}
+                                    {currencyList[w.slug.toUpperCase()]?.symbol_native}
+                                </CardTitle>
+                            </div>
+                            <div className="flex space-x-2">
+                                <Button
+                                    className="flex-1"
+                                    variant="outline"
+                                    disabled={!w.limits.can_pay_with_now_payments}
+                                    onClick={() => handleOpenWithdraw(w)}
+                                >
+                                    Withdraw
+                                </Button>
+                                <Button
+                                    className="flex-1"
+                                    disabled={!w.limits.can_pay_with_now_payments}
+                                    onClick={() => handleOpenDeposit(w)}
+                                >
+                                    Deposit
+                                </Button>
+                            </div>
+                        </CardContent>
+                        <CardFooter className="flex justify-between border-t bg-gray-50 p-4">
+                            <div className="flex flex-col items-start">
+                                <span className="text-xs text-gray-500">Real money</span>
+                                <div className="mt-1 flex items-center">
+                                    <CashBackIcon className="mr-2 h-4 w-4 text-green-500"/>
+                                    <span className="text-sm font-medium">
+                                        {(+w.balance / 100).toLocaleString("en-EN", {
+                                            minimumFractionDigits: w.decimal_places,
+                                            maximumFractionDigits: w.decimal_places,
+                                        })}
+                                        {currencyList[w.slug.toUpperCase()]?.symbol_native}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col items-start">
+                                <span className="text-xs text-gray-500">Bonus money</span>
+                                <div className="mt-1 flex items-center">
+                                    <LockIcon className="mr-2 h-4 w-4 text-yellow-500"/>
+                                    <span className="text-sm font-medium">0.00</span>
+                                </div>
+                            </div>
+                        </CardFooter>
+                    </Card>
+                ))}
             </div>
 
-          </div>
-          <div className="WalletCardAmount">
-            <div className="WalletCardAmount-Title"><div>Total balance</div></div>
-            <div className="WalletCardAmount-Balance TextOverflow">{(+w.balance / 100).toLocaleString('en-EN', {
-              minimumFractionDigits: w.decimal_places,
-              maximumFractionDigits: w.decimal_places,
-            })} {' '}
-              {/* @ts-ignore */}
-              {currencyList[w.slug.toUpperCase()].symbol_native}</div>
-          </div>
-          <div id="wallet-footer" className="WalletCardActions">
-            <button 
-              disabled={!w.limits.can_pay_with_now_payments}
-              onClick={() => dispatch(setModal({
-                modal: 'withdraw'
-              }))} 
-              className="m-button m-gradient-border m-button--secondary m-button--m WalletCardActions-Btn">
-              <div className="m-button-content"><div>Withdraw</div></div>
-            </button>
-            <button
-              disabled={!w.limits.can_pay_with_now_payments}
-              onClick={() => dispatch(setModal({
-                modal: 'deposit'
-              }))} 
-              className="m-button m-gradient-border m-button--primary m-button--m WalletCardActions-Btn">
-              <div className="m-button-content"><div>Deposit</div></div>
-            </button>
-          </div>
+            {selectedWallet && (
+                <>
+                    <Deposit
+                        isOpen={isDepositOpen}
+                        onClose={() => setIsDepositOpen(false)}
+                        wallet={selectedWallet}
+                    />
+                    <Withdraw
+                        isOpen={isWithdrawOpen}
+                        onClose={() => setIsWithdrawOpen(false)}
+                        wallet={selectedWallet}
+                    />
+                </>
+            )}
         </div>
-        <div className="WalletCardFooter">
-          <div className="WalletCardFooter-Column">
-            <div className="WalletCardFooter-Text"><div>Real money</div></div>
-            <div className="WalletCardFooter-Amount TextOverflow">
-              <CashBackIcon className="m-icon m-icon-loadable" />
-              {(+w.balance / 100).toLocaleString('en-EN', {
-                minimumFractionDigits: w.decimal_places,
-                maximumFractionDigits: w.decimal_places,
-              })} {" "}
-              {/* @ts-ignore */}
-              {currencyList[w.slug.toUpperCase()].symbol_native}
-            </div>
-          </div>
-          <div className="WalletCardFooter-Column">
-            <div className="WalletCardFooter-Text"><div>Bonus money</div></div>
-            <div className="WalletCardFooter-Amount TextOverflow">
-              <LockIcon className="m-icon m-icon-loadable" />
-              0.00
-            </div>
-          </div>
-        </div>
-      </div>)}
-    </div>
-  </div>
+    )
 }
-
-export default WalletPage

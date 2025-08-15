@@ -1,247 +1,170 @@
-import './style.css';
-import WalletIcon  from '@/assets/icons/wallet.svg?react';
-import HistoryIcon  from '@/assets/icons/clock.svg?react';
-import UserIcon  from '@/assets/icons/user.svg?react';
-import ExitIcon  from '@/assets/icons/exit.svg?react';
-import ArrowUpIcon  from '@/assets/icons/arrow-up.svg?react';
-import ArrowDownIcon  from '@/assets/icons/arrow-down.svg?react';
-import Avatar  from "@/assets/icons/avatar.svg?react"
+import {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 
-import { useLogoutMutation } from '@/services/authApi';
-import { useAppSelector } from '@/hooks/rtk';
-import { useNavigate, useMatch, Outlet } from 'react-router';
+import {useState, useEffect} from 'react';
+import {useAppSelector} from '@/hooks/rtk';
+import {Button} from '@/components/ui/button';
+import {useIsDesktop} from '@/hooks/useIsDesktop';
+import {ChevronDown, ChevronUp} from 'lucide-react';
+import {useLogoutMutation} from '@/services/authApi';
+import UserIcon from '@/assets/icons/user.svg?react';
+import ExitIcon from '@/assets/icons/exit.svg?react';
+import WalletIcon from '@/assets/icons/wallet.svg?react';
+import HistoryIcon from '@/assets/icons/clock.svg?react';
+import {Avatar, AvatarFallback} from '@/components/ui/avatar';
+import {useNavigate, useMatch, Outlet} from 'react-router-dom';
 
-import { useState, useEffect } from 'react';
-import { useIsDesktop } from '@/hooks/useIsDesktop';
+export default function Profile() {
+    const [logout] = useLogoutMutation();
+    const user = useAppSelector((state) => state.auth?.user);
+    const navigate = useNavigate();
 
-const Profile = () => {
-  const [logout] = useLogoutMutation();
-  const user = useAppSelector((state) => state.auth?.user);
-  const navigate = useNavigate();
+    const isWalletActive = useMatch('/profile/wallet/*');
+    const isHistoryActive = useMatch('/profile/history/*');
+    const isProfileActive = useMatch('/profile/*') && !isWalletActive && !isHistoryActive;
 
+    const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+    const isDesktop = useIsDesktop();
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (!isDesktop) {
+                const target = event.target as Node;
+                const mobileNav = document.querySelector('.profile-nav-mobile');
+                if (mobileNav && !mobileNav.contains(target)) {
+                    setMobileMenuOpen(false);
+                }
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isDesktop]);
 
-  const isWalletActive = useMatch('/profile/wallet/*');
-  const isHistoryActive = useMatch('/profile/history/*');
-  const isProfileActive = useMatch('/profile/*') && !isWalletActive && !isHistoryActive;
+    let mobileLabel = `Profile`;
+    let mobileIcon = <UserIcon className="h-4 w-4"/>;
+    if (isWalletActive) {
+        mobileLabel = `Wallet`;
+        mobileIcon = <WalletIcon className="h-4 w-4"/>;
+    } else if (isHistoryActive) {
+        mobileLabel = `History`;
+        mobileIcon = <HistoryIcon className="h-4 w-4"/>;
+    }
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const isDesktop = useIsDesktop();
+    if (!user) {
+        navigate('/');
+        return null;
+    }
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
-      if (target instanceof Element && !target.closest('.profile-nav-mobile')) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  let mobileLabel = `Profile`;
-  let mobileIcon = 'profile'
-  
-  if (isWalletActive) {
-    mobileLabel = `Wallet`;
-    mobileIcon = 'wallet'
-  } else if (isHistoryActive) {
-    mobileLabel = `History`;
-    mobileIcon = 'history'
-  }
-
-  if (!user) {
-    navigate('/');
-    return null;
-  }
-
-  return (
-    <div style={{ backgroundColor: 'var(--color-dark-grey-0)' }}>
-      <section className="profile-wrapper">
-        <div className="profile-page">
-          {isDesktop && (
-            <div className="profile-nav-desktop">
-              <div className="user-avatar-wrapper user-avatar-wrapper--default">
-                <div className="UserAvatar">
-                  <div className="m-avatar UserAvatar-Avatar">
-                    <div className="m-avatar__image">
-                      <Avatar />
-                    </div>
-                  </div>
-                  <div className="UserAvatar-Text">
-                    <div className="UserAvatar-Name">{user?.name}</div>
-                    <div className="UserAvatar-Email TextOverflow TextOverflow--light">
-                      {user?.email}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <nav>
-                <div
-                  onClick={() => navigate('wallet')}
-                  className={`profile-nav-item ${isWalletActive ? 'profile-nav-item--active' : ''}`}
-                >
-                  <WalletIcon className="m-icon m-icon-loadable profile-nav-item__icon" />
-                  <div>Wallet</div>
-                  <div className="profile-nav-item__counter" />
-                </div>
-
-                <div
-                  onClick={() => navigate('history')}
-                  className={`profile-nav-item ${isHistoryActive ? 'profile-nav-item--active' : ''}`}
-                >
-                  <HistoryIcon className="m-icon m-icon-loadable profile-nav-item__icon" />
-                  <div>History</div>
-                  <div className="profile-nav-item__counter" />
-                </div>
-
-                <div
-                  onClick={() => navigate('general')}
-                  className={`profile-nav-item ${isProfileActive ? 'profile-nav-item--active' : ''}`}
-                >
-                  <UserIcon className="m-icon m-icon-loadable profile-nav-item__icon" />
-                  <div>Profile</div>
-                  <div className="profile-nav-item__counter" />
-                </div>
-              </nav>
-
-              <div onClick={() => logout()} className="logout-button profile-nav-desktop__logout">
-                <button className="m-button m-gradient-border m-button--secondary m-button--s m-button--swap logout-button__btn">
-                  <div className="m-icon-container">
-                    <ExitIcon />
-                  </div>
-                  <div className="m-button-content">
-                    <div>Log out</div>
-                  </div>
-                </button>
-              </div>
-            </div>
-          )}
-          <div className="profile-page__content hideScrollbar">
-            {!isDesktop && (
-              <div className="profile-nav-mobile">
-                <div
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="m-dropdown m-select profile-nav-mobile"
-                >
-                  <div className="m-dropdown-activator">
+    return (
+        <section className="container mx-auto py-8 lg:py-16">
+            <div className="flex flex-col lg:flex-row lg:space-x-8">
+                {isDesktop && (
                     <div
-                      className="m-input m-gradient-border m-input--basic m-input--m m-input--focused has-value"
-                      tabIndex={0}
-                    >
-                      <div className="m-input-prepend">
-                        {mobileIcon === 'profile' && <UserIcon className="m-icon m-icon-loadable profile-nav-mobile__icon" />}
-                        {mobileIcon === 'wallet' && <WalletIcon className="m-icon m-icon-loadable profile-nav-mobile__icon" />}
-                        {mobileIcon === 'history' && <HistoryIcon className="m-icon m-icon-loadable profile-nav-mobile__icon" />}
-                        <span>{mobileLabel}</span>
-                      </div>
-                      <div className="m-input-append">
-                        <div className="m-icon-container">
-                          {mobileMenuOpen ? <ArrowUpIcon className="m-icon m-icon-loadable m-chevron m-select-chevron" /> :
-                            <ArrowDownIcon className="m-icon m-icon-loadable m-chevron m-select-chevron" />}
+                        className="hidden lg:flex lg:flex-col lg:w-64 space-y-6 p-4 border rounded-lg bg-background">
+                        <div className="flex items-center space-x-4">
+                            <Avatar className="h-12 w-12">
+                                <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
+                            </Avatar>
+                            <div className="space-y-1">
+                                <div className="font-semibold text-lg">{user?.name}</div>
+                                <div className="text-sm text-muted-foreground">{user?.email}</div>
+                            </div>
                         </div>
-                      </div>
+                        <nav className="flex-1 space-y-2">
+                            <Button
+                                variant="ghost"
+                                className={`w-full justify-start space-x-2 ${isWalletActive ? 'bg-muted' : ''}`}
+                                onClick={() => navigate('wallet')}
+                            >
+                                <WalletIcon className="h-4 w-4"/>
+                                <span>Wallet</span>
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                className={`w-full justify-start space-x-2 ${isHistoryActive ? 'bg-muted' : ''}`}
+                                onClick={() => navigate('history')}
+                            >
+                                <HistoryIcon className="h-4 w-4"/>
+                                <span>History</span>
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                className={`w-full justify-start space-x-2 ${isProfileActive ? 'bg-muted' : ''}`}
+                                onClick={() => navigate('general')}
+                            >
+                                <UserIcon className="h-4 w-4"/>
+                                <span>Profile</span>
+                            </Button>
+                        </nav>
+                        <Button
+                            variant="outline"
+                            className="w-full mt-auto"
+                            onClick={() => logout()}
+                        >
+                            <ExitIcon className="h-4 w-4 mr-2"/>
+                            <span>Log out</span>
+                        </Button>
                     </div>
-                  </div>
-                </div>
-
-                {mobileMenuOpen && (
-                  <div
-                    className="m-dropdown-content m-dropdown-menu m-dropdown-menu--basic m-dropdown-menu--s m-select-dropdown"
-                    data-qa="dropdown"
-                    style={{
-                      position: 'relative',
-                      opacity: 1,
-                    }}
-                  >
-                    <ul className="m-dropdown-menu-list m-select-list" data-qa="select-list">
-                      <li
-                        className={`m-dropdown-row ${isWalletActive ? 'm-dropdown-row--selected m-dropdown-row--focused' : ''} m-dropdown-row--basic m-dropdown-row--s profile-nav-mobile__item`}
-                        tabIndex={0}
-                        onClick={() => {
-                          navigate('wallet');
-                          setMobileMenuOpen(false);
-                        }}
-                        role="button"
-                      >
-                        <div className="m-dropdown-row-content">
-                          <div className="m-dropdown-row-content-text">
-                            <WalletIcon className="m-icon m-icon-loadable profile-nav-mobile__icon" />
-                            <span>
-                              <div>Wallet</div>
-                            </span>
-                          </div>
-                        </div>
-                      </li>
-                      <li
-                        className={`m-dropdown-row ${isHistoryActive ? 'm-dropdown-row--selected m-dropdown-row--focused' : ''} m-dropdown-row--basic m-dropdown-row--s profile-nav-mobile__item`}
-                        tabIndex={0}
-                        onClick={() => {
-                          navigate('history');
-                          setMobileMenuOpen(false);
-                        }}
-                        role="button"
-                      >
-                        <div className="m-dropdown-row-content">
-                          <div className="m-dropdown-row-content-text">
-                            <HistoryIcon className="m-icon m-icon-loadable profile-nav-mobile__icon" />
-                            <span>
-                              <div>History</div>
-                            </span>
-                          </div>
-                        </div>
-                      </li>
-                      <li
-                        className={`m-dropdown-row ${isProfileActive ? 'm-dropdown-row--selected m-dropdown-row--focused' : ''} m-dropdown-row--basic m-dropdown-row--s profile-nav-mobile__item`}
-                        tabIndex={0}
-                        onClick={() => {
-                          navigate('general');
-                          setMobileMenuOpen(false);
-                        }}
-                        role="button"
-                      >
-                        <div className="m-dropdown-row-content">
-                          <div className="m-dropdown-row-content-text">
-                            <UserIcon className="m-icon m-icon-loadable profile-nav-mobile__icon" />
-                            <span>
-                              <div>Profile</div>
-                            </span>
-                          </div>
-                        </div>
-                      </li>
-                      <li
-                        className={`m-dropdown-row m-dropdown-row--basic m-dropdown-row--s profile-nav-mobile__item`}
-                        tabIndex={0}
-                        onClick={() => {
-                          logout();
-                          setMobileMenuOpen(false);
-                        }}
-                        role="button"
-                      >
-                        <div className="m-dropdown-row-content">
-                          <div className="m-dropdown-row-content-text">
-                            <ExitIcon className="m-icon m-icon-loadable profile-nav-mobile__icon" />
-                            <span>
-                              <div>Log out</div>
-                            </span>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
                 )}
-              </div>
-            )}
-            <Outlet />
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
 
-export default Profile;
+                <div className="flex-1 p-4 lg:p-0">
+                    {!isDesktop && (
+                        <div className="profile-nav-mobile mb-6">
+                            <DropdownMenu open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" className="w-full justify-between pr-3">
+                                        <div className="flex items-center space-x-2">
+                                            {mobileIcon}
+                                            <span>{mobileLabel}</span>
+                                        </div>
+                                        {mobileMenuOpen ? <ChevronUp className="h-4 w-4"/> :
+                                            <ChevronDown className="h-4 w-4"/>}
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className="w-[calc(100vw-2rem)] mt-2">
+                                    <DropdownMenuItem onClick={() => {
+                                        navigate('wallet');
+                                        setMobileMenuOpen(false);
+                                    }}>
+                                        <WalletIcon className="h-4 w-4 mr-2"/>
+                                        <span>Wallet</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => {
+                                        navigate('history');
+                                        setMobileMenuOpen(false);
+                                    }}>
+                                        <HistoryIcon className="h-4 w-4 mr-2"/>
+                                        <span>History</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => {
+                                        navigate('general');
+                                        setMobileMenuOpen(false);
+                                    }}>
+                                        <UserIcon className="h-4 w-4 mr-2"/>
+                                        <span>Profile</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator/>
+                                    <DropdownMenuItem onClick={() => {
+                                        logout();
+                                        setMobileMenuOpen(false);
+                                    }}>
+                                        <ExitIcon className="h-4 w-4 mr-2"/>
+                                        <span>Log out</span>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                    )}
+                    <Outlet/>
+                </div>
+            </div>
+        </section>
+    );
+}
