@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-import "./jackpotBanner.css";
 
 import card1 from "@/assets/images/jackpot-1.png";
 import card2 from "@/assets/images/jackpot-2.png";

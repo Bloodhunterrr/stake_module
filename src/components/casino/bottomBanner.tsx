@@ -1,6 +1,5 @@
 import bottomBannerImg from "@/assets/images/crypto-image-min.png";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import "./bottomBanner.css";
 
 const BottomBanner = () => {
   const isDesktop = useIsDesktop();

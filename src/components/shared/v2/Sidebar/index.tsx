@@ -3,17 +3,17 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui/popover.tsx";
 
 import { useState } from "react";
-import SidebarNav from "./sidebar-nav";
-import { Button } from "@/components/ui/button";
-import { ALLOWED_LANGUAGES } from "@/types/lang";
+import SidebarNav from "./sidebar-nav.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { ALLOWED_LANGUAGES } from "@/types/lang.ts";
 import { Check, ChevronDown } from "lucide-react";
-import { useGetMainQuery } from "@/services/mainApi";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { useGetMainQuery } from "@/services/mainApi.ts";
+import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { useNavigate, useParams } from "react-router-dom";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet.tsx";
 
 type Language = {
   code: string;

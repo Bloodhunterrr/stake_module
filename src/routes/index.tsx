@@ -1,89 +1,89 @@
-import { createBrowserRouter } from "react-router";
 import App from "../App";
 import Profile from "./profile";
-import History from "@/components/profile/history";
 import Lobby from "./casino";
-import SubcategoryGames from "./casino/subCategoryGames";
 import GameIframe from "./casino/gamesIframe";
+import {createBrowserRouter} from "react-router";
+import History from "@/components/profile/history";
+import type {DOMRouterOpts} from "react-router-dom";
+import ProvidersGames from "./casino/providersGames";
+import ErrorPage from "@/components/shared/v2/error";
 import WalletPage from "@/components/profile/wallet";
-import TransactionHistory from "@/components/profile/history/Transaction";
-import SportHistory from "@/components/profile/history/SportHistory";
-import CasinoHistory from "@/components/profile/history/Casino";
+import ProfileIndex from "@/components/profile/Profile";
+import SubcategoryGames from "./casino/subCategoryGames";
+import AllProvidersList from "./casino/allProvidersList";
 import UserInfo from "@/components/profile/profile/UserInfo";
 import Security from "@/components/profile/profile/Security";
-import ProfileIndex from "@/components/profile/Profile";
-import ProvidersGames from "./casino/providersGames";
-import ErrorPage from "@/components/shared/error";
-import AllProvidersList from "./casino/allProvidersList";
-import type {DOMRouterOpts} from "react-router-dom";
+import CasinoHistory from "@/components/profile/history/Casino";
+import SportHistory from "@/components/profile/history/SportHistory";
+import TransactionHistory from "@/components/profile/history/Transaction";
 
-const  routes=  createBrowserRouter([
+const routes = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: <App/>,
         children: [
             {
                 index: true,
-                element: <Lobby />,
+                element: <Lobby/>,
             },
             {
                 path: ':categorySlug',
-                element: <Lobby />,
+                element: <Lobby/>,
             },
             {
                 path: ':categorySlug/games/:subCategorySlug',
-                element: <SubcategoryGames />,
+                element: <SubcategoryGames/>,
             },
             {
                 path: '/game/:gameID',
-                element: <GameIframe />,
+                element: <GameIframe/>,
             },
             {
                 path: '/providers',
-                element:<AllProvidersList />
+                element: <AllProvidersList/>
             },
             {
                 path: '/provider/:providerCode',
-                element: <ProvidersGames />
+                element: <ProvidersGames/>
             },
             {
                 path: '/profile',
-                element: <Profile />,
+                element: <Profile/>,
                 children: [
                     {
                         path: '/profile',
-                        element: <ProfileIndex />,
+                        element: <ProfileIndex/>,
                         children: [
                             {
                                 index: true,
                                 path: '/profile/general',
-                                element: <UserInfo />
+                                element: <UserInfo/>
                             },
                             {
                                 path: '/profile/security',
-                                element: <Security />
+                                element: <Security/>
                             },
                         ]
                     },
                     {
                         path: '/profile/wallet',
-                        element: <WalletPage />
+                        element: <WalletPage/>
                     },
                     {
                         path: '/profile/history',
-                        element: <History />,
+                        element: <History/>,
                         children: [
                             {
                                 path: '/profile/history',
-                                element: <TransactionHistory />
+                                element: <TransactionHistory/>
                             },
                             {
                                 path: '/profile/history/casino',
-                                element: <CasinoHistory />
+                                element: <CasinoHistory/>
                             },
                             {
                                 path: '/profile/history/sport',
-                                element: <SportHistory />
+                                element: <SportHistory/>
                             },
                         ]
                     },
@@ -91,10 +91,10 @@ const  routes=  createBrowserRouter([
             },
             {
                 path: '*',
-                element: <ErrorPage />,
+                element: <ErrorPage/>,
             },
         ],
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage/>
     },
 ], {
     window,

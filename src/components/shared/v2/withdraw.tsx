@@ -3,27 +3,27 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog.tsx"
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select.tsx"
 
-import {cn} from "@/lib/utils"
+import {cn} from "@/lib/utils.ts"
 import {toast} from "react-toastify"
 import {useEffect, useState} from "react"
-import {useAppSelector} from "@/hooks/rtk"
-import {Label} from "@/components/ui/label"
-import {Input} from "@/components/ui/input"
-import {Button} from "@/components/ui/button"
-import type {User, Wallet} from "@/types/auth"
-import {currencyList} from "@/utils/currencyList"
+import {useAppSelector} from "@/hooks/rtk.ts"
+import {Label} from "@/components/ui/label.tsx"
+import {Input} from "@/components/ui/input.tsx"
+import {Button} from "@/components/ui/button.tsx"
+import type {User, Wallet} from "@/types/auth.ts"
+import {currencyList} from "@/utils/currencyList.ts"
 import Support from "@/assets/icons/support.svg?react"
-import {useGetNpCryptoListQuery} from "@/services/mainApi"
-import {useCreateWithdrawMutation} from "@/services/authApi"
+import {useGetNpCryptoListQuery} from "@/services/mainApi.ts"
+import {useCreateWithdrawMutation} from "@/services/authApi.ts"
 
 type WithdrawProps = {
     isOpen: boolean

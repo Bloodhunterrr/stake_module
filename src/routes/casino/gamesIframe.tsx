@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import type { Game } from "@/types/game_list";
 import type { User } from "@/types/auth";
 import { useAppSelector } from "@/hooks/rtk";
-import "./gamesIframe.css";
 import Modal from "@/components/shared/modal";
 import Search from "@/components/casino/search";
 

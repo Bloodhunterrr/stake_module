@@ -1,16 +1,16 @@
-import type { Game } from "@/types/game_list";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { useLazyGetPlayQuery } from "@/services/authApi";
+import type { Game } from "@/types/game_list.ts";
+import { useIsDesktop } from "@/hooks/useIsDesktop.ts";
+import { useLazyGetPlayQuery } from "@/services/authApi.ts";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { useAppDispatch, useAppSelector } from "@/hooks/rtk";
+import { useAppDispatch, useAppSelector } from "@/hooks/rtk.ts";
 import { useEffect, useState } from "react";
 
 import Login from "../login";
-import Modal from "../modal";
-import type { User, Wallet } from "@/types/auth";
+import Modal from "../../modal";
+import type { User, Wallet } from "@/types/auth.ts";
 import { LoaderSpinner } from "@/components/shared/Loader";
-import { setModal } from "@/slices/sharedSlice";
+import { setModal } from "@/slices/sharedSlice.ts";
 import { HeartIcon } from "lucide-react";
 
 const ModalBalanceInfo = ({

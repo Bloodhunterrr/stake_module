@@ -2,7 +2,7 @@ import {Fragment, useRef, useState, useEffect, useCallback} from 'react';
 import {useIsDesktop} from '@/hooks/useIsDesktop';
 import type {Game, GameListRequest} from '@/types/game_list';
 import {useGetGameListQuery} from '@/services/mainApi';
-import GameSlot from '@/components/shared/slot';
+import GameSlot from '@/components/shared/v2/slot';
 import NoDataAvailable from '@/components/shared/no-data-available/NoDataAvailable';
 
 

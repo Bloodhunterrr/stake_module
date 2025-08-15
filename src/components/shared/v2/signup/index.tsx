@@ -4,7 +4,7 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card.tsx";
 import {
     Form,
     FormControl,
@@ -12,14 +12,14 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/form.tsx";
 
 import {z} from "zod";
 import {useState} from "react";
 import {toast} from "react-toastify";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {Checkbox} from "@/components/ui/checkbox";
+import {Input} from "@/components/ui/input.tsx";
+import {Button} from "@/components/ui/button.tsx";
+import {Checkbox} from "@/components/ui/checkbox.tsx";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Mail, Lock, Eye, EyeOff} from "lucide-react";
 import {useForm, type SubmitHandler} from "react-hook-form";

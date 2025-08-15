@@ -10,7 +10,7 @@ import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useEffect, useRef, useState } from "react";
 import { useGetGameListQuery } from "@/services/mainApi";
-import GameSlot from "@/components/shared/slot";
+import GameSlot from "@/components/shared/v2/slot";
 import type { Game } from "@/types/game_list";
 import type { Subcategory } from "@/types/main";
 import { useNavigate } from "react-router";

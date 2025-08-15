@@ -27,16 +27,16 @@ import {
 import Login from "../login";
 import SignUp from "../signup";
 import { useState } from "react";
-import { useTheme } from "@/hooks/useTheme";
-import { useAppSelector } from "@/hooks/rtk";
+import { useTheme } from "@/hooks/useTheme.tsx";
+import { useAppSelector } from "@/hooks/rtk.ts";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import type { Wallet, User } from "@/types/auth";
-import { currencyList } from "@/utils/currencyList";
+import { Button } from "@/components/ui/button.tsx";
+import type { Wallet, User } from "@/types/auth.ts";
+import { currencyList } from "@/utils/currencyList.ts";
 import Search from "@/components/casino/search.tsx";
-import { useLogoutMutation } from "@/services/authApi";
-import { useGetMainQuery } from "@/services/mainApi";
-import config from "@/config";
+import { useLogoutMutation } from "@/services/authApi.ts";
+import { useGetMainQuery } from "@/services/mainApi.ts";
+import config from "@/config.ts";
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 

@@ -1,8 +1,7 @@
-
+import config from "@/config.ts";
 import { LayoutGrid, } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import config from "@/config";
-import type { Routes } from "@/types/main";
+import type { Routes } from "@/types/main.ts";
+import { Button } from "@/components/ui/button.tsx";
 
 type SidebarNavProps = {
   sidebarOpen: boolean;

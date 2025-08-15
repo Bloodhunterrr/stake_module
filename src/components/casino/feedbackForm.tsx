@@ -1,7 +1,6 @@
 
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import FeedbackIcon  from "@/assets/icons/feedback-category-icon.svg?react";
-import "./feedback.css";
 import { useForm } from "react-hook-form";
 
 const FeedbackForm = () => {

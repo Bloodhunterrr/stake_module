@@ -2,13 +2,13 @@ import {z} from 'zod';
 import {useState} from 'react';
 import {toast} from 'react-toastify';
 import {useForm} from 'react-hook-form';
-import {Input} from '@/components/ui/input';
-import {Label} from '@/components/ui/label';
-import {Button} from '@/components/ui/button';
+import {Input} from '@/components/ui/input.tsx';
+import {Label} from '@/components/ui/label.tsx';
+import {Button} from '@/components/ui/button.tsx';
 import {zodResolver} from '@hookform/resolvers/zod';
-import {useLoginMutation} from '@/services/authApi';
+import {useLoginMutation} from '@/services/authApi.ts';
 import {Mail, Lock, Eye, EyeOff} from 'lucide-react';
-import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
+import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx';
 
 const loginSchema = z.object({
     email: z

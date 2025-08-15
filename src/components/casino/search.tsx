@@ -4,7 +4,6 @@ import CloseIcon from "@/assets/icons/close.svg?react";
 
 import GameListRenderer from "@/routes/casino/gameListRenderer";
 import { useEffect, useState } from "react";
-import "./search.css";
 import { LoaderSpinner } from "@/components/shared/Loader";
 import { useGetMainQuery } from "@/services/mainApi";
 import type { Provider, Subcategory } from "@/types/main";
