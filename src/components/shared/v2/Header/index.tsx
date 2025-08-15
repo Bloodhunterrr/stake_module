@@ -58,7 +58,7 @@ const NavBar = (props: NavBarProps) => {
   );
 
   const { theme, toggleTheme } = useTheme();
-  const {data} = useGetMainQuery();
+  const { data } = useGetMainQuery();
 
   return (
     <div className="sticky top-0 z-50 bg-white border-b border-gray-200">
@@ -158,7 +158,7 @@ const NavBar = (props: NavBarProps) => {
 
       {/* Search Modal */}
       <Dialog open={searchModalOpen} onOpenChange={setSearchModalOpen}>
-        <DialogContent className="sm:max-w-[700px]">
+        <DialogContent className="overflow-auto w-full h-full  ">
           <DialogHeader>
             <DialogTitle>Search</DialogTitle>
           </DialogHeader>

@@ -69,7 +69,7 @@ export default function Login() {
     };
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center h-full overflow-auto">
             <Card className="w-full max-w-md border-none shadow-none">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center">

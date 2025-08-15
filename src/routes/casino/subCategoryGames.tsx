@@ -47,7 +47,7 @@ const SubcategoryGames = () => {
   }, [dataTree, category, subcategory, navigate]);
 
   return (
-    <>
+    <div className="max-w-7xl mx-auto">
       <div className="category-wrapper">
         {mainData && (
           <SubcategorySlider
@@ -64,7 +64,6 @@ const SubcategoryGames = () => {
             <div className="items-grid-wrapper">
               <div className="sticky top-0 bg-white z-10 px-4 py-3 border-b border-gray-200">
                 <div className="flex items-center gap-4">
-          
                   <button
                     onClick={() => navigate(-1)}
                     className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 text-gray-700 hover:border-primary hover:bg-primary hover:text-white transition"
@@ -101,7 +100,7 @@ const SubcategoryGames = () => {
                   categoryId={subcategory?.id}
                   order_by={isSortingEnabled ? "name" : "order"}
                   onTotalChange={setTotalGames}
-                  gameDynamicClass="items-grid--cols6"
+                  gameDynamicClass="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
                 />
               </div>
             </div>
@@ -109,7 +108,7 @@ const SubcategoryGames = () => {
         </section>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
