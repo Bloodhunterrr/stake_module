@@ -1,39 +1,79 @@
-import type {Provider} from "@/types/main";
-
-import { useIsDesktop } from "@/hooks/useIsDesktop";
+import * as React from "react";
 import { useNavigate } from "react-router";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 
-const ProviderSlider = ({ providers }: { providers: Provider[] }) => {
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import type { Provider } from "@/types/main";
+import config from "@/config";
+
+interface Props {
+  providers: Provider[];
+}
+
+const ProviderSlider: React.FC<Props> = ({ providers }) => {
   const isDesktop = useIsDesktop();
   const navigate = useNavigate();
 
   return (
-    <section>
-      <div>
-        <div>
-          <h2>
-            <div>Providers</div>
+    <section className="py-4">
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between gap-4">
+          <h2
+            className={`font-bold ${isDesktop ? "text-lg" : "text-sm"} flex-1`}
+          >
+            Providers
           </h2>
-          <button onClick={() => navigate(`/providers`)}>
-            <div>
+
+          <button
+            onClick={() => navigate(`/providers`)}
+            className="flex items-center gap-1 text-sm text-primary hover:underline disabled:opacity-50"
+          >
+            <span>View all</span>
+            {isDesktop && (
               <span>
-                <div>View all</div>
+                ({providers.length})
               </span>
-              {isDesktop && <div>{providers.length}</div>}
-            </div>
+            )}
           </button>
         </div>
 
-        <div >
-          {providers.map((provider) => (
-            <div
-              key={provider.id}
-              onClick={() => navigate(`/provider/${provider.code}`)}
-            >
-              {provider.name}
-            </div>
-          ))}
-        </div>
+        <Carousel
+          opts={{
+            align: "start",
+            slidesToScroll: isDesktop ? 9 : 3,
+          }}
+          className="w-full relative"
+        >
+          <CarouselContent className="-ml-2">
+            {providers.map((p) => (
+              <CarouselItem
+                key={p.id}
+                className={`pl-2 ${
+                  isDesktop ? "basis-1/9" : "basis-1/3"
+                } cursor-pointer`}
+                onClick={() => navigate(`/provider/${p.code}`)}
+              >
+                <div className="flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-700 transition h-[68px] md:h-[88px]">
+                  <img
+                    className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
+                    src={config.baseUrl + "/storage/" + p.logo}
+                    loading="lazy"
+                    alt={p.name}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
       </div>
     </section>
   );

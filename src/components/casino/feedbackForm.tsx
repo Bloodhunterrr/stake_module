@@ -47,7 +47,7 @@ const FeedbackForm = () => {
               <div className="m-dropdown-activator">
                 <div className="m-input m-gradient-border m-input--dark m-input--m">
                   <div className="m-icon-container m-input-prepend">
-                    <FeedbackIcon />
+                    <FeedbackIcon className="w-6 h-6"/>
                   </div>
                   <div className="m-input-content">
                     <input

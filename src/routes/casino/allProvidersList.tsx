@@ -1,9 +1,8 @@
-import ArrowUpIcon  from "@/assets/icons/arrow-up.svg?react";
+import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import { useNavigate } from "react-router";
-
 import { useGetMainQuery } from "@/services/mainApi";
 import { useState } from "react";
-import type {Provider} from "@/types/main";
+import type { Provider } from "@/types/main";
 import Footer from "@/components/shared/footer";
 import config from "@/config";
 
@@ -21,8 +20,9 @@ const AllProvidersList = () => {
   const allProviders = data.reduce<Provider[]>((acc, category) => {
     if (category.providers?.length > 0) {
       category.providers.forEach((provider) => {
-        const exists = acc.some((p) => p.id === provider.id);
-        if (!exists) acc.push(provider);
+        if (!acc.some((p) => p.id === provider.id)) {
+          acc.push(provider);
+        }
       });
     }
     return acc;
@@ -36,84 +36,55 @@ const AllProvidersList = () => {
 
   return (
     <>
-      <div className="category-wrapper">
-        <section id="category-section" className="CategorySection">
-          <div className="category-games-section">
-            <div className="items-grid-wrapper">
-              <div className="items-grid-header items-grid-header--sticky">
-                <div className="Wrapper">
-                  <div className="list-header">
-                    <div className="list-header__button">
-                      <button
-                        onClick={() => navigate(-1)}
-                        className="m-button m-gradient-border m-button--secondary m-button--m"
-                      >
-                        <div className="m-icon-container">
-                          <ArrowUpIcon
-                            className="m-icon m-icon-loadable"
-                            style={{ transform: "rotate(270deg)" }}
-                          />
-                        </div>
-                      </button>
-                    </div>
+      <div className="min-h-screen">
+        <section className="py-6">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex items-center gap-4 mb-6">
+              <button
+                onClick={() => navigate(-1)}
+                className="flex items-center rounded-full justify-center w-10 h-10 border border-gray-600 text-gray-700 hover:border-primary hover:bg-primary hover:text-white transition"
+              >
+                <ArrowUpIcon className="w-4 h-4 -rotate-90" />
+              </button>
 
-                    <div>
-                      <p className="m-text m-fs16 m-fw700 m-lh150">
-                        <div>All Providers</div>
-                      </p>
-                      {finalProviders.length > 0 && (
-                        <p
-                          className="m-text m-fs12 m-fw500 m-lh160"
-                          style={{ color: "var(--color-mid-grey-1)" }}
-                        >
-                          {finalProviders.length} <div>providers</div>
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="list-header__sort">
-                      <button
-                        onClick={() => setIsSortingEnabled((prev) => !prev)}
-                        className={`m-button m-gradient-border m-button--${
-                          isSortingEnabled
-                            ? "primary"
-                            : "outline m-button--secondary"
-                        } m-button--m`}
-                      >
-                        <div className="m-button-content">
-                          <p
-                            className="m-text m-fs12 m-fw600 m-lh160"
-                            style={{ color: "var(--color-white)" }}
-                          >
-                            A-Z
-                          </p>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              <div>
+                <h1 className="font-bold text-lg text-gray-900">
+                  All Providers
+                </h1>
+                {finalProviders.length > 0 && (
+                  <p className="text-gray-500 text-sm">
+                    {finalProviders.length} providers
+                  </p>
+                )}
               </div>
 
-              <div className="Wrapper">
-                <div className="items-grid items-grid--cols5 grid__columns--2 grid__column-gap--16">
-                  {finalProviders.map((provider) => (
-                    <div
-                      key={provider.id}
-                      className="m-category-slider__item"
-                      onClick={() => navigate("/provider/" + provider.code)}
-                    >
-                      <div className="provider-card all-providers">
-                        <img
-                          className="provider-card__img"
-                          src={config.baseUrl + "/storage/" + provider.logo}
-                          loading="lazy"
-                          alt={provider.name}
-                        />
-                      </div>
-                    </div>
-                  ))}
+              <button
+                onClick={() => setIsSortingEnabled((prev) => !prev)}
+                className={`ml-4 px-3 py-1 rounded-full text-sm font-semibold border transition ${
+                  isSortingEnabled
+                    ? "bg-primary border-primary text-white hover:bg-primary-dark"
+                    : "border-gray-600 text-gray-700 hover:border-primary hover:text-primary hover:bg-gray-100"
+                }`}
+              >
+                A-Z
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {finalProviders.map((provider) => (
+                <div
+                  key={provider.id}
+                  className="cursor-pointer flex items-center justify-center rounded-lg bg-gray-200 hover:bg-gray-400 transition p-4"
+                  onClick={() => navigate(`/provider/${provider.code}`)}
+                >
+                  <img
+                    className="max-h-14 max-w-[80%]"
+                    src={config.baseUrl + "/storage/" + provider.logo}
+                    loading="lazy"
+                    alt={provider.name}
+                  />
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>

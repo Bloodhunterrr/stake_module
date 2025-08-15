@@ -1,27 +1,18 @@
-import ArrowUpIcon  from '@/assets/icons/arrow-up.svg?react';
-import { useNavigate, useParams } from 'react-router';
-import './subCategoryGames.css';
-;
-
-import {
-  useGetMainQuery,
-} from '@/services/mainApi';
-import {
-  useEffect,
-  useState,
-} from 'react';
-import type {Provider} from '@/types/main';
-import Footer from '@/components/shared/footer';
-import GameListRenderer from './gameListRenderer';
+import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
+import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useGetMainQuery } from "@/services/mainApi";
+import type { Provider } from "@/types/main";
+import Footer from "@/components/shared/footer";
+import GameListRenderer from "./gameListRenderer";
 
 type DataTree = Record<string, Provider>;
 
 const ProvidersGames = () => {
   const navigate = useNavigate();
-
   const { providerCode } = useParams<{ providerCode: string }>();
-
   const { data: mainData } = useGetMainQuery();
+
   const [dataTree, setDataTree] = useState<DataTree | null>(null);
   const [isSortingEnabled, setIsSortingEnabled] = useState(false);
   const [totalGames, setTotalGames] = useState<number>(0);
@@ -31,10 +22,9 @@ const ProvidersGames = () => {
     if (!mainData) return;
     const tree: DataTree = {};
     mainData.forEach(({ providers }) => {
-        providers.forEach((provider) => {
-            const { code } = provider;
-            tree[code] = provider
-        })
+      providers?.forEach((provider) => {
+        tree[provider.code] = provider;
+      });
     });
     setDataTree(tree);
   }, [mainData]);
@@ -42,73 +32,52 @@ const ProvidersGames = () => {
   const provider = dataTree?.[providerCode as string];
 
   useEffect(() => {
-    if (dataTree && (!provider)) navigate(-1);
+    if (dataTree && !provider) navigate(-1);
   }, [dataTree, provider, navigate]);
 
   return (
-    <>
+    <div className="max-w-7xl mx-auto">
       <div className="category-wrapper">
         <section id="category-section" className="CategorySection">
           <div className="category-games-section">
             <div className="items-grid-wrapper">
-              <div className="items-grid-header items-grid-header--sticky">
-                <div className="Wrapper">
-                  <div className="list-header">
-                    <div className="list-header__button">
-                      <button
-                        onClick={() => navigate(-1)}
-                        className="m-button m-gradient-border m-button--secondary m-button--m"
-                      >
-                        <div className="m-icon-container">
-                          <ArrowUpIcon
-                            className="m-icon m-icon-loadable"
-                            style={{ transform: 'rotate(270deg)' }}
-                          />
-                        </div>
-                      </button>
-                    </div>
+              <div className="sticky top-0 bg-white z-10 px-4 py-3 border-b border-gray-200">
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => navigate(-1)}
+                    className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 text-gray-700 hover:border-primary hover:bg-primary hover:text-white transition"
+                  >
+                    <ArrowUpIcon className="w-4 h-4 -rotate-90" />
+                  </button>
 
-                    <div>
-                      <p className="m-text m-fs16 m-fw700 m-lh150">
-                        {provider?.name ?? ''}
-                        
-                      </p>
-                      {totalGames > 0 && <p
-                        className="m-text m-fs12 m-fw500 m-lh160"
-                        style={{ color: 'var(--color-mid-grey-1)' }}
-                      >
-                        {totalGames} <div>games</div>
-                      </p>}
-                    </div>
-
-                    <div className="list-header__sort">
-                      <button
-                        onClick={() => setIsSortingEnabled((p) => !p)}
-                        className={`m-button m-gradient-border m-button--${isSortingEnabled
-                            ? 'primary'
-                            : 'outline m-button--secondary'
-                          } m-button--m`}
-                      >
-                        <div className="m-button-content">
-                          <p
-                            className="m-text m-fs12 m-fw600 m-lh160"
-                            style={{ color: 'var(--color-white)' }}
-                          >
-                            A-Z
-                          </p>
-                        </div>
-                      </button>
-                    </div>
+                  <div>
+                    <h1 className="font-bold text-lg text-gray-900">
+                      {provider?.name ?? ""}
+                    </h1>
+                    {totalGames > 0 && (
+                      <p className="text-gray-500 text-sm">{totalGames} games</p>
+                    )}
                   </div>
+
+                  <button
+                    onClick={() => setIsSortingEnabled((p) => !p)}
+                    className={`px-3 py-1 rounded-full text-sm font-semibold transition ${
+                      isSortingEnabled
+                        ? "bg-primary text-white"
+                        : "border border-gray-600 text-gray-300 hover:border-primary hover:text-white"
+                    }`}
+                  >
+                    A-Z
+                  </button>
                 </div>
               </div>
 
               <div className="Wrapper">
                 <GameListRenderer
                   providerId={provider?.id}
-                  order_by={isSortingEnabled ? 'name' : 'order'}
+                  order_by={isSortingEnabled ? "name" : "order"}
                   onTotalChange={setTotalGames}
-                  gameDynamicClass="items-grid--cols6"
+                  gameDynamicClass="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
                 />
               </div>
             </div>
@@ -116,7 +85,7 @@ const ProvidersGames = () => {
         </section>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
