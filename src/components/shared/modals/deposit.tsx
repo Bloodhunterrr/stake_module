@@ -10,7 +10,6 @@ import { setModal } from "@/slices/sharedSlice";
 import './deposit.css'
 import { currencyList } from "@/utils/currencyList";
 import { useCreateDepositMutation } from "@/services/authApi";
-import config from "@/config";
 
 type ChipsProps = {
     selectedWallet: Wallet | null,
