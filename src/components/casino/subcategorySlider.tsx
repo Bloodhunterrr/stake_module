@@ -26,7 +26,7 @@ const SubcategorySlider = ({ data }: Props) => {
     (entry) => Object.keys(entry)[0] === categorySlug
   );
 
-  const subcategories = selectedCategory?.[categorySlug]?.subcategories ?? [];
+  const subcategories = selectedCategory?.[categorySlug as string]?.subcategories ?? [];
 
   if (subcategories.length <= 1) {
     return null;

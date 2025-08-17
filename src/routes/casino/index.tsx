@@ -11,9 +11,9 @@ import BottomBanner from "@/components/casino/bottomBanner";
 import homeBanner from "@/assets/images/home-banner.png";
 import casinoLiveBanner from "@/assets/images/casino-live-banner.jpg";
 import BigWinsSlider from "@/components/casino/bigWinsSlider";
-import SubcategorySlider from "@/components/casino/subcategorySlider";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import Jackpot from "@/components/shared/v2/jackpot";
+import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
 
 const Lobby = () => {
     const {data, error, isLoading} = useGetMainQuery();
@@ -71,21 +71,23 @@ const Lobby = () => {
                 </section>
             )}
 
-            <SubcategorySlider
+            <section className="container mx-auto">
+            <SingleSubcategorySlider
                 data={data.map((category) => ({
                     [category.slug]: {
                         subcategories: category.subcategories || [],
                     },
                 }))}
             />
+            </section>
 
             <Jackpot/>
 
             {categorySlug === "casino" && (
-                <>
+                <section className="container space-y-4 mx-auto">
                     <LobbyBannerSlider/>
                     <BigWinsSlider/>
-                </>
+                </section>
             )}
 
             <div>
@@ -96,14 +98,14 @@ const Lobby = () => {
 
                     if (index === middleIndex - 1) {
                         return (
-                            <>
+                            <section className="conteiner mx-auto">
                                 <LobbySlider
                                     key={subcategory.id}
                                     categorySlug={categorySlug ?? data[0]?.slug}
                                     subcategory={subcategory}
                                 />
                                 <InstallAppBanner key="install-app-banner"/>
-                            </>
+                            </section>
                         );
                     }
 

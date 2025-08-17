@@ -61,14 +61,16 @@ export const DesktopSlider = ({
 
   return (
     <section className="w-full mb-8">
-      <div className="flex w-full items-center justify-between mb-3">
-        <h2 className="font-bold mr-auto text-3xl ">{subcategory.name}</h2>
+      <div className="flex w-full items-center lg:pb-2 justify-between ">
+        <h2 className="font-bold mr-auto text-2xl px-3">{subcategory.name}</h2>
         <button
           onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
           disabled={isLoading}
-          className="flex items-center gap-1 text-sm text-primary hover:underline disabled:opacity-50"
+          className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50"
         >
-          View all {data?.total != null && <span>({data.total})</span>}
+          {/*Totals are removed*/}
+          {/*{data?.total != null && <span>({data.total})</span>}*/}
+          View all
         </button>
         <div className="hidden md:flex gap-2">
           <button onClick={handlePrev} disabled={isPrevDisabled}>
@@ -80,19 +82,19 @@ export const DesktopSlider = ({
         </div>
       </div>
 
-      <Carousel opts={{ align: "start", loop: false }} className="w-full">
-        <CarouselContent>
+      <Carousel opts={{ align: "start", loop: false }} className="w-full relative group/items">
+        <CarouselContent className="py-4">
           {games.map((game, index) => (
-            <CarouselItem
-              key={game?.id ?? `skeleton-${index}`}
-              className="basis-1/6 lg:basis-1/7 md:basis-1/4 sm:basis-1/3 "
-            >
-              <GameSlot game={game} isLoading={isLoading || isFetching} />
-            </CarouselItem>
+              <CarouselItem
+                  key={game?.id ?? `skeleton-${index}`}
+                  className="basis-1/6 lg:basis-1/7 md:basis-1/4 sm:basis-1/3 hover:scale-105 transition-all duration-300 "
+              >
+                <GameSlot game={game} isLoading={isLoading || isFetching} />
+              </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden md:flex" />
-        <CarouselNext className="hidden md:flex" />
+        <CarouselPrevious className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10" />
+        <CarouselNext className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10" />
       </Carousel>
     </section>
   );

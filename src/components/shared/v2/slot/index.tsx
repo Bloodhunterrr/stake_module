@@ -13,7 +13,7 @@ import { LoaderSpinner } from "@/components/shared/Loader";
 import { setModal } from "@/slices/sharedSlice.ts";
 import { HeartIcon } from "lucide-react";
 
-const ModalBalanceInfo = ({
+export const ModalBalanceInfo = ({
   game,
   onClose,
 }: {
@@ -137,7 +137,7 @@ const GameSlot = ({
   return (
     <>
       <div
-        className="relative h-56 rounded-lg overflow-hidden shadow-lg cursor-pointer group"
+        className="relative h-56 rounded-lg overflow-hidden hover:lg:scale-[1.02] transition-transform duration-300 shadow-lg cursor-pointer group"
         onClick={handleGameClick}
       >
 
@@ -147,7 +147,7 @@ const GameSlot = ({
         />
 
         <img
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 "
           src={game?.image}
           loading="lazy"
           alt={game?.name}

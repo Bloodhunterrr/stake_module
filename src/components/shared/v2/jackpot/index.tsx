@@ -112,7 +112,7 @@ export default function Jackpot() {
 
                     <div className="animate-[number-glow_3s_infinite_ease-in-out] will-change-[text-shadow]">
                         {isLoading ? (
-                            <div className="shimmer-bg h-20 w-80 rounded-lg"/>
+                            <div className="shimmer-bg h-18 w-80 rounded-lg"/>
                         ) : (
                             <AnimatedNumber
                                 startValue={prevJackpotValuesRef.current.main}

@@ -50,7 +50,7 @@ const slides = [
 
 export default function BigWinsSlider() {
   return (
-    <section className="relative max-w-[calc(var(--section-width)+10px)] mx-auto">
+    <section className="relative max-w-[calc(var(--section-width)+10px)] mx-auto group">
       
 
       <Carousel
@@ -66,7 +66,7 @@ export default function BigWinsSlider() {
               key={index}
               className="basis-1/5 lg:basis-1/5 md:basis-1/3 sm:basis-1/2 p-2"
             >
-              <div className="flex items-center gap-4 p-3 border rounded-lg bg-background shadow-sm">
+              <div className="flex items-center gap-4 p-3 border border-primary-foreground rounded-lg bg-background shadow-sm shadow-white/10">
                 <img
                   src={slide.image}
                   alt={slide.title}
@@ -82,7 +82,7 @@ export default function BigWinsSlider() {
                     />
                     <p>@{slide.username}</p>
                   </div>
-                  <p className="text-primary font-bold mt-1">{slide.price}</p>
+                  <p className="text-primary-foreground font-bold mt-1">{slide.price}</p>
                 </div>
               </div>
             </CarouselItem>
@@ -90,8 +90,8 @@ export default function BigWinsSlider() {
         </CarouselContent>
 
         <div className="flex justify-between mt-2">
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="hidden lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 h-full disabled:hidden rounded-none left-0 z-10" />
+          <CarouselNext className="hidden lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 disabled:hidden rounded-none right-0 z-10" />
         </div>
       </Carousel>
     </section>

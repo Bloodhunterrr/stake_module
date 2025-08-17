@@ -31,7 +31,7 @@ const App: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-1">
+        <div className="bg-background text-primary-foreground">
             <SideBar
                 isDesktop={isDesktop}
                 sideBarOpen={sideBarOpen}
