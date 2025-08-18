@@ -186,7 +186,7 @@ const ProfileDropdown = ({ user }: { user: User }) => {
           <UserCircle className="h-6 w-6" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-56 bg-white" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user?.name}</p>
@@ -196,15 +196,20 @@ const ProfileDropdown = ({ user }: { user: User }) => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => navigate("/profile/wallet")}>
+        <DropdownMenuItem onClick={() => navigate("/account/wallet")}>
           <WalletIcon className="mr-2 h-4 w-4" />
           <span>Wallet</span>
+        </DropdownMenuItem>
+         <DropdownMenuItem onClick={() => navigate("/account/casino")}>
+          <History className="mr-2 h-4 w-4" />
+          <span>Casino</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => navigate("/profile/history")}>
           <History className="mr-2 h-4 w-4" />
           <span>History</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => navigate("/profile/general")}>
+
+        <DropdownMenuItem onClick={() => navigate("/account/change-password")}>
           <UserIcon className="mr-2 h-4 w-4" />
           <span>Profile</span>
         </DropdownMenuItem>

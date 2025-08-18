@@ -28,14 +28,14 @@ const SubcategorySlider = ({ data , paramsSubcategory }: Props) => {
         <>
             <div
                 onClick={() => setSearchModal(true)}
-                className="flex h-10  rounded-full items-center gap-2 mt-4 cursor-pointer px-3 gap-2 bg-popover  hover:bg-popover/80 transition"
+                className="flex h-10  rounded-full items-center gap-2 mt-4 cursor-pointer px-3 bg-popover  hover:bg-popover/80 transition"
             >
                 <SearchIcon className="size-5"/>
                 <span className={'font-semibold text-sm'}>Search</span>
             </div>
             <section className="space-y-4 sticky top-0">
                 <div className={'flex items-center justify-center w-full'}>
-                    <div className="overflow-x-auto items-center flex  no-scrollbar flex py-5">
+                    <div className="overflow-x-auto items-center  no-scrollbar flex py-5">
                         <div
                             className={cn("w-fit ml-3 shrink-0  text-[11px] cursor-pointer  ", {
                                 "decoration-2 text-card underline underline-offset-8 ": paramsSubcategory === undefined

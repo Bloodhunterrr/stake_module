@@ -142,7 +142,7 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
                         placeholder="Search"
                         value={searchQuery ?? ""}
                         onChange={handleSearchChange}
-                        className="flex placeholder:text-primary-foreground text-primary-foreground placeholder:text-sm placeholder:font-semibold h-10 border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0  rounded-full items-center gap-2 cursor-pointer px-3 gap-2 transition"
+                        className="flex placeholder:text-primary-foreground text-primary-foreground placeholder:text-sm placeholder:font-semibold h-10 border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0  rounded-full items-center gap-2 cursor-pointer px-3 transition"
                     />
                     {searchQuery && (
                         <Button
