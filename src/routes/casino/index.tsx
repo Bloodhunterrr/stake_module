@@ -8,7 +8,6 @@ import ProviderSlider from "@/components/casino/providerSlider";
 import type {Provider} from "@/types/main";
 import FeedbackForm from "@/components/casino/feedbackForm";
 import BottomBanner from "@/components/casino/bottomBanner";
-import BigWinsSlider from "@/components/casino/bigWinsSlider";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import Jackpot from "@/components/shared/v2/jackpot";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
