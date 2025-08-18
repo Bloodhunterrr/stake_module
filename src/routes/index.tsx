@@ -18,6 +18,8 @@ import TransactionHistory from "@/components/profile/history/Transaction";
 import ChangePasswordPage from "./account/change-password";
 import WalletPage from "./account/wallet";
 import CasinoPageHistory from "./account/casino";
+import PaymentsHistoryPage from "./account/payments";
+import BetsHistoryPage from "./account/bets";
 
 const routes = createBrowserRouter(
   [
@@ -98,6 +100,8 @@ const routes = createBrowserRouter(
             { path: "change-password", element: <ChangePasswordPage /> },
             { path: "wallet", element: <WalletPage /> },
             { path: "casino", element: <CasinoPageHistory /> },
+            { path: "bets", element: <BetsHistoryPage /> },
+            { path: "payments", element: <PaymentsHistoryPage /> },
           ],
         },
         {

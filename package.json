@@ -34,7 +34,7 @@
     "lucide-react": "^0.539.0",
     "react": "^19.1.1",
     "react-date-range": "^2.0.1",
-    "react-day-picker": "^9.8.1",
+    "react-day-picker": "^9.9.0",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.62.0",
     "react-redux": "^9.2.0",

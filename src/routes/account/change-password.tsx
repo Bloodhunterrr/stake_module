@@ -1,4 +1,4 @@
-import ChangePasswordForm from "@/components/shared/v2/profile/change-password-form";
+import ChangePasswordForm from "@/components/profile/v2/change-password-form";
 
 const ChangePasswordPage = () => {
   return (
