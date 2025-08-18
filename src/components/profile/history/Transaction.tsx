@@ -14,7 +14,7 @@ import CheckMarkIcon  from '@/assets/icons/check-mark.svg?react';
 import CloseIcon  from '@/assets/icons/close.svg?react';
 
 import { useGetTransactionHistoryMutation } from "@/services/authApi";
-import NoDataAvailable from "@/components/shared/no-data-available/NoDataAvailable";
+import NoDataAvailable from "@/components/shared/v2/no-data-available/NoDataAvailable";
 import { formatDateToDMY, formatDate } from "@/utils/formatDate";
 import Pagination from "@/components/shared/table-pagination/TablePagination";
 import { LoaderSpinner } from "@/components/shared/Loader";

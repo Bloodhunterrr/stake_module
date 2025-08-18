@@ -3,7 +3,7 @@ import {useIsDesktop} from '@/hooks/useIsDesktop';
 import type {Game, GameListRequest} from '@/types/game_list';
 import {useGetGameListQuery} from '@/services/mainApi';
 import GameSlot from '@/components/shared/v2/slot';
-import NoDataAvailable from '@/components/shared/no-data-available/NoDataAvailable';
+import NoDataAvailable from '@/components/shared/v2/no-data-available/NoDataAvailable';
 
 
 const GAME_LIMIT = 24;

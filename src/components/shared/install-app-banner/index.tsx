@@ -1,11 +1,9 @@
-
+import './style.css'
+import {useEffect, useState} from "react";
+import {useIsDesktop} from "@/hooks/useIsDesktop";
 import banner from "@/assets/images/install-app-banner-desktop.png"
 
-import './style.css'
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { useEffect, useState } from "react";
-
-const InstallAppBanner = () => {
+export default function InstallAppBanner() {
     const isDesktop = useIsDesktop(480);
     const textSizeClass = isDesktop ? "m-fs28" : "m-fs16";
     const buttonSizeClass = isDesktop ? "m-button--l" : "m-button--s";
@@ -15,7 +13,7 @@ const InstallAppBanner = () => {
     const [isInstalled, setIsInstalled] = useState(false);
 
     useEffect(() => {
-        const handler = (e: any) => {
+        const handler = (e: BeforeInstallPromptEvent) => {
             e.preventDefault();
             window.deferredPrompt = e;
             setSupportsPWA(true);
@@ -39,11 +37,11 @@ const InstallAppBanner = () => {
         };
     }, []);
 
-    const handleInstallClick = (e: any) => {
+    const handleInstallClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (window.deferredPrompt) {
             window.deferredPrompt.prompt();
-            window.deferredPrompt.userChoice.then((choiceResult: any) => {
+            window.deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === "accepted") {
                     console.log("User accepted the install prompt");
                 } else {
@@ -70,13 +68,13 @@ const InstallAppBanner = () => {
                 <div>
                     <h2
                         className={`m-text m-fw700 m-lh160 ${textSizeClass}`}
-                        style={{ color: "var(--color-white)" }}
+                        style={{color: "var(--color-white)"}}
                     >
                         <div>Best in the App</div>
                     </h2>
                     <p
                         className={`m-text m-fw500 m-lh160 ${paragraphSizeClass}`}
-                        style={{ color: "var(--color-w060)" }}
+                        style={{color: "var(--color-w060)"}}
                     >
                         <div>For a better experience!</div>
                     </p>
@@ -94,5 +92,3 @@ const InstallAppBanner = () => {
         </section>
     );
 };
-
-export default InstallAppBanner

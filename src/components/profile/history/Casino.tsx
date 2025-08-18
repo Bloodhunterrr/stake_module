@@ -11,7 +11,7 @@ import DocumentIcon  from '@/assets/icons/document.svg?react';
 import CrownIcon  from '@/assets/icons/crown.svg?react';
 import ClipBoardIcon  from '@/assets/icons/clip-board.svg?react';
 import { useGetCasinoHistoryMutation } from "@/services/authApi";
-import NoDataAvailable from "@/components/shared/no-data-available/NoDataAvailable";
+import NoDataAvailable from "@/components/shared/v2/no-data-available/NoDataAvailable";
 import { formatDateToDMY, formatDate } from "@/utils/formatDate";
 import Pagination from "@/components/shared/table-pagination/TablePagination";
 import { LoaderSpinner } from "@/components/shared/Loader";

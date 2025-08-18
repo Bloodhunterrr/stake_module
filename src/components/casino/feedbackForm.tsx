@@ -1,15 +1,14 @@
-
+import { useForm } from "react-hook-form";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import FeedbackIcon  from "@/assets/icons/feedback-category-icon.svg?react";
-import { useForm } from "react-hook-form";
 
 const FeedbackForm = () => {
   const isDesktop = useIsDesktop();
-  const { register, handleSubmit } = useForm<any>({
+  const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: unknown) => {
     console.log("data", data);
   };
 
@@ -53,7 +52,7 @@ const FeedbackForm = () => {
                       type="text"
                       placeholder=" "
                       {...register("category", {
-                        required: ({ id: "Category is required" }),
+                        required: ("Category is required"),
                       })}
                     />
                     <div className="m-input-content-label">
@@ -76,7 +75,7 @@ const FeedbackForm = () => {
                   className="feedback-form-textarea m-textarea"
                   placeholder=""
                   {...register("content", {
-                    required: ({ id: "Content is required" }),
+                    required: ("Content is required"),
                   })}
                 ></textarea>
                 <div className="m-input-content-label">

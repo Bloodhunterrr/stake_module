@@ -14,7 +14,7 @@ import CrownIcon  from "@/assets/icons/crown.svg?react";
 import ClipBoardIcon  from "@/assets/icons/clip-board.svg?react";
 import InfoIcon  from "@/assets/icons/info.svg?react";
 
-import NoDataAvailable from "@/components/shared/no-data-available/NoDataAvailable";
+import NoDataAvailable from "@/components/shared/v2/no-data-available/NoDataAvailable";
 import { formatDateToDMY, formatDate } from "@/utils/formatDate";
 import Pagination from "@/components/shared/table-pagination/TablePagination";
 import type {Odd, Ticket} from "@/types/sportHistory";

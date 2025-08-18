@@ -37,5 +37,6 @@
 //
 
 export function loadAsset(assetPath: string): string {
+  console.log(assetPath)
   return ''
 }
