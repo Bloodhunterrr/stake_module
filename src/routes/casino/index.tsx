@@ -8,8 +8,6 @@ import ProviderSlider from "@/components/casino/providerSlider";
 import type {Provider} from "@/types/main";
 import FeedbackForm from "@/components/casino/feedbackForm";
 import BottomBanner from "@/components/casino/bottomBanner";
-import homeBanner from "@/assets/images/home-banner.png";
-import casinoLiveBanner from "@/assets/images/casino-live-banner.jpg";
 import BigWinsSlider from "@/components/casino/bigWinsSlider";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import Jackpot from "@/components/shared/v2/jackpot";
@@ -54,23 +52,7 @@ const Lobby = () => {
     }, []);
 
     return (
-        <div className="mx-auto gap-5 flex flex-col max-w-[1400px]">
-            {categorySlug === "casino-live" && (
-                <section>
-                    <div>
-                        <img src={casinoLiveBanner} alt="Banner" width="100%"/>
-                    </div>
-                </section>
-            )}
-
-            {categorySlug === "casino" && (
-                <section>
-                    <div>
-                        <img src={homeBanner} alt="Banner" width="100%"/>
-                    </div>
-                </section>
-            )}
-
+        <div className="mx-auto gap-5 flex flex-col container mx-auto">
             <section className="container mx-auto">
             <SingleSubcategorySlider
                 data={data.map((category) => ({
@@ -81,14 +63,14 @@ const Lobby = () => {
             />
             </section>
 
-            <Jackpot/>
 
-            {categorySlug === "casino" && (
                 <section className="container space-y-4 mx-auto">
                     <LobbyBannerSlider/>
-                    <BigWinsSlider/>
+                    {/*<BigWinsSlider/>*/}
                 </section>
-            )}
+
+            <Jackpot/>
+
 
             <div>
                 {activeCategory?.subcategories.map((subcategory, index) => {

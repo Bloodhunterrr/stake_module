@@ -31,7 +31,7 @@ const Language = () => {
 const Footer = () => {
     const isDesktop = useIsDesktop();
 
-    return <section>
+    return <section className={'container mx-auto'}>
         <div className="footer">
             <nav className="footer-nav">
                 <div className="footer-nav__content">

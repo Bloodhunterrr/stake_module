@@ -47,11 +47,10 @@ const SubcategoryGames = () => {
   }, [dataTree, category, subcategory, navigate]);
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <div className="category-wrapper">
-        <section id="category-section" className="sticky bg-background top-0 z-10 px-4 py-3 ">
+      <>
           {mainData && (
               <SingleSubcategorySlider
+                  showBanner={true}
                   paramsSubcategory={subcategory?.slug}
                   data={mainData.map((category) => ({
                     [category.slug]: {
@@ -60,61 +59,62 @@ const SubcategoryGames = () => {
                   }))}
               />
           )}
-        </section>
-        <section id="category-section">
-          <div className="category-games-section">
-            <div className="items-grid-wrapper">
-              <div className="p-3 flex items-center justify-between">
-                <div className="flex items-center just gap-4">
-                  <button
-                      onClick={() => navigate(-1)}
-                      className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition"
-                  >
-                    <ArrowUpIcon className="w-4 h-4 -rotate-90"/>
-                  </button>
-                  <div>
-                    <h1 className="font-bold text-lg text-primary-foreground">
-                      {subcategory?.name ?? "Top Games"}
-                    </h1>
-                    {totalGames > 0 && (
-                        <p className="text-gray-500 text-sm">
-                          {totalGames} games
-                        </p>
-                    )}
+        <div className="container mx-auto">
+
+          <section id="category-section">
+            <div className="">
+              <div className="">
+                <div className="p-3 flex items-center justify-between">
+                  <div className="flex items-center just gap-4">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition"
+                    >
+                      <ArrowUpIcon className="w-4 h-4 -rotate-90"/>
+                    </button>
+                    <div>
+                      <h1 className="font-bold text-lg text-primary-foreground">
+                        {subcategory?.name ?? "Top Games"}
+                      </h1>
+                      {totalGames > 0 && (
+                          <p className="text-gray-500 text-sm">
+                            {totalGames} games
+                          </p>
+                      )}
+                    </div>
                   </div>
+                  <button
+                      onClick={() => setIsSortingEnabled((p) => !p)}
+                      className={`px-3 py-1 rounded-full text-sm border font-semibold transition ${
+                          isSortingEnabled
+                              ? "bg-popover border-transparent text-card"
+                              : "text-white border-card hover:text-white"
+                      }`}
+                  >
+                    A-Z
+                  </button>
                 </div>
-                <button
-                    onClick={() => setIsSortingEnabled((p) => !p)}
-                    className={`px-3 py-1 rounded-full text-sm border font-semibold transition ${
-                        isSortingEnabled
-                            ? "bg-popover border-transparent text-card"
-                            : "text-white border-card hover:text-white"
-                    }`}
-                >
-                  A-Z
-                </button>
-              </div>
-              <div className="p-3">
-                {
-                  categorySlug === "casino-live" ? <LiveCasinoGameListRenderer
-                      categoryId={subcategory?.id}
-                      order_by={isSortingEnabled ? "name" : "order"}
-                      onTotalChange={setTotalGames}
-                      gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6 lg:gap-2"
-                  /> : <GameListRenderer
-                      categoryId={subcategory?.id}
-                      order_by={isSortingEnabled ? "name" : "order"}
-                      onTotalChange={setTotalGames}
-                      gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
-                  />
-                }
+                <div className="p-3">
+                  {
+                    categorySlug === "casino-live" ? <LiveCasinoGameListRenderer
+                        categoryId={subcategory?.id}
+                        order_by={isSortingEnabled ? "name" : "order"}
+                        onTotalChange={setTotalGames}
+                        gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6 lg:gap-2"
+                    /> : <GameListRenderer
+                        categoryId={subcategory?.id}
+                        order_by={isSortingEnabled ? "name" : "order"}
+                        onTotalChange={setTotalGames}
+                        gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
+                    />
+                  }
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </div>
-      <Footer />
-    </div>
+          </section>
+        </div>
+        <Footer/>
+      </>
   );
 };
 

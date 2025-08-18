@@ -56,7 +56,8 @@ export const DesktopSlider = ({
     (data?.total !== undefined &&
       offset + subcategory.landing_page_game_number >= data.total);
 
-  const apiBasis = data?.limit ?? 7;
+  const apiBasis = Number(data?.limit ?? 7);
+  const shouldNext = ((Number(data?.offset ?? 0) + apiBasis) > (data?.total ?? apiBasis));
   return (
     <section className="w-full mb-8">
       <div className="flex w-full items-center lg:pb-2 justify-between ">
@@ -97,12 +98,12 @@ export const DesktopSlider = ({
         </CarouselContent>
         <CarouselPrevious
           onClick={handlePrev}
-          disabled={false}
+          disabled={Number(data?.offset ?? 0) === 0}
           className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"
         />
         <CarouselNext
           onClick={handleNext}
-          disabled={false}
+          disabled={shouldNext}
           className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"
         />
       </Carousel>

@@ -4,6 +4,7 @@ export interface GameListResponse {
     games: Game[];
     total: number;
     limit?: number
+    offset?: number
 }
 
 export interface GameListRequest {
