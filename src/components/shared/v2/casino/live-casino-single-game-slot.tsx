@@ -120,7 +120,7 @@ const LiveCasinoGameSlot = ({
             )}
             {loginModal && (
                 <Modal title={`Login`} onClose={closeLogin}>
-                    <Login />
+                    <Login setLoginModalOpen={setLoginModal} />
                 </Modal>
             )}
         </>

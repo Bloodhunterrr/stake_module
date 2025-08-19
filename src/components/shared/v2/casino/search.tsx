@@ -131,10 +131,12 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
     const selectedCount = useMemo(() => selectedCategoryItems.length + selectedProviderItems.length, [selectedCategoryItems, selectedProviderItems]);
 
     return (
-        <div className="flex flex-col items-start w-full gap-4">
+        <div className="flex flex-col items-start w-full container mx-auto  gap-4">
             {/* Search input */}
-            <div className="flex sticky top-0 z-20 bg-background flex-col items-center w-full gap-2 ">
-                <div  className="relative flex items-center pl-3.5 h-10 rounded-full bg-popover  hover:bg-popover/80  mt-6 w-full ">
+            <div className="flex sticky top-0 z-20 bg-background/90 flex-col px-2 pb-2 items-center w-full gap-2 ">
+                <p className={'h-12 flex items-center mt-6 text-semibold  text-2xl text-muted lg:text-4xl'}>Search</p>
+                <div
+                    className="relative flex items-center pl-3.5 h-10 rounded-full bg-popover  hover:bg-popover/80  w-full ">
                     <SearchIcon className=" size-5 text-muted-foreground "/>
                     <Input
                         tabIndex={1}
@@ -153,12 +155,12 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
                             onClick={() => setSearchQuery("")}
                             aria-label="Clear search"
                         >
-                            <X className="size-5 text-primary-foreground " />
+                            <X className="size-5 text-primary-foreground "/>
                         </Button>
                     )}
                     <div
                         onClick={() => {
-                            if(setSearchModal){
+                            if (setSearchModal) {
                                 setSearchModal(false)
                             }
                         }}
@@ -168,23 +170,27 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Button variant="outline" onClick={() => setProviderModal(true)} className="min-w-[9rem] justify-between">
+                    <Button variant="outline" onClick={() => setProviderModal(true)}
+                            className="min-w-[9rem] justify-between">
                         <span className="flex items-center gap-2">Provider</span>
                         <div className="flex items-center gap-2">
                             {selectedProviderItems.length > 0 && (
-                                <Badge variant="secondary" className="rounded-full">{selectedProviderItems.length}</Badge>
+                                <Badge variant="secondary"
+                                       className="rounded-full">{selectedProviderItems.length}</Badge>
                             )}
-                            <ChevronDown className="h-4 w-4 opacity-70" />
+                            <ChevronDown className="h-4 w-4 opacity-70"/>
                         </div>
                     </Button>
 
-                    <Button variant="outline" onClick={() => setCategoryModal(true)} className="min-w-[9rem] justify-between">
+                    <Button variant="outline" onClick={() => setCategoryModal(true)}
+                            className="min-w-[9rem] justify-between">
                         <span className="flex items-center gap-2">Category</span>
                         <div className="flex items-center gap-2">
                             {selectedCategoryItems.length > 0 && (
-                                <Badge variant="secondary" className="rounded-full">{selectedCategoryItems.length}</Badge>
+                                <Badge variant="secondary"
+                                       className="rounded-full">{selectedCategoryItems.length}</Badge>
                             )}
-                            <ChevronDown className="h-4 w-4 opacity-70" />
+                            <ChevronDown className="h-4 w-4 opacity-70"/>
                         </div>
                     </Button>
                 </div>
@@ -192,7 +198,7 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
             {/*/!* Active tags *!/*/}
             {selectedCount > 0 && (
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2 px-2">
                     {[
                         ...selectedCategoryItems.map((i) => ({ ...i, _type: "category" as const })),
                         ...selectedProviderItems.map((i) => ({ ...i, _type: "provider" as const })),
@@ -216,9 +222,9 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
             )}
 
             {/*/!* Results header *!/*/}
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center px-2 gap-3">
 
-                <h3 className="text-sm font-semibold bg-red-200 text-muted-foreground">Search results</h3>
+                <h3 className="text-sm font-semibold text-muted-foreground">Search results</h3>
                 {totalGames > 0 && (
                     <Badge variant="outline" className="text-sm h-6">{totalGames}</Badge>
                 )}

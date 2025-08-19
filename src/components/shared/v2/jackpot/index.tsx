@@ -99,10 +99,10 @@ export default function Jackpot() {
                 `}
             </style>
             <Card
-                className="relative w-full  overflow-hidden rounded-[2rem] border-none bg-zinc-900 p-6 md:p-8">
+                className="relative w-full  overflow-hidden rounded-[2rem] border-none bg-zinc-900 lg:p-6 px-6 pt-3  md:p-8">
                 <div
                     className="absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle,rgba(255,193,7,0.15)_0%,rgba(255,193,7,0)_70%)] animate-[jackpot-pulse_4s_infinite_ease-in-out]"></div>
-                <div className="relative z-10 flex flex-col items-center gap-6">
+                <div className="relative z-10 flex flex-col items-center gap-2 lg:gap-6">
                     <div className="text-center">
                         <h1 className="font-extrabold uppercase leading-none tracking-tight">
                             <span className="block text-amber-400 text-3xl sm:text-4xl md:text-5xl">Mega</span>
@@ -123,13 +123,13 @@ export default function Jackpot() {
                         )}
                     </div>
 
-                    <div className="flex w-full flex-col justify-around gap-4 sm:flex-row sm:gap-6 lg:gap-8">
+                    <div className="flex w-full  justify-around gap-4 flex-row sm:gap-6 lg:gap-8">
                         {jackpotData.map((jackpot) => (
                             <Card
                                 key={jackpot.id}
                                 className="group flex flex-1 flex-col items-center gap-3 rounded-xl border-2 border-zinc-700 bg-zinc-800/50 p-3 sm:p-4 lg:flex-row backdrop-blur-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-white/20">
                                 <div
-                                    className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 p-1.5 shadow-lg transition-all duration-300 group-hover:scale-110">
+                                    className="flex w-7 h-7 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-amber-400 p-1.5 shadow-lg transition-all duration-300 group-hover:scale-110">
                                     {jackpot.icon}
                                 </div>
                                 <CardContent className="p-0 text-center lg:text-left">
@@ -137,7 +137,7 @@ export default function Jackpot() {
                                         {jackpot.title}
                                     </span>
                                     {isLoading ? (
-                                        <div className="shimmer-bg mt-1 h-6 w-24 rounded"/>
+                                        <div className="shimmer-bg mt-1 h-6 lg:w-24 rounded"/>
                                     ) : (
                                         <AnimatedNumber
                                             startValue={prevJackpotValuesRef.current[jackpot.id]}

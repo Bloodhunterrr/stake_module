@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGetTransactionHistoryMutation } from "@/services/authApi";
 import { formatDateToDMY, formatDate } from "@/utils/formatDate";
-import { LoaderSpinner } from "@/components/shared/Loader";
 import { currencyList } from "@/utils/currencyList";
 import type { Transaction } from "@/types/transactionHistory";
 
@@ -27,17 +26,37 @@ import { format } from "date-fns";
 
 import CheckMarkIcon from "@/assets/icons/check-mark.svg?react";
 import CloseIcon from "@/assets/icons/close.svg?react";
+import Loading from "@/components/shared/loading";
+import { useAppSelector } from "@/hooks/rtk";
+import type { User } from "@/types/auth";
+import { MultiSelect } from "@/components/ui/multi-select";
 
 const PaymentsHistoryTable = () => {
+  const user: User = useAppSelector((state) => state.auth?.user);
+
   const [dates, setDates] = useState({
     startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
     endDate: new Date(),
   });
 
   const [page, setPage] = useState(1);
+  const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
+  const [selectedTransactionTypes, setSelectedTransactionTypes] = useState<
+    string[]
+  >([]);
 
   const [fetchData, { data, isLoading, error }] =
     useGetTransactionHistoryMutation();
+
+  const currencyOptions = user?.wallets.map((w) => ({
+    value: w.slug.toUpperCase(),
+    label: w.slug.toUpperCase(),
+  }));
+
+  const transactionTypeOptions = [
+    { value: "withdraw", label: "Withdraw" },
+    { value: "deposit", label: "Deposit" },
+  ];
 
   useEffect(() => {
     fetchData({
@@ -48,20 +67,22 @@ const PaymentsHistoryTable = () => {
   }, []);
 
   useEffect(() => {
-
-      fetchData({
-        start_date: formatDateToDMY(dates.startDate),
-        end_date: formatDateToDMY(dates.endDate),
-        currencies: undefined,
-        action: undefined,
-        page,
-      });
-    
-  }, [page]);
+    fetchData({
+      start_date: formatDateToDMY(dates.startDate),
+      end_date: formatDateToDMY(dates.endDate),
+      currencies:
+        selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
+      action:
+        selectedTransactionTypes.length > 0
+          ? selectedTransactionTypes
+          : undefined,
+      page,
+    });
+  }, [page, selectedTransactionTypes, selectedCurrencies, dates]);
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center px-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center px-8">
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -110,27 +131,28 @@ const PaymentsHistoryTable = () => {
           </PopoverContent>
         </Popover>
 
-        <Button
-          className="w-full bg-card text-accent-foreground hover:bg-card/70 cursor-pointer"
-          onClick={() => {
-            setPage(1);
-            fetchData({
-              start_date: formatDateToDMY(dates.startDate),
-              end_date: formatDateToDMY(dates.endDate),
-              currencies: undefined,
-              action: undefined,
-              page: 1,
-            });
-          }}
-        >
-          Filter
-        </Button>
+        <MultiSelect
+          options={currencyOptions}
+          value={selectedCurrencies}
+          onValueChange={(values: string[]) => setSelectedCurrencies(values)}
+          placeholder="All currencies"
+          hideSelectAll={true}
+        />
+
+        <MultiSelect
+          options={transactionTypeOptions}
+          value={selectedTransactionTypes}
+          onValueChange={(values: string[]) =>
+            setSelectedTransactionTypes(values)
+          }
+          placeholder="All Actions"
+          hideSelectAll={true}
+        />
+
       </div>
 
       {isLoading ? (
-        <div className="flex justify-center p-10">
-          <LoaderSpinner />
-        </div>
+        <Loading />
       ) : error ? (
         <p className="text-accent-foreground text-center">
           Something wrong happened. Try again later!

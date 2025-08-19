@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { formatDateToDMY, formatDate } from "@/utils/formatDate";
 import type { Ticket } from "@/types/sportHistory";
-import { LoaderSpinner } from "@/components/shared/Loader";
 import { currencyList } from "@/utils/currencyList";
 import { useGetSportHistoryMutation } from "@/services/authApi";
 
@@ -24,6 +23,10 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
+import Loading from "@/components/shared/loading";
+import { useAppSelector } from "@/hooks/rtk";
+import type { User } from "@/types/auth";
+import { MultiSelect } from "@/components/ui/multi-select";
 
 const TicketStatuses = (status: number) => {
   switch (status) {
@@ -56,13 +59,31 @@ const getBadgeClass = (status: number) => {
 };
 
 const BettingHistoryTable = () => {
+  const user: User = useAppSelector((state) => state.auth?.user);
+
   const [page, setPage] = useState(1);
   const [dates, setDates] = useState({
     startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
     endDate: new Date(),
   });
+  const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
 
   const [fetchData, { data, isLoading, error }] = useGetSportHistoryMutation();
+
+  const statusOptions = [
+    { value: "0", label: "Pending" },
+    { value: "1", label: "Lost" },
+    { value: "3", label: "Won" },
+    { value: "4", label: "Returned" },
+  ];
+
+  const currencyOptions = user?.wallets.map((w) => ({
+    value: w.slug.toUpperCase(),
+    label: w.slug.toUpperCase(),
+  }));
+
+  
 
   useEffect(() => {
     fetchData({
@@ -76,15 +97,16 @@ const BettingHistoryTable = () => {
     fetchData({
       start_date: formatDateToDMY(dates.startDate),
       end_date: formatDateToDMY(dates.endDate),
-      currencies: undefined,
-      status: undefined,
+      currencies:
+        selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
+      status: selectedStatuses.length > 0 ? selectedStatuses : undefined,
       page,
     });
-  }, [page]);
+  }, [page, selectedStatuses, selectedCurrencies, dates]);
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center px-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center px-8">
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -133,27 +155,25 @@ const BettingHistoryTable = () => {
           </PopoverContent>
         </Popover>
 
-        <Button
-          className="w-full bg-card text-accent-foreground hover:bg-card/70 cursor-pointer"
-          onClick={() => {
-            setPage(1);
-            fetchData({
-              start_date: formatDateToDMY(dates.startDate),
-              end_date: formatDateToDMY(dates.endDate),
-              currencies: undefined,
-              status: undefined,
-              page: 1,
-            });
-          }}
-        >
-          Filter
-        </Button>
+        <MultiSelect
+          options={currencyOptions}
+          value={selectedCurrencies}
+          onValueChange={(values: string[]) => setSelectedCurrencies(values)}
+          placeholder="All currencies"
+          hideSelectAll={true}
+        />
+
+        <MultiSelect
+          options={statusOptions}
+          value={selectedStatuses}
+          onValueChange={(values: string[]) => setSelectedStatuses(values)}
+          placeholder="All statuses"
+          hideSelectAll={true}
+        />
       </div>
 
       {isLoading ? (
-        <div className="flex justify-center p-10">
-          <LoaderSpinner />
-        </div>
+        <Loading />
       ) : error ? (
         <p className="text-center">
           Something wrong happened. Try again later!

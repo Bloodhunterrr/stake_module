@@ -51,22 +51,22 @@ const Lobby = () => {
     }, []);
 
     return (
-        <div className="mx-auto gap-5 flex flex-col container mx-auto">
+        <div className="mx-auto lg:px-0 px-3 gap-5 flex flex-col container mx-auto">
             <section className="container mx-auto">
-            <SingleSubcategorySlider
-                data={data.map((category) => ({
-                    [category.slug]: {
-                        subcategories: category.subcategories || [],
-                    },
-                }))}
-            />
+                <SingleSubcategorySlider
+                    data={data.map((category) => ({
+                        [category.slug]: {
+                            subcategories: category.subcategories || [],
+                        },
+                    }))}
+                />
             </section>
 
 
-                <section className="container space-y-4 mx-auto">
-                    <LobbyBannerSlider/>
-                    {/*<BigWinsSlider/>*/}
-                </section>
+            <section className="container space-y-4 mx-auto">
+                <LobbyBannerSlider/>
+                {/*<BigWinsSlider/>*/}
+            </section>
 
             <Jackpot/>
 
