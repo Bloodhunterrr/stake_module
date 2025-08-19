@@ -3,12 +3,11 @@ import {
   // Moon,
   // Sun,
   History,
-  LogOut,
+  Bell,
+  // LogOut,
   UserCircle,
   WalletIcon,
   UserIcon,
-  CreditCard,
-  Mail,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -29,6 +28,7 @@ import Login from "../login";
 import SignUp from "../signup";
 import { useState } from "react";
 // import { useTheme } from "@/hooks/useTheme.tsx";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAppSelector } from "@/hooks/rtk.ts";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button.tsx";
@@ -38,7 +38,7 @@ import Search from "@/components/casino/search.tsx";
 import { useLogoutMutation } from "@/services/authApi.ts";
 import { useGetMainQuery } from "@/services/mainApi.ts";
 import config from "@/config.ts";
-import { cn } from "@/lib/utils.ts";
+import {cn} from "@/lib/utils.ts";
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
@@ -58,226 +58,235 @@ const NavBar = (props: NavBarProps) => {
   const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false);
   const user = useAppSelector((state) => state.auth.user);
   const defaultWallet: Wallet | undefined = user?.wallets.find(
-    (w: Wallet) => w.default
+      (w: Wallet) => w.default
   );
 
   // const { theme, toggleTheme } = useTheme();
   const { data } = useGetMainQuery();
   return (
-    <div className={"sticky top-0  z-50 bg-background"}>
-      <div
-        className={cn(
-          "h-0 transition-all w-full flex items-center flex-row container mx-auto duration-300 ease-in-out",
-          {
-            "h-11 lg:h-0 opacity-100 px-2 w-full": props.openOptionalSideBar,
-          }
-        )}
-      >
-        {data?.map((R) =>
-          !R.is_sportbook && R.subcategories.length === 0 ? null : (
-            <Button
-              key={R.id}
-              variant="ghost"
-              className={cn(
-                "flex items-center rounded-none bg-transparent text-primary-foreground text-[11px] hover:text-primary-foreground hover:bg-transparent space-x-2 px-2 font-medium",
-                {
-                  "text-card hover:text-card border-b border-b-card":
-                    props.location.split("/")[1] === R.slug,
-                }
-              )}
-              onClick={() => navigate(`/${R.slug}`)}
-            >
-              <span>{R.name}</span>
-            </Button>
-          )
-        )}
-      </div>
-      <div
-        style={{ backgroundImage: "linear-gradient(#005641,#222 165px)" }}
-        className="sticky top-0 z-50 px-3 "
-      >
-        <div className="flex items-center container mx-auto justify-between h-16">
-          <div className="">
-            {!props.sideBarOpen && (
-              <Button
-                variant="ghost"
-                className="p-0 hover:bg-transparent"
-                onClick={() =>
-                  props.setOpenOptionalSideBar(!props.openOptionalSideBar)
-                }
-              >
-                <img className="h-8" src={logo} alt="logo" />
-              </Button>
-            )}
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-4">
-            {data?.map((R) =>
+      <div className={'sticky top-0  z-50 bg-background'}>
+        <div className={cn("h-0 transition-all w-full flex items-center flex-row container mx-auto duration-300 ease-in-out", {
+          "h-11 lg:h-0 opacity-100 px-2 w-full": props.openOptionalSideBar,
+        })}>
+          {data?.map((R) =>
               !R.is_sportbook && R.subcategories.length === 0 ? null : (
-                <Button
-                  key={R.id}
-                  variant="ghost"
-                  className={cn(
-                    "flex items-center rounded-none bg-transparent text-primary-foreground text-sm hover:text-primary-foreground hover:bg-transparent space-x-2 px-2 font-medium",
-                    {
-                      "text-card hover:text-card border-b border-b-card":
-                        props.location.split("/")[1] === R.slug,
-                    }
-                  )}
-                  onClick={() => navigate(`/${R.slug}`)}
-                >
-                  <img
-                    className="h-5 w-5  grayscale"
-                    src={config.baseUrl + "/storage/" + R.icon}
-                    alt={R.name}
-                  />
-                  <span>{R.name}</span>
-                </Button>
+                  <Button
+                      key={R.id}
+                      variant="ghost"
+                      className={cn("flex items-center rounded-none bg-transparent text-primary-foreground text-[11px] hover:text-primary-foreground hover:bg-transparent space-x-2 px-2 font-medium",{
+                        'text-card hover:text-card border-b border-b-card': props.location.split('/')[1] === R.slug
+                      })}
+                      onClick={() => navigate(`/${R.slug}`)}
+                  >
+                    <span>{R.name}</span>
+                  </Button>
               )
-            )}
-          </div>
-
-          <div className="flex items-center space-x-2">
-            {/*<Button*/}
-            {/*    variant="ghost"*/}
-            {/*    size="icon"*/}
-            {/*    onClick={() => setSearchModalOpen(true)}*/}
-            {/*>*/}
-            {/*  <SearchIcon className="h-5 w-5"/>*/}
-            {/*</Button>*/}
-
-            {/*<Button variant="ghost" size="icon" onClick={toggleTheme}>*/}
-            {/*  {theme === "dark" ? (*/}
-            {/*      <Sun className="h-5 w-5"/>*/}
-            {/*  ) : (*/}
-            {/*      <Moon className="h-5 w-5"/>*/}
-            {/*  )}*/}
-            {/*</Button>*/}
-
-            {user && defaultWallet && (
-              <div className="flex items-center space-x-2 px-3 py-1 rounded-full bg-muted text-sm font-medium">
-                <span>
-                  {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
-                    minimumFractionDigits: defaultWallet.decimal_places,
-                    maximumFractionDigits: defaultWallet.decimal_places,
-                  })}
-                </span>
-                <span className="font-bold">
-                  {
-                    currencyList[defaultWallet.slug.toUpperCase()]
-                      ?.symbol_native
-                  }
-                </span>
-              </div>
-            )}
-
-            {user ? (
-              <ProfileDropdown user={user} />
-            ) : (
-              <section className={"space-x-3"}>
-                {/*<Button*/}
-                {/*    className={'bg-transparent hover:bg-transparent border-[1px] border-chart-4 text-[11px] rounded-full p-2 h-8 text-chart-4'}*/}
-                {/*    onClick={() => setSignUpModalOpen(true)}>*/}
-                {/*  Join*/}
-                {/*</Button>*/}
-                <Button
-                  variant="secondary"
-                  className="bg-transparent hover:bg-transparent border-[1px] border-primary-foreground/30 text-[11px] rounded-full p-2 h-8 text-primary-foreground"
-                  onClick={() => setLoginModalOpen(true)}
-                >
-                  Log in
-                </Button>
-              </section>
-            )}
-          </div>
+          )}
         </div>
+        <div style={{backgroundImage: "linear-gradient(#005641,#222 165px)"}}
+             className="sticky top-0 z-50 px-3 ">
+          <div className="flex items-center container mx-auto justify-between h-16">
+            <div className="">
+              {!props.sideBarOpen && (
+                  <Button
+                      variant="ghost"
+                      className="p-0 hover:bg-transparent"
+                      onClick={() => props.setOpenOptionalSideBar(!props.openOptionalSideBar)}
+                  >
+                    <img className="h-8" src={logo} alt="logo"/>
+                  </Button>
+              )}
+            </div>
 
-        {/* Login Modal */}
-        <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
-          <DialogContent className="sm:max-w-[425px]">
-            <Login />
-          </DialogContent>
-        </Dialog>
+            <div className="hidden lg:flex items-center space-x-4">
+              {data?.map((R) =>
+                  !R.is_sportbook && R.subcategories.length === 0 ? null : (
+                      <Button
+                          key={R.id}
+                          variant="ghost"
+                          className={cn("flex items-center rounded-none bg-transparent text-primary-foreground text-sm hover:text-primary-foreground hover:bg-transparent space-x-2 px-2 font-medium",{
+                            'text-card hover:text-card border-b border-b-card': props.location.split('/')[1] === R.slug
+                          })}
+                          onClick={() => navigate(`/${R.slug}`)}
+                      >
+                        <img
+                            className="h-5 w-5  grayscale"
+                            src={config.baseUrl + "/storage/" + R.icon}
+                            alt={R.name}
+                        />
+                        <span>{R.name}</span>
+                      </Button>
+                  )
+              )}
+            </div>
 
-        {/* Sign Up Modal */}
-        <Dialog open={signUpModalOpen} onOpenChange={setSignUpModalOpen}>
-          <DialogContent className="sm:max-w-[425px]">
-            <SignUp />
-          </DialogContent>
-        </Dialog>
+            <div className="flex items-center space-x-2">
+              {/*<Button*/}
+              {/*    variant="ghost"*/}
+              {/*    size="icon"*/}
+              {/*    onClick={() => setSearchModalOpen(true)}*/}
+              {/*>*/}
+              {/*  <SearchIcon className="h-5 w-5"/>*/}
+              {/*</Button>*/}
 
-        {/* Search Modal */}
-        <Dialog open={searchModalOpen} onOpenChange={setSearchModalOpen}>
-          <DialogContent className="overflow-auto w-full h-full  ">
-            <DialogHeader>
-              <DialogTitle>Search</DialogTitle>
-            </DialogHeader>
-            <Search onCloseSearchModal={() => setSearchModalOpen(false)} />
-          </DialogContent>
-        </Dialog>
+              {/*<Button variant="ghost" size="icon" onClick={toggleTheme}>*/}
+              {/*  {theme === "dark" ? (*/}
+              {/*      <Sun className="h-5 w-5"/>*/}
+              {/*  ) : (*/}
+              {/*      <Moon className="h-5 w-5"/>*/}
+              {/*  )}*/}
+              {/*</Button>*/}
+
+              {user ? (
+                  <main className="relative flex-col w-full  h-full">
+                    <ProfileDropdown user={user}/>
+                    {user && defaultWallet && (
+                        <div className="flex absolute  -bottom-2.5 -right-1/2 -translate-x-0.5 h-1 items-center space-x- rounded-full text-xs font-medium">
+                          <span>
+                            {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
+                              minimumFractionDigits: defaultWallet.decimal_places,
+                              maximumFractionDigits: defaultWallet.decimal_places,
+                            })}
+                          </span>
+                          <span className="font-bold">
+                             {currencyList[defaultWallet.slug.toUpperCase()]?.symbol_native}
+                          </span>
+                        </div>
+                    )}
+                  </main>
+              ) : (
+                  <section className={'space-x-3'}>
+                    {/*<Button*/}
+                    {/*    className={'bg-transparent hover:bg-transparent border-[1px] border-chart-4 text-[11px] rounded-full p-2 h-8 text-chart-4'}*/}
+                    {/*    onClick={() => setSignUpModalOpen(true)}>*/}
+                    {/*  Join*/}
+                    {/*</Button>*/}
+                    <Button
+                        variant="secondary"
+                        className="bg-transparent hover:bg-transparent border-[1px] border-primary-foreground/30 text-[11px] rounded-full p-2 h-8 text-primary-foreground"
+                        onClick={() => setLoginModalOpen(true)}
+                    >
+                      Log in
+                    </Button>
+
+                  </section>
+              )}
+            </div>
+          </div>
+
+          {/* Login Modal */}
+          <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
+            <DialogContent
+                className="p-0 lg:w-[450px] rounded-none bg-secondary">
+              <Login setLoginModalOpen={setLoginModalOpen}/>
+            </DialogContent>
+          </Dialog>
+
+          {/* Sign Up Modal */}
+          <Dialog open={signUpModalOpen} onOpenChange={setSignUpModalOpen}>
+            <DialogContent className="sm:max-w-[425px]">
+              <SignUp/>
+            </DialogContent>
+          </Dialog>
+
+          {/* Search Modal */}
+          <Dialog open={searchModalOpen} onOpenChange={setSearchModalOpen}>
+            <DialogContent className="overflow-auto w-full h-full  ">
+              <DialogHeader>
+                <DialogTitle>Search</DialogTitle>
+              </DialogHeader>
+              <Search onCloseSearchModal={() => setSearchModalOpen(false)}/>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
-    </div>
+
   );
 };
 
 export default NavBar;
 
-const ProfileDropdown = ({ user }: { user: User }) => {
+const ProfileDropdown = ({user}: { user: User }) => {
   const [logout] = useLogoutMutation();
   const navigate = useNavigate();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="relative h-9 w-9 rounded-full"
-        >
-          <UserCircle className="h-6 w-6" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-white" align="end" forceMount>
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user?.name}</p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {user?.email}
-            </p>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <UserCircle className="w-full stroke-[1px] text-card h-full"/>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-96 mt-4  p-0 bg-white rounded-none" align="end" forceMount>
+          {/**/}
+          <div className="flex flex-col w-full h-full">
+            <DropdownMenuLabel className="font-normal">
+              <div className="flex flex-col">
+                <p className="text-xs font-medium leading-none">{user?.name}</p>
+              </div>
+            </DropdownMenuLabel>
+            <div className={'flex flex-row items-center justify-between gap-x-4  w-full space-y-1 px-2'}>
+              {
+                user.wallets?.map((w: Wallet) => (
+                    <div key={w.slug} className=" w-fit">
+                    <span className={'text-xl font-semibold'}>
+                      {(+w.balance / 100).toLocaleString("en-EN", {
+                        minimumFractionDigits: w.decimal_places,
+                        maximumFractionDigits: w.decimal_places,
+                      })}
+                    </span>
+                      <span className="font-bold">
+                      {currencyList[w.slug.toUpperCase()]?.symbol_native}
+                    </span>
+                    </div>
+                ))
+              }
+            </div>
+            <DropdownMenuSeparator className={'py-0 my-0'}/>
           </div>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => navigate("/account/wallet")}>
-          <WalletIcon className="mr-2 h-4 w-4" />
-          <span>Wallet</span>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={() => navigate("/account/casino")}>
-          <CreditCard className="mr-2 h-4 w-4" />
-          <span>Transactions</span>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={() => navigate("/account/bets")}>
-          <Mail className="mr-2 h-4 w-4" />
-          <span>My Bets</span>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={() => navigate("/account/payments")}>
-          <History className="mr-2 h-4 w-4" />
-          <span>Payments</span>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={() => navigate("/account/change-password")}>
-          <UserIcon className="mr-2 h-4 w-4" />
-          <span>Change Password</span>
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => logout()}>
-          <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <Tabs defaultValue="profile" className="w-full ">
+            <TabsList className={'rounded-none w-full py-0 h-14'}>
+              <TabsTrigger  value="profile" className={'data-[state=active]:border-b-card data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:font-semibold text-sm  font-light rounded-none '}>Profile</TabsTrigger>
+              <TabsTrigger value="preferences" className={'data-[state=active]:border-b-card data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:font-semibold text-sm font-light rounded-none '}>Preferences</TabsTrigger>
+            </TabsList>
+            <TabsContent value="profile" className={'grid grid-cols-3 gap-3 px-2'}>
+              <DropdownMenuItem
+                  className={'flex flex-col focus:bg-transparent cursor-pointer'}
+                  onClick={() => navigate("/account/casino")}>
+                <History className="size-10 stroke-[1px]"/>
+                <span className={'text-xs'}>Casino</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                  className={'flex flex-col focus:bg-transparent cursor-pointer'}
+                  onClick={() => navigate("/profile/history")}>
+                <History className="size-10 stroke-[1px]"/>
+                <span className={'text-xs'}>History</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                  className={'flex flex-col focus:bg-transparent cursor-pointer'}
+                  onClick={() => navigate("/account/change-password")}>
+                <UserIcon className="size-10 stroke-[1px]"/>
+                <span className={'text-xs'}>Profile</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                  className={'flex flex-col focus:bg-transparent cursor-pointer'}
+                  onClick={() => navigate("/account/wallet")}>
+                <WalletIcon className={'size-10 stroke-[1px]'}/>
+                <span className={'text-xs'} >Wallet</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                  className={'flex flex-col focus:bg-transparent cursor-pointer'}
+                  onClick={() => navigate("/notifications")}>
+                <Bell className="size-10 stroke-[1px]"/>
+                <span className={'text-xs'}>Notifications</span>
+              </DropdownMenuItem>
+            </TabsContent>
+            <TabsContent value="preferences"></TabsContent>
+          </Tabs>
+          <DropdownMenuItem
+              className="w-full border-t rounded-none px-2 py-2 "
+              onClick={() => logout()}>
+            <span>Log out</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
   );
 };

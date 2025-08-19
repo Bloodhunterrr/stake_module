@@ -5,6 +5,8 @@ import { useGetMainQuery } from "@/services/mainApi";
 import type { Provider } from "@/types/main";
 import Footer from "@/components/shared/footer";
 import GameListRenderer from "./gameListRenderer";
+import {useTheme} from "@/hooks/useTheme.tsx";
+import {cn} from "@/lib/utils.ts";
 
 type DataTree = Record<string, Provider>;
 
@@ -17,6 +19,7 @@ const ProvidersGames = () => {
   const [isSortingEnabled, setIsSortingEnabled] = useState(false);
   const [totalGames, setTotalGames] = useState<number>(0);
 
+  const {optionalSideBarOpen} = useTheme();
 
   useEffect(() => {
     if (!mainData) return;
@@ -36,56 +39,61 @@ const ProvidersGames = () => {
   }, [dataTree, provider, navigate]);
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <div className="category-wrapper">
-        <section id="category-section" className="CategorySection">
-          <div className="category-games-section">
-            <div className="items-grid-wrapper">
-              <div className="sticky top-0 bg-white z-10 px-4 py-3 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => navigate(-1)}
-                    className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 text-gray-700 hover:border-primary hover:bg-primary hover:text-white transition"
-                  >
-                    <ArrowUpIcon className="w-4 h-4 -rotate-90" />
-                  </button>
+      <div className="container mx-auto px-2 lg:px-0">
+        <div className="category-wrapper">
+          <section id="category-section" className="CategorySection">
+            <div className="category-games-section">
+              <div className="items-grid-wrapper">
+                <div className={cn("sticky top-16 bg-background  z-10 py-2 ",{
+                  'top-27 lg:top-16' : optionalSideBarOpen
+                })}>
+                  <div className="p-3 flex items-center justify-between">
+                    <div className={'flex items-center gap-x-3 '}>
+                      <button
+                          onClick={() => navigate(-1)}
+                          className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition"
+                      >
+                        <ArrowUpIcon className="w-4 h-4 -rotate-90"/>
+                      </button>
 
-                  <div>
-                    <h1 className="font-bold text-lg text-gray-900">
-                      {provider?.name ?? ""}
-                    </h1>
-                    {totalGames > 0 && (
-                      <p className="text-gray-500 text-sm">{totalGames} games</p>
-                    )}
+                      <div>
+                        <h1 className="font-bold text-lg text-primary-foreground">
+                          {provider?.name ?? ""}
+                        </h1>
+                        {totalGames > 0 && (
+                            <p className="text-gray-500 text-sm">{totalGames} games</p>
+                        )}
+                      </div>
+                    </div>
+
+
+                    <button
+                        onClick={() => setIsSortingEnabled((p) => !p)}
+                        className={`px-3 py-1 rounded-full border  text-sm font-semibold transition ${
+                            isSortingEnabled
+                                ? "border-card text-card bg-popover"
+                                : "border border-gray-600 text-gray-300 hover:border-card hover:text-white"
+                        }`}
+                    >
+                      A-Z
+                    </button>
                   </div>
+                </div>
 
-                  <button
-                    onClick={() => setIsSortingEnabled((p) => !p)}
-                    className={`px-3 py-1 rounded-full text-sm font-semibold transition ${
-                      isSortingEnabled
-                        ? "bg-primary text-white"
-                        : "border border-gray-600 text-gray-300 hover:border-primary hover:text-white"
-                    }`}
-                  >
-                    A-Z
-                  </button>
+                <div className="min-h-screen">
+                  <GameListRenderer
+                      providerId={provider?.id}
+                      order_by={isSortingEnabled ? "name" : "order"}
+                      onTotalChange={setTotalGames}
+                      gameDynamicClass="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+                  />
                 </div>
               </div>
-
-              <div className="Wrapper">
-                <GameListRenderer
-                  providerId={provider?.id}
-                  order_by={isSortingEnabled ? "name" : "order"}
-                  onTotalChange={setTotalGames}
-                  gameDynamicClass="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
-                />
-              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
   );
 };
 

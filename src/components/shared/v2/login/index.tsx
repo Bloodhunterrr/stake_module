@@ -3,11 +3,10 @@ import {useState} from 'react';
 import {toast} from 'react-toastify';
 import {useForm} from 'react-hook-form';
 import {Input} from '@/components/ui/input.tsx';
-import {Label} from '@/components/ui/label.tsx';
 import {Button} from '@/components/ui/button.tsx';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useLoginMutation} from '@/services/authApi.ts';
-import {Mail, Lock, Eye, EyeOff} from 'lucide-react';
+import {Eye, EyeOff} from 'lucide-react';
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx';
 
 const loginSchema = z.object({
@@ -24,7 +23,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 
-export default function Login() {
+export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dispatch<React.SetStateAction<boolean>>}) {
     const [showPass, setShowPass] = useState(false);
     const [login, {isLoading}] = useLoginMutation();
 
@@ -45,8 +44,10 @@ export default function Login() {
         try {
             await login(data).unwrap();
             toast.success('Login successful!');
+            setLoginModalOpen(false);
         } catch (err: unknown) {
             handleLoginError(err);
+            setLoginModalOpen(false);
         }
     };
 
@@ -70,25 +71,22 @@ export default function Login() {
 
     return (
         <div className="flex justify-center items-center h-full overflow-auto">
-            <Card className="w-full max-w-md border-none shadow-none">
+            <Card className="w-full max-w-md border-none bg-secondary shadow-none">
                 <CardHeader>
-                    <CardTitle className="text-2xl font-bold text-center">
-                        Welcome back
+                    <CardTitle className="text-sm text-center font-light">
+                        Log In
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                         <div className="grid gap-2">
 
-                            <Label htmlFor={"email"}>Email</Label>
                             <div className="relative">
-                                <Mail
-                                    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"/>
                                 <Input
                                     id={'email'}
                                     type={'text'}
                                     placeholder={"Enter your email"}
-                                    className="pl-9"
+                                    className="placeholder:text-xs text-xs h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('email')}
                                 />
                             </div>
@@ -99,17 +97,16 @@ export default function Login() {
                             )}
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="password">Password</Label>
                             <div className="relative">
                                 <Input
                                     id="password"
                                     type={showPass ? 'text' : 'password'}
                                     autoComplete="current-password"
-                                    className="pr-10 pl-9"
+                                    placeholder="Password"
+                                    className="placeholder:text-xs  text-xs pr-10 h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('password')}
                                 />
-                                <Lock
-                                    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"/>
+
                                 <button
                                     type="button"
                                     onClick={() => setShowPass(!showPass)}
@@ -129,7 +126,7 @@ export default function Login() {
                                 )}
                             </div>
                         </div>
-                        <Button type="submit" className="w-full mt-2" disabled={isLoading}>
+                        <Button type="submit" className="w-full mt-2 bg-chart-2 focus-visible:ring-none focus-visible:ring-offset-none focus-visible:border-none  hover:bg-chart-2 text-primary-foreground text-xs hover:text-primary-foreground rounded-none " disabled={isLoading}>
                             {isLoading ? 'Logging in...' : 'Login'}
                         </Button>
                     </form>

@@ -56,42 +56,42 @@ const slides = [
 
 export default function LobbyBannerSlider() {
   return (
-    <section className="relative w-full mx-auto group">
-      <Carousel
-        opts={{
-          align: "start",
-          loop: false,
-        }}
-        className="w-full relative"
-      >
-        <CarouselContent>
-          {slides.map((slide) => (
-            <CarouselItem
-              key={slide.id}
-              className="md:basis-1/3 sm:basis-1/2 basis-full p-[5px] hover:scale-[1.03] transition-all duration-300 "
-            >
-              <div
-                className="flex items-center h-[190px] w-full hover:opacity-100 transition-all duration-200 opacity-70 rounded-[20px] bg-cover bg-center bg-no-repeat relative overflow-hidden p-4"
-                style={{ backgroundImage: `url(${slide.image})` }}
-              >
-                <div className="flex flex-col items-start justify-between h-full relative z-[1] rounded-[16px]">
-                  <Button variant="outline" size="sm">{slide.title}</Button>
-                  <div>
-                    <h4 className="font-bold text-yellow-300 text-2xl">
-                      {slide.description}
-                    </h4>
-                    <p className=" text-yellow-300 ">{slide.subDescription}</p>
+      <section className="relative w-full mx-auto group">
+        <Carousel
+            opts={{
+              align: "start",
+              loop: false,
+            }}
+            className="w-full relative"
+        >
+          <CarouselContent>
+            {slides.map((slide) => (
+                <CarouselItem
+                    key={slide.id}
+                    className="md:basis-1/3 sm:basis-1/2 basis-full p-[5px] hover:scale-[1.03] transition-all duration-300 "
+                >
+                  <div
+                      className="flex items-center h-[190px] w-full hover:opacity-100 transition-all duration-200 opacity-70 rounded-[20px] bg-cover bg-center bg-no-repeat relative overflow-hidden p-4"
+                      style={{ backgroundImage: `url(${slide.image})` }}
+                  >
+                    <div className="flex flex-col items-start justify-between h-full relative z-[1] rounded-[16px]">
+                      <Button variant="outline" size="sm" className={'text-card bg-background/50 hover:text-card hover:bg-background/ border-none'}>{slide.title}</Button>
+                      <div>
+                        <h4 className="font-bold text-yellow-300 text-2xl">
+                          {slide.description}
+                        </h4>
+                        <p className=" text-yellow-300 ">{slide.subDescription}</p>
+                      </div>
+                      <Button variant="outline" className={'bg-popover text-card border-card/10 hover:text-card hover:bg-popover/80s'}>{slide.buttonTitle}</Button>
+                    </div>
                   </div>
-                  <Button variant="outline">{slide.buttonTitle}</Button>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+                </CarouselItem>
+            ))}
+          </CarouselContent>
 
-        <CarouselPrevious className="hidden lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 h-full disabled:hidden rounded-none left-0 z-10" />
-        <CarouselNext className="hidden lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 disabled:hidden rounded-none right-0 z-10" />
-      </Carousel>
-    </section>
+          <CarouselPrevious className="hidden lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 h-full disabled:hidden rounded-none left-0 z-10" />
+          <CarouselNext className="hidden lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 disabled:hidden rounded-none right-0 z-10" />
+        </Carousel>
+      </section>
   );
 }
