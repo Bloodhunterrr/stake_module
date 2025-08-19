@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/carousel";
 
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useEffect, useRef, useState } from "react";
 import { useGetGameListQuery } from "@/services/mainApi";
 import GameSlot from "@/components/shared/v2/slot";
@@ -198,8 +197,14 @@ const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
 };
 
 const LobbySlider = (props: LobbySliderProps) => {
-  const isDesktop = useIsDesktop();
-  return isDesktop ? <DesktopSlider {...props} /> : <MobileSlider {...props} />;
+  return <section>
+    <div className="hidden lg:flex">
+      <DesktopSlider {...props} />
+    </div>
+    <div className="lg:hidden flex">
+      <MobileSlider {...props} />
+    </div>
+  </section>
 };
 
 export default LobbySlider;

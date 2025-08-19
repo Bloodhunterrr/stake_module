@@ -2,12 +2,15 @@ import {
   // Search as SearchIcon,
   // Moon,
   // Sun,
-  History,
+  ClipboardClock,
   Bell,
   // LogOut,
   UserCircle,
   WalletIcon,
   UserIcon,
+  LockKeyhole,
+  CreditCard,
+  Dice6
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -110,7 +113,10 @@ const NavBar = (props: NavBarProps) => {
                           onClick={() => navigate(`/${R.slug}`)}
                       >
                         <img
-                            className="h-5 w-5  grayscale"
+                            className="h-5 w-5"
+                            style={{
+                              filter:  props.location.split('/')[1] === R.slug ? 'grayscale(100%) brightness(70%) sepia(100%) hue-rotate(110deg) saturate(200%)' : '',
+                            }}
                             src={config.baseUrl + "/storage/" + R.icon}
                             alt={R.name}
                         />
@@ -251,20 +257,39 @@ const ProfileDropdown = ({user}: { user: User }) => {
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("/account/casino")}>
-                <History className="size-10 stroke-[1px]"/>
+                <Dice6 className="size-10 stroke-[1px]"/>
                 <span className={'text-xs'}>Casino</span>
+              </DropdownMenuItem>
+              {/*<DropdownMenuItem*/}
+              {/*    className={'flex flex-col focus:bg-transparent cursor-pointer'}*/}
+              {/*    onClick={() => navigate("/profile/history")}>*/}
+              {/*  <History className="size-10 stroke-[1px]"/>*/}
+              {/*  <span className={'text-xs'}>History</span>*/}
+              {/*</DropdownMenuItem>*/}
+
+              <DropdownMenuItem
+                  className={'flex flex-col focus:bg-transparent cursor-pointer'}
+                  onClick={() => navigate("account/bets")}>
+                <ClipboardClock className="size-10 stroke-[1px]"/>
+                <span className={'text-xs'}>Bets</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
-                  onClick={() => navigate("/profile/history")}>
-                <History className="size-10 stroke-[1px]"/>
-                <span className={'text-xs'}>History</span>
+                  onClick={() => navigate("account/payments")}>
+                <CreditCard className="size-10 stroke-[1px]"/>
+                <span className={'text-xs'}>Payments</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                  className={'flex flex-col focus:bg-transparent cursor-pointer'}
+                  onClick={() => navigate("account/general")}>
+                <UserIcon className="size-10 stroke-[1px]"/>
+                <span className={'text-xs'}>Profile</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("/account/change-password")}>
-                <UserIcon className="size-10 stroke-[1px]"/>
-                <span className={'text-xs'}>Profile</span>
+                <LockKeyhole className="size-10 stroke-[1px]"/>
+                <span className={'text-xs '}>Password</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
