@@ -1,31 +1,11 @@
 import {loadAsset} from "@/utils/loadAsset"
-import ArrowDown from "@/assets/icons/arrow-down.svg?react"
 import config from "@/config"
 import './style.css'
-
-import {ALLOWED_LANGUAGES} from "@/types/lang"
 import {useIsDesktop} from "@/hooks/useIsDesktop"
+import LanguageSwitcher from "../v2/language-switcher"
 
 const logo = loadAsset('images/logo.svg?react')
 
-
-const Language = () => {
-    const currentLang = ALLOWED_LANGUAGES['en' as keyof typeof ALLOWED_LANGUAGES];
-
-    return (
-        <>
-            <button className="m-button m-gradient-border m-button--secondary m-button--m lang-switcher-btn">
-                <div className="m-button-content">
-                    <span className="lang-switcher-country">{currentLang.name}</span>
-                </div>
-                <div className="m-icon-container">
-                    <ArrowDown/>
-                </div>
-            </button>
-
-        </>
-    );
-};
 
 
 const Footer = () => {
@@ -93,7 +73,7 @@ const Footer = () => {
                         <img width="84" height="25" className="footer-icons__image"
                              src="https://cdnwl.beton-static.com/front/components/landings/icons/identity.svg?react"/>
                     </div>
-                    {isDesktop && <Language/>}
+                    {isDesktop && <LanguageSwitcher/>}
                 </div>
             </div>
             <div className="footer-disclaimer">
