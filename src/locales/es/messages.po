@@ -15,204 +15,204 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/services/customBaseQuery.ts:36
-msgid "Unauthorized request!!"
-msgstr "¡Solicitud no autorizada!"
+#~ msgid "Unauthorized request!!"
+#~ msgstr "¡Solicitud no autorizada!"
 
 #. js-lingui-explicit-id
 #: src/services/authApi.ts:53
-msgid "Logged out successfully"
-msgstr "Sesión cerrada exitosamente"
+#~ msgid "Logged out successfully"
+#~ msgstr "Sesión cerrada exitosamente"
 
 #. js-lingui-explicit-id
 #: src/services/authApi.ts:81
-msgid "Default wallet updated successfully"
-msgstr "Billetera predeterminada actualizada exitosamente"
+#~ msgid "Default wallet updated successfully"
+#~ msgstr "Billetera predeterminada actualizada exitosamente"
 
 #. js-lingui-explicit-id
 #: src/services/authApi.ts:84
-msgid "Failed to set default wallet"
-msgstr "No se pudo establecer la billetera predeterminada"
+#~ msgid "Failed to set default wallet"
+#~ msgstr "No se pudo establecer la billetera predeterminada"
 
 #. js-lingui-explicit-id
 #: src/components/shared/signup/index.tsx:49
-msgid "Successfully signed up!"
-msgstr ""
+#~ msgid "Successfully signed up!"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:63
 #: src/components/shared/login/index.tsx:66
 #: src/components/shared/signup/index.tsx:51
-msgid "An unexpected error occurred"
-msgstr "Ha ocurrido un error inesperado"
+#~ msgid "An unexpected error occurred"
+#~ msgstr "Ha ocurrido un error inesperado"
 
 #. js-lingui-explicit-id
 #: src/components/shared/login/index.tsx:104
 #: src/components/shared/signup/index.tsx:83
-msgid "Email is required"
-msgstr "El correo electrónico es obligatorio"
+#~ msgid "Email is required"
+#~ msgstr "El correo electrónico es obligatorio"
 
 #. js-lingui-explicit-id
 #: src/components/shared/login/index.tsx:107
 #: src/components/shared/signup/index.tsx:86
-msgid "Invalid email address"
-msgstr "Dirección de correo electrónico inválida"
+#~ msgid "Invalid email address"
+#~ msgstr "Dirección de correo electrónico inválida"
 
 #. js-lingui-explicit-id
 #: src/components/shared/login/index.tsx:142
 #: src/components/shared/signup/index.tsx:120
-msgid "Password is required"
-msgstr "La contraseña es obligatoria"
+#~ msgid "Password is required"
+#~ msgstr "La contraseña es obligatoria"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:140
 #: src/components/shared/login/index.tsx:145
 #: src/components/shared/signup/index.tsx:123
-msgid "Password must be at least 6 characters"
-msgstr "La contraseña debe tener al menos 6 caracteres"
+#~ msgid "Password must be at least 6 characters"
+#~ msgstr "La contraseña debe tener al menos 6 caracteres"
 
 #. js-lingui-explicit-id
 #: src/components/shared/login/index.tsx:50
 #: src/components/shared/login/index.tsx:54
-msgid "Invalid email or password"
-msgstr "Correo electrónico o contraseña inválidos"
+#~ msgid "Invalid email or password"
+#~ msgstr "Correo electrónico o contraseña inválidos"
 
 #. js-lingui-explicit-id
 #: src/components/shared/login/index.tsx:62
-msgid "User not found"
-msgstr "Usuario no encontrado"
+#~ msgid "User not found"
+#~ msgstr "Usuario no encontrado"
 
 #. js-lingui-explicit-id
 #: src/components/profile/wallet.tsx:44
-msgid "This wallet is already default"
-msgstr "Esta billetera ya es la predeterminada"
+#~ msgid "This wallet is already default"
+#~ msgstr "Esta billetera ya es la predeterminada"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:39
-msgid "Username"
-msgstr "Nombre de usuario"
+#~ msgid "Username"
+#~ msgstr "Nombre de usuario"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:56
-msgid "First name"
-msgstr "Nombre"
+#~ msgid "First name"
+#~ msgstr "Nombre"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:73
-msgid "Last name"
-msgstr "Apellido"
+#~ msgid "Last name"
+#~ msgstr "Apellido"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:92
-msgid "Phone number"
-msgstr "Número de teléfono"
+#~ msgid "Phone number"
+#~ msgstr "Número de teléfono"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:112
-msgid "Email"
-msgstr "Correo electrónico"
+#~ msgid "Email"
+#~ msgstr "Correo electrónico"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:154
-msgid "Gender"
-msgstr "Género"
+#~ msgid "Gender"
+#~ msgstr "Género"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:180
-msgid "Country"
-msgstr "País"
+#~ msgid "Country"
+#~ msgstr "País"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:199
-msgid "City"
-msgstr "Ciudad"
+#~ msgid "City"
+#~ msgstr "Ciudad"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:216
-msgid "Address"
-msgstr "Dirección"
+#~ msgid "Address"
+#~ msgstr "Dirección"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/UserInfo.tsx:233
-msgid "Postal Code"
-msgstr "Código postal"
+#~ msgid "Postal Code"
+#~ msgstr "Código postal"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:52
-msgid "Password changed successfully"
-msgstr "Contraseña cambiada exitosamente"
+#~ msgid "Password changed successfully"
+#~ msgstr "Contraseña cambiada exitosamente"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:137
-msgid "Current password is required"
-msgstr "La contraseña actual es obligatoria"
+#~ msgid "Current password is required"
+#~ msgstr "La contraseña actual es obligatoria"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:179
-msgid "New password is required"
-msgstr "La nueva contraseña es obligatoria"
+#~ msgid "New password is required"
+#~ msgstr "La nueva contraseña es obligatoria"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:182
-msgid "Password must be at least 8 characters"
-msgstr "La contraseña debe tener al menos 8 caracteres"
+#~ msgid "Password must be at least 8 characters"
+#~ msgstr "La contraseña debe tener al menos 8 caracteres"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:221
-msgid "Please confirm your new password"
-msgstr "Por favor, confirma tu nueva contraseña"
+#~ msgid "Please confirm your new password"
+#~ msgstr "Por favor, confirma tu nueva contraseña"
 
 #. js-lingui-explicit-id
 #: src/components/profile/profile/Security.tsx:224
-msgid "Passwords do not match"
-msgstr "Las contraseñas no coinciden"
+#~ msgid "Passwords do not match"
+#~ msgstr "Las contraseñas no coinciden"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Casino.tsx:49
 #: src/components/profile/history/SportHistory.tsx:86
 #: src/components/profile/history/Transaction.tsx:52
-msgid "Details copied to clipboard"
-msgstr "Detalles copiados al portapapeles"
+#~ msgid "Details copied to clipboard"
+#~ msgstr "Detalles copiados al portapapeles"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Casino.tsx:50
 #: src/components/profile/history/SportHistory.tsx:87
 #: src/components/profile/history/Transaction.tsx:53
-msgid "Failed to copy"
-msgstr "Error al copiar"
+#~ msgid "Failed to copy"
+#~ msgstr "Error al copiar"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Transaction.tsx:70
-msgid "Deposit"
-msgstr "Depósito"
+#~ msgid "Deposit"
+#~ msgstr "Depósito"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Transaction.tsx:74
-msgid "Withdraw"
-msgstr "Retiro"
+#~ msgid "Withdraw"
+#~ msgstr "Retiro"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Casino.tsx:86
 #: src/components/profile/history/SportHistory.tsx:137
 #: src/components/profile/history/Transaction.tsx:101
-msgid "All currencies"
-msgstr "Todas las monedas"
+#~ msgid "All currencies"
+#~ msgstr "Todas las monedas"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Casino.tsx:87
 #: src/components/profile/history/SportHistory.tsx:138
 #: src/components/profile/history/Transaction.tsx:102
-msgid "Currencies"
-msgstr "Monedas"
+#~ msgid "Currencies"
+#~ msgstr "Monedas"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Transaction.tsx:110
-msgid "All Actions"
-msgstr "Todas las acciones"
+#~ msgid "All Actions"
+#~ msgstr "Todas las acciones"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Transaction.tsx:111
-msgid "Actions"
-msgstr "Acciones"
+#~ msgid "Actions"
+#~ msgstr "Acciones"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Casino.tsx:97
@@ -221,199 +221,198 @@ msgstr "Acciones"
 #: src/components/profile/history/SportHistory.tsx:161
 #: src/components/profile/history/Transaction.tsx:121
 #: src/components/profile/history/Transaction.tsx:122
-msgid "Something wrong happened. Try again later!"
-msgstr "Algo salió mal. ¡Inténtalo de nuevo más tarde!"
+#~ msgid "Something wrong happened. Try again later!"
+#~ msgstr "Algo salió mal. ¡Inténtalo de nuevo más tarde!"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Transaction.tsx:125
-msgid "No transactions found."
-msgstr "No se encontraron transacciones."
+#~ msgid "No transactions found."
+#~ msgstr "No se encontraron transacciones."
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/SportHistory.tsx:107
-msgid "Pending"
-msgstr "Pendiente"
+#~ msgid "Pending"
+#~ msgstr "Pendiente"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/SportHistory.tsx:108
-msgid "Lost"
-msgstr "Perdido"
+#~ msgid "Lost"
+#~ msgstr "Perdido"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/SportHistory.tsx:109
-msgid "Won"
-msgstr "Ganado"
+#~ msgid "Won"
+#~ msgstr "Ganado"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/SportHistory.tsx:110
-msgid "Returned"
-msgstr "Devuelto"
+#~ msgid "Returned"
+#~ msgstr "Devuelto"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/SportHistory.tsx:146
-msgid "All Statuses"
-msgstr "Todos los estados"
+#~ msgid "All Statuses"
+#~ msgstr "Todos los estados"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/SportHistory.tsx:147
-msgid "Statuses"
-msgstr "Estados"
+#~ msgid "Statuses"
+#~ msgstr "Estados"
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/SportHistory.tsx:165
-msgid "No betting history found."
-msgstr "No se encontró historial de apuestas."
+#~ msgid "No betting history found."
+#~ msgstr "No se encontró historial de apuestas."
 
 #. js-lingui-explicit-id
 #: src/components/profile/history/Casino.tsx:101
-msgid "No spins history found."
-msgstr "No se encontró historial de giros."
+#~ msgid "No spins history found."
+#~ msgstr "No se encontró historial de giros."
 
 #. js-lingui-explicit-id
 #: src/components/casino/feedbackForm.tsx:58
-msgid "Category is required"
-msgstr "La categoría es obligatoria"
+#~ msgid "Category is required"
+#~ msgstr "La categoría es obligatoria"
 
 #. js-lingui-explicit-id
 #: src/components/casino/feedbackForm.tsx:81
-msgid "Content is required"
-msgstr "El contenido es obligatorio"
+#~ msgid "Content is required"
+#~ msgstr "El contenido es obligatorio"
 
 #. js-lingui-explicit-id
 #: src/services/customBaseQuery.ts:36
 #~ msgid "Unauthorized request - redirecting to login..."
 #~ msgstr "Solicitud no autorizada - redirigiendo a iniciar sesión..."
 
-#. placeholder {0}: card.desc
 #: src/components/casino/jackpotBanner.tsx:331
-msgid "{0}"
-msgstr "{0}"
+#~ msgid "{0}"
+#~ msgstr "{0}"
 
 #: src/components/profile/history/Transaction.tsx:145
 #: src/components/profile/history/Transaction.tsx:185
-msgid "Action"
-msgstr "Acción"
+#~ msgid "Action"
+#~ msgstr "Acción"
 
 #: src/components/profile/profile/UserInfo.tsx:219
-msgid "Address"
-msgstr "Dirección"
+#~ msgid "Address"
+#~ msgstr "Dirección"
 
 #: src/routes/casino/allProvidersList.tsx:62
-msgid "All Providers"
-msgstr "Todos los proveedores"
+#~ msgid "All Providers"
+#~ msgstr "Todos los proveedores"
 
 #: src/components/profile/history/Transaction.tsx:141
 #: src/components/profile/history/Transaction.tsx:177
 #: src/components/shared/modals/deposit.tsx:126
 #: src/components/shared/modals/withdraw.tsx:198
-msgid "Amount"
-msgstr "Cantidad"
+#~ msgid "Amount"
+#~ msgstr "Cantidad"
 
 #: src/components/shared/install-app-banner/index.tsx:75
-msgid "Best in the App"
-msgstr "Lo mejor en la App"
+#~ msgid "Best in the App"
+#~ msgstr "Lo mejor en la App"
 
 #: src/components/profile/history/SportHistory.tsx:400
-msgid "Bet amount"
-msgstr "Cantidad apostada"
+#~ msgid "Bet amount"
+#~ msgstr "Cantidad apostada"
 
 #: src/components/profile/history/Casino.tsx:125
 #: src/components/profile/history/Casino.tsx:166
 #: src/components/profile/history/SportHistory.tsx:195
 #: src/components/profile/history/SportHistory.tsx:271
-msgid "Bet Amount"
-msgstr "Cantidad de apuesta"
+#~ msgid "Bet Amount"
+#~ msgstr "Cantidad de apuesta"
 
 #: src/components/profile/history/SportHistory.tsx:183
 #: src/components/profile/history/SportHistory.tsx:234
 #: src/components/profile/history/SportHistory.tsx:335
-msgid "Bet ID"
-msgstr "ID de apuesta"
+#~ msgid "Bet ID"
+#~ msgstr "ID de apuesta"
 
 #: src/components/profile/history/SportHistory.tsx:187
 #: src/components/profile/history/SportHistory.tsx:243
-msgid "Bet type"
-msgstr "Tipo de apuesta"
+#~ msgid "Bet type"
+#~ msgstr "Tipo de apuesta"
 
 #: src/components/profile/history.tsx:21
-msgid "Betting History"
-msgstr "Historial de apuestas"
+#~ msgid "Betting History"
+#~ msgstr "Historial de apuestas"
 
 #: src/components/casino/bigWinsSlider.tsx:59
-msgid "Big Wins"
-msgstr "Grandes Ganancias"
+#~ msgid "Big Wins"
+#~ msgstr "Grandes Ganancias"
 
 #: src/components/profile/wallet.tsx:107
-msgid "Bonus money"
-msgstr "Dinero de bono"
+#~ msgid "Bonus money"
+#~ msgstr "Dinero de bono"
 
 #: src/components/profile/profile/Security.tsx:270
-msgid "Cancel"
-msgstr "Cancelar"
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
 
 #: src/components/profile/history/Transaction.tsx:153
 #: src/components/profile/history/Transaction.tsx:206
-msgid "Cancelled"
-msgstr "Cancelado"
+#~ msgid "Cancelled"
+#~ msgstr "Cancelado"
 
 #: src/components/shared/Sidebar/index.tsx:87
 #~ msgid "Casino"
 #~ msgstr "Casino"
 
 #: src/components/profile/history.tsx:17
-msgid "Casino History"
-msgstr "Historial de casino"
+#~ msgid "Casino History"
+#~ msgstr "Historial de casino"
 
 #: src/components/casino/search.tsx:318
-msgid "Categories"
-msgstr "Categorías"
+#~ msgid "Categories"
+#~ msgstr "Categorías"
 
 #: src/components/casino/search.tsx:220
-msgid "Category"
-msgstr "Categoría"
+#~ msgid "Category"
+#~ msgstr "Categoría"
 
 #: src/components/casino/feedbackForm.tsx:90
-msgid "characters left"
-msgstr "caracteres restantes"
+#~ msgid "characters left"
+#~ msgstr "caracteres restantes"
 
 #: src/components/profile/profile/UserInfo.tsx:202
-msgid "City"
-msgstr "Ciudad"
+#~ msgid "City"
+#~ msgstr "Ciudad"
 
 #: src/components/casino/search.tsx:271
-msgid "Clear all"
-msgstr "Borrar todo"
+#~ msgid "Clear all"
+#~ msgstr "Borrar todo"
 
 #: src/components/profile/history/SportHistory.tsx:425
-msgid "Close"
-msgstr "Cerrar"
+#~ msgid "Close"
+#~ msgstr "Cerrar"
 
 #: src/components/profile/profile/Security.tsx:227
-msgid "Confirm password"
-msgstr "Confirmar contraseña"
+#~ msgid "Confirm password"
+#~ msgstr "Confirmar contraseña"
 
 #: src/components/profile/history/Transaction.tsx:149
 #: src/components/profile/history/Transaction.tsx:196
-msgid "Confirmed"
-msgstr "Confirmado"
+#~ msgid "Confirmed"
+#~ msgstr "Confirmado"
 
 #: src/components/profile/history/Casino.tsx:199
 #: src/components/profile/history/SportHistory.tsx:299
 #: src/components/profile/history/Transaction.tsx:220
-msgid "Copy details"
-msgstr "Copiar detalles"
+#~ msgid "Copy details"
+#~ msgstr "Copiar detalles"
 
 #: src/components/profile/profile/UserInfo.tsx:183
-msgid "Country"
-msgstr "País"
+#~ msgid "Country"
+#~ msgstr "País"
 
 #: src/components/profile/profile/Security.tsx:106
-msgid "Create an alphanumeric password that is easy for you to remember and hard for others to guess."
-msgstr "Crea una contraseña alfanumérica que sea fácil de recordar para ti y difícil de adivinar para otros."
+#~ msgid "Create an alphanumeric password that is easy for you to remember and hard for others to guess."
+#~ msgstr "Crea una contraseña alfanumérica que sea fácil de recordar para ti y difícil de adivinar para otros."
 
 #: src/components/shared/signup/index.tsx:65
-msgid "Create your account"
-msgstr ""
+#~ msgid "Create your account"
+#~ msgstr ""
 
 #: src/components/profile/history/Casino.tsx:109
 #: src/components/profile/history/Casino.tsx:140
@@ -421,119 +420,119 @@ msgstr ""
 #: src/components/profile/history/SportHistory.tsx:216
 #: src/components/profile/history/Transaction.tsx:133
 #: src/components/profile/history/Transaction.tsx:164
-msgid "Date"
-msgstr "Fecha"
+#~ msgid "Date"
+#~ msgstr "Fecha"
 
 #: src/components/profile/profile/UserInfo.tsx:131
-msgid "Date of Birth"
-msgstr "Fecha de nacimiento"
+#~ msgid "Date of Birth"
+#~ msgstr "Fecha de nacimiento"
 
 #: src/components/profile/wallet.tsx:57
-msgid "Default"
-msgstr "Predeterminado"
+#~ msgid "Default"
+#~ msgstr "Predeterminado"
 
 #: src/components/profile/wallet.tsx:89
 #: src/components/shared/modals/deposit.tsx:122
 #: src/components/shared/modals/deposit.tsx:203
-msgid "Deposit"
-msgstr "Depositar"
+#~ msgid "Deposit"
+#~ msgstr "Depositar"
 
 #: src/components/shared/modals/deposit.tsx:112
-msgid "Deposit initiated successfully!"
-msgstr "¡Depósito iniciado con éxito!"
+#~ msgid "Deposit initiated successfully!"
+#~ msgstr "¡Depósito iniciado con éxito!"
 
 #: src/components/shared/slot/index.tsx:46
-msgid "Deposit now"
-msgstr "Depositar ahora"
+#~ msgid "Deposit now"
+#~ msgstr "Depositar ahora"
 
 #: src/components/profile/profile/UserInfo.tsx:115
-msgid "Email"
-msgstr "Correo electrónico"
+#~ msgid "Email"
+#~ msgstr "Correo electrónico"
 
 #: src/components/shared/signup/index.tsx:163
-msgid "Enter promo code"
-msgstr ""
+#~ msgid "Enter promo code"
+#~ msgstr ""
 
 #: src/components/casino/feedbackForm.tsx:85
-msgid "Enter the text"
-msgstr "Introduce el texto"
+#~ msgid "Enter the text"
+#~ msgstr "Introduce el texto"
 
 #: src/components/shared/login/index.tsx:113
 #: src/components/shared/signup/index.tsx:92
-msgid "Enter your email"
-msgstr "Introduce tu correo electrónico"
+#~ msgid "Enter your email"
+#~ msgstr "Introduce tu correo electrónico"
 
 #: src/components/shared/login/index.tsx:151
 #: src/components/shared/signup/index.tsx:129
-msgid "Enter your password"
-msgstr "Introduce tu contraseña"
+#~ msgid "Enter your password"
+#~ msgstr "Introduce tu contraseña"
 
 #: src/components/shared/Header/index.tsx:162
-msgid "Exit"
-msgstr "Salir"
+#~ msgid "Exit"
+#~ msgstr "Salir"
 
 #: src/components/shared/slot/index.tsx:127
-msgid "Failed to fetch play game url!"
-msgstr "¡Error al obtener la URL del juego!"
+#~ msgid "Failed to fetch play game url!"
+#~ msgstr "¡Error al obtener la URL del juego!"
 
 #: src/components/shared/modals/deposit.tsx:116
-msgid "Failed to initiate deposit. Contact Support"
-msgstr "Error al iniciar el depósito. Contacta con el soporte"
+#~ msgid "Failed to initiate deposit. Contact Support"
+#~ msgstr "Error al iniciar el depósito. Contacta con el soporte"
 
 #: src/components/shared/modals/withdraw.tsx:186
-msgid "Failed to initiate withdraw. Contact Support"
-msgstr "Error al iniciar el retiro. Contacta con el soporte"
+#~ msgid "Failed to initiate withdraw. Contact Support"
+#~ msgstr "Error al iniciar el retiro. Contacta con el soporte"
 
 #: src/components/profile/profile/UserInfo.tsx:59
-msgid "First name"
-msgstr "Nombre"
+#~ msgid "First name"
+#~ msgstr "Nombre"
 
 #: src/components/shared/install-app-banner/index.tsx:81
-msgid "For a better experience!"
-msgstr "¡Para una mejor experiencia!"
+#~ msgid "For a better experience!"
+#~ msgstr "¡Para una mejor experiencia!"
 
 #: src/components/profile/history/Casino.tsx:121
 #: src/components/profile/history/Casino.tsx:159
-msgid "Game ID"
-msgstr "ID del juego"
+#~ msgid "Game ID"
+#~ msgstr "ID del juego"
 
 #: src/components/profile/history/Casino.tsx:117
 #: src/components/profile/history/Casino.tsx:153
-msgid "Game Name"
-msgstr "Nombre del juego"
+#~ msgid "Game Name"
+#~ msgstr "Nombre del juego"
 
 #: src/routes/casino/providersGames.tsx:80
 #: src/routes/casino/subCategoryGames.tsx:100
-msgid "games"
-msgstr "juegos"
+#~ msgid "games"
+#~ msgstr "juegos"
 
 #: src/components/profile/profile/UserInfo.tsx:157
-msgid "Gender"
-msgstr "Género"
+#~ msgid "Gender"
+#~ msgstr "Género"
 
 #: src/components/profile/Profile.tsx:12
-msgid "General"
-msgstr "General"
+#~ msgid "General"
+#~ msgstr "General"
 
 #: src/components/shared/error/index.tsx:37
-msgid "Go back"
-msgstr "Volver"
+#~ msgid "Go back"
+#~ msgstr "Volver"
 
 #: src/components/shared/Error/index.tsx:35
 #~ msgid "Go to the home page"
 #~ msgstr "Ir a la página de inicio"
 
 #: src/components/casino/feedbackForm.tsx:30
-msgid "Help us improve your experience"
-msgstr "Ayúdanos a mejorar tu experiencia"
+#~ msgid "Help us improve your experience"
+#~ msgstr "Ayúdanos a mejorar tu experiencia"
 
 #: src/components/profile/history.tsx:28
 #: src/components/shared/Header/index.tsx:125
 #: src/routes/profile/index.tsx:52
 #: src/routes/profile/index.tsx:98
 #: src/routes/profile/index.tsx:193
-msgid "History"
-msgstr "Historial"
+#~ msgid "History"
+#~ msgstr "Historial"
 
 #: src/components/profile/history/Casino.tsx:113
 #: src/components/profile/history/Casino.tsx:147
@@ -542,28 +541,28 @@ msgstr "Historial"
 #: src/components/profile/history/SportHistory.tsx:364
 #: src/components/profile/history/Transaction.tsx:137
 #: src/components/profile/history/Transaction.tsx:171
-msgid "ID"
-msgstr "ID"
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #: src/components/shared/install-app-banner/index.tsx:90
-msgid "Install"
-msgstr "Instalar"
+#~ msgid "Install"
+#~ msgstr "Instalar"
 
 #: src/components/shared/modals/withdraw.tsx:168
-msgid "Invalid wallet address format"
-msgstr "Formato de dirección de billetera no válido"
+#~ msgid "Invalid wallet address format"
+#~ msgstr "Formato de dirección de billetera no válido"
 
 #: src/components/casino/jackpotBanner.tsx:308
-msgid "Jackpot"
-msgstr ""
+#~ msgid "Jackpot"
+#~ msgstr ""
 
 #: src/components/profile/profile/UserInfo.tsx:76
-msgid "Last name"
-msgstr "Apellido"
+#~ msgid "Last name"
+#~ msgstr "Apellido"
 
 #: src/components/casino/feedbackForm.tsx:105
-msgid "Leave a message"
-msgstr "Deja un mensaje"
+#~ msgid "Leave a message"
+#~ msgstr "Deja un mensaje"
 
 #: src/components/shared/Sidebar/index.tsx:100
 #~ msgid "Live Casino"
@@ -571,52 +570,52 @@ msgstr "Deja un mensaje"
 
 #: src/components/shared/modals/deposit.tsx:214
 #: src/components/shared/modals/withdraw.tsx:325
-msgid "Live Chat"
-msgstr "Chat en vivo"
+#~ msgid "Live Chat"
+#~ msgstr "Chat en vivo"
 
 #: src/components/shared/single-select-autocomplete/single-select-autocomplete.tsx:151
-msgid "Loading..."
-msgstr "Cargando..."
+#~ msgid "Loading..."
+#~ msgstr "Cargando..."
 
 #: src/components/shared/Sidebar/index.tsx:140
-msgid "Lobby"
-msgstr "Lobby"
+#~ msgid "Lobby"
+#~ msgstr "Lobby"
 
 #: src/routes/profile/index.tsx:118
 #: src/routes/profile/index.tsx:229
-msgid "Log out"
-msgstr "Cerrar sesión"
+#~ msgid "Log out"
+#~ msgstr "Cerrar sesión"
 
 #: src/components/shared/login/index.tsx:191
-msgid "Logging in..."
-msgstr "Iniciando sesión..."
+#~ msgid "Logging in..."
+#~ msgstr "Iniciando sesión..."
 
 #: src/components/shared/Header/index.tsx:347
 #: src/components/shared/login/index.tsx:191
 #: src/components/shared/slot/index.tsx:152
-msgid "Login"
-msgstr "Iniciar sesión"
+#~ msgid "Login"
+#~ msgstr "Iniciar sesión"
 
 #: src/components/profile/history/SportHistory.tsx:34
-msgid "Lost"
-msgstr "Perdido"
+#~ msgid "Lost"
+#~ msgstr "Perdido"
 
 #: src/components/casino/jackpotBanner.tsx:304
-msgid "Mega"
-msgstr ""
+#~ msgid "Mega"
+#~ msgstr ""
 
 #: src/components/shared/modals/deposit.tsx:211
 #: src/components/shared/modals/withdraw.tsx:322
-msgid "Need Help?"
-msgstr "¿Necesitas ayuda?"
+#~ msgid "Need Help?"
+#~ msgstr "¿Necesitas ayuda?"
 
 #: src/components/profile/profile/Security.tsx:186
-msgid "New password"
-msgstr "Nueva contraseña"
+#~ msgid "New password"
+#~ msgstr "Nueva contraseña"
 
 #: src/components/shared/no-data-available/NoDataAvailable.tsx:16
-msgid "No data available"
-msgstr "No hay datos disponibles"
+#~ msgid "No data available"
+#~ msgstr "No hay datos disponibles"
 
 #: src/components/casino/search.tsx:153
 #~ msgid "No filters available"
@@ -627,189 +626,187 @@ msgstr "No hay datos disponibles"
 #~ msgstr "No se encontraron proveedores."
 
 #: src/components/shared/single-select-autocomplete/single-select-autocomplete.tsx:213
-msgid "No results found"
-msgstr "No se encontraron resultados"
+#~ msgid "No results found"
+#~ msgstr "No se encontraron resultados"
 
 #: src/components/casino/allItemsListSearch.tsx:91
 #~ msgid "No subcategories available."
 #~ msgstr "No hay subcategorías disponibles."
 
 #: src/routes/casino/gameListRenderer.tsx:137
-msgid "Nothing is found"
-msgstr "No se encontró nada"
+#~ msgid "Nothing is found"
+#~ msgstr "No se encontró nada"
 
 #: src/components/shared/header/index.tsx:94
 #~ msgid "Notification"
 #~ msgstr "Notificación"
 
 #: src/components/shared/Header/index.tsx:149
-msgid "Notifications"
-msgstr "Notificaciones"
+#~ msgid "Notifications"
+#~ msgstr "Notificaciones"
 
 #: src/components/shared/modals/withdraw-info.tsx:33
-msgid "Okay"
-msgstr "De acuerdo"
+#~ msgid "Okay"
+#~ msgstr "De acuerdo"
 
 #: src/components/profile/profile/Security.tsx:144
-msgid "Old password"
-msgstr "Contraseña antigua"
+#~ msgid "Old password"
+#~ msgstr "Contraseña antigua"
 
 #: src/components/shared/slot/index.tsx:65
-msgid "Or play demo"
-msgstr "O jugar demo"
+#~ msgid "Or play demo"
+#~ msgstr "O jugar demo"
 
 #: src/components/shared/error/index.tsx:21
-msgid "Page you were looking for was not found."
-msgstr "La página que buscabas no fue encontrada."
+#~ msgid "Page you were looking for was not found."
+#~ msgstr "La página que buscabas no fue encontrada."
 
 #: src/components/profile/profile/Security.tsx:102
-msgid "Password"
-msgstr "Contraseña"
+#~ msgid "Password"
+#~ msgstr "Contraseña"
 
 #: src/components/profile/history/SportHistory.tsx:410
-msgid "Payout"
-msgstr "Pago"
+#~ msgid "Payout"
+#~ msgstr "Pago"
 
 #: src/components/profile/history/SportHistory.tsx:32
-msgid "Pending"
-msgstr "Pendiente"
+#~ msgid "Pending"
+#~ msgstr "Pendiente"
 
 #: src/components/profile/profile/UserInfo.tsx:95
-msgid "Phone number"
-msgstr "Número de teléfono"
+#~ msgid "Phone number"
+#~ msgstr "Número de teléfono"
 
-#. placeholder {0}: selectedWallet.slug.toUpperCase()
 #: src/components/shared/modals/deposit.tsx:102
-msgid "Please enter an amount between {minDeposit} and {maxDeposit} {0}"
-msgstr "Por favor, introduce una cantidad entre {minDeposit} y {maxDeposit} {0}"
+#~ msgid "Please enter an amount between {minDeposit} and {maxDeposit} {0}"
+#~ msgstr "Por favor, introduce una cantidad entre {minDeposit} y {maxDeposit} {0}"
 
-#. placeholder {0}: selectedWallet?.slug.toUpperCase()
 #: src/components/shared/modals/withdraw.tsx:158
-msgid "Please enter an amount between {minWithdraw} and {maxWithdraw} {0}"
-msgstr "Por favor, introduce una cantidad entre {minWithdraw} y {maxWithdraw} {0}"
+#~ msgid "Please enter an amount between {minWithdraw} and {maxWithdraw} {0}"
+#~ msgstr "Por favor, introduce una cantidad entre {minWithdraw} y {maxWithdraw} {0}"
 
 #: src/components/shared/modals/withdraw.tsx:163
-msgid "Please enter wallet address"
-msgstr "Por favor, introduce la dirección de la billetera"
+#~ msgid "Please enter wallet address"
+#~ msgstr "Por favor, introduce la dirección de la billetera"
 
 #: src/components/casino/feedbackForm.tsx:36
-msgid "Please leave some feedback or report a bug/issue you have faced."
-msgstr "Por favor, deja tus comentarios o reporta un error/problema que hayas encontrado."
+#~ msgid "Please leave some feedback or report a bug/issue you have faced."
+#~ msgstr "Por favor, deja tus comentarios o reporta un error/problema que hayas encontrado."
 
 #: src/components/shared/modals/withdraw.tsx:152
-msgid "Please select a cryptocurrency"
-msgstr "Por favor, selecciona una criptomoneda"
+#~ msgid "Please select a cryptocurrency"
+#~ msgstr "Por favor, selecciona una criptomoneda"
 
 #: src/components/shared/modals/deposit.tsx:96
 #: src/components/shared/modals/withdraw.tsx:147
-msgid "Please select a wallet"
-msgstr "Por favor, selecciona una billetera"
+#~ msgid "Please select a wallet"
+#~ msgstr "Por favor, selecciona una billetera"
 
 #: src/components/shared/slot/index.tsx:34
-msgid "Please top up your account to play for real money."
-msgstr "Por favor, recarga tu cuenta para jugar con dinero real."
+#~ msgid "Please top up your account to play for real money."
+#~ msgstr "Por favor, recarga tu cuenta para jugar con dinero real."
 
 #: src/components/profile/profile/UserInfo.tsx:236
-msgid "Postal Code"
-msgstr "Código postal"
+#~ msgid "Postal Code"
+#~ msgstr "Código postal"
 
 #: src/components/profile/Profile.tsx:23
 #: src/components/shared/Header/index.tsx:137
 #: src/routes/profile/index.tsx:45
 #: src/routes/profile/index.tsx:107
 #: src/routes/profile/index.tsx:211
-msgid "Profile"
-msgstr "Perfil"
+#~ msgid "Profile"
+#~ msgstr "Perfil"
 
 #: src/components/profile/profile/UserInfo.tsx:17
-msgid "Profile info"
-msgstr "Información del perfil"
+#~ msgid "Profile info"
+#~ msgstr "Información del perfil"
 
 #: src/components/casino/search.tsx:191
-msgid "Provider"
-msgstr "Proveedor"
+#~ msgid "Provider"
+#~ msgstr "Proveedor"
 
 #: src/routes/casino/allProvidersList.tsx:69
-msgid "providers"
-msgstr "proveedores"
+#~ msgid "providers"
+#~ msgstr "proveedores"
 
 #: src/components/casino/providerSlider.tsx:15
 #: src/components/casino/search.tsx:338
 #: src/components/casino/subcategorySlider.tsx:56
-msgid "Providers"
-msgstr "Proveedores"
+#~ msgid "Providers"
+#~ msgstr "Proveedores"
 
 #: src/components/profile/wallet.tsx:95
-msgid "Real money"
-msgstr "Dinero real"
+#~ msgid "Real money"
+#~ msgstr "Dinero real"
 
 #: src/components/profile/history/SportHistory.tsx:38
-msgid "Returned"
-msgstr "Devuelto"
+#~ msgid "Returned"
+#~ msgstr "Devuelto"
 
 #: src/components/profile/profile/Security.tsx:256
-msgid "Save"
-msgstr "Guardar"
+#~ msgid "Save"
+#~ msgstr "Guardar"
 
 #: src/components/profile/profile/Security.tsx:256
-msgid "Saving..."
-msgstr "Guardando..."
+#~ msgid "Saving..."
+#~ msgstr "Guardando..."
 
 #: src/components/casino/subcategorySlider.tsx:63
 #: src/components/shared/Header/index.tsx:359
 #: src/routes/casino/gamesIframe.tsx:143
-msgid "Search"
-msgstr "Buscar"
+#~ msgid "Search"
+#~ msgstr "Buscar"
 
 #: src/components/shared/single-select-autocomplete/single-select-autocomplete.tsx:132
-msgid "Search Crypto"
-msgstr "Buscar cripto"
+#~ msgid "Search Crypto"
+#~ msgstr "Buscar cripto"
 
 #: src/components/shared/modals/withdraw.tsx:278
-msgid "Search cryptocurrency..."
-msgstr "Buscar criptomoneda..."
+#~ msgid "Search cryptocurrency..."
+#~ msgstr "Buscar criptomoneda..."
 
 #: src/components/casino/search.tsx:283
-msgid "Search results"
-msgstr "Resultados de búsqueda"
+#~ msgid "Search results"
+#~ msgstr "Resultados de búsqueda"
 
 #: src/components/profile/Profile.tsx:16
-msgid "Security"
-msgstr "Seguridad"
+#~ msgid "Security"
+#~ msgstr "Seguridad"
 
 #: src/components/shared/footer/index.tsx:32
 #: src/components/shared/Sidebar/index.tsx:46
-msgid "Select a language"
-msgstr "Seleccione un idioma"
+#~ msgid "Select a language"
+#~ msgstr "Seleccione un idioma"
 
 #: src/components/casino/feedbackForm.tsx:62
-msgid "Select category of problem"
-msgstr "Selecciona la categoría del problema"
+#~ msgid "Select category of problem"
+#~ msgstr "Selecciona la categoría del problema"
 
 #: src/components/casino/search.tsx:115
 #~ msgid "Selected"
 #~ msgstr "Seleccionado"
 
 #: src/components/casino/feedbackForm.tsx:107
-msgid "Send message"
-msgstr ""
+#~ msgid "Send message"
+#~ msgstr ""
 
 #: src/components/profile/wallet.tsx:57
-msgid "Set default"
-msgstr "Establecer como predeterminado"
+#~ msgid "Set default"
+#~ msgstr "Establecer como predeterminado"
 
 #: src/components/shared/Header/index.tsx:352
 #: src/components/shared/signup/index.tsx:186
-msgid "Sign Up"
-msgstr ""
+#~ msgid "Sign Up"
+#~ msgstr ""
 
 #: src/components/shared/modals/withdraw-info.tsx:28
-msgid "Soon you will receive information for your funds status!"
-msgstr "¡Pronto recibirás información sobre el estado de tus fondos!"
+#~ msgid "Soon you will receive information for your funds status!"
+#~ msgstr "¡Pronto recibirás información sobre el estado de tus fondos!"
 
 #: src/components/shared/error/index.tsx:28
-msgid "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
-msgstr "Lo sentimos, no encontramos la página que buscaba. Le sugerimos volver a la página principal."
+#~ msgid "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
+#~ msgstr "Lo sentimos, no encontramos la página que buscaba. Le sugerimos volver a la página principal."
 
 #: src/components/shared/Sidebar/index.tsx:114
 #~ msgid "Sports"
@@ -817,16 +814,16 @@ msgstr "Lo sentimos, no encontramos la página que buscaba. Le sugerimos volver 
 
 #: src/components/profile/history/SportHistory.tsx:191
 #: src/components/profile/history/SportHistory.tsx:252
-msgid "Status"
-msgstr "Estado"
+#~ msgid "Status"
+#~ msgstr "Estado"
 
 #: src/routes/casino/gamesIframe.tsx:93
-msgid "Switch Game"
-msgstr "Cambiar juego"
+#~ msgid "Switch Game"
+#~ msgstr "Cambiar juego"
 
 #: src/components/casino/feedbackForm.tsx:112
-msgid "Thank you for making our service better"
-msgstr "Gracias por mejorar nuestro servicio"
+#~ msgid "Thank you for making our service better"
+#~ msgstr "Gracias por mejorar nuestro servicio"
 
 #: src/components/profile/history/Casino.tsx:109
 #: src/components/profile/history/Casino.tsx:140
@@ -834,85 +831,83 @@ msgstr "Gracias por mejorar nuestro servicio"
 #: src/components/profile/history/SportHistory.tsx:216
 #: src/components/profile/history/Transaction.tsx:133
 #: src/components/profile/history/Transaction.tsx:164
-msgid "time"
-msgstr "hora"
+#~ msgid "time"
+#~ msgstr "hora"
 
 #: src/components/profile/profile/UserInfo.tsx:21
-msgid "To edit the data, please contact support"
-msgstr "Para editar los datos, contacta con soporte"
+#~ msgid "To edit the data, please contact support"
+#~ msgstr "Para editar los datos, contacta con soporte"
 
 #: src/components/profile/wallet.tsx:66
-msgid "Total balance"
-msgstr "Saldo total"
+#~ msgid "Total balance"
+#~ msgstr "Saldo total"
 
 #: src/components/profile/history/SportHistory.tsx:389
-msgid "Total odds"
-msgstr "Cuotas totales"
+#~ msgid "Total odds"
+#~ msgstr "Cuotas totales"
 
 #: src/components/profile/history.tsx:13
-msgid "Transactions history"
-msgstr "Historial de transacciones"
+#~ msgid "Transactions history"
+#~ msgstr "Historial de transacciones"
 
 #: src/components/profile/profile/UserInfo.tsx:42
-msgid "Username"
-msgstr "Nombre de usuario"
+#~ msgid "Username"
+#~ msgstr "Nombre de usuario"
 
 #: src/components/casino/lobbySlider.tsx:74
-#: src/components/casino/lobbySlider.tsx:211
-#: src/components/casino/providerSlider.tsx:20
 msgid "View all"
 msgstr "Ver todo"
 
 #: src/components/shared/single-select-autocomplete/single-select-autocomplete.tsx:207
-msgid "View more"
-msgstr "Ver más"
+#~ msgid "View more"
+#~ msgstr "Ver más"
 
 #: src/components/profile/wallet.tsx:27
 #: src/components/shared/Header/index.tsx:113
 #: src/routes/profile/index.tsx:49
 #: src/routes/profile/index.tsx:89
 #: src/routes/profile/index.tsx:175
-msgid "Wallet"
-msgstr "Billetera"
+#~ msgid "Wallet"
+#~ msgstr "Billetera"
 
 #: src/components/shared/modals/withdraw.tsx:290
-msgid "Wallet Address"
-msgstr "Dirección de la billetera"
+#~ msgid "Wallet Address"
+#~ msgstr "Dirección de la billetera"
 
 #: src/components/shared/slot/index.tsx:103
-msgid "Wallet not found! Please check your wallet"
-msgstr "¡Billetera no encontrada! Por favor, revisa tu billetera"
+#~ msgid "Wallet not found! Please check your wallet"
+#~ msgstr "¡Billetera no encontrada! Por favor, revisa tu billetera"
 
 #: src/components/shared/login/index.tsx:87
-msgid "Welcome back"
-msgstr "Bienvenido de nuevo"
+#~ msgid "Welcome back"
+#~ msgstr "Bienvenido de nuevo"
 
 #: src/components/profile/history/Casino.tsx:129
 #: src/components/profile/history/Casino.tsx:175
 #: src/components/profile/history/SportHistory.tsx:199
 #: src/components/profile/history/SportHistory.tsx:281
-msgid "Win Amount"
-msgstr "Cantidad ganada"
+#~ msgid "Win Amount"
+#~ msgstr "Cantidad ganada"
 
 #: src/components/profile/wallet.tsx:81
 #: src/components/shared/modals/withdraw-info.tsx:11
 #: src/components/shared/modals/withdraw.tsx:194
 #: src/components/shared/modals/withdraw.tsx:315
-msgid "Withdraw"
-msgstr "Retirar"
+#~ msgid "Withdraw"
+#~ msgstr "Retirar"
 
 #: src/components/shared/modals/withdraw.tsx:183
-msgid "Withdraw initiated successfully!"
-msgstr "¡Retiro iniciado con éxito!"
+#~ msgid "Withdraw initiated successfully!"
+#~ msgstr "¡Retiro iniciado con éxito!"
 
 #: src/components/shared/modals/withdraw-info.tsx:22
-msgid "Withdraw is under review!"
-msgstr "¡El retiro está en revisión!"
+#~ msgid "Withdraw is under review!"
+#~ msgstr "¡El retiro está en revisión!"
 
 #: src/components/profile/history/SportHistory.tsx:36
-msgid "Won"
-msgstr "Ganado"
+#~ msgid "Won"
+#~ msgstr "Ganado"
 
 #: src/components/shared/slot/index.tsx:31
-msgid "Your balance is "
-msgstr "Tu saldo es ```"
+#~ msgid "Your balance is "
+#~ msgstr "Tu saldo es ```"
