@@ -102,6 +102,7 @@ const routes = createBrowserRouter(
             { path: "casino", element: <CasinoPageHistory /> },
             { path: "bets", element: <BetsHistoryPage /> },
             { path: "payments", element: <PaymentsHistoryPage /> },
+            { path: "general", element: <UserInfo /> },
           ],
         },
         {

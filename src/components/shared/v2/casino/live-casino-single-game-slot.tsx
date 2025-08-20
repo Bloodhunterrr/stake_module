@@ -79,7 +79,7 @@ const LiveCasinoGameSlot = ({
     return (
         <>
             <div
-                className="relative lg:aspect-[10/6] aspect-square w-30 h-30 lg:w-full lg:h-full  rounded-lg overflow-hidden shadow-lg cursor-pointer group"
+                className="relative lg:aspect-[10/6] aspect-square w-full lg:w-full lg:h-full  rounded-lg overflow-hidden shadow-lg cursor-pointer group"
                 onClick={handleGameClick}
             >
 
