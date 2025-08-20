@@ -191,7 +191,7 @@ export default function ChangePasswordForm() {
         <Button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-card h-10 rounded-[3px]  text-accent-foreground"
+          className="w-full bg-card h-10 rounded-[3px] hover:bg-card/70  text-accent-foreground"
         >
           Change Password
         </Button>

@@ -2,7 +2,6 @@ import {Outlet} from "react-router";
 import {useLocation} from "react-router";
 import {useTheme} from "@/hooks/useTheme";
 import {ToastContainer} from "react-toastify";
-import Modals from "@/components/shared/modals";
 import Loader from "@/components/shared/Loader";
 import NavBar from "@/components/shared/v2/Header";
 // import SideBar from "@/components/shared/v2/Sidebar";
@@ -54,7 +53,6 @@ const App: React.FC = () => {
                 />
                 <Outlet/>
             </main>
-            <Modals/>
             <ToastContainer theme={theme}/>
         </div>
     );
