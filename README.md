@@ -1,69 +1,73 @@
-# React + TypeScript + Vite
+## 🚀 Getting Started
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To get a local copy up and running, follow these simple steps.
 
-Currently, two official plugins are available:
+### Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You'll need to have **Node.js** installed on your machine.
 
-## Expanding the ESLint configuration
+### Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone the repository:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+   ```
+   git clone https://github.com/Altechsol/default-betting-module.git
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+2. Navigate into the project directory:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   ```
+   cd default-betting-module
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Install the dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+   ```
+   npm install
+   ```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. Create a .env file and add the following:
+
+    ```
+    cp .env.copy .env
+   
+    ```
+
+5. Add your own values to the .env file.
+
+## 💻 Usage
+
+To run the development server, use the following command:
+
+    ```
+    npm run dev
+    ```
+
+After the build is complete, you can serve the optimized files to simulate a production environment.
+
+    ```
+    npm run build
+    npm run preview
+    ```
+
+## 📝 Notes
+
+- The npm run build command is for preparing the application for deployment or preview.
+- The npm run preview command is for locally testing the production build before deployment and should not be used in a
+  live production environment.
+
+This two-step process ensures your application is fully optimized for performance and is ready for deployment.
+
+## 🚀 Deployment
+
+To prepare your application for deployment, you must first create a production build.
+
+Once you have prepared your application for deployment, you can deploy it to any static hosting service.
+
+The output in the dist/ directory is a collection of static files that are ready to be deployed to any static hosting
+service like Vercel, Netlify, Cloudflare Pages, or even a simple Nginx or Apache server.
+
+## 📝 License
+
+This project is [MIT](lic.url) licensed.
+Author: Izet Selimaj
