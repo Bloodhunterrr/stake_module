@@ -11,6 +11,7 @@ import {useIsDesktop} from "@/hooks/useIsDesktop";
 import {useGetMainQuery} from "@/services/mainApi";
 import {useScrollToTop} from "@/hooks/useScrollToTop";
 import React, {useEffect, useRef, useState} from "react";
+import TitleUpdater from "@/components/TitleUpdater.tsx";
 
 const App: React.FC = () => {
     useUserInfo();
@@ -33,6 +34,8 @@ const App: React.FC = () => {
 
     return (
         <div className="bg-background text-primary-foreground">
+            <TitleUpdater />
+
             {/*<SideBar*/}
             {/*    isDesktop={isDesktop}*/}
             {/*    sideBarOpen={sideBarOpen}*/}
