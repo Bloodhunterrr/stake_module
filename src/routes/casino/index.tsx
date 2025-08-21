@@ -6,8 +6,6 @@ import InstallAppBanner from "@/components/shared/install-app-banner";
 import Footer from "@/components/shared/footer";
 import ProviderSlider from "@/components/casino/providerSlider";
 import type {Provider} from "@/types/main";
-import FeedbackForm from "@/components/casino/feedbackForm";
-import BottomBanner from "@/components/casino/bottomBanner";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import Jackpot from "@/components/shared/v2/jackpot";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
@@ -51,7 +49,7 @@ const Lobby = () => {
     }, []);
 
     return (
-        <div className="mx-auto lg:px-0 px-3 gap-5 flex flex-col container mx-auto">
+        <div className="lg:px-0 px-3 gap-5 flex flex-col container mx-auto">
             <section className="container mx-auto">
                 <SingleSubcategorySlider
                     data={data.map((category) => ({
@@ -103,8 +101,6 @@ const Lobby = () => {
                     <ProviderSlider providers={allProviders}/>
                 )}
 
-                <FeedbackForm/>
-                <BottomBanner/>
             </div>
 
             <Footer/>
