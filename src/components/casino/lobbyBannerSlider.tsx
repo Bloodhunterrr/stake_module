@@ -71,7 +71,7 @@ export default function LobbyBannerSlider() {
                     className="md:basis-1/3 sm:basis-1/2 basis-full p-[5px] hover:scale-[1.03] transition-all duration-300 "
                 >
                   <div
-                      className="flex items-center h-[190px] w-full hover:opacity-100 transition-all duration-200 opacity-70 rounded-[20px] bg-cover bg-center bg-no-repeat relative overflow-hidden p-4"
+                      className="flex items-center h-[190px] w-full transition-all duration-200 rounded-[20px] bg-cover bg-center bg-no-repeat relative overflow-hidden p-4"
                       style={{ backgroundImage: `url(${slide.image})` }}
                   >
                     <div className="flex flex-col items-start justify-between h-full relative z-[1] rounded-[16px]">

@@ -144,7 +144,7 @@ const NavBar = (props: NavBarProps) => {
               {/*</Button>*/}
 
               {user ? (
-                  <main className="relative flex-col w-full  h-full">
+                  <main className="relative flex-col w-full mr-2 h-full">
                     <ProfileDropdown user={user}/>
                     {user && defaultWallet && (
                         <div className="flex absolute  -bottom-2.5 -right-1/2 -translate-x-0.5 h-1 items-center space-x- rounded-full text-xs font-medium">

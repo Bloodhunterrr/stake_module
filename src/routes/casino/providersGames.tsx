@@ -61,7 +61,7 @@ const ProvidersGames = () => {
                           {provider?.name ?? ""}
                         </h1>
                         {totalGames > 0 && (
-                            <p className="text-gray-500 text-sm">{totalGames} games</p>
+                            <p className="text-card text-sm">{totalGames} games</p>
                         )}
                       </div>
                     </div>

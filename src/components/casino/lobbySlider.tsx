@@ -56,7 +56,6 @@ export const DesktopSlider = ({
     (data?.total !== undefined &&
       offset + subcategory.landing_page_game_number >= data.total);
 
-  console.log(subcategory);
   const apiBasis = Number(subcategory?.landing_page_game_row_number ?? 7);
   const shouldNext =
     Number(data?.offset ?? 0) + apiBasis > (data?.total ?? apiBasis);

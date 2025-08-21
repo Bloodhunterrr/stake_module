@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Settings2 , ArrowUpDown } from 'lucide-react';
+import {Settings2, ArrowUpDown, SearchIcon} from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -22,6 +22,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import {Badge} from "@/components/ui/badge.tsx";
+import Search from "@/components/shared/v2/casino/search.tsx";
+import {Dialog, DialogContent} from "@/components/ui/dialog.tsx";
 
 interface Category {
   id: number;
@@ -61,6 +63,7 @@ const SubcategoryGames = () => {
   useEffect(() => {
     if (dataTree && (!category || !subcategory)) navigate(-1);
   }, [dataTree, category, subcategory, navigate]);
+    const [searchModal, setSearchModal] = useState(false);
 
   return (
       <>
@@ -93,7 +96,7 @@ const SubcategoryGames = () => {
                         {subcategory?.name ?? "Top Games"}
                       </h1>
                       {totalGames > 0 && (
-                          <p className="text-gray-500 text-sm">
+                          <p className="text-card text-sm">
                             {totalGames} games
                           </p>
                       )}
@@ -101,7 +104,7 @@ const SubcategoryGames = () => {
                   </div>
 
                   <Sheet>
-                    <div className={'border rounded-full text-xs flex px-3 py-1 flex items-center gap-2'}>
+                    <div className={'border rounded-full text-xs flex px-3 py-1  items-center gap-2'}>
                       <button
                           onClick={() => setIsSortingEnabled((p) => !p)}
                           className={'flex gap-1 items-center flex-row w-1/2'}>
@@ -115,7 +118,7 @@ const SubcategoryGames = () => {
                           Sort
                         </span>
                       </button>
-                      <SheetTrigger className={'w-1/2 flex gap-1 flex-row items-center justify-center'}>
+                      <SheetTrigger className={'w-1/2 flex gap-1  flex-row items-center justify-center'}>
                         <Settings2 size={20}/>
                         <span>Filter</span>
                       </SheetTrigger>
@@ -124,11 +127,18 @@ const SubcategoryGames = () => {
                       <SheetHeader className={' h-26 flex items-center justify-end'}>
                         <SheetTitle className={'text-2xl font-semibold text-primary-foreground'}>Filters</SheetTitle>
                       </SheetHeader>
+                        <div
+                            onClick={() => setSearchModal(true)}
+                            className="flex h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover  hover:bg-popover/80 transition"
+                        >
+                            <SearchIcon className=" size-5 text-muted-foreground "/>
+                            <span className={'font-semibold text-primary-foreground text-sm'}>Search</span>
+                        </div>
                       <div className={'px-4'}>
-                        <Accordion type="single" collapsible>
+                        <Accordion type="single" defaultValue={'providers'} collapsible>
                           <AccordionItem value="providers" className={'no-underline '}>
-                            <AccordionTrigger className={'flex text-primary-foreground items-center justify-start text-lg hover:no-underline'}>Providers</AccordionTrigger>
-                            <AccordionContent className={'flex-1 space-x-2 space-y-4 overflow-y-scroll h-[80vh] gap-2 '}>
+                            <AccordionTrigger className={'flex text-primary-foreground  items-center justify-start text-lg hover:no-underline'}>Providers</AccordionTrigger>
+                            <AccordionContent className={'flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2 '}>
                               {
                                 providers?.map((provider) => (
                                     provider.providers.map((p) => (
@@ -140,6 +150,13 @@ const SubcategoryGames = () => {
                           </AccordionItem>
                         </Accordion>
                       </div>
+                        <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
+                            <DialogContent
+                                showCloseButton={false}
+                                className="border-none rounded-none  pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full  ">
+                                <Search setSearchModal={setSearchModal} onCloseSearchModal={() => setSearchModal(false)}/>
+                            </DialogContent>
+                        </Dialog>
                     </SheetContent>
                   </Sheet>
                 </div>
