@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, Fragment } from "react";
 import { useGetCasinoHistoryMutation } from "@/services/authApi";
-import { formatDate } from "@/utils/formatDate";
 import { currencyList } from "@/utils/currencyList";
-
 import {
   Table,
   TableBody,
@@ -12,9 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import PaginationComponent from "@/components/shared/v2/pagination";
-
 import type { CasinoTransaction } from "@/types/casinoHistory";
-
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -27,8 +23,8 @@ import { format } from "date-fns";
 import Loading from "@/components/shared/loading";
 import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
-
 import { MultiSelect } from "@/components/ui/multi-select";
+import DateFilter from "@/components/shared/v2/date-filter";
 
 const CasinoHistoryTable = () => {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -40,6 +36,13 @@ const CasinoHistoryTable = () => {
 
   const [page, setPage] = useState(1);
   const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
+  const [selectedDateFilter, setSelectedDateFilter] = useState<string>("");
+
+  const handleDateFilterSelect = (start: Date, end: Date, label: string) => {
+    setDates({ startDate: start, endDate: end });
+    setSelectedDateFilter(label);
+    setPage(1);
+  };
 
   const [fetchData, { data, isLoading, error }] = useGetCasinoHistoryMutation();
 
@@ -52,23 +55,29 @@ const CasinoHistoryTable = () => {
     fetchData({
       start_date: format(dates.startDate, "dd-MM-yyyy"),
       end_date: format(dates.endDate, "dd-MM-yyyy"),
-      page: 1,
-    });
-  }, []);
-
-  useEffect(() => {
-    fetchData({
-      start_date: format(dates.startDate, "dd-MM-yyyy"),
-      end_date: format(dates.endDate, "dd-MM-yyyy"),
       currencies:
         selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
       page,
     });
-  }, [page, selectedCurrencies, dates]);
+  }, [dates, selectedCurrencies, page]);
+
+  const groupedTransactions = useMemo(() => {
+    if (!data?.transactions) return {};
+
+    return data.transactions.reduce(
+      (acc: Record<string, CasinoTransaction[]>, trx) => {
+        const dateKey = format(new Date(trx.created_at), "dd/MM/yyyy");
+        if (!acc[dateKey]) acc[dateKey] = [];
+        acc[dateKey].push(trx);
+        return acc;
+      },
+      {}
+    );
+  }, [data?.transactions]);
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center px-8">
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center">
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -126,62 +135,86 @@ const CasinoHistoryTable = () => {
         />
       </div>
 
-      {isLoading ? (
-        <Loading />
-      ) : error ? (
-        <p className="text-accent-foreground text-center">No data available</p>
-      ) : data?.transactions.length === 0 ? (
-        <p className="text-accent-foreground text-center">
-          No spins history found.
-        </p>
-      ) : (
-        <>
-          <Table className="text-accent-foreground">
-            <TableHeader className="bg-black/10 h-8">
-              <TableRow>
-                <TableHead className="h-8">Date & Time</TableHead>
-                <TableHead className="h-8">ID</TableHead>
-                <TableHead className="h-8">Game</TableHead>
-                <TableHead className="h-8">Game ID</TableHead>
-                <TableHead className="h-8">Bet</TableHead>
-                <TableHead className="h-8">Win</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data?.transactions.map((trx: CasinoTransaction) => (
-                <TableRow key={trx.id}>
-                  <TableCell>{formatDate(new Date(trx.created_at))}</TableCell>
-                  <TableCell>{trx.id}</TableCell>
-                  <TableCell>{trx.game_name}</TableCell>
-                  <TableCell>{trx.game_id}</TableCell>
-                  <TableCell>
-                   {Number(trx.details.bet.amount).toFixed(2)}{" "}
-                    {currencyList[trx.currency].symbol_native}
-                  </TableCell>
-                  <TableCell>
-                    {String(trx.details.win.amount) === "0" ? (
-                      <span>-</span>
-                    ) : (
-                      <span>
-                        {trx.details.win.amount}{" "}
-                        {currencyList[trx.currency].symbol_native}
-                      </span>
-                    )}
+      <DateFilter
+        selected={selectedDateFilter}
+        onSelect={handleDateFilterSelect}
+      />
+
+      <Table className="text-accent-foreground">
+        <TableHeader className="bg-black/10 h-8">
+          <TableRow>
+            <TableHead className="h-8">Time</TableHead>
+            <TableHead className="h-8">Bet ID</TableHead>
+            {/* <TableHead className="h-8">Game</TableHead> */}
+            {/* <TableHead className="h-8">Game ID</TableHead> */}
+            <TableHead className="h-8">Bet Amount</TableHead>
+            <TableHead className="h-8">Win</TableHead>
+          </TableRow>
+        </TableHeader>
+
+        <TableBody>
+          {isLoading ? (
+            <TableRow>
+              <TableCell colSpan={5} className="text-center py-4">
+                <Loading />
+              </TableCell>
+            </TableRow>
+          ) : error || data?.transactions.length === 0 ? (
+            <TableRow>
+              <TableCell
+                colSpan={5}
+                className="text-center py-4 text-accent-foreground"
+              >
+                {error ? "No data available" : "No history found."}
+              </TableCell>
+            </TableRow>
+          ) : (
+            Object.entries(groupedTransactions).map(([date, txs]) => (
+              <Fragment key={date}>
+                <TableRow className="bg-black/80 hover:bg-black/80 text-white h-[30px]">
+                  <TableCell colSpan={5} className="py-0">
+                    {date}
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          {data && (
-            <div className="p-4">
-              <PaginationComponent
-                totalPages={data.pagination.last_page}
-                currentPage={page}
-                setPage={setPage}
-              />
-            </div>
+
+                {txs.map((trx) => (
+                  <TableRow key={trx.id}>
+                    <TableCell>
+                      {format(new Date(trx.created_at), "HH:mm")}
+                    </TableCell>
+                    <TableCell>{trx.id}</TableCell>
+                    {/* <TableCell>{trx.game_name}</TableCell> */}
+                    {/* <TableCell>{trx.game_id}</TableCell> */}
+                    <TableCell>
+                      {Number(trx.details.bet.amount).toFixed(2)}{" "}
+                      {currencyList[trx.currency].symbol_native}
+                    </TableCell>
+                    <TableCell>
+                      {String(trx.details.win.amount) === "0" ? (
+                        <span>-</span>
+                      ) : (
+                        <span>
+                          {trx.details.win.amount}{" "}
+                          {currencyList[trx.currency].symbol_native}
+                        </span>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </Fragment>
+            ))
           )}
-        </>
+        </TableBody>
+      </Table>
+
+      {data && data.transactions.length > 0 && (
+        <div className="p-4">
+          <PaginationComponent
+            totalPages={data.pagination.last_page}
+            currentPage={page}
+            setPage={setPage}
+          />
+        </div>
       )}
     </div>
   );
