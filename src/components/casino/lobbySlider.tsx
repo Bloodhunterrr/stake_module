@@ -29,36 +29,33 @@ export const DesktopSlider = ({
   const navigate = useNavigate();
   const [offset, setOffset] = useState(0);
 
+  const limit = subcategory.landing_page_game_number;
+  const columns = subcategory.landing_page_game_row_number;
+
+
   const { data, isLoading, isFetching } = useGetGameListQuery({
     category_ids: subcategory?.id ? [subcategory.id] : [],
     device: "desktop",
     offset,
-    limit: subcategory.landing_page_game_number,
+    limit,
   });
 
-  const games = isLoading
-    ? Array(subcategory.landing_page_game_number).fill(null)
-    : data?.games ?? [];
+  const games = isLoading ? Array(limit).fill(null) : data?.games ?? [];
 
   const handlePrev = () => {
-    setOffset((prev) =>
-      Math.max(prev - subcategory.landing_page_game_number, 0)
-    );
+    setOffset((prev) => Math.max(prev - limit, 0));
   };
 
   const handleNext = () => {
-    setOffset((prev) => prev + subcategory.landing_page_game_number);
+    setOffset((prev) => prev + limit);
   };
 
   const isPrevDisabled = offset === 0 || isFetching;
   const isNextDisabled =
-    isFetching ||
-    (data?.total !== undefined &&
-      offset + subcategory.landing_page_game_number >= data.total);
+    isFetching || (data?.total !== undefined && offset + limit >= data.total);
 
-  const apiBasis = Number(subcategory?.landing_page_game_row_number ?? 7);
-  const shouldNext =
-    Number(data?.offset ?? 0) + apiBasis > (data?.total ?? apiBasis);
+  const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
+
   return (
     <section className="w-full mb-8">
       <div className="flex w-full items-center lg:pb-2 justify-between ">
@@ -68,8 +65,6 @@ export const DesktopSlider = ({
           disabled={isLoading}
           className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50"
         >
-          {/*Totals are removed*/}
-          {/*{data?.total != null && <span>({data.total})</span>}*/}
           <Trans>View all</Trans>
         </button>
         <div className="hidden md:flex gap-2">
@@ -86,17 +81,18 @@ export const DesktopSlider = ({
         opts={{ align: "start", loop: false }}
         className="w-full relative group/items"
       >
-        <CarouselContent className="py-4">
+        <CarouselContent className="py-4 flex flex-wrap">
           {games.map((game, index) => (
             <CarouselItem
-              style={{ flexBasis: `${100 / apiBasis}%` }}
+              style={{ flexBasis: `${100 / columns}%` }}
               key={game?.id ?? `skeleton-${index}`}
-              className={`basis-1/6 md:basis-1/4 sm:basis-1/3 hover:scale-105 transition-all duration-300 `}
+              className={`hover:scale-105 transition-all duration-300 py-2`}
             >
               <GameSlot game={game} isLoading={isLoading || isFetching} />
             </CarouselItem>
           ))}
         </CarouselContent>
+
         <CarouselPrevious
           onClick={handlePrev}
           disabled={Number(data?.offset ?? 0) === 0}

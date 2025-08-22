@@ -32,14 +32,10 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
 
           <button
             onClick={() => navigate(`/providers`)}
-            className="flex items-center gap-1 text-sm text-primary hover:underline disabled:opacity-50"
+            className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50"
           >
             <span>View all</span>
-            {isDesktop && (
-              <span>
-                ({providers.length})
-              </span>
-            )}
+            {isDesktop && <span>({providers.length})</span>}
           </button>
         </div>
 
@@ -59,7 +55,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
                 } cursor-pointer`}
                 onClick={() => navigate(`/provider/${p.code}`)}
               >
-                <div className="flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-700 transition h-[68px] md:h-[88px]">
+                <div className="flex items-center justify-center rounded-lg  bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px]">
                   <img
                     className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
                     src={config.baseUrl + "/storage/" + p.logo}
