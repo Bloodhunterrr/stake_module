@@ -1,36 +1,35 @@
 import {
-  // Search as SearchIcon,
-  // Moon,
   // Sun,
-  ClipboardClock,
-  Bell,
+  // Moon,
   // LogOut,
+  // Search as SearchIcon,
+  Bell,
+  Dice6,
+  UserIcon,
+  CreditCard,
   UserCircle,
   WalletIcon,
-  UserIcon,
   LockKeyhole,
-  CreditCard,
-  Dice6
+  ClipboardClock
 } from "lucide-react";
 import {
   DropdownMenu,
-  DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
+  DropdownMenuContent,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu.tsx";
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
   DialogTitle,
+  DialogHeader,
+  DialogContent,
 } from "@/components/ui/dialog.tsx";
 
 import Login from "../login";
 import SignUp from "../signup";
 import { useState } from "react";
-// import { useTheme } from "@/hooks/useTheme.tsx";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAppSelector } from "@/hooks/rtk.ts";
 import { useNavigate } from "react-router-dom";
@@ -42,6 +41,7 @@ import { useLogoutMutation } from "@/services/authApi.ts";
 import { useGetMainQuery } from "@/services/mainApi.ts";
 import config from "@/config.ts";
 import {cn} from "@/lib/utils.ts";
+import { Trans } from "@lingui/react/macro";
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
@@ -81,7 +81,7 @@ const NavBar = (props: NavBarProps) => {
                       })}
                       onClick={() => navigate(`/${R.slug}`)}
                   >
-                    <span>{R.name}</span>
+                    <Trans>{R.name}</Trans>
                   </Button>
               )
           )}
@@ -120,13 +120,14 @@ const NavBar = (props: NavBarProps) => {
                             src={config.baseUrl + "/storage/" + R.icon}
                             alt={R.name}
                         />
-                        <span>{R.name}</span>
+                        <Trans>{R.name}</Trans>
                       </Button>
                   )
               )}
             </div>
 
             <div className="flex items-center space-x-2">
+
               {/*<Button*/}
               {/*    variant="ghost"*/}
               {/*    size="icon"*/}
@@ -144,7 +145,7 @@ const NavBar = (props: NavBarProps) => {
               {/*</Button>*/}
 
               {user ? (
-                  <main className="relative flex-col w-full mr-2 h-full">
+                  <main className="relative flex-col w-full  h-full">
                     <ProfileDropdown user={user}/>
                     {user && defaultWallet && (
                         <div className="flex absolute  -bottom-2.5 -right-1/2 -translate-x-0.5 h-1 items-center space-x- rounded-full text-xs font-medium">
@@ -162,19 +163,20 @@ const NavBar = (props: NavBarProps) => {
                   </main>
               ) : (
                   <section className={'space-x-3'}>
+
                     {/*<Button*/}
                     {/*    className={'bg-transparent hover:bg-transparent border-[1px] border-chart-4 text-[11px] rounded-full p-2 h-8 text-chart-4'}*/}
                     {/*    onClick={() => setSignUpModalOpen(true)}>*/}
                     {/*  Join*/}
                     {/*</Button>*/}
+
                     <Button
                         variant="secondary"
                         className="bg-transparent hover:bg-transparent border-[1px] border-primary-foreground/30 text-[11px] rounded-full p-2 h-8 text-primary-foreground"
                         onClick={() => setLoginModalOpen(true)}
                     >
-                      Log in
+                      <Trans>Log in</Trans>
                     </Button>
-
                   </section>
               )}
             </div>
@@ -199,7 +201,7 @@ const NavBar = (props: NavBarProps) => {
           <Dialog open={searchModalOpen} onOpenChange={setSearchModalOpen}>
             <DialogContent className="overflow-auto w-full h-full  ">
               <DialogHeader>
-                <DialogTitle>Search</DialogTitle>
+                <DialogTitle><Trans>Search</Trans></DialogTitle>
               </DialogHeader>
               <Search onCloseSearchModal={() => setSearchModalOpen(false)}/>
             </DialogContent>
@@ -222,7 +224,6 @@ const ProfileDropdown = ({user}: { user: User }) => {
           <UserCircle className="w-full stroke-[1px] text-card h-full"/>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-96 mt-4  p-0 bg-white rounded-none" align="end" forceMount>
-          {/**/}
           <div className="flex flex-col w-full h-full">
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col">
@@ -258,8 +259,9 @@ const ProfileDropdown = ({user}: { user: User }) => {
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("/account/casino")}>
                 <Dice6 className="size-10 stroke-[1px]"/>
-                <span className={'text-xs'}>Casino</span>
+                <span className={'text-xs'}><Trans>Casino</Trans></span>
               </DropdownMenuItem>
+
               {/*<DropdownMenuItem*/}
               {/*    className={'flex flex-col focus:bg-transparent cursor-pointer'}*/}
               {/*    onClick={() => navigate("/profile/history")}>*/}
@@ -271,37 +273,37 @@ const ProfileDropdown = ({user}: { user: User }) => {
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("account/bets")}>
                 <ClipboardClock className="size-10 stroke-[1px]"/>
-                <span className={'text-xs'}>Bets</span>
+                <span className={'text-xs'}><Trans>Bets</Trans></span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("account/payments")}>
                 <CreditCard className="size-10 stroke-[1px]"/>
-                <span className={'text-xs'}>Payments</span>
+                <span className={'text-xs'}><Trans>Payments</Trans></span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("account/general")}>
                 <UserIcon className="size-10 stroke-[1px]"/>
-                <span className={'text-xs'}>Profile</span>
+                <span className={'text-xs'}><Trans>Profile</Trans></span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("/account/change-password")}>
                 <LockKeyhole className="size-10 stroke-[1px]"/>
-                <span className={'text-xs '}>Password</span>
+                <span className={'text-xs '}><Trans>Password</Trans></span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("/account/wallet")}>
                 <WalletIcon className={'size-10 stroke-[1px]'}/>
-                <span className={'text-xs'} >Wallet</span>
+                <span className={'text-xs'}><Trans>Wallet</Trans></span>
               </DropdownMenuItem>
               <DropdownMenuItem
                   className={'flex flex-col focus:bg-transparent cursor-pointer'}
                   onClick={() => navigate("/notifications")}>
                 <Bell className="size-10 stroke-[1px]"/>
-                <span className={'text-xs'}>Notifications</span>
+                <span className={'text-xs'}><Trans>Notifications</Trans></span>
               </DropdownMenuItem>
             </TabsContent>
             <TabsContent value="preferences"></TabsContent>
@@ -309,7 +311,7 @@ const ProfileDropdown = ({user}: { user: User }) => {
           <DropdownMenuItem
               className="w-full border-t rounded-none px-2 py-2 "
               onClick={() => logout()}>
-            <span>Log out</span>
+            <Trans>Log out</Trans>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

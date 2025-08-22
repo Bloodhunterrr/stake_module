@@ -1,7 +1,4 @@
 import * as React from "react";
-import { useNavigate } from "react-router";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-
 import {
   Carousel,
   CarouselContent,
@@ -9,8 +6,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import type { Provider } from "@/types/main";
 import config from "@/config";
+import {Trans} from "@lingui/react/macro";
+import { useNavigate } from "react-router";
+import type { Provider } from "@/types/main";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 interface Props {
   providers: Provider[];
@@ -24,17 +24,14 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
     <section className="py-4">
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
-          <h2
-            className={`font-bold ${isDesktop ? "text-lg" : "text-sm"} flex-1`}
-          >
+          <h2 className={`font-bold ${isDesktop ? "text-lg" : "text-sm"} flex-1`}>
             Providers
           </h2>
 
           <button
             onClick={() => navigate(`/providers`)}
-            className="flex items-center gap-1 text-sm text-primary hover:underline disabled:opacity-50"
-          >
-            <span>View all</span>
+            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50">
+            <span><Trans>View all</Trans></span>
             {isDesktop && (
               <span>
                 ({providers.length})
@@ -48,7 +45,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
             align: "start",
             slidesToScroll: isDesktop ? 9 : 3,
           }}
-          className="w-full relative"
+          className="w-full relative max-[1281px]:w-[calc(100%_-_100px)] max-[1281px]:mx-[50px]"
         >
           <CarouselContent className="-ml-2">
             {providers.map((p) => (

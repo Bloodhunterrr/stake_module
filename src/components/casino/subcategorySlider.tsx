@@ -17,7 +17,7 @@ type Props = {
   data: Record<string, { subcategories: Subcategory[] }>[];
 };
 
-const SubcategorySlider = ({ data }: Props) => {
+export default function SubcategorySlider({ data }: Props) {
   const [searchModal, setSearchModal] = useState(false);
   const navigate = useNavigate();
   const { categorySlug } = useParams();
@@ -87,5 +87,3 @@ const SubcategorySlider = ({ data }: Props) => {
     </>
   );
 };
-
-export default SubcategorySlider;

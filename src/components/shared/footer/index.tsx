@@ -3,7 +3,7 @@ import LanguageSwitcher from "../v2/language-switcher";
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
-const Footer = () => {
+export default function Footer() {
   return (
     <section className="container mx-auto">
       <div className="pb-[70px] sm:pb-[54px] sm:pt-6">
@@ -126,5 +126,3 @@ const Footer = () => {
     </section>
   );
 };
-
-export default Footer;
