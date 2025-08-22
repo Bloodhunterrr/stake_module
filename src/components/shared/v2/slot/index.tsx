@@ -113,7 +113,7 @@ const GameSlot = ({
       if (!isDesktop) {
         window.location.href = data?.play_url;
       } else {
-        navigate(`/game/${game?.id}`, {
+        navigate(`/game/${game?.id}?previousPage=${window.location.pathname}`, {
           state: { play_url: data?.play_url, game },
         });
       }
