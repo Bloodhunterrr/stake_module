@@ -126,13 +126,15 @@ const CasinoHistoryTable = () => {
           </PopoverContent>
         </Popover>
 
-        <MultiSelect
-          options={currencyOptions}
-          value={selectedCurrencies}
-          onValueChange={(values: string[]) => setSelectedCurrencies(values)}
-          placeholder="All currencies"
-          hideSelectAll={true}
-        />
+        {currencyOptions && (
+          <MultiSelect
+            options={currencyOptions}
+            value={selectedCurrencies}
+            onValueChange={(values: string[]) => setSelectedCurrencies(values)}
+            placeholder="All currencies"
+            hideSelectAll={true}
+          />
+        )}
       </div>
 
       <DateFilter

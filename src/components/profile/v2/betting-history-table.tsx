@@ -61,7 +61,6 @@ const BettingHistoryTable = () => {
     });
   }, [page, selectedStatuses, selectedCurrencies, dates]);
 
-  
   const groupedTickets = useMemo(() => {
     if (!data?.tickets) return {};
     return data.tickets.reduce(
@@ -126,14 +125,15 @@ const BettingHistoryTable = () => {
             />
           </PopoverContent>
         </Popover>
-
-        <MultiSelect
-          options={currencyOptions}
-          value={selectedCurrencies}
-          onValueChange={setSelectedCurrencies}
-          placeholder="All currencies"
-          hideSelectAll
-        />
+        {currencyOptions && (
+          <MultiSelect
+            options={currencyOptions}
+            value={selectedCurrencies}
+            onValueChange={setSelectedCurrencies}
+            placeholder="All currencies"
+            hideSelectAll
+          />
+        )}
 
         <MultiSelect
           options={statusOptions}
@@ -180,9 +180,7 @@ const BettingHistoryTable = () => {
                           {Number(ticket.bet_sum).toFixed(2)}{" "}
                           {currencyList[ticket.currency]?.symbol_native}
                         </span>
-                        <span className="text-[12px]">
-                          ({ticket.betID})
-                        </span>
+                        <span className="text-[12px]">({ticket.betID})</span>
                       </div>
                     </TableCell>
 
