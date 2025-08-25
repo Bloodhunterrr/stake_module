@@ -77,7 +77,7 @@ const CasinoHistoryTable = () => {
 
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center">
+      <div className="grid grid-cols-3 gap-2 md:gap-4 items-center md:px-0 px-4">
         <Popover>
           <PopoverTrigger asChild>
             <Button

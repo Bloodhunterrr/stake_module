@@ -76,8 +76,7 @@ const BettingHistoryTable = () => {
 
   return (
     <div className="space-y-3">
-      {/* Filters */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center ">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center  px-4 md:px-0">
         <Popover>
           <PopoverTrigger asChild>
             <Button

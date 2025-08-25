@@ -51,7 +51,7 @@ const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect }) => {
   ];
 
   return (
-    <div className="flex w-full overflow-x-auto border-t border-b">
+    <div className="flex w-full overflow-x-auto border-b">
       {filters.map((f) => (
         <div
           key={f.label}

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, Fragment } from "react";
 import { useGetTransactionHistoryMutation } from "@/services/authApi";
-import { formatDateToDMY, formatDate } from "@/utils/formatDate";
+import { formatDateToDMY } from "@/utils/formatDate";
+import { format } from "date-fns";
 import { currencyList } from "@/utils/currencyList";
 import type { Transaction } from "@/types/transactionHistory";
 
@@ -22,7 +23,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
 
 import CheckMarkIcon from "@/assets/icons/check-mark.svg?react";
 import CloseIcon from "@/assets/icons/close.svg?react";
@@ -30,6 +30,7 @@ import Loading from "@/components/shared/loading";
 import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
 import { MultiSelect } from "@/components/ui/multi-select";
+import DateFilter from "@/components/shared/v2/date-filter";
 
 const PaymentsHistoryTable = () => {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -44,6 +45,7 @@ const PaymentsHistoryTable = () => {
   const [selectedTransactionTypes, setSelectedTransactionTypes] = useState<
     string[]
   >([]);
+  const [selectedDateFilter, setSelectedDateFilter] = useState<string>("");
 
   const [fetchData, { data, isLoading, error }] =
     useGetTransactionHistoryMutation();
@@ -58,13 +60,11 @@ const PaymentsHistoryTable = () => {
     { value: "deposit", label: "Deposit" },
   ];
 
-  useEffect(() => {
-    fetchData({
-      start_date: formatDateToDMY(dates.startDate),
-      end_date: formatDateToDMY(dates.endDate),
-      page: 1,
-    });
-  }, []);
+  const handleDateFilterSelect = (start: Date, end: Date, label: string) => {
+    setDates({ startDate: start, endDate: end });
+    setSelectedDateFilter(label);
+    setPage(1);
+  };
 
   useEffect(() => {
     fetchData({
@@ -80,9 +80,22 @@ const PaymentsHistoryTable = () => {
     });
   }, [page, selectedTransactionTypes, selectedCurrencies, dates]);
 
+  const groupedTransactions = useMemo(() => {
+    if (!data?.transactions) return {};
+    return data.transactions.reduce(
+      (acc: Record<string, Transaction[]>, trx) => {
+        const dateKey = format(new Date(trx.created_at), "dd/MM/yyyy");
+        if (!acc[dateKey]) acc[dateKey] = [];
+        acc[dateKey].push(trx);
+        return acc;
+      },
+      {}
+    );
+  }, [data?.transactions]);
+
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center px-0">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -148,8 +161,12 @@ const PaymentsHistoryTable = () => {
           placeholder="All Actions"
           hideSelectAll={true}
         />
-
       </div>
+
+      <DateFilter
+        selected={selectedDateFilter}
+        onSelect={handleDateFilterSelect}
+      />
 
       {isLoading ? (
         <Loading />
@@ -164,50 +181,53 @@ const PaymentsHistoryTable = () => {
           <Table className="text-accent-foreground">
             <TableHeader className="bg-black/10 h-8">
               <TableRow>
-                <TableHead className="h-8">Date & Time</TableHead>
+                <TableHead className="h-8">Time</TableHead>
                 <TableHead className="h-8">ID</TableHead>
                 <TableHead className="h-8">Amount</TableHead>
                 <TableHead className="h-8 text-center">Action</TableHead>
-                <TableHead className="h-8 text-center">Confirmed</TableHead>
-                <TableHead className="h-8 text-center">Cancelled</TableHead>
+                <TableHead className="h-8 text-center">Status</TableHead>
               </TableRow>
             </TableHeader>
+
             <TableBody>
-              {data?.transactions.map((trx: Transaction) => (
-                <TableRow key={trx.id}>
-                  <TableCell>{formatDate(new Date(trx.created_at))}</TableCell>
-                  <TableCell>{trx.id}</TableCell>
-                  <TableCell>
-                    {trx.amount} {currencyList[trx.currency].symbol_native}
-                  </TableCell>
-                  <TableCell className="text-center">
-                    <span
-                      className={`px-2 py-1 rounded text-xs font-medium ${
-                        trx.type === "deposit"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-700"
-                      }`}
-                    >
-                      {trx.type.toUpperCase()}
-                    </span>
-                  </TableCell>
-                  <TableCell className="flex justify-center">
-                    {trx.confirmed ? (
-                      <CheckMarkIcon className="text-green-600 size-5" />
-                    ) : (
-                      <CloseIcon className="text-gray-400 size-5" />
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex justify-center">
-                      {trx.cancelled ? (
-                        <CheckMarkIcon className="text-red-600 size-5" />
-                      ) : (
-                        <CloseIcon className="text-gray-400 size-5" />
-                      )}
-                    </div>
-                  </TableCell>
-                </TableRow>
+              {Object.entries(groupedTransactions).map(([date, txs]) => (
+                <Fragment key={date}>
+                  <TableRow className="bg-black/80 hover:bg-black/80 text-white h-[30px]">
+                    <TableCell colSpan={6} className="py-0 px-2 font-medium">
+                      {date}
+                    </TableCell>
+                  </TableRow>
+
+                  {txs.map((trx) => (
+                    <TableRow key={trx.id}>
+                      <TableCell>
+                        {format(new Date(trx.created_at), "HH:mm")}
+                      </TableCell>
+                      <TableCell>{trx.id}</TableCell>
+                      <TableCell>
+                        {trx.amount} {currencyList[trx.currency].symbol_native}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <span
+                          className={`px-2 py-1 rounded text-xs font-medium ${
+                            trx.type === "deposit"
+                              ? "bg-green-100 text-green-700"
+                              : "bg-red-100 text-red-700"
+                          }`}
+                        >
+                          {trx.type.toUpperCase()}
+                        </span>
+                      </TableCell>
+                      <TableCell className="flex justify-center">
+                        {trx.confirmed ? (
+                          <CheckMarkIcon className="text-green-600 size-5" />
+                        ) : (
+                          <CloseIcon className="text-red-600 size-5" />
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </Fragment>
               ))}
             </TableBody>
           </Table>

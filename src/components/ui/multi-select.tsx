@@ -680,7 +680,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
 		}, [defaultValue, selectedValues, arraysEqual, resetOnDefaultValueChange]);
 
 		const getWidthConstraints = () => {
-			const defaultMinWidth = screenSize === "mobile" ? "0px" : "200px";
+			const defaultMinWidth = screenSize === "mobile" ? "0px" : "180px";
 			const effectiveMinWidth = minWidth || defaultMinWidth;
 			const effectiveMaxWidth = maxWidth || "100%";
 			return {
