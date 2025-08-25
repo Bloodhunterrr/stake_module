@@ -1,13 +1,14 @@
-import {z} from 'zod';
-import {useState} from 'react';
-import {toast} from 'react-toastify';
-import {useForm} from 'react-hook-form';
-import {Input} from '@/components/ui/input.tsx';
-import {Button} from '@/components/ui/button.tsx';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {useLoginMutation} from '@/services/authApi.ts';
-import {Eye, EyeOff} from 'lucide-react';
-import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card.tsx';
+import { z } from 'zod';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { Eye, EyeOff } from 'lucide-react';
+import { Trans } from "@lingui/react/macro";
+import { Input } from '@/components/ui/input.tsx';
+import { Button } from '@/components/ui/button.tsx';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useLoginMutation } from '@/services/authApi.ts';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.tsx';
 
 const loginSchema = z.object({
     email: z
@@ -19,6 +20,7 @@ const loginSchema = z.object({
         .min(1, {message: 'Password is required.'})
         .min(6, {message: 'Password must be at least 6 characters long.'}),
 });
+
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -74,7 +76,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
             <Card className="w-full max-w-md border-none bg-secondary shadow-none">
                 <CardHeader>
                     <CardTitle className="text-sm text-center font-light">
-                        Log In
+                        <Trans>Log In</Trans>
                     </CardTitle>
                 </CardHeader>
                 <CardContent>

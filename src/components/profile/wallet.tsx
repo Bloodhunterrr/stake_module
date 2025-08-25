@@ -41,7 +41,7 @@ export default function Wallet() {
     <>
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {user.wallets?.map((w: Wallet) => (
-          <Card key={w.slug} className="relative overflow-hidden bg-white">
+          <Card key={w.slug} className="relative overflow-hidden bg-white py-0 pt-4">
             <CardHeader className="flex flex-row items-center justify-between p-4 pb-0">
               <Badge variant="secondary" className="text-sm font-semibold">
                 {w.slug.toUpperCase()}

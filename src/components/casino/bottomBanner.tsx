@@ -1,15 +1,16 @@
-import bottomBannerImg from "@/assets/images/crypto-image-min.png";
+import {Trans} from "@lingui/react/macro";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import bottomBannerImg from "@/assets/images/crypto-image-min.png";
 
 const BottomBanner = () => {
   const isDesktop = useIsDesktop();
 
   return (
-    <section>
+    <section className="hidden">
       {!isDesktop && (
         <div className="bottom-banner-mobile-title">
-          <h2>Recharge et retire en Crypto.</h2>
-          <h2>Bientôt disponible</h2>
+          <h2><Trans>Recharge et retire en Crypto.</Trans></h2>
+          <h2><Trans>Bientôt disponible</Trans></h2>
         </div>
       )}
 
@@ -17,9 +18,9 @@ const BottomBanner = () => {
         {isDesktop && (
           <div className="bottom-banner-content">
             <h2>
-              Recharge et retire en Crypto.
+                <Trans>Recharge et retire en Crypto.</Trans>
               <br />
-              Bientôt disponible
+                <Trans>Bientôt disponible</Trans>
             </h2>
           </div>
         )}

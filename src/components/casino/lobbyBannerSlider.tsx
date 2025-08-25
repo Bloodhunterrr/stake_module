@@ -6,10 +6,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import React from "react";
+import { Button } from "../ui/button";
+import { Trans } from "@lingui/react/macro";
 import banner1 from "@/assets/images/lobby-banner-1.webp";
 import banner2 from "@/assets/images/lobby-banner-2.webp";
 import banner3 from "@/assets/images/lobby-banner-3.webp";
-import { Button } from "../ui/button";
 
 const slides = [
   {
@@ -52,7 +54,34 @@ const slides = [
     subDescription: "",
     buttonTitle: "Begin Now",
   },
-];
+] as const;
+
+type ButtonTitle = typeof slides[number]['buttonTitle'];
+type SlideTitle = typeof slides[number]['title'];
+type SlideDescription = typeof slides[number]['description'];
+
+const buttonTranslations: Record<ButtonTitle, React.ReactNode> = {
+  "Deposit Now": <Trans>Deposit Now</Trans>,
+  "Begin Now": <Trans>Begin Now</Trans>,
+  "Read More": <Trans>Read More</Trans>,
+};
+
+const titleTranslations: Record<SlideTitle, React.ReactNode> = {
+  "SECOND DEPOSIT BONUS": <Trans>SECOND DEPOSIT BONUS</Trans>,
+  "ROOKIE RUMBLE TOURNAMENT": <Trans>ROOKIE RUMBLE TOURNAMENT</Trans>,
+  "WEEKLY CASHBACK": <Trans>WEEKLY CASHBACK</Trans>,
+};
+
+const descriptionTranslations: Record<SlideDescription, React.ReactNode> = {
+  "55% up to": <Trans>55% up to</Trans>,
+  "€2,500 Daily": <Trans>€2,500 Daily</Trans>,
+  "up to 25%": <Trans>up to 25%</Trans>,
+};
+
+const subDescriptionTranslations: Record<string, React.ReactNode> = {
+  "€500 + 100 Free Spins": <Trans>€500 + 100 Free Spins</Trans>,
+  "": "",
+};
 
 export default function LobbyBannerSlider() {
   return (
@@ -62,27 +91,35 @@ export default function LobbyBannerSlider() {
               align: "start",
               loop: false,
             }}
-            className="w-full relative"
-        >
+            className="w-full relative" >
           <CarouselContent>
             {slides.map((slide) => (
                 <CarouselItem
                     key={slide.id}
                     className="md:basis-1/3 sm:basis-1/2 basis-full p-[5px] hover:scale-[1.03] transition-all duration-300 "
                 >
-                  <div
-                      className="flex items-center h-[190px] w-full transition-all duration-200 rounded-[20px] bg-cover bg-center bg-no-repeat relative overflow-hidden p-4"
-                      style={{ backgroundImage: `url(${slide.image})` }}
-                  >
+                  <div className="
+                  flex items-center h-[190px] w-full
+                  hover:opacity-100 transition-all duration-200 opacity-70
+                  rounded-[20px] bg-cover
+                  bg-center bg-no-repeat
+                  relative overflow-hidden p-4"
+                       style={{ backgroundImage: `url(${slide.image})` }}>
                     <div className="flex flex-col items-start justify-between h-full relative z-[1] rounded-[16px]">
-                      <Button variant="outline" size="sm" className={'text-card bg-background/50 hover:text-card hover:bg-background/ border-none'}>{slide.title}</Button>
+                      <Button variant="outline" size="sm" className={'text-card bg-background/50 hover:text-card hover:bg-background/ border-none'}>
+                        {titleTranslations[slide.title]}
+                      </Button>
                       <div>
                         <h4 className="font-bold text-yellow-300 text-2xl">
-                          {slide.description}
+                          {descriptionTranslations[slide.description]}
                         </h4>
-                        <p className=" text-yellow-300 ">{slide.subDescription}</p>
+                        <p className="text-yellow-300">
+                          {subDescriptionTranslations[slide.subDescription] || slide.subDescription}
+                        </p>
                       </div>
-                      <Button variant="outline" className={'bg-popover text-card border-card/10 hover:text-card hover:bg-popover/80s'}>{slide.buttonTitle}</Button>
+                      <Button variant="outline" className={'bg-popover text-card border-card/10 hover:text-card hover:bg-popover/80'}>
+                        {buttonTranslations[slide.buttonTitle]}
+                      </Button>
                     </div>
                   </div>
                 </CarouselItem>

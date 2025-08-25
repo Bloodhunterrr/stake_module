@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Trans } from "@lingui/react/macro";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import FeedbackIcon  from "@/assets/icons/feedback-category-icon.svg?react";
 
@@ -24,14 +25,14 @@ const FeedbackForm = () => {
             className="m-text m-fs20 m-fw700 m-lh140"
             style={{ color: "var(--color-light-grey-5)" }}
           >
-            <div>Help us improve your experience</div>
+            <div><Trans>Help us improve your experience</Trans></div>
           </h1>
           <p
             className="m-text m-fs16 m-fw500 m-lh150"
             style={{ color: "var(--color-mid-grey-5)" }}
           >
             <div>
-              Please leave some feedback or report a bug/issue you have faced.
+              <Trans>Please leave some feedback or report a bug/issue you have faced.</Trans>
             </div>
           </p>
         </div>
@@ -54,9 +55,9 @@ const FeedbackForm = () => {
                       {...register("category", {
                         required: ("Category is required"),
                       })}
-                    />
+                      className="rounded-[2px] border-[1px] border-white/15"/>
                     <div className="m-input-content-label">
-                      <div>Select category of problem</div>
+                      <div><Trans>Select category of problem</Trans></div>
                     </div>
                   </div>
                   <div className="m-input-append">
@@ -72,19 +73,19 @@ const FeedbackForm = () => {
               <div className="m-input-content">
                 <textarea
                   data-qa="textarea"
-                  className="feedback-form-textarea m-textarea"
+                  className="feedback-form-textarea m-textarea rounded-[2px] border-[1px] border-white/15"
                   placeholder=""
                   {...register("content", {
                     required: ("Content is required"),
                   })}
                 ></textarea>
                 <div className="m-input-content-label">
-                  <div>Enter the text</div>
+                  <div><Trans>Enter the text</Trans></div>
                 </div>
               </div>
             </div>
             <div className="m-textarea-counter">
-              <span>0</span> / 500 <div>characters left</div>
+              <span>0</span> / 500 <div><Trans>characters left</Trans></div>
             </div>
           </div>
 
@@ -99,14 +100,14 @@ const FeedbackForm = () => {
             >
               <div className="m-button-content">
                 {isDesktop ? (
-                  <div>Leave a message</div>
+                  <div><Trans>Leave a message</Trans></div>
                 ) : (
-                  <div>Send message</div>
+                  <div><Trans>Send message</Trans></div>
                 )}
               </div>
             </button>
             <span>
-              <div>Thank you for making our service better</div>
+              <div><Trans>Thank you for making our service better</Trans></div>
             </span>
           </div>
         </form>
