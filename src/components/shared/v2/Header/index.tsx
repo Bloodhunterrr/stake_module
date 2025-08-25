@@ -68,8 +68,8 @@ const NavBar = (props: NavBarProps) => {
   const { data } = useGetMainQuery();
   return (
       <div className={'sticky top-0  z-50 bg-background'}>
-        <div className={cn("h-0 transition-all w-full flex items-center flex-row container mx-auto duration-300 ease-in-out", {
-          "h-11 lg:h-0 opacity-100 px-2 w-full": props.openOptionalSideBar,
+        <div className={cn("h-0 transition-all w-full no-scrollbar overflow-x-auto flex items-center flex-row container mx-auto duration-300 ease-in-out", {
+          "h-11 lg:h-0 opacity-100  px-2 w-full": props.openOptionalSideBar,
         })}>
           {data?.map((R) =>
               !R.is_sportbook && R.subcategories.length === 0 ? null : (

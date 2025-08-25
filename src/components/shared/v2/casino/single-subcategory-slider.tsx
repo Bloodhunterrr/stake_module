@@ -51,7 +51,7 @@ const SubcategorySlider = ({ data , paramsSubcategory , showBanner = false }: Pr
                     <div className="overflow-x-auto items-center flex  no-scrollbar py-5">
                         <div
                             className={cn("w-fit ml-3 shrink-0  text-[11px] cursor-pointer  ", {
-                                "decoration-2 text-card underline underline-offset-8 ": paramsSubcategory === undefined
+                                "decoration-2 select-none text-card underline underline-offset-8 ": paramsSubcategory === undefined
                             })}
                             onClick={() =>
                                 navigate(`/${categorySlug}`)
@@ -64,7 +64,7 @@ const SubcategorySlider = ({ data , paramsSubcategory , showBanner = false }: Pr
                                     return (
                                         <div
                                             key={subcategory.id}
-                                            className={cn("w-fit ml-3 shrink-0  text-[11px] cursor-pointer ", {
+                                            className={cn("w-fit select-none ml-3 shrink-0  text-[11px] cursor-pointer ", {
                                                 "ml-3": index === 0,
                                                 "mr-3": index === subcategories.length - 1,
                                                 "decoration-2 text-card underline underline-offset-8 ": subcategory.slug === paramsSubcategory

@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import {Settings2, ArrowUpDown, SearchIcon} from 'lucide-react';
+import {Settings2, ArrowUpDown, SearchIcon , Check} from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -24,7 +24,12 @@ import {
 import {Badge} from "@/components/ui/badge.tsx";
 import Search from "@/components/shared/v2/casino/search.tsx";
 import {Dialog, DialogContent} from "@/components/ui/dialog.tsx";
-
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+import {cn} from "@/lib/utils.ts";
 interface Category {
   id: number;
   slug: string;
@@ -105,19 +110,52 @@ const SubcategoryGames = () => {
 
                   <Sheet>
                     <div className={'border rounded-full text-xs flex px-3 py-1  items-center gap-2'}>
-                      <button
-                          onClick={() => setIsSortingEnabled((p) => !p)}
-                          className={'flex gap-1 items-center flex-row w-1/2'}>
-                        <ArrowUpDown size={18}  className={` ${
-                            isSortingEnabled
-                                ? "text-card"
-                                : "text-white  "
-                        }`}/>
-                        <span
-                        >
-                          Sort
-                        </span>
-                      </button>
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <button
+                                    className={'flex gap-1 items-center flex-row w-1/2'}>
+                                    <Check size={18}  className={` ${
+                                        isSortingEnabled
+                                            ? "text-card"
+                                            : "text-white "
+                                    }`}/>
+                                    <span
+                                    >
+                                        Sort
+                                    </span>
+                                </button>
+                            </PopoverTrigger>
+                            <PopoverContent className={'aspect-square flex flex-col text-sm gap-2 font-semibold  bg-background/40 text-primary-foreground w-40 rounded-sm border-none backdrop-blur-sm'}>
+                                <button
+                                    onClick={() => setIsSortingEnabled((p) => !p)}
+                                    className={cn('flex gap-x-2 items-center cursor-pointer flex-row w-full' , {
+                                        'text-primary-foreground/70' :  isSortingEnabled
+                                    })}>
+                                    <Check size={18}  className={` ${
+                                        isSortingEnabled
+                                            ? "text-transparent"
+                                            : "text-card "
+                                    }`}/>
+                                    <span
+                                    >
+                                        For You
+                                    </span>
+                                </button>
+                                <button
+                                    onClick={() => setIsSortingEnabled((p) => !p)}
+                                    className={cn('flex gap-x-2 items-center cursor-pointer flex-row w-full' , {
+                                        'text-primary-foreground/70' :  !isSortingEnabled
+                                    })}>
+                                    <ArrowUpDown size={18}  className={cn('text-transparent ' , {
+                                         'text-card' : isSortingEnabled
+                                    })}/>
+                                    <span
+                                    >
+                                        A - Z
+                                    </span>
+                                </button>
+                            </PopoverContent>
+                        </Popover>
                       <SheetTrigger className={'w-1/2 flex gap-1  flex-row items-center justify-center'}>
                         <Settings2 size={20}/>
                         <span>Filter</span>
