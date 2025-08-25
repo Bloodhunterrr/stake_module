@@ -1,5 +1,6 @@
 import config from "@/config";
 import LanguageSwitcher from "../v2/language-switcher";
+import { Trans } from "@lingui/react/macro";
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
@@ -18,38 +19,64 @@ export default function Footer() {
             </a>
 
             <div
-              className="grid gap-3 text-sm font-semibold text-gray-400 w-full sm:w-auto 
+              className="grid gap-3 gap-x-6 text-[12px] font-semibold text-gray-400 w-full sm:w-auto 
               grid-cols-2 [grid-template-rows:repeat(10,auto)] 
               sm:grid-cols-4 sm:[grid-auto-flow:column] sm:[grid-template-rows:repeat(5,auto)]"
             >
-              {[
-                "Promotions",
-                "About Us",
-                "About BTC",
-                "AML Policy",
-                "Terms & Conditions",
-                "Bonus Terms",
-                "Fairness & RNG Testing Methods",
-                "Dispute Resolution",
-                "Self-Exclusion",
-                "Responsible Gaming",
-                "Risk Warnings",
-                "Privacy Policy",
-                "Cookie Policy",
-                "FAQ",
-                "KYC Policies",
-                "Sport Betting Terms",
-                "Reviews",
-                "Affiliates",
-              ].map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="block hover:text-white transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Promotions</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>About Us</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>About BTC</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>AML Policy</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Terms &amp; Conditions</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Bonus Terms</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Fairness &amp; RNG Testing Methods</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Dispute Resolution</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Self-Exclusion</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Responsible Gaming</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Risk Warnings</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Privacy Policy</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Cookie Policy</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>FAQ</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>KYC Policies</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Sport Betting Terms</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Reviews</Trans>
+              </a>
+              <a href="#" className="block hover:text-white transition-colors">
+                <Trans>Affiliates</Trans>
+              </a>
             </div>
 
             <div className="flex sm:hidden items-center gap-1.5 bg-gray-800 rounded w-full py-1 px-2 mb-5 relative cursor-pointer">
@@ -125,4 +152,4 @@ export default function Footer() {
       </div>
     </section>
   );
-};
+}

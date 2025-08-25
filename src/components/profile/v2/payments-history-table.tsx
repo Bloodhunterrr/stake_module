@@ -81,8 +81,8 @@ const PaymentsHistoryTable = () => {
   }, [page, selectedTransactionTypes, selectedCurrencies, dates]);
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center px-8">
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center px-0">
         <Popover>
           <PopoverTrigger asChild>
             <Button
