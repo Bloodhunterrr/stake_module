@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon} from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import Loading from "@/components/shared/loading";
 import { useAppSelector } from "@/hooks/rtk";
@@ -233,38 +233,54 @@ const BettingHistoryTable = () => {
                       </TableRow>
 
                       {expandedTicketId === ticket.id && (
-                        <TableRow className="bg-muted">
-                          <TableCell colSpan={3}>
-                            <div className="p-4 space-y-2 text-sm">
-                              <div className="flex items-center gap-2">
-                                <span
-                                  className={`w-3 h-3 rounded-full ${status.color}`}
-                                />
-                                <div className="text-xs text-gray-400">
-                                  {format(
-                                    new Date(ticket.created_date),
-                                    "EEE dd MMM HH:mm"
-                                  )}
-                                </div>
-                              </div>
-                              {ticket.details?.odds?.map((odd: any) => (
-                                <div
-                                  key={odd.id}
-                                  className="flex justify-between border-b border-gray-700 py-1"
-                                >
-                                  <div>
-                                    <div>{odd.market.name}</div>
-                                    <div className="text-xs text-gray-400">
-                                      {odd.event.team1} - {odd.event.team2}
+                        <TableRow className="bg-muted p-0">
+                          <TableCell colSpan={3} className="p-0">
+                            <div className="space-y-2 text-sm">
+                              <div className="w-full border-b border-gray-400 relative">
+                                {(ticket.status === 3 ||
+                                  ticket.status === 1) && (
+                                  <div
+                                    className={`absolute top-0 left-0 h-full w-1/2 ${
+                                      ticket.status === 3
+                                        ? "bg-gradient-to-r from-green-400/30 to-transparent"
+                                        : "bg-gradient-to-r from-red-400/30 to-transparent"
+                                    }`}
+                                  />
+                                )}
+
+                                <div className="flex flex-col relative z-10">
+                                  <div className="flex items-center gap-2 px-4 py-2">
+                                    <span
+                                      className={`w-3 h-3 rounded-full ${status.color}`}
+                                    />
+                                    <div className="text-xs text-gray-600">
+                                      {format(
+                                        new Date(ticket.created_date),
+                                        "EEE dd MMM HH:mm"
+                                      )}
                                     </div>
                                   </div>
-                                  <div className="font-semibold">
-                                    {odd.rate}
-                                  </div>
-                                </div>
-                              ))}
 
-                              <div className="grid grid-cols-3 gap-2 pt-2 text-xs">
+                                  {ticket.details?.odds?.map((odd: any) => (
+                                    <div
+                                      key={odd.id}
+                                      className="flex justify-between py-1 pr-4"
+                                    >
+                                      <div className="px-4">
+                                        <div>{odd.market.name}</div>
+                                        <div className="text-xs text-gray-600">
+                                          {odd.event.team1} - {odd.event.team2}
+                                        </div>
+                                      </div>
+                                      <div className="font-semibold">
+                                        {odd.rate}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              <div className="grid px-4 pb-4 grid-cols-3 gap-2 pt-2 text-xs">
                                 <div>
                                   <div className="text-gray-400">
                                     <Trans>Total odds</Trans>
