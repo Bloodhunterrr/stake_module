@@ -18,12 +18,13 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon} from "lucide-react";
 import { format } from "date-fns";
 import Loading from "@/components/shared/loading";
 import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
 import { MultiSelect } from "@/components/ui/multi-select";
+import { Trans } from "@lingui/react/macro";
 
 const BettingHistoryTable = () => {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -35,6 +36,7 @@ const BettingHistoryTable = () => {
   });
   const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+  const [expandedTicketId, setExpandedTicketId] = useState<number | null>(null);
 
   const [fetchData, { data, isLoading, error }] = useGetSportHistoryMutation();
 
@@ -74,9 +76,25 @@ const BettingHistoryTable = () => {
     );
   }, [data?.tickets]);
 
+  const STATUS_MAP: Record<
+    number,
+    { label: string | ((ticket: any) => string); color: string }
+  > = {
+    0: { label: "Pending", color: "bg-[#f67024]" },
+    3: {
+      label: (ticket) =>
+        `Won ${Number(ticket.win_sum).toFixed(2)} ${
+          currencyList[ticket.currency]?.symbol_native
+        }`,
+      color: "bg-green-500",
+    },
+    4: { label: "Returned", color: "bg-[#355be2]" },
+    1: { label: "Lost", color: "bg-red-500" },
+  };
+
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center  px-4 md:px-0">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -84,9 +102,7 @@ const BettingHistoryTable = () => {
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
               <CalendarIcon className="mr-2 h-4 w-4" />
-              {dates.startDate
-                ? format(dates.startDate, "dd/MM/yyyy")
-                : "Pick start date"}
+              {format(dates.startDate, "dd/MM/yyyy")}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0 bg-white">
@@ -108,9 +124,7 @@ const BettingHistoryTable = () => {
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
               <CalendarIcon className="mr-2 h-4 w-4" />
-              {dates.endDate
-                ? format(dates.endDate, "dd/MM/yyyy")
-                : "Pick end date"}
+              {format(dates.endDate, "dd/MM/yyyy")}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0 bg-white">
@@ -124,6 +138,7 @@ const BettingHistoryTable = () => {
             />
           </PopoverContent>
         </Popover>
+
         {currencyOptions && (
           <MultiSelect
             options={currencyOptions}
@@ -146,9 +161,15 @@ const BettingHistoryTable = () => {
       <Table className="text-accent-foreground">
         <TableHeader>
           <TableRow>
-            <TableHead>Bet Amount (Bet ID)</TableHead>
-            <TableHead>Time</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead>
+              <Trans>Bet Amount (Bet ID)</Trans>
+            </TableHead>
+            <TableHead>
+              <Trans>Time</Trans>
+            </TableHead>
+            <TableHead>
+              <Trans>Status</Trans>
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -171,38 +192,123 @@ const BettingHistoryTable = () => {
                   <TableCell colSpan={3}>{date}</TableCell>
                 </TableRow>
 
-                {tickets.map((ticket) => (
-                  <TableRow key={ticket.id}>
-                    <TableCell className="py-0">
-                      <div className="flex flex-col leading-tight">
-                        <span>
-                          {Number(ticket.bet_sum).toFixed(2)}{" "}
-                          {currencyList[ticket.currency]?.symbol_native}
-                        </span>
-                        <span className="text-[12px]">({ticket.betID})</span>
-                      </div>
-                    </TableCell>
+                {tickets.map((ticket) => {
+                  const status = STATUS_MAP[ticket.status] || STATUS_MAP[1];
+                  const label =
+                    typeof status.label === "function"
+                      ? status.label(ticket)
+                      : status.label;
 
-                    <TableCell>
-                      {format(new Date(ticket.created_date), "HH:mm:ss")}
-                    </TableCell>
-                    <TableCell className="flex items-center gap-2">
-                      {ticket.status === 3 ? (
-                        <>
-                          {`Win ${Number(ticket.win_sum).toFixed(2)} ${
-                            currencyList[ticket.currency]?.symbol_native
-                          }`}
-                          <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                        </>
-                      ) : (
-                        <>
-                          Lost
-                          <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                        </>
+                  return (
+                    <Fragment key={ticket.id}>
+                      <TableRow
+                        className="cursor-pointer"
+                        onClick={() =>
+                          setExpandedTicketId(
+                            expandedTicketId === ticket.id ? null : ticket.id
+                          )
+                        }
+                      >
+                        <TableCell className="py-0">
+                          <div className="flex flex-col leading-tight">
+                            <span>
+                              {Number(ticket.bet_sum).toFixed(2)}{" "}
+                              {currencyList[ticket.currency]?.symbol_native}
+                            </span>
+                            <span className="text-[12px]">
+                              ({ticket.betID})
+                            </span>
+                          </div>
+                        </TableCell>
+
+                        <TableCell>
+                          {format(new Date(ticket.created_date), "HH:mm:ss")}
+                        </TableCell>
+                        <TableCell className="flex items-center gap-2">
+                          {label}
+                          <span
+                            className={`w-3 h-3 rounded-full ${status.color}`}
+                          />
+                        </TableCell>
+                      </TableRow>
+
+                      {expandedTicketId === ticket.id && (
+                        <TableRow className="bg-muted">
+                          <TableCell colSpan={3}>
+                            <div className="p-4 space-y-2 text-sm">
+                              <div className="flex items-center gap-2">
+                                <span
+                                  className={`w-3 h-3 rounded-full ${status.color}`}
+                                />
+                                <div className="text-xs text-gray-400">
+                                  {format(
+                                    new Date(ticket.created_date),
+                                    "EEE dd MMM HH:mm"
+                                  )}
+                                </div>
+                              </div>
+                              {ticket.details?.odds?.map((odd: any) => (
+                                <div
+                                  key={odd.id}
+                                  className="flex justify-between border-b border-gray-700 py-1"
+                                >
+                                  <div>
+                                    <div>{odd.market.name}</div>
+                                    <div className="text-xs text-gray-400">
+                                      {odd.event.team1} - {odd.event.team2}
+                                    </div>
+                                  </div>
+                                  <div className="font-semibold">
+                                    {odd.rate}
+                                  </div>
+                                </div>
+                              ))}
+
+                              <div className="grid grid-cols-3 gap-2 pt-2 text-xs">
+                                <div>
+                                  <div className="text-gray-400">
+                                    <Trans>Total odds</Trans>
+                                  </div>
+                                  <div>
+                                    {ticket.details?.odds?.reduce(
+                                      (all: number, curr: any) =>
+                                        all * curr.rate,
+                                      1
+                                    )}
+                                  </div>
+                                </div>
+                                <div>
+                                  <div className="text-gray-400">
+                                    <Trans>Bet amount</Trans>
+                                  </div>
+                                  <div>
+                                    {ticket.bet_sum}{" "}
+                                    {
+                                      currencyList[ticket.currency]
+                                        ?.symbol_native
+                                    }
+                                  </div>
+                                </div>
+                                <div>
+                                  <div className="text-gray-400">
+                                    <Trans>Payout</Trans>
+                                  </div>
+                                  <div>
+                                    {ticket.win_sum}{" "}
+                                    {
+                                      currencyList[ticket.currency]
+                                        ?.symbol_native
+                                    }
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </TableCell>
+                        </TableRow>
                       )}
-                    </TableCell>
-                  </TableRow>
-                ))}
+                    </Fragment>
+                  );
+                })}
               </Fragment>
             ))
           )}
