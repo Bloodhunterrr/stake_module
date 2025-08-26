@@ -10,6 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { X, ChevronDown, Search as SearchIcon , LoaderCircle } from "lucide-react";
 import AllItemsList from "@/components/casino/allItemsListSearch.tsx";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 const useDebounce = (value: string | null, delay: number): string | null => {
     const [debouncedValue, setDebouncedValue] = useState(value);
@@ -130,18 +131,19 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
     const selectedCount = useMemo(() => selectedCategoryItems.length + selectedProviderItems.length, [selectedCategoryItems, selectedProviderItems]);
 
+    const { t } = useLingui()
+
     return (
         <div className="flex flex-col items-start w-full container mx-auto  gap-4">
             {/* Search input */}
             <div className="flex sticky top-0 z-20 bg-background/90 flex-col px-2 pb-2 items-center w-full gap-2 ">
-                <p className={'h-12 flex items-center mt-6 text-semibold  text-2xl text-muted lg:text-4xl'}>Search</p>
-                <div
-                    className="relative flex items-center pl-3.5 h-10 rounded-full bg-popover  hover:bg-popover/80  w-full ">
+                <p className={'h-12 flex items-center mt-6 text-semibold text-2xl text-muted lg:text-4xl'}><Trans>Search</Trans></p>
+                <div className="relative flex items-center pl-3.5 h-10 rounded-full bg-popover hover:bg-popover/80 w-full ">
                     <SearchIcon className=" size-5 text-muted-foreground "/>
                     <Input
                         tabIndex={1}
                         aria-label="Search games"
-                        placeholder="Search"
+                        placeholder={t`Search`}
                         value={searchQuery ?? ""}
                         onChange={handleSearchChange}
                         className="flex placeholder:text-primary-foreground text-primary-foreground placeholder:text-sm placeholder:font-semibold h-10 border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0  rounded-full items-center gap-2 cursor-pointer px-3 transition"
@@ -164,16 +166,16 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
                                 setSearchModal(false)
                             }
                         }}
-                        className="h-full flex items-center justify-end pr-2 cursor-pointer w-12  text-primary-foreground text-[11px]">
-                        Close
+                        className="h-full flex items-center justify-end pr-2 cursor-pointer w-12 text-primary-foreground text-[11px] font-medium mr-2">
+                        <Trans>Close</Trans>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                     <Button variant="outline" onClick={() => setProviderModal(true)}
-                            className="min-w-[9rem] justify-between">
-                        <span className="flex items-center gap-2">Provider</span>
-                        <div className="flex items-center gap-2">
+                            className="min-w-[9rem] justify-between text-white/70 hover:text-black">
+                        <span className="flex items-center gap-2"><Trans>Provider</Trans></span>
+                        <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">
                             {selectedProviderItems.length > 0 && (
                                 <Badge variant="secondary"
                                        className="rounded-full">{selectedProviderItems.length}</Badge>
@@ -183,12 +185,11 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
                     </Button>
 
                     <Button variant="outline" onClick={() => setCategoryModal(true)}
-                            className="min-w-[9rem] justify-between">
-                        <span className="flex items-center gap-2">Category</span>
-                        <div className="flex items-center gap-2">
+                            className="min-w-[9rem] justify-between text-white/70 hover:text-black">
+                        <span className="flex items-center gap-2"><Trans>Category</Trans></span>
+                        <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">
                             {selectedCategoryItems.length > 0 && (
-                                <Badge variant="secondary"
-                                       className="rounded-full">{selectedCategoryItems.length}</Badge>
+                                <Badge variant="secondary" className="rounded-full">{selectedCategoryItems.length}</Badge>
                             )}
                             <ChevronDown className="h-4 w-4 opacity-70"/>
                         </div>
@@ -216,17 +217,17 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
                     ))}
 
                     <Button variant="link" className="px-1" onClick={clearAllSelected}>
-                        Clear all
+                        <Trans>Clear all</Trans>
                     </Button>
                 </div>
             )}
 
             {/*/!* Results header *!/*/}
-            <div className="flex flex-col items-center px-2 gap-3">
+            <div className="flex flex-row items-center px-2 gap-3">
 
-                <h3 className="text-sm font-semibold text-muted-foreground">Search results</h3>
+                <h3 className="text-md font-bold text-white"><Trans>Search results</Trans></h3>
                 {totalGames > 0 && (
-                    <Badge variant="outline" className="text-sm h-6">{totalGames}</Badge>
+                    <Badge variant="outline" className="text-sm font-bold h-6 text-white bg-[#525766] rounded-4xl border-0 px-1.5">{totalGames}</Badge>
                 )}
             </div>
 
@@ -254,12 +255,12 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
             {/*/!* Category Dialog *!/*/}
             <Dialog open={categoryModal} onOpenChange={setCategoryModal}>
-                <DialogContent className="max-h-[80vh] overflow-hidden p-0">
-                    <DialogHeader className="px-6 pt-6">
-                        <DialogTitle>Categories</DialogTitle>
+                <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
+                    <DialogHeader className="px-6 pt-5">
+                        <DialogTitle className="text-white/70"><Trans>Categories</Trans></DialogTitle>
                     </DialogHeader>
                     <Separator />
-                    <ScrollArea className="h-[70vh] px-6 py-4">
+                    <ScrollArea className="h-[70vh] px-6 pt-1 pb-6">
                         <AllItemsList
                             items={allSubcategories}
                             type="subcategory"
@@ -274,12 +275,12 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
             {/*/!* Provider Dialog *!/*/}
             <Dialog open={providerModal} onOpenChange={setProviderModal}>
-                <DialogContent className="max-h-[80vh] overflow-hidden p-0">
-                    <DialogHeader className="px-6 pt-6">
-                        <DialogTitle>Providers</DialogTitle>
+                <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
+                    <DialogHeader className="px-6 pt-5">
+                        <DialogTitle className="text-white/70"><Trans>Providers</Trans></DialogTitle>
                     </DialogHeader>
                     <Separator />
-                    <ScrollArea className="h-[70vh] px-6 py-4">
+                    <ScrollArea className="h-[70vh] px-6 pt-1 pb-6">
                         <AllItemsList
                             items={allProviders}
                             type="provider"

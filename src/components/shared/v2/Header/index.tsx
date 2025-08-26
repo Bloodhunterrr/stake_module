@@ -172,7 +172,7 @@ const NavBar = (props: NavBarProps) => {
 
                     <Button
                         variant="secondary"
-                        className="bg-transparent hover:bg-transparent border-[1px] border-primary-foreground/30 text-[11px] rounded-full p-2 h-8 text-primary-foreground"
+                        className="bg-[#101114] hover:bg-[#525766] items-center shadow-[inset_0_0_0_1px_#454956] hover:shadow-none w-[70px] h-8 text-xs text-white cursor-pointer flex justify-center relative no-underline transition-all duration-[0.15s] ease-[ease-in-out] rounded-2xl border-[none]"
                         onClick={() => setLoginModalOpen(true)}
                     >
                       <Trans>Log in</Trans>

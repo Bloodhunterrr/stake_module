@@ -30,6 +30,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import {cn} from "@/lib/utils.ts";
+import {Trans, useLingui} from "@lingui/react/macro";
 interface Category {
   id: number;
   slug: string;
@@ -70,6 +71,8 @@ const SubcategoryGames = () => {
   }, [dataTree, category, subcategory, navigate]);
     const [searchModal, setSearchModal] = useState(false);
 
+    const { t } = useLingui()
+
   return (
       <>
         {mainData && (
@@ -90,19 +93,17 @@ const SubcategoryGames = () => {
               <div className="">
                 <div className="p-3 flex items-center justify-between">
                   <div className="flex items-center just gap-4">
-                    <button
-                        onClick={() => navigate(-1)}
-                        className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition"
-                    >
+                    <button onClick={() => navigate(-1)}
+                        className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition">
                       <ArrowUpIcon className="w-4 h-4 -rotate-90"/>
                     </button>
                     <div>
                       <h1 className="font-bold text-lg text-primary-foreground">
-                        {subcategory?.name ?? "Top Games"}
+                        {subcategory?.name ?? t`Top Games`}
                       </h1>
                       {totalGames > 0 && (
                           <p className="text-card text-sm">
-                            {totalGames} games
+                            {totalGames} <Trans>games</Trans>
                           </p>
                       )}
                     </div>
@@ -119,10 +120,9 @@ const SubcategoryGames = () => {
                                             ? "text-card"
                                             : "text-white "
                                     }`}/>
-                                    <span
-                                    >
+                                    <Trans>
                                         Sort
-                                    </span>
+                                    </Trans>
                                 </button>
                             </PopoverTrigger>
                             <PopoverContent className={'aspect-square flex flex-col text-sm gap-2 font-semibold  bg-background/40 text-primary-foreground w-40 rounded-sm border-none backdrop-blur-sm'}>
@@ -136,10 +136,9 @@ const SubcategoryGames = () => {
                                             ? "text-transparent"
                                             : "text-card "
                                     }`}/>
-                                    <span
-                                    >
+                                    <Trans>
                                         For You
-                                    </span>
+                                    </Trans>
                                 </button>
                                 <button
                                     onClick={() => setIsSortingEnabled((p) => !p)}
@@ -149,8 +148,7 @@ const SubcategoryGames = () => {
                                     <ArrowUpDown size={18}  className={cn('text-transparent ' , {
                                          'text-card' : isSortingEnabled
                                     })}/>
-                                    <span
-                                    >
+                                    <span>
                                         A - Z
                                     </span>
                                 </button>
@@ -158,24 +156,24 @@ const SubcategoryGames = () => {
                         </Popover>
                       <SheetTrigger className={'w-1/2 flex gap-1  flex-row items-center justify-center'}>
                         <Settings2 size={20}/>
-                        <span>Filter</span>
+                        <Trans>Filter</Trans>
                       </SheetTrigger>
                     </div>
                     <SheetContent closeIconClassName={'text-primary-foreground focus:ring-none focus:ring-0 focus:ring-offset-0'} className={'border-none w-full border-r sm:max-w-sm'}>
                       <SheetHeader className={' h-26 flex items-center justify-end'}>
-                        <SheetTitle className={'text-2xl font-semibold text-primary-foreground'}>Filters</SheetTitle>
+                        <SheetTitle className={'text-2xl font-semibold text-primary-foreground'}><Trans>Filters</Trans></SheetTitle>
                       </SheetHeader>
                         <div
                             onClick={() => setSearchModal(true)}
                             className="flex h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover  hover:bg-popover/80 transition"
                         >
                             <SearchIcon className=" size-5 text-muted-foreground "/>
-                            <span className={'font-semibold text-primary-foreground text-sm'}>Search</span>
+                          <span className={'font-semibold text-primary-foreground text-sm'}><Trans>Search</Trans></span>
                         </div>
                       <div className={'px-4'}>
                         <Accordion type="single" defaultValue={'providers'} collapsible>
                           <AccordionItem value="providers" className={'no-underline '}>
-                            <AccordionTrigger className={'flex text-primary-foreground  items-center justify-start text-lg hover:no-underline'}>Providers</AccordionTrigger>
+                            <AccordionTrigger className={'flex text-primary-foreground  items-center justify-start text-lg hover:no-underline'}><Trans>Providers</Trans></AccordionTrigger>
                             <AccordionContent className={'flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2 '}>
                               {
                                 providers?.map((provider) => (

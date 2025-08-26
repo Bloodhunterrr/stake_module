@@ -146,7 +146,7 @@ export default function Footer() {
 
         <div className="mt-6 text-center">
           <button className="text-sm text-gray-400 hover:text-white flex items-center gap-1">
-            License
+            <Trans>License</Trans>
           </button>
         </div>
       </div>

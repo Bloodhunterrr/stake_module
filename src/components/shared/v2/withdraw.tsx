@@ -24,6 +24,7 @@ import { currencyList } from "@/utils/currencyList.ts";
 import Support from "@/assets/icons/support.svg?react";
 import { useGetNpCryptoListQuery } from "@/services/mainApi.ts";
 import { useCreateWithdrawMutation } from "@/services/authApi.ts";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 type WithdrawProps = {
   isOpen: boolean;
@@ -144,11 +145,13 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
     }
   };
 
+  const { t } = useLingui()
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] bg-white text-card-foreground shadow-lg border">
         <DialogHeader>
-          <DialogTitle>Withdraw</DialogTitle>
+          <DialogTitle><Trans>Withdraw</Trans></DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
@@ -177,7 +180,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
                 }}
               >
                 <SelectTrigger className="w-[120px] bg-white text-foreground border">
-                  <SelectValue placeholder="Select a wallet" />
+                  <SelectValue placeholder={t`Select a wallet`} />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
                   {user.wallets?.map((w: Wallet) => (
@@ -205,7 +208,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
               onValueChange={(value) => setSelectedCrypto(value)}
             >
               <SelectTrigger className="bg-white text-foreground border w-full">
-                <SelectValue placeholder="Search for a crypto..." />
+                <SelectValue placeholder={t`Search for a crypto...`} />
               </SelectTrigger>
               <SelectContent className="bg-white">
                 {cryptoData?.cryptos?.map((crypto) => (

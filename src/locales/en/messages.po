@@ -317,11 +317,11 @@ msgstr "€500 + 100 Free Spins"
 msgid "55% up to"
 msgstr "55% up to"
 
-#: src/components/shared/footer/index.tsx:61
+#: src/components/shared/footer/index.tsx:33
 msgid "About BTC"
 msgstr "About BTC"
 
-#: src/components/shared/footer/index.tsx:58
+#: src/components/shared/footer/index.tsx:30
 msgid "About Us"
 msgstr "About Us"
 
@@ -334,7 +334,7 @@ msgstr "About Us"
 #~ msgid "Address"
 #~ msgstr "Address"
 
-#: src/components/shared/footer/index.tsx:106
+#: src/components/shared/footer/index.tsx:78
 msgid "Affiliates"
 msgstr "Affiliates"
 
@@ -346,7 +346,7 @@ msgstr "Affiliates"
 #~ msgid "All Providers"
 #~ msgstr "All Providers"
 
-#: src/components/shared/footer/index.tsx:64
+#: src/components/shared/footer/index.tsx:36
 msgid "AML Policy"
 msgstr "AML Policy"
 
@@ -408,7 +408,7 @@ msgstr "Bientôt disponible"
 #~ msgid "Bonus money"
 #~ msgstr "Bonus money"
 
-#: src/components/shared/footer/index.tsx:70
+#: src/components/shared/footer/index.tsx:42
 msgid "Bonus Terms"
 msgstr "Bonus Terms"
 
@@ -434,13 +434,13 @@ msgstr "Casino"
 #~ msgid "Casino History"
 #~ msgstr "Casino History"
 
-#: src/components/casino/search.tsx:318
-#~ msgid "Categories"
-#~ msgstr "Categories"
+#: src/components/shared/v2/casino/search.tsx:260
+msgid "Categories"
+msgstr "Categories"
 
-#: src/components/casino/search.tsx:220
-#~ msgid "Category"
-#~ msgstr "Category"
+#: src/components/shared/v2/casino/search.tsx:189
+msgid "Category"
+msgstr "Category"
 
 #: src/components/casino/feedbackForm.tsx:88
 msgid "characters left"
@@ -450,13 +450,13 @@ msgstr "characters left"
 #~ msgid "City"
 #~ msgstr "City"
 
-#: src/components/casino/search.tsx:271
-#~ msgid "Clear all"
-#~ msgstr "Clear all"
+#: src/components/shared/v2/casino/search.tsx:220
+msgid "Clear all"
+msgstr "Clear all"
 
-#: src/components/profile/history/SportHistory.tsx:425
-#~ msgid "Close"
-#~ msgstr "Close"
+#: src/components/shared/v2/casino/search.tsx:170
+msgid "Close"
+msgstr "Close"
 
 #: src/components/profile/profile/Security.tsx:227
 #~ msgid "Confirm password"
@@ -467,7 +467,7 @@ msgstr "characters left"
 #~ msgid "Confirmed"
 #~ msgstr "Confirmed"
 
-#: src/components/shared/footer/index.tsx:91
+#: src/components/shared/footer/index.tsx:63
 msgid "Cookie Policy"
 msgstr "Cookie Policy"
 
@@ -524,7 +524,7 @@ msgstr "Cookie Policy"
 msgid "Deposit Now"
 msgstr "Deposit Now"
 
-#: src/components/shared/footer/index.tsx:76
+#: src/components/shared/footer/index.tsx:48
 msgid "Dispute Resolution"
 msgstr "Dispute Resolution"
 
@@ -566,13 +566,21 @@ msgstr "Enter the text"
 #~ msgid "Failed to initiate withdraw. Contact Support"
 #~ msgstr "Failed to initiate withdraw. Contact Support"
 
-#: src/components/shared/footer/index.tsx:73
+#: src/components/shared/footer/index.tsx:45
 msgid "Fairness & RNG Testing Methods"
 msgstr "Fairness & RNG Testing Methods"
 
-#: src/components/shared/footer/index.tsx:94
+#: src/components/shared/footer/index.tsx:66
 msgid "FAQ"
 msgstr "FAQ"
+
+#: src/routes/casino/subCategoryGames.tsx:125
+msgid "Filter"
+msgstr "Filter"
+
+#: src/routes/casino/subCategoryGames.tsx:130
+msgid "Filters"
+msgstr "Filters"
 
 #: src/components/profile/profile/UserInfo.tsx:59
 #~ msgid "First name"
@@ -592,10 +600,9 @@ msgstr "FAQ"
 #~ msgid "Game Name"
 #~ msgstr "Game Name"
 
-#: src/routes/casino/providersGames.tsx:80
-#: src/routes/casino/subCategoryGames.tsx:100
-#~ msgid "games"
-#~ msgstr "games"
+#: src/routes/casino/subCategoryGames.tsx:103
+msgid "games"
+msgstr "games"
 
 #: src/components/profile/profile/UserInfo.tsx:157
 #~ msgid "Gender"
@@ -647,7 +654,7 @@ msgstr "Help us improve your experience"
 #~ msgid "Jackpot"
 #~ msgstr "Jackpot"
 
-#: src/components/shared/footer/index.tsx:97
+#: src/components/shared/footer/index.tsx:69
 msgid "KYC Policies"
 msgstr "KYC Policies"
 
@@ -824,7 +831,7 @@ msgstr "Please leave some feedback or report a bug/issue you have faced."
 #~ msgid "Preferences"
 #~ msgstr "Preferences"
 
-#: src/components/shared/footer/index.tsx:88
+#: src/components/shared/footer/index.tsx:60
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
@@ -836,23 +843,22 @@ msgstr "Profile"
 #~ msgid "Profile info"
 #~ msgstr "Profile info"
 
-#: src/components/shared/footer/index.tsx:55
+#: src/components/shared/footer/index.tsx:27
 msgid "Promotions"
 msgstr "Promotions"
 
-#: src/components/casino/search.tsx:191
-#~ msgid "Provider"
-#~ msgstr "Provider"
+#: src/components/shared/v2/casino/search.tsx:177
+msgid "Provider"
+msgstr "Provider"
 
 #: src/routes/casino/allProvidersList.tsx:69
 #~ msgid "providers"
 #~ msgstr "providers"
 
-#: src/components/casino/providerSlider.tsx:15
-#: src/components/casino/search.tsx:338
-#: src/components/casino/subcategorySlider.tsx:56
-#~ msgid "Providers"
-#~ msgstr "Providers"
+#: src/components/shared/v2/casino/search.tsx:280
+#: src/routes/casino/subCategoryGames.tsx:140
+msgid "Providers"
+msgstr "Providers"
 
 #: src/components/casino/lobbyBannerSlider.tsx:66
 msgid "Read More"
@@ -867,7 +873,7 @@ msgstr "Read More"
 msgid "Recharge et retire en Crypto."
 msgstr "Recharge et retire en Crypto."
 
-#: src/components/shared/footer/index.tsx:82
+#: src/components/shared/footer/index.tsx:54
 msgid "Responsible Gaming"
 msgstr "Responsible Gaming"
 
@@ -875,11 +881,11 @@ msgstr "Responsible Gaming"
 #~ msgid "Returned"
 #~ msgstr "Returned"
 
-#: src/components/shared/footer/index.tsx:103
+#: src/components/shared/footer/index.tsx:75
 msgid "Reviews"
 msgstr "Reviews"
 
-#: src/components/shared/footer/index.tsx:85
+#: src/components/shared/footer/index.tsx:57
 msgid "Risk Warnings"
 msgstr "Risk Warnings"
 
@@ -895,7 +901,13 @@ msgstr "ROOKIE RUMBLE TOURNAMENT"
 #~ msgid "Saving..."
 #~ msgstr "Saving..."
 
+#: src/components/casino/allItemsListSearch.tsx:60
+#: src/components/casino/subcategorySlider.tsx:80
+#: src/components/shared/v2/casino/search.tsx:140
+#: src/components/shared/v2/casino/search.tsx:146
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
 #: src/components/shared/v2/Header/index.tsx:204
+#: src/routes/casino/subCategoryGames.tsx:135
 msgid "Search"
 msgstr "Search"
 
@@ -907,9 +919,13 @@ msgstr "Search"
 #~ msgid "Search cryptocurrency..."
 #~ msgstr "Search cryptocurrency..."
 
-#: src/components/casino/search.tsx:283
-#~ msgid "Search results"
-#~ msgstr "Search results"
+#: src/components/shared/v2/withdraw.tsx:211
+msgid "Search for a crypto..."
+msgstr "Search for a crypto..."
+
+#: src/components/shared/v2/casino/search.tsx:228
+msgid "Search results"
+msgstr "Search results"
 
 #: src/components/casino/lobbyBannerSlider.tsx:70
 msgid "SECOND DEPOSIT BONUS"
@@ -924,6 +940,10 @@ msgstr "SECOND DEPOSIT BONUS"
 #~ msgid "Select a language"
 #~ msgstr "Select a language"
 
+#: src/components/shared/v2/withdraw.tsx:183
+msgid "Select a wallet"
+msgstr "Select a wallet"
+
 #: src/components/casino/feedbackForm.tsx:60
 msgid "Select category of problem"
 msgstr "Select category of problem"
@@ -932,7 +952,7 @@ msgstr "Select category of problem"
 #~ msgid "Selected"
 #~ msgstr "Selected"
 
-#: src/components/shared/footer/index.tsx:79
+#: src/components/shared/footer/index.tsx:51
 msgid "Self-Exclusion"
 msgstr "Self-Exclusion"
 
@@ -957,7 +977,11 @@ msgstr "Send message"
 #~ msgid "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
 #~ msgstr "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
 
-#: src/components/shared/footer/index.tsx:100
+#: src/routes/casino/subCategoryGames.tsx:119
+msgid "Sort"
+msgstr "Sort"
+
+#: src/components/shared/footer/index.tsx:72
 msgid "Sport Betting Terms"
 msgstr "Sport Betting Terms"
 
@@ -974,7 +998,7 @@ msgstr "Sport Betting Terms"
 #~ msgid "Switch Game"
 #~ msgstr "Switch Game"
 
-#: src/components/shared/footer/index.tsx:67
+#: src/components/shared/footer/index.tsx:39
 msgid "Terms & Conditions"
 msgstr "Terms & Conditions"
 
@@ -994,6 +1018,10 @@ msgstr "Thank you for making our service better"
 #: src/components/profile/profile/UserInfo.tsx:21
 #~ msgid "To edit the data, please contact support"
 #~ msgstr "To edit the data, please contact support"
+
+#: src/routes/casino/subCategoryGames.tsx:99
+msgid "Top Games"
+msgstr "Top Games"
 
 #: src/components/profile/wallet.tsx:66
 #~ msgid "Total balance"
@@ -1015,7 +1043,8 @@ msgstr "up to 25%"
 #~ msgid "Username"
 #~ msgstr "Username"
 
-#: src/components/casino/lobbySlider.tsx:68
+#: src/components/casino/lobbySlider.tsx:69
+#: src/components/casino/lobbySlider.tsx:169
 #: src/components/casino/providerSlider.tsx:34
 msgid "View all"
 msgstr "View all"
@@ -1051,12 +1080,9 @@ msgstr "WEEKLY CASHBACK"
 #~ msgid "Win Amount"
 #~ msgstr "Win Amount"
 
-#: src/components/profile/wallet.tsx:81
-#: src/components/shared/modals/withdraw-info.tsx:11
-#: src/components/shared/modals/withdraw.tsx:194
-#: src/components/shared/modals/withdraw.tsx:315
-#~ msgid "Withdraw"
-#~ msgstr "Withdraw"
+#: src/components/shared/v2/withdraw.tsx:154
+msgid "Withdraw"
+msgstr "Withdraw"
 
 #: src/components/shared/modals/withdraw.tsx:183
 #~ msgid "Withdraw initiated successfully!"

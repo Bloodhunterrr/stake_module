@@ -30,8 +30,6 @@ export const DesktopSlider = ({
   const [offset, setOffset] = useState(0);
 
   const limit = subcategory.landing_page_game_number;
-  const columns = subcategory.landing_page_game_row_number;
-
 
   const { data, isLoading, isFetching } = useGetGameListQuery({
     category_ids: subcategory?.id ? [subcategory.id] : [],
@@ -41,6 +39,10 @@ export const DesktopSlider = ({
   });
 
   const games = isLoading ? Array(limit).fill(null) : data?.games ?? [];
+  const columns = subcategory.landing_page_game_row_number > games.length
+      ? games.length
+      : subcategory.landing_page_game_row_number;
+
 
   const handlePrev = () => {
     setOffset((prev) => Math.max(prev - limit, 0));
@@ -51,8 +53,7 @@ export const DesktopSlider = ({
   };
 
   const isPrevDisabled = offset === 0 || isFetching;
-  const isNextDisabled =
-    isFetching || (data?.total !== undefined && offset + limit >= data.total);
+  const isNextDisabled = isFetching || (data?.total !== undefined && offset + limit >= data.total);
 
   const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
 
@@ -165,7 +166,7 @@ const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
         >
           {/*Deleted Totals*/}
           {/*{data?.total != null && <span>({data.total})</span>}*/}
-          View all
+          <Trans>View all</Trans>
         </button>
       </div>
 

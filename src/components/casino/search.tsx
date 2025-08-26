@@ -160,7 +160,7 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
 
         <div className="flex items-center gap-2">
           <Button variant="outline" onClick={() => setProviderModal(true)} className="min-w-[9rem] justify-between">
-            <span className="flex items-center gap-2">Provider</span>
+            <span className="flex items-center gap-2 text-white/70">Provider</span>
             <div className="flex items-center gap-2">
               {selectedProviderItems.length > 0 && (
                 <Badge variant="secondary" className="rounded-full">{selectedProviderItems.length}</Badge>
@@ -170,7 +170,7 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
           </Button>
 
           <Button variant="outline" onClick={() => setCategoryModal(true)} className="min-w-[9rem] justify-between">
-            <span className="flex items-center gap-2">Category</span>
+            <span className="flex items-center gap-2 text-white/70">Category</span>
             <div className="flex items-center gap-2">
               {selectedCategoryItems.length > 0 && (
                 <Badge variant="secondary" className="rounded-full">{selectedCategoryItems.length}</Badge>
@@ -210,7 +210,7 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
       <div className="flex items-center gap-3">
         <h3 className="text-sm font-semibold text-muted-foreground">Search results</h3>
         {totalGames > 0 && (
-          <Badge variant="outline" className="text-sm h-6">{totalGames}</Badge>
+          <Badge variant="outline" className="text-sm h-6 text-white/70">{totalGames}</Badge>
         )}
       </div>
 
@@ -238,12 +238,12 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
 
       {/* Category Dialog */}
       <Dialog open={categoryModal} onOpenChange={setCategoryModal}>
-        <DialogContent className="max-h-[80vh] overflow-hidden p-0">
+        <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
           <DialogHeader className="px-6 pt-6">
-            <DialogTitle>Categories</DialogTitle>
+            <DialogTitle className="text-white/70">Categories</DialogTitle>
           </DialogHeader>
           <Separator />
-          <ScrollArea className="h-[70vh] px-6 py-4">
+          <ScrollArea className="h-[70vh] px-6 pt-1 pb-6">
             <AllItemsList
               items={allSubcategories}
               type="subcategory"
@@ -258,12 +258,12 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
 
       {/* Provider Dialog */}
       <Dialog open={providerModal} onOpenChange={setProviderModal}>
-        <DialogContent className="max-h-[80vh] overflow-hidden p-0">
-          <DialogHeader className="px-6 pt-6">
-            <DialogTitle>Providers</DialogTitle>
+        <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
+          <DialogHeader className="px-6 pt-5">
+            <DialogTitle className="text-white/70">Providers</DialogTitle>
           </DialogHeader>
           <Separator />
-          <ScrollArea className="h-[70vh] px-6 py-4">
+          <ScrollArea className="h-[70vh] px-6 pt-1 pb-6">
             <AllItemsList
               items={allProviders}
               type="provider"

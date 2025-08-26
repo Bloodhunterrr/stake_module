@@ -12,6 +12,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import config from "@/config";
+import {Trans} from "@lingui/react/macro";
 
 type Props = {
   data: Record<string, { subcategories: Subcategory[] }>[];
@@ -40,17 +41,13 @@ export default function SubcategorySlider({ data }: Props) {
             align: "start",
             loop: false,
           }}
-          className="w-full"
-        >
+          className="w-full" >
           <CarouselContent>
             {subcategories.map((subcategory: Subcategory) => (
               <CarouselItem
                 key={subcategory.id}
                 className="basis-full sm:basis-1/2 md:basis-1/4 lg:basis-1/7 pl-2"
-                onClick={() =>
-                  navigate(`/${categorySlug}/games/${subcategory.slug}`)
-                }
-              >
+                onClick = {() => navigate(`/${categorySlug}/games/${subcategory.slug}`) }>
                 <div className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-accent transition">
                   {subcategory.icon && (
                     <img
@@ -80,7 +77,7 @@ export default function SubcategorySlider({ data }: Props) {
 
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent className="overflow-auto max-h-[80%]">
-          <DialogTitle>Search</DialogTitle>
+          <DialogTitle><Trans>Search</Trans></DialogTitle>
           <Search onCloseSearchModal={() => setSearchModal(false)} />
         </DialogContent>
       </Dialog>

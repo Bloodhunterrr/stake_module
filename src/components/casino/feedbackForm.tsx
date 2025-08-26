@@ -14,7 +14,7 @@ const FeedbackForm = () => {
   };
 
   return (
-    <section>
+    <section className="hidden">
       <div className="feedback-section">
         <div
           className={`feedback-header feedback-section-column${

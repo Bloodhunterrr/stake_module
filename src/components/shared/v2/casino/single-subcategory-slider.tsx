@@ -7,6 +7,7 @@ import { SearchIcon } from 'lucide-react';
 import Search from "@/components/shared/v2/casino/search.tsx";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider.tsx";
 import {useTheme} from "@/hooks/useTheme.tsx";
+import {Trans} from "@lingui/react/macro";
 type Props = {
     data: Record<string, { subcategories: Subcategory[] }>[];
     paramsSubcategory?: string;
@@ -36,7 +37,7 @@ const SubcategorySlider = ({ data , paramsSubcategory , showBanner = false }: Pr
                 className="flex h-10 container mx-auto rounded-full lg:w-full w-[calc(100%-1rem)] items-center gap-2 mt-4 cursor-pointer px-3 bg-popover  hover:bg-popover/80 transition"
             >
                 <SearchIcon className="size-5"/>
-                <span className={'font-semibold text-sm'}>Search</span>
+                <span className={'font-semibold text-sm'}><Trans>Search</Trans></span>
             </div>
             {
                 showBanner && <div className={'pt-10 lg:pb-3 container mx-auto'}>
