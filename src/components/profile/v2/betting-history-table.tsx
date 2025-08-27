@@ -101,7 +101,7 @@ const BettingHistoryTable = () => {
               variant="outline"
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {format(dates.startDate, "dd/MM/yyyy")}
             </Button>
           </PopoverTrigger>
@@ -123,7 +123,7 @@ const BettingHistoryTable = () => {
               variant="outline"
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {format(dates.endDate, "dd/MM/yyyy")}
             </Button>
           </PopoverTrigger>
@@ -215,7 +215,7 @@ const BettingHistoryTable = () => {
                               {Number(ticket.bet_sum).toFixed(2)}{" "}
                               {currencyList[ticket.currency]?.symbol_native}
                             </span>
-                            <span className="text-[12px]">
+                            <span className="text-[12px] block max-w-[170px] sm:max-w-full truncate">
                               ({ticket.betID})
                             </span>
                           </div>

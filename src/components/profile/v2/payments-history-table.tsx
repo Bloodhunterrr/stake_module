@@ -102,7 +102,7 @@ const PaymentsHistoryTable = () => {
               variant="outline"
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.startDate
                 ? format(dates.startDate, "dd/MM/yyyy")
                 : "Pick start date"}
@@ -126,7 +126,7 @@ const PaymentsHistoryTable = () => {
               variant="outline"
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.endDate
                 ? format(dates.endDate, "dd/MM/yyyy")
                 : "Pick end date"}

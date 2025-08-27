@@ -84,7 +84,7 @@ const CasinoHistoryTable = () => {
               variant="outline"
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.startDate
                 ? format(dates.startDate, "dd/MM/yyyy")
                 : "Pick start date"}
@@ -108,7 +108,7 @@ const CasinoHistoryTable = () => {
               variant="outline"
               className="justify-start text-left font-normal bg-transparent text-accent-foreground"
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.endDate
                 ? format(dates.endDate, "dd/MM/yyyy")
                 : "Pick end date"}
@@ -184,7 +184,12 @@ const CasinoHistoryTable = () => {
                     <TableCell>
                       {format(new Date(trx.created_at), "HH:mm")}
                     </TableCell>
-                    <TableCell>{trx.id}</TableCell>
+                    <TableCell>
+                      <span className="block max-w-[100px] sm:max-w-full truncate">
+                        {trx.id}
+                      </span>
+                    </TableCell>
+
                     {/* <TableCell>{trx.game_name}</TableCell> */}
                     {/* <TableCell>{trx.game_id}</TableCell> */}
                     <TableCell>
