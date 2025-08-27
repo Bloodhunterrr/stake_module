@@ -1,6 +1,4 @@
 import { useEffect, useState, useMemo, Fragment } from "react";
-import { useGetCasinoHistoryMutation } from "@/services/authApi";
-import { currencyList } from "@/utils/currencyList";
 import {
   Table,
   TableBody,
@@ -9,24 +7,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import PaginationComponent from "@/components/shared/v2/pagination";
-import type { CasinoTransaction } from "@/types/casinoHistory";
-import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
-import Loading from "@/components/shared/loading";
-import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
+import { CalendarIcon } from "lucide-react";
+import { useAppSelector } from "@/hooks/rtk";
+import { Button } from "@/components/ui/button";
+import Loading from "@/components/shared/loading";
+import { Calendar } from "@/components/ui/calendar";
+import { currencyList } from "@/utils/currencyList";
+import { Trans, useLingui } from "@lingui/react/macro";
 import { MultiSelect } from "@/components/ui/multi-select";
 import DateFilter from "@/components/shared/v2/date-filter";
+import type { CasinoTransaction } from "@/types/casinoHistory";
+import { useGetCasinoHistoryMutation } from "@/services/authApi";
+import PaginationComponent from "@/components/shared/v2/pagination";
 
-const CasinoHistoryTable = () => {
+export default function CasinoHistoryTable() {
   const user: User = useAppSelector((state) => state.auth?.user);
 
   const [dates, setDates] = useState({
@@ -56,7 +57,7 @@ const CasinoHistoryTable = () => {
       start_date: format(dates.startDate, "dd-MM-yyyy"),
       end_date: format(dates.endDate, "dd-MM-yyyy"),
       currencies:
-        selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
+          selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
       page,
     });
   }, [dates, selectedCurrencies, page]);
@@ -65,166 +66,160 @@ const CasinoHistoryTable = () => {
     if (!data?.transactions) return {};
 
     return data.transactions.reduce(
-      (acc: Record<string, CasinoTransaction[]>, trx) => {
-        const dateKey = format(new Date(trx.created_at), "dd/MM/yyyy");
-        if (!acc[dateKey]) acc[dateKey] = [];
-        acc[dateKey].push(trx);
-        return acc;
-      },
-      {}
+        (acc: Record<string, CasinoTransaction[]>, trx) => {
+          const dateKey = format(new Date(trx.created_at), "dd/MM/yyyy");
+          if (!acc[dateKey]) acc[dateKey] = [];
+          acc[dateKey].push(trx);
+          return acc;
+        },
+        {}
     );
   }, [data?.transactions]);
 
+  const { t } = useLingui();
+
   return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-3 gap-2 md:gap-4 items-center md:px-0 px-4">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
-              <CalendarIcon className="sm:mr-2 h-4 w-4" />
-              {dates.startDate
-                ? format(dates.startDate, "dd/MM/yyyy")
-                : "Pick start date"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="p-0 bg-white">
-            <Calendar
-              className="w-full"
-              mode="single"
-              selected={dates.startDate}
-              onSelect={(date) =>
-                date && setDates((prev) => ({ ...prev, startDate: date }))
-              }
-            />
-          </PopoverContent>
-        </Popover>
+      <div className="space-y-3">
+        <div className="grid grid-cols-3 gap-2 md:gap-4 items-center md:px-0 px-4">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline"
+                  className="justify-start text-left font-normal bg-transparent text-accent-foreground">
+                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                {dates.startDate
+                    ? format(dates.startDate, "dd/MM/yyyy")
+                    : t`Pick start date`}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 bg-white">
+              <Calendar
+                  className="w-full"
+                  mode="single"
+                  selected={dates.startDate}
+                  onSelect={(date) =>
+                      date && setDates((prev) => ({ ...prev, startDate: date }))
+                  }
+              />
+            </PopoverContent>
+          </Popover>
 
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
-              <CalendarIcon className="sm:mr-2 h-4 w-4" />
-              {dates.endDate
-                ? format(dates.endDate, "dd/MM/yyyy")
-                : "Pick end date"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="p-0 bg-white">
-            <Calendar
-              className="w-full"
-              mode="single"
-              selected={dates.endDate}
-              onSelect={(date) =>
-                date && setDates((prev) => ({ ...prev, endDate: date }))
-              }
-            />
-          </PopoverContent>
-        </Popover>
-
-        {currencyOptions && (
-          <MultiSelect
-            options={currencyOptions}
-            value={selectedCurrencies}
-            onValueChange={(values: string[]) => setSelectedCurrencies(values)}
-            placeholder="All currencies"
-            hideSelectAll={true}
-          />
-        )}
-      </div>
-
-      <DateFilter
-        selected={selectedDateFilter}
-        onSelect={handleDateFilterSelect}
-      />
-
-      <Table className="text-accent-foreground">
-        <TableHeader className="bg-black/10 h-8">
-          <TableRow>
-            <TableHead className="h-8">Time</TableHead>
-            <TableHead className="h-8">Bet ID</TableHead>
-            {/* <TableHead className="h-8">Game</TableHead> */}
-            {/* <TableHead className="h-8">Game ID</TableHead> */}
-            <TableHead className="h-8">Bet Amount</TableHead>
-            <TableHead className="h-8">Win</TableHead>
-          </TableRow>
-        </TableHeader>
-
-        <TableBody>
-          {isLoading ? (
-            <TableRow>
-              <TableCell colSpan={5} className="text-center py-4">
-                <Loading />
-              </TableCell>
-            </TableRow>
-          ) : error || data?.transactions.length === 0 ? (
-            <TableRow>
-              <TableCell
-                colSpan={5}
-                className="text-center py-4 text-accent-foreground"
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                  variant="outline"
+                  className="justify-start text-left font-normal bg-transparent text-accent-foreground"
               >
-                {error ? "No data available" : "No history found."}
-              </TableCell>
+                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                {dates.endDate
+                    ? format(dates.endDate, "dd/MM/yyyy")
+                    : t`Pick end date`}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 bg-white">
+              <Calendar
+                  className="w-full"
+                  mode="single"
+                  selected={dates.endDate}
+                  onSelect={(date) =>
+                      date && setDates((prev) => ({ ...prev, endDate: date }))
+                  }
+              />
+            </PopoverContent>
+          </Popover>
+
+          {currencyOptions && (
+              <MultiSelect
+                  options={currencyOptions}
+                  value={selectedCurrencies}
+                  onValueChange={(values: string[]) => setSelectedCurrencies(values)}
+                  placeholder= {t`All currencies`}
+                  hideSelectAll={true}
+              />
+          )}
+        </div>
+
+        <DateFilter selected={selectedDateFilter} onSelect={handleDateFilterSelect}/>
+
+        <Table className="text-accent-foreground">
+          <TableHeader className="bg-black/10 h-8">
+            <TableRow>
+              <TableHead className="h-8"><Trans>Time</Trans></TableHead>
+              <TableHead className="h-8"><Trans>Bet ID</Trans></TableHead>
+              {/* <TableHead className="h-8"><Trans>Game</Trans></TableHead> */}
+              {/* <TableHead className="h-8"><Trans>Game ID</Trans></TableHead> */}
+              <TableHead className="h-8"><Trans>Bet Amount</Trans></TableHead>
+              <TableHead className="h-8"><Trans>Win</Trans></TableHead>
             </TableRow>
-          ) : (
-            Object.entries(groupedTransactions).map(([date, txs]) => (
-              <Fragment key={date}>
-                <TableRow className="bg-black/80 hover:bg-black/80 text-white h-[30px]">
-                  <TableCell colSpan={5} className="py-0">
-                    {date}
+          </TableHeader>
+
+          <TableBody>
+            {isLoading ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center py-4">
+                    <Loading />
                   </TableCell>
                 </TableRow>
+            ) : error || data?.transactions.length === 0 ? (
+                <TableRow>
+                  <TableCell
+                      colSpan={5}
+                      className="text-center py-4 text-accent-foreground"
+                  >
+                    {error ? t`No data available` : t`No history found.`}
+                  </TableCell>
+                </TableRow>
+            ) : (
+                Object.entries(groupedTransactions).map(([date, txs]) => (
+                    <Fragment key={date}>
+                      <TableRow className="bg-black/80 hover:bg-black/80 text-white h-[30px]">
+                        <TableCell colSpan={5} className="py-0">
+                          {date}
+                        </TableCell>
+                      </TableRow>
 
-                {txs.map((trx) => (
-                  <TableRow key={trx.id}>
-                    <TableCell>
-                      {format(new Date(trx.created_at), "HH:mm")}
-                    </TableCell>
-                    <TableCell>
-                      <span className="block max-w-[100px] sm:max-w-full truncate">
-                        {trx.id}
-                      </span>
-                    </TableCell>
-
-                    {/* <TableCell>{trx.game_name}</TableCell> */}
-                    {/* <TableCell>{trx.game_id}</TableCell> */}
-                    <TableCell>
-                      {Number(trx.details.bet.amount).toFixed(2)}{" "}
-                      {currencyList[trx.currency].symbol_native}
-                    </TableCell>
-                    <TableCell>
-                      {String(trx.details.win.amount) === "0" ? (
-                        <span>-</span>
-                      ) : (
-                        <span>
+                      {txs.map((trx) => (
+                          <TableRow key={trx.id}>
+                            <TableCell>
+                              {format(new Date(trx.created_at), "HH:mm")}
+                            </TableCell>
+                            <TableCell>
+                              <span className="block max-w-[100px] sm:max-w-full truncate">
+                                {trx.id}
+                              </span>
+                            </TableCell>
+                            {/* <TableCell>{trx.game_name}</TableCell> */}
+                            {/* <TableCell>{trx.game_id}</TableCell> */}
+                            <TableCell>
+                              {Number(trx.details.bet.amount).toFixed(2)}{" "}
+                              {currencyList[trx.currency].symbol_native}
+                            </TableCell>
+                            <TableCell>
+                              {String(trx.details.win.amount) === "0" ? (
+                                  <span>-</span>
+                              ) : (
+                                  <span>
                           {trx.details.win.amount}{" "}
-                          {currencyList[trx.currency].symbol_native}
+                                    {currencyList[trx.currency].symbol_native}
                         </span>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </Fragment>
-            ))
-          )}
-        </TableBody>
-      </Table>
+                              )}
+                            </TableCell>
+                          </TableRow>
+                      ))}
+                    </Fragment>
+                ))
+            )}
+          </TableBody>
+        </Table>
 
-      {data && data.transactions.length > 0 && (
-        <div className="p-4">
-          <PaginationComponent
-            totalPages={data.pagination.last_page}
-            currentPage={page}
-            setPage={setPage}
-          />
-        </div>
-      )}
-    </div>
+        {data && data.transactions.length > 0 && (
+            <div className="p-4">
+              <PaginationComponent
+                  totalPages={data.pagination.last_page}
+                  currentPage={page}
+                  setPage={setPage}
+              />
+            </div>
+        )}
+      </div>
   );
 };
-
-export default CasinoHistoryTable;

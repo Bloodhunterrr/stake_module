@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { Eye, EyeOff } from 'lucide-react';
-import { Trans } from "@lingui/react/macro";
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Trans, useLingui } from "@lingui/react/macro";
 import { useLoginMutation } from '@/services/authApi.ts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.tsx';
 
@@ -42,10 +42,12 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
         },
     });
 
+    const { t } = useLingui();
+
     const onSubmit = async (data: LoginFormValues) => {
         try {
             await login(data).unwrap();
-            toast.success('Login successful!');
+            toast.success(t`Login successful!`);
             setLoginModalOpen(false);
         } catch (err: unknown) {
             handleLoginError(err);

@@ -9,6 +9,7 @@ import {
   format,
   endOfYear,
 } from "date-fns";
+import { Trans } from "@lingui/react/macro";
 
 type DateFilterProps = {
   selected: string;
@@ -62,7 +63,7 @@ const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect }) => {
           }`}
           onClick={() => onSelect(f.start, f.end, f.label)}
         >
-          {f.label}
+          <Trans>{f.label}</Trans>
         </div>
       ))}
     </div>

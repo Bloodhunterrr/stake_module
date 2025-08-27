@@ -1,3 +1,4 @@
+import { Trans } from "@lingui/react/macro";
 import Wallet from "@/components/profile/wallet";
 
 const WalletPage = () => {
@@ -5,7 +6,7 @@ const WalletPage = () => {
     <div className="bg-white">
        <div className="container m-0 mx-auto flex w-full min-h-screen  flex-col gap-2 px-5 p-10 text-[12px]">
       <div className="text-lg font-medium text-accent-foreground">
-       Wallet
+          <Trans>Wallet</Trans>
       </div>
       <Wallet />
     </div>

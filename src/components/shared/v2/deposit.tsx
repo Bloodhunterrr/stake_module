@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select.tsx";
 import { cn } from "@/lib/utils.ts";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 type DepositProps = {
   isOpen: boolean;
@@ -96,6 +97,8 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
 
   const [createDeposit, { isLoading }] = useCreateDepositMutation();
 
+  const { t } = useLingui();
+
   useEffect(() => {
     setSelectedWallet(wallet);
     setAmount("");
@@ -111,7 +114,7 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
 
   const handleSubmit = async () => {
     if (!selectedWallet) {
-      setError(`Please select a wallet`);
+      setError(t`Please select a wallet`);
       return;
     }
 
@@ -133,7 +136,7 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
         currency: selectedWallet.slug.toUpperCase(),
       }).unwrap();
 
-      toast.success(`Deposit initiated successfully!`);
+      toast.success(t`Deposit initiated successfully!`);
       onClose();
       window.location.href = data.invoice_url;
     } catch (error) {
@@ -146,7 +149,7 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] bg-white text-card-foreground shadow-lg border">
         <DialogHeader>
-          <DialogTitle>Deposit</DialogTitle>
+          <DialogTitle><Trans>Deposit</Trans></DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
@@ -176,7 +179,7 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
 
               >
                 <SelectTrigger className="w-[120px] bg-white text-foreground border">
-                  <SelectValue placeholder="Select a wallet" />
+                  <SelectValue placeholder={t`Select a wallet`} />
                 </SelectTrigger>
                 <SelectContent>
                   {user.wallets?.map((w: Wallet) => (
@@ -208,9 +211,9 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
             onClick={() => console.log("chat")}
             className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            <p>Need Help?</p>
+            <Trans>Need Help?</Trans>
             <Support className="h-4 w-4" />
-            <span>Live Chat</span>
+            <Trans>Live Chat</Trans>
           </div>
         </div>
       </DialogContent>

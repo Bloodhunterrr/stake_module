@@ -59,7 +59,7 @@ export const DesktopSlider = ({
 
   return (
     <section className="w-full mb-8">
-      <div className="flex w-full items-center lg:pb-2 justify-between ">
+      <div className="flex w-full items-center lg:pb-2 justify-between">
         <h2 className="font-bold mr-auto text-2xl px-3">{subcategory.name}</h2>
         <button
           onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
@@ -80,15 +80,13 @@ export const DesktopSlider = ({
 
       <Carousel
         opts={{ align: "start", loop: false }}
-        className="w-full relative group/items"
-      >
+        className="w-full relative group/items">
         <CarouselContent className="py-4 flex flex-wrap">
           {games.map((game, index) => (
             <CarouselItem
               style={{ flexBasis: `${100 / columns}%` }}
               key={game?.id ?? `skeleton-${index}`}
-              className={`hover:scale-105 transition-all duration-300 py-2`}
-            >
+              className={`hover:scale-105 transition-all duration-300 py-2`}>
               <GameSlot game={game} isLoading={isLoading || isFetching} />
             </CarouselItem>
           ))}
@@ -97,13 +95,11 @@ export const DesktopSlider = ({
         <CarouselPrevious
           onClick={handlePrev}
           disabled={Number(data?.offset ?? 0) === 0}
-          className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"
-        />
+          className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"/>
         <CarouselNext
           onClick={handleNext}
           disabled={shouldNext}
-          className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"
-        />
+          className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"/>
       </Carousel>
     </section>
   );
@@ -162,8 +158,7 @@ const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
         <h6 className="font-semibold">{subcategory.name}</h6>
         <button
           onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
-          className=" text-primary-foreground border rounded-full py-1 px-1.5 text-xs "
-        >
+          className=" text-primary-foreground border rounded-full py-1 px-1.5 text-xs">
           {/*Deleted Totals*/}
           {/*{data?.total != null && <span>({data.total})</span>}*/}
           <Trans>View all</Trans>
@@ -173,19 +168,16 @@ const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
       <div
         ref={carouselRef}
         onScroll={handleScroll}
-        className="flex gap-2 overflow-x-auto no-scrollbar snap-x"
-      >
+        className="flex gap-2 overflow-x-auto no-scrollbar snap-x">
         {games.map((game, i) => (
           <div
             key={`${game?.id ?? "skeleton"}-${i}`}
-            className="flex-shrink-0 w-[150px] snap-start"
-          >
+            className="flex-shrink-0 w-[150px] snap-start">
             <GameSlot game={game} isLoading={game === null} />
           </div>
         ))}
 
-        {isFetching &&
-          Array.from({ length: MOBILE_GAME_LIMIT }).map((_, i) => (
+        {isFetching && Array.from({ length: MOBILE_GAME_LIMIT }).map((_, i) => (
             <div key={`sk-${i}`} className="flex-shrink-0 w-[150px]">
               <GameSlot game={null} isLoading={true} />
             </div>

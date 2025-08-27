@@ -22,9 +22,9 @@ import { Button } from "@/components/ui/button.tsx";
 import type { User, Wallet } from "@/types/auth.ts";
 import { currencyList } from "@/utils/currencyList.ts";
 import Support from "@/assets/icons/support.svg?react";
+import { Trans, useLingui } from "@lingui/react/macro";
 import { useGetNpCryptoListQuery } from "@/services/mainApi.ts";
 import { useCreateWithdrawMutation } from "@/services/authApi.ts";
-import { Trans, useLingui } from "@lingui/react/macro";
 
 type WithdrawProps = {
   isOpen: boolean;
@@ -137,7 +137,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
         crypto_id: cryptoId || 0,
         wallet_address: walletAddress,
       }).unwrap();
-      toast.success(`Withdraw initiated successfully!`);
+      toast.success(t`Withdraw initiated successfully!`);
       onClose(); // or dispatch(setModal({ modal: 'withdraw-info' }))
     } catch (err) {
       setError(`Failed to initiate withdraw. Contact Support`);

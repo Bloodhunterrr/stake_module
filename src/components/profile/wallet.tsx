@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import type { User, Wallet } from "@/types/auth";
 import { InfoIcon, LockIcon } from "lucide-react";
 import { currencyList } from "@/utils/currencyList";
+import { Trans, useLingui } from "@lingui/react/macro";
 import Deposit from "@/components/shared/v2/deposit.tsx";
 import Withdraw from "@/components/shared/v2/withdraw.tsx";
 import { useSetDefaultWalletMutation } from "@/services/authApi";
@@ -37,6 +38,8 @@ export default function Wallet() {
     setIsWithdrawOpen(true);
   };
 
+  const { t } = useLingui();
+
   return (
     <>
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -51,7 +54,7 @@ export default function Wallet() {
                 size="sm"
                 onClick={() => {
                   if (w.default) {
-                    toast.warn("This wallet is already default");
+                    toast.warn(t`This wallet is already default`);
                     return;
                   }
                   setDefaultWallet({
@@ -66,7 +69,7 @@ export default function Wallet() {
             <CardContent className="p-4">
               <div className="mb-4">
                 <CardDescription className="text-sm">
-                  Total balance
+                  <Trans>Total balance</Trans>
                 </CardDescription>
                 <CardTitle className="text-3xl font-bold">
                   {(+w.balance / 100).toLocaleString("en-EN", {
@@ -83,20 +86,20 @@ export default function Wallet() {
                   disabled={!w.limits.can_pay_with_now_payments}
                   onClick={() => handleOpenWithdraw(w)}
                 >
-                  Withdraw
+                  <Trans>Withdraw</Trans>
                 </Button>
                 <Button
                   className="flex-1 bg-card hover:bg-card/70 text-accent-foreground"
                   disabled={!w.limits.can_pay_with_now_payments}
                   onClick={() => handleOpenDeposit(w)}
                 >
-                  Deposit
+                  <Trans>Deposit</Trans>
                 </Button>
               </div>
             </CardContent>
             <CardFooter className="flex justify-between border-t bg-gray-50 p-4">
               <div className="flex flex-col items-start">
-                <span className="text-xs text-gray-500">Real money</span>
+                <span className="text-xs text-gray-500"><Trans>Real money</Trans></span>
                 <div className="mt-1 flex items-center">
                   <CashBackIcon className="mr-2 h-4 w-4 text-green-500" />
                   <span className="text-sm font-medium">
@@ -109,7 +112,7 @@ export default function Wallet() {
                 </div>
               </div>
               <div className="flex flex-col items-start">
-                <span className="text-xs text-gray-500">Bonus money</span>
+                <span className="text-xs text-gray-500"><Trans>Bonus money</Trans></span>
                 <div className="mt-1 flex items-center">
                   <LockIcon className="mr-2 h-4 w-4 text-yellow-500" />
                   <span className="text-sm font-medium">0.00</span>

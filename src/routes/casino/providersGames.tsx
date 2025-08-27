@@ -1,12 +1,13 @@
-import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
-import { useNavigate, useParams } from "react-router";
+import {cn} from "@/lib/utils.ts";
+import {Trans} from "@lingui/react/macro";
 import { useEffect, useState } from "react";
-import { useGetMainQuery } from "@/services/mainApi";
 import type { Provider } from "@/types/main";
+import {useTheme} from "@/hooks/useTheme.tsx";
 import Footer from "@/components/shared/footer";
 import GameListRenderer from "./gameListRenderer";
-import {useTheme} from "@/hooks/useTheme.tsx";
-import {cn} from "@/lib/utils.ts";
+import { useGetMainQuery } from "@/services/mainApi";
+import { useNavigate, useParams } from "react-router";
+import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 
 type DataTree = Record<string, Provider>;
 
@@ -61,7 +62,7 @@ const ProvidersGames = () => {
                           {provider?.name ?? ""}
                         </h1>
                         {totalGames > 0 && (
-                            <p className="text-card text-sm">{totalGames} games</p>
+                            <p className="text-card text-sm">{totalGames} <Trans>games</Trans></p>
                         )}
                       </div>
                     </div>

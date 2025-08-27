@@ -1,10 +1,4 @@
 import { useEffect, useState, useMemo, Fragment } from "react";
-import { useGetTransactionHistoryMutation } from "@/services/authApi";
-import { formatDateToDMY } from "@/utils/formatDate";
-import { format } from "date-fns";
-import { currencyList } from "@/utils/currencyList";
-import type { Transaction } from "@/types/transactionHistory";
-
 import {
   Table,
   TableBody,
@@ -13,24 +7,29 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import PaginationComponent from "@/components/shared/v2/pagination";
-
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
 
-import CheckMarkIcon from "@/assets/icons/check-mark.svg?react";
-import CloseIcon from "@/assets/icons/close.svg?react";
-import Loading from "@/components/shared/loading";
-import { useAppSelector } from "@/hooks/rtk";
+import { format } from "date-fns";
 import type { User } from "@/types/auth";
+import { CalendarIcon } from "lucide-react";
+import { useAppSelector } from "@/hooks/rtk";
+import { Button } from "@/components/ui/button";
+import Loading from "@/components/shared/loading";
+import { Calendar } from "@/components/ui/calendar";
+import { currencyList } from "@/utils/currencyList";
+import { formatDateToDMY } from "@/utils/formatDate";
+import { Trans, useLingui } from "@lingui/react/macro";
+import CloseIcon from "@/assets/icons/close.svg?react";
 import { MultiSelect } from "@/components/ui/multi-select";
 import DateFilter from "@/components/shared/v2/date-filter";
+import type { Transaction } from "@/types/transactionHistory";
+import CheckMarkIcon from "@/assets/icons/check-mark.svg?react";
+import PaginationComponent from "@/components/shared/v2/pagination";
+import { useGetTransactionHistoryMutation } from "@/services/authApi";
 
 const PaymentsHistoryTable = () => {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -43,12 +42,12 @@ const PaymentsHistoryTable = () => {
   const [page, setPage] = useState(1);
   const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
   const [selectedTransactionTypes, setSelectedTransactionTypes] = useState<
-    string[]
+      string[]
   >([]);
   const [selectedDateFilter, setSelectedDateFilter] = useState<string>("");
 
   const [fetchData, { data, isLoading, error }] =
-    useGetTransactionHistoryMutation();
+      useGetTransactionHistoryMutation();
 
   const currencyOptions = user?.wallets.map((w) => ({
     value: w.slug.toUpperCase(),
@@ -71,11 +70,11 @@ const PaymentsHistoryTable = () => {
       start_date: formatDateToDMY(dates.startDate),
       end_date: formatDateToDMY(dates.endDate),
       currencies:
-        selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
+          selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
       action:
-        selectedTransactionTypes.length > 0
-          ? selectedTransactionTypes
-          : undefined,
+          selectedTransactionTypes.length > 0
+              ? selectedTransactionTypes
+              : undefined,
       page,
     });
   }, [page, selectedTransactionTypes, selectedCurrencies, dates]);
@@ -83,167 +82,169 @@ const PaymentsHistoryTable = () => {
   const groupedTransactions = useMemo(() => {
     if (!data?.transactions) return {};
     return data.transactions.reduce(
-      (acc: Record<string, Transaction[]>, trx) => {
-        const dateKey = format(new Date(trx.created_at), "dd/MM/yyyy");
-        if (!acc[dateKey]) acc[dateKey] = [];
-        acc[dateKey].push(trx);
-        return acc;
-      },
-      {}
+        (acc: Record<string, Transaction[]>, trx) => {
+          const dateKey = format(new Date(trx.created_at), "dd/MM/yyyy");
+          if (!acc[dateKey]) acc[dateKey] = [];
+          acc[dateKey].push(trx);
+          return acc;
+        },
+        {}
     );
   }, [data?.transactions]);
 
+  const { t } = useLingui();
+
   return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
-              <CalendarIcon className="sm:mr-2 h-4 w-4" />
-              {dates.startDate
-                ? format(dates.startDate, "dd/MM/yyyy")
-                : "Pick start date"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="p-0 bg-white">
-            <Calendar
-              className="w-full"
-              mode="single"
-              selected={dates.startDate}
-              onSelect={(date) =>
-                date && setDates((prev) => ({ ...prev, startDate: date }))
-              }
-            />
-          </PopoverContent>
-        </Popover>
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                  variant="outline"
+                  className="justify-start text-left font-normal bg-transparent text-accent-foreground"
+              >
+                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                {dates.startDate
+                    ? format(dates.startDate, "dd/MM/yyyy")
+                    : "Pick start date"}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 bg-white">
+              <Calendar
+                  className="w-full"
+                  mode="single"
+                  selected={dates.startDate}
+                  onSelect={(date) =>
+                      date && setDates((prev) => ({ ...prev, startDate: date }))
+                  }
+              />
+            </PopoverContent>
+          </Popover>
 
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
-              <CalendarIcon className="sm:mr-2 h-4 w-4" />
-              {dates.endDate
-                ? format(dates.endDate, "dd/MM/yyyy")
-                : "Pick end date"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="p-0 bg-white">
-            <Calendar
-              className="w-full"
-              mode="single"
-              selected={dates.endDate}
-              onSelect={(date) =>
-                date && setDates((prev) => ({ ...prev, endDate: date }))
-              }
-            />
-          </PopoverContent>
-        </Popover>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                  variant="outline"
+                  className="justify-start text-left font-normal bg-transparent text-accent-foreground"
+              >
+                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                {dates.endDate
+                    ? format(dates.endDate, "dd/MM/yyyy")
+                    : "Pick end date"}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 bg-white">
+              <Calendar
+                  className="w-full"
+                  mode="single"
+                  selected={dates.endDate}
+                  onSelect={(date) =>
+                      date && setDates((prev) => ({ ...prev, endDate: date }))
+                  }
+              />
+            </PopoverContent>
+          </Popover>
 
-        <MultiSelect
-          options={currencyOptions}
-          value={selectedCurrencies}
-          onValueChange={(values: string[]) => setSelectedCurrencies(values)}
-          placeholder="All currencies"
-          hideSelectAll={true}
+          <MultiSelect
+              options={currencyOptions}
+              value={selectedCurrencies}
+              onValueChange={(values: string[]) => setSelectedCurrencies(values)}
+              placeholder={t`All currencies`}
+              hideSelectAll={true}
+          />
+
+          <MultiSelect
+              options={transactionTypeOptions}
+              value={selectedTransactionTypes}
+              onValueChange={(values: string[]) =>
+                  setSelectedTransactionTypes(values)
+              }
+              placeholder={t`All Actions`}
+              hideSelectAll={true}
+          />
+        </div>
+
+        <DateFilter
+            selected={selectedDateFilter}
+            onSelect={handleDateFilterSelect}
         />
 
-        <MultiSelect
-          options={transactionTypeOptions}
-          value={selectedTransactionTypes}
-          onValueChange={(values: string[]) =>
-            setSelectedTransactionTypes(values)
-          }
-          placeholder="All Actions"
-          hideSelectAll={true}
-        />
-      </div>
-
-      <DateFilter
-        selected={selectedDateFilter}
-        onSelect={handleDateFilterSelect}
-      />
-
-      {isLoading ? (
-        <Loading />
-      ) : error ? (
-        <p className="text-accent-foreground text-center">
-          Something wrong happened. Try again later!
-        </p>
-      ) : data?.transactions.length === 0 ? (
-        <p className="text-accent-foreground text-center">No data available</p>
-      ) : (
-        <>
-          <Table className="text-accent-foreground">
-            <TableHeader className="bg-black/10 h-8">
-              <TableRow>
-                <TableHead className="h-8">Time</TableHead>
-                <TableHead className="h-8">ID</TableHead>
-                <TableHead className="h-8">Amount</TableHead>
-                <TableHead className="h-8 text-center">Action</TableHead>
-                <TableHead className="h-8 text-center">Status</TableHead>
-              </TableRow>
-            </TableHeader>
-
-            <TableBody>
-              {Object.entries(groupedTransactions).map(([date, txs]) => (
-                <Fragment key={date}>
-                  <TableRow className="bg-black/80 hover:bg-black/80 text-white h-[30px]">
-                    <TableCell colSpan={6} className="py-0 px-2 font-medium">
-                      {date}
-                    </TableCell>
+        {isLoading ? (
+            <Loading />
+        ) : error ? (
+            <p className="text-accent-foreground text-center">
+              <Trans>Something wrong happened. Try again later!</Trans>
+            </p>
+        ) : data?.transactions.length === 0 ? (
+            <p className="text-accent-foreground text-center"><Trans>No data available</Trans></p>
+        ) : (
+            <>
+              <Table className="text-accent-foreground">
+                <TableHeader className="bg-black/10 h-8">
+                  <TableRow>
+                    <TableHead className="h-8"><Trans>Time</Trans></TableHead>
+                    <TableHead className="h-8"><Trans>ID</Trans></TableHead>
+                    <TableHead className="h-8"><Trans>Amount</Trans></TableHead>
+                    <TableHead className="h-8 text-center"><Trans>Action</Trans></TableHead>
+                    <TableHead className="h-8 text-center"><Trans>Status</Trans></TableHead>
                   </TableRow>
+                </TableHeader>
 
-                  {txs.map((trx) => (
-                    <TableRow key={trx.id}>
-                      <TableCell>
-                        {format(new Date(trx.created_at), "HH:mm")}
-                      </TableCell>
-                      <TableCell>{trx.id}</TableCell>
-                      <TableCell>
-                        {trx.amount} {currencyList[trx.currency].symbol_native}
-                      </TableCell>
-                      <TableCell className="text-center">
+                <TableBody>
+                  {Object.entries(groupedTransactions).map(([date, txs]) => (
+                      <Fragment key={date}>
+                        <TableRow className="bg-black/80 hover:bg-black/80 text-white h-[30px]">
+                          <TableCell colSpan={6} className="py-0 px-2 font-medium">
+                            {date}
+                          </TableCell>
+                        </TableRow>
+
+                        {txs.map((trx) => (
+                            <TableRow key={trx.id}>
+                              <TableCell>
+                                {format(new Date(trx.created_at), "HH:mm")}
+                              </TableCell>
+                              <TableCell>{trx.id}</TableCell>
+                              <TableCell>
+                                {trx.amount} {currencyList[trx.currency].symbol_native}
+                              </TableCell>
+                              <TableCell className="text-center">
                         <span
-                          className={`px-2 py-1 rounded text-xs font-medium ${
-                            trx.type === "deposit"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-red-100 text-red-700"
-                          }`}
+                            className={`px-2 py-1 rounded text-xs font-medium ${
+                                trx.type === "deposit"
+                                    ? "bg-green-100 text-green-700"
+                                    : "bg-red-100 text-red-700"
+                            }`}
                         >
                           {trx.type.toUpperCase()}
                         </span>
-                      </TableCell>
-                      <TableCell className="flex justify-center">
-                        {trx.confirmed ? (
-                          <CheckMarkIcon className="text-green-600 size-5" />
-                        ) : (
-                          <CloseIcon className="text-red-600 size-5" />
-                        )}
-                      </TableCell>
-                    </TableRow>
+                              </TableCell>
+                              <TableCell className="flex justify-center">
+                                {trx.confirmed ? (
+                                    <CheckMarkIcon className="text-green-600 size-5" />
+                                ) : (
+                                    <CloseIcon className="text-red-600 size-5" />
+                                )}
+                              </TableCell>
+                            </TableRow>
+                        ))}
+                      </Fragment>
                   ))}
-                </Fragment>
-              ))}
-            </TableBody>
-          </Table>
+                </TableBody>
+              </Table>
 
-          {data && (
-            <div className="p-4">
-              <PaginationComponent
-                totalPages={data.pagination.last_page}
-                currentPage={page}
-                setPage={setPage}
-              />
-            </div>
-          )}
-        </>
-      )}
-    </div>
+              {data && (
+                  <div className="p-4">
+                    <PaginationComponent
+                        totalPages={data.pagination.last_page}
+                        currentPage={page}
+                        setPage={setPage}
+                    />
+                  </div>
+              )}
+            </>
+        )}
+      </div>
   );
 };
 

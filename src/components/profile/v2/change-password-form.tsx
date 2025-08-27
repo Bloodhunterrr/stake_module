@@ -1,9 +1,4 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import { useChangePasswordMutation } from "@/services/authApi";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -11,9 +6,15 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Eye, EyeOff } from "lucide-react";
 import { z } from "zod";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { Eye, EyeOff } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Trans, useLingui } from "@lingui/react/macro";
+import { useChangePasswordMutation } from "@/services/authApi";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const formSchema = z
@@ -62,7 +63,7 @@ export default function ChangePasswordForm() {
   const onSubmit = async (data: ChangePasswordFormData) => {
     try {
       await changePassword(data).unwrap();
-      toast.success("Password changed successfully.");
+      toast.success(t`Password changed successfully.`);
       form.reset();
     } catch (err: unknown) {
       const apiError = err as FetchBaseQueryError & ApiError;
@@ -83,6 +84,8 @@ export default function ChangePasswordForm() {
     }
   };
 
+  const { t } = useLingui();
+
   return (
     <Form {...form}>
       <form
@@ -100,7 +103,7 @@ export default function ChangePasswordForm() {
                     {...field}
                     type={showCurrentPass ? "text" : "password"}
                     className="h-10 rounded-[3px] focus-visible:border-b-card border-[#a7a7a7] ring-0 ring-offset-transparent focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-accent-foreground"
-                    placeholder="Old Password"
+                    placeholder={t`Old Password`}
                   />
                   <Button
                     type="button"
@@ -133,7 +136,7 @@ export default function ChangePasswordForm() {
                     {...field}
                     type={showNewPass ? "text" : "password"}
                     className="h-10 rounded-[3px] focus-visible:border-b-card border-[#a7a7a7] ring-0 ring-offset-transparent focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-accent-foreground"
-                    placeholder="New Password"
+                    placeholder={t`New Password`}
                   />
                   <Button
                     type="button"
@@ -166,7 +169,7 @@ export default function ChangePasswordForm() {
                     {...field}
                     type={showConfirmPass ? "text" : "password"}
                     className="h-10 rounded-[3px] focus-visible:border-b-card border-[#a7a7a7] ring-0 ring-offset-transparent focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-accent-foreground"
-                    placeholder="Confirm New Password"
+                    placeholder={t`Confirm New Password`}
                   />
                   <Button
                     type="button"
@@ -193,7 +196,7 @@ export default function ChangePasswordForm() {
           disabled={isLoading}
           className="w-full bg-card h-10 rounded-[3px] hover:bg-card/70  text-accent-foreground"
         >
-          Change Password
+          <Trans>Change Password</Trans>
         </Button>
       </form>
     </Form>
