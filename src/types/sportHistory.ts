@@ -53,6 +53,7 @@ export interface Event {
     team2:     string;
     league:    string;
     country:   string;
+    startDate: number;
     startData: number;
 }
 

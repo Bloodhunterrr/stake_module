@@ -25,6 +25,7 @@ import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { Trans } from "@lingui/react/macro";
+import type { Odd } from "@/types/sportHistory";
 
 const BettingHistoryTable = () => {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -235,38 +236,41 @@ const BettingHistoryTable = () => {
                       {expandedTicketId === ticket.id && (
                         <TableRow className="bg-muted p-0">
                           <TableCell colSpan={3} className="p-0">
-                            <div className="space-y-2 text-sm">
-                              <div className="w-full border-b border-gray-400 relative">
-                                {(ticket.status === 3 ||
-                                  ticket.status === 1) && (
+                            <div className="text-sm">
+                              {ticket.details?.odds?.map((odd: Odd) => {
+                                const oddStatus =
+                                  STATUS_MAP[odd.status] || STATUS_MAP[1];
+
+                                return (
                                   <div
-                                    className={`absolute top-0 left-0 h-full w-1/2 ${
-                                      ticket.status === 3
-                                        ? "bg-gradient-to-r from-green-400/30 to-transparent"
-                                        : "bg-gradient-to-r from-red-400/30 to-transparent"
-                                    }`}
-                                  />
-                                )}
+                                    key={odd.id}
+                                    className="relative flex flex-col border-b border-gray-400"
+                                  >
+                                    {(odd.status === 3 ||
+                                      odd.status === 1 ) && (
+                                      <div
+                                        className={`absolute top-0 left-0 h-full w-1/2 ${
+                                          odd.status === 3
+                                            ? "bg-gradient-to-r from-green-400/30 to-transparent"
+                                            : "bg-gradient-to-r from-red-400/30 to-transparent"
+                                        }`}
+                                      />
+                                    )}
 
-                                <div className="flex flex-col relative z-10">
-                                  <div className="flex items-center gap-2 px-4 py-2">
-                                    <span
-                                      className={`w-3 h-3 rounded-full ${status.color}`}
-                                    />
-                                    <div className="text-xs text-gray-600">
-                                      {format(
-                                        new Date(ticket.created_date),
-                                        "EEE dd MMM HH:mm"
-                                      )}
+                                    <div className="flex items-center gap-2 px-4 py-1 relative z-10">
+                                      <span
+                                        className={`w-3 h-3 rounded-full ${oddStatus.color}`}
+                                      />
+                                      <div className="text-xs text-gray-600">
+                                        {format(
+                                          new Date((odd.event.startDate ?? odd.event.startData) * 1000), 
+                                          "EEE dd MMM HH:mm"
+                                        )}
+                                      </div>
                                     </div>
-                                  </div>
 
-                                  {ticket.details?.odds?.map((odd: any) => (
-                                    <div
-                                      key={odd.id}
-                                      className="flex justify-between py-1 pr-4"
-                                    >
-                                      <div className="px-4">
+                                    <div className="flex justify-between px-4 py-1 relative z-10">
+                                      <div>
                                         <div>{odd.market.name}</div>
                                         <div className="text-xs text-gray-600">
                                           {odd.event.team1} - {odd.event.team2}
@@ -276,9 +280,9 @@ const BettingHistoryTable = () => {
                                         {odd.rate}
                                       </div>
                                     </div>
-                                  ))}
-                                </div>
-                              </div>
+                                  </div>
+                                );
+                              })}
 
                               <div className="grid px-4 pb-4 grid-cols-3 gap-2 pt-2 text-xs">
                                 <div>

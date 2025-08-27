@@ -59,7 +59,7 @@ export const DesktopSlider = ({
 
   return (
     <section className="w-full mb-8">
-      <div className="flex w-full items-center lg:pb-2 justify-between">
+      <div className="flex w-full items-center justify-between">
         <h2 className="font-bold mr-auto text-2xl px-3">{subcategory.name}</h2>
         <button
           onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
@@ -81,7 +81,7 @@ export const DesktopSlider = ({
       <Carousel
         opts={{ align: "start", loop: false }}
         className="w-full relative group/items">
-        <CarouselContent className="py-4 flex flex-wrap">
+        <CarouselContent className="py-2 flex flex-wrap">
           {games.map((game, index) => (
             <CarouselItem
               style={{ flexBasis: `${100 / columns}%` }}

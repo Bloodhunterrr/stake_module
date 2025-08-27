@@ -339,9 +339,9 @@ msgstr "Address"
 msgid "Affiliates"
 msgstr "Affiliates"
 
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:61
-#~ msgid "All"
-#~ msgstr "All"
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:84
+msgid "All"
+msgstr "All"
 
 #: src/components/profile/v2/payments-history-table.tsx:162
 msgid "All Actions"
@@ -555,6 +555,10 @@ msgstr "Dispute Resolution"
 msgid "Dropdown closed."
 msgstr "Dropdown closed."
 
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:43
+msgid "Egyptian Theme"
+msgstr "Egyptian Theme"
+
 #: src/components/profile/profile/UserInfo.tsx:78
 #: src/components/shared/v2/signup/index.tsx:87
 msgid "Email"
@@ -608,11 +612,11 @@ msgstr "FAQ"
 msgid "Female"
 msgstr "Female"
 
-#: src/routes/casino/subCategoryGames.tsx:159
+#: src/routes/casino/subCategoryGames.tsx:156
 msgid "Filter"
 msgstr "Filter"
 
-#: src/routes/casino/subCategoryGames.tsx:164
+#: src/routes/casino/subCategoryGames.tsx:163
 msgid "Filters"
 msgstr "Filters"
 
@@ -628,7 +632,7 @@ msgstr "First Name"
 #~ msgid "For a better experience!"
 #~ msgstr "For a better experience!"
 
-#: src/routes/casino/subCategoryGames.tsx:139
+#: src/routes/casino/subCategoryGames.tsx:143
 msgid "For You"
 msgstr "For You"
 
@@ -643,7 +647,7 @@ msgstr "For You"
 #~ msgstr "Game Name"
 
 #: src/routes/casino/providersGames.tsx:65
-#: src/routes/casino/subCategoryGames.tsx:106
+#: src/routes/casino/subCategoryGames.tsx:121
 msgid "games"
 msgstr "games"
 
@@ -690,6 +694,10 @@ msgstr "ID"
 #: src/components/shared/install-app-banner/index.tsx:90
 #~ msgid "Install"
 #~ msgstr "Install"
+
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:42
+msgid "Instant Games"
+msgstr "Instant Games"
 
 #: src/components/shared/modals/withdraw.tsx:168
 #~ msgid "Invalid wallet address format"
@@ -773,6 +781,10 @@ msgstr "Male"
 #~ msgid "Mega"
 #~ msgstr "Mega"
 
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
+msgid "Megaways"
+msgstr "Megaways"
+
 #: src/components/shared/v2/Header/index.tsx:248
 msgid "Messages"
 msgstr "Messages"
@@ -800,6 +812,10 @@ msgstr "Need Help?"
 #: src/components/profile/v2/change-password-form.tsx:139
 msgid "New Password"
 msgstr "New Password"
+
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:44
+msgid "New Trend"
+msgstr "New Trend"
 
 #: src/components/ui/pagination.tsx:86
 msgid "Next"
@@ -989,7 +1005,7 @@ msgstr "Provider"
 #~ msgstr "providers"
 
 #: src/components/shared/v2/casino/search.tsx:280
-#: src/routes/casino/subCategoryGames.tsx:176
+#: src/routes/casino/subCategoryGames.tsx:182
 msgid "Providers"
 msgstr "Providers"
 
@@ -1038,9 +1054,9 @@ msgstr "ROOKIE RUMBLE TOURNAMENT"
 #: src/components/casino/subcategorySlider.tsx:80
 #: src/components/shared/v2/casino/search.tsx:140
 #: src/components/shared/v2/casino/search.tsx:146
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:55
 #: src/components/shared/v2/Header/index.tsx:203
-#: src/routes/casino/subCategoryGames.tsx:171
+#: src/routes/casino/subCategoryGames.tsx:173
 msgid "Search"
 msgstr "Search"
 
@@ -1122,7 +1138,7 @@ msgstr "Something wrong happened. Try again later!"
 #~ msgid "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
 #~ msgstr "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
 
-#: src/routes/casino/subCategoryGames.tsx:123
+#: src/routes/casino/subCategoryGames.tsx:134
 msgid "Sort"
 msgstr "Sort"
 
@@ -1174,7 +1190,7 @@ msgstr "Time"
 #~ msgid "To edit the data, please contact support"
 #~ msgstr "To edit the data, please contact support"
 
-#: src/routes/casino/subCategoryGames.tsx:102
+#: src/routes/casino/subCategoryGames.tsx:117
 msgid "Top Games"
 msgstr "Top Games"
 
@@ -1206,9 +1222,13 @@ msgstr "up to 25%"
 msgid "Username"
 msgstr "Username"
 
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:41
+msgid "Video Slots"
+msgstr "Video Slots"
+
 #: src/components/casino/lobbySlider.tsx:69
 #: src/components/casino/lobbySlider.tsx:164
-#: src/components/casino/providerSlider.tsx:49
+#: src/components/casino/providerSlider.tsx:47
 msgid "View all"
 msgstr "View all"
 

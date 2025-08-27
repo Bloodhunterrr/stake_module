@@ -59,6 +59,10 @@ const Lobby = () => {
         />
       </section>
 
+        {activeCategory && activeCategory.providers.length > 0 && (
+          <ProviderSlider providers={categoryProviders} />
+        )}
+
       <section className="container space-y-4 mx-auto">
         <LobbyBannerSlider />
         {/*<BigWinsSlider/>*/}
@@ -94,9 +98,7 @@ const Lobby = () => {
           );
         })}
 
-        {activeCategory && activeCategory.providers.length > 0 && (
-          <ProviderSlider providers={categoryProviders} />
-        )}
+      
       </div>
 
       <Footer />

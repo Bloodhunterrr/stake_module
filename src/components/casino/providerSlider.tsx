@@ -25,10 +25,8 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
     categorySlug?: string;
   }>();
 
-  
-
   return (
-    <section className="py-4">
+    <section>
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
           <h2
@@ -57,18 +55,18 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
             align: "start",
             slidesToScroll: isDesktop ? 9 : 3,
           }}
-          className="w-full relative max-[1281px]:w-[calc(100%_-_100px)] max-[1281px]:mx-[50px]"
+          className="w-full"
         >
-          <CarouselContent className="-ml-2">
+          <CarouselContent className="flex -ml-2">
             {providers.map((p) => (
               <CarouselItem
                 key={p.id}
                 className={`pl-2 ${
-                  isDesktop ? "basis-1/9" : "basis-1/3"
+                  isDesktop ? "basis-1/9" : "basis-[calc(100%/4)]" 
                 } cursor-pointer`}
                 onClick={() => navigate(`/provider/${p.code}`)}
               >
-                <div className="flex items-center justify-center rounded-lg  bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px]">
+                <div className="flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px]">
                   <img
                     className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
                     src={config.baseUrl + "/storage/" + p.logo}
