@@ -33,6 +33,10 @@ const routes = createBrowserRouter(
           element: <SubcategoryGames />,
         },
         {
+          path: ":categorySlug/providers",
+          element: <AllProvidersList />,
+        },
+        {
           path: "/game/:gameID",
           element: <GameIframe />,
         },

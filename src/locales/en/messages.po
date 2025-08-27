@@ -296,8 +296,8 @@ msgstr ""
 #~ msgstr "License"
 
 #. placeholder {0}: R.name
-#: src/components/shared/v2/Header/index.tsx:84
-#: src/components/shared/v2/Header/index.tsx:123
+#: src/components/shared/v2/Header/index.tsx:100
+#: src/components/shared/v2/Header/index.tsx:151
 msgid "{0}"
 msgstr "{0}"
 
@@ -342,9 +342,9 @@ msgstr "Affiliates"
 #~ msgid "All"
 #~ msgstr "All"
 
-#: src/routes/casino/allProvidersList.tsx:62
-#~ msgid "All Providers"
-#~ msgstr "All Providers"
+#: src/routes/casino/allProvidersList.tsx:82
+msgid "All Providers"
+msgstr "All Providers"
 
 #: src/components/shared/footer/index.tsx:36
 msgid "AML Policy"
@@ -365,9 +365,9 @@ msgstr "Begin Now"
 #~ msgid "Best in the App"
 #~ msgstr "Best in the App"
 
-#: src/components/profile/history/SportHistory.tsx:400
-#~ msgid "Bet amount"
-#~ msgstr "Bet amount"
+#: src/components/profile/v2/betting-history-table.tsx:298
+msgid "Bet amount"
+msgstr "Bet amount"
 
 #: src/components/profile/history/Casino.tsx:125
 #: src/components/profile/history/Casino.tsx:166
@@ -375,6 +375,10 @@ msgstr "Begin Now"
 #: src/components/profile/history/SportHistory.tsx:271
 #~ msgid "Bet Amount"
 #~ msgstr "Bet Amount"
+
+#: src/components/profile/v2/betting-history-table.tsx:165
+msgid "Bet Amount (Bet ID)"
+msgstr "Bet Amount (Bet ID)"
 
 #: src/components/profile/history/SportHistory.tsx:183
 #: src/components/profile/history/SportHistory.tsx:234
@@ -387,7 +391,7 @@ msgstr "Begin Now"
 #~ msgid "Bet type"
 #~ msgstr "Bet type"
 
-#: src/components/shared/v2/Header/index.tsx:276
+#: src/components/shared/v2/Header/index.tsx:240
 msgid "Bets"
 msgstr "Bets"
 
@@ -421,7 +425,7 @@ msgstr "Bonus Terms"
 #~ msgid "Cancelled"
 #~ msgstr "Cancelled"
 
-#: src/components/shared/v2/Header/index.tsx:262
+#: src/components/shared/v2/Header/index.tsx:239
 msgid "Casino"
 msgstr "Casino"
 
@@ -574,11 +578,11 @@ msgstr "Fairness & RNG Testing Methods"
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/routes/casino/subCategoryGames.tsx:125
+#: src/routes/casino/subCategoryGames.tsx:159
 msgid "Filter"
 msgstr "Filter"
 
-#: src/routes/casino/subCategoryGames.tsx:130
+#: src/routes/casino/subCategoryGames.tsx:164
 msgid "Filters"
 msgstr "Filters"
 
@@ -590,6 +594,10 @@ msgstr "Filters"
 #~ msgid "For a better experience!"
 #~ msgstr "For a better experience!"
 
+#: src/routes/casino/subCategoryGames.tsx:139
+msgid "For You"
+msgstr "For You"
+
 #: src/components/profile/history/Casino.tsx:121
 #: src/components/profile/history/Casino.tsx:159
 #~ msgid "Game ID"
@@ -600,7 +608,7 @@ msgstr "Filters"
 #~ msgid "Game Name"
 #~ msgstr "Game Name"
 
-#: src/routes/casino/subCategoryGames.tsx:103
+#: src/routes/casino/subCategoryGames.tsx:106
 msgid "games"
 msgstr "games"
 
@@ -666,9 +674,9 @@ msgstr "KYC Policies"
 msgid "Leave a message"
 msgstr "Leave a message"
 
-#: src/components/shared/footer/index.tsx:71
-#~ msgid "License"
-#~ msgstr "License"
+#: src/components/shared/footer/index.tsx:149
+msgid "License"
+msgstr "License"
 
 #: src/components/shared/Sidebar/index.tsx:100
 #~ msgid "Live Casino"
@@ -687,7 +695,7 @@ msgstr "Leave a message"
 #~ msgid "Lobby"
 #~ msgstr "Lobby"
 
-#: src/components/shared/v2/Header/index.tsx:178
+#: src/components/shared/v2/Header/index.tsx:190
 msgid "Log in"
 msgstr "Log in"
 
@@ -695,7 +703,7 @@ msgstr "Log in"
 msgid "Log In"
 msgstr "Log In"
 
-#: src/components/shared/v2/Header/index.tsx:314
+#: src/components/shared/v2/Header/index.tsx:341
 msgid "Log out"
 msgstr "Log out"
 
@@ -716,6 +724,10 @@ msgstr "Log out"
 #: src/components/casino/jackpotBanner.tsx:304
 #~ msgid "Mega"
 #~ msgstr "Mega"
+
+#: src/components/shared/v2/Header/index.tsx:258
+msgid "Messages"
+msgstr "Messages"
 
 #: src/components/shared/modals/deposit.tsx:211
 #: src/components/shared/modals/withdraw.tsx:322
@@ -755,8 +767,8 @@ msgstr "Log out"
 #~ msgstr "Notification"
 
 #: src/components/shared/v2/Header/index.tsx:306
-msgid "Notifications"
-msgstr "Notifications"
+#~ msgid "Notifications"
+#~ msgstr "Notifications"
 
 #: src/components/shared/modals/withdraw-info.tsx:33
 #~ msgid "Okay"
@@ -774,17 +786,17 @@ msgstr "Notifications"
 #~ msgid "Page you were looking for was not found."
 #~ msgstr "Page you were looking for was not found."
 
-#: src/components/shared/v2/Header/index.tsx:294
+#: src/components/shared/v2/Header/index.tsx:253
 msgid "Password"
 msgstr "Password"
 
-#: src/components/shared/v2/Header/index.tsx:282
+#: src/components/shared/v2/Header/index.tsx:243
 msgid "Payments"
 msgstr "Payments"
 
-#: src/components/profile/history/SportHistory.tsx:410
-#~ msgid "Payout"
-#~ msgstr "Payout"
+#: src/components/profile/v2/betting-history-table.tsx:310
+msgid "Payout"
+msgstr "Payout"
 
 #: src/components/profile/history/SportHistory.tsx:32
 #~ msgid "Pending"
@@ -835,7 +847,7 @@ msgstr "Please leave some feedback or report a bug/issue you have faced."
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
-#: src/components/shared/v2/Header/index.tsx:288
+#: src/components/shared/v2/Header/index.tsx:248
 msgid "Profile"
 msgstr "Profile"
 
@@ -856,7 +868,7 @@ msgstr "Provider"
 #~ msgstr "providers"
 
 #: src/components/shared/v2/casino/search.tsx:280
-#: src/routes/casino/subCategoryGames.tsx:140
+#: src/routes/casino/subCategoryGames.tsx:176
 msgid "Providers"
 msgstr "Providers"
 
@@ -906,8 +918,8 @@ msgstr "ROOKIE RUMBLE TOURNAMENT"
 #: src/components/shared/v2/casino/search.tsx:140
 #: src/components/shared/v2/casino/search.tsx:146
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
-#: src/components/shared/v2/Header/index.tsx:204
-#: src/routes/casino/subCategoryGames.tsx:135
+#: src/components/shared/v2/Header/index.tsx:213
+#: src/routes/casino/subCategoryGames.tsx:171
 msgid "Search"
 msgstr "Search"
 
@@ -977,7 +989,7 @@ msgstr "Send message"
 #~ msgid "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
 #~ msgstr "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
 
-#: src/routes/casino/subCategoryGames.tsx:119
+#: src/routes/casino/subCategoryGames.tsx:123
 msgid "Sort"
 msgstr "Sort"
 
@@ -989,10 +1001,9 @@ msgstr "Sport Betting Terms"
 #~ msgid "Sports"
 #~ msgstr "Sports"
 
-#: src/components/profile/history/SportHistory.tsx:191
-#: src/components/profile/history/SportHistory.tsx:252
-#~ msgid "Status"
-#~ msgstr "Status"
+#: src/components/profile/v2/betting-history-table.tsx:171
+msgid "Status"
+msgstr "Status"
 
 #: src/routes/casino/gamesIframe.tsx:93
 #~ msgid "Switch Game"
@@ -1015,11 +1026,15 @@ msgstr "Thank you for making our service better"
 #~ msgid "time"
 #~ msgstr "time"
 
+#: src/components/profile/v2/betting-history-table.tsx:168
+msgid "Time"
+msgstr "Time"
+
 #: src/components/profile/profile/UserInfo.tsx:21
 #~ msgid "To edit the data, please contact support"
 #~ msgstr "To edit the data, please contact support"
 
-#: src/routes/casino/subCategoryGames.tsx:99
+#: src/routes/casino/subCategoryGames.tsx:102
 msgid "Top Games"
 msgstr "Top Games"
 
@@ -1027,9 +1042,9 @@ msgstr "Top Games"
 #~ msgid "Total balance"
 #~ msgstr "Total balance"
 
-#: src/components/profile/history/SportHistory.tsx:389
-#~ msgid "Total odds"
-#~ msgstr "Total odds"
+#: src/components/profile/v2/betting-history-table.tsx:286
+msgid "Total odds"
+msgstr "Total odds"
 
 #: src/components/profile/history.tsx:13
 #~ msgid "Transactions history"
@@ -1045,7 +1060,7 @@ msgstr "up to 25%"
 
 #: src/components/casino/lobbySlider.tsx:69
 #: src/components/casino/lobbySlider.tsx:169
-#: src/components/casino/providerSlider.tsx:34
+#: src/components/casino/providerSlider.tsx:49
 msgid "View all"
 msgstr "View all"
 
@@ -1053,7 +1068,7 @@ msgstr "View all"
 #~ msgid "View more"
 #~ msgstr "View more"
 
-#: src/components/shared/v2/Header/index.tsx:300
+#: src/components/shared/v2/Header/index.tsx:334
 msgid "Wallet"
 msgstr "Wallet"
 

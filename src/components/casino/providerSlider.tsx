@@ -7,10 +7,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import config from "@/config";
-import {Trans} from "@lingui/react/macro";
+import { Trans } from "@lingui/react/macro";
 import { useNavigate } from "react-router";
 import type { Provider } from "@/types/main";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useParams } from "react-router";
 
 interface Props {
   providers: Provider[];
@@ -20,23 +21,34 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
   const isDesktop = useIsDesktop();
   const navigate = useNavigate();
 
+  const { categorySlug } = useParams<{
+    categorySlug?: string;
+  }>();
+
+  
+
   return (
     <section className="py-4">
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
-          <h2 className={`font-bold ${isDesktop ? "text-lg" : "text-sm"} flex-1`}>
+          <h2
+            className={`font-bold ${isDesktop ? "text-lg" : "text-sm"} flex-1`}
+          >
             Providers
           </h2>
 
           <button
-            onClick={() => navigate(`/providers`)}
-            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50">
-            <span><Trans>View all</Trans></span>
-            {isDesktop && (
-              <span>
-                ({providers.length})
-              </span>
-            )}
+            onClick={() =>
+              navigate(
+                categorySlug ? `/${categorySlug}/providers` : "/providers"
+              )
+            }
+            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50"
+          >
+            <span>
+              <Trans>View all</Trans>
+            </span>
+            {isDesktop && <span>({providers.length})</span>}
           </button>
         </div>
 

@@ -1,0 +1,14 @@
+<svg class="ul-MembersLinkButton_Svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="25" viewBox="0 0 36 25">
+  <defs>
+    <path d="M3.007.001L33 .014a3.004 3.004 0 013 3V22a3 3 0 01-3 3H3.039a3 3 0 01-3-2.995L.005 3.007A3 3 0 013.007 0z" id="messagingUseA"></path>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <mask id="messagingMaskB" fill="#fff">
+      <use xlink:href="#messagingUseA"></use>
+    </mask>
+    <path class="mms-MemberMenuStylingModule_FallbackStroke" stroke="#9C9C9C" fill="#FDFFFF" d="M3 .501l30 .013a2.501 2.501 0 012.5 2.501h0V22c0 .69-.28 1.315-.732 1.768A2.492 2.492 0 0133 24.5h0H3.039c-.69 0-1.314-.28-1.766-.73a2.492 2.492 0 01-.734-1.766h0L.505 3.006a2.492 2.492 0 01.73-1.77A2.492 2.492 0 013 .502h0z"></path>
+    <path d="M0 2l15.882 15.186c1.06 1.085 3.177 1.085 4.236 0L36 2H0z" stroke="#EEF0F0" stroke-width="2" fill="#FDFFFF" mask="url(#messagingMaskB)"></path>
+    <path d="M0 2l18 17L36 2H0z" fill="#EEF0F0" mask="url(#messagingMaskB)"></path>
+    <path class="mms-MemberMenuStylingModule_Icon-svg mms-MemberMenuStylingModule_FallbackStroke" id="icon-MessagingTopTriangle" d="M0 1l15.882 15.186c1.06 1.085 3.177 1.085 4.236 0L36 1" stroke="#9C9C9C" fill="#FDFFFF" mask="url(#messagingMaskB)"></path>
+  </g>
+</svg>
