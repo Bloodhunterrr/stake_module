@@ -37,7 +37,7 @@ const SubcategorySlider = ({
   }
 
   const subcategoryTranslations: Record<string, any> = {
-    Megaways: <Trans>Megaways</Trans>,
+    "Megaways": <Trans>Megaways</Trans>,
     "Video Slots": <Trans>Video Slots</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
@@ -46,10 +46,8 @@ const SubcategorySlider = ({
 
   return (
     <>
-      <div
-        onClick={() => setSearchModal(true)}
-        className="flex h-10 container mx-auto rounded-full lg:w-full w-[calc(100%-1rem)] items-center gap-2 mt-4 cursor-pointer px-3 bg-popover  hover:bg-popover/80 transition"
-      >
+      <div onClick={() => setSearchModal(true)}
+        className="flex h-10 container mx-auto rounded-full lg:w-full w-[calc(100%-1rem)] items-center gap-2 mt-4 cursor-pointer px-3 bg-popover hover:bg-popover/80 transition">
         <SearchIcon className="size-5" />
         <span className={"font-semibold text-sm"}>
           <Trans>Search</Trans>
@@ -112,7 +110,7 @@ const SubcategorySlider = ({
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent
           showCloseButton={false}
-          className="border-none rounded-none  pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full  "
+          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full"
         >
           <Search
             setSearchModal={setSearchModal}

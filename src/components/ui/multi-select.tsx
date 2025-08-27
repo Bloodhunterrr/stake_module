@@ -978,7 +978,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
               ) : (
                 <div className="flex items-center justify-between w-full mx-auto">
                   <span className="text-sm text-muted-foreground mx-3 truncate">
-                    {placeholder}
+                    <Trans>{placeholder}</Trans>
                   </span>
                   <ChevronDown className="h-4 cursor-pointer text-muted-foreground mx-2"/>
                 </div>
@@ -1035,10 +1035,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                 </CommandEmpty>{" "}
                 {!hideSelectAll && !searchValue && (
                   <CommandGroup>
-                    <CommandItem
-                      key="all"
-                      onSelect={toggleAll}
-                      role="option"
+                    <CommandItem key="all" onSelect={toggleAll} role="option"
                       aria-selected={
                         selectedValues.length ===
                         getAllOptions().filter((opt) => !opt.disabled).length
@@ -1152,8 +1149,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                         <Separator orientation="vertical" className="flex min-h-6 h-full"/>
                       </>
                     )}
-                    <CommandItem
-                      onSelect={() => setIsPopoverOpen(false)}
+                    <CommandItem onSelect={() => setIsPopoverOpen(false)}
                       className="flex-1 justify-center cursor-pointer max-w-full">
                       <Trans>Close</Trans>
                     </CommandItem>

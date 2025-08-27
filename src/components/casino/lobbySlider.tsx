@@ -57,10 +57,19 @@ export const DesktopSlider = ({
 
   const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
 
+  const subcategoryTranslations: Record<string, any> = {
+    "Megaways": <Trans>Megaways</Trans>,
+    "Video Slots": <Trans>Video Slots</Trans>,
+    "Instant Games": <Trans>Instant Games</Trans>,
+    "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
+    "New Trend": <Trans>New Trend</Trans>,
+  };
+
   return (
     <section className="w-full mb-8">
       <div className="flex w-full items-center justify-between">
-        <h2 className="font-bold mr-auto text-2xl px-3">{subcategory.name}</h2>
+        <h2 className="font-bold mr-auto text-2xl px-3">{subcategoryTranslations[subcategory.name] ??
+            subcategory.name}</h2>
         <button
           onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
           disabled={isLoading}

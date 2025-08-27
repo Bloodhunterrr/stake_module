@@ -187,7 +187,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #~ msgid "All Statuses"
-#~ msgstr "Tutti gli stati"
+#~ msgstr "Tutti gli Stati"
 
 #. js-lingui-explicit-id
 #~ msgid "Statuses"
@@ -229,6 +229,10 @@ msgstr ""
 msgid "{0}"
 msgstr "{0}"
 
+#: src/components/ui/multi-select.tsx:981
+msgid "{placeholder}"
+msgstr "{placeholder}"
+
 #: src/components/casino/lobbyBannerSlider.tsx:77
 msgid "€2,500 Daily"
 msgstr "€ 2.500 al Giorno"
@@ -261,7 +265,7 @@ msgstr "Indirizzo"
 msgid "Affiliates"
 msgstr "Affiliati"
 
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:84
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:82
 msgid "All"
 msgstr "Tutti"
 
@@ -293,7 +297,7 @@ msgstr "Inizia Ora"
 #~ msgid "Best in the App"
 #~ msgstr "Il meglio nell'App"
 
-#: src/components/profile/v2/betting-history-table.tsx:298
+#: src/components/profile/v2/betting-history-table.tsx:302
 msgid "Bet amount"
 msgstr "Importo scommessa"
 
@@ -301,7 +305,7 @@ msgstr "Importo scommessa"
 msgid "Bet Amount"
 msgstr "Importo Scommessa"
 
-#: src/components/profile/v2/betting-history-table.tsx:165
+#: src/components/profile/v2/betting-history-table.tsx:166
 msgid "Bet Amount (Bet ID)"
 msgstr "Importo Scommessa (Bet ID)"
 
@@ -316,8 +320,9 @@ msgstr "ID Scommessa"
 msgid "Bets"
 msgstr "Scommesse"
 
-#~ msgid "Betting History"
-#~ msgstr "Cronologia scommesse"
+#: src/routes/account/bets.tsx:14
+msgid "Betting History"
+msgstr "Cronologia scommesse"
 
 #: src/components/casino/bottomBanner.tsx:13
 #: src/components/casino/bottomBanner.tsx:23
@@ -376,7 +381,7 @@ msgstr "caratteri rimanenti"
 msgid "City"
 msgstr "Città"
 
-#: src/components/ui/multi-select.tsx:1150
+#: src/components/ui/multi-select.tsx:1147
 msgid "Clear"
 msgstr "Cancella"
 
@@ -385,7 +390,7 @@ msgid "Clear all"
 msgstr "Cancella tutto"
 
 #: src/components/shared/v2/casino/search.tsx:170
-#: src/components/ui/multi-select.tsx:1158
+#: src/components/ui/multi-select.tsx:1154
 msgid "Close"
 msgstr "Chiudi"
 
@@ -453,7 +458,7 @@ msgstr "Menu a discesa chiuso."
 
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:43
 msgid "Egyptian Theme"
-msgstr ""
+msgstr "Tema Egiziano"
 
 #: src/components/profile/profile/UserInfo.tsx:78
 #: src/components/shared/v2/signup/index.tsx:87
@@ -574,7 +579,7 @@ msgstr "ID"
 
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:42
 msgid "Instant Games"
-msgstr ""
+msgstr "Giochi Istantanei"
 
 #~ msgid "Invalid wallet address format"
 #~ msgstr "Formato indirizzo portafoglio non valido"
@@ -648,7 +653,7 @@ msgstr "Maschio"
 
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
 msgid "Megaways"
-msgstr ""
+msgstr "Megaways"
 
 #: src/components/shared/v2/Header/index.tsx:248
 msgid "Messages"
@@ -679,7 +684,7 @@ msgstr "Nuova Password"
 
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:44
 msgid "New Trend"
-msgstr ""
+msgstr "Nuova Tendenza"
 
 #: src/components/ui/pagination.tsx:86
 msgid "Next"
@@ -760,7 +765,7 @@ msgstr "Pagamenti"
 msgid "Payments History"
 msgstr "Cronologia dei Pagamenti"
 
-#: src/components/profile/v2/betting-history-table.tsx:310
+#: src/components/profile/v2/betting-history-table.tsx:314
 msgid "Payout"
 msgstr "Pagamento"
 
@@ -895,7 +900,7 @@ msgstr "TORNEO ROOKIE RUMBLE"
 #: src/components/casino/subcategorySlider.tsx:80
 #: src/components/shared/v2/casino/search.tsx:140
 #: src/components/shared/v2/casino/search.tsx:146
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:55
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:53
 #: src/components/shared/v2/Header/index.tsx:203
 #: src/routes/casino/subCategoryGames.tsx:173
 msgid "Search"
@@ -981,7 +986,7 @@ msgstr "Termini Scommesse Sportive"
 #~ msgid "Sports"
 #~ msgstr "Sport"
 
-#: src/components/profile/v2/betting-history-table.tsx:171
+#: src/components/profile/v2/betting-history-table.tsx:172
 #: src/components/profile/v2/payments-history-table.tsx:189
 msgid "Status"
 msgstr "Stato"
@@ -1004,7 +1009,7 @@ msgstr "Questo portafoglio è già predefinito"
 #~ msgid "time"
 #~ msgstr "ora"
 
-#: src/components/profile/v2/betting-history-table.tsx:168
+#: src/components/profile/v2/betting-history-table.tsx:169
 #: src/components/profile/v2/casino-history-table.tsx:146
 #: src/components/profile/v2/payments-history-table.tsx:185
 msgid "Time"
@@ -1021,7 +1026,7 @@ msgstr "I Migliori Giochi"
 msgid "Total balance"
 msgstr "Saldo totale"
 
-#: src/components/profile/v2/betting-history-table.tsx:286
+#: src/components/profile/v2/betting-history-table.tsx:290
 msgid "Total odds"
 msgstr "Quote totali"
 
@@ -1046,7 +1051,7 @@ msgstr "Nome utente"
 
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:41
 msgid "Video Slots"
-msgstr ""
+msgstr "Video Slots"
 
 #: src/components/casino/lobbySlider.tsx:69
 #: src/components/casino/lobbySlider.tsx:164
