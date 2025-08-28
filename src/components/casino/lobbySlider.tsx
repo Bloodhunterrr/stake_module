@@ -144,7 +144,7 @@ const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
   }, [data, offset]);
 
   useEffect(() => {
-    setGames([]);
+    // setGames([]);
     setOffset(0);
   }, [subcategory.id]);
 
