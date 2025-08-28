@@ -268,7 +268,7 @@ msgstr "Address"
 msgid "Affiliates"
 msgstr "Affiliates"
 
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:82
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:85
 msgid "All"
 msgstr "All"
 
@@ -314,7 +314,7 @@ msgstr "Begin Now"
 #~ msgid "Best in the App"
 #~ msgstr "Best in the App"
 
-#: src/components/profile/v2/betting-history-table.tsx:304
+#: src/components/profile/v2/betting-history-table.tsx:297
 msgid "Bet amount"
 msgstr "Bet amount"
 
@@ -333,7 +333,7 @@ msgstr "Bet ID"
 #~ msgid "Bet type"
 #~ msgstr "Bet type"
 
-#: src/components/shared/v2/Header/index.tsx:230
+#: src/components/shared/v2/Header/index.tsx:232
 msgid "Bets"
 msgstr "Bets"
 
@@ -367,7 +367,7 @@ msgstr "Canada"
 #~ msgid "Cancelled"
 #~ msgstr "Cancelled"
 
-#: src/components/shared/v2/Header/index.tsx:229
+#: src/components/shared/v2/Header/index.tsx:231
 msgid "Casino"
 msgstr "Casino"
 
@@ -385,7 +385,7 @@ msgstr "Categories"
 msgid "Category"
 msgstr "Category"
 
-#: src/components/profile/v2/change-password-form.tsx:199
+#: src/components/profile/v2/change-password-form.tsx:197
 #: src/routes/account/change-password.tsx:9
 msgid "Change Password"
 msgstr "Change Password"
@@ -458,6 +458,10 @@ msgstr "December"
 msgid "Deposit"
 msgstr "Deposit"
 
+#: src/components/profile/v2/payments-history-table.tsx:219
+msgid "DEPOSIT"
+msgstr "DEPOSIT"
+
 #: src/components/shared/v2/deposit.tsx:139
 msgid "Deposit initiated successfully!"
 msgstr "Deposit initiated successfully!"
@@ -477,7 +481,8 @@ msgstr "Dispute Resolution"
 msgid "Dropdown closed."
 msgstr "Dropdown closed."
 
-#: src/components/casino/lobbySlider.tsx:64
+#: src/components/casino/allItemsListSearch.tsx:49
+#: src/components/casino/lobbySlider.tsx:62
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:43
 msgid "Egyptian Theme"
 msgstr "Egyptian Theme"
@@ -604,7 +609,8 @@ msgstr "ID"
 #~ msgid "Install"
 #~ msgstr "Install"
 
-#: src/components/casino/lobbySlider.tsx:63
+#: src/components/casino/allItemsListSearch.tsx:48
+#: src/components/casino/lobbySlider.tsx:61
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:42
 msgid "Instant Games"
 msgstr "Instant Games"
@@ -626,6 +632,10 @@ msgstr "July"
 #: src/components/shared/v2/date-filter.tsx:30
 msgid "June"
 msgstr "June"
+
+#: src/components/casino/allItemsListSearch.tsx:55
+msgid "Keno & Lottery"
+msgstr "Keno & Lottery"
 
 #: src/components/shared/footer/index.tsx:69
 msgid "KYC Policies"
@@ -657,7 +667,9 @@ msgstr "Live Chat"
 #~ msgid "Loading..."
 #~ msgstr "Loading..."
 
-#: src/components/casino/lobbySlider.tsx:67
+#: src/components/casino/allItemsListSearch.tsx:52
+#: src/components/casino/lobbySlider.tsx:65
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:46
 msgid "Lobby"
 msgstr "Lobby"
 
@@ -669,7 +681,7 @@ msgstr "Log in"
 msgid "Log In"
 msgstr "Log In"
 
-#: src/components/shared/v2/Header/index.tsx:323
+#: src/components/shared/v2/Header/index.tsx:325
 msgid "Log out"
 msgstr "Log out"
 
@@ -683,8 +695,9 @@ msgstr "Log out"
 msgid "Login successful!"
 msgstr "Login successful!"
 
-#~ msgid "Lost"
-#~ msgstr "Lost"
+#: src/components/profile/v2/betting-history-table.tsx:231
+msgid "Lost"
+msgstr "Lost"
 
 #: src/components/profile/profile/UserInfo.tsx:96
 msgid "Male"
@@ -701,12 +714,13 @@ msgstr "May"
 #~ msgid "Mega"
 #~ msgstr "Mega"
 
-#: src/components/casino/lobbySlider.tsx:61
+#: src/components/casino/allItemsListSearch.tsx:46
+#: src/components/casino/lobbySlider.tsx:59
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
 msgid "Megaways"
 msgstr "Megaways"
 
-#: src/components/shared/v2/Header/index.tsx:248
+#: src/components/shared/v2/Header/index.tsx:250
 msgid "Messages"
 msgstr "Messages"
 
@@ -734,7 +748,8 @@ msgstr "Need Help?"
 msgid "New Password"
 msgstr "New Password"
 
-#: src/components/casino/lobbySlider.tsx:65
+#: src/components/casino/allItemsListSearch.tsx:50
+#: src/components/casino/lobbySlider.tsx:63
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:44
 msgid "New Trend"
 msgstr "New Trend"
@@ -809,8 +824,8 @@ msgstr "Old Password"
 #~ msgid "Page you were looking for was not found."
 #~ msgstr "Page you were looking for was not found."
 
-#: src/components/shared/v2/Header/index.tsx:243
-#: src/components/shared/v2/login/index.tsx:109
+#: src/components/shared/v2/Header/index.tsx:245
+#: src/components/shared/v2/login/index.tsx:110
 #: src/components/shared/v2/signup/index.tsx:108
 msgid "Password"
 msgstr "Password"
@@ -819,7 +834,7 @@ msgstr "Password"
 msgid "Password changed successfully."
 msgstr "Password changed successfully."
 
-#: src/components/shared/v2/Header/index.tsx:233
+#: src/components/shared/v2/Header/index.tsx:235
 msgid "Payments"
 msgstr "Payments"
 
@@ -827,12 +842,13 @@ msgstr "Payments"
 msgid "Payments History"
 msgstr "Payments History"
 
-#: src/components/profile/v2/betting-history-table.tsx:316
+#: src/components/profile/v2/betting-history-table.tsx:309
 msgid "Payout"
 msgstr "Payout"
 
-#~ msgid "Pending"
-#~ msgstr "Pending"
+#: src/components/profile/v2/betting-history-table.tsx:231
+msgid "Pending"
+msgstr "Pending"
 
 #~ msgid "Phone number"
 #~ msgstr "Phone number"
@@ -880,7 +896,7 @@ msgstr "Postal Code"
 msgid "Prefer not to say"
 msgstr "Prefer not to say"
 
-#: src/components/shared/v2/Header/index.tsx:293
+#: src/components/shared/v2/Header/index.tsx:295
 msgid "Preferences"
 msgstr "Preferences"
 
@@ -892,13 +908,17 @@ msgstr "Previous"
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
-#: src/components/shared/v2/Header/index.tsx:238
-#: src/components/shared/v2/Header/index.tsx:289
+#: src/components/shared/v2/Header/index.tsx:240
+#: src/components/shared/v2/Header/index.tsx:291
 msgid "Profile"
 msgstr "Profile"
 
 #~ msgid "Profile info"
 #~ msgstr "Profile info"
+
+#: src/components/profile/profile/UserInfo.tsx:44
+msgid "Profile Info"
+msgstr "Profile Info"
 
 #: src/components/shared/v2/signup/index.tsx:129
 msgid "Promo Code (optional)"
@@ -949,7 +969,9 @@ msgstr "Reviews"
 msgid "Risk Warnings"
 msgstr "Risk Warnings"
 
-#: src/components/casino/lobbySlider.tsx:66
+#: src/components/casino/allItemsListSearch.tsx:51
+#: src/components/casino/lobbySlider.tsx:64
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:45
 msgid "Rome"
 msgstr "Rome"
 
@@ -957,7 +979,9 @@ msgstr "Rome"
 msgid "ROOKIE RUMBLE TOURNAMENT"
 msgstr "ROOKIE RUMBLE TOURNAMENT"
 
-#: src/components/casino/lobbySlider.tsx:68
+#: src/components/casino/allItemsListSearch.tsx:53
+#: src/components/casino/lobbySlider.tsx:66
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:47
 msgid "Roulette"
 msgstr "Roulette"
 
@@ -967,12 +991,12 @@ msgstr "Roulette"
 #~ msgid "Saving..."
 #~ msgstr "Saving..."
 
-#: src/components/casino/allItemsListSearch.tsx:60
+#: src/components/casino/allItemsListSearch.tsx:73
 #: src/components/casino/subcategorySlider.tsx:80
 #: src/components/shared/v2/casino/search.tsx:140
 #: src/components/shared/v2/casino/search.tsx:146
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:53
-#: src/components/shared/v2/Header/index.tsx:203
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:56
+#: src/components/shared/v2/Header/index.tsx:205
 #: src/routes/casino/subCategoryGames.tsx:173
 msgid "Search"
 msgstr "Search"
@@ -1036,7 +1060,7 @@ msgstr "September"
 #~ msgid "Set default"
 #~ msgstr "Set default"
 
-#: src/components/shared/v2/Header/index.tsx:329
+#: src/components/shared/v2/Header/index.tsx:331
 msgid "Show Balance"
 msgstr "Show Balance"
 
@@ -1097,6 +1121,10 @@ msgstr "Time"
 #~ msgid "To edit the data, please contact support"
 #~ msgstr "To edit the data, please contact support"
 
+#: src/components/profile/profile/UserInfo.tsx:47
+msgid "To edit the data, please contact support."
+msgstr "To edit the data, please contact support."
+
 #: src/components/shared/v2/date-filter.tsx:23
 msgid "Today"
 msgstr "Today"
@@ -1109,7 +1137,7 @@ msgstr "Top Games"
 msgid "Total balance"
 msgstr "Total balance"
 
-#: src/components/profile/v2/betting-history-table.tsx:292
+#: src/components/profile/v2/betting-history-table.tsx:285
 msgid "Total odds"
 msgstr "Total odds"
 
@@ -1132,13 +1160,14 @@ msgstr "up to 25%"
 msgid "Username"
 msgstr "Username"
 
-#: src/components/casino/lobbySlider.tsx:62
+#: src/components/casino/allItemsListSearch.tsx:47
+#: src/components/casino/lobbySlider.tsx:60
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:41
 msgid "Video Slots"
 msgstr "Video Slots"
 
-#: src/components/casino/lobbySlider.tsx:81
-#: src/components/casino/lobbySlider.tsx:176
+#: src/components/casino/lobbySlider.tsx:79
+#: src/components/casino/lobbySlider.tsx:174
 #: src/components/casino/providerSlider.tsx:44
 msgid "View all"
 msgstr "View all"
@@ -1146,7 +1175,11 @@ msgstr "View all"
 #~ msgid "View more"
 #~ msgstr "View more"
 
-#: src/components/shared/v2/Header/index.tsx:316
+#: src/components/casino/allItemsListSearch.tsx:54
+msgid "Virtual Games"
+msgstr "Virtual Games"
+
+#: src/components/shared/v2/Header/index.tsx:318
 #: src/routes/account/wallet.tsx:9
 msgid "Wallet"
 msgstr "Wallet"
@@ -1177,6 +1210,10 @@ msgstr "Win"
 msgid "Withdraw"
 msgstr "Withdraw"
 
+#: src/components/profile/v2/payments-history-table.tsx:219
+msgid "WITHDRAW"
+msgstr "WITHDRAW"
+
 #: src/components/shared/v2/withdraw.tsx:140
 msgid "Withdraw initiated successfully!"
 msgstr "Withdraw initiated successfully!"
@@ -1184,8 +1221,9 @@ msgstr "Withdraw initiated successfully!"
 #~ msgid "Withdraw is under review!"
 #~ msgstr "Withdraw is under review!"
 
-#~ msgid "Won"
-#~ msgstr "Won"
+#: src/components/profile/v2/betting-history-table.tsx:231
+msgid "Won"
+msgstr "Won"
 
 #: src/components/shared/v2/date-filter.tsx:24
 msgid "Yesterday"

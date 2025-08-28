@@ -166,7 +166,7 @@ const SubcategoryGames = () => {
 
                 <div
                   onClick={() => setSearchModal(true)}
-                  className="flex h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition"
+                  className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition"
                 >
                   <SearchIcon className="size-5 text-muted-foreground" />
                   <span className="font-semibold text-primary-foreground text-sm">

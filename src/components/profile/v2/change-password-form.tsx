@@ -176,8 +176,7 @@ export default function ChangePasswordForm() {
                     variant="ghost"
                     size="sm"
                     className="absolute hover:bg-transparent right-0 top-0 h-full px-3 py-2 text-accent-foreground opacity-[0.6]"
-                    onClick={() => setShowConfirmPass((prev) => !prev)}
-                  >
+                    onClick={() => setShowConfirmPass((prev) => !prev)}>
                     {showConfirmPass ? (
                       <Eye className="h-4 w-4" />
                     ) : (
@@ -188,8 +187,7 @@ export default function ChangePasswordForm() {
               </FormControl>
               <FormMessage />
             </FormItem>
-          )}
-        />
+          )}/>
 
         <Button
           type="submit"

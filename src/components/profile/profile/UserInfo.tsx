@@ -41,10 +41,10 @@ export default function UserInfo() {
                 {/* Title and description section */}
                 <div className="flex flex-col space-y-1.5">
                     <h1 className="text-2xl sm:text-3xl font-bold leading-snug text-primary">
-                        Profile Info
+                        <Trans>Profile Info</Trans>
                     </h1>
                     <p className="text-sm text-muted-foreground">
-                        To edit the data, please contact support.
+                        <Trans>To edit the data, please contact support.</Trans>
                     </p>
                 </div>
 

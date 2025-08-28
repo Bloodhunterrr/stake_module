@@ -6,7 +6,7 @@ import type {Provider, Subcategory} from "@/types/main";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import NoDataAvailable from "@/components/shared/v2/no-data-available/NoDataAvailable";
 import config from "@/config.ts";
-import { useLingui } from "@lingui/react/macro";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 type Props = {
   items: Provider[] | Subcategory[];
@@ -41,6 +41,19 @@ const AllItemsList = ({ items, onClose, type }: Props) => {
   }, [items, searchVal, type]);
 
   const { t } = useLingui()
+
+  const subcategoryTranslations: Record<string, any> = {
+    "Megaways": <Trans>Megaways</Trans>,
+    "Video Slots": <Trans>Video Slots</Trans>,
+    "Instant Games": <Trans>Instant Games</Trans>,
+    "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
+    "New Trend": <Trans>New Trend</Trans>,
+    "Rome": <Trans>Rome</Trans>,
+    "Lobby": <Trans>Lobby</Trans>,
+    "Roulette": <Trans>Roulette</Trans>,
+    "Virtual Games": <Trans>Virtual Games</Trans>,
+    "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
+  };
 
   return (
     <div className="select-screen">
@@ -127,9 +140,8 @@ const AllItemsList = ({ items, onClose, type }: Props) => {
                         className="provider-card__icon h-[calc(100%_-_15px)]"
                         src={`${config.baseUrl}/storage/${subcategory.icon}`}
                         alt={subcategory.name}
-                        loading="lazy"
-                      />
-                      <p className="subcategory-card__name text-[15px] overflow-hidden text-ellipsis whitespace-nowrap text-white font-semibold">{subcategory.name}</p>
+                        loading="lazy"/>
+                      <p className="subcategory-card__name text-[15px] overflow-hidden text-ellipsis whitespace-nowrap text-white font-semibold">{subcategoryTranslations[subcategory.name] ?? subcategory.name}</p>
                     </div>
                   </div>
                 );

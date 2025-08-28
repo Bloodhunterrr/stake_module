@@ -216,7 +216,7 @@ const PaymentsHistoryTable = () => {
                                     : "bg-red-100 text-red-700"
                             }`}
                         >
-                          {trx.type.toUpperCase()}
+                          {trx.type.includes("deposit") ? <Trans>DEPOSIT</Trans> : trx.type.includes("withdraw") ? <Trans>WITHDRAW</Trans> : trx.type.toUpperCase()}
                         </span>
                               </TableCell>
                               <TableCell className="flex justify-center">
