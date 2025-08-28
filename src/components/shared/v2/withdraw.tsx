@@ -156,7 +156,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label htmlFor="amount">
-              Amount ({minWithdraw.toLocaleString("en-EN")} -{" "}
+              {t`Amount`} ({minWithdraw.toLocaleString("en-EN")} -{" "}
               {maxWithdraw.toLocaleString("en-EN")}) {selectedSymbol}
             </Label>
             <div className="flex items-center gap-2">
@@ -202,7 +202,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
           />
 
           <div className="grid gap-2">
-            <Label htmlFor="crypto">Select Cryptocurrency</Label>
+            <Label htmlFor="crypto"><Trans>Select Cryptocurrency</Trans></Label>
             <Select
               value={selectedCrypto}
               onValueChange={(value) => setSelectedCrypto(value)}
@@ -233,7 +233,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="wallet-address">Wallet Address</Label>
+            <Label htmlFor="wallet-address"><Trans>Wallet Address</Trans></Label>
             <Input
               id="wallet-address"
               value={walletAddress}
@@ -256,17 +256,15 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
           <Button
             onClick={handleSubmit}
             disabled={isWithdrawing}
-            className="w-full bg-card hover:bg-card/70 text-accent-foreground"
-          >
+            className="w-full bg-card hover:bg-card/70 text-accent-foreground">
             {isWithdrawing ? "Withdrawing..." : "Withdraw"}
           </Button>
           <div
             onClick={() => console.log("chat")}
-            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            <p>Need Help?</p>
+            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Trans>Need Help?</Trans>
             <Support className="h-4 w-4" />
-            <span>Live Chat</span>
+            <Trans>Live Chat</Trans>
           </div>
         </div>
       </DialogContent>

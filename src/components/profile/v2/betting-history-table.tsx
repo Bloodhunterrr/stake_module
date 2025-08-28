@@ -24,7 +24,7 @@ import Loading from "@/components/shared/loading";
 import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
 import { MultiSelect } from "@/components/ui/multi-select";
-import { Trans } from "@lingui/react/macro";
+import { Trans, useLingui } from "@lingui/react/macro";
 import type { Odd } from "@/types/sportHistory";
 
 const BettingHistoryTable = () => {
@@ -93,6 +93,8 @@ const BettingHistoryTable = () => {
     1: { label: "Lost", color: "bg-red-500" },
   };
 
+  const { t } = useLingui();
+
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
@@ -145,7 +147,7 @@ const BettingHistoryTable = () => {
             options={currencyOptions}
             value={selectedCurrencies}
             onValueChange={setSelectedCurrencies}
-            placeholder="All currencies"
+            placeholder={t`All currencies`}
             hideSelectAll
           />
         )}
@@ -154,7 +156,7 @@ const BettingHistoryTable = () => {
           options={statusOptions}
           value={selectedStatuses}
           onValueChange={setSelectedStatuses}
-          placeholder="All statuses"
+          placeholder={t`All Statuses`}
           hideSelectAll
         />
       </div>

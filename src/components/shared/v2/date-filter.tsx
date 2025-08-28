@@ -18,24 +18,42 @@ type DateFilterProps = {
 
 const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect }) => {
   const today = new Date();
+
+  const filtersTranslations: Record<string, any> = {
+    "Today": <Trans>Today</Trans>,
+    "Yesterday": <Trans>Yesterday</Trans>,
+    "January": <Trans>January</Trans>,
+    "February": <Trans>February</Trans>,
+    "March": <Trans>March</Trans>,
+    "April": <Trans>April</Trans>,
+    "May": <Trans>May</Trans>,
+    "June": <Trans>June</Trans>,
+    "July": <Trans>July</Trans>,
+    "August": <Trans>August</Trans>,
+    "September": <Trans>September</Trans>,
+    "October": <Trans>October</Trans>,
+    "November": <Trans>November</Trans>,
+    "December": <Trans>December</Trans>,
+  };
+
   const filters = [
     {
-      label: `Today`,
+      label: filtersTranslations[`Today`],
       start: today,
       end: today,
     },
     {
-      label: `Yesterday`,
+      label: filtersTranslations[`Yesterday`],
       start: addDays(today, -1),
       end: addDays(today, -1),
     },
     {
-      label: `${format(today, "MMMM")}`,
+      label: filtersTranslations[`${format(today, "MMMM")}`] ?? `${format(today, "MMMM")}`,
       start: startOfMonth(today),
       end: today,
     },
     {
-      label: `${format(subMonths(today, 1), "MMMM")}`,
+      label: filtersTranslations[`${format(subMonths(today, 1), "MMMM")}`] ?? `${format(subMonths(today, 1), "MMMM")}`,
       start: startOfMonth(subMonths(today, 1)),
       end: endOfMonth(subMonths(today, 1)),
     },

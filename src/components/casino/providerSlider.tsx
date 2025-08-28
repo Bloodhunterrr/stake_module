@@ -30,9 +30,8 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
           <h2
-            className={`font-bold ${isDesktop ? "text-lg" : "text-sm"} flex-1`}
-          >
-            Providers
+            className={`font-bold flex-1 ${isDesktop ? "text-lg" : "text-sm"}`}>
+            <Trans>Providers</Trans>
           </h2>
 
           <button
@@ -40,9 +39,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
               navigate(
                 categorySlug ? `/${categorySlug}/providers` : "/providers"
               )
-            }
-            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50"
-          >
+            } className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50">
             <span>
               <Trans>View all</Trans>
             </span>
