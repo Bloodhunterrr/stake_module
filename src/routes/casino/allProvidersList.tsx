@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useGetMainQuery } from "@/services/mainApi";
 import { useState } from "react";
 import type { Provider } from "@/types/main";
-import Footer from "@/components/shared/footer";
+import Footer from "@/components/shared/v2/footer.tsx";
 import config from "@/config";
 import { cn } from "@/lib/utils.ts";
 import { useTheme } from "@/hooks/useTheme.tsx";

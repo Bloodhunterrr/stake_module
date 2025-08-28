@@ -1,18 +1,76 @@
-import type {Game} from "@/types/game_list.ts";
-import {useNavigate} from "react-router";
-import {useIsDesktop} from "@/hooks/useIsDesktop.ts";
-import type {User, Wallet} from "@/types/auth.ts";
-import {useAppSelector} from "@/hooks/rtk.ts";
-import {useEffect, useState} from "react";
-import {useLazyGetPlayQuery} from "@/services/authApi.ts";
-import {toast} from "react-toastify";
-import {HeartIcon} from "lucide-react";
+import type { Game } from "@/types/game_list.ts";
+import { useIsDesktop } from "@/hooks/useIsDesktop.ts";
+import { useLazyGetPlayQuery } from "@/services/authApi.ts";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "@/hooks/rtk.ts";
+import { useEffect, useState } from "react";
+
+import type { User, Wallet } from "@/types/auth.ts";
+import { setModal } from "@/slices/sharedSlice.ts";
+import { HeartIcon } from "lucide-react";
 import Modal from "@/components/shared/modal";
 import Login from "@/components/shared/v2/login";
-import {ModalBalanceInfo} from "@/components/shared/v2/slot";
 import Loading from "@/components/shared/v2/loading.tsx";
 
-const LiveCasinoGameSlot = ({
+export const ModalBalanceInfo = ({
+                                     game,
+                                     onClose,
+                                 }: {
+    game: Game | null;
+    onClose: () => void;
+}) => {
+    const dispatch = useAppDispatch();
+    const isDesktop = useIsDesktop();
+    const navigate = useNavigate();
+
+    return (
+        <>
+            <h2>
+                <div>Your balance is </div> 0
+            </h2>
+            <p>
+                <div>Please top up your account to play for real money.</div>
+            </p>
+
+            <div>
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onClose();
+                        dispatch(setModal({ modal: "deposit" }));
+                    }}
+                >
+                    <div>
+                        <div>Deposit now</div>
+                    </div>
+                </button>
+                {game?.hasDemo && (
+                    <button
+                        onClick={() => {
+                            if (!isDesktop) {
+                                window.open(game?.demoURL, "_blank");
+                            } else {
+                                navigate(`/game/${game?.id}`, {
+                                    state: {
+                                        play_url: game?.demoURL,
+                                        game,
+                                    },
+                                });
+                            }
+                        }}
+                    >
+                        <div>
+                            <div>Or play demo</div>
+                        </div>
+                    </button>
+                )}
+            </div>
+        </>
+    );
+};
+
+const GameSlot = ({
                       game,
                       isLoading,
                   }: {
@@ -55,7 +113,7 @@ const LiveCasinoGameSlot = ({
             if (!isDesktop) {
                 window.location.href = data?.play_url;
             } else {
-                navigate(`/game/${game?.id}`, {
+                navigate(`/game/${game?.id}?previousPage=${window.location.pathname}`, {
                     state: { play_url: data?.play_url, game },
                 });
             }
@@ -67,9 +125,9 @@ const LiveCasinoGameSlot = ({
 
     if (isLoading) {
         return (
-            <div className="lg:aspect-[10/6] aspect-square w-30 h-30 lg:w-full lg:h-full rounded-lg overflow-hidden flex items-center justify-center">
+            <div className="aspect-square bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
                 <div
-                    className="w-full h-full bg-card/10  bg-center bg-cover"
+                    className="w-full h-full bg-center bg-card/10"
                     style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
                 />
             </div>
@@ -79,17 +137,16 @@ const LiveCasinoGameSlot = ({
     return (
         <>
             <div
-                className="relative lg:aspect-[10/6] aspect-square w-full lg:w-full lg:h-full  rounded-lg overflow-hidden shadow-lg cursor-pointer group"
+                className="relative aspect-square rounded-lg overflow-hidden hover:lg:scale-[1.02] transition-transform duration-300 shadow-lg cursor-pointer group"
                 onClick={handleGameClick}
             >
-
                 <div
                     className="absolute inset-0 bg-center bg-cover opacity-40"
-                    style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})`  }}
+                    style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
                 />
 
                 <img
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 "
                     src={game?.image}
                     loading="lazy"
                     alt={game?.name}
@@ -120,11 +177,11 @@ const LiveCasinoGameSlot = ({
             )}
             {loginModal && (
                 <Modal title={`Login`} onClose={closeLogin}>
-                    <Login setLoginModalOpen={setLoginModal} />
+                    <Login setLoginModalOpen={setLoginModal}/>
                 </Modal>
             )}
         </>
     );
 };
 
-export default LiveCasinoGameSlot;
+export default GameSlot;

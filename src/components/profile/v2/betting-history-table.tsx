@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
-import Loading from "@/components/shared/loading";
+import Loading from "@/components/shared/v2/loading.tsx";
 import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
 import { MultiSelect } from "@/components/ui/multi-select";

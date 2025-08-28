@@ -3,7 +3,7 @@ import { useGetMainQuery } from "@/services/mainApi";
 import { useNavigate, useParams } from "react-router";
 import Sport from "@/routes/sport";
 import InstallAppBanner from "@/components/shared/install-app-banner";
-import Footer from "@/components/shared/footer";
+import Footer from "@/components/shared/v2/footer.tsx";
 import ProviderSlider from "@/components/casino/providerSlider";
 import type { Provider } from "@/types/main";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";

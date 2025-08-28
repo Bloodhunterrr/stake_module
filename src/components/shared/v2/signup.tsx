@@ -111,8 +111,8 @@ export default function SignUp() {
                                                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20}/>
                                                 <Input type={showPass ? "text" : "password"} placeholder={t`Enter your password`} {...field} className="pl-10 pr-10"/>
                                                 <button type="button" onClick={() => setShowPass(!showPass)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                                                    aria-label={showPass ? "Hide password" : "Show password"}>
+                                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                                                        aria-label={showPass ? "Hide password" : "Show password"}>
                                                     {showPass ? <EyeOff size={20}/> : <Eye size={20}/>}
                                                 </button>
                                             </div>

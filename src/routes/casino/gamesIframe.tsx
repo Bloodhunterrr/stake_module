@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import {useAppSelector} from "@/hooks/rtk";
 import type {Game} from "@/types/game_list";
 import {Button} from "@/components/ui/button";
-import Loader from "@/components/shared/Loader";
 import Search from "@/components/casino/search";
 import {useNavigate, useLocation} from "react-router";
 import CloseIcon from "@/assets/icons/close.svg?react";
@@ -12,6 +11,7 @@ import SearchIcon from "@/assets/icons/search.svg?react";
 import GameBGImg from "./../../assets/images/game-bg.png";
 import FullScreenIcon from "@/assets/icons/fullscreen.svg?react";
 import {Dialog, DialogContent, DialogTrigger} from "@/components/ui/dialog";
+import Loading from "@/components/shared/v2/loading.tsx";
 
 
 export default function GamesIframe() {
@@ -26,7 +26,7 @@ export default function GamesIframe() {
                 style={{backgroundImage: `url(${GameBGImg})`}}
             >
                 <div className="flex h-full w-full items-center justify-center">
-                    <Loader/>
+                    <Loading/>
                 </div>
             </div>
         );

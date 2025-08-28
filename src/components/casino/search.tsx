@@ -1,6 +1,5 @@
 import GameListRenderer from "@/routes/casino/gameListRenderer";
 import { useEffect, useMemo, useState } from "react";
-import { LoaderSpinner } from "@/components/shared/Loader";
 import { useGetMainQuery } from "@/services/mainApi";
 import type { Provider, Subcategory } from "@/types/main";
 import AllItemsList from "./allItemsListSearch";
@@ -11,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { X, ChevronDown, Search as SearchIcon } from "lucide-react";
+import Loading from "@/components/shared/v2/loading.tsx";
 
 const useDebounce = (value: string | null, delay: number): string | null => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -219,7 +219,7 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
         <div className="p-3">
           {isLoading ? (
             <div className="flex h-40 items-center justify-center">
-              <LoaderSpinner />
+              <Loading />
             </div>
           ) : (
             <GameListRenderer

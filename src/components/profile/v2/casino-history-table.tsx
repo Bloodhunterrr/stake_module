@@ -17,7 +17,7 @@ import type { User } from "@/types/auth";
 import { CalendarIcon } from "lucide-react";
 import { useAppSelector } from "@/hooks/rtk";
 import { Button } from "@/components/ui/button";
-import Loading from "@/components/shared/loading";
+import Loading from "@/components/shared/v2/loading.tsx";
 import { Calendar } from "@/components/ui/calendar";
 import { currencyList } from "@/utils/currencyList";
 import { Trans, useLingui } from "@lingui/react/macro";

@@ -3,7 +3,7 @@ import {Trans} from "@lingui/react/macro";
 import { useEffect, useState } from "react";
 import type { Provider } from "@/types/main";
 import {useTheme} from "@/hooks/useTheme.tsx";
-import Footer from "@/components/shared/footer";
+import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
 import { useGetMainQuery } from "@/services/mainApi";
 import { useNavigate, useParams } from "react-router";

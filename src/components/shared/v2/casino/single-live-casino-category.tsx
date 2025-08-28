@@ -2,7 +2,7 @@ import {Fragment, useRef, useState, useEffect, useCallback} from 'react';
 import {useIsDesktop} from '@/hooks/useIsDesktop';
 import {useGetGameListQuery} from '@/services/mainApi';
 import type {Game, GameListRequest} from '@/types/game_list';
-import NoDataAvailable from '@/components/shared/v2/no-data-available/NoDataAvailable';
+import NoDataAvailable from '@/components/shared/v2/no-data-available.tsx';
 import LiveCasinoGameSlot from "@/components/shared/v2/casino/live-casino-single-game-slot.tsx";
 
 

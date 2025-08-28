@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { useGetMainQuery } from "@/services/mainApi";
 import { useEffect, useState } from "react";
 import type { Subcategory } from "@/types/main";
-import Footer from "@/components/shared/footer";
+import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
 import LiveCasinoGameListRenderer from "@/components/shared/v2/casino/single-live-casino-category.tsx";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";

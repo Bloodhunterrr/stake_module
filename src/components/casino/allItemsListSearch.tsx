@@ -4,7 +4,7 @@ import SearchIcon  from "@/assets/icons/search.svg?react";
 import CloseIcon  from "@/assets/icons/close.svg?react";
 import type {Provider, Subcategory} from "@/types/main";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import NoDataAvailable from "@/components/shared/v2/no-data-available/NoDataAvailable";
+import NoDataAvailable from "@/components/shared/v2/no-data-available.tsx";
 import config from "@/config.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 

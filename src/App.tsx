@@ -2,15 +2,15 @@ import {Outlet} from "react-router";
 import {useLocation} from "react-router";
 import {useTheme} from "@/hooks/useTheme";
 import {ToastContainer} from "react-toastify";
-import Loader from "@/components/shared/Loader";
-import NavBar from "@/components/shared/v2/Header";
-// import SideBar from "@/components/shared/v2/Sidebar";
+// import SideBar from "@/components/shared/v2/side-bar";
 import {useUserInfo} from "@/hooks/useUserInfo";
 import {useIsDesktop} from "@/hooks/useIsDesktop";
 import {useGetMainQuery} from "@/services/mainApi";
 import {useScrollToTop} from "@/hooks/useScrollToTop";
+import Header from "@/components/shared/v2/header.tsx";
+import TitleUpdater from "@/components/title-updater.tsx";
 import React, {useEffect, useRef, useState} from "react";
-import TitleUpdater from "@/components/TitleUpdater.tsx";
+import Loading from "@/components/shared/v2/loading.tsx";
 
 const App: React.FC = () => {
     useUserInfo();
@@ -28,7 +28,7 @@ const App: React.FC = () => {
     }, [location.pathname]);
 
     if (error || isLoading) {
-        return <Loader/>;
+        return <Loading/>;
     }
 
     return (
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             <main
                 className={`transition-all duration-300 ease-in-out`}
             >
-                <NavBar
+                <Header
                     location={location.pathname}
                     setOpenOptionalSideBar={setOptionalSideBarOpen}
                     openOptionalSideBar={optionalSideBarOpen}
