@@ -89,7 +89,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                 <Input
                                     id={'email'}
                                     type={'text'}
-                                    placeholder={"Enter your email"}
+                                    placeholder={t`Enter your email`}
                                     className="placeholder:text-xs text-xs h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('email')}
                                     autoFocus={false}
@@ -107,7 +107,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     id="password"
                                     type={showPass ? 'text' : 'password'}
                                     autoComplete="current-password"
-                                    placeholder="Password"
+                                    placeholder={t`Password`}
                                     className="placeholder:text-xs  text-xs pr-10 h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('password')}
                                     autoFocus={false}
