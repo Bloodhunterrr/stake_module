@@ -39,9 +39,7 @@ export const DesktopSlider = ({
   });
 
   const games = isLoading ? Array(limit).fill(null) : data?.games ?? [];
-  const columns = subcategory.landing_page_game_row_number > games.length
-      ? games.length
-      : subcategory.landing_page_game_row_number;
+    const columns = subcategory.landing_page_game_row_number;
 
 
   const handlePrev = () => {

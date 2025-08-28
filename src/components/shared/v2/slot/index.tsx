@@ -125,7 +125,7 @@ const GameSlot = ({
 
   if (isLoading) {
     return (
-        <div className="h-56 bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
+        <div className="aspect-square bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
           <div
               className="w-full h-full bg-center bg-card/10"
               style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
@@ -137,7 +137,7 @@ const GameSlot = ({
   return (
       <>
         <div
-            className="relative h-56 rounded-lg overflow-hidden hover:lg:scale-[1.02] transition-transform duration-300 shadow-lg cursor-pointer group"
+            className="relative aspect-square rounded-lg overflow-hidden hover:lg:scale-[1.02] transition-transform duration-300 shadow-lg cursor-pointer group"
             onClick={handleGameClick}
         >
           <div
