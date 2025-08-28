@@ -77,7 +77,7 @@ const SubcategoryGames = () => {
   }, [dataTree, category, subcategory, navigate]);
 
   return (
-    <>
+    <div className="lg:px-0 px-3  flex flex-col container mx-auto">
 
       {mainData && (
         <SingleSubcategorySlider
@@ -104,7 +104,7 @@ const SubcategoryGames = () => {
 
       <div className="container mx-auto">
         <section id="category-section">
-          <div className="p-3 flex items-center justify-between">
+          <div className="py-3 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => navigate(-1)}
@@ -206,7 +206,7 @@ const SubcategoryGames = () => {
             </Sheet>
           </div>
 
-          <div className="p-3">
+          <div className="py-3">
             {categorySlug === "casino-live" ? (
               <LiveCasinoGameListRenderer
                 categoryId={subcategory?.id}
@@ -227,7 +227,7 @@ const SubcategoryGames = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

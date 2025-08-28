@@ -92,6 +92,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     placeholder={"Enter your email"}
                                     className="placeholder:text-xs text-xs h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('email')}
+                                    autoFocus={false}
                                 />
                             </div>
                             {errors["email"] && (
@@ -109,6 +110,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     placeholder="Password"
                                     className="placeholder:text-xs  text-xs pr-10 h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('password')}
+                                    autoFocus={false}
                                 />
 
                                 <button

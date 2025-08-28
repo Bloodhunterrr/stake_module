@@ -185,7 +185,9 @@ const NavBar = (props: NavBarProps) => {
           </div>
 
           <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
-            <DialogContent className="p-0 lg:w-[450px] rounded-none bg-secondary">
+            <DialogContent className="p-0 lg:w-[450px] rounded-none bg-secondary"  
+            onOpenAutoFocus={(e) => e.preventDefault()}
+           onCloseAutoFocus={(e) => e.preventDefault()}>
               <Login setLoginModalOpen={setLoginModalOpen} />
             </DialogContent>
           </Dialog>
