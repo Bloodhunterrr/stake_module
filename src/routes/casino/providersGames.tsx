@@ -39,6 +39,19 @@ const ProvidersGames = () => {
     if (dataTree && !provider) navigate(-1);
   }, [dataTree, provider, navigate]);
 
+  const subcategoryTranslations: Record<string, any> = {
+    "Megaways": <Trans>Megaways</Trans>,
+    "Video Slots": <Trans>Video Slots</Trans>,
+    "Instant Games": <Trans>Instant Games</Trans>,
+    "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
+    "New Trend": <Trans>New Trend</Trans>,
+    "Rome": <Trans>Rome</Trans>,
+    "Lobby": <Trans>Lobby</Trans>,
+    "Roulette": <Trans>Roulette</Trans>,
+    "Virtual Games": <Trans>Virtual Games</Trans>,
+    "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
+  };
+
   return (
       <div className="container mx-auto px-2 lg:px-0">
         <div className="category-wrapper">
@@ -59,7 +72,7 @@ const ProvidersGames = () => {
 
                       <div>
                         <h1 className="font-bold text-lg text-primary-foreground">
-                          {provider?.name ?? ""}
+                          {provider?.name ? subcategoryTranslations[provider.name] : ""}
                         </h1>
                         {totalGames > 0 && (
                             <p className="text-card text-sm">{totalGames} <Trans>games</Trans></p>

@@ -76,6 +76,19 @@ const SubcategoryGames = () => {
     if (dataTree && (!category || !subcategory)) navigate(-1);
   }, [dataTree, category, subcategory, navigate]);
 
+  const subcategoryTranslations: Record<string, any> = {
+    "Megaways": <Trans>Megaways</Trans>,
+    "Video Slots": <Trans>Video Slots</Trans>,
+    "Instant Games": <Trans>Instant Games</Trans>,
+    "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
+    "New Trend": <Trans>New Trend</Trans>,
+    "Rome": <Trans>Rome</Trans>,
+    "Lobby": <Trans>Lobby</Trans>,
+    "Roulette": <Trans>Roulette</Trans>,
+    "Virtual Games": <Trans>Virtual Games</Trans>,
+    "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
+  };
+
   return (
     <div className="lg:px-0 px-3  flex flex-col container mx-auto">
 
@@ -114,7 +127,7 @@ const SubcategoryGames = () => {
               </button>
               <div>
                 <h1 className="font-bold text-lg text-primary-foreground">
-                  {subcategory?.name ?? t`Top Games`}
+                  {subcategory?.name ? subcategoryTranslations[subcategory.name] : t`Top Games`}
                 </h1>
                 {totalGames > 0 && (
                   <p className="text-card text-sm">

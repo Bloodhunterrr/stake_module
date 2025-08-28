@@ -78,7 +78,7 @@ const AllProvidersList = () => {
                   <div>
                     <h1 className="font-bold text-lg text-primary-foreground">
                       {categorySlug && categoryName
-                        ? `${categoryName} Providers`
+                        ? `${categoryName} ${t`Providers`}`
                         : t`All Providers`}
                     </h1>
                     {finalProviders.length > 0 && (
