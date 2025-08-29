@@ -26,7 +26,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 
 import Search from "@/components/casino/search";
 
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useAppSelector} from "@/hooks/rtk";
 import {useNavigate} from "react-router-dom";
 
@@ -76,6 +76,16 @@ export default function Header(props: HeaderProps) {
         localStorage.setItem("showBalance", JSON.stringify(newValue));
     };
 
+    const headersTranslations: Record<string, any> = {
+        "Sport": <Trans>Sport</Trans>,
+        "Vip Casino": <Trans>VIP Casino</Trans>,
+        "Casino": <Trans>Casino</Trans>,
+        "Casino Live": <Trans>Casino Live</Trans>,
+        "Crash Games": <Trans>Crash Games</Trans>,
+        "Virtual": <Trans>Virtual</Trans>,
+        "Lottery": <Trans>Lottery</Trans>,
+    };
+
     const {data} = useGetMainQuery();
     return (
         <div className="sticky top-0 z-50 bg-background">
@@ -97,7 +107,7 @@ export default function Header(props: HeaderProps) {
                             )}
                             onClick={() => navigate(`/${R.slug}`)}
                         >
-                            <Trans>{R.name}</Trans>
+                            {headersTranslations[R.name] ?? R.name}
                         </Button>
                     )
                 )}
@@ -143,7 +153,7 @@ export default function Header(props: HeaderProps) {
                                         src={config.baseUrl + "/storage/" + R.icon}
                                         alt={R.name}
                                     />
-                                    <Trans>{R.name}</Trans>
+                                    {headersTranslations[R.name] ?? R.name}
                                 </Button>
                             )
                         )}
@@ -179,7 +189,7 @@ export default function Header(props: HeaderProps) {
                         ) : (
                             <section className="space-x-3">
                                 <Button variant="secondary"
-                                        className="bg-[#101114] hover:bg-[#525766] items-center shadow-[inset_0_0_0_1px_#454956] hover:shadow-none w-[70px] h-8 text-xs text-white cursor-pointer flex justify-center relative no-underline transition-all duration-150 ease-in-out rounded-2xl border-none "
+                                        className="bg-[#101114] hover:bg-[#525766] items-center shadow-[inset_0_0_0_1px_#454956] hover:shadow-none w-[70px] h-8 text-xs text-white cursor-pointer flex justify-center relative no-underline transition-all duration-150 ease-in-out rounded-2xl border-none w-max"
                                         onClick={() => setLoginModalOpen(true)}>
                                     <Trans>Log in</Trans>
                                 </Button>

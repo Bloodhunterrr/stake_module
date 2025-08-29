@@ -84,7 +84,7 @@ export default function CasinoHistoryTable() {
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline"
-                  className="justify-start text-left font-normal bg-transparent text-accent-foreground">
+                      className="justify-start text-left font-normal bg-transparent text-accent-foreground">
                 <CalendarIcon className="sm:mr-2 h-4 w-4" />
                 {dates.startDate
                     ? format(dates.startDate, "dd/MM/yyyy")
@@ -148,7 +148,7 @@ export default function CasinoHistoryTable() {
               {/* <TableHead className="h-8"><Trans>Game</Trans></TableHead> */}
               {/* <TableHead className="h-8"><Trans>Game ID</Trans></TableHead> */}
               <TableHead className="h-8"><Trans>Bet Amount</Trans></TableHead>
-              <TableHead className="h-8"><Trans>Win</Trans></TableHead>
+              <TableHead className="h-8 text-right"><Trans>Win</Trans></TableHead>
             </TableRow>
           </TableHeader>
 
@@ -193,14 +193,13 @@ export default function CasinoHistoryTable() {
                               {Number(trx.details.bet.amount).toFixed(2)}{" "}
                               {currencyList[trx.currency].symbol_native}
                             </TableCell>
-                            <TableCell>
+                            <TableCell className="flex justify-end">
                               {String(trx.details.win.amount) === "0" ? (
                                   <span>-</span>
                               ) : (
                                   <span>
-                          {trx.details.win.amount}{" "}
-                                    {currencyList[trx.currency].symbol_native}
-                        </span>
+                                    {trx.details.win.amount}{" "}{currencyList[trx.currency].symbol_native}
+                                  </span>
                               )}
                             </TableCell>
                           </TableRow>
