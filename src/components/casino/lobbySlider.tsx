@@ -68,7 +68,7 @@ export const DesktopSlider = ({
   const handleNext = () => {
     setOffset((prev) => prev + limit);
   };
-  
+
   const isPrevDisabled = offset === 0 || isFetching;
   const isNextDisabled =
     isFetching || (data?.total !== undefined && offset + limit >= data.total);
@@ -210,10 +210,15 @@ export const DesktopSlider = ({
   );
 };
 
-const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
+const MobileSlider = ({
+  categorySlug,
+  subcategory,
+  providers,
+}: LobbySliderProps) => {
   const navigate = useNavigate();
   const [games, setGames] = useState<Game[]>([]);
   const [offset, setOffset] = useState(0);
+  const [searchModal, setSearchModal] = useState(false);
 
   const { data, isFetching } = useGetGameListQuery(
     {
@@ -261,14 +266,81 @@ const MobileSlider = ({ categorySlug, subcategory }: LobbySliderProps) => {
     <section className="w-full pt-4 lg:pt-0">
       <div className="flex items-center w-full justify-between mb-3">
         <h6 className="font-semibold">{subcategory.name}</h6>
-        <button
-          onClick={() => navigate(`/${categorySlug}/games/${subcategory.slug}`)}
-          className=" text-primary-foreground border rounded-full py-1 px-1.5 text-xs"
-        >
-          {/*Deleted Totals*/}
-          {/*{data?.total != null && <span>({data.total})</span>}*/}
-          <Trans>View all</Trans>
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() =>
+              navigate(`/${categorySlug}/games/${subcategory.slug}`)
+            }
+            className=" text-primary-foreground border rounded-full py-1 px-1.5 text-xs"
+          >
+            {/*Deleted Totals*/}
+            {/*{data?.total != null && <span>({data.total})</span>}*/}
+            <Trans>View all</Trans>
+          </button>
+          <Sheet>
+            <SheetTrigger className="border px-1.5 py-1 rounded-full flex gap-1 text-xs ">
+              <Settings2 size={20} />
+            </SheetTrigger>
+
+            <SheetContent
+              className="border-none w-full border-r sm:max-w-sm"
+              closeIconClassName="text-primary-foreground focus:ring-0"
+            >
+              <SheetHeader className="h-26 flex items-center justify-end">
+                <SheetTitle className="text-2xl font-semibold text-primary-foreground">
+                  <Trans>Filters</Trans>
+                </SheetTitle>
+              </SheetHeader>
+
+              <div
+                onClick={() => setSearchModal(true)}
+                className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition"
+              >
+                <SearchIcon className="size-5 text-muted-foreground" />
+                <span className="font-semibold text-primary-foreground text-sm">
+                  <Trans>Search</Trans>
+                </span>
+              </div>
+
+              <div className="pl-4">
+                <Accordion type="single" defaultValue="providers" collapsible>
+                  <AccordionItem value="providers" className="no-underline">
+                    <AccordionTrigger className="flex text-primary-foreground items-center justify-start text-lg hover:no-underline">
+                      <Trans>Providers</Trans>
+                    </AccordionTrigger>
+                    <AccordionContent className="flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2">
+                      {providers.map((p: Provider) => (
+                        <Badge
+                          key={p.id}
+                          onClick={() => navigate(`/provider/${p.code}`)}
+                          variant="secondary"
+                          className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
+                        >
+                          {p.name}
+                        </Badge>
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+
+              <Dialog
+                open={searchModal}
+                onOpenChange={() => setSearchModal(false)}
+              >
+                <DialogContent
+                  showCloseButton={false}
+                  className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full"
+                >
+                  <Search
+                    setSearchModal={setSearchModal}
+                    onCloseSearchModal={() => setSearchModal(false)}
+                  />
+                </DialogContent>
+              </Dialog>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
 
       <div

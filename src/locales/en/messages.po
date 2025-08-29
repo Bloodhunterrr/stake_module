@@ -221,12 +221,10 @@ msgstr ""
 #~ msgid "license"
 #~ msgstr "License"
 
-#. placeholder {0}: R.name
-#. placeholder {0}: f.label
 #: src/components/shared/v2/date-filter.tsx:84
 #: src/components/shared/v2/header.tsx:156
-msgid "{0}"
-msgstr "{0}"
+#~ msgid "{0}"
+#~ msgstr "{0}"
 
 #~ msgid "{linkText}"
 #~ msgstr "{linkText}"
@@ -313,7 +311,7 @@ msgstr "Begin Now"
 #~ msgid "Best in the App"
 #~ msgstr "Best in the App"
 
-#: src/components/profile/v2/betting-history-table.tsx:297
+#: src/components/profile/v2/betting-history-table.tsx:298
 msgid "Bet amount"
 msgstr "Bet amount"
 
@@ -474,8 +472,9 @@ msgstr "DEPOSIT"
 msgid "Deposit initiated successfully!"
 msgstr "Deposit initiated successfully!"
 
-#~ msgid "Deposit now"
-#~ msgstr "Deposit now"
+#: src/components/shared/v2/slot.tsx:50
+msgid "Deposit now"
+msgstr "Deposit now"
 
 #: src/components/casino/lobbyBannerSlider.tsx:64
 msgid "Deposit Now"
@@ -490,7 +489,7 @@ msgid "Dropdown closed."
 msgstr "Dropdown closed."
 
 #: src/components/casino/allItemsListSearch.tsx:49
-#: src/components/casino/lobbySlider.tsx:62
+#: src/components/casino/lobbySlider.tsx:82
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:43
 #: src/routes/casino/providersGames.tsx:46
 #: src/routes/casino/subCategoryGames.tsx:83
@@ -551,10 +550,13 @@ msgstr "February"
 msgid "Female"
 msgstr "Female"
 
+#: src/components/casino/lobbySlider.tsx:109
 #: src/routes/casino/subCategoryGames.tsx:169
 msgid "Filter"
 msgstr "Filter"
 
+#: src/components/casino/lobbySlider.tsx:118
+#: src/components/casino/lobbySlider.tsx:291
 #: src/routes/casino/subCategoryGames.tsx:176
 msgid "Filters"
 msgstr "Filters"
@@ -620,7 +622,7 @@ msgstr "ID"
 #~ msgstr "Install"
 
 #: src/components/casino/allItemsListSearch.tsx:48
-#: src/components/casino/lobbySlider.tsx:61
+#: src/components/casino/lobbySlider.tsx:81
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:42
 #: src/routes/casino/providersGames.tsx:45
 #: src/routes/casino/subCategoryGames.tsx:82
@@ -682,7 +684,7 @@ msgstr "Live Chat"
 #~ msgstr "Loading..."
 
 #: src/components/casino/allItemsListSearch.tsx:52
-#: src/components/casino/lobbySlider.tsx:65
+#: src/components/casino/lobbySlider.tsx:85
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:46
 #: src/routes/casino/providersGames.tsx:49
 #: src/routes/casino/subCategoryGames.tsx:86
@@ -735,7 +737,7 @@ msgstr "May"
 #~ msgstr "Mega"
 
 #: src/components/casino/allItemsListSearch.tsx:46
-#: src/components/casino/lobbySlider.tsx:59
+#: src/components/casino/lobbySlider.tsx:79
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
 #: src/routes/casino/providersGames.tsx:43
 #: src/routes/casino/subCategoryGames.tsx:80
@@ -771,7 +773,7 @@ msgid "New Password"
 msgstr "New Password"
 
 #: src/components/casino/allItemsListSearch.tsx:50
-#: src/components/casino/lobbySlider.tsx:63
+#: src/components/casino/lobbySlider.tsx:83
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:44
 #: src/routes/casino/providersGames.tsx:47
 #: src/routes/casino/subCategoryGames.tsx:84
@@ -842,8 +844,9 @@ msgstr "October"
 msgid "Old Password"
 msgstr "Old Password"
 
-#~ msgid "Or play demo"
-#~ msgstr "Or play demo"
+#: src/components/shared/v2/slot.tsx:66
+msgid "Or play demo"
+msgstr "Or play demo"
 
 #~ msgid "Page you were looking for was not found."
 #~ msgstr "Page you were looking for was not found."
@@ -866,7 +869,7 @@ msgstr "Payments"
 msgid "Payments History"
 msgstr "Payments History"
 
-#: src/components/profile/v2/betting-history-table.tsx:309
+#: src/components/profile/v2/betting-history-table.tsx:310
 msgid "Payout"
 msgstr "Payout"
 
@@ -909,8 +912,9 @@ msgstr "Please leave some feedback or report a bug/issue you have faced."
 msgid "Please select a wallet"
 msgstr "Please select a wallet"
 
-#~ msgid "Please top up your account to play for real money."
-#~ msgstr "Please top up your account to play for real money."
+#: src/components/shared/v2/slot.tsx:38
+msgid "Please top up your account to play for real money."
+msgstr "Please top up your account to play for real money."
 
 #: src/components/profile/profile/UserInfo.tsx:133
 msgid "Postal Code"
@@ -959,6 +963,8 @@ msgstr "Provider"
 #~ msgid "providers"
 #~ msgstr "providers"
 
+#: src/components/casino/lobbySlider.tsx:136
+#: src/components/casino/lobbySlider.tsx:309
 #: src/components/casino/providerSlider.tsx:34
 #: src/components/shared/v2/casino/search.tsx:280
 #: src/routes/casino/allProvidersList.tsx:81
@@ -995,7 +1001,7 @@ msgid "Risk Warnings"
 msgstr "Risk Warnings"
 
 #: src/components/casino/allItemsListSearch.tsx:51
-#: src/components/casino/lobbySlider.tsx:64
+#: src/components/casino/lobbySlider.tsx:84
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:45
 #: src/routes/casino/providersGames.tsx:48
 #: src/routes/casino/subCategoryGames.tsx:85
@@ -1007,7 +1013,7 @@ msgid "ROOKIE RUMBLE TOURNAMENT"
 msgstr "ROOKIE RUMBLE TOURNAMENT"
 
 #: src/components/casino/allItemsListSearch.tsx:53
-#: src/components/casino/lobbySlider.tsx:66
+#: src/components/casino/lobbySlider.tsx:86
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:47
 #: src/routes/casino/providersGames.tsx:50
 #: src/routes/casino/subCategoryGames.tsx:87
@@ -1021,6 +1027,8 @@ msgstr "Roulette"
 #~ msgstr "Saving..."
 
 #: src/components/casino/allItemsListSearch.tsx:73
+#: src/components/casino/lobbySlider.tsx:128
+#: src/components/casino/lobbySlider.tsx:301
 #: src/components/casino/subcategorySlider.tsx:80
 #: src/components/shared/v2/casino/search.tsx:140
 #: src/components/shared/v2/casino/search.tsx:146
@@ -1170,7 +1178,7 @@ msgstr "Top Games"
 msgid "Total balance"
 msgstr "Total balance"
 
-#: src/components/profile/v2/betting-history-table.tsx:285
+#: src/components/profile/v2/betting-history-table.tsx:286
 msgid "Total odds"
 msgstr "Total odds"
 
@@ -1194,15 +1202,15 @@ msgid "Username"
 msgstr "Username"
 
 #: src/components/casino/allItemsListSearch.tsx:47
-#: src/components/casino/lobbySlider.tsx:60
+#: src/components/casino/lobbySlider.tsx:80
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:41
 #: src/routes/casino/providersGames.tsx:44
 #: src/routes/casino/subCategoryGames.tsx:81
 msgid "Video Slots"
 msgstr "Video Slots"
 
-#: src/components/casino/lobbySlider.tsx:79
-#: src/components/casino/lobbySlider.tsx:174
+#: src/components/casino/lobbySlider.tsx:104
+#: src/components/casino/lobbySlider.tsx:278
 #: src/components/casino/providerSlider.tsx:44
 msgid "View all"
 msgstr "View all"
@@ -1280,3 +1288,7 @@ msgstr "You have successfully signed up."
 
 #~ msgid "Your balance is "
 #~ msgstr "Your balance is "
+
+#: src/components/shared/v2/slot.tsx:33
+msgid "Your balance is 0"
+msgstr "Your balance is 0"

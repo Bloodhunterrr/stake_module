@@ -138,7 +138,7 @@ export default function Footer() {
                             />
                         </div>
 
-                        <div className="hidden sm:block">
+                        <div>
                             <LanguageSwitcher />
                         </div>
                     </div>

@@ -12,6 +12,7 @@ import { HeartIcon, Info } from "lucide-react";
 import Login from "@/components/shared/v2/login";
 import Loading from "@/components/shared/v2/loading.tsx";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Trans } from "@lingui/react/macro";
 
 export const ModalBalanceInfo = ({
   game,
@@ -26,13 +27,15 @@ export const ModalBalanceInfo = ({
 
   return (
     <div className="flex items-center flex-col">
-      <Info className="text-red-500 mb-4" size={50}/>
+      <Info className="text-red-500 mb-4" size={50} />
       <h2 className="text-3xl font-semibold mb-4 text-white">
-        <span>Your balance is 0</span>
+        <span>
+          <Trans>Your balance is 0</Trans>
+        </span>
       </h2>
 
       <p className="text-gray-400 mb-6 text-lg text-center">
-        Please top up your account to play for real money.
+        <Trans>Please top up your account to play for real money.</Trans>
       </p>
 
       <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -44,7 +47,7 @@ export const ModalBalanceInfo = ({
           }}
           className="px-6 py-2 bg-card rounded-lg hover:bg-card/80 text-accent-foreground transition"
         >
-          Deposit now
+          <Trans>Deposit now</Trans>
         </button>
 
         {game?.hasDemo && (
@@ -60,7 +63,7 @@ export const ModalBalanceInfo = ({
             }}
             className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
           >
-            Or play demo
+            <Trans>Or play demo</Trans>
           </button>
         )}
       </div>

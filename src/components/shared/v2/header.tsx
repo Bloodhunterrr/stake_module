@@ -189,7 +189,7 @@ export default function Header(props: HeaderProps) {
                         ) : (
                             <section className="space-x-3">
                                 <Button variant="secondary"
-                                        className="bg-[#101114] hover:bg-[#525766] items-center shadow-[inset_0_0_0_1px_#454956] hover:shadow-none w-[70px] h-8 text-xs text-white cursor-pointer flex justify-center relative no-underline transition-all duration-150 ease-in-out rounded-2xl border-none w-max"
+                                        className="bg-[#101114] hover:bg-[#525766] items-center shadow-[inset_0_0_0_1px_#454956] hover:shadow-none w-[70px] h-8 text-xs text-white cursor-pointer flex justify-center relative no-underline transition-all duration-150 ease-in-out rounded-2xl border-none "
                                         onClick={() => setLoginModalOpen(true)}>
                                     <Trans>Log in</Trans>
                                 </Button>
