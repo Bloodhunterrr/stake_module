@@ -180,7 +180,7 @@ export default function CasinoHistoryTable() {
                       {txs.map((trx) => (
                           <TableRow key={trx.id}>
                             <TableCell>
-                              {format(new Date(trx.created_at), "HH:mm")}
+                              {format(new Date(trx.created_at), "HH:mm:ss")}
                             </TableCell>
                             <TableCell>
                               <span className="block max-w-[100px] sm:max-w-full truncate">

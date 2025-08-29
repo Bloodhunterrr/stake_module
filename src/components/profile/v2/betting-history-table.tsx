@@ -228,8 +228,18 @@ const BettingHistoryTable = () => {
                           {format(new Date(ticket.created_date), "HH:mm:ss")}
                         </TableCell>
                         <TableCell className="flex items-center gap-2">
-                          {label.includes("Lost") ? <Trans>Lost</Trans> : label.includes("Pending") ? <Trans>Pending</Trans> : <span><Trans>Won</Trans> {label.split(" ")[1]}</span>}
-                          <span className={`w-3 h-3 rounded-full ${status.color}`}/>
+                          {label.includes("Lost") ? (
+                            <Trans>Lost</Trans>
+                          ) : label.includes("Pending") ? (
+                            <Trans>Pending</Trans>
+                          ) : (
+                            <span>
+                              <Trans>Won</Trans> {label.split(" ")[1]}
+                            </span>
+                          )}
+                          <span
+                            className={`w-3 h-3 rounded-full ${status.color}`}
+                          />
                         </TableCell>
                       </TableRow>
 
@@ -242,23 +252,30 @@ const BettingHistoryTable = () => {
                                   STATUS_MAP[odd.status] || STATUS_MAP[1];
 
                                 return (
-                                  <div key={odd.id}
-                                    className="relative flex flex-col border-b border-gray-400">
-                                    {(odd.status === 3 ||
-                                      odd.status === 1 ) && (
+                                  <div
+                                    key={odd.id}
+                                    className="relative flex flex-col border-b border-gray-400"
+                                  >
+                                    {(odd.status === 3 || odd.status === 1) && (
                                       <div
                                         className={`absolute top-0 left-0 h-full w-1/2 ${
                                           odd.status === 3
                                             ? "bg-gradient-to-r from-green-400/30 to-transparent"
                                             : "bg-gradient-to-r from-red-400/30 to-transparent"
-                                        }`}/>
+                                        }`}
+                                      />
                                     )}
 
                                     <div className="flex items-center gap-2 px-4 py-1 relative z-10">
-                                      <span className={`w-3 h-3 rounded-full ${oddStatus.color}`}/>
+                                      <span
+                                        className={`w-3 h-3 rounded-full ${oddStatus.color}`}
+                                      />
                                       <div className="text-xs text-gray-600">
                                         {format(
-                                          new Date((odd.event.startDate ?? odd.event.startData) * 1000), 
+                                          new Date(
+                                            (odd.event.startDate ??
+                                              odd.event.startData) * 1000
+                                          ),
                                           "EEE dd MMM HH:mm"
                                         )}
                                       </div>
@@ -266,9 +283,11 @@ const BettingHistoryTable = () => {
 
                                     <div className="flex justify-between px-4 py-1 relative z-10">
                                       <div>
-                                        <div>{odd.market.name}</div>
-                                        <div className="text-xs text-gray-600">
+                                        <div>
                                           {odd.event.team1} - {odd.event.team2}
+                                        </div>
+                                        <div className="text-xs text-gray-600">
+                                          {odd.market.name}
                                         </div>
                                       </div>
                                       <div className="font-semibold">
