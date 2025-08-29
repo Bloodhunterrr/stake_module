@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 import type { User, Wallet } from "@/types/auth.ts";
 import { setModal } from "@/slices/sharedSlice.ts";
-import { HeartIcon } from "lucide-react";
+import { HeartIcon, Info } from "lucide-react";
 import Login from "@/components/shared/v2/login";
 import Loading from "@/components/shared/v2/loading.tsx";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -25,26 +25,28 @@ export const ModalBalanceInfo = ({
   const navigate = useNavigate();
 
   return (
-    <>
-      <h2>
-        <div>Your balance is </div> 0
+    <div className="flex items-center flex-col">
+      <Info className="text-red-500 mb-4" size={50}/>
+      <h2 className="text-3xl font-semibold mb-4 text-white">
+        <span>Your balance is 0</span>
       </h2>
-      <p>
-        <div>Please top up your account to play for real money.</div>
+
+      <p className="text-gray-400 mb-6 text-lg text-center">
+        Please top up your account to play for real money.
       </p>
 
-      <div>
+      <div className="flex flex-col sm:flex-row justify-center gap-4">
         <button
           onClick={(e) => {
             e.stopPropagation();
             onClose();
             dispatch(setModal({ modal: "deposit" }));
           }}
+          className="px-6 py-2 bg-card rounded-lg hover:bg-card/80 text-accent-foreground transition"
         >
-          <div>
-            <div>Deposit now</div>
-          </div>
+          Deposit now
         </button>
+
         {game?.hasDemo && (
           <button
             onClick={() => {
@@ -52,21 +54,17 @@ export const ModalBalanceInfo = ({
                 window.open(game?.demoURL, "_blank");
               } else {
                 navigate(`/game/${game?.id}`, {
-                  state: {
-                    play_url: game?.demoURL,
-                    game,
-                  },
+                  state: { play_url: game?.demoURL, game },
                 });
               }
             }}
+            className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
           >
-            <div>
-              <div>Or play demo</div>
-            </div>
+            Or play demo
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
@@ -167,9 +165,8 @@ const GameSlot = ({
         )}
       </div>
 
-   
       <Dialog open={depositModal} onOpenChange={() => setDepositModal(false)}>
-        <DialogContent className="p-0 lg:w-[450px] rounded-none bg-secondary">
+        <DialogContent className="lg:w-[450px] rounded-lg ">
           <ModalBalanceInfo
             game={game}
             onClose={() => setDepositModal(false)}
