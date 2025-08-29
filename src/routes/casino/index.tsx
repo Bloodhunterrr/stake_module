@@ -59,9 +59,9 @@ const Lobby = () => {
         />
       </section>
 
-        {activeCategory && activeCategory.providers.length > 0 && (
-          <ProviderSlider providers={categoryProviders} />
-        )}
+      {activeCategory && activeCategory.providers.length > 0 && (
+        <ProviderSlider providers={categoryProviders} />
+      )}
 
       <section className="container space-y-4 mx-auto">
         <LobbyBannerSlider />
@@ -83,6 +83,7 @@ const Lobby = () => {
                   key={subcategory.id}
                   categorySlug={categorySlug ?? data[0]?.slug}
                   subcategory={subcategory}
+                  providers={categoryProviders}
                 />
                 <InstallAppBanner key="install-app-banner" />
               </section>
@@ -91,14 +92,13 @@ const Lobby = () => {
 
           return (
             <LobbySlider
+              providers={categoryProviders}
               key={subcategory.id}
               categorySlug={categorySlug ?? data[0]?.slug}
               subcategory={subcategory}
             />
           );
         })}
-
-      
       </div>
 
       <Footer />
