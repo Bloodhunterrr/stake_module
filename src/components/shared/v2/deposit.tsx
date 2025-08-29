@@ -154,7 +154,7 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label htmlFor="amount">
-              Amount ({minDeposit.toLocaleString("en-EN")} -{" "}
+              {t`Amount`} ({minDeposit.toLocaleString("en-EN")} -{" "}
               {maxDeposit.toLocaleString("en-EN")}) {selectedSymbol}
             </Label>
             <div className="flex items-center gap-2">
@@ -168,16 +168,13 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
                 className={cn(
                   "bg-white text-foreground",
                   error && "border-destructive focus-visible:ring-destructive"
-                )}
-              />
+                )}/>
               <Select
                 value={selectedWallet.slug}
                 onValueChange={(value) => {
                   const newWallet = user.wallets?.find((w) => w.slug === value);
                   if (newWallet) setSelectedWallet(newWallet);
-                }}
-
-              >
+                }}>
                 <SelectTrigger className="w-[120px] bg-white text-foreground border">
                   <SelectValue placeholder={t`Select a wallet`} />
                 </SelectTrigger>
@@ -196,23 +193,20 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
           </div>
           <DepositChips
             selectedWallet={selectedWallet}
-            handleChipClick={handleChipClick}
-          />
+            handleChipClick={handleChipClick}/>
         </div>
         <div className="flex flex-col gap-4">
           <Button
             onClick={handleSubmit}
             disabled={isLoading}
-            className="w-full bg-card hover:bg-card/70 text-accent-foreground"
-          >
-            {isLoading ? "Depositing..." : "Deposit"}
+            className="w-full bg-card hover:bg-card/70 text-accent-foreground">
+            {isLoading ? t`Depositing...` : t`Deposit`}
           </Button>
           <div
             onClick={() => console.log("chat")}
-            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
+            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
             <Trans>Need Help?</Trans>
-            <Support className="h-4 w-4" />
+            <Support className="h-4 w-4"/>
             <Trans>Live Chat</Trans>
           </div>
         </div>

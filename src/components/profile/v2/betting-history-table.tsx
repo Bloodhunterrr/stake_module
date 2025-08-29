@@ -102,8 +102,7 @@ const BettingHistoryTable = () => {
             <PopoverTrigger asChild>
               <Button
                   variant="outline"
-                  className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-              >
+                  className="justify-start text-left font-normal bg-transparent text-accent-foreground">
                 <CalendarIcon className="sm:mr-2 h-4 w-4" />
                 {format(dates.startDate, "dd/MM/yyyy")}
               </Button>
@@ -115,8 +114,7 @@ const BettingHistoryTable = () => {
                   selected={dates.startDate}
                   onSelect={(date) =>
                       date && setDates((prev) => ({ ...prev, startDate: date }))
-                  }
-              />
+                  }/>
             </PopoverContent>
           </Popover>
 
@@ -124,8 +122,7 @@ const BettingHistoryTable = () => {
             <PopoverTrigger asChild>
               <Button
                   variant="outline"
-                  className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-              >
+                  className="justify-start text-left font-normal bg-transparent text-accent-foreground">
                 <CalendarIcon className="sm:mr-2 h-4 w-4" />
                 {format(dates.endDate, "dd/MM/yyyy")}
               </Button>
@@ -137,8 +134,7 @@ const BettingHistoryTable = () => {
                   selected={dates.endDate}
                   onSelect={(date) =>
                       date && setDates((prev) => ({ ...prev, endDate: date }))
-                  }
-              />
+                  }/>
             </PopoverContent>
           </Popover>
 
@@ -148,8 +144,7 @@ const BettingHistoryTable = () => {
                   value={selectedCurrencies}
                   onValueChange={setSelectedCurrencies}
                   placeholder={t`All currencies`}
-                  hideSelectAll
-              />
+                  hideSelectAll/>
           )}
 
           <MultiSelect
@@ -157,8 +152,7 @@ const BettingHistoryTable = () => {
               value={selectedStatuses}
               onValueChange={setSelectedStatuses}
               placeholder={t`All Statuses`}
-              hideSelectAll
-          />
+              hideSelectAll/>
         </div>
 
         <Table className="text-accent-foreground">
@@ -210,8 +204,7 @@ const BettingHistoryTable = () => {
                                       setExpandedTicketId(
                                           expandedTicketId === ticket.id ? null : ticket.id
                                       )
-                                  }
-                              >
+                                  }>
                                 <TableCell className="py-0">
                                   <div className="flex flex-col leading-tight">
                             <span>
@@ -336,8 +329,7 @@ const BettingHistoryTable = () => {
               <PaginationComponent
                   totalPages={data.pagination.last_page}
                   currentPage={page}
-                  setPage={setPage}
-              />
+                  setPage={setPage}/>
             </div>
         )}
       </div>
