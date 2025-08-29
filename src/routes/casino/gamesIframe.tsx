@@ -12,6 +12,7 @@ import GameBGImg from "./../../assets/images/game-bg.png";
 import FullScreenIcon from "@/assets/icons/fullscreen.svg?react";
 import {Dialog, DialogContent, DialogTrigger} from "@/components/ui/dialog";
 import Loading from "@/components/shared/v2/loading.tsx";
+import {Trans} from "@lingui/react/macro";
 
 
 export default function GamesIframe() {
@@ -45,8 +46,7 @@ export default function GamesIframe() {
     return (
         <div
             className="bg-relative flex h-[calc(100vh-64px)] w-screen flex-col items-center justify-center gap-4"
-            style={{backgroundImage: `url(${GameBGImg})`}}
-        >
+            style={{backgroundImage: `url(${GameBGImg})`}}>
             <header className="container mx-auto flex w-full items-center justify-between">
                 <div className="flex items-center space-x-4">
                     <h1 className="text-xl font-bold text-white md:text-2xl">{game.name}</h1>
@@ -54,10 +54,11 @@ export default function GamesIframe() {
                 <nav className="flex items-center space-x-2">
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button
-                            >
+                            <Button>
                                 <SearchIcon className="h-4 w-4"/>
-                                <span className="hidden sm:inline">Switch Game</span>
+                                <span className="hidden sm:inline">
+                                    <Trans>Switch Game</Trans>
+                                </span>
                             </Button>
                         </DialogTrigger>
                         <DialogContent
@@ -68,19 +69,16 @@ export default function GamesIframe() {
 
                     <Button
                         onClick={toggleFullScreen}
-                        aria-label="Toggle Fullscreen"
-                    >
+                        aria-label="Toggle Fullscreen">
                         <FullScreenIcon className="h-4 w-4 text-white"/>
                     </Button>
                     <Button
-                        aria-label="Add to Favorites"
-                    >
+                        aria-label="Add to Favorites">
                         <Heart/>
                     </Button>
                     <Button
                         onClick={handleGoBack}
-                        aria-label="Go Back"
-                    >
+                        aria-label="Go Back">
                         <CloseIcon className="h-4 w-4 text-white"/>
                     </Button>
                 </nav>
