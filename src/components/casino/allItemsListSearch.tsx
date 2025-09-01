@@ -12,9 +12,10 @@ type Props = {
   items: Provider[] | Subcategory[];
   onClose: () => void;
   type: "provider" | "subcategory";
+  params ?: string
 };
 
-const AllItemsList = ({ items, onClose, type }: Props) => {
+const AllItemsList = ({ items, onClose, type  , params}: Props) => {
   const navigate = useNavigate();
   const isDesktop = useIsDesktop();
 
@@ -54,7 +55,6 @@ const AllItemsList = ({ items, onClose, type }: Props) => {
     "Virtual Games": <Trans>Virtual Games</Trans>,
     "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
   };
-
   return (
     <div className="select-screen">
       <div className="search-wrapper">
@@ -98,53 +98,57 @@ const AllItemsList = ({ items, onClose, type }: Props) => {
             <NoDataAvailable info={null} />
           </div>
         ) : (
-          <div className={`grid ${isDesktop ? "grid-cols-3" : "grid-cols-2"} gap-[16px]`}>
+          <div className={`grid ${isDesktop ? "lg:grid-cols-3" : "lg:grid-cols-2"}  ${type === 'subcategory' ? 'grid-cols-1' : 'grid-cols-2'} gap-[16px]`}>
             {filteredItems.map((item) => {
               if (type === "provider") {
                 const provider = item as Provider;
-                return (
-                  <div
-                    key={provider.id}
-                    className="m-category-slider__item"
-                    onClick={() => {
-                      navigate("/provider/" + provider.code);
-                      onClose();
-                    }}
-                  >
-                    <div className="provider-card all-providers bg-[#2a2d35] hover:bg-[#373b45] transition-[background] items-center cursor-pointer flex h-[50px] max-[960px]:h-[68px] justify-center min-w-[130px] rounded-xl">
-                      <img
-                        className="provider-card__img h-[calc(100%_-_15px)]"
-                        src={`${config.baseUrl}/storage/${provider.logo}`}
-                        loading="lazy"
-                        alt={provider.name}
-                      />
-                    </div>
-                  </div>
-                );
+                  console.log(items)
+
+                    return (
+                        <div
+                            key={provider.id}
+                            className="m-category-slider__item"
+                            onClick={() => {
+                                navigate("/provider/" + provider.code);
+                                onClose();
+                            }}
+                        >
+                            <div className="provider-card all-providers bg-popover/50 hover:bg-popover transition-[background] items-center cursor-pointer flex h-[50px] max-[960px]:h-[68px] justify-center min-w-[130px] rounded-xl">
+                                <img
+                                    className="provider-card__img h-[calc(100%_-_15px)]"
+                                    src={`${config.baseUrl}/storage/${provider.logo}`}
+                                    loading="lazy"
+                                    alt={provider.name}
+                                />
+                            </div>
+                        </div>
+                    );
               } else {
                 const subcategory = item as Subcategory;
-                return (
-                  <div
-                    key={subcategory.id}
-                    className="m-category-slider__item"
-                    onClick={() => {
-                      navigate(
-                        `/${subcategory.categorySlug}/games/${subcategory.slug}`
+                  if(subcategory.categorySlug === params){
+                      return (
+                          <div
+                              key={subcategory.id}
+                              className="m-category-slider__item"
+                              onClick={() => {
+                                  navigate(
+                                      `/${subcategory.categorySlug}/games/${subcategory.slug}`
+                                  );
+                                  onClose();
+                              }}
+                              style={{ cursor: "pointer" }}
+                          >
+                              <div className="provider-card all-providers all-subcategories bg-popover/50 hover:bg-popover transition-[background] duration-[0.3s] ease-[ease] items-center cursor-pointer flex gap-2.5 justify-start px-5 py-0 h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
+                                  <img
+                                      className="provider-card__icon h-[calc(100%_-_15px)]"
+                                      src={`${config.baseUrl}/storage/${subcategory.icon}`}
+                                      alt={subcategory.name}
+                                      loading="lazy"/>
+                                  <p className="subcategory-card__name text-[15px] overflow-hidden text-ellipsis whitespace-nowrap text-white font-semibold">{subcategoryTranslations[subcategory.name] ?? subcategory.name}</p>
+                              </div>
+                          </div>
                       );
-                      onClose();
-                    }}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <div className="provider-card all-providers all-subcategories bg-[#2a2d35] hover:bg-[#373b45] transition-[background] duration-[0.3s] ease-[ease] items-center cursor-pointer flex gap-2.5 justify-start px-5 py-0 h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
-                      <img
-                        className="provider-card__icon h-[calc(100%_-_15px)]"
-                        src={`${config.baseUrl}/storage/${subcategory.icon}`}
-                        alt={subcategory.name}
-                        loading="lazy"/>
-                      <p className="subcategory-card__name text-[15px] overflow-hidden text-ellipsis whitespace-nowrap text-white font-semibold">{subcategoryTranslations[subcategory.name] ?? subcategory.name}</p>
-                    </div>
-                  </div>
-                );
+                  }
               }
             })}
           </div>

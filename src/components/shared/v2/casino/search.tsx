@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import { X, ChevronDown, Search as SearchIcon , LoaderCircle } from "lucide-react";
 import AllItemsList from "@/components/casino/allItemsListSearch.tsx";
 import {Trans, useLingui} from "@lingui/react/macro";
+import {useParams} from "react-router";
 
 const useDebounce = (value: string | null, delay: number): string | null => {
     const [debouncedValue, setDebouncedValue] = useState(value);
@@ -132,7 +132,7 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
     const selectedCount = useMemo(() => selectedCategoryItems.length + selectedProviderItems.length, [selectedCategoryItems, selectedProviderItems]);
 
     const { t } = useLingui()
-
+    const params = useParams()
     return (
         <div className="flex flex-col items-start w-full container mx-auto  gap-4">
             {/* Search input */}
@@ -173,7 +173,7 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
                 <div className="flex items-center gap-2">
                     <Button variant="outline" onClick={() => setProviderModal(true)}
-                            className="min-w-[9rem] justify-between text-white/70 hover:text-black">
+                            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10">
                         <span className="flex items-center gap-2"><Trans>Provider</Trans></span>
                         <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">
                             {selectedProviderItems.length > 0 && (
@@ -185,9 +185,9 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
                     </Button>
 
                     <Button variant="outline" onClick={() => setCategoryModal(true)}
-                            className="min-w-[9rem] justify-between text-white/70 hover:text-black">
+                            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10">
                         <span className="flex items-center gap-2"><Trans>Category</Trans></span>
-                        <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">
+                        <div className="flex items-center gap-2  relative left-1 group-hover:!bg-black">
                             {selectedCategoryItems.length > 0 && (
                                 <Badge variant="secondary" className="rounded-full">{selectedCategoryItems.length}</Badge>
                             )}
@@ -227,7 +227,7 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
                 <h3 className="text-md font-bold text-white"><Trans>Search results</Trans></h3>
                 {totalGames > 0 && (
-                    <Badge variant="outline" className="text-sm font-bold h-6 text-white bg-[#525766] rounded-4xl border-0 px-1.5">{totalGames}</Badge>
+                    <Badge variant="outline" className="text-sm font-bold h-6 bg-foreground/50  border-foreground/50 select-none rounded-full text-card  px-1.5">{totalGames}</Badge>
                 )}
             </div>
 
@@ -255,13 +255,15 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
             {/*/!* Category Dialog *!/*/}
             <Dialog open={categoryModal} onOpenChange={setCategoryModal}>
-                <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
-                    <DialogHeader className="px-6 pt-5">
+                <DialogContent
+                    overlayClassName={'bg-black/80'}
+                    className="lg:max-h-[80vh] w-full h-full gap-0 min-w-full rounded-none border-none overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-primary-foreground w-[20px] h-[20px]">
+                    <DialogHeader className="lg:px-6 h-14 lg:h-9 flex items-center justify-center pb-0 border-none lg:pt-5">
                         <DialogTitle className="text-white/70"><Trans>Categories</Trans></DialogTitle>
                     </DialogHeader>
-                    <Separator />
-                    <ScrollArea className="h-[70vh] px-6 pt-1 pb-6">
+                    <ScrollArea className="lg:h-[70vh] h-[90vh] px-6 lg:pt-1 lg:pb-6">
                         <AllItemsList
+                            params={params?.categorySlug ?? ''}
                             items={allSubcategories}
                             type="subcategory"
                             onClose={() => {
@@ -275,13 +277,15 @@ const Search = ({ onCloseSearchModal = () => {} , setSearchModal }: { onCloseSea
 
             {/*/!* Provider Dialog *!/*/}
             <Dialog open={providerModal} onOpenChange={setProviderModal}>
-                <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
-                    <DialogHeader className="px-6 pt-5">
+                <DialogContent
+                    overlayClassName={'bg-black/80'}
+                    className="lg:max-h-[80vh] w-full h-full gap-0 min-w-full rounded-none border-none overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-primary-foreground w-[20px] h-[20px]">
+                    <DialogHeader className="lg:px-6 h-14 lg:h-9 flex items-center justify-center pb-0 border-none lg:pt-5">
                         <DialogTitle className="text-white/70"><Trans>Providers</Trans></DialogTitle>
                     </DialogHeader>
-                    <Separator />
-                    <ScrollArea className="h-[70vh] px-6 pt-1 pb-6">
+                    <ScrollArea className="lg:h-[70vh] h-[90vh] px-6 lg:pt-1 lg:pb-6">
                         <AllItemsList
+                            params={params?.categorySlug ?? ''}
                             items={allProviders}
                             type="provider"
                             onClose={() => {

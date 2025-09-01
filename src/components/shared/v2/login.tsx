@@ -6,9 +6,9 @@ import { Eye, EyeOff } from 'lucide-react';
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Trans, useLingui } from "@lingui/react/macro";
+import {  useLingui } from "@lingui/react/macro";
 import { useLoginMutation } from '@/services/authApi.ts';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.tsx';
+import { Card, CardContent } from '@/components/ui/card.tsx';
 
 const loginSchema = z.object({
     email: z
@@ -76,11 +76,6 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
     return (
         <div className="flex justify-center items-center h-full overflow-auto">
             <Card className="w-full max-w-md border-none bg-secondary shadow-none">
-                <CardHeader>
-                    <CardTitle className="text-sm text-center font-light">
-                        <Trans>Log In</Trans>
-                    </CardTitle>
-                </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                         <div className="grid gap-2">
@@ -90,7 +85,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     id={'email'}
                                     type={'text'}
                                     placeholder={t`Enter your email`}
-                                    className="placeholder:text-xs text-xs h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
+                                    className="placeholder:text-xs text-xs h-12 bg-primary-foreground border-background/50 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('email')}
                                     autoFocus={false}
                                 />
@@ -108,7 +103,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     type={showPass ? 'text' : 'password'}
                                     autoComplete="current-password"
                                     placeholder={t`Password`}
-                                    className="placeholder:text-xs  text-xs pr-10 h-9.5 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
+                                    className="placeholder:text-xs  bg-primary-foreground text-xs pr-10 h-12 border-background/50 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('password')}
                                     autoFocus={false}
                                 />
@@ -117,7 +112,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     type="button"
                                     onClick={() => setShowPass(!showPass)}
                                     aria-label={showPass ? 'Hide password' : 'Show password'}
-                                    className="absolute inset-y-0 right-0 flex items-center pr-3"
+                                    className="absolute inset-y-0 right-0  flex items-center pr-3"
                                 >
                                     {showPass ? (
                                         <Eye className="h-4 w-4 text-muted-foreground"/>
@@ -132,10 +127,14 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                 )}
                             </div>
                         </div>
-                        <Button type="submit" className="w-full mt-2 bg-chart-2 focus-visible:ring-none focus-visible:ring-offset-none focus-visible:border-none  hover:bg-chart-2 text-primary-foreground text-xs hover:text-primary-foreground rounded-none " disabled={isLoading}>
-                            {isLoading ? 'Logging in...' : 'Login'}
+                        <Button type="submit" className="w-full mt-2 bg-chart-2 focus-visible:ring-none focus-visible:ring-offset-none focus-visible:border-none h-12  hover:bg-chart-2 text-primary-foreground text-base hover:text-primary-foreground rounded-none " disabled={isLoading}>
+                            {isLoading ? 'Logging in...' : 'Log In'}
                         </Button>
                     </form>
+                    <div className={'pt-4  text-xs text-green-900 flex items-center justify-between'}>
+                        <p>Join Now</p>
+                        <p>Have trouble logging in ?</p>
+                    </div>
                 </CardContent>
             </Card>
         </div>

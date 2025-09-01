@@ -28,7 +28,9 @@ const App: React.FC = () => {
     }, [location.pathname]);
 
     if (error || isLoading) {
-        return <Loading/>;
+        return <section className={'min-h-screen flex items-center justify-center'}>
+            <Loading/>
+        </section>
     }
 
     return (

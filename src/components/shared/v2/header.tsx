@@ -193,7 +193,7 @@ export default function Header(props: HeaderProps) {
                         ) : (
                             <section className="space-x-3">
                                 <Button variant="secondary"
-                                        className="bg-[#101114] hover:bg-[#525766] items-center shadow-[inset_0_0_0_1px_#454956] hover:shadow-none w-[70px] h-8 text-xs text-white cursor-pointer flex justify-center relative no-underline transition-all duration-150 ease-in-out rounded-2xl border-none "
+                                        className="bg-transparent px-2.5  border-card/30 border-[1px] hover:border-card text-primary-foreground hover:text-card rounded-full font-semibold text-[11px] hover:bg-transparent cursor-pointer"
                                         onClick={() => setLoginModalOpen(true)}>
                                     <Trans>Log in</Trans>
                                 </Button>
@@ -203,10 +203,17 @@ export default function Header(props: HeaderProps) {
                 </div>
 
                 <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
-                    <DialogContent className="p-0 lg:w-[450px] rounded-none bg-secondary"
-                                   onOpenAutoFocus={(e) => e.preventDefault()}
-                                   onCloseAutoFocus={(e) => e.preventDefault()}>
-                        <Login setLoginModalOpen={setLoginModalOpen}/>
+                    <DialogContent
+                        showCloseButton={false}
+                        overlayClassName={cn('mt-16',{
+                            'mt-[110px]' : props.openOptionalSideBar
+                        })}
+                        className={cn("p-0 lg:w-[450px]  top-[64px] translate-y-0 rounded-none bg-secondary",{
+                            "top-[110px]" : props.openOptionalSideBar
+                        })}
+                        onOpenAutoFocus={(e) => e.preventDefault()}
+                        onCloseAutoFocus={(e) => e.preventDefault()}>
+                            <Login setLoginModalOpen={setLoginModalOpen}/>
                     </DialogContent>
                 </Dialog>
 
@@ -217,7 +224,8 @@ export default function Header(props: HeaderProps) {
                 </Dialog>
 
                 <Dialog open={searchModalOpen} onOpenChange={setSearchModalOpen}>
-                    <DialogContent className="overflow-auto w-full h-full">
+                    <DialogContent
+                        className="overflow-auto w-full h-full">
                         <DialogHeader>
                             <DialogTitle>
                                 <Trans>Search</Trans>
