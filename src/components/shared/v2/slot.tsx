@@ -178,6 +178,7 @@ const GameSlot = ({
       </Dialog>
       <Dialog open={loginModal} onOpenChange={closeLogin}>
         <DialogContent
+            showCloseButton={false}
           className="p-0 lg:w-[450px] rounded-none bg-secondary"
           onOpenAutoFocus={(e) => e.preventDefault()}
           onCloseAutoFocus={(e) => e.preventDefault()}
