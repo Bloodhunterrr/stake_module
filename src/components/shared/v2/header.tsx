@@ -275,7 +275,6 @@ const ProfileDropdown = ({
             path: "/notifications",
         },
     ];
-    console.log(user)
 
     return (
         <DropdownMenu>

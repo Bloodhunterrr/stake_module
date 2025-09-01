@@ -102,8 +102,6 @@ const AllItemsList = ({ items, onClose, type  , params}: Props) => {
             {filteredItems.map((item) => {
               if (type === "provider") {
                 const provider = item as Provider;
-                  console.log(items)
-
                     return (
                         <div
                             key={provider.id}
