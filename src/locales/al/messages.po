@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-03 21:06+0200\n"
+"POT-Creation-Date: 2025-09-01 12:29+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
+"Language: al\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,233 +19,233 @@ msgstr "{placeholder}"
 
 #: src/routes/casino/providersGames.tsx:79
 msgid "{totalGames, plural, one {# game} other {# games}}"
-msgstr "{totalGames, plural, one {# juego} other {# juegos}}"
+msgstr "{totalGames, plural, one {# lojë} other {# lojëra}}"
 
 #: src/components/casino/lobbyBannerSlider.tsx:77
 msgid "€2,500 Daily"
-msgstr "2.500 € Diarios"
+msgstr "€2,500 Ditore"
 
 #: src/components/casino/lobbyBannerSlider.tsx:82
 msgid "€500 + 100 Free Spins"
-msgstr "500 € + 100 Giros Gratis"
+msgstr "€500 + 100 Free Spins"
 
 #: src/components/casino/lobbyBannerSlider.tsx:76
 msgid "55% up to"
-msgstr "55% hasta"
+msgstr "55% deri në"
 
 #: src/components/shared/v2/footer.tsx:33
 msgid "About BTC"
-msgstr "Acerca de BTC"
+msgstr "Rreth BTC"
 
 #: src/components/shared/v2/footer.tsx:30
 msgid "About Us"
-msgstr "Sobre nosotros"
+msgstr "Rreth Nesh"
 
 #: src/components/profile/v2/payments-history-table.tsx:188
 msgid "Action"
-msgstr "Acción"
+msgstr "Veprim"
 
 #: src/components/profile/profile/UserInfo.tsx:127
 msgid "Address"
-msgstr "Dirección"
+msgstr "Adresë"
 
 #: src/components/shared/v2/footer.tsx:78
 msgid "Affiliates"
-msgstr "Afiliados"
+msgstr "Filialet"
 
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:85
 msgid "All"
-msgstr "Todos"
+msgstr "Të Gjitha"
 
 #: src/components/profile/v2/payments-history-table.tsx:162
 msgid "All Actions"
-msgstr "Todas las Acciones"
+msgstr "Të Gjitha Veprimet"
 
 #: src/components/profile/v2/betting-history-table.tsx:146
 #: src/components/profile/v2/casino-history-table.tsx:135
 #: src/components/profile/v2/payments-history-table.tsx:152
 msgid "All currencies"
-msgstr "Todas las monedas"
+msgstr "Të gjitha monedhat"
 
 #: src/routes/casino/allProvidersList.tsx:82
 msgid "All Providers"
-msgstr "Todos los proveedores"
+msgstr "Të Gjithë Providerët"
 
 #: src/components/profile/v2/betting-history-table.tsx:154
 msgid "All Statuses"
-msgstr "Todos los Estados"
+msgstr "Të Gjitha Statuset"
 
 #: src/components/shared/v2/footer.tsx:36
 msgid "AML Policy"
-msgstr "Poliítica de AML"
+msgstr "Politika AML"
 
 #: src/components/profile/v2/payments-history-table.tsx:187
 #: src/components/shared/v2/deposit.tsx:157
 #: src/components/shared/v2/withdraw.tsx:159
 msgid "Amount"
-msgstr "Cantidad"
+msgstr "Shuma"
 
 #: src/components/shared/v2/date-filter.tsx:28
 msgid "April"
-msgstr "Abril"
+msgstr "Prill"
 
 #: src/components/shared/v2/date-filter.tsx:32
 msgid "August"
-msgstr "Agosto"
+msgstr "Gusht"
 
 #: src/components/casino/lobbyBannerSlider.tsx:65
 msgid "Begin Now"
-msgstr "Empieza Ahora"
+msgstr "Fillo Tani"
 
 #: src/components/profile/v2/betting-history-table.tsx:291
 msgid "Bet amount"
-msgstr "Cantidad apostada"
+msgstr "Shuma e bastit"
 
 #: src/components/profile/v2/casino-history-table.tsx:150
 msgid "Bet Amount"
-msgstr "Cantidad de apuesta"
+msgstr "Shuma e Bastit"
 
 #: src/components/profile/v2/betting-history-table.tsx:162
 msgid "Bet Amount (Bet ID)"
-msgstr "Monto de la apuesta (Bet ID)"
+msgstr "Shuma e Bastit (Bet ID)"
 
 #: src/components/profile/v2/casino-history-table.tsx:147
 msgid "Bet ID"
-msgstr "ID de apuesta"
+msgstr "ID e Bastit"
 
 #: src/components/shared/v2/header.tsx:248
 msgid "Bets"
-msgstr "Apuestas"
+msgstr "Baste"
 
 #: src/routes/account/bets.tsx:14
 msgid "Betting History"
-msgstr "Historial de apuestas"
+msgstr "Historia e Basteve"
 
 #: src/components/casino/bottomBanner.tsx:13
 #: src/components/casino/bottomBanner.tsx:23
 msgid "Bientôt disponible"
-msgstr "Muy pronto"
+msgstr "Së shpejti në dispozicion"
 
 #: src/components/profile/wallet.tsx:115
 msgid "Bonus money"
-msgstr "Dinero de bono"
+msgstr "Para bonus"
 
 #: src/components/shared/v2/footer.tsx:42
 msgid "Bonus Terms"
-msgstr "Términos de bonificación"
+msgstr "Kushtet e Bonusit"
 
 #: src/components/profile/profile/UserInfo.tsx:113
 msgid "Canada"
-msgstr "Canadá"
+msgstr "Kanada"
 
 #: src/components/shared/v2/header.tsx:84
 #: src/components/shared/v2/header.tsx:247
 msgid "Casino"
-msgstr "Casino"
+msgstr "Kazino"
 
 #: src/routes/account/casino.tsx:14
 msgid "Casino History"
-msgstr "Historial de Casino"
+msgstr "Historia e Kazinosë"
 
 #: src/components/shared/v2/header.tsx:85
 msgid "Casino Live"
-msgstr "Casino Live"
+msgstr "Kazino Live"
 
 #: src/components/shared/v2/casino/search.tsx:260
 msgid "Categories"
-msgstr "Categorías"
+msgstr "Kategoritë"
 
 #: src/components/shared/v2/casino/search.tsx:189
 msgid "Category"
-msgstr "Categoría"
+msgstr "Kategoria"
 
 #: src/components/profile/v2/change-password-form.tsx:197
 #: src/routes/account/change-password.tsx:9
 msgid "Change Password"
-msgstr "Cambiar la contraseña"
+msgstr "Ndrysho Fjalëkalimin"
 
 #: src/components/casino/feedbackForm.tsx:88
 msgid "characters left"
-msgstr "caracteres restantes"
+msgstr "karaktere të mbetura"
 
 #: src/components/profile/profile/UserInfo.tsx:121
 msgid "City"
-msgstr "Ciudad"
+msgstr "Qyteti"
 
 #: src/components/ui/multi-select.tsx:1147
 msgid "Clear"
-msgstr "Claro"
+msgstr "Pastro"
 
 #: src/components/shared/v2/casino/search.tsx:220
 msgid "Clear all"
-msgstr "Borrar todo"
+msgstr "Pastro të gjitha"
 
 #: src/components/shared/v2/casino/search.tsx:170
 #: src/components/ui/multi-select.tsx:1154
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Mbyll"
 
 #: src/components/profile/v2/change-password-form.tsx:172
 msgid "Confirm New Password"
-msgstr "Confirmar nueva contraseña"
+msgstr "Konfirmo Fjalëkalimin e Ri"
 
 #: src/components/shared/v2/footer.tsx:63
 msgid "Cookie Policy"
-msgstr "Política de Cookies"
+msgstr "Politika e Cookies"
 
 #: src/components/profile/profile/UserInfo.tsx:106
 msgid "Country"
-msgstr "País"
+msgstr "Vendi"
 
 #: src/components/shared/v2/header.tsx:86
 msgid "Crash Games"
-msgstr "Juegos de Crash"
+msgstr "Lojërat Crash"
 
 #: src/components/shared/v2/signup.tsx:74
 msgid "Create your account"
-msgstr "Crea tu cuenta"
+msgstr "Krijo llogarinë tënde"
 
 #: src/components/profile/profile/UserInfo.tsx:84
 msgid "Date of Birth"
-msgstr "Fecha de nacimiento"
+msgstr "Data e Lindjes"
 
 #: src/components/shared/v2/date-filter.tsx:36
 msgid "December"
-msgstr "Diciembre"
+msgstr "Dhjetor"
 
 #: src/components/profile/wallet.tsx:96
 #: src/components/shared/v2/deposit.tsx:152
 #: src/components/shared/v2/deposit.tsx:203
 msgid "Deposit"
-msgstr "Depositar"
+msgstr "Depozito"
 
 #: src/components/profile/v2/payments-history-table.tsx:219
 msgid "DEPOSIT"
-msgstr "DEPÓSITO"
+msgstr "DEPOZITË"
 
 #: src/components/shared/v2/deposit.tsx:139
 msgid "Deposit initiated successfully!"
-msgstr "¡Depósito iniciado con éxito!"
+msgstr "Depozita u iniciua me sukses!"
 
 #: src/components/shared/v2/slot.tsx:50
 msgid "Deposit now"
-msgstr "Depositar ahora"
+msgstr "Depozito tani"
 
 #: src/components/casino/lobbyBannerSlider.tsx:64
 msgid "Deposit Now"
-msgstr "Depositar Ahora"
+msgstr "Depozito Tani"
 
 #: src/components/shared/v2/deposit.tsx:203
 msgid "Depositing..."
-msgstr "Depositando..."
+msgstr "Po depozitohet..."
 
 #: src/components/shared/v2/footer.tsx:48
 msgid "Dispute Resolution"
-msgstr "Resolución de disputas"
+msgstr "Zgjidhja e Mosmarrëveshjeve"
 
 #: src/components/ui/multi-select.tsx:741
 msgid "Dropdown closed."
-msgstr "Menú desplegable cerrado."
+msgstr "Menyja rënëse u mbyll."
 
 #: src/components/casino/allItemsListSearch.tsx:49
 #: src/components/casino/lobbySlider.tsx:82
@@ -253,88 +253,87 @@ msgstr "Menú desplegable cerrado."
 #: src/routes/casino/providersGames.tsx:46
 #: src/routes/casino/subCategoryGames.tsx:83
 msgid "Egyptian Theme"
-msgstr "Tema Egipcio"
+msgstr "Temë Egjiptiane"
 
 #: src/components/profile/profile/UserInfo.tsx:78
 #: src/components/shared/v2/signup.tsx:87
 msgid "Email"
-msgstr "Correo electrónico"
+msgstr "Email"
 
 #: src/components/shared/v2/signup.tsx:136
 msgid "Enter promo code"
-msgstr "Introduce el código promocional"
+msgstr "Vendos kodin promovues"
 
 #: src/components/casino/feedbackForm.tsx:83
 msgid "Enter the text"
-msgstr "Introduce el texto"
+msgstr "Vendos tekstin"
 
 #: src/components/shared/v2/signup.tsx:76
 msgid "Enter your details below to create an account."
-msgstr "Ingrese sus datos a continuación para crear una cuenta."
+msgstr "Vendos detajet e tua më poshtë për të krijuar një llogari."
 
-#: src/components/shared/v2/login.tsx:92
-#: src/components/shared/v2/signup.tsx:94
+#: src/components/shared/v2/login.tsx:92 src/components/shared/v2/signup.tsx:94
 msgid "Enter your email"
-msgstr "Introduce tu correo electrónico"
+msgstr "Vendos email-in tënd"
 
 #: src/components/shared/v2/signup.tsx:112
 msgid "Enter your password"
-msgstr "Introduce tu contraseña"
+msgstr "Vendos fjalëkalimin tënd"
 
 #: src/components/shared/v2/footer.tsx:45
 msgid "Fairness & RNG Testing Methods"
-msgstr "Métodos de prueba de imparcialidad y RNG"
+msgstr "Metoda e Testimit të Drejtësisë & RNG"
 
 #: src/components/shared/v2/footer.tsx:66
 msgid "FAQ"
-msgstr "FAQ"
+msgstr "Pyetjet e Bëra Shpesh (FAQ)"
 
 #: src/components/shared/v2/date-filter.tsx:26
 msgid "February"
-msgstr "Febrero"
+msgstr "Shkurt"
 
 #: src/components/profile/profile/UserInfo.tsx:97
 msgid "Female"
-msgstr "Femenina"
+msgstr "Femër"
 
 #: src/components/casino/lobbySlider.tsx:109
 #: src/routes/casino/subCategoryGames.tsx:169
 msgid "Filter"
-msgstr "Filtrar"
+msgstr "Filtro"
 
 #: src/components/casino/lobbySlider.tsx:118
 #: src/components/casino/lobbySlider.tsx:291
 #: src/routes/casino/subCategoryGames.tsx:176
 msgid "Filters"
-msgstr "Filtros"
+msgstr "Filtrat"
 
 #: src/components/profile/profile/UserInfo.tsx:60
 msgid "First Name"
-msgstr "Nombre de Pila"
+msgstr "Emri"
 
 #: src/routes/casino/subCategoryGames.tsx:156
 msgid "For You"
-msgstr "Para Ti"
+msgstr "Për Ju"
 
 #: src/routes/casino/subCategoryGames.tsx:134
 msgid "games"
-msgstr "juegos"
+msgstr "lojëra"
 
 #: src/components/profile/profile/UserInfo.tsx:90
 msgid "Gender"
-msgstr "Género"
+msgstr "Gjinia"
 
 #: src/components/casino/feedbackForm.tsx:28
 msgid "Help us improve your experience"
-msgstr "Ayúdanos a mejorar tu experiencia"
+msgstr "Na ndihmoni të përmirësojmë përvojën tuaj"
 
 #: src/components/shared/v2/signup.tsx:175
 msgid "I agree to receive offers from our partners."
-msgstr "Acepto recibir ofertas de nuestros socios."
+msgstr "Unë pranoj të marr oferta nga partnerët tanë."
 
 #: src/components/shared/v2/signup.tsx:158
 msgid "I would like to receive news and offers."
-msgstr "Me gustaría recibir novedades y ofertas."
+msgstr "Dëshiroj të marr lajme dhe oferta."
 
 #: src/components/profile/v2/payments-history-table.tsx:186
 msgid "ID"
@@ -346,46 +345,46 @@ msgstr "ID"
 #: src/routes/casino/providersGames.tsx:45
 #: src/routes/casino/subCategoryGames.tsx:82
 msgid "Instant Games"
-msgstr "Juegos Instantáneos"
+msgstr "Lojëra të Menjëhershme"
 
 #: src/components/shared/v2/date-filter.tsx:25
 msgid "January"
-msgstr "Enero"
+msgstr "Janar"
 
 #: src/components/shared/v2/date-filter.tsx:31
 msgid "July"
-msgstr "Julio"
+msgstr "Korrik"
 
 #: src/components/shared/v2/date-filter.tsx:30
 msgid "June"
-msgstr "Junio"
+msgstr "Qershor"
 
 #: src/components/casino/allItemsListSearch.tsx:55
 #: src/routes/casino/providersGames.tsx:52
 #: src/routes/casino/subCategoryGames.tsx:89
 msgid "Keno & Lottery"
-msgstr "Keno y Lotería"
+msgstr "Keno & Lotari"
 
 #: src/components/shared/v2/footer.tsx:69
 msgid "KYC Policies"
-msgstr "Políticas KYC"
+msgstr "Politikat KYC"
 
 #: src/components/profile/profile/UserInfo.tsx:66
 msgid "Last Name"
-msgstr "Apellido"
+msgstr "Mbiemri"
 
 #: src/components/casino/feedbackForm.tsx:103
 msgid "Leave a message"
-msgstr "Deja un mensaje"
+msgstr "Lini një mesazh"
 
 #: src/components/shared/v2/footer.tsx:149
 msgid "License"
-msgstr "Licencia"
+msgstr "Licencë"
 
 #: src/components/shared/v2/deposit.tsx:210
 #: src/components/shared/v2/withdraw.tsx:261
 msgid "Live Chat"
-msgstr "Chat en vivo"
+msgstr "Bisedë Live"
 
 #: src/components/casino/allItemsListSearch.tsx:52
 #: src/components/casino/lobbySlider.tsx:85
@@ -393,43 +392,43 @@ msgstr "Chat en vivo"
 #: src/routes/casino/providersGames.tsx:49
 #: src/routes/casino/subCategoryGames.tsx:86
 msgid "Lobby"
-msgstr "Lobby"
+msgstr "Lobi"
 
 #: src/components/shared/v2/header.tsx:198
 msgid "Log in"
-msgstr "Acceso"
+msgstr "Hyr"
 
 #: src/components/shared/v2/login.tsx:81
 msgid "Log In"
-msgstr "Acceso"
+msgstr "Hyr"
 
 #: src/components/shared/v2/header.tsx:343
 msgid "Log out"
-msgstr "Cerrar sesión"
+msgstr "Dil"
 
 #: src/components/shared/v2/login.tsx:50
 msgid "Login successful!"
-msgstr "Inicio de sesión exitoso!"
+msgstr "Hyrja u krye me sukses!"
 
 #: src/components/profile/v2/betting-history-table.tsx:224
 msgid "Lost"
-msgstr "Perdido"
+msgstr "Humbur"
 
 #: src/components/shared/v2/header.tsx:88
 msgid "Lottery"
-msgstr "Lotería"
+msgstr "Lotari"
 
 #: src/components/profile/profile/UserInfo.tsx:96
 msgid "Male"
-msgstr "Masculino"
+msgstr "Mashkull"
 
 #: src/components/shared/v2/date-filter.tsx:27
 msgid "March"
-msgstr "Marzo"
+msgstr "Mars"
 
 #: src/components/shared/v2/date-filter.tsx:29
 msgid "May"
-msgstr "Mayo"
+msgstr "Maj"
 
 #: src/components/casino/allItemsListSearch.tsx:46
 #: src/components/casino/lobbySlider.tsx:79
@@ -441,28 +440,28 @@ msgstr "Megaways"
 
 #: src/components/shared/v2/header.tsx:266
 msgid "Messages"
-msgstr "Mensajes"
+msgstr "Mesazhet"
 
 #: src/components/profile/profile/UserInfo.tsx:114
 msgid "Mexico"
-msgstr "México"
+msgstr "Meksikë"
 
 #: src/components/ui/pagination.tsx:98
 msgid "More pages"
-msgstr "Plus de pages"
+msgstr "Më shumë faqe"
 
 #: src/components/ui/multi-select.tsx:782
 msgid "Multi-select dropdown. Use arrow keys to navigate, Enter to select, and Escape to close."
-msgstr "Menú desplegable de selección múltiple. Use las flechas para navegar, Intro para seleccionar y Esc para cerrar."
+msgstr "Meny rënëse me zgjedhje të shumëfishtë. Përdor shigjetat për të lëvizur, Enter për të zgjedhur, dhe Escape për të mbyllur."
 
 #: src/components/shared/v2/deposit.tsx:208
 #: src/components/shared/v2/withdraw.tsx:259
 msgid "Need Help?"
-msgstr "¿Necesitas ayuda?"
+msgstr "Keni nevojë për ndihmë?"
 
 #: src/components/profile/v2/change-password-form.tsx:139
 msgid "New Password"
-msgstr "Nueva contraseña"
+msgstr "Fjalëkalim i Ri"
 
 #: src/components/casino/allItemsListSearch.tsx:50
 #: src/components/casino/lobbySlider.tsx:83
@@ -470,139 +469,139 @@ msgstr "Nueva contraseña"
 #: src/routes/casino/providersGames.tsx:47
 #: src/routes/casino/subCategoryGames.tsx:84
 msgid "New Trend"
-msgstr "Nueva Tendencia"
+msgstr "Trend i Ri"
 
 #: src/components/ui/pagination.tsx:86
 msgid "Next"
-msgstr "Suivant"
+msgstr "Tjetra"
 
 #: src/components/profile/v2/casino-history-table.tsx:168
 #: src/components/profile/v2/payments-history-table.tsx:179
 msgid "No data available"
-msgstr "No hay datos disponibles"
+msgstr "Nuk ka të dhëna të disponueshme"
 
 #: src/components/profile/v2/casino-history-table.tsx:168
 msgid "No history found."
-msgstr "No se encontró historial."
+msgstr "Nuk u gjet historik."
 
 #: src/components/ui/multi-select.tsx:786
 msgid "No options selected"
-msgstr "No hay opciones seleccionadas"
+msgstr "Asnjë opsion i zgjedhur"
 
 #: src/components/ui/multi-select.tsx:1034
 msgid "No results found."
-msgstr "No se encontraron resultados."
+msgstr "Nuk u gjetën rezultate."
 
 #: src/components/profile/profile/UserInfo.tsx:98
 msgid "Non-binary"
-msgstr "No binario"
+msgstr "Jo-binare"
 
 #: src/components/shared/v2/date-filter.tsx:35
 msgid "November"
-msgstr "Noviembre"
+msgstr "Nëntor"
 
 #: src/components/shared/v2/date-filter.tsx:34
 msgid "October"
-msgstr "Octubre"
+msgstr "Tetor"
 
 #: src/components/profile/v2/change-password-form.tsx:106
 msgid "Old Password"
-msgstr "Contraseña anterior"
+msgstr "Fjalëkalimi i Vjetër"
 
 #: src/components/shared/v2/slot.tsx:66
 msgid "Or play demo"
-msgstr "O jugar demo"
+msgstr "Ose luaj demo"
 
 #: src/components/shared/v2/header.tsx:261
 #: src/components/shared/v2/login.tsx:110
 #: src/components/shared/v2/signup.tsx:108
 msgid "Password"
-msgstr "Contraseña"
+msgstr "Fjalëkalim"
 
 #: src/components/profile/v2/change-password-form.tsx:66
 msgid "Password changed successfully."
-msgstr "Contraseña cambiada exitosamente."
+msgstr "Fjalëkalimi u ndryshua me sukses."
 
 #: src/components/shared/v2/header.tsx:251
 msgid "Payments"
-msgstr "Pagos"
+msgstr "Pagesat"
 
 #: src/routes/account/payments.tsx:14
 msgid "Payments History"
-msgstr "Historial de Pagos"
+msgstr "Historia e Pagesave"
 
 #: src/components/profile/v2/betting-history-table.tsx:303
 msgid "Payout"
-msgstr "Pago"
+msgstr "Pagesa"
 
 #: src/components/profile/v2/betting-history-table.tsx:224
 msgid "Pending"
-msgstr "Pendiente"
+msgstr "Në pritje"
 
 #: src/components/profile/profile/UserInfo.tsx:72
 msgid "Phone Number"
-msgstr "Número de Teléfono"
+msgstr "Numri i Telefonit"
 
 #: src/components/profile/v2/casino-history-table.tsx:115
 msgid "Pick end date"
-msgstr "Seleccionar fecha de finalización"
+msgstr "Zgjidh datën e mbarimit"
 
 #: src/components/profile/v2/casino-history-table.tsx:91
 msgid "Pick start date"
-msgstr "Seleccione la fecha de inicio"
+msgstr "Zgjidh datën e fillimit"
 
 #: src/components/casino/feedbackForm.tsx:35
 msgid "Please leave some feedback or report a bug/issue you have faced."
-msgstr "Por favor, deja tus comentarios o reporta un error/problema que hayas encontrado."
+msgstr "Ju lutem lini disa komente ose raportoni një problem/çështje me të cilën jeni përballur."
 
 #: src/components/shared/v2/deposit.tsx:117
 msgid "Please select a wallet"
-msgstr "Por favor, selecciona una billetera"
+msgstr "Ju lutem zgjidhni një portofol"
 
 #: src/components/shared/v2/slot.tsx:38
 msgid "Please top up your account to play for real money."
-msgstr "Por favor, recarga tu cuenta para jugar con dinero real."
+msgstr "Ju lutem mbushni llogarinë tuaj për të luajtur për para të vërteta."
 
 #: src/components/profile/profile/UserInfo.tsx:133
 msgid "Postal Code"
-msgstr "Código postal"
+msgstr "Kodi Postar"
 
 #: src/components/profile/profile/UserInfo.tsx:99
 msgid "Prefer not to say"
-msgstr "Prefiero no decirlo"
+msgstr "Preferoj të mos them"
 
 #: src/components/shared/v2/header.tsx:313
 msgid "Preferences"
-msgstr "Preferencias"
+msgstr "Preferencat"
 
 #: src/components/ui/pagination.tsx:76
 msgid "Previous"
-msgstr "Précédent"
+msgstr "E mëparshmja"
 
 #: src/components/shared/v2/footer.tsx:60
 msgid "Privacy Policy"
-msgstr "Política de Privacidad"
+msgstr "Politika e Privatësisë"
 
 #: src/components/shared/v2/header.tsx:256
 #: src/components/shared/v2/header.tsx:309
 msgid "Profile"
-msgstr "Perfil"
+msgstr "Profili"
 
 #: src/components/profile/profile/UserInfo.tsx:44
 msgid "Profile Info"
-msgstr "Información del Perfil"
+msgstr "Info Profili"
 
 #: src/components/shared/v2/signup.tsx:129
 msgid "Promo Code (optional)"
-msgstr "Código Promocional (opcional)"
+msgstr "Kodi Promovues (opsional)"
 
 #: src/components/shared/v2/footer.tsx:27
 msgid "Promotions"
-msgstr "Promociones"
+msgstr "Promovimet"
 
 #: src/components/shared/v2/casino/search.tsx:177
 msgid "Provider"
-msgstr "Proveedor"
+msgstr "Provider"
 
 #: src/components/casino/lobbySlider.tsx:136
 #: src/components/casino/lobbySlider.tsx:309
@@ -611,32 +610,32 @@ msgstr "Proveedor"
 #: src/routes/casino/allProvidersList.tsx:81
 #: src/routes/casino/subCategoryGames.tsx:195
 msgid "Providers"
-msgstr "Proveedores"
+msgstr "Providerët"
 
 #: src/components/casino/lobbyBannerSlider.tsx:66
 msgid "Read More"
-msgstr "Leer Más"
+msgstr "Lexo Më Shumë"
 
 #: src/components/profile/wallet.tsx:102
 msgid "Real money"
-msgstr "Dinero real"
+msgstr "Para të vërteta"
 
 #: src/components/casino/bottomBanner.tsx:12
 #: src/components/casino/bottomBanner.tsx:21
 msgid "Recharge et retire en Crypto."
-msgstr "Recarga y retira en Crypto."
+msgstr "Rimbush dhe tërheq me Kripto."
 
 #: src/components/shared/v2/footer.tsx:54
 msgid "Responsible Gaming"
-msgstr "Juego Responsable"
+msgstr "Loja e Përgjegjshme"
 
 #: src/components/shared/v2/footer.tsx:75
 msgid "Reviews"
-msgstr "Reseñas"
+msgstr "Vlerësimet"
 
 #: src/components/shared/v2/footer.tsx:57
 msgid "Risk Warnings"
-msgstr "Advertencias de Riesgo"
+msgstr "Paralajmërimet e Rreziqeve"
 
 #: src/components/casino/allItemsListSearch.tsx:51
 #: src/components/casino/lobbySlider.tsx:84
@@ -648,7 +647,7 @@ msgstr "Roma"
 
 #: src/components/casino/lobbyBannerSlider.tsx:71
 msgid "ROOKIE RUMBLE TOURNAMENT"
-msgstr "TORNEO ROOKIE RUMBLE"
+msgstr "TURNEU ROOKIE RUMBLE"
 
 #: src/components/casino/allItemsListSearch.tsx:53
 #: src/components/casino/lobbySlider.tsx:86
@@ -656,7 +655,7 @@ msgstr "TORNEO ROOKIE RUMBLE"
 #: src/routes/casino/providersGames.tsx:50
 #: src/routes/casino/subCategoryGames.tsx:87
 msgid "Roulette"
-msgstr "Ruleta"
+msgstr "Ruletë"
 
 #: src/components/casino/allItemsListSearch.tsx:73
 #: src/components/casino/lobbySlider.tsx:128
@@ -668,64 +667,64 @@ msgstr "Ruleta"
 #: src/components/shared/v2/header.tsx:223
 #: src/routes/casino/subCategoryGames.tsx:186
 msgid "Search"
-msgstr "Buscar"
+msgstr "Kërko"
 
 #: src/components/shared/v2/withdraw.tsx:207
 msgid "Search for a crypto..."
-msgstr "Buscar una criptomoneda..."
+msgstr "Kërko për një kripto..."
 
 #: src/components/ui/multi-select.tsx:1014
 msgid "Search options..."
-msgstr "Opciones de búsqueda..."
+msgstr "Kërko opsione..."
 
 #: src/components/shared/v2/casino/search.tsx:228
 msgid "Search results"
-msgstr "Resultados de búsqueda"
+msgstr "Rezultatet e kërkimit"
 
 #: src/components/casino/lobbyBannerSlider.tsx:70
 msgid "SECOND DEPOSIT BONUS"
-msgstr "BONO DE SEGUNDO DEPÓSITO"
+msgstr "BONUSI I DYTË I DEPOZITËS"
 
 #: src/components/shared/v2/deposit.tsx:179
 #: src/components/shared/v2/withdraw.tsx:181
 msgid "Select a wallet"
-msgstr "Seleccione una billetera"
+msgstr "Zgjidh një portofol"
 
 #: src/components/casino/feedbackForm.tsx:60
 msgid "Select category of problem"
-msgstr "Selecciona la categoría del problema"
+msgstr "Zgjidh kategorinë e problemit"
 
 #: src/components/shared/v2/withdraw.tsx:202
 msgid "Select Cryptocurrency"
-msgstr "Seleccione Criptomoneda"
+msgstr "Zgjidh Kriptomonedhën"
 
 #: src/components/shared/v2/footer.tsx:51
 msgid "Self-Exclusion"
-msgstr "Autoexclusión"
+msgstr "Auto-Përjashtimi"
 
 #: src/components/casino/feedbackForm.tsx:105
 msgid "Send message"
-msgstr "Enviar mensaje"
+msgstr "Dërgo mesazh"
 
 #: src/components/shared/v2/date-filter.tsx:33
 msgid "September"
-msgstr "Septiembre"
+msgstr "Shtator"
 
 #: src/components/shared/v2/header.tsx:350
 msgid "Show Balance"
-msgstr "Mostrar Saldo"
+msgstr "Shfaq Balancën"
 
 #: src/components/shared/v2/signup.tsx:185
 msgid "Sign Up"
-msgstr "Inscribirse"
+msgstr "Regjistrohu"
 
 #: src/components/profile/v2/payments-history-table.tsx:176
 msgid "Something wrong happened. Try again later!"
-msgstr "Ocurrió algo malo. ¡Inténtalo de nuevo más tarde!"
+msgstr "Diçka shkoi keq. Provo përsëri më vonë!"
 
 #: src/routes/casino/subCategoryGames.tsx:147
 msgid "Sort"
-msgstr "Clasificar"
+msgstr "Rendit"
 
 #: src/components/shared/v2/header.tsx:82
 msgid "Sport"
@@ -733,70 +732,70 @@ msgstr "Sport"
 
 #: src/components/shared/v2/footer.tsx:72
 msgid "Sport Betting Terms"
-msgstr "Términos de Apuestas Deportivas"
+msgstr "Kushtet e Basteve Sportive"
 
 #: src/components/profile/v2/betting-history-table.tsx:168
 #: src/components/profile/v2/payments-history-table.tsx:189
 msgid "Status"
-msgstr "Estado"
+msgstr "Statusi"
 
 #: src/routes/casino/gamesIframe.tsx:60
 msgid "Switch Game"
-msgstr "Cambiar juego"
+msgstr "Ndrysho Lojën"
 
 #: src/components/shared/v2/footer.tsx:39
 msgid "Terms & Conditions"
-msgstr "Términos y Condiciones"
+msgstr "Kushtet & Termat"
 
 #: src/components/casino/feedbackForm.tsx:110
 msgid "Thank you for making our service better"
-msgstr "Gracias por mejorar nuestro servicio"
+msgstr "Faleminderit që e bëni shërbimin tonë më të mirë"
 
 #: src/components/profile/wallet.tsx:57
 msgid "This wallet is already default"
-msgstr "Esta billetera ya está predeterminada"
+msgstr "Ky portofol është tashmë i paracaktuar"
 
 #: src/components/profile/v2/betting-history-table.tsx:165
 #: src/components/profile/v2/casino-history-table.tsx:146
 #: src/components/profile/v2/payments-history-table.tsx:185
 msgid "Time"
-msgstr "Tiempo"
+msgstr "Koha"
 
 #: src/components/profile/profile/UserInfo.tsx:47
 msgid "To edit the data, please contact support."
-msgstr "Para editar los datos, comuníquese con el soporte."
+msgstr "Për të redaktuar të dhënat, ju lutem kontaktoni suportin."
 
 #: src/components/shared/v2/date-filter.tsx:23
 msgid "Today"
-msgstr "Hoy"
+msgstr "Sot"
 
 #: src/routes/casino/subCategoryGames.tsx:130
 msgid "Top Games"
-msgstr "Los Mejores Juegos"
+msgstr "Lojërat Kryesore"
 
 #: src/components/profile/wallet.tsx:72
 msgid "Total balance"
-msgstr "Saldo total"
+msgstr "Balança totale"
 
 #: src/components/profile/v2/betting-history-table.tsx:279
 msgid "Total odds"
-msgstr "Cuotas totales"
+msgstr "Shanset totale"
 
 #: src/components/ui/multi-select.tsx:1024
 msgid "Type to filter options. Use arrow keys to navigate results."
-msgstr "Escribe para filtrar las opciones. Usa las flechas para navegar por los resultados."
+msgstr "Shkruaj për të filtruar opsionet. Përdor shigjetat për të lëvizur në rezultate."
 
 #: src/components/profile/profile/UserInfo.tsx:112
 msgid "United States"
-msgstr "Estados Unidos"
+msgstr "Shtetet e Bashkuara"
 
 #: src/components/casino/lobbyBannerSlider.tsx:78
 msgid "up to 25%"
-msgstr "hasta un 25%"
+msgstr "deri në 25%"
 
 #: src/components/profile/profile/UserInfo.tsx:54
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr "Emri i përdoruesit"
 
 #: src/components/casino/allItemsListSearch.tsx:47
 #: src/components/casino/lobbySlider.tsx:80
@@ -810,491 +809,63 @@ msgstr "Video Slots"
 #: src/components/casino/lobbySlider.tsx:278
 #: src/components/casino/providerSlider.tsx:44
 msgid "View all"
-msgstr "Ver todos"
+msgstr "Shiko të gjitha"
 
 #: src/components/shared/v2/header.tsx:83
 msgid "VIP Casino"
-msgstr "Casino VIP"
+msgstr "Kazino VIP"
 
 #: src/components/shared/v2/header.tsx:87
 msgid "Virtual"
-msgstr "Virtual"
+msgstr "Virtuale"
 
 #: src/components/casino/allItemsListSearch.tsx:54
 #: src/routes/casino/providersGames.tsx:51
 #: src/routes/casino/subCategoryGames.tsx:88
 msgid "Virtual Games"
-msgstr "Juegos Virtuales"
+msgstr "Lojëra Virtuale"
 
-#: src/components/shared/v2/header.tsx:336
-#: src/routes/account/wallet.tsx:9
+#: src/components/shared/v2/header.tsx:336 src/routes/account/wallet.tsx:9
 msgid "Wallet"
-msgstr "Billetera"
+msgstr "Portofol"
 
 #: src/components/shared/v2/withdraw.tsx:231
 msgid "Wallet Address"
-msgstr "Dirección de la billetera"
+msgstr "Adresa e Portofolit"
 
 #: src/components/casino/lobbyBannerSlider.tsx:72
 msgid "WEEKLY CASHBACK"
-msgstr "REEMBOLSO SEMANAL"
+msgstr "KESHBAK JAVOR"
 
 #: src/components/profile/v2/casino-history-table.tsx:151
 msgid "Win"
-msgstr "Ganar"
+msgstr "Fitore"
 
 #: src/components/profile/wallet.tsx:89
 #: src/components/shared/v2/withdraw.tsx:154
 msgid "Withdraw"
-msgstr "Retirar"
+msgstr "Tërheq"
 
 #: src/components/profile/v2/payments-history-table.tsx:219
 msgid "WITHDRAW"
-msgstr "RETIRAR"
+msgstr "TËRHEQJE"
 
 #: src/components/shared/v2/withdraw.tsx:140
 msgid "Withdraw initiated successfully!"
-msgstr "¡Retiro iniciado con éxito!"
+msgstr "Tërheqja u iniciua me sukses!"
 
 #: src/components/profile/v2/betting-history-table.tsx:224
 msgid "Won"
-msgstr "Ganado"
+msgstr "Fituar"
 
 #: src/components/shared/v2/date-filter.tsx:24
 msgid "Yesterday"
-msgstr "Ayer"
+msgstr "Dje"
 
 #: src/components/shared/v2/signup.tsx:63
 msgid "You have successfully signed up."
-msgstr "Te has registrado exitosamente."
+msgstr "Jeni regjistruar me sukses."
 
 #: src/components/shared/v2/slot.tsx:33
 msgid "Your balance is 0"
-msgstr "Tu saldo es 0"
-
-#. js-lingui-explicit-id
-#~ msgid "Unauthorized request!!"
-#~ msgstr "¡Solicitud no autorizada!"
-
-#. js-lingui-explicit-id
-#~ msgid "Logged out successfully"
-#~ msgstr "Sesión cerrada exitosamente"
-
-#. js-lingui-explicit-id
-#~ msgid "Default wallet updated successfully"
-#~ msgstr "Billetera predeterminada actualizada exitosamente"
-
-#. js-lingui-explicit-id
-#~ msgid "Failed to set default wallet"
-#~ msgstr "No se pudo establecer la billetera predeterminada"
-
-#. js-lingui-explicit-id
-#~ msgid "Successfully signed up!"
-#~ msgstr "¡Registrado exitosamente!"
-
-#. js-lingui-explicit-id
-#~ msgid "An unexpected error occurred"
-#~ msgstr "Ha ocurrido un error inesperado"
-
-#. js-lingui-explicit-id
-#~ msgid "Email is required"
-#~ msgstr "El correo electrónico es obligatorio"
-
-#. js-lingui-explicit-id
-#~ msgid "Invalid email address"
-#~ msgstr "Dirección de correo electrónico inválida"
-
-#. js-lingui-explicit-id
-#~ msgid "Password is required"
-#~ msgstr "La contraseña es obligatoria"
-
-#. js-lingui-explicit-id
-#~ msgid "Password must be at least 6 characters"
-#~ msgstr "La contraseña debe tener al menos 6 caracteres"
-
-#. js-lingui-explicit-id
-#~ msgid "Invalid email or password"
-#~ msgstr "Correo electrónico o contraseña inválidos"
-
-#. js-lingui-explicit-id
-#~ msgid "User not found"
-#~ msgstr "Usuario no encontrado"
-
-#. js-lingui-explicit-id
-#~ msgid "This wallet is already default"
-#~ msgstr "Esta billetera ya es la predeterminada"
-
-#. js-lingui-explicit-id
-#~ msgid "Username"
-#~ msgstr "Nombre de usuario"
-
-#. js-lingui-explicit-id
-#~ msgid "First name"
-#~ msgstr "Nombre"
-
-#. js-lingui-explicit-id
-#~ msgid "Last name"
-#~ msgstr "Apellido"
-
-#. js-lingui-explicit-id
-#~ msgid "Phone number"
-#~ msgstr "Número de teléfono"
-
-#. js-lingui-explicit-id
-#~ msgid "Email"
-#~ msgstr "Correo electrónico"
-
-#. js-lingui-explicit-id
-#~ msgid "Gender"
-#~ msgstr "Género"
-
-#. js-lingui-explicit-id
-#~ msgid "Country"
-#~ msgstr "País"
-
-#. js-lingui-explicit-id
-#~ msgid "City"
-#~ msgstr "Ciudad"
-
-#. js-lingui-explicit-id
-#~ msgid "Address"
-#~ msgstr "Dirección"
-
-#. js-lingui-explicit-id
-#~ msgid "Postal Code"
-#~ msgstr "Código postal"
-
-#. js-lingui-explicit-id
-#~ msgid "Password changed successfully"
-#~ msgstr "Contraseña cambiada exitosamente"
-
-#. js-lingui-explicit-id
-#~ msgid "Current password is required"
-#~ msgstr "La contraseña actual es obligatoria"
-
-#. js-lingui-explicit-id
-#~ msgid "New password is required"
-#~ msgstr "La nueva contraseña es obligatoria"
-
-#. js-lingui-explicit-id
-#~ msgid "Password must be at least 8 characters"
-#~ msgstr "La contraseña debe tener al menos 8 caracteres"
-
-#. js-lingui-explicit-id
-#~ msgid "Please confirm your new password"
-#~ msgstr "Por favor, confirma tu nueva contraseña"
-
-#. js-lingui-explicit-id
-#~ msgid "Passwords do not match"
-#~ msgstr "Las contraseñas no coinciden"
-
-#. js-lingui-explicit-id
-#~ msgid "Details copied to clipboard"
-#~ msgstr "Detalles copiados al portapapeles"
-
-#. js-lingui-explicit-id
-#~ msgid "Failed to copy"
-#~ msgstr "Error al copiar"
-
-#. js-lingui-explicit-id
-#~ msgid "Deposit"
-#~ msgstr "Depósito"
-
-#. js-lingui-explicit-id
-#~ msgid "Withdraw"
-#~ msgstr "Retiro"
-
-#. js-lingui-explicit-id
-#~ msgid "All currencies"
-#~ msgstr "Todas las monedas"
-
-#. js-lingui-explicit-id
-#~ msgid "Currencies"
-#~ msgstr "Monedas"
-
-#. js-lingui-explicit-id
-#~ msgid "All Actions"
-#~ msgstr "Todas las acciones"
-
-#. js-lingui-explicit-id
-#~ msgid "Actions"
-#~ msgstr "Acciones"
-
-#. js-lingui-explicit-id
-#~ msgid "Something wrong happened. Try again later!"
-#~ msgstr "Algo salió mal. ¡Inténtalo de nuevo más tarde!"
-
-#. js-lingui-explicit-id
-#~ msgid "No transactions found."
-#~ msgstr "No se encontraron transacciones."
-
-#. js-lingui-explicit-id
-#~ msgid "Pending"
-#~ msgstr "Pendiente"
-
-#. js-lingui-explicit-id
-#~ msgid "Lost"
-#~ msgstr "Perdido"
-
-#. js-lingui-explicit-id
-#~ msgid "Won"
-#~ msgstr "Ganado"
-
-#. js-lingui-explicit-id
-#~ msgid "Returned"
-#~ msgstr "Devuelto"
-
-#. js-lingui-explicit-id
-#~ msgid "All Statuses"
-#~ msgstr "Todos los Estados"
-
-#. js-lingui-explicit-id
-#~ msgid "Statuses"
-#~ msgstr "Estados"
-
-#. js-lingui-explicit-id
-#~ msgid "No betting history found."
-#~ msgstr "No se encontró historial de apuestas."
-
-#. js-lingui-explicit-id
-#~ msgid "No spins history found."
-#~ msgstr "No se encontró historial de giros."
-
-#. js-lingui-explicit-id
-#~ msgid "Category is required"
-#~ msgstr "La categoría es obligatoria"
-
-#. js-lingui-explicit-id
-#~ msgid "Content is required"
-#~ msgstr "El contenido es obligatorio"
-
-#. js-lingui-explicit-id
-#~ msgid "Unauthorized request - redirecting to login..."
-#~ msgstr "Solicitud no autorizada - redirigiendo a iniciar sesión..."
-
-#. js-lingui-explicit-id
-#~ msgid "casinoApp"
-#~ msgstr "casinoApp"
-
-#. js-lingui-explicit-id
-#~ msgid "license"
-#~ msgstr "licencia"
-
-#~ msgid "{0}"
-#~ msgstr "{0}"
-
-#~ msgid "Best in the App"
-#~ msgstr "Lo mejor en la App"
-
-#~ msgid "Bet type"
-#~ msgstr "Tipo de apuesta"
-
-#~ msgid "Big Wins"
-#~ msgstr "Grandes Ganancias"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Cancelled"
-#~ msgstr "Cancelado"
-
-#~ msgid "Casino App"
-#~ msgstr "Applicación de Casino"
-
-#~ msgid "Confirm password"
-#~ msgstr "Confirmar contraseña"
-
-#~ msgid "Confirmed"
-#~ msgstr "Confirmado"
-
-#~ msgid "Copy details"
-#~ msgstr "Copiar detalles"
-
-#~ msgid "Create an alphanumeric password that is easy for you to remember and hard for others to guess."
-#~ msgstr "Crea una contraseña alfanumérica que sea fácil de recordar para ti y difícil de adivinar para otros."
-
-#~ msgid "Date"
-#~ msgstr "Fecha"
-
-#~ msgid "Default"
-#~ msgstr "Predeterminado"
-
-#~ msgid "Exit"
-#~ msgstr "Salir"
-
-#~ msgid "Failed to fetch play game url!"
-#~ msgstr "¡Error al obtener la URL del juego!"
-
-#~ msgid "Failed to initiate deposit. Contact Support"
-#~ msgstr "Error al iniciar el depósito. Contacta con el soporte"
-
-#~ msgid "Failed to initiate withdraw. Contact Support"
-#~ msgstr "Error al iniciar el retiro. Contacta con el soporte"
-
-#~ msgid "First name"
-#~ msgstr "Nombre"
-
-#~ msgid "For a better experience!"
-#~ msgstr "¡Para una mejor experiencia!"
-
-#~ msgid "Game ID"
-#~ msgstr "ID del juego"
-
-#~ msgid "Game Name"
-#~ msgstr "Nombre del juego"
-
-#~ msgid "General"
-#~ msgstr "General"
-
-#~ msgid "Go back"
-#~ msgstr "Volver"
-
-#~ msgid "Go to the home page"
-#~ msgstr "Ir a la página de inicio"
-
-#~ msgid "History"
-#~ msgstr "Historial"
-
-#~ msgid "Install"
-#~ msgstr "Instalar"
-
-#~ msgid "Invalid wallet address format"
-#~ msgstr "Formato de dirección de billetera no válido"
-
-#~ msgid "Jackpot"
-#~ msgstr "Jackpot"
-
-#~ msgid "Last name"
-#~ msgstr "Apellido"
-
-#~ msgid "Live Casino"
-#~ msgstr "Casino en Vivo"
-
-#~ msgid "Loading..."
-#~ msgstr "Cargando..."
-
-#~ msgid "Logging in..."
-#~ msgstr "Iniciando sesión..."
-
-#~ msgid "Login"
-#~ msgstr "Iniciar sesión"
-
-#~ msgid "Mega"
-#~ msgstr "Mega"
-
-#~ msgid "New password"
-#~ msgstr "Nueva contraseña"
-
-#~ msgid "No filters available"
-#~ msgstr "No hay filtros disponibles"
-
-#~ msgid "No providers found."
-#~ msgstr "No se encontraron proveedores."
-
-#~ msgid "No results found"
-#~ msgstr "No se encontraron resultados"
-
-#~ msgid "No subcategories available."
-#~ msgstr "No hay subcategorías disponibles."
-
-#~ msgid "Nothing is found"
-#~ msgstr "No se encontró nada"
-
-#~ msgid "Notification"
-#~ msgstr "Notificación"
-
-#~ msgid "Notifications"
-#~ msgstr "Notificaciones"
-
-#~ msgid "Okay"
-#~ msgstr "De acuerdo"
-
-#~ msgid "Old password"
-#~ msgstr "Contraseña antigua"
-
-#~ msgid "Page you were looking for was not found."
-#~ msgstr "La página que buscabas no fue encontrada."
-
-#~ msgid "Phone number"
-#~ msgstr "Número de teléfono"
-
-#~ msgid "Please enter an amount between {minDeposit} and {maxDeposit} {0}"
-#~ msgstr "Por favor, introduce una cantidad entre {minDeposit} y {maxDeposit} {0}"
-
-#~ msgid "Please enter an amount between {minWithdraw} and {maxWithdraw} {0}"
-#~ msgstr "Por favor, introduce una cantidad entre {minWithdraw} y {maxWithdraw} {0}"
-
-#~ msgid "Please enter wallet address"
-#~ msgstr "Por favor, introduce la dirección de la billetera"
-
-#~ msgid "Please select a cryptocurrency"
-#~ msgstr "Por favor, selecciona una criptomoneda"
-
-#~ msgid "Profile info"
-#~ msgstr "Información del perfil"
-
-#~ msgid "providers"
-#~ msgstr "proveedores"
-
-#~ msgid "Returned"
-#~ msgstr "Devuelto"
-
-#~ msgid "Save"
-#~ msgstr "Guardar"
-
-#~ msgid "Saving..."
-#~ msgstr "Guardando..."
-
-#~ msgid "Search Crypto"
-#~ msgstr "Buscar cripto"
-
-#~ msgid "Search cryptocurrency..."
-#~ msgstr "Buscar criptomoneda..."
-
-#~ msgid "Security"
-#~ msgstr "Seguridad"
-
-#~ msgid "Select a language"
-#~ msgstr "Seleccione un idioma"
-
-#~ msgid "Selected"
-#~ msgstr "Seleccionado"
-
-#~ msgid "Set default"
-#~ msgstr "Establecer como predeterminado"
-
-#~ msgid "Soon you will receive information for your funds status!"
-#~ msgstr "¡Pronto recibirás información sobre el estado de tus fondos!"
-
-#~ msgid "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
-#~ msgstr "Lo sentimos, no encontramos la página que buscaba. Le sugerimos volver a la página principal."
-
-#~ msgid "Sports"
-#~ msgstr "Deportes"
-
-#~ msgid "time"
-#~ msgstr "hora"
-
-#~ msgid "To edit the data, please contact support"
-#~ msgstr "Para editar los datos, contacta con soporte"
-
-#~ msgid "Transactions history"
-#~ msgstr "Historial de transacciones"
-
-#~ msgid "View more"
-#~ msgstr "Ver más"
-
-#~ msgid "Wallet not found! Please check your wallet"
-#~ msgstr "¡Billetera no encontrada! Por favor, revisa tu billetera"
-
-#~ msgid "Welcome back"
-#~ msgstr "Bienvenido de nuevo"
-
-#~ msgid "Win Amount"
-#~ msgstr "Cantidad ganada"
-
-#~ msgid "Withdraw is under review!"
-#~ msgstr "¡El retiro está en revisión!"
-
-#~ msgid "Your balance is "
-#~ msgstr "Tu saldo es ```"
+msgstr "Balanca juaj është 0"

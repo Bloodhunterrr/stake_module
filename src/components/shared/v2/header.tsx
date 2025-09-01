@@ -292,7 +292,7 @@ const ProfileDropdown = ({
                     <div className="flex flex-row items-center justify-between gap-x-4 w-full space-y-1 py-2">
                         {user.wallets?.map((w: Wallet) => (
                             <div key={w.slug} className="w-fit">
-                                <p className={'h-2 flex items-center justify-start w-full truncate text-[11px] '}>{w.name}</p>
+                                <p className={'h-[14px] flex items-center justify-start w-full truncate text-[11px]'}>{w.name}</p>
                 <span className="text-xl font-semibold">
                   {(Number(w.balance) / 100).toLocaleString("en-EN", {
                       minimumFractionDigits: w.decimal_places,

@@ -1,5 +1,5 @@
 import {cn} from "@/lib/utils.ts";
-import {Trans} from "@lingui/react/macro";
+import { Trans, Plural } from "@lingui/react/macro";
 import { useEffect, useState } from "react";
 import type { Provider } from "@/types/main";
 import {useTheme} from "@/hooks/useTheme.tsx";
@@ -75,7 +75,13 @@ const ProvidersGames = () => {
                           {provider?.name ? subcategoryTranslations[provider.name] : ""}
                         </h1>
                         {totalGames > 0 && (
-                            <p className="text-card text-sm">{totalGames} <Trans>games</Trans></p>
+                            <p className="text-card text-sm">
+                              <Plural
+                                  value={totalGames}
+                                  one="# game"
+                                  other="# games"
+                              />
+                            </p>
                         )}
                       </div>
                     </div>

@@ -13,6 +13,865 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.7\n"
 
+#: src/components/ui/multi-select.tsx:981
+msgid "{placeholder}"
+msgstr "{placeholder}"
+
+#: src/routes/casino/providersGames.tsx:79
+msgid "{totalGames, plural, one {# game} other {# games}}"
+msgstr "{totalGames, plural, one {# gioco} other {# giochi}}"
+
+#: src/components/casino/lobbyBannerSlider.tsx:77
+msgid "€2,500 Daily"
+msgstr "€ 2.500 al Giorno"
+
+#: src/components/casino/lobbyBannerSlider.tsx:82
+msgid "€500 + 100 Free Spins"
+msgstr "€500 + 100 Giri Gratis"
+
+#: src/components/casino/lobbyBannerSlider.tsx:76
+msgid "55% up to"
+msgstr "55% fino a"
+
+#: src/components/shared/v2/footer.tsx:33
+msgid "About BTC"
+msgstr "Informazioni su BTC"
+
+#: src/components/shared/v2/footer.tsx:30
+msgid "About Us"
+msgstr "Chi Siamo"
+
+#: src/components/profile/v2/payments-history-table.tsx:188
+msgid "Action"
+msgstr "Azione"
+
+#: src/components/profile/profile/UserInfo.tsx:127
+msgid "Address"
+msgstr "Indirizzo"
+
+#: src/components/shared/v2/footer.tsx:78
+msgid "Affiliates"
+msgstr "Affiliati"
+
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:85
+msgid "All"
+msgstr "Tutti"
+
+#: src/components/profile/v2/payments-history-table.tsx:162
+msgid "All Actions"
+msgstr "Tutte le Azioni"
+
+#: src/components/profile/v2/betting-history-table.tsx:146
+#: src/components/profile/v2/casino-history-table.tsx:135
+#: src/components/profile/v2/payments-history-table.tsx:152
+msgid "All currencies"
+msgstr "Tutte le valute"
+
+#: src/routes/casino/allProvidersList.tsx:82
+msgid "All Providers"
+msgstr "Tutti i fornitori"
+
+#: src/components/profile/v2/betting-history-table.tsx:154
+msgid "All Statuses"
+msgstr "Tutti gli Stati"
+
+#: src/components/shared/v2/footer.tsx:36
+msgid "AML Policy"
+msgstr "Politica AML"
+
+#: src/components/profile/v2/payments-history-table.tsx:187
+#: src/components/shared/v2/deposit.tsx:157
+#: src/components/shared/v2/withdraw.tsx:159
+msgid "Amount"
+msgstr "Importo"
+
+#: src/components/shared/v2/date-filter.tsx:28
+msgid "April"
+msgstr "Aprile"
+
+#: src/components/shared/v2/date-filter.tsx:32
+msgid "August"
+msgstr "Agosto"
+
+#: src/components/casino/lobbyBannerSlider.tsx:65
+msgid "Begin Now"
+msgstr "Inizia Ora"
+
+#: src/components/profile/v2/betting-history-table.tsx:291
+msgid "Bet amount"
+msgstr "Importo scommessa"
+
+#: src/components/profile/v2/casino-history-table.tsx:150
+msgid "Bet Amount"
+msgstr "Importo Scommessa"
+
+#: src/components/profile/v2/betting-history-table.tsx:162
+msgid "Bet Amount (Bet ID)"
+msgstr "Importo Scommessa (Bet ID)"
+
+#: src/components/profile/v2/casino-history-table.tsx:147
+msgid "Bet ID"
+msgstr "ID Scommessa"
+
+#: src/components/shared/v2/header.tsx:248
+msgid "Bets"
+msgstr "Scommesse"
+
+#: src/routes/account/bets.tsx:14
+msgid "Betting History"
+msgstr "Cronologia scommesse"
+
+#: src/components/casino/bottomBanner.tsx:13
+#: src/components/casino/bottomBanner.tsx:23
+msgid "Bientôt disponible"
+msgstr "Prossimamente"
+
+#: src/components/profile/wallet.tsx:115
+msgid "Bonus money"
+msgstr "Soldi bonus"
+
+#: src/components/shared/v2/footer.tsx:42
+msgid "Bonus Terms"
+msgstr "Termini Bonus"
+
+#: src/components/profile/profile/UserInfo.tsx:113
+msgid "Canada"
+msgstr "Canada"
+
+#: src/components/shared/v2/header.tsx:84
+#: src/components/shared/v2/header.tsx:247
+msgid "Casino"
+msgstr "Casinò"
+
+#: src/routes/account/casino.tsx:14
+msgid "Casino History"
+msgstr "Cronologia Casinò"
+
+#: src/components/shared/v2/header.tsx:85
+msgid "Casino Live"
+msgstr "Casinò Live"
+
+#: src/components/shared/v2/casino/search.tsx:260
+msgid "Categories"
+msgstr "Categorie"
+
+#: src/components/shared/v2/casino/search.tsx:189
+msgid "Category"
+msgstr "Categoria"
+
+#: src/components/profile/v2/change-password-form.tsx:197
+#: src/routes/account/change-password.tsx:9
+msgid "Change Password"
+msgstr "Cambia Password"
+
+#: src/components/casino/feedbackForm.tsx:88
+msgid "characters left"
+msgstr "caratteri rimanenti"
+
+#: src/components/profile/profile/UserInfo.tsx:121
+msgid "City"
+msgstr "Città"
+
+#: src/components/ui/multi-select.tsx:1147
+msgid "Clear"
+msgstr "Cancella"
+
+#: src/components/shared/v2/casino/search.tsx:220
+msgid "Clear all"
+msgstr "Cancella tutto"
+
+#: src/components/shared/v2/casino/search.tsx:170
+#: src/components/ui/multi-select.tsx:1154
+msgid "Close"
+msgstr "Chiudi"
+
+#: src/components/profile/v2/change-password-form.tsx:172
+msgid "Confirm New Password"
+msgstr "Conferma nuova password"
+
+#: src/components/shared/v2/footer.tsx:63
+msgid "Cookie Policy"
+msgstr "Informativa sui Cookie"
+
+#: src/components/profile/profile/UserInfo.tsx:106
+msgid "Country"
+msgstr "Paese"
+
+#: src/components/shared/v2/header.tsx:86
+msgid "Crash Games"
+msgstr "Giochi Crash"
+
+#: src/components/shared/v2/signup.tsx:74
+msgid "Create your account"
+msgstr "Crea il tuo account"
+
+#: src/components/profile/profile/UserInfo.tsx:84
+msgid "Date of Birth"
+msgstr "Data di nascita"
+
+#: src/components/shared/v2/date-filter.tsx:36
+msgid "December"
+msgstr "Dicembre"
+
+#: src/components/profile/wallet.tsx:96
+#: src/components/shared/v2/deposit.tsx:152
+#: src/components/shared/v2/deposit.tsx:203
+msgid "Deposit"
+msgstr "Deposito"
+
+#: src/components/profile/v2/payments-history-table.tsx:219
+msgid "DEPOSIT"
+msgstr "DEPOSITO"
+
+#: src/components/shared/v2/deposit.tsx:139
+msgid "Deposit initiated successfully!"
+msgstr "Deposito avviato con successo!"
+
+#: src/components/shared/v2/slot.tsx:50
+msgid "Deposit now"
+msgstr "Deposita ora"
+
+#: src/components/casino/lobbyBannerSlider.tsx:64
+msgid "Deposit Now"
+msgstr "Deposita Ora"
+
+#: src/components/shared/v2/deposit.tsx:203
+msgid "Depositing..."
+msgstr "Deposito in corso..."
+
+#: src/components/shared/v2/footer.tsx:48
+msgid "Dispute Resolution"
+msgstr "Risoluzione Controversie"
+
+#: src/components/ui/multi-select.tsx:741
+msgid "Dropdown closed."
+msgstr "Menu a discesa chiuso."
+
+#: src/components/casino/allItemsListSearch.tsx:49
+#: src/components/casino/lobbySlider.tsx:82
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:43
+#: src/routes/casino/providersGames.tsx:46
+#: src/routes/casino/subCategoryGames.tsx:83
+msgid "Egyptian Theme"
+msgstr "Tema Egiziano"
+
+#: src/components/profile/profile/UserInfo.tsx:78
+#: src/components/shared/v2/signup.tsx:87
+msgid "Email"
+msgstr "Email"
+
+#: src/components/shared/v2/signup.tsx:136
+msgid "Enter promo code"
+msgstr "Inserisci codice promozionale"
+
+#: src/components/casino/feedbackForm.tsx:83
+msgid "Enter the text"
+msgstr "Inserisci il testo"
+
+#: src/components/shared/v2/signup.tsx:76
+msgid "Enter your details below to create an account."
+msgstr "Inserisci i tuoi dati qui sotto per creare un account."
+
+#: src/components/shared/v2/login.tsx:92
+#: src/components/shared/v2/signup.tsx:94
+msgid "Enter your email"
+msgstr "Inserisci la tua email"
+
+#: src/components/shared/v2/signup.tsx:112
+msgid "Enter your password"
+msgstr "Inserisci la tua password"
+
+#: src/components/shared/v2/footer.tsx:45
+msgid "Fairness & RNG Testing Methods"
+msgstr "Metodi di Verifica Equità e RNG"
+
+#: src/components/shared/v2/footer.tsx:66
+msgid "FAQ"
+msgstr "FAQ"
+
+#: src/components/shared/v2/date-filter.tsx:26
+msgid "February"
+msgstr "Febbraio"
+
+#: src/components/profile/profile/UserInfo.tsx:97
+msgid "Female"
+msgstr "Femmina"
+
+#: src/components/casino/lobbySlider.tsx:109
+#: src/routes/casino/subCategoryGames.tsx:169
+msgid "Filter"
+msgstr "Filtro"
+
+#: src/components/casino/lobbySlider.tsx:118
+#: src/components/casino/lobbySlider.tsx:291
+#: src/routes/casino/subCategoryGames.tsx:176
+msgid "Filters"
+msgstr "Filtri"
+
+#: src/components/profile/profile/UserInfo.tsx:60
+msgid "First Name"
+msgstr "Nome"
+
+#: src/routes/casino/subCategoryGames.tsx:156
+msgid "For You"
+msgstr "Per Voi"
+
+#: src/routes/casino/subCategoryGames.tsx:134
+msgid "games"
+msgstr "giochi"
+
+#: src/components/profile/profile/UserInfo.tsx:90
+msgid "Gender"
+msgstr "Genere"
+
+#: src/components/casino/feedbackForm.tsx:28
+msgid "Help us improve your experience"
+msgstr "Aiutaci a migliorare la tua esperienza"
+
+#: src/components/shared/v2/signup.tsx:175
+msgid "I agree to receive offers from our partners."
+msgstr "Accetto di ricevere offerte dai nostri partner."
+
+#: src/components/shared/v2/signup.tsx:158
+msgid "I would like to receive news and offers."
+msgstr "Vorrei ricevere novità e offerte."
+
+#: src/components/profile/v2/payments-history-table.tsx:186
+msgid "ID"
+msgstr "ID"
+
+#: src/components/casino/allItemsListSearch.tsx:48
+#: src/components/casino/lobbySlider.tsx:81
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:42
+#: src/routes/casino/providersGames.tsx:45
+#: src/routes/casino/subCategoryGames.tsx:82
+msgid "Instant Games"
+msgstr "Giochi Istantanei"
+
+#: src/components/shared/v2/date-filter.tsx:25
+msgid "January"
+msgstr "Gennaio"
+
+#: src/components/shared/v2/date-filter.tsx:31
+msgid "July"
+msgstr "Luglio"
+
+#: src/components/shared/v2/date-filter.tsx:30
+msgid "June"
+msgstr "Giugno"
+
+#: src/components/casino/allItemsListSearch.tsx:55
+#: src/routes/casino/providersGames.tsx:52
+#: src/routes/casino/subCategoryGames.tsx:89
+msgid "Keno & Lottery"
+msgstr "Keno e Lotteria"
+
+#: src/components/shared/v2/footer.tsx:69
+msgid "KYC Policies"
+msgstr "Politiche KYC"
+
+#: src/components/profile/profile/UserInfo.tsx:66
+msgid "Last Name"
+msgstr "Cognome"
+
+#: src/components/casino/feedbackForm.tsx:103
+msgid "Leave a message"
+msgstr "Lascia un messaggio"
+
+#: src/components/shared/v2/footer.tsx:149
+msgid "License"
+msgstr "Licenza"
+
+#: src/components/shared/v2/deposit.tsx:210
+#: src/components/shared/v2/withdraw.tsx:261
+msgid "Live Chat"
+msgstr "Chat dal vivo"
+
+#: src/components/casino/allItemsListSearch.tsx:52
+#: src/components/casino/lobbySlider.tsx:85
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:46
+#: src/routes/casino/providersGames.tsx:49
+#: src/routes/casino/subCategoryGames.tsx:86
+msgid "Lobby"
+msgstr "Lobby"
+
+#: src/components/shared/v2/header.tsx:198
+msgid "Log in"
+msgstr "Login"
+
+#: src/components/shared/v2/login.tsx:81
+msgid "Log In"
+msgstr "Login"
+
+#: src/components/shared/v2/header.tsx:343
+msgid "Log out"
+msgstr "Disconnetti"
+
+#: src/components/shared/v2/login.tsx:50
+msgid "Login successful!"
+msgstr "Accesso effettuato con successo!"
+
+#: src/components/profile/v2/betting-history-table.tsx:224
+msgid "Lost"
+msgstr "Perso"
+
+#: src/components/shared/v2/header.tsx:88
+msgid "Lottery"
+msgstr "Lotteria"
+
+#: src/components/profile/profile/UserInfo.tsx:96
+msgid "Male"
+msgstr "Maschio"
+
+#: src/components/shared/v2/date-filter.tsx:27
+msgid "March"
+msgstr "Marzo"
+
+#: src/components/shared/v2/date-filter.tsx:29
+msgid "May"
+msgstr "Maggio"
+
+#: src/components/casino/allItemsListSearch.tsx:46
+#: src/components/casino/lobbySlider.tsx:79
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
+#: src/routes/casino/providersGames.tsx:43
+#: src/routes/casino/subCategoryGames.tsx:80
+msgid "Megaways"
+msgstr "Megaways"
+
+#: src/components/shared/v2/header.tsx:266
+msgid "Messages"
+msgstr "Messaggi"
+
+#: src/components/profile/profile/UserInfo.tsx:114
+msgid "Mexico"
+msgstr "Messico"
+
+#: src/components/ui/pagination.tsx:98
+msgid "More pages"
+msgstr "Altre pagine"
+
+#: src/components/ui/multi-select.tsx:782
+msgid "Multi-select dropdown. Use arrow keys to navigate, Enter to select, and Escape to close."
+msgstr "Menù a discesa con selezione multipla. Usa i tasti freccia per navigare, Invio per selezionare ed Esc per chiudere."
+
+#: src/components/shared/v2/deposit.tsx:208
+#: src/components/shared/v2/withdraw.tsx:259
+msgid "Need Help?"
+msgstr "Hai bisogno di aiuto?"
+
+#: src/components/profile/v2/change-password-form.tsx:139
+msgid "New Password"
+msgstr "Nuova Password"
+
+#: src/components/casino/allItemsListSearch.tsx:50
+#: src/components/casino/lobbySlider.tsx:83
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:44
+#: src/routes/casino/providersGames.tsx:47
+#: src/routes/casino/subCategoryGames.tsx:84
+msgid "New Trend"
+msgstr "Nuova Tendenza"
+
+#: src/components/ui/pagination.tsx:86
+msgid "Next"
+msgstr "Prossimo"
+
+#: src/components/profile/v2/casino-history-table.tsx:168
+#: src/components/profile/v2/payments-history-table.tsx:179
+msgid "No data available"
+msgstr "Nessun dato disponibile"
+
+#: src/components/profile/v2/casino-history-table.tsx:168
+msgid "No history found."
+msgstr "Nessuna cronologia trovata."
+
+#: src/components/ui/multi-select.tsx:786
+msgid "No options selected"
+msgstr "Nessuna opzione selezionata"
+
+#: src/components/ui/multi-select.tsx:1034
+msgid "No results found."
+msgstr "Nessun risultato trovato."
+
+#: src/components/profile/profile/UserInfo.tsx:98
+msgid "Non-binary"
+msgstr "Non binario"
+
+#: src/components/shared/v2/date-filter.tsx:35
+msgid "November"
+msgstr "Novembre"
+
+#: src/components/shared/v2/date-filter.tsx:34
+msgid "October"
+msgstr "Ottobre"
+
+#: src/components/profile/v2/change-password-form.tsx:106
+msgid "Old Password"
+msgstr "Vecchia Password"
+
+#: src/components/shared/v2/slot.tsx:66
+msgid "Or play demo"
+msgstr "O gioca in modalità demo"
+
+#: src/components/shared/v2/header.tsx:261
+#: src/components/shared/v2/login.tsx:110
+#: src/components/shared/v2/signup.tsx:108
+msgid "Password"
+msgstr "Password"
+
+#: src/components/profile/v2/change-password-form.tsx:66
+msgid "Password changed successfully."
+msgstr "Password modificata con successo."
+
+#: src/components/shared/v2/header.tsx:251
+msgid "Payments"
+msgstr "Pagamenti"
+
+#: src/routes/account/payments.tsx:14
+msgid "Payments History"
+msgstr "Cronologia dei Pagamenti"
+
+#: src/components/profile/v2/betting-history-table.tsx:303
+msgid "Payout"
+msgstr "Pagamento"
+
+#: src/components/profile/v2/betting-history-table.tsx:224
+msgid "Pending"
+msgstr "In sospeso"
+
+#: src/components/profile/profile/UserInfo.tsx:72
+msgid "Phone Number"
+msgstr "Numero di Telefono"
+
+#: src/components/profile/v2/casino-history-table.tsx:115
+msgid "Pick end date"
+msgstr "Seleziona la data di fine"
+
+#: src/components/profile/v2/casino-history-table.tsx:91
+msgid "Pick start date"
+msgstr "Seleziona la data di inizio"
+
+#: src/components/casino/feedbackForm.tsx:35
+msgid "Please leave some feedback or report a bug/issue you have faced."
+msgstr "Lascia un feedback o segnala un bug/problema che hai riscontrato."
+
+#: src/components/shared/v2/deposit.tsx:117
+msgid "Please select a wallet"
+msgstr "Seleziona un portafoglio"
+
+#: src/components/shared/v2/slot.tsx:38
+msgid "Please top up your account to play for real money."
+msgstr "Ricarica il tuo account per giocare con soldi veri."
+
+#: src/components/profile/profile/UserInfo.tsx:133
+msgid "Postal Code"
+msgstr "Codice Postale"
+
+#: src/components/profile/profile/UserInfo.tsx:99
+msgid "Prefer not to say"
+msgstr "Preferisco non dirlo"
+
+#: src/components/shared/v2/header.tsx:313
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: src/components/ui/pagination.tsx:76
+msgid "Previous"
+msgstr "Precedente"
+
+#: src/components/shared/v2/footer.tsx:60
+msgid "Privacy Policy"
+msgstr "Informativa sulla Privacy"
+
+#: src/components/shared/v2/header.tsx:256
+#: src/components/shared/v2/header.tsx:309
+msgid "Profile"
+msgstr "Profilo"
+
+#: src/components/profile/profile/UserInfo.tsx:44
+msgid "Profile Info"
+msgstr "Informazioni sul Profilo"
+
+#: src/components/shared/v2/signup.tsx:129
+msgid "Promo Code (optional)"
+msgstr "Codice Promozionale (facoltativo)"
+
+#: src/components/shared/v2/footer.tsx:27
+msgid "Promotions"
+msgstr "Promozioni"
+
+#: src/components/shared/v2/casino/search.tsx:177
+msgid "Provider"
+msgstr "Fornitore"
+
+#: src/components/casino/lobbySlider.tsx:136
+#: src/components/casino/lobbySlider.tsx:309
+#: src/components/casino/providerSlider.tsx:34
+#: src/components/shared/v2/casino/search.tsx:280
+#: src/routes/casino/allProvidersList.tsx:81
+#: src/routes/casino/subCategoryGames.tsx:195
+msgid "Providers"
+msgstr "Fornitori"
+
+#: src/components/casino/lobbyBannerSlider.tsx:66
+msgid "Read More"
+msgstr "Per saperne di più"
+
+#: src/components/profile/wallet.tsx:102
+msgid "Real money"
+msgstr "Soldi veri"
+
+#: src/components/casino/bottomBanner.tsx:12
+#: src/components/casino/bottomBanner.tsx:21
+msgid "Recharge et retire en Crypto."
+msgstr "Ricarica e preleva in Crypto."
+
+#: src/components/shared/v2/footer.tsx:54
+msgid "Responsible Gaming"
+msgstr "Gioco Responsabile"
+
+#: src/components/shared/v2/footer.tsx:75
+msgid "Reviews"
+msgstr "Recensioni"
+
+#: src/components/shared/v2/footer.tsx:57
+msgid "Risk Warnings"
+msgstr "Avvertenze di Rischio"
+
+#: src/components/casino/allItemsListSearch.tsx:51
+#: src/components/casino/lobbySlider.tsx:84
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:45
+#: src/routes/casino/providersGames.tsx:48
+#: src/routes/casino/subCategoryGames.tsx:85
+msgid "Rome"
+msgstr "Roma"
+
+#: src/components/casino/lobbyBannerSlider.tsx:71
+msgid "ROOKIE RUMBLE TOURNAMENT"
+msgstr "TORNEO ROOKIE RUMBLE"
+
+#: src/components/casino/allItemsListSearch.tsx:53
+#: src/components/casino/lobbySlider.tsx:86
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:47
+#: src/routes/casino/providersGames.tsx:50
+#: src/routes/casino/subCategoryGames.tsx:87
+msgid "Roulette"
+msgstr "Roulette"
+
+#: src/components/casino/allItemsListSearch.tsx:73
+#: src/components/casino/lobbySlider.tsx:128
+#: src/components/casino/lobbySlider.tsx:301
+#: src/components/casino/subcategorySlider.tsx:80
+#: src/components/shared/v2/casino/search.tsx:140
+#: src/components/shared/v2/casino/search.tsx:146
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:56
+#: src/components/shared/v2/header.tsx:223
+#: src/routes/casino/subCategoryGames.tsx:186
+msgid "Search"
+msgstr "Cerca"
+
+#: src/components/shared/v2/withdraw.tsx:207
+msgid "Search for a crypto..."
+msgstr "Cerca un crypto..."
+
+#: src/components/ui/multi-select.tsx:1014
+msgid "Search options..."
+msgstr "Cerca opzioni..."
+
+#: src/components/shared/v2/casino/search.tsx:228
+msgid "Search results"
+msgstr "Risultati della ricerca"
+
+#: src/components/casino/lobbyBannerSlider.tsx:70
+msgid "SECOND DEPOSIT BONUS"
+msgstr "BONUS SUL SECONDO DEPOSITO"
+
+#: src/components/shared/v2/deposit.tsx:179
+#: src/components/shared/v2/withdraw.tsx:181
+msgid "Select a wallet"
+msgstr "Seleziona un portafoglio"
+
+#: src/components/casino/feedbackForm.tsx:60
+msgid "Select category of problem"
+msgstr "Seleziona la categoria del problema"
+
+#: src/components/shared/v2/withdraw.tsx:202
+msgid "Select Cryptocurrency"
+msgstr "Seleziona la Criptovaluta"
+
+#: src/components/shared/v2/footer.tsx:51
+msgid "Self-Exclusion"
+msgstr "Autoesclusione"
+
+#: src/components/casino/feedbackForm.tsx:105
+msgid "Send message"
+msgstr "Invia messaggio"
+
+#: src/components/shared/v2/date-filter.tsx:33
+msgid "September"
+msgstr "Settembre"
+
+#: src/components/shared/v2/header.tsx:350
+msgid "Show Balance"
+msgstr "Mostra Saldo"
+
+#: src/components/shared/v2/signup.tsx:185
+msgid "Sign Up"
+msgstr "Registrati"
+
+#: src/components/profile/v2/payments-history-table.tsx:176
+msgid "Something wrong happened. Try again later!"
+msgstr "Si è verificato un errore. Riprova più tardi!"
+
+#: src/routes/casino/subCategoryGames.tsx:147
+msgid "Sort"
+msgstr "Ordina"
+
+#: src/components/shared/v2/header.tsx:82
+msgid "Sport"
+msgstr "Sport"
+
+#: src/components/shared/v2/footer.tsx:72
+msgid "Sport Betting Terms"
+msgstr "Termini Scommesse Sportive"
+
+#: src/components/profile/v2/betting-history-table.tsx:168
+#: src/components/profile/v2/payments-history-table.tsx:189
+msgid "Status"
+msgstr "Stato"
+
+#: src/routes/casino/gamesIframe.tsx:60
+msgid "Switch Game"
+msgstr "Cambia Gioco"
+
+#: src/components/shared/v2/footer.tsx:39
+msgid "Terms & Conditions"
+msgstr "Termini e Condizioni"
+
+#: src/components/casino/feedbackForm.tsx:110
+msgid "Thank you for making our service better"
+msgstr "Grazie per aver contribuito a migliorare il nostro servizio"
+
+#: src/components/profile/wallet.tsx:57
+msgid "This wallet is already default"
+msgstr "Questo portafoglio è già predefinito"
+
+#: src/components/profile/v2/betting-history-table.tsx:165
+#: src/components/profile/v2/casino-history-table.tsx:146
+#: src/components/profile/v2/payments-history-table.tsx:185
+msgid "Time"
+msgstr "Tempo"
+
+#: src/components/profile/profile/UserInfo.tsx:47
+msgid "To edit the data, please contact support."
+msgstr "Per modificare i dati, contattare l'assistenza."
+
+#: src/components/shared/v2/date-filter.tsx:23
+msgid "Today"
+msgstr "Oggi"
+
+#: src/routes/casino/subCategoryGames.tsx:130
+msgid "Top Games"
+msgstr "I Migliori Giochi"
+
+#: src/components/profile/wallet.tsx:72
+msgid "Total balance"
+msgstr "Saldo totale"
+
+#: src/components/profile/v2/betting-history-table.tsx:279
+msgid "Total odds"
+msgstr "Quote totali"
+
+#: src/components/ui/multi-select.tsx:1024
+msgid "Type to filter options. Use arrow keys to navigate results."
+msgstr "Digita per filtrare le opzioni. Usa i tasti freccia per navigare tra i risultati."
+
+#: src/components/profile/profile/UserInfo.tsx:112
+msgid "United States"
+msgstr "Stati Uniti"
+
+#: src/components/casino/lobbyBannerSlider.tsx:78
+msgid "up to 25%"
+msgstr "fino al 25%"
+
+#: src/components/profile/profile/UserInfo.tsx:54
+msgid "Username"
+msgstr "Nome utente"
+
+#: src/components/casino/allItemsListSearch.tsx:47
+#: src/components/casino/lobbySlider.tsx:80
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:41
+#: src/routes/casino/providersGames.tsx:44
+#: src/routes/casino/subCategoryGames.tsx:81
+msgid "Video Slots"
+msgstr "Video Slots"
+
+#: src/components/casino/lobbySlider.tsx:104
+#: src/components/casino/lobbySlider.tsx:278
+#: src/components/casino/providerSlider.tsx:44
+msgid "View all"
+msgstr "Visualizza tutto"
+
+#: src/components/shared/v2/header.tsx:83
+msgid "VIP Casino"
+msgstr "Casinò VIP"
+
+#: src/components/shared/v2/header.tsx:87
+msgid "Virtual"
+msgstr "Virtual"
+
+#: src/components/casino/allItemsListSearch.tsx:54
+#: src/routes/casino/providersGames.tsx:51
+#: src/routes/casino/subCategoryGames.tsx:88
+msgid "Virtual Games"
+msgstr "Giochi Virtuali"
+
+#: src/components/shared/v2/header.tsx:336
+#: src/routes/account/wallet.tsx:9
+msgid "Wallet"
+msgstr "Portafoglio"
+
+#: src/components/shared/v2/withdraw.tsx:231
+msgid "Wallet Address"
+msgstr "Indirizzo Portafoglio"
+
+#: src/components/casino/lobbyBannerSlider.tsx:72
+msgid "WEEKLY CASHBACK"
+msgstr "RIMBORSO SETTIMANALE"
+
+#: src/components/profile/v2/casino-history-table.tsx:151
+msgid "Win"
+msgstr "Vincita"
+
+#: src/components/profile/wallet.tsx:89
+#: src/components/shared/v2/withdraw.tsx:154
+msgid "Withdraw"
+msgstr "Prelievo"
+
+#: src/components/profile/v2/payments-history-table.tsx:219
+msgid "WITHDRAW"
+msgstr "RITIRARE"
+
+#: src/components/shared/v2/withdraw.tsx:140
+msgid "Withdraw initiated successfully!"
+msgstr "Prelievo avviato con successo!"
+
+#: src/components/profile/v2/betting-history-table.tsx:224
+msgid "Won"
+msgstr "Vinto"
+
+#: src/components/shared/v2/date-filter.tsx:24
+msgid "Yesterday"
+msgstr "Ieri"
+
+#: src/components/shared/v2/signup.tsx:63
+msgid "You have successfully signed up."
+msgstr "Ti sei iscritto con successo."
+
+#: src/components/shared/v2/slot.tsx:33
+msgid "Your balance is 0"
+msgstr "Il tuo saldo è 0"
+
 #. js-lingui-explicit-id
 #~ msgid "Unauthorized request!!"
 #~ msgstr "Richiesta non autorizzata!!"
@@ -224,135 +1083,14 @@ msgstr ""
 #~ msgid "{0}"
 #~ msgstr "{0}"
 
-#: src/components/ui/multi-select.tsx:981
-msgid "{placeholder}"
-msgstr "{placeholder}"
-
-#: src/components/casino/lobbyBannerSlider.tsx:77
-msgid "€2,500 Daily"
-msgstr "€ 2.500 al Giorno"
-
-#: src/components/casino/lobbyBannerSlider.tsx:82
-msgid "€500 + 100 Free Spins"
-msgstr "€500 + 100 Giri Gratis"
-
-#: src/components/casino/lobbyBannerSlider.tsx:76
-msgid "55% up to"
-msgstr "55% fino a"
-
-#: src/components/shared/v2/footer.tsx:33
-msgid "About BTC"
-msgstr "Informazioni su BTC"
-
-#: src/components/shared/v2/footer.tsx:30
-msgid "About Us"
-msgstr "Chi Siamo"
-
-#: src/components/profile/v2/payments-history-table.tsx:188
-msgid "Action"
-msgstr "Azione"
-
-#: src/components/profile/profile/UserInfo.tsx:127
-msgid "Address"
-msgstr "Indirizzo"
-
-#: src/components/shared/v2/footer.tsx:78
-msgid "Affiliates"
-msgstr "Affiliati"
-
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:85
-msgid "All"
-msgstr "Tutti"
-
-#: src/components/profile/v2/payments-history-table.tsx:162
-msgid "All Actions"
-msgstr "Tutte le Azioni"
-
-#: src/components/profile/v2/betting-history-table.tsx:146
-#: src/components/profile/v2/casino-history-table.tsx:135
-#: src/components/profile/v2/payments-history-table.tsx:152
-msgid "All currencies"
-msgstr "Tutte le valute"
-
-#: src/routes/casino/allProvidersList.tsx:82
-msgid "All Providers"
-msgstr "Tutti i fornitori"
-
-#: src/components/profile/v2/betting-history-table.tsx:154
-msgid "All Statuses"
-msgstr "Tutti gli Stati"
-
-#: src/components/shared/v2/footer.tsx:36
-msgid "AML Policy"
-msgstr "Politica AML"
-
-#: src/components/profile/v2/payments-history-table.tsx:187
-#: src/components/shared/v2/deposit.tsx:157
-#: src/components/shared/v2/withdraw.tsx:159
-msgid "Amount"
-msgstr "Importo"
-
-#: src/components/shared/v2/date-filter.tsx:28
-msgid "April"
-msgstr "Aprile"
-
-#: src/components/shared/v2/date-filter.tsx:32
-msgid "August"
-msgstr "Agosto"
-
-#: src/components/casino/lobbyBannerSlider.tsx:65
-msgid "Begin Now"
-msgstr "Inizia Ora"
-
 #~ msgid "Best in the App"
 #~ msgstr "Il meglio nell'App"
-
-#: src/components/profile/v2/betting-history-table.tsx:291
-msgid "Bet amount"
-msgstr "Importo scommessa"
-
-#: src/components/profile/v2/casino-history-table.tsx:150
-msgid "Bet Amount"
-msgstr "Importo Scommessa"
-
-#: src/components/profile/v2/betting-history-table.tsx:162
-msgid "Bet Amount (Bet ID)"
-msgstr "Importo Scommessa (Bet ID)"
-
-#: src/components/profile/v2/casino-history-table.tsx:147
-msgid "Bet ID"
-msgstr "ID Scommessa"
 
 #~ msgid "Bet type"
 #~ msgstr "Tipo di scommessa"
 
-#: src/components/shared/v2/header.tsx:244
-msgid "Bets"
-msgstr "Scommesse"
-
-#: src/routes/account/bets.tsx:14
-msgid "Betting History"
-msgstr "Cronologia scommesse"
-
-#: src/components/casino/bottomBanner.tsx:13
-#: src/components/casino/bottomBanner.tsx:23
-msgid "Bientôt disponible"
-msgstr "Prossimamente"
-
 #~ msgid "Big Wins"
 #~ msgstr "Grandi vincite"
-
-#: src/components/profile/wallet.tsx:115
-msgid "Bonus money"
-msgstr "Soldi bonus"
-
-#: src/components/shared/v2/footer.tsx:42
-msgid "Bonus Terms"
-msgstr "Termini Bonus"
-
-#: src/components/profile/profile/UserInfo.tsx:113
-msgid "Canada"
-msgstr "Canada"
 
 #~ msgid "Cancel"
 #~ msgstr "Annulla"
@@ -360,59 +1098,8 @@ msgstr "Canada"
 #~ msgid "Cancelled"
 #~ msgstr "Annullato"
 
-#: src/components/shared/v2/header.tsx:82
-#: src/components/shared/v2/header.tsx:243
-msgid "Casino"
-msgstr "Casinò"
-
 #~ msgid "Casino App"
 #~ msgstr "App Casino"
-
-#: src/routes/account/casino.tsx:14
-msgid "Casino History"
-msgstr "Cronologia Casinò"
-
-#: src/components/shared/v2/header.tsx:83
-msgid "Casino Live"
-msgstr "Casinò Live"
-
-#: src/components/shared/v2/casino/search.tsx:260
-msgid "Categories"
-msgstr "Categorie"
-
-#: src/components/shared/v2/casino/search.tsx:189
-msgid "Category"
-msgstr "Categoria"
-
-#: src/components/profile/v2/change-password-form.tsx:197
-#: src/routes/account/change-password.tsx:9
-msgid "Change Password"
-msgstr "Cambia Password"
-
-#: src/components/casino/feedbackForm.tsx:88
-msgid "characters left"
-msgstr "caratteri rimanenti"
-
-#: src/components/profile/profile/UserInfo.tsx:121
-msgid "City"
-msgstr "Città"
-
-#: src/components/ui/multi-select.tsx:1147
-msgid "Clear"
-msgstr "Cancella"
-
-#: src/components/shared/v2/casino/search.tsx:220
-msgid "Clear all"
-msgstr "Cancella tutto"
-
-#: src/components/shared/v2/casino/search.tsx:170
-#: src/components/ui/multi-select.tsx:1154
-msgid "Close"
-msgstr "Chiudi"
-
-#: src/components/profile/v2/change-password-form.tsx:172
-msgid "Confirm New Password"
-msgstr "Conferma nuova password"
 
 #~ msgid "Confirm password"
 #~ msgstr "Conferma password"
@@ -420,109 +1107,17 @@ msgstr "Conferma nuova password"
 #~ msgid "Confirmed"
 #~ msgstr "Confermato"
 
-#: src/components/shared/v2/footer.tsx:63
-msgid "Cookie Policy"
-msgstr "Informativa sui Cookie"
-
 #~ msgid "Copy details"
 #~ msgstr "Copia dettagli"
-
-#: src/components/profile/profile/UserInfo.tsx:106
-msgid "Country"
-msgstr "Paese"
-
-#: src/components/shared/v2/header.tsx:84
-msgid "Crash Games"
-msgstr "Giochi Crash"
 
 #~ msgid "Create an alphanumeric password that is easy for you to remember and hard for others to guess."
 #~ msgstr "Crea una password alfanumerica facile da ricordare per te e difficile da indovinare per gli altri."
 
-#: src/components/shared/v2/signup.tsx:74
-msgid "Create your account"
-msgstr "Crea il tuo account"
-
 #~ msgid "Date"
 #~ msgstr "Data"
 
-#: src/components/profile/profile/UserInfo.tsx:84
-msgid "Date of Birth"
-msgstr "Data di nascita"
-
-#: src/components/shared/v2/date-filter.tsx:36
-msgid "December"
-msgstr "Dicembre"
-
 #~ msgid "Default"
 #~ msgstr "Predefinito"
-
-#: src/components/profile/wallet.tsx:96
-#: src/components/shared/v2/deposit.tsx:152
-#: src/components/shared/v2/deposit.tsx:203
-msgid "Deposit"
-msgstr "Deposito"
-
-#: src/components/profile/v2/payments-history-table.tsx:219
-msgid "DEPOSIT"
-msgstr "DEPOSITO"
-
-#: src/components/shared/v2/deposit.tsx:139
-msgid "Deposit initiated successfully!"
-msgstr "Deposito avviato con successo!"
-
-#: src/components/shared/v2/slot.tsx:50
-msgid "Deposit now"
-msgstr "Deposita ora"
-
-#: src/components/casino/lobbyBannerSlider.tsx:64
-msgid "Deposit Now"
-msgstr "Deposita Ora"
-
-#: src/components/shared/v2/deposit.tsx:203
-msgid "Depositing..."
-msgstr "Deposito in corso..."
-
-#: src/components/shared/v2/footer.tsx:48
-msgid "Dispute Resolution"
-msgstr "Risoluzione Controversie"
-
-#: src/components/ui/multi-select.tsx:741
-msgid "Dropdown closed."
-msgstr "Menu a discesa chiuso."
-
-#: src/components/casino/allItemsListSearch.tsx:49
-#: src/components/casino/lobbySlider.tsx:82
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:43
-#: src/routes/casino/providersGames.tsx:46
-#: src/routes/casino/subCategoryGames.tsx:83
-msgid "Egyptian Theme"
-msgstr "Tema Egiziano"
-
-#: src/components/profile/profile/UserInfo.tsx:78
-#: src/components/shared/v2/signup.tsx:87
-msgid "Email"
-msgstr "Email"
-
-#: src/components/shared/v2/signup.tsx:136
-msgid "Enter promo code"
-msgstr "Inserisci codice promozionale"
-
-#: src/components/casino/feedbackForm.tsx:83
-msgid "Enter the text"
-msgstr "Inserisci il testo"
-
-#: src/components/shared/v2/signup.tsx:76
-msgid "Enter your details below to create an account."
-msgstr "Inserisci i tuoi dati qui sotto per creare un account."
-
-#: src/components/shared/v2/login.tsx:92
-#: src/components/shared/v2/signup.tsx:94
-msgid "Enter your email"
-msgstr "Inserisci la tua email"
-
-#: src/components/shared/v2/signup.tsx:112
-msgid "Enter your password"
-msgstr "Inserisci la tua password"
 
 #~ msgid "Exit"
 #~ msgstr "Esci"
@@ -536,61 +1131,17 @@ msgstr "Inserisci la tua password"
 #~ msgid "Failed to initiate withdraw. Contact Support"
 #~ msgstr "Impossibile avviare il prelievo. Contatta il supporto"
 
-#: src/components/shared/v2/footer.tsx:45
-msgid "Fairness & RNG Testing Methods"
-msgstr "Metodi di Verifica Equità e RNG"
-
-#: src/components/shared/v2/footer.tsx:66
-msgid "FAQ"
-msgstr "FAQ"
-
-#: src/components/shared/v2/date-filter.tsx:26
-msgid "February"
-msgstr "Febbraio"
-
-#: src/components/profile/profile/UserInfo.tsx:97
-msgid "Female"
-msgstr "Femmina"
-
-#: src/components/casino/lobbySlider.tsx:109
-#: src/routes/casino/subCategoryGames.tsx:169
-msgid "Filter"
-msgstr "Filtro"
-
-#: src/components/casino/lobbySlider.tsx:118
-#: src/components/casino/lobbySlider.tsx:291
-#: src/routes/casino/subCategoryGames.tsx:176
-msgid "Filters"
-msgstr "Filtri"
-
 #~ msgid "First name"
 #~ msgstr "Nome"
 
-#: src/components/profile/profile/UserInfo.tsx:60
-msgid "First Name"
-msgstr "Nome"
-
 #~ msgid "For a better experience!"
 #~ msgstr "Per un'esperienza migliore!"
-
-#: src/routes/casino/subCategoryGames.tsx:156
-msgid "For You"
-msgstr "Per Voi"
 
 #~ msgid "Game ID"
 #~ msgstr "ID Gioco"
 
 #~ msgid "Game Name"
 #~ msgstr "Nome Gioco"
-
-#: src/routes/casino/providersGames.tsx:78
-#: src/routes/casino/subCategoryGames.tsx:134
-msgid "games"
-msgstr "giochi"
-
-#: src/components/profile/profile/UserInfo.tsx:90
-msgid "Gender"
-msgstr "Genere"
 
 #~ msgid "General"
 #~ msgstr "Generale"
@@ -601,35 +1152,11 @@ msgstr "Genere"
 #~ msgid "Go to the home page"
 #~ msgstr "Vai alla pagina principale"
 
-#: src/components/casino/feedbackForm.tsx:28
-msgid "Help us improve your experience"
-msgstr "Aiutaci a migliorare la tua esperienza"
-
 #~ msgid "History"
 #~ msgstr "Cronologia"
 
-#: src/components/shared/v2/signup.tsx:175
-msgid "I agree to receive offers from our partners."
-msgstr "Accetto di ricevere offerte dai nostri partner."
-
-#: src/components/shared/v2/signup.tsx:158
-msgid "I would like to receive news and offers."
-msgstr "Vorrei ricevere novità e offerte."
-
-#: src/components/profile/v2/payments-history-table.tsx:186
-msgid "ID"
-msgstr "ID"
-
 #~ msgid "Install"
 #~ msgstr "Installa"
-
-#: src/components/casino/allItemsListSearch.tsx:48
-#: src/components/casino/lobbySlider.tsx:81
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:42
-#: src/routes/casino/providersGames.tsx:45
-#: src/routes/casino/subCategoryGames.tsx:82
-msgid "Instant Games"
-msgstr "Giochi Istantanei"
 
 #~ msgid "Invalid wallet address format"
 #~ msgstr "Formato indirizzo portafoglio non valido"
@@ -637,73 +1164,14 @@ msgstr "Giochi Istantanei"
 #~ msgid "Jackpot"
 #~ msgstr "Jackpot"
 
-#: src/components/shared/v2/date-filter.tsx:25
-msgid "January"
-msgstr "Gennaio"
-
-#: src/components/shared/v2/date-filter.tsx:31
-msgid "July"
-msgstr "Luglio"
-
-#: src/components/shared/v2/date-filter.tsx:30
-msgid "June"
-msgstr "Giugno"
-
-#: src/components/casino/allItemsListSearch.tsx:55
-#: src/routes/casino/providersGames.tsx:52
-#: src/routes/casino/subCategoryGames.tsx:89
-msgid "Keno & Lottery"
-msgstr "Keno e Lotteria"
-
-#: src/components/shared/v2/footer.tsx:69
-msgid "KYC Policies"
-msgstr "Politiche KYC"
-
 #~ msgid "Last name"
 #~ msgstr "Cognome"
-
-#: src/components/profile/profile/UserInfo.tsx:66
-msgid "Last Name"
-msgstr "Cognome"
-
-#: src/components/casino/feedbackForm.tsx:103
-msgid "Leave a message"
-msgstr "Lascia un messaggio"
-
-#: src/components/shared/v2/footer.tsx:149
-msgid "License"
-msgstr "Licenza"
 
 #~ msgid "Live Casino"
 #~ msgstr "Casinò Live"
 
-#: src/components/shared/v2/deposit.tsx:210
-#: src/components/shared/v2/withdraw.tsx:267
-msgid "Live Chat"
-msgstr "Chat dal vivo"
-
 #~ msgid "Loading..."
 #~ msgstr "Caricamento..."
-
-#: src/components/casino/allItemsListSearch.tsx:52
-#: src/components/casino/lobbySlider.tsx:85
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:46
-#: src/routes/casino/providersGames.tsx:49
-#: src/routes/casino/subCategoryGames.tsx:86
-msgid "Lobby"
-msgstr "Lobby"
-
-#: src/components/shared/v2/header.tsx:194
-msgid "Log in"
-msgstr "Login"
-
-#: src/components/shared/v2/login.tsx:81
-msgid "Log In"
-msgstr "Login"
-
-#: src/components/shared/v2/header.tsx:337
-msgid "Log out"
-msgstr "Disconnetti"
 
 #~ msgid "Logging in..."
 #~ msgstr "Accesso in corso..."
@@ -711,96 +1179,14 @@ msgstr "Disconnetti"
 #~ msgid "Login"
 #~ msgstr "Accedi"
 
-#: src/components/shared/v2/login.tsx:50
-msgid "Login successful!"
-msgstr "Accesso effettuato con successo!"
-
-#: src/components/profile/v2/betting-history-table.tsx:224
-msgid "Lost"
-msgstr "Perso"
-
-#: src/components/shared/v2/header.tsx:86
-msgid "Lottery"
-msgstr "Lotteria"
-
-#: src/components/profile/profile/UserInfo.tsx:96
-msgid "Male"
-msgstr "Maschio"
-
-#: src/components/shared/v2/date-filter.tsx:27
-msgid "March"
-msgstr "Marzo"
-
-#: src/components/shared/v2/date-filter.tsx:29
-msgid "May"
-msgstr "Maggio"
-
 #~ msgid "Mega"
 #~ msgstr "Mega"
-
-#: src/components/casino/allItemsListSearch.tsx:46
-#: src/components/casino/lobbySlider.tsx:79
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:40
-#: src/routes/casino/providersGames.tsx:43
-#: src/routes/casino/subCategoryGames.tsx:80
-msgid "Megaways"
-msgstr "Megaways"
-
-#: src/components/shared/v2/header.tsx:262
-msgid "Messages"
-msgstr "Messaggi"
-
-#: src/components/profile/profile/UserInfo.tsx:114
-msgid "Mexico"
-msgstr "Messico"
-
-#: src/components/ui/pagination.tsx:98
-msgid "More pages"
-msgstr "Altre pagine"
-
-#: src/components/ui/multi-select.tsx:782
-msgid "Multi-select dropdown. Use arrow keys to navigate, Enter to select, and Escape to close."
-msgstr "Menù a discesa con selezione multipla. Usa i tasti freccia per navigare, Invio per selezionare ed Esc per chiudere."
-
-#: src/components/shared/v2/deposit.tsx:208
-#: src/components/shared/v2/withdraw.tsx:265
-msgid "Need Help?"
-msgstr "Hai bisogno di aiuto?"
 
 #~ msgid "New password"
 #~ msgstr "Nuova password"
 
-#: src/components/profile/v2/change-password-form.tsx:139
-msgid "New Password"
-msgstr "Nuova Password"
-
-#: src/components/casino/allItemsListSearch.tsx:50
-#: src/components/casino/lobbySlider.tsx:83
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:44
-#: src/routes/casino/providersGames.tsx:47
-#: src/routes/casino/subCategoryGames.tsx:84
-msgid "New Trend"
-msgstr "Nuova Tendenza"
-
-#: src/components/ui/pagination.tsx:86
-msgid "Next"
-msgstr "Prossimo"
-
-#: src/components/profile/v2/casino-history-table.tsx:168
-#: src/components/profile/v2/payments-history-table.tsx:179
-msgid "No data available"
-msgstr "Nessun dato disponibile"
-
 #~ msgid "No filters available"
 #~ msgstr "Nessun filtro disponibile"
-
-#: src/components/profile/v2/casino-history-table.tsx:168
-msgid "No history found."
-msgstr "Nessuna cronologia trovata."
-
-#: src/components/ui/multi-select.tsx:786
-msgid "No options selected"
-msgstr "Nessuna opzione selezionata"
 
 #~ msgid "No providers found."
 #~ msgstr "Nessun fornitore trovato."
@@ -808,16 +1194,8 @@ msgstr "Nessuna opzione selezionata"
 #~ msgid "No results found"
 #~ msgstr "Nessun risultato trovato"
 
-#: src/components/ui/multi-select.tsx:1034
-msgid "No results found."
-msgstr "Nessun risultato trovato."
-
 #~ msgid "No subcategories available."
 #~ msgstr "Nessuna sottocategoria disponibile."
-
-#: src/components/profile/profile/UserInfo.tsx:98
-msgid "Non-binary"
-msgstr "Non binario"
 
 #~ msgid "Nothing is found"
 #~ msgstr "Niente è stato trovato"
@@ -828,71 +1206,17 @@ msgstr "Non binario"
 #~ msgid "Notifications"
 #~ msgstr "Notifiche"
 
-#: src/components/shared/v2/date-filter.tsx:35
-msgid "November"
-msgstr "Novembre"
-
-#: src/components/shared/v2/date-filter.tsx:34
-msgid "October"
-msgstr "Ottobre"
-
 #~ msgid "Okay"
 #~ msgstr "Ok"
 
 #~ msgid "Old password"
 #~ msgstr "Vecchia password"
 
-#: src/components/profile/v2/change-password-form.tsx:106
-msgid "Old Password"
-msgstr "Vecchia Password"
-
-#: src/components/shared/v2/slot.tsx:66
-msgid "Or play demo"
-msgstr "O gioca in modalità demo"
-
 #~ msgid "Page you were looking for was not found."
 #~ msgstr "La pagina che stavi cercando non è stata trovata."
 
-#: src/components/shared/v2/header.tsx:257
-#: src/components/shared/v2/login.tsx:110
-#: src/components/shared/v2/signup.tsx:108
-msgid "Password"
-msgstr "Password"
-
-#: src/components/profile/v2/change-password-form.tsx:66
-msgid "Password changed successfully."
-msgstr "Password modificata con successo."
-
-#: src/components/shared/v2/header.tsx:247
-msgid "Payments"
-msgstr "Pagamenti"
-
-#: src/routes/account/payments.tsx:14
-msgid "Payments History"
-msgstr "Cronologia dei Pagamenti"
-
-#: src/components/profile/v2/betting-history-table.tsx:303
-msgid "Payout"
-msgstr "Pagamento"
-
-#: src/components/profile/v2/betting-history-table.tsx:224
-msgid "Pending"
-msgstr "In sospeso"
-
 #~ msgid "Phone number"
 #~ msgstr "Numero di telefono"
-
-#: src/components/profile/profile/UserInfo.tsx:72
-msgid "Phone Number"
-msgstr "Numero di Telefono"
-
-#: src/components/profile/v2/casino-history-table.tsx:115
-msgid "Pick end date"
-msgstr "Seleziona la data di fine"
-
-#: src/components/profile/v2/casino-history-table.tsx:91
-msgid "Pick start date"
-msgstr "Seleziona la data di inizio"
 
 #~ msgid "Please enter an amount between {minDeposit} and {maxDeposit} {0}"
 #~ msgstr "Inserisci un importo tra {minDeposit} e {maxDeposit} {0}"
@@ -903,124 +1227,17 @@ msgstr "Seleziona la data di inizio"
 #~ msgid "Please enter wallet address"
 #~ msgstr "Inserisci l'indirizzo del portafoglio"
 
-#: src/components/casino/feedbackForm.tsx:35
-msgid "Please leave some feedback or report a bug/issue you have faced."
-msgstr "Lascia un feedback o segnala un bug/problema che hai riscontrato."
-
 #~ msgid "Please select a cryptocurrency"
 #~ msgstr "Seleziona una criptovaluta"
-
-#: src/components/shared/v2/deposit.tsx:117
-msgid "Please select a wallet"
-msgstr "Seleziona un portafoglio"
-
-#: src/components/shared/v2/slot.tsx:38
-msgid "Please top up your account to play for real money."
-msgstr "Ricarica il tuo account per giocare con soldi veri."
-
-#: src/components/profile/profile/UserInfo.tsx:133
-msgid "Postal Code"
-msgstr "Codice Postale"
-
-#: src/components/profile/profile/UserInfo.tsx:99
-msgid "Prefer not to say"
-msgstr "Preferisco non dirlo"
-
-#: src/components/shared/v2/header.tsx:307
-msgid "Preferences"
-msgstr "Preferenze"
-
-#: src/components/ui/pagination.tsx:76
-msgid "Previous"
-msgstr "Precedente"
-
-#: src/components/shared/v2/footer.tsx:60
-msgid "Privacy Policy"
-msgstr "Informativa sulla Privacy"
-
-#: src/components/shared/v2/header.tsx:252
-#: src/components/shared/v2/header.tsx:303
-msgid "Profile"
-msgstr "Profilo"
 
 #~ msgid "Profile info"
 #~ msgstr "Informazioni profilo"
 
-#: src/components/profile/profile/UserInfo.tsx:44
-msgid "Profile Info"
-msgstr "Informazioni sul Profilo"
-
-#: src/components/shared/v2/signup.tsx:129
-msgid "Promo Code (optional)"
-msgstr "Codice Promozionale (facoltativo)"
-
-#: src/components/shared/v2/footer.tsx:27
-msgid "Promotions"
-msgstr "Promozioni"
-
-#: src/components/shared/v2/casino/search.tsx:177
-msgid "Provider"
-msgstr "Fornitore"
-
 #~ msgid "providers"
 #~ msgstr "fornitori"
 
-#: src/components/casino/lobbySlider.tsx:136
-#: src/components/casino/lobbySlider.tsx:309
-#: src/components/casino/providerSlider.tsx:34
-#: src/components/shared/v2/casino/search.tsx:280
-#: src/routes/casino/allProvidersList.tsx:81
-#: src/routes/casino/subCategoryGames.tsx:195
-msgid "Providers"
-msgstr "Fornitori"
-
-#: src/components/casino/lobbyBannerSlider.tsx:66
-msgid "Read More"
-msgstr "Per saperne di più"
-
-#: src/components/profile/wallet.tsx:102
-msgid "Real money"
-msgstr "Soldi veri"
-
-#: src/components/casino/bottomBanner.tsx:12
-#: src/components/casino/bottomBanner.tsx:21
-msgid "Recharge et retire en Crypto."
-msgstr "Ricarica e preleva in Crypto."
-
-#: src/components/shared/v2/footer.tsx:54
-msgid "Responsible Gaming"
-msgstr "Gioco Responsabile"
-
 #~ msgid "Returned"
 #~ msgstr "Restituito"
-
-#: src/components/shared/v2/footer.tsx:75
-msgid "Reviews"
-msgstr "Recensioni"
-
-#: src/components/shared/v2/footer.tsx:57
-msgid "Risk Warnings"
-msgstr "Avvertenze di Rischio"
-
-#: src/components/casino/allItemsListSearch.tsx:51
-#: src/components/casino/lobbySlider.tsx:84
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:45
-#: src/routes/casino/providersGames.tsx:48
-#: src/routes/casino/subCategoryGames.tsx:85
-msgid "Rome"
-msgstr "Roma"
-
-#: src/components/casino/lobbyBannerSlider.tsx:71
-msgid "ROOKIE RUMBLE TOURNAMENT"
-msgstr "TORNEO ROOKIE RUMBLE"
-
-#: src/components/casino/allItemsListSearch.tsx:53
-#: src/components/casino/lobbySlider.tsx:86
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:47
-#: src/routes/casino/providersGames.tsx:50
-#: src/routes/casino/subCategoryGames.tsx:87
-msgid "Roulette"
-msgstr "Roulette"
 
 #~ msgid "Save"
 #~ msgstr "Salva"
@@ -1028,39 +1245,11 @@ msgstr "Roulette"
 #~ msgid "Saving..."
 #~ msgstr "Salvataggio..."
 
-#: src/components/casino/allItemsListSearch.tsx:73
-#: src/components/casino/lobbySlider.tsx:128
-#: src/components/casino/lobbySlider.tsx:301
-#: src/components/casino/subcategorySlider.tsx:80
-#: src/components/shared/v2/casino/search.tsx:140
-#: src/components/shared/v2/casino/search.tsx:146
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:56
-#: src/components/shared/v2/header.tsx:219
-#: src/routes/casino/subCategoryGames.tsx:186
-msgid "Search"
-msgstr "Cerca"
-
 #~ msgid "Search Crypto"
 #~ msgstr "Cerca Cripto"
 
 #~ msgid "Search cryptocurrency..."
 #~ msgstr "Cerca criptovaluta..."
-
-#: src/components/shared/v2/withdraw.tsx:211
-msgid "Search for a crypto..."
-msgstr "Cerca un crypto..."
-
-#: src/components/ui/multi-select.tsx:1014
-msgid "Search options..."
-msgstr "Cerca opzioni..."
-
-#: src/components/shared/v2/casino/search.tsx:228
-msgid "Search results"
-msgstr "Risultati della ricerca"
-
-#: src/components/casino/lobbyBannerSlider.tsx:70
-msgid "SECOND DEPOSIT BONUS"
-msgstr "BONUS SUL SECONDO DEPOSITO"
 
 #~ msgid "Security"
 #~ msgstr "Sicurezza"
@@ -1068,48 +1257,11 @@ msgstr "BONUS SUL SECONDO DEPOSITO"
 #~ msgid "Select a language"
 #~ msgstr "Seleziona una lingua"
 
-#: src/components/shared/v2/deposit.tsx:179
-#: src/components/shared/v2/withdraw.tsx:183
-msgid "Select a wallet"
-msgstr "Seleziona un portafoglio"
-
-#: src/components/casino/feedbackForm.tsx:60
-msgid "Select category of problem"
-msgstr "Seleziona la categoria del problema"
-
-#: src/components/shared/v2/withdraw.tsx:205
-msgid "Select Cryptocurrency"
-msgstr "Seleziona la Criptovaluta"
-
 #~ msgid "Selected"
 #~ msgstr "Selezionato"
 
-#: src/components/shared/v2/footer.tsx:51
-msgid "Self-Exclusion"
-msgstr "Autoesclusione"
-
-#: src/components/casino/feedbackForm.tsx:105
-msgid "Send message"
-msgstr "Invia messaggio"
-
-#: src/components/shared/v2/date-filter.tsx:33
-msgid "September"
-msgstr "Settembre"
-
 #~ msgid "Set default"
 #~ msgstr "Imposta come predefinito"
-
-#: src/components/shared/v2/header.tsx:343
-msgid "Show Balance"
-msgstr "Mostra Saldo"
-
-#: src/components/shared/v2/signup.tsx:185
-msgid "Sign Up"
-msgstr "Registrati"
-
-#: src/components/profile/v2/payments-history-table.tsx:176
-msgid "Something wrong happened. Try again later!"
-msgstr "Si è verificato un errore. Riprova più tardi!"
 
 #~ msgid "Soon you will receive information for your funds status!"
 #~ msgstr "Presto riceverai informazioni sullo stato dei tuoi fondi!"
@@ -1117,180 +1269,32 @@ msgstr "Si è verificato un errore. Riprova più tardi!"
 #~ msgid "Sorry, we couldn't find the page you were looking for. We suggest that you return to main page."
 #~ msgstr "Spiacenti, non abbiamo trovato la pagina che cercavi. Ti consigliamo di tornare alla pagina principale."
 
-#: src/routes/casino/subCategoryGames.tsx:147
-msgid "Sort"
-msgstr "Ordina"
-
-#: src/components/shared/v2/header.tsx:80
-msgid "Sport"
-msgstr "Sport"
-
-#: src/components/shared/v2/footer.tsx:72
-msgid "Sport Betting Terms"
-msgstr "Termini Scommesse Sportive"
-
 #~ msgid "Sports"
 #~ msgstr "Sport"
-
-#: src/components/profile/v2/betting-history-table.tsx:168
-#: src/components/profile/v2/payments-history-table.tsx:189
-msgid "Status"
-msgstr "Stato"
-
-#~ msgid "Switch Game"
-#~ msgstr "Cambia Gioco"
-
-#: src/components/shared/v2/footer.tsx:39
-msgid "Terms & Conditions"
-msgstr "Termini e Condizioni"
-
-#: src/components/casino/feedbackForm.tsx:110
-msgid "Thank you for making our service better"
-msgstr "Grazie per aver contribuito a migliorare il nostro servizio"
-
-#: src/components/profile/wallet.tsx:57
-msgid "This wallet is already default"
-msgstr "Questo portafoglio è già predefinito"
 
 #~ msgid "time"
 #~ msgstr "ora"
 
-#: src/components/profile/v2/betting-history-table.tsx:165
-#: src/components/profile/v2/casino-history-table.tsx:146
-#: src/components/profile/v2/payments-history-table.tsx:185
-msgid "Time"
-msgstr "Tempo"
-
 #~ msgid "To edit the data, please contact support"
 #~ msgstr "Per modificare i dati, contatta il supporto"
-
-#: src/components/profile/profile/UserInfo.tsx:47
-msgid "To edit the data, please contact support."
-msgstr "Per modificare i dati, contattare l'assistenza."
-
-#: src/components/shared/v2/date-filter.tsx:23
-msgid "Today"
-msgstr "Oggi"
-
-#: src/routes/casino/subCategoryGames.tsx:130
-msgid "Top Games"
-msgstr "I Migliori Giochi"
-
-#: src/components/profile/wallet.tsx:72
-msgid "Total balance"
-msgstr "Saldo totale"
-
-#: src/components/profile/v2/betting-history-table.tsx:279
-msgid "Total odds"
-msgstr "Quote totali"
 
 #~ msgid "Transactions history"
 #~ msgstr "Cronologia transazioni"
 
-#: src/components/ui/multi-select.tsx:1024
-msgid "Type to filter options. Use arrow keys to navigate results."
-msgstr "Digita per filtrare le opzioni. Usa i tasti freccia per navigare tra i risultati."
-
-#: src/components/profile/profile/UserInfo.tsx:112
-msgid "United States"
-msgstr "Stati Uniti"
-
-#: src/components/casino/lobbyBannerSlider.tsx:78
-msgid "up to 25%"
-msgstr "fino al 25%"
-
-#: src/components/profile/profile/UserInfo.tsx:54
-msgid "Username"
-msgstr "Nome utente"
-
-#: src/components/casino/allItemsListSearch.tsx:47
-#: src/components/casino/lobbySlider.tsx:80
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:41
-#: src/routes/casino/providersGames.tsx:44
-#: src/routes/casino/subCategoryGames.tsx:81
-msgid "Video Slots"
-msgstr "Video Slots"
-
-#: src/components/casino/lobbySlider.tsx:104
-#: src/components/casino/lobbySlider.tsx:278
-#: src/components/casino/providerSlider.tsx:44
-msgid "View all"
-msgstr "Visualizza tutto"
-
 #~ msgid "View more"
 #~ msgstr "Visualizza altro"
-
-#: src/components/shared/v2/header.tsx:81
-msgid "VIP Casino"
-msgstr "Casinò VIP"
-
-#: src/components/shared/v2/header.tsx:85
-msgid "Virtual"
-msgstr "Virtual"
-
-#: src/components/casino/allItemsListSearch.tsx:54
-#: src/routes/casino/providersGames.tsx:51
-#: src/routes/casino/subCategoryGames.tsx:88
-msgid "Virtual Games"
-msgstr "Giochi Virtuali"
-
-#: src/components/shared/v2/header.tsx:330
-#: src/routes/account/wallet.tsx:9
-msgid "Wallet"
-msgstr "Portafoglio"
-
-#: src/components/shared/v2/withdraw.tsx:236
-msgid "Wallet Address"
-msgstr "Indirizzo Portafoglio"
 
 #~ msgid "Wallet not found! Please check your wallet"
 #~ msgstr "Portafoglio non trovato! Controlla il tuo portafoglio"
 
-#: src/components/casino/lobbyBannerSlider.tsx:72
-msgid "WEEKLY CASHBACK"
-msgstr "RIMBORSO SETTIMANALE"
-
 #~ msgid "Welcome back"
 #~ msgstr "Bentornato"
-
-#: src/components/profile/v2/casino-history-table.tsx:151
-msgid "Win"
-msgstr "Vincita"
 
 #~ msgid "Win Amount"
 #~ msgstr "Importo Vinto"
 
-#: src/components/profile/wallet.tsx:89
-#: src/components/shared/v2/withdraw.tsx:154
-msgid "Withdraw"
-msgstr "Prelievo"
-
-#: src/components/profile/v2/payments-history-table.tsx:219
-msgid "WITHDRAW"
-msgstr "RITIRARE"
-
-#: src/components/shared/v2/withdraw.tsx:140
-msgid "Withdraw initiated successfully!"
-msgstr "Prelievo avviato con successo!"
-
 #~ msgid "Withdraw is under review!"
 #~ msgstr "Il prelievo è in fase di revisione!"
 
-#: src/components/profile/v2/betting-history-table.tsx:224
-msgid "Won"
-msgstr "Vinto"
-
-#: src/components/shared/v2/date-filter.tsx:24
-msgid "Yesterday"
-msgstr "Ieri"
-
-#: src/components/shared/v2/signup.tsx:63
-msgid "You have successfully signed up."
-msgstr "Ti sei iscritto con successo."
-
 #~ msgid "Your balance is "
 #~ msgstr "Il tuo saldo è ```"
-
-#: src/components/shared/v2/slot.tsx:33
-msgid "Your balance is 0"
-msgstr "Il tuo saldo è 0"

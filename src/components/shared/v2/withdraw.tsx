@@ -170,15 +170,13 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
                 className={cn(
                   "bg-white text-foreground",
                   error && "border-destructive focus-visible:ring-destructive"
-                )}
-              />
+                )}/>
               <Select
                 value={selectedWallet.slug}
                 onValueChange={(value) => {
                   const newWallet = user.wallets?.find((w) => w.slug === value);
                   if (newWallet) setSelectedWallet(newWallet);
-                }}
-              >
+                }}>
                 <SelectTrigger className="w-[120px] bg-white text-foreground border">
                   <SelectValue placeholder={t`Select a wallet`} />
                 </SelectTrigger>
@@ -198,15 +196,13 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
 
           <WithdrawChips
             selectedWallet={selectedWallet}
-            handleChipClick={handleChipClick}
-          />
+            handleChipClick={handleChipClick}/>
 
           <div className="grid gap-2">
             <Label htmlFor="crypto"><Trans>Select Cryptocurrency</Trans></Label>
             <Select
               value={selectedCrypto}
-              onValueChange={(value) => setSelectedCrypto(value)}
-            >
+              onValueChange={(value) => setSelectedCrypto(value)}>
               <SelectTrigger className="bg-white text-foreground border w-full">
                 <SelectValue placeholder={t`Search for a crypto...`} />
               </SelectTrigger>
@@ -217,8 +213,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
                       <img
                         src={crypto.logo_url}
                         alt={crypto.name}
-                        className="h-5 w-5"
-                      />
+                        className="h-5 w-5"/>
                       {crypto.name} ({crypto.code})
                     </div>
                   </SelectItem>
@@ -242,8 +237,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
                 "bg-white text-foreground",
                 walletAddressError &&
                   "border-destructive focus-visible:ring-destructive"
-              )}
-            />
+              )}/>
             {walletAddressError && (
               <p className="text-sm font-medium text-destructive">
                 {walletAddressError}
