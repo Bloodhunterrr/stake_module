@@ -161,7 +161,7 @@ export default function Header(props: HeaderProps) {
 
                     <div className="flex items-center space-x-2">
                         {user ? (
-                            <main className="relative flex-col w-full h-full">
+                            <main className="relative flex-col mx-2 mb-3 w-full h-full">
                                 <ProfileDropdown
                                     user={user}
                                     showBalance={showBalance}
