@@ -206,10 +206,10 @@ export default function Header(props: HeaderProps) {
                     <DialogContent
                         showCloseButton={false}
                         overlayClassName={cn('mt-16',{
-                            'mt-[110px]' : props.openOptionalSideBar
+                            'mt-[110px] lg:mt-16' : props.openOptionalSideBar
                         })}
                         className={cn("p-0 lg:w-[450px]  top-[64px] translate-y-0 rounded-none bg-secondary",{
-                            "top-[110px]" : props.openOptionalSideBar
+                            "top-[110px] lg:top-[64px]" : props.openOptionalSideBar
                         })}
                         onOpenAutoFocus={(e) => e.preventDefault()}
                         onCloseAutoFocus={(e) => e.preventDefault()}>
