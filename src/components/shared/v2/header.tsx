@@ -21,6 +21,7 @@ import {
     DialogContent,
 } from "@/components/ui/dialog";
 
+
 import {Button} from "@/components/ui/button";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 
@@ -40,6 +41,7 @@ import type {Wallet, User} from "@/types/auth";
 import {currencyList} from "@/utils/currencyList";
 import Login from "@/components/shared/v2/login";
 import SignUp from "@/components/shared/v2/signup";
+import LanguageAccordion from "@/components/shared/v2/language-accordion.tsx";
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
@@ -161,7 +163,9 @@ export default function Header(props: HeaderProps) {
 
                     <div className="flex items-center space-x-2">
                         {user ? (
-                            <main className="relative flex-col mx-2 mb-3 w-full h-full">
+                            <main className={cn("relative flex-col mx-2 w-full h-full",{
+                                'mb-3 lg:mb-0' : showBalance,
+                            })}>
                                 <ProfileDropdown
                                     user={user}
                                     showBalance={showBalance}
@@ -170,14 +174,14 @@ export default function Header(props: HeaderProps) {
 
                                 {user && defaultWallet && showBalance && (
                                     <div
-                                        className="flex absolute -bottom-2.5 -right-1/2 -translate-x-0.5 h-1 items-center text-xs font-medium">
+                                        className="flex absolute -bottom-2.5 -right-1/2 -translate-x-3 h-1 items-center text-xs font-medium">
                     <span>
                       {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
                           minimumFractionDigits: defaultWallet.decimal_places,
                           maximumFractionDigits: defaultWallet.decimal_places,
                       })}
                     </span>
-                                        <span className="font-bold">
+                                        <span className="">
                       {
                           currencyList[defaultWallet.slug.toUpperCase()]
                               ?.symbol_native
@@ -263,6 +267,7 @@ const ProfileDropdown = ({
             path: "/notifications",
         },
     ];
+    console.log(user)
 
     return (
         <DropdownMenu>
@@ -279,6 +284,7 @@ const ProfileDropdown = ({
                     <div className="flex flex-row items-center justify-between gap-x-4 w-full space-y-1 py-2">
                         {user.wallets?.map((w: Wallet) => (
                             <div key={w.slug} className="w-fit">
+                                <p className={'h-2 flex items-center justify-start w-full truncate text-[11px] '}>{w.name}</p>
                 <span className="text-xl font-semibold">
                   {(Number(w.balance) / 100).toLocaleString("en-EN", {
                       minimumFractionDigits: w.decimal_places,
@@ -339,6 +345,7 @@ const ProfileDropdown = ({
                     </TabsContent>
 
                     <TabsContent value="preferences">
+                       <LanguageAccordion/>
                         <div className="flex h-14 items-center justify-between border-t border-[#f8f9fa]/40 px-2">
                             <p className="text-xs font-medium text-black"><Trans>Show Balance</Trans></p>
                             <button
@@ -354,6 +361,7 @@ const ProfileDropdown = ({
                 />
                             </button>
                         </div>
+
                     </TabsContent>
                 </Tabs>
             </DropdownMenuContent>
