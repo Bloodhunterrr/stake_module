@@ -3,12 +3,16 @@ import { useCallback, useEffect, useState } from "react";
 import { ALLOWED_LANGUAGES } from "@/types/lang";
 import { useLazyGetSportIframeQuery } from "@/services/authApi";
 import config from "@/config.ts";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import clsx from "clsx";
 
 const Sport = () => {
   const currentLang = ALLOWED_LANGUAGES.en;
 
   const user = useAppSelector((state) => state.auth?.user);
   const userId = user?.id;
+  const isDesktop = useIsDesktop(900);
+
   const [loggedSportUrl, setLoggedSportUrl] = useState<string | null>(null);
   const [triggerGetSportIframe, { isError }] = useLazyGetSportIframeQuery();
 
@@ -60,7 +64,10 @@ const Sport = () => {
         id="sportbook"
         src={loggedSportUrl}
         title={`${config.skinName} Sportbook`}
-        className={"w-full h-[calc(100vh-190px)]"}
+        className={clsx(
+          "w-full",
+          isDesktop ? "h-[100vh]" : "h-[calc(100vh-190px)]"
+        )}
       />
     );
   }
@@ -70,7 +77,10 @@ const Sport = () => {
       id="sportbook"
       src={config.sportUrl + currentLang.code}
       title={`${config.skinName} Sportbook`}
-      className={"w-full h-[calc(100vh-190px)]"}
+      className={clsx(
+        "w-full",
+        isDesktop ? "h-[100vh]" : "h-[calc(100vh-190px)]"
+      )}
     />
   );
 };
