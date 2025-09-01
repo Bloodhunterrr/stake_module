@@ -149,8 +149,8 @@ export default function Header(props: HeaderProps) {
                                         style={{
                                             filter:
                                                 props.location.split("/")[1] === R.slug
-                                                    ? "grayscale(100%) brightness(70%) sepia(100%) hue-rotate(110deg) saturate(200%)"
-                                                    : "",
+                                                    ? "brightness(0%) invert(88%) sepia(79%) saturate(541%) hue-rotate(77deg) brightness(99%) contrast(117%)"
+                                                    : "brightness(0%) invert(100%)",
                                         }}
                                         src={config.baseUrl + "/storage/" + R.icon}
                                         alt={R.name}
@@ -292,19 +292,18 @@ const ProfileDropdown = ({
                         {user.wallets?.map((w: Wallet) => (
                             <div key={w.slug} className="w-fit">
                                 <p className={'h-[14px] flex items-center justify-start w-full truncate text-[11px]'}>{w.name}</p>
-                <span className="text-xl font-semibold">
-                  {(Number(w.balance) / 100).toLocaleString("en-EN", {
-                      minimumFractionDigits: w.decimal_places,
-                      maximumFractionDigits: w.decimal_places,
-                  })}
-                </span>
+                                <span className="text-xl font-semibold">
+                                    {(Number(w.balance) / 100).toLocaleString("en-EN", {
+                                        minimumFractionDigits: w.decimal_places,
+                                        maximumFractionDigits: w.decimal_places,
+                                    })}
+                                </span>
                                 <span className="font-bold">
-                  {currencyList[w.slug.toUpperCase()]?.symbol_native}
-                </span>
+                                    {currencyList[w.slug.toUpperCase()]?.symbol_native}
+                                </span>
                             </div>
                         ))}
                     </div>
-
                     <DropdownMenuSeparator className="py-0 my-0"/>
                 </div>
 
