@@ -1,14 +1,14 @@
-import LobbySlider from "@/components/casino/lobbySlider";
 import { useGetMainQuery } from "@/services/mainApi";
 import { useNavigate, useParams } from "react-router";
 import Sport from "@/routes/sport";
 import InstallAppBanner from "@/components/shared/install-app-banner";
 import Footer from "@/components/shared/v2/footer.tsx";
-import ProviderSlider from "@/components/casino/providerSlider";
 import type { Provider } from "@/types/main";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import Jackpot from "@/components/shared/v2/jackpot";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
+import ProviderSliderFromApi from "@/components/casino/provider-slider-from-api";
+import LobbySlider from "@/components/casino/lobbySlider";
 
 const Lobby = () => {
   const { data, error, isLoading } = useGetMainQuery();
@@ -59,9 +59,8 @@ const Lobby = () => {
         />
       </section>
 
-      {activeCategory && activeCategory.providers.length > 0 && (
-        <ProviderSlider providers={categoryProviders} />
-      )}
+     
+      {activeCategory && <ProviderSliderFromApi categorySlug={categorySlug} />}
 
       <section className="container space-y-4 mx-auto">
         <LobbyBannerSlider />

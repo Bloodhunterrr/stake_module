@@ -3,6 +3,7 @@ import { createApi } from '@reduxjs/toolkit/query/react'
 import { customBaseQuery } from './customBaseQuery'
 import type { GameListRequest, GameListResponse } from '@/types/game_list'
 import type { NpCryptosRequest, NpCryptosResponse } from '@/types/np-cryptos';
+import type { ProviderListRequest, ProviderListResponse } from '@/types/provider_list';
 
 const toQueryString = (params: any): string => {
   return Object.entries(params)
@@ -29,10 +30,15 @@ export const mainAPi = createApi({
         url: '/gameList?' + toQueryString(params),
       }),
     }),
+     getProviderList: builder.query<ProviderListResponse, ProviderListRequest>({
+      query: (params) => ({
+        url: '/providerList?' + toQueryString(params),
+      }),
+    }),
     getNpCryptoList: builder.query<NpCryptosResponse, NpCryptosRequest>({
       query: (params) => '/np-crypto-list?'  + toQueryString(params),
     })
   }),
 })
 
-export const { useGetMainQuery, useGetGameListQuery, useGetNpCryptoListQuery } = mainAPi
+export const { useGetMainQuery, useGetGameListQuery, useGetNpCryptoListQuery,  useGetProviderListQuery } = mainAPi

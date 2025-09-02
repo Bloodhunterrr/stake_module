@@ -35,9 +35,9 @@ const ProvidersGames = () => {
 
   const provider = dataTree?.[providerCode as string];
 
-  useEffect(() => {
-    if (dataTree && !provider) navigate(-1);
-  }, [dataTree, provider, navigate]);
+  // useEffect(() => {
+  //   if (dataTree && !provider) navigate(-1);
+  // }, [dataTree, provider, navigate]);
 
   const subcategoryTranslations: Record<string, any> = {
     "Megaways": <Trans>Megaways</Trans>,
