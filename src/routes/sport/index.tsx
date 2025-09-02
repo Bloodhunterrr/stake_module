@@ -1,17 +1,17 @@
-import { useAppSelector } from "@/hooks/rtk";
+import { useLazyGetSportIframeQuery } from "@/services/authApi";
 import { useCallback, useEffect, useState } from "react";
 import { ALLOWED_LANGUAGES } from "@/types/lang";
-import { useLazyGetSportIframeQuery } from "@/services/authApi";
+import {useTheme} from "@/hooks/useTheme.tsx";
+import { useAppSelector } from "@/hooks/rtk";
+import {cn} from "@/lib/utils.ts";
 import config from "@/config.ts";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-import clsx from "clsx";
 
 const Sport = () => {
   const currentLang = ALLOWED_LANGUAGES.en;
 
   const user = useAppSelector((state) => state.auth?.user);
   const userId = user?.id;
-  const isDesktop = useIsDesktop(900);
+    const {optionalSideBarOpen} = useTheme();
 
   const [loggedSportUrl, setLoggedSportUrl] = useState<string | null>(null);
   const [triggerGetSportIframe, { isError }] = useLazyGetSportIframeQuery();
@@ -64,10 +64,10 @@ const Sport = () => {
         id="sportbook"
         src={loggedSportUrl}
         title={`${config.skinName} Sportbook`}
-        className={clsx(
-          "w-full",
-          isDesktop ? "h-[100vh]" : "h-[calc(100vh-190px)]"
-        )}
+        className={cn(
+            "w-full h-[calc(100vh-64px)] transition-all duration-300", {
+                "h-[calc(100vh-110px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen
+            })}
       />
     );
   }
@@ -77,10 +77,10 @@ const Sport = () => {
       id="sportbook"
       src={config.sportUrl + currentLang.code}
       title={`${config.skinName} Sportbook`}
-      className={clsx(
-        "w-full",
-        isDesktop ? "h-[100vh]" : "h-[calc(100vh-190px)]"
-      )}
+      className={cn(
+        "w-full h-[calc(100vh-64px)] transition-all duration-300", {
+              "h-[calc(100vh-110px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen
+          })}
     />
   );
 };
