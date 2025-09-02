@@ -100,7 +100,7 @@ export default function LobbyBannerSlider() {
                 >
                   <div className="
                   flex items-center h-[190px] w-full
-                  hover:opacity-100 transition-all duration-200 opacity-70
+                   transition-all duration-200 
                   rounded-[20px] bg-cover
                   bg-center bg-no-repeat
                   relative overflow-hidden p-4"
