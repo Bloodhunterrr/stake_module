@@ -1,7 +1,7 @@
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import { useNavigate, useParams } from "react-router";
 import { useGetMainQuery } from "@/services/mainApi";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import type { Subcategory } from "@/types/main";
 import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
