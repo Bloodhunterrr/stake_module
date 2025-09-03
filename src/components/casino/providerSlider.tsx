@@ -61,7 +61,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
                 className={`pl-2 ${
                   isDesktop ? "basis-1/9" : "basis-[calc(100%/4)]" 
                 } cursor-pointer`}
-                onClick={() => navigate(`/provider/${p.code}`)}
+                onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
               >
                 <div className="flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px]">
                   <img

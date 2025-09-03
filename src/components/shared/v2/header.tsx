@@ -93,7 +93,7 @@ export default function Header(props: HeaderProps) {
         <div className="sticky top-0 z-50 bg-background">
             <div
                 className={cn("h-0 transition-all w-full no-scrollbar overflow-x-auto flex items-center flex-row container mx-auto duration-300 ease-in-out",
-                    {"h-11 lg:h-0 opacity-100 px-2 w-full": props.openOptionalSideBar}
+                    {"h-11 xl:h-0 opacity-100 px-2 w-full": props.openOptionalSideBar}
                 )}>
                 {data?.map((R) =>
                     !R.is_sportbook && R.subcategories.length === 0 ? null : (
@@ -131,7 +131,7 @@ export default function Header(props: HeaderProps) {
                         )}
                     </div>
 
-                    <div className="hidden lg:flex items-center space-x-4">
+                    <div className="hidden xl:flex items-center space-x-4">
                         {data?.map((R) =>
                             !R.is_sportbook && R.subcategories.length === 0 ? null : (
                                 <Button
@@ -174,7 +174,7 @@ export default function Header(props: HeaderProps) {
 
                                 {user && defaultWallet && showBalance && (
                                     <div
-                                        className="flex absolute -bottom-2.5 -right-1/2 -translate-x-3 h-1 items-center text-xs font-medium">
+                                        className="flex absolute -bottom-2.5 left-1/2 translate-x-[-50%] h-1 items-center text-xs font-medium">
                     <span>
                       {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
                           minimumFractionDigits: defaultWallet.decimal_places,

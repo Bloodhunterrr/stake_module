@@ -45,7 +45,7 @@ const routes = createBrowserRouter(
           element: <AllProvidersList />,
         },
         {
-          path: "/provider/:providerCode",
+          path: ":categorySlug/provider/:providerCode",
           element: <ProvidersGames />,
         },
         {

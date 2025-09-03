@@ -6,7 +6,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {  useLingui } from "@lingui/react/macro";
+import {Trans, useLingui} from "@lingui/react/macro";
 import { useLoginMutation } from '@/services/authApi.ts';
 import { Card, CardContent } from '@/components/ui/card.tsx';
 
@@ -128,12 +128,12 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                             </div>
                         </div>
                         <Button type="submit" className="w-full mt-2 bg-chart-2 focus-visible:ring-none focus-visible:ring-offset-none focus-visible:border-none h-12  hover:bg-chart-2 text-primary-foreground text-base hover:text-primary-foreground rounded-none " disabled={isLoading}>
-                            {isLoading ? 'Logging in...' : 'Log In'}
+                            {isLoading ? t`Logging in...` : t`Log In`}
                         </Button>
                     </form>
                     <div className={'pt-4  text-xs text-green-900 flex items-center justify-between'}>
-                        <p>Join Now</p>
-                        <p>Have trouble logging in ?</p>
+                        <p><Trans>Join Now</Trans></p>
+                        <p className="text-right"><Trans>Have trouble logging in?</Trans></p>
                     </div>
                 </CardContent>
             </Card>

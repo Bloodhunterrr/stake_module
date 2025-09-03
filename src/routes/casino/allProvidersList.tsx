@@ -137,27 +137,26 @@ const AllProvidersList = () => {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {providers.map((provider) => (
-                <div
-                  key={provider.id}
-                  className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition p-4"
-                  onClick={() =>{
-                    console.log(provider)
-                   navigate(`/provider/${provider.code}`)
-                  
-                  }
-                  
-                  }
-                >
-                  {provider.logo && (
-                    <img
-                      className="max-h-14 max-w-[80%]"
-                      src={`${config.baseUrl}/storage/${provider.logo}`}
-                      loading="lazy"
-                      alt={provider.name}
-                    />
-                  )}
-                </div>
+              {providers.filter((provider, index, self) =>
+                  index === self.findIndex(p => p.id === provider.id)
+              ).map((provider) => (
+                  <div
+                      key={provider.id}
+                      className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition p-4"
+                      onClick={() => {
+                        console.log(provider);
+                        navigate(`/${categorySlug}/provider/${provider.general_code}`);
+                      }}
+                  >
+                    {provider.logo && (
+                        <img
+                            className="max-h-14 max-w-[80%]"
+                            src={`${config.baseUrl}/storage/${provider.logo}`}
+                            loading="lazy"
+                            alt={provider.name}
+                        />
+                    )}
+                  </div>
               ))}
 
               {isLoading && providers.length === 0 &&

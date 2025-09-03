@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGetGameListQuery } from "@/services/mainApi";
 import GameSlot from "@/components/shared/v2/slot";
 import type { Game } from "@/types/game_list";
@@ -76,14 +76,18 @@ export const DesktopSlider = ({
   const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
 
   const subcategoryTranslations: Record<string, any> = {
-    Megaways: <Trans>Megaways</Trans>,
+    "Megaways": <Trans>Megaways</Trans>,
     "Video Slots": <Trans>Video Slots</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
     "New Trend": <Trans>New Trend</Trans>,
-    Rome: <Trans>Rome</Trans>,
-    Lobby: <Trans>Lobby</Trans>,
-    Roulette: <Trans>Roulette</Trans>,
+    "y2worldsoft": <Trans>y2worldsoft</Trans>,
+    "testpopok": <Trans>testpopok</Trans>,
+    "Rome": <Trans>Rome</Trans>,
+    "Lobby": <Trans>Lobby</Trans>,
+    "Roulette": <Trans>Roulette</Trans>,
+    "Virtual Games": <Trans>Virtual Games</Trans>,
+    "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
   };
 
   return (
@@ -312,7 +316,7 @@ const MobileSlider = ({
                       {providers.map((p: Provider) => (
                         <Badge
                           key={p.id}
-                          onClick={() => navigate(`/provider/${p.code}`)}
+                          onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
                           variant="secondary"
                           className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
                         >

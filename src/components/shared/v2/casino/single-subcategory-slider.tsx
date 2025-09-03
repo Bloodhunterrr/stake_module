@@ -38,14 +38,18 @@ const SubcategorySlider = ({
   // }
 
   const subcategoryTranslations: Record<string, any> = {
-    Megaways: <Trans>Megaways</Trans>,
+    "Megaways": <Trans>Megaways</Trans>,
     "Video Slots": <Trans>Video Slots</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
     "New Trend": <Trans>New Trend</Trans>,
-    Rome: <Trans>Rome</Trans>,
-    Lobby: <Trans>Lobby</Trans>,
-    Roulette: <Trans>Roulette</Trans>,
+    "y2worldsoft": <Trans>y2worldsoft</Trans>,
+    "testpopok": <Trans>testpopok</Trans>,
+    "Rome": <Trans>Rome</Trans>,
+    "Lobby": <Trans>Lobby</Trans>,
+    "Roulette": <Trans>Roulette</Trans>,
+    "Virtual Games": <Trans>Virtual Games</Trans>,
+    "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
   };
 
   return (

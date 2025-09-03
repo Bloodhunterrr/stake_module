@@ -44,11 +44,7 @@ const GameListRenderer = ({
   const [initialLoadDone, setInitialLoadDone] = useState(false);
 
   const listReq: GameListRequest = {
-    category_ids: categoryId
-      ? [categoryId]
-      : categoriesIDs
-      ? categoriesIDs
-      : [],
+    category_ids: categoryId ? [categoryId] : categoriesIDs ? categoriesIDs : [],
     provider_ids: providerId ? [providerId] : providersIDs ? providersIDs : [],
     offset,
     limit: GAME_LIMIT,
@@ -57,7 +53,7 @@ const GameListRenderer = ({
     search: searchQuery || undefined,
   };
 
-    if (providerId) {
+  if (providerId) {
     listReq.provider_ids = providerId ? [providerId] : (providersIDs ? providersIDs : []);
   }
 
@@ -65,7 +61,6 @@ const GameListRenderer = ({
     listReq.provider_general_codes = provider_general_codes
   }
 
-  
   const { data: gameListData, isFetching } = useGetGameListQuery(listReq, {
     skip,
   });

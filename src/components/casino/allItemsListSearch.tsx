@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { useNavigate } from "react-router";
+import {useNavigate, useParams} from "react-router";
 import SearchIcon from "@/assets/icons/search.svg?react";
 import CloseIcon from "@/assets/icons/close.svg?react";
 import type { Subcategory } from "@/types/main";
@@ -20,6 +20,7 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
   const navigate = useNavigate();
   const isDesktop = useIsDesktop();
   const { t } = useLingui();
+  const { categorySlug } = useParams<{ categorySlug?: string }>();
 
   const [searchVal, setSearchVal] = useState<string>("");
 
@@ -42,14 +43,16 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
   }, [items, searchVal, type]);
 
   const subcategoryTranslations: Record<string, any> = {
-    Megaways: <Trans>Megaways</Trans>,
+    "Megaways": <Trans>Megaways</Trans>,
     "Video Slots": <Trans>Video Slots</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
     "New Trend": <Trans>New Trend</Trans>,
-    Rome: <Trans>Rome</Trans>,
-    Lobby: <Trans>Lobby</Trans>,
-    Roulette: <Trans>Roulette</Trans>,
+    "y2worldsoft": <Trans>y2worldsoft</Trans>,
+    "testpopok": <Trans>testpopok</Trans>,
+    "Rome": <Trans>Rome</Trans>,
+    "Lobby": <Trans>Lobby</Trans>,
+    "Roulette": <Trans>Roulette</Trans>,
     "Virtual Games": <Trans>Virtual Games</Trans>,
     "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
   };
@@ -105,7 +108,7 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
                     key={provider.id}
                     className="m-category-slider__item"
                     onClick={() => {
-                      navigate("/provider/" + provider.code);
+                      navigate(`/${categorySlug}/provider/` + provider.code);
                       onClose();
                     }}
                   >

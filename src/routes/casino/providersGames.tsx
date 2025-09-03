@@ -1,61 +1,51 @@
 import { cn } from "@/lib/utils.ts";
-import { Trans, Plural } from "@lingui/react/macro";
-import { useEffect, useState } from "react";
-import type { Provider } from "@/types/main";
+import { Plural } from "@lingui/react/macro";
+import { useState } from "react";
+// import type { Provider } from "@/types/main";
 import { useTheme } from "@/hooks/useTheme.tsx";
 import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
 import { useGetMainQuery } from "@/services/mainApi";
 import { useNavigate, useParams } from "react-router";
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
+import ProviderSliderFromApi from "@/components/casino/provider-slider-from-api.tsx";
 
-type DataTree = Record<string, Provider>;
+// type DataTree = Record<string, Provider>;
 
 const ProvidersGames = () => {
   const navigate = useNavigate();
   const { providerCode } = useParams<{ providerCode: string }>();
+  const { categorySlug } = useParams<{ categorySlug: string }>();
+
   const { data: mainData } = useGetMainQuery();
 
-  const [dataTree, setDataTree] = useState<DataTree | null>(null);
   const [isSortingEnabled, setIsSortingEnabled] = useState(false);
   const [totalGames, setTotalGames] = useState<number>(0);
 
   const { optionalSideBarOpen } = useTheme();
 
-  useEffect(() => {
-    if (!mainData) return;
-    const tree: DataTree = {};
-    mainData.forEach(({ providers }) => {
-      providers?.forEach((provider) => {
-        tree[provider.code] = provider;
-      });
-    });
-    setDataTree(tree);
-  }, [mainData]);
-
-  const provider = dataTree?.[providerCode as string];
-
-  console.log(providerCode, mainData);
+  // useEffect(() => {
+  //   if (!mainData) return;
+  //   const tree: DataTree = {};
+  //   mainData.forEach(({ providers }) => {
+  //     providers?.forEach((provider) => {
+  //       tree[provider.code] = provider;
+  //     });
+  //   });
+  //   setDataTree(tree);
+  // }, [mainData]);
 
   // useEffect(() => {
   //   if (dataTree && !provider) navigate(-1);
   // }, [dataTree, provider, navigate]);
 
-  const subcategoryTranslations: Record<string, any> = {
-    Megaways: <Trans>Megaways</Trans>,
-    "Video Slots": <Trans>Video Slots</Trans>,
-    "Instant Games": <Trans>Instant Games</Trans>,
-    "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
-    "New Trend": <Trans>New Trend</Trans>,
-    Rome: <Trans>Rome</Trans>,
-    Lobby: <Trans>Lobby</Trans>,
-    Roulette: <Trans>Roulette</Trans>,
-    "Virtual Games": <Trans>Virtual Games</Trans>,
-    "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
-  };
+  console.log(mainData)
+
+
 
   return (
     <div className="container mx-auto px-2 lg:px-0">
+      <ProviderSliderFromApi categorySlug={categorySlug}/>
       <div className="category-wrapper">
         <section id="category-section" className="CategorySection">
           <div className="category-games-section">
@@ -76,9 +66,7 @@ const ProvidersGames = () => {
 
                     <div>
                       <h1 className="font-bold text-lg text-primary-foreground">
-                        {provider?.name
-                          ? subcategoryTranslations[provider.name]
-                          : ""}
+                        {providerCode}
                       </h1>
                       {totalGames > 0 && (
                         <p className="text-card text-sm">
@@ -108,7 +96,6 @@ const ProvidersGames = () => {
               <div className="min-h-screen">
                 <GameListRenderer
                   key={providerCode || "all"}
-                  // providerId={activeProvider?.id}
                   provider_general_codes={providerCode ? [providerCode] : null}
                   order_by={isSortingEnabled ? "name" : "order"}
                   onTotalChange={setTotalGames}
@@ -119,7 +106,7 @@ const ProvidersGames = () => {
           </div>
         </section>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 };

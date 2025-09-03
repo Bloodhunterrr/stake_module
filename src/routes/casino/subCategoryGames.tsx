@@ -1,7 +1,7 @@
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import { useNavigate, useParams } from "react-router";
 import { useGetMainQuery } from "@/services/mainApi";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Subcategory } from "@/types/main";
 import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
@@ -82,6 +82,8 @@ const SubcategoryGames = () => {
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
     "New Trend": <Trans>New Trend</Trans>,
+    "y2worldsoft": <Trans>y2worldsoft</Trans>,
+    "testpopok": <Trans>testpopok</Trans>,
     "Rome": <Trans>Rome</Trans>,
     "Lobby": <Trans>Lobby</Trans>,
     "Roulette": <Trans>Roulette</Trans>,
@@ -198,7 +200,7 @@ const SubcategoryGames = () => {
                         {categoryProviders.map((p) => (
                           <Badge
                             key={p.id}
-                            onClick={() => navigate(`/provider/${p.code}`)}
+                            onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
                             variant="secondary"
                             className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
                           >

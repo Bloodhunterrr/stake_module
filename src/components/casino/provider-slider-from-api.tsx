@@ -105,13 +105,15 @@ const ProviderSliderFromApi = ({
                     <div className="flex items-center justify-center rounded-lg bg-card/10 h-[68px] md:h-[88px]" />
                   </CarouselItem>
                 ))
-              : providers.map((p: Provider) => (
+              : providers.filter((provider, index, self) =>
+                        index === self.findIndex(p => p.id === provider.id)
+                    ).map((p: Provider) => (
                   <CarouselItem
                     key={p.id}
                     className={`pl-2 ${
                       isDesktop ? "basis-1/9" : "basis-[calc(100%/3)]"
                     } cursor-pointer`}
-                    onClick={() => navigate(`/provider/${p.general_code}`)}
+                    onClick={() => navigate(`/${categorySlug}/provider/${p.general_code}`)}
                   >
                     <div
                       className={`flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px] ${
