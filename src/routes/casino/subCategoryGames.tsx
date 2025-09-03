@@ -1,7 +1,7 @@
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import { useNavigate, useParams } from "react-router";
 import { useGetMainQuery } from "@/services/mainApi";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Subcategory } from "@/types/main";
 import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
@@ -77,16 +77,20 @@ const SubcategoryGames = () => {
   }, [dataTree, category, subcategory, navigate]);
 
   const subcategoryTranslations: Record<string, any> = {
-    "Megaways": <Trans>Megaways</Trans>,
     "Video Slots": <Trans>Video Slots</Trans>,
+    "Megaways": <Trans>Megaways</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
+    "Rome": <Trans>Rome</Trans>,
     "New Trend": <Trans>New Trend</Trans>,
     "y2worldsoft": <Trans>y2worldsoft</Trans>,
     "testpopok": <Trans>testpopok</Trans>,
-    "Rome": <Trans>Rome</Trans>,
-    "Lobby": <Trans>Lobby</Trans>,
+    "Baccarat": <Trans>Baccarat</Trans>,
+    "Game Show": <Trans>Game Show</Trans>,
     "Roulette": <Trans>Roulette</Trans>,
+    "Blackjack": <Trans>Blackjack</Trans>,
+    "Lobby": <Trans>Lobby</Trans>,
+    "Lobby Crash": <Trans>Lobby Crash</Trans>,
     "Virtual Games": <Trans>Virtual Games</Trans>,
     "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
   };

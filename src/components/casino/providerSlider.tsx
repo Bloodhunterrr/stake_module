@@ -13,6 +13,9 @@ import type { Provider } from "@/types/main";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useParams } from "react-router";
 
+const DESKTOP_LIMIT = 9;
+const MOBILE_LIMIT = 3;
+
 interface Props {
   providers: Provider[];
 }
@@ -50,10 +53,9 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
         <Carousel
           opts={{
             align: "start",
-            slidesToScroll: isDesktop ? 9 : 3,
+            slidesToScroll: isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT,
           }}
-          className="w-full"
-        >
+          className="w-full">
           <CarouselContent className="flex -ml-2">
             {providers.map((p) => (
               <CarouselItem
@@ -75,8 +77,11 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
+          <CarouselPrevious className="hidden md:flex"/>
+          <CarouselNext className="hidden md:flex"
+          disabled = {
+              providers.length < (isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT)
+          } />
         </Carousel>
       </div>
     </section>

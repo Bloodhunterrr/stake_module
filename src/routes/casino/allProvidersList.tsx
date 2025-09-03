@@ -104,14 +104,12 @@ const AllProvidersList = () => {
             <div
               className={cn("sticky top-16 bg-background z-10 py-2", {
                 "top-27 lg:top-16": optionalSideBarOpen,
-              })}
-            >
+              })}>
               <div className="p-3 flex items-center justify-between">
                 <div className="flex items-center gap-x-3">
                   <button
                     onClick={() => navigate(-1)}
-                    className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition"
-                  >
+                    className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition">
                     <ArrowUpIcon className="w-4 h-4 -rotate-90" />
                   </button>
 
@@ -129,8 +127,7 @@ const AllProvidersList = () => {
                       ? "border-card text-card bg-popover"
                       : "border border-gray-600 text-gray-300 hover:border-card hover:text-white"
                   )}
-                  disabled={isLoading || isFetching}
-                >
+                  disabled={isLoading || isFetching}>
                   A-Z
                 </button>
               </div>
@@ -146,15 +143,13 @@ const AllProvidersList = () => {
                       onClick={() => {
                         console.log(provider);
                         navigate(`/${categorySlug}/provider/${provider.general_code}`);
-                      }}
-                  >
+                      }}>
                     {provider.logo && (
                         <img
                             className="max-h-14 max-w-[80%]"
                             src={`${config.baseUrl}/storage/${provider.logo}`}
                             loading="lazy"
-                            alt={provider.name}
-                        />
+                            alt={provider.name}/>
                     )}
                   </div>
               ))}
@@ -163,8 +158,7 @@ const AllProvidersList = () => {
                 Array.from({ length: limit }).map((_, i) => (
                   <div
                     key={`sk-${i}`}
-                    className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-card/10 animate-pulse p-4"
-                  >
+                    className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-card/10 animate-pulse p-4">
                     <div className="w-3/4 h-14 rounded" />
                   </div>
                 ))
