@@ -105,46 +105,53 @@ const ProviderSliderFromApi = ({
                     <div className="flex items-center justify-center rounded-lg bg-card/10 h-[68px] md:h-[88px]" />
                   </CarouselItem>
                 ))
-              : providers.filter((provider, index, self) =>
-                        index === self.findIndex(p => p.id === provider.id)
-                    ).map((p: Provider) => (
-                  <CarouselItem
-                    key={p.id}
-                    className={`pl-2 ${
-                      isDesktop ? "basis-1/9" : "basis-[calc(100%/3)]"
-                    } cursor-pointer`}
-                    onClick={() => navigate(`/${categorySlug}/provider/${p.general_code}`)}
-                  >
-                    <div
-                      className={`flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px] ${
-                        providerCode === p.code ? "ring-2 ring-primary" : ""
-                      }`}
+              : providers
+                  .filter(
+                    (provider, index, self) =>
+                      index === self.findIndex((p) => p.id === provider.id)
+                  )
+                  .map((p: Provider) => (
+                    <CarouselItem
+                      key={p.id}
+                      className={`pl-2 ${
+                        isDesktop ? "basis-1/9" : "basis-[calc(100%/3)]"
+                      } cursor-pointer`}
+                      onClick={() =>
+                        navigate(`/${categorySlug}/provider/${p.general_code}`)
+                      }
                     >
-                      <img
-                        className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
-                        src={
-                          p.logo ? `${config.baseUrl}/storage/${p.logo}` : ""
-                        }
-                        loading="lazy"
-                        alt={p.name}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
+                      <div
+                        className={`flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px] ${
+                          providerCode === p.code ? "ring-2 ring-primary" : ""
+                        }`}
+                      >
+                        <img
+                          className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
+                          src={
+                            p.logo ? `${config.baseUrl}/storage/${p.logo}` : ""
+                          }
+                          loading="lazy"
+                          alt={p.name}
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
           </CarouselContent>
 
           <CarouselPrevious
             className="hidden md:flex"
-            onClick={() => setOffset(Math.max(0, offset - DESKTOP_LIMIT))}
+            onClick={() => setOffset(Math.max(0, offset - limit))}
             disabled={offset === 0 || isFetching || isLoading}
           />
+
           <CarouselNext
             className="hidden md:flex"
-            onClick={() => setOffset(offset + DESKTOP_LIMIT)}
+            onClick={() => setOffset(offset + limit)}
             disabled={
               isFetching ||
               isLoading ||
-              providers.length < (isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT)
+              providers.length < limit || 
+              offset + limit >= total 
             }
           />
         </Carousel>
