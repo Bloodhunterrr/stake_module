@@ -147,6 +147,7 @@ export const {
     useLogoutMutation,
     useLazyGetPlayQuery,
     useLazyGetSportIframeQuery,
+    useGetSportIframeQuery,
     useSetDefaultWalletMutation,
     useGetSportHistoryMutation,
     useGetCasinoHistoryMutation,

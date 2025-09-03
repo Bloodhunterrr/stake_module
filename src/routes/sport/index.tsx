@@ -1,86 +1,122 @@
-import { useLazyGetSportIframeQuery } from "@/services/authApi";
-import { useCallback, useEffect, useState } from "react";
-import { ALLOWED_LANGUAGES } from "@/types/lang";
-import {useTheme} from "@/hooks/useTheme.tsx";
+import { useEffect, useMemo } from "react";
 import { useAppSelector } from "@/hooks/rtk";
-import {cn} from "@/lib/utils.ts";
+import { useTheme } from "@/hooks/useTheme";
+import { cn } from "@/lib/utils";
+import { useGetSportIframeQuery } from "@/services/authApi";
+import { useGetMainQuery } from "@/services/mainApi";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useParams } from "react-router";
+import { Trans, useLingui } from "@lingui/react/macro";
+import type { Wallet } from "@/types/auth";
 import config from "@/config.ts";
 
-const Sport = () => {
-  const currentLang = ALLOWED_LANGUAGES.en;
+const Sport: React.FC = () => {
+  const { i18n } = useLingui();
+  const { categorySlug } = useParams();
+  const { optionalSideBarOpen } = useTheme();
 
-  const user = useAppSelector((state) => state.auth?.user);
-  const userId = user?.id;
-    const {optionalSideBarOpen} = useTheme();
+  const user = useAppSelector((s) => s.auth?.user);
+  const defaultWallet: Wallet | null =
+    user?.wallets?.find((w: Wallet) => w.default) || null;
 
-  const [loggedSportUrl, setLoggedSportUrl] = useState<string | null>(null);
-  const [triggerGetSportIframe, { isError }] = useLazyGetSportIframeQuery();
+  const isDesktop = useIsDesktop(1024);
 
-  const fetchUserSportUrl = useCallback(
-    async (signal: AbortSignal) => {
-      try {
-        console.log("Fetching Sport URL for user:", userId);
-        const data = await triggerGetSportIframe(
-          { currency: "USD" },
-          true
-        ).unwrap();
-        console.log("API Response:", data);
+  const { data: mainData, isLoading: isMainLoading } = useGetMainQuery();
 
-        if (!signal.aborted && data?.play_url) {
-          console.log("Setting loggedSportUrl:", data.play_url);
-          setLoggedSportUrl(data.play_url);
-        } else {
-          console.warn("No play_url in response or request was aborted");
-        }
-      } catch (e) {
-        if (!signal.aborted) {
-          console.error("Failed to fetch sport iframe URL", e);
-        }
-      }
+  const activeCategory = useMemo(() => {
+    if (!mainData?.length) return null;
+    return mainData.find((el) => el.slug === categorySlug) ?? mainData[0];
+  }, [mainData, categorySlug]);
+
+  const isSportsbook = activeCategory?.is_sportbook ?? false;
+
+  const {
+    data: iframeResp,
+    isFetching: isIframeLoading,
+    isError: isIframeError,
+    refetch,
+  } = useGetSportIframeQuery(
+    {
+      currency: (defaultWallet?.slug || "EUR").toUpperCase(),
+      lang: i18n.locale,
+      device: isDesktop ? "desktop" : "mobile",
+      route_id: activeCategory?.id || 0,
     },
-    [triggerGetSportIframe, userId]
+    {
+      refetchOnFocus: false,
+      refetchOnReconnect: false,
+      skip: activeCategory === null ,
+    }
   );
 
   useEffect(() => {
-    const controller = new AbortController();
-    const { signal } = controller;
+    refetch();
+  }, [user?.id, refetch]);
 
-    if (userId) {
-      fetchUserSportUrl(signal);
-    } else {
-      console.log("User not logged in, resetting Sport URL");
-      setLoggedSportUrl(null);
-    }
+  const playUrl =
+    iframeResp?.play_url ?? (iframeResp as any)?.data?.play_url ?? null;
 
-    return () => {
-      console.log("Cleaning up Sport URL request");
-      controller.abort();
-    };
-  }, [userId, fetchUserSportUrl]);
-
-  if (loggedSportUrl && !isError) {
+  // TODO
+  if (activeCategory?.id === 2) {
     return (
       <iframe
         id="sportbook"
-        src={loggedSportUrl}
+        src={config.sportUrl + i18n.locale}
         title={`${config.skinName} Sportbook`}
         className={cn(
-            "w-full h-[calc(100vh-64px)] transition-all duration-300", {
-                "h-[calc(100vh-110px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen
-            })}
+          "w-full h-[calc(100vh-64px)] transition-all duration-300",
+          {
+            "h-[calc(100vh-110px)] lg:h-[calc(100vh-64px)]":
+              optionalSideBarOpen,
+          }
+        )}
       />
+    );
+  }
+
+  if (isMainLoading || (isSportsbook && isIframeLoading && !playUrl)) {
+    return (
+      <div className="grid place-items-center h-[60vh]">
+        <span>
+          <Trans>Loading sportsbook…</Trans>
+        </span>
+      </div>
+    );
+  }
+
+  if (!activeCategory || !isSportsbook) {
+    return (
+      <div className="grid place-items-center h-[60vh]">
+        <span>
+          <Trans>No sportsbook category selected.</Trans>
+        </span>
+      </div>
+    );
+  }
+
+  if (!playUrl) {
+    return (
+      <div className="grid place-items-center h-[60vh]">
+        <span>
+          {isIframeError ? (
+            <Trans>Unable to load sportsbook.</Trans>
+          ) : (
+            <Trans>No sportsbook URL available.</Trans>
+          )}
+        </span>
+      </div>
     );
   }
 
   return (
     <iframe
       id="sportbook"
-      src={config.sportUrl + currentLang.code}
-      title={`${config.skinName} Sportbook`}
-      className={cn(
-        "w-full h-[calc(100vh-64px)] transition-all duration-300", {
-              "h-[calc(100vh-110px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen
-          })}
+      title="Sportbook"
+      src={playUrl}
+      className={cn("w-full h-[calc(100vh-64px)] transition-all duration-300", {
+        "h-[calc(100vh-110px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen,
+      })}
+      allow="clipboard-read; clipboard-write; autoplay; fullscreen"
     />
   );
 };

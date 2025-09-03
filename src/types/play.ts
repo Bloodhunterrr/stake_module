@@ -10,6 +10,9 @@ export interface PlayRequest {
 
 export interface SportbookIframeReq {
   currency: string;
+  lang: string;
+  route_id: number;
+  device: 'mobile' | 'desktop';
 }
 
 export interface PlayResponse {
