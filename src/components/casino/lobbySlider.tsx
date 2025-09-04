@@ -325,9 +325,9 @@ const MobileSlider = ({
                         {providers.filter(
                             (provider: Provider, index: number, self: Provider[]) =>
                                 index === self.findIndex((p) => p.id === provider.id)
-                        ).map((p: Provider) => (
+                        ).map((p: Provider, i: number) => (
                             <Badge
-                                key={p.name}
+                              key={`${p.id}-${p.general_code}-${i}`} 
                                 onClick={() =>
                                     navigate(
                                         `/${categorySlug}/provider/${p.general_code}`

@@ -33,6 +33,7 @@ import {
 import { cn } from "@/lib/utils.ts";
 import { Trans, useLingui } from "@lingui/react/macro";
 import ProviderSliderFromApi from "@/components/casino/provider-slider-from-api";
+import type { Provider } from "@/types/provider_list";
 
 interface Category {
   id: number;
@@ -88,7 +89,6 @@ const SubcategoryGames = () => {
   const category = dataTree?.[categorySlug];
   const subcategory = category?.subcategories[subCategorySlug];
   const categoryProviders = providerData?.providers ?? [];
-
 
   useEffect(() => {
     if (dataTree && (!category || !subcategory)) navigate(-1);
@@ -237,18 +237,28 @@ const SubcategoryGames = () => {
                         <Trans>Providers</Trans>
                       </AccordionTrigger>
                       <AccordionContent className="flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2">
-                        {categoryProviders.map((p) => (
-                          <Badge
-                            key={p.id}
-                            onClick={() =>
-                              navigate(`/${categorySlug}/provider/${p.code}`)
-                            }
-                            variant="secondary"
-                            className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
-                          >
-                            {p.name}
-                          </Badge>
-                        ))}
+                        {categoryProviders
+                          .filter(
+                            (
+                              provider: Provider,
+                              index: number,
+                              self: Provider[]
+                            ) =>
+                              index ===
+                              self.findIndex((p) => p.id === provider.id)
+                          )
+                          .map((p: Provider, i: number) => (
+                            <Badge
+                              key={`${p.id}-${p.general_code}-${i}`}
+                              onClick={() =>
+                                navigate(`/${categorySlug}/provider/${p.code}`)
+                              }
+                              variant="secondary"
+                              className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
+                            >
+                              {p.name}
+                            </Badge>
+                          ))}
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
