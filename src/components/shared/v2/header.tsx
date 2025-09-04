@@ -252,27 +252,31 @@ const ProfileDropdown = ({
     const navigate = useNavigate();
 
     const menuItems = [
-        {icon: CasinoIcon, label: <Trans>Casino</Trans>, path: "/account/casino"},
-        {icon: BetHistoryIcon, label: <Trans>Bets</Trans>, path: "/account/bets"},
+        {icon: CasinoIcon, label: <Trans>Casino</Trans>, path: "/account/casino" , show : true},
+        {icon: BetHistoryIcon, label: <Trans>Bets</Trans>, path: "/account/bets" , show : true},
         {
             icon: PaymentsIcon,
             label: <Trans>Payments</Trans>,
             path: "/account/payments",
+            show : true
         },
         {
             icon: UserSettingsIcon,
-            label: <Trans>Profile</Trans>,
-            path: "/account/general",
+            label: <Trans>Users</Trans>,
+            path: "/account/users",
+            show : user.is_agent
         },
         {
             icon: ChangePasswordIcon,
             label: <Trans>Password</Trans>,
             path: "/account/change-password",
+            show : true
         },
         {
             icon: MessagesIcon,
             label: <Trans>Messages</Trans>,
             path: "/notifications",
+            show : true
         },
     ];
 
@@ -322,19 +326,27 @@ const ProfileDropdown = ({
 
                     <TabsContent value="profile">
                         <div className="grid grid-cols-3 gap-3 px-2 py-4">
-                            {menuItems.map((item, i) => (
-                                <DropdownMenuItem
-                                    key={i}
-                                    className="flex flex-col focus:bg-transparent cursor-pointer justify-end"
-                                    onClick={() => navigate(item.path)}>
-                                    <img src={item.icon} alt={item.path}/>
-                                    <span className="text-xs">
-                   {item.label}
-                  </span>
-                                </DropdownMenuItem>
-                            ))}{" "}
-                        </div>
+                            {menuItems.map((item, i) => {
+                               if(item.show) {
+                                   return <DropdownMenuItem
+                                       key={i}
+                                       className="flex flex-col focus:bg-transparent cursor-pointer justify-end"
+                                       onClick={() => navigate(item.path)}>
+                                       <img src={item.icon} alt={item.path}/>
+                                        <span className="text-xs">
+                                            {item.label}
+                                        </span>
+                                   </DropdownMenuItem>
+                               }
 
+                            })}{" "}
+                        </div>
+                        <DropdownMenuItem
+                            className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/40 hover:text-black/70"
+                            onClick={() => navigate("/account/general")}
+                        >
+                            <Trans>Profile</Trans>
+                        </DropdownMenuItem>
                         <DropdownMenuItem
                             className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/40 hover:text-black/70"
                             onClick={() => navigate("/account/wallet")}

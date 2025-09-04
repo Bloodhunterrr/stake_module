@@ -7,7 +7,7 @@ import type {CasinoTransactionReq, CasinoTransactionResponse} from '@/types/casi
 import type {SportHistoryReq, SportHistoryResponse} from '@/types/sportHistory';
 import type {DepositRequest, DepositResponse} from '@/types/deposits';
 import type {WithdrawRequest, WithdrawResponse} from '@/types/withdraws';
-import type {AuthMeResponse, AuthResponse, LoginRequest} from "@/types/auth.ts";
+import type {AuthMeResponse, AuthResponse, LoginRequest, UsersRequest , UsersResponse} from "@/types/auth.ts";
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {toast} from "react-toastify";
 
@@ -46,9 +46,11 @@ export const authApi = createApi({
                 try {
                     await queryFulfilled;
                     dispatch(logout());
+                    window.location.href = '/';
                 } catch (error) {
                     console.error(error)
                     dispatch(logout());
+                    window.location.href = '/';
                 }
                 toast.success(('Logged out successfully'));
             },
@@ -137,6 +139,13 @@ export const authApi = createApi({
                 body: filters,
             }),
         }),
+        // Get users
+        getUserList : builder.query<UsersResponse, UsersRequest>({
+            query: (params) => ({
+                url: '/agent/users?',
+                params
+            }),
+        }),
     }),
 });
 
@@ -153,5 +162,6 @@ export const {
     useGetCasinoHistoryMutation,
     useGetTransactionHistoryMutation,
     useCreateDepositMutation,
-    useCreateWithdrawMutation
+    useCreateWithdrawMutation,
+    useLazyGetUserListQuery
 } = authApi;

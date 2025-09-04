@@ -12,6 +12,53 @@ export interface AuthMeResponse {
     user: User
 }
 
+// User Response
+
+interface Role {
+    id: number;
+    name: string;
+    guard_name: string;
+    created_at: string;
+    updated_at: string;
+    pivot: {
+        model_type: string;
+        model_id: number;
+        role_id: number;
+    };
+}
+
+export interface GetUserResponse {
+    id: number;
+    name: string;
+    email: string;
+    avatar_url: string | null;
+    username: string;
+    first_name: string | null;
+    last_name: string | null;
+    phone: string | null;
+    date_of_birth: string | null;
+    gender: string | null;
+    address: string | null;
+    city: string | null;
+    state: string | null;
+    country: string | null;
+    zip_code: string | null;
+    is_blocked: number;
+    is_agent?: boolean;
+    breezy_sessions: [];
+    roles?: Role[];
+}
+
+export interface UsersResponse {
+        user: GetUserResponse;
+        children: User[];
+}
+
+export interface UsersRequest {
+    user_id?: number;
+    search ?: string
+}
+
 export interface User {
     id:              number;
     name:            string;
@@ -29,6 +76,7 @@ export interface User {
     country:         string;
     zip_code:        string;
     wallets:         Wallet[];
+    is_agent:        boolean;
 }
 
 export interface Wallet {
