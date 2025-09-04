@@ -1,50 +1,25 @@
 import { cn } from "@/lib/utils.ts";
 import { Plural } from "@lingui/react/macro";
 import { useState } from "react";
-// import type { Provider } from "@/types/main";
 import { useTheme } from "@/hooks/useTheme.tsx";
 import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
-import { useGetMainQuery } from "@/services/mainApi";
 import { useNavigate, useParams } from "react-router";
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import ProviderSliderFromApi from "@/components/casino/provider-slider-from-api.tsx";
-
-// type DataTree = Record<string, Provider>;
 
 const ProvidersGames = () => {
   const navigate = useNavigate();
   const { providerCode } = useParams<{ providerCode: string }>();
   const { categorySlug } = useParams<{ categorySlug: string }>();
 
-  const { data: mainData } = useGetMainQuery();
-
   const [isSortingEnabled, setIsSortingEnabled] = useState(false);
   const [totalGames, setTotalGames] = useState<number>(0);
 
   const { optionalSideBarOpen } = useTheme();
 
-  // useEffect(() => {
-  //   if (!mainData) return;
-  //   const tree: DataTree = {};
-  //   mainData.forEach(({ providers }) => {
-  //     providers?.forEach((provider) => {
-  //       tree[provider.code] = provider;
-  //     });
-  //   });
-  //   setDataTree(tree);
-  // }, [mainData]);
-
-  // useEffect(() => {
-  //   if (dataTree && !provider) navigate(-1);
-  // }, [dataTree, provider, navigate]);
-
-  console.log(mainData)
-
-
-
   return (
-    <div className="container mx-auto px-2 lg:px-0">
+    <div className="container mx-auto px-2 lg:px-0 pt-5">
       <ProviderSliderFromApi categorySlug={categorySlug}/>
       <div className="category-wrapper">
         <section id="category-section" className="CategorySection">

@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useGetGameListQuery } from "@/services/mainApi";
 import GameSlot from "@/components/shared/v2/slot";
 import type { Game } from "@/types/game_list";
-import type { Provider, Subcategory } from "@/types/main";
+import type { Subcategory } from "@/types/main";
 import { useNavigate } from "react-router";
 import { Trans } from "@lingui/react/macro";
 import {
@@ -31,6 +31,7 @@ import {
 import { Badge } from "../ui/badge";
 import { Dialog, DialogContent } from "../ui/dialog";
 import Search from "../shared/v2/casino/search";
+import type { Provider } from "@/types/provider_list";
 
 type LobbySliderProps = {
   categorySlug: string;
@@ -76,20 +77,21 @@ export const DesktopSlider = ({
   const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
 
   const subcategoryTranslations: Record<string, any> = {
-    "Megaways": <Trans>Megaways</Trans>,
+    Megaways: <Trans>Megaways</Trans>,
     "Video Slots": <Trans>Video Slots</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
     "New Trend": <Trans>New Trend</Trans>,
-    "y2worldsoft": <Trans>y2worldsoft</Trans>,
-    "testpopok": <Trans>testpopok</Trans>,
-    "Rome": <Trans>Rome</Trans>,
-    "Lobby": <Trans>Lobby</Trans>,
-    "Roulette": <Trans>Roulette</Trans>,
+    y2worldsoft: <Trans>y2worldsoft</Trans>,
+    testpopok: <Trans>testpopok</Trans>,
+    Rome: <Trans>Rome</Trans>,
+    Lobby: <Trans>Lobby</Trans>,
+    Roulette: <Trans>Roulette</Trans>,
     "Virtual Games": <Trans>Virtual Games</Trans>,
     "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
   };
 
+  console.log("providers", providers);
   return (
     <section className="w-full mb-8">
       <div className="flex w-full items-center justify-between">
@@ -143,7 +145,11 @@ export const DesktopSlider = ({
                       {providers.map((p: Provider) => (
                         <Badge
                           key={p.id}
-                          onClick={() => navigate(`/provider/${p.code}`)}
+                          onClick={() =>
+                            navigate(
+                              `/${categorySlug}/provider/${p.general_code}`
+                            )
+                          }
                           variant="secondary"
                           className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
                         >
@@ -315,8 +321,12 @@ const MobileSlider = ({
                     <AccordionContent className="flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2">
                       {providers.map((p: Provider) => (
                         <Badge
-                          key={p.id}
-                          onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
+                          key={p.name}
+                          onClick={() =>
+                            navigate(
+                              `/${categorySlug}/provider/${p.general_code}`
+                            )
+                          }
                           variant="secondary"
                           className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
                         >

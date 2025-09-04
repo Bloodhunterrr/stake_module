@@ -1,13 +1,12 @@
 import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import { useNavigate, useParams } from "react-router";
-import { useGetMainQuery } from "@/services/mainApi";
+import { useGetMainQuery, useGetProviderListQuery } from "@/services/mainApi";
 import { useEffect, useState } from "react";
 import type { Subcategory } from "@/types/main";
 import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
 import LiveCasinoGameListRenderer from "@/components/shared/v2/casino/single-live-casino-category.tsx";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
-import ProviderSlider from "@/components/casino/providerSlider";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import {
   Sheet,
@@ -26,9 +25,14 @@ import {
 import { Badge } from "@/components/ui/badge.tsx";
 import Search from "@/components/shared/v2/casino/search.tsx";
 import { Dialog, DialogContent } from "@/components/ui/dialog.tsx";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils.ts";
 import { Trans, useLingui } from "@lingui/react/macro";
+import ProviderSliderFromApi from "@/components/casino/provider-slider-from-api";
 
 interface Category {
   id: number;
@@ -55,6 +59,20 @@ const SubcategoryGames = () => {
 
   const { t } = useLingui();
 
+  const { data: providerData } = useGetProviderListQuery(
+    {
+      device: "desktop",
+      offset: 0,
+      limit: 300,
+      order_by: "order",
+      order_dir: "asc",
+      ...(categorySlug ? { routeSlug: [categorySlug] } : {}),
+    },
+    {
+      skip: !categorySlug,
+    }
+  );
+
   useEffect(() => {
     if (!mainData) return;
     const tree: DataTree = {};
@@ -69,27 +87,27 @@ const SubcategoryGames = () => {
 
   const category = dataTree?.[categorySlug];
   const subcategory = category?.subcategories[subCategorySlug];
-  const categoryProviders = mainData?.find((c) => c.slug === categorySlug)?.providers ?? [];
+  const categoryProviders = providerData?.providers ?? [];
 
-  
+
   useEffect(() => {
     if (dataTree && (!category || !subcategory)) navigate(-1);
   }, [dataTree, category, subcategory, navigate]);
 
   const subcategoryTranslations: Record<string, any> = {
     "Video Slots": <Trans>Video Slots</Trans>,
-    "Megaways": <Trans>Megaways</Trans>,
+    Megaways: <Trans>Megaways</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
     "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
-    "Rome": <Trans>Rome</Trans>,
+    Rome: <Trans>Rome</Trans>,
     "New Trend": <Trans>New Trend</Trans>,
-    "y2worldsoft": <Trans>y2worldsoft</Trans>,
-    "testpopok": <Trans>testpopok</Trans>,
-    "Baccarat": <Trans>Baccarat</Trans>,
+    y2worldsoft: <Trans>y2worldsoft</Trans>,
+    testpopok: <Trans>testpopok</Trans>,
+    Baccarat: <Trans>Baccarat</Trans>,
     "Game Show": <Trans>Game Show</Trans>,
-    "Roulette": <Trans>Roulette</Trans>,
-    "Blackjack": <Trans>Blackjack</Trans>,
-    "Lobby": <Trans>Lobby</Trans>,
+    Roulette: <Trans>Roulette</Trans>,
+    Blackjack: <Trans>Blackjack</Trans>,
+    Lobby: <Trans>Lobby</Trans>,
     "Lobby Crash": <Trans>Lobby Crash</Trans>,
     "Virtual Games": <Trans>Virtual Games</Trans>,
     "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
@@ -97,7 +115,6 @@ const SubcategoryGames = () => {
 
   return (
     <div className="lg:px-0 px-3  flex flex-col container mx-auto">
-
       {mainData && (
         <SingleSubcategorySlider
           showBanner={false}
@@ -108,18 +125,15 @@ const SubcategoryGames = () => {
         />
       )}
 
-
       {categoryProviders.length > 0 && (
         <section className="container mx-auto pt-5">
-          <ProviderSlider providers={categoryProviders} />
+          <ProviderSliderFromApi categorySlug={categorySlug} />
         </section>
       )}
-
 
       <section className="container pt-5 pb-4 mx-auto">
         <LobbyBannerSlider />
       </section>
-
 
       <div className="container mx-auto">
         <section id="category-section">
@@ -133,7 +147,9 @@ const SubcategoryGames = () => {
               </button>
               <div>
                 <h1 className="font-bold text-lg text-primary-foreground">
-                  {subcategory?.name ? subcategoryTranslations[subcategory.name] : t`Top Games`}
+                  {subcategory?.name
+                    ? subcategoryTranslations[subcategory.name]
+                    : t`Top Games`}
                 </h1>
                 {totalGames > 0 && (
                   <p className="text-card text-sm">
@@ -143,29 +159,47 @@ const SubcategoryGames = () => {
               </div>
             </div>
 
-
             <Sheet>
               <div className="border rounded-full text-xs flex px-3 py-1 items-center gap-2">
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="flex gap-1 items-center w-1/2">
-                      <Check size={18} className={isSortingEnabled ? "text-card" : "text-white"} />
+                      <Check
+                        size={18}
+                        className={
+                          isSortingEnabled ? "text-card" : "text-white"
+                        }
+                      />
                       <Trans>Sort</Trans>
                     </button>
                   </PopoverTrigger>
                   <PopoverContent className="flex flex-col gap-2 font-semibold bg-background/40 text-primary-foreground w-40 rounded-sm border-none backdrop-blur-sm">
                     <button
                       onClick={() => setIsSortingEnabled((p) => !p)}
-                      className={cn("flex gap-x-2 items-center w-full", { "text-primary-foreground/70": isSortingEnabled })}
+                      className={cn("flex gap-x-2 items-center w-full", {
+                        "text-primary-foreground/70": isSortingEnabled,
+                      })}
                     >
-                      <Check size={18} className={isSortingEnabled ? "text-transparent" : "text-card"} />
+                      <Check
+                        size={18}
+                        className={
+                          isSortingEnabled ? "text-transparent" : "text-card"
+                        }
+                      />
                       <Trans>For You</Trans>
                     </button>
                     <button
                       onClick={() => setIsSortingEnabled((p) => !p)}
-                      className={cn("flex gap-x-2 items-center w-full", { "text-primary-foreground/70": !isSortingEnabled })}
+                      className={cn("flex gap-x-2 items-center w-full", {
+                        "text-primary-foreground/70": !isSortingEnabled,
+                      })}
                     >
-                      <ArrowUpDown size={18} className={cn("text-transparent", { "text-card": isSortingEnabled })} />
+                      <ArrowUpDown
+                        size={18}
+                        className={cn("text-transparent", {
+                          "text-card": isSortingEnabled,
+                        })}
+                      />
                       <span>A - Z</span>
                     </button>
                   </PopoverContent>
@@ -176,7 +210,10 @@ const SubcategoryGames = () => {
                 </SheetTrigger>
               </div>
 
-              <SheetContent className="border-none w-full border-r sm:max-w-sm" closeIconClassName="text-primary-foreground focus:ring-0">
+              <SheetContent
+                className="border-none w-full border-r sm:max-w-sm"
+                closeIconClassName="text-primary-foreground focus:ring-0"
+              >
                 <SheetHeader className="h-26 flex items-center justify-end">
                   <SheetTitle className="text-2xl font-semibold text-primary-foreground">
                     <Trans>Filters</Trans>
@@ -193,7 +230,6 @@ const SubcategoryGames = () => {
                   </span>
                 </div>
 
-
                 <div className="pl-4">
                   <Accordion type="single" defaultValue="providers" collapsible>
                     <AccordionItem value="providers" className="no-underline">
@@ -204,7 +240,9 @@ const SubcategoryGames = () => {
                         {categoryProviders.map((p) => (
                           <Badge
                             key={p.id}
-                            onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
+                            onClick={() =>
+                              navigate(`/${categorySlug}/provider/${p.code}`)
+                            }
                             variant="secondary"
                             className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
                           >
@@ -216,9 +254,18 @@ const SubcategoryGames = () => {
                   </Accordion>
                 </div>
 
-                <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
-                  <DialogContent showCloseButton={false} className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full">
-                    <Search setSearchModal={setSearchModal} onCloseSearchModal={() => setSearchModal(false)} />
+                <Dialog
+                  open={searchModal}
+                  onOpenChange={() => setSearchModal(false)}
+                >
+                  <DialogContent
+                    showCloseButton={false}
+                    className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full"
+                  >
+                    <Search
+                      setSearchModal={setSearchModal}
+                      onCloseSearchModal={() => setSearchModal(false)}
+                    />
                   </DialogContent>
                 </Dialog>
               </SheetContent>

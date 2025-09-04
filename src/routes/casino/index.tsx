@@ -1,9 +1,8 @@
-import { useGetMainQuery } from "@/services/mainApi";
+import { useGetMainQuery, useGetProviderListQuery } from "@/services/mainApi";
 import { useNavigate, useParams } from "react-router";
 import Sport from "@/routes/sport";
 import InstallAppBanner from "@/components/shared/install-app-banner";
 import Footer from "@/components/shared/v2/footer.tsx";
-import type { Provider } from "@/types/main";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import Jackpot from "@/components/shared/v2/jackpot";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
@@ -15,7 +14,20 @@ const Lobby = () => {
   const { categorySlug } = useParams();
   const navigate = useNavigate();
 
-  if (isLoading || error) {
+  const {
+    data: providerData,
+    isLoading: isProvidersLoading,
+    isFetching: isProvidersFetching,
+  } = useGetProviderListQuery({
+    device: "desktop",
+    offset: 0,
+    limit: 300,
+    order_by: "order",
+    order_dir: "asc",
+    ...(categorySlug ? { routeSlug: [categorySlug] } : {}),
+  });
+
+  if (isLoading || error || isProvidersLoading || isProvidersFetching) {
     return null;
   }
 
@@ -36,16 +48,7 @@ const Lobby = () => {
     return <Sport />;
   }
 
-  const allProviders = data.reduce<Provider[]>((acc, category) => {
-    category.providers?.forEach((p) => {
-      if (!acc.find((prov) => prov.id === p.id)) acc.push(p);
-    });
-    return acc;
-  }, []);
-
-  const categoryProviders = categorySlug
-    ? activeCategory?.providers || []
-    : allProviders;
+  const categoryProviders = providerData?.providers ?? [];
 
   return (
     <div className="lg:px-0 px-3 gap-5 flex flex-col container mx-auto">
@@ -59,12 +62,10 @@ const Lobby = () => {
         />
       </section>
 
-     
       {activeCategory && <ProviderSliderFromApi categorySlug={categorySlug} />}
 
       <section className="container space-y-4 mx-auto">
         <LobbyBannerSlider />
-        {/*<BigWinsSlider/>*/}
       </section>
 
       {categorySlug === "casino" && <Jackpot />}
@@ -79,7 +80,6 @@ const Lobby = () => {
             return (
               <section className="conteiner mx-auto">
                 <LobbySlider
-                  key={subcategory.id}
                   categorySlug={categorySlug ?? data[0]?.slug}
                   subcategory={subcategory}
                   providers={categoryProviders}
@@ -91,8 +91,8 @@ const Lobby = () => {
 
           return (
             <LobbySlider
-              providers={categoryProviders}
               key={subcategory.id}
+              providers={categoryProviders}
               categorySlug={categorySlug ?? data[0]?.slug}
               subcategory={subcategory}
             />

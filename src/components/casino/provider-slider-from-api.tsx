@@ -113,7 +113,7 @@ const ProviderSliderFromApi = ({
                       }>
                       <div
                         className={`flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px] ${
-                          providerCode === p.code ? "ring-2 ring-primary" : ""
+                          providerCode === p.general_code ? "bg-card/30" : ""
                         }`}>
                         <img
                           className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
