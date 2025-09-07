@@ -42,6 +42,7 @@ import {currencyList} from "@/utils/currencyList";
 import Login from "@/components/shared/v2/login";
 import SignUp from "@/components/shared/v2/signup";
 import LanguageAccordion from "@/components/shared/v2/language-accordion.tsx";
+import { DownloadIcon } from 'lucide-react';
 
 const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
@@ -174,19 +175,19 @@ export default function Header(props: HeaderProps) {
 
                                 {user && defaultWallet && showBalance && (
                                     <div
-                                        className="flex absolute -bottom-2.5 left-1/2 translate-x-[-50%] h-1 items-center text-xs font-medium">
-                    <span>
-                      {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
-                          minimumFractionDigits: defaultWallet.decimal_places,
-                          maximumFractionDigits: defaultWallet.decimal_places,
-                      })}
-                    </span>
+                                        className="flex absolute -bottom-2.5 left-1/2 select-none translate-x-[-50%] h-1 items-center text-xs font-medium">
+                                        <span>
+                                          {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
+                                              minimumFractionDigits: defaultWallet.decimal_places,
+                                              maximumFractionDigits: defaultWallet.decimal_places,
+                                          })}
+                                        </span>
                                         <span className="">
-                      {
-                          currencyList[defaultWallet.slug.toUpperCase()]
-                              ?.symbol_native
-                      }
-                    </span>
+                                          {
+                                              currencyList[defaultWallet.slug.toUpperCase()]
+                                                  ?.symbol_native
+                                          }
+                                        </span>
                                     </div>
                                 )}
                             </main>
@@ -279,34 +280,61 @@ const ProfileDropdown = ({
             show : true
         },
     ];
-
+    const defaultWallet  = user.wallets.filter(singleWallet => singleWallet.default === 1);
+    const otherWallets = user.wallets.filter(singleWallet => singleWallet.default !== 1);
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <UserCircle className="w-full stroke-[1px] text-card h-full"/>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-96 mt-4 p-0 bg-white rounded-none" align="end" forceMount>
+            <DropdownMenuContent
+                className="lg:w-96 w-90 mt-4 p-0 bg-white rounded-none" align="end" forceMount>
                 <div className="flex flex-col w-full h-full px-2 py-2">
                     <DropdownMenuLabel className="font-normal">
                         <p className="text-xs font-medium leading-none">{user?.name}</p>
                     </DropdownMenuLabel>
-
-                    <div className="flex flex-row items-center justify-between gap-x-4 w-full space-y-1 py-2">
-                        {user.wallets?.map((w: Wallet) => (
-                            <div key={w.slug} className="w-fit">
-                                <p className={'h-[14px] flex items-center justify-start w-full truncate text-[11px]'}>{w.name}</p>
-                                <span className="text-xl font-semibold">
+                    <div className="flex flex-col items-start gap-y-2 justify-between gap-x-4 w-full space-y-1 py-2">
+                        <div className={'flex flex-row h-full items-center  w-full justify-between'}>
+                            <div className={'h-full'}>
+                                {defaultWallet?.map((w: Wallet) => (
+                                    <div key={w.slug} className="w-fit h-full">
+                                        <p className={'h-[14px] flex items-center justify-start w-full truncate text-[11px]'}>{w.name}</p>
+                                        <span className="text-xl font-semibold">
                                     {(Number(w.balance) / 100).toLocaleString("en-EN", {
                                         minimumFractionDigits: w.decimal_places,
                                         maximumFractionDigits: w.decimal_places,
                                     })}
                                 </span>
-                                <span className="font-bold">
+                                        <span className="font-bold">
                                     {currencyList[w.slug.toUpperCase()]?.symbol_native}
                                 </span>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                            <DropdownMenuItem onClick={()=>{
+                                navigate('/account/wallet')
+                            }} className={'border py-0 px-2 text-base rounded-none bg-transparent focus:bg-transparent h-11  flex'}>
+                                <DownloadIcon className={'text-background  size-5'}/>
+                                Deposit
+                            </DropdownMenuItem>
+                        </div>
+                        <div className={'flex flex-row items-center justify-between w-full'}>
+                            {otherWallets?.map((w: Wallet) => (
+                                <div key={w.slug} className="w-fit">
+                                    <p className={'h-[14px] flex items-center justify-start w-full truncate text-[11px]'}>{w.name}</p>
+                                    <span className="text-xl font-semibold">
+                                    {(Number(w.balance) / 100).toLocaleString("en-EN", {
+                                        minimumFractionDigits: w.decimal_places,
+                                        maximumFractionDigits: w.decimal_places,
+                                    })}
+                                </span>
+                                    <span className="font-bold">
+                                    {currencyList[w.slug.toUpperCase()]?.symbol_native}
+                                </span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     <DropdownMenuSeparator className="py-0 my-0"/>
                 </div>
