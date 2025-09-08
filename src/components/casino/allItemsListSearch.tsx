@@ -51,6 +51,7 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
     "New Trend": <Trans>New Trend</Trans>,
     "y2worldsoft": <Trans>y2worldsoft</Trans>,
     "testpopok": <Trans>testpopok</Trans>,
+    "Nexu": <Trans>Nexu</Trans>,
     "Baccarat": <Trans>Baccarat</Trans>,
     "Game Show": <Trans>Game Show</Trans>,
     "Roulette": <Trans>Roulette</Trans>,

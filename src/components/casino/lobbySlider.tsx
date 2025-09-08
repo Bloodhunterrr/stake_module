@@ -84,6 +84,7 @@ export const DesktopSlider = ({
     "New Trend": <Trans>New Trend</Trans>,
     "y2worldsoft": <Trans>y2worldsoft</Trans>,
     "testpopok": <Trans>testpopok</Trans>,
+    "Nexu": <Trans>Nexu</Trans>,
     "Rome": <Trans>Rome</Trans>,
     "Lobby": <Trans>Lobby</Trans>,
     "Roulette": <Trans>Roulette</Trans>,
