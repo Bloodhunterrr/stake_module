@@ -98,7 +98,7 @@ const ProviderSliderFromApi = ({
                     className={`pl-2 ${
                       isDesktop ? "basis-1/9" : "basis-[calc(100%/4)]"
                     }`}>
-                    <div className="flex items-center justify-center rounded-lg bg-card/10 h-[68px] md:h-[88px]" />
+                    <div className="flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 h-[68px] md:h-[88px]" />
                   </CarouselItem>
                 ))
               : providers.filter(
@@ -112,8 +112,8 @@ const ProviderSliderFromApi = ({
                         navigate(`/${categorySlug}/provider/${p.general_code}`)
                       }>
                       <div
-                        className={`flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px] ${
-                          providerCode === p.general_code ? "bg-card/30" : ""
+                        className={`flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 transition h-[68px] md:h-[88px] ${
+                          providerCode === p.general_code ? "!bg-popover" : ""
                         }`}>
                         <img
                           className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"

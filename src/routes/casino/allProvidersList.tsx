@@ -124,7 +124,7 @@ const AllProvidersList = () => {
                   className={cn(
                     "px-3 py-1 rounded-full border text-sm font-semibold transition",
                     isSortingEnabled
-                      ? "border-card text-card bg-popover"
+                      ? "border-card text-card bg-popover/50"
                       : "border border-gray-600 text-gray-300 hover:border-card hover:text-white"
                   )}
                   disabled={isLoading || isFetching}>
@@ -139,7 +139,7 @@ const AllProvidersList = () => {
               ).map((provider) => (
                   <div
                       key={provider.id}
-                      className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition p-4"
+                      className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 transition p-4"
                       onClick={() => {
                         console.log(provider);
                         navigate(`/${categorySlug}/provider/${provider.general_code}`);
@@ -158,7 +158,7 @@ const AllProvidersList = () => {
                 Array.from({ length: limit }).map((_, i) => (
                   <div
                     key={`sk-${i}`}
-                    className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-card/10 animate-pulse p-4">
+                    className="cursor-pointer h-[72px] flex items-center justify-center rounded-lg bg-popover/50 animate-pulse p-4">
                     <div className="w-3/4 h-14 rounded" />
                   </div>
                 ))
