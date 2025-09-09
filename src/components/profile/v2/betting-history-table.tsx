@@ -95,6 +95,12 @@ const BettingHistoryTable = () => {
 
   const { t } = useLingui();
 
+  const formatTimestamp = (timestamp : string | Date)  => {
+        const date = new Date(timestamp);
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${days[date.getUTCDay()]} ${String(date.getUTCDate()).padStart(2, '0')} ${months[date.getUTCMonth()]} ${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}`;
+    }
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
@@ -197,6 +203,7 @@ const BettingHistoryTable = () => {
                   </TableRow>
 
                   {tickets.map((ticket) => {
+                      console.log(ticket)
                     const status = STATUS_MAP[ticket.status] || STATUS_MAP[1];
                     const label =
                       typeof status.label === "function"
@@ -281,13 +288,7 @@ const BettingHistoryTable = () => {
                                           className={`w-3 h-3 rounded-full ${oddStatus.color}`}
                                         />
                                         <div className="text-xs text-gray-600">
-                                          {format(
-                                            new Date(
-                                              (odd.event.startDate ??
-                                                odd.event.startData) * 1000
-                                            ),
-                                            "EEE dd MMM HH:mm"
-                                          )}
+                                          {formatTimestamp(ticket.created_date)}
                                         </div>
                                       </div>
 
