@@ -14,6 +14,7 @@ import CasinoPageHistory from "./account/casino";
 import PaymentsHistoryPage from "./account/payments";
 import BetsHistoryPage from "./account/bets";
 import UserListRender from "@/components/profile/profile/UserListRender.tsx";
+import EditUser from "@/components/shared/v2/user/edit-user.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -58,7 +59,10 @@ const routes = createBrowserRouter(
             { path: "bets", element: <BetsHistoryPage /> },
             { path: "payments", element: <PaymentsHistoryPage /> },
             { path: "general", element: <UserInfo /> },
-            {path : "users" , element : <UserListRender /> },
+            { path: "users", element: <UserListRender />,},
+            { path: "users/edit/:userId", element: <EditUser /> },
+            { path: "users/create", element: <EditUser /> },
+
           ],
         },
         {
