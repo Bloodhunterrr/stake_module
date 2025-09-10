@@ -126,7 +126,7 @@ export default function Header(props: HeaderProps) {
                                     props.setOpenOptionalSideBar(!props.openOptionalSideBar)
                                 }
                             >
-                                <img src={logo} alt="logo"/>
+                                <img src={logo} alt="logo" className="h-[16px]"/>
                             </Button>
                         )}
                     </div>
