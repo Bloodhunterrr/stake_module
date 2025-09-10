@@ -63,7 +63,8 @@ const ProviderSliderFromApi = ({
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
           <h2
-            className={`font-bold flex-1 ${isDesktop ? "text-lg" : "text-sm"}`}>
+            className={`font-bold flex-1 ${isDesktop ? "text-lg" : "text-sm"}`}
+          >
             <Trans>Providers</Trans>
           </h2>
 
@@ -74,7 +75,8 @@ const ProviderSliderFromApi = ({
               )
             }
             disabled={isFetching || isLoading}
-            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50">
+            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50"
+          >
             <span>
               <Trans>View all</Trans>
             </span>
@@ -87,7 +89,8 @@ const ProviderSliderFromApi = ({
             align: "start",
             slidesToScroll: isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT,
           }}
-          className="w-full">
+          className="w-full"
+        >
           <CarouselContent className="flex -ml-2">
             {isLoading || isFetching
               ? Array.from({
@@ -97,31 +100,39 @@ const ProviderSliderFromApi = ({
                     key={`sk-${i}`}
                     className={`pl-2 ${
                       isDesktop ? "basis-1/9" : "basis-[calc(100%/4)]"
-                    }`}>
-                    <div className="flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 h-[68px] md:h-[88px]" />
+                    }`}
+                  >
+                    <div className="flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 h-[50px] md:h-[55px]" />
                   </CarouselItem>
                 ))
-              : providers.filter(
-                  (provider, index, self) =>
+              : providers
+                  .filter(
+                    (provider, index, self) =>
                       index === self.findIndex((p) => p.id === provider.id)
-                  ).map((p: Provider) => (
+                  )
+                  .map((p: Provider) => (
                     <CarouselItem
                       key={p.id}
-                      className={`pl-2 ${ isDesktop ? "basis-1/9" : "basis-[calc(100%/3)]" } cursor-pointer`}
+                      className={`pl-2 ${
+                        isDesktop ? "basis-1/9" : "basis-[calc(100%/3)]"
+                      } cursor-pointer`}
                       onClick={() =>
                         navigate(`/${categorySlug}/provider/${p.general_code}`)
-                      }>
+                      }
+                    >
                       <div
-                        className={`flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 transition h-[68px] md:h-[88px] ${
+                        className={`flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 transition h-[50px] md:h-[55px] ${
                           providerCode === p.general_code ? "!bg-popover" : ""
-                        }`}>
+                        }`}
+                      >
                         <img
-                          className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
+                          className="max-w-[80%] max-h-9 md:max-w-[156px]"
                           src={
                             p.logo ? `${config.baseUrl}/storage/${p.logo}` : ""
                           }
                           loading="lazy"
-                          alt={p.name}/>
+                          alt={p.name}
+                        />
                       </div>
                     </CarouselItem>
                   ))}
@@ -140,7 +151,7 @@ const ProviderSliderFromApi = ({
               isFetching ||
               isLoading ||
               providers.length < limit ||
-              offset + limit >= total 
+              offset + limit >= total
             }
           />
         </Carousel>
