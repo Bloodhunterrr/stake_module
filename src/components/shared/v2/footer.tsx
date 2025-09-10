@@ -1,8 +1,8 @@
 import config from "@/config.ts";
 import { Trans } from "@lingui/react/macro";
 import LanguageSwitcher from "@/components/shared/v2/language-switcher.tsx";
+import logo from "@/assets/images/logo.svg"; 
 
-const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
 export default function Footer() {
     return (

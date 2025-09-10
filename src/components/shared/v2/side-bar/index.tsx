@@ -14,6 +14,7 @@ import { useGetMainQuery } from "@/services/mainApi.ts";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet.tsx";
+import logo from "@/assets/images/logo.svg"; 
 
 type Language = {
   code: string;
@@ -26,7 +27,6 @@ type SidebarProps = {
   toggleSideBar: (isOpen: boolean) => void;
 };
 
-const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
 
 function LanguageSwitcher() {
   const [currentLang, setCurrentLang] = useState<Language>(

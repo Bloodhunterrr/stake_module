@@ -43,8 +43,7 @@ import Login from "@/components/shared/v2/login";
 import SignUp from "@/components/shared/v2/signup";
 import LanguageAccordion from "@/components/shared/v2/language-accordion.tsx";
 import { DownloadIcon } from 'lucide-react';
-
-const logo = "https://hayaspin.com/static/media/logo.eb0ca820ea802ba28dd2.svg";
+import logo from "@/assets/images/logo.svg"; 
 
 type HeaderProps = {
     isDesktop: boolean;
@@ -127,7 +126,7 @@ export default function Header(props: HeaderProps) {
                                     props.setOpenOptionalSideBar(!props.openOptionalSideBar)
                                 }
                             >
-                                <img className="h-8" src={logo} alt="logo"/>
+                                <img src={logo} alt="logo"/>
                             </Button>
                         )}
                     </div>
