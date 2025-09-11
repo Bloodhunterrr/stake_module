@@ -95,12 +95,31 @@ const BettingHistoryTable = () => {
 
   const { t } = useLingui();
 
-  const formatTimestamp = (timestamp : string | Date)  => {
-        const date = new Date(timestamp);
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return `${days[date.getUTCDay()]} ${String(date.getUTCDate()).padStart(2, '0')} ${months[date.getUTCMonth()]} ${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}`;
-    }
+  const formatTimestamp = (timestamp: string | Date) => {
+    const date = new Date(timestamp);
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return `${days[date.getUTCDay()]} ${String(date.getUTCDate()).padStart(
+      2,
+      "0"
+    )} ${months[date.getUTCMonth()]} ${String(date.getUTCHours()).padStart(
+      2,
+      "0"
+    )}:${String(date.getUTCMinutes()).padStart(2, "0")}`;
+  };
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
@@ -168,15 +187,15 @@ const BettingHistoryTable = () => {
       </div>
 
       <Table className="text-accent-foreground">
-        <TableHeader>
+        <TableHeader className="bg-black/10 h-8">
           <TableRow>
-            <TableHead>
+            <TableHead className="h-8">
               <Trans>Bet Amount (Bet ID)</Trans>
             </TableHead>
-            <TableHead>
+            <TableHead className="h-8">
               <Trans>Time</Trans>
             </TableHead>
-            <TableHead className="text-right">
+            <TableHead className="text-right h-8">
               <Trans>Status</Trans>
             </TableHead>
           </TableRow>
@@ -203,7 +222,7 @@ const BettingHistoryTable = () => {
                   </TableRow>
 
                   {tickets.map((ticket) => {
-                      console.log(ticket)
+                    console.log(ticket);
                     const status = STATUS_MAP[ticket.status] || STATUS_MAP[1];
                     const label =
                       typeof status.label === "function"
@@ -243,13 +262,15 @@ const BettingHistoryTable = () => {
                                 <span>
                                   <Trans>Cashout</Trans>
                                 </span>
-                                <span>{ticket.win_sum}</span>
+                                <span>{ticket.win_sum}</span> {" "}
+                                {currencyList[ticket.currency].symbol_native}
                               </span>
                             ) : label.includes("Pending") ? (
                               <Trans>Pending</Trans>
                             ) : (
                               <span>
-                                <Trans>Won</Trans> {label.split(" ")[1]}
+                                <Trans>Won</Trans> {label.split(" ")[1]}{" "}
+                                {currencyList[ticket.currency].symbol_native}
                               </span>
                             )}
 
@@ -299,7 +320,7 @@ const BettingHistoryTable = () => {
                                             {odd.event.team2}
                                           </div>
                                           <div className="text-xs text-gray-600 capitalize">
-                                            {odd.market.name} - {" "}
+                                            {odd.market.name} -{" "}
                                             {odd.identifiers.selectedOddIndex}
                                           </div>
                                         </div>
