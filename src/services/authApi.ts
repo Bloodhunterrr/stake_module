@@ -146,6 +146,11 @@ export const authApi = createApi({
                 params
             }),
         }),
+        getSingleUser : builder.query<UsersResponse, UsersRequest>({
+            query: (params) => ({
+                url: `/agent/users/` + params.user_id,
+            }),
+        }),
     }),
 });
 
@@ -163,5 +168,6 @@ export const {
     useGetTransactionHistoryMutation,
     useCreateDepositMutation,
     useCreateWithdrawMutation,
-    useLazyGetUserListQuery
+    useLazyGetUserListQuery,
+    useLazyGetSingleUserQuery
 } = authApi;

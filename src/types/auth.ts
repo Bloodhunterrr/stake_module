@@ -47,6 +47,7 @@ export interface GetUserResponse {
     is_agent?: boolean;
     breezy_sessions: [];
     roles?: Role[];
+    wallets ?: Wallet[];
 }
 
 export interface UsersResponse {

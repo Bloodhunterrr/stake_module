@@ -33,15 +33,14 @@ function UserItem({
             // 'bg-black/20': isOpen,
         })}>
             <div
-                className={cn("w-full grid grid-cols-5  pl-2 justify-between items-center cursor-pointer py-1.5", {
+                className={cn("w-full grid grid-cols-4  pl-2 justify-between items-center cursor-pointer py-1.5", {
                 })}
             >
-                <p className={'min-w-14'}>{user.username}</p>
 
                 <div className={'flex items-center  truncate w-full justify-start gap-x-3'} onClick={()=>{
                     navigate(`edit/${user.id}`)
                 }}>
-                    <p className={'min-w-32'}>{user.email}</p>
+                    <p className={'min-w-32'}>{user.username}</p>
                 </div>
                 <div className={'text-center lg:text-start'}>
                     {(Number((euroBalance.balance ?? 0) / 100)).toLocaleString("en-EN", {
@@ -117,7 +116,7 @@ function LoggedUser({data} : { data : any }){
         </div>
         {
             data?.wallets.length > 0 && data?.wallets?.map((wallet : any) => {
-                return <div className={'p-2 border-b border-popover grid grid-cols-5'}>
+                return <div className={'p-2 border-b border-popover grid grid-cols-4'}>
                     <p>{wallet.name}</p>
                     <p className={'text-center'}>
                         {(Number(wallet.balance) / 100).toLocaleString("en-EN", {
@@ -217,9 +216,8 @@ function UserListRender() {
                     {LoggedUser({data : combinedData?.user})}
                 </div>
                 <div className={'text-white text-xs py-2 '}>
-                    <div className={'grid grid-cols-5 border-t border-x border-popover py-2 px-1'}>
+                    <div className={'grid grid-cols-4 border-t border-x border-popover py-2 px-1'}>
                         <div>Username</div>
-                        <div>Email</div>
                         <div className={'text-center lg:text-start'}>Balance (€)</div>
                         <div className={'text-center lg:text-start'}>Balance ($)</div>
                         <div className={'text-end'}>Action</div>
