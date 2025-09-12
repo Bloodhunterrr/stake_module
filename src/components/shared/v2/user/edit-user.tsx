@@ -46,7 +46,7 @@ function UserListRender() {
                         <p>Details</p> <span>-</span> <p>{data?.username ?? ''}</p>
                     </div>
                 </div>
-                <div className="container text-xs mx-auto  pt-3 p-4 ">
+                <div className="container text-xs mx-auto  pt-4 select-none p-5 ">
                     <div className={'flex h-24 flex-col bg-background/40 border-b border-popover p-2'}>
                         <div className={'h-full flex items-center'}>
                             <p>Last login</p>
@@ -72,8 +72,8 @@ function UserListRender() {
                         <div className={'h-full flex items-center justify-between'}>
                             <p>Status</p>
                             <Switch
-                                switchClassName={'bg-white data-[state=checked]:bg-white'}
-                                className={'data-[state=checked]:bg-chart-2 data-[state=unchecked]:bg-destructive'}
+                                switchClassName={'bg-white data-[state=checked]:bg-muted-foreground transition-all duration-300'}
+                                className={'data-[state=checked]:bg-card data-[state=unchecked]:bg-destructive'}
                                 checked={!(data?.is_blocked ?? true)}
                             />
                         </div>
@@ -94,7 +94,7 @@ function UserListRender() {
                             })
                         }
                     </div>
-                    <div className={'flex flex-col gap-y-4 p-4'}>
+                    <div className={'flex flex-col gap-y-4 py-4'}>
                         <Button className={'rounded-none bg-chart-2 hover:bg-chart-2'}>
                             Transaction
                         </Button>

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router";
 import type { UsersResponse} from "@/types/auth.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
 import { useLazyGetUserListQuery } from '@/services/authApi.ts';
-import { ChevronDown, ChevronRight } from "lucide-react";
+import {ChevronDown, ChevronLeftIcon, ChevronRight} from "lucide-react";
+import {Button} from "@/components/ui/button.tsx";
 
 function UserItem({
                       user,
@@ -28,19 +29,23 @@ function UserItem({
     const euroBalance = user.wallets.find((wallet : any) => wallet.slug === "eur") ?? []
     const otherBalance = user.wallets.find((wallet : any) => wallet.slug === "usd") ?? []
     return (
-        <div className={cn("border border-popover text-white", {
-            'animate-pulse bg-popover': isFetching,
-            // 'bg-black/20': isOpen,
+        <div className={cn("border-b border-black/10 bg-muted/80 text-black", {
+            'animate-pulse bg-white/80': isFetching,
         })}>
             <div
-                className={cn("w-full grid grid-cols-4  pl-2 justify-between items-center cursor-pointer py-1.5", {
+                className={cn("w-full grid grid-cols-4 pl-2 justify-between items-center cursor-pointer py-1.5", {
                 })}
             >
 
                 <div className={'flex items-center  truncate w-full justify-start gap-x-3'} onClick={()=>{
                     navigate(`edit/${user.id}`)
                 }}>
-                    <p className={'min-w-32'}>{user.username}</p>
+                    <p className={'min-w-32 flex items-center gap-x-1.5 flex-row'}>
+                        <span className={cn('size-2 rounded-full  bg-destructive ',{
+                            'bg-card' : !user.is_blocked
+                        })}></span>
+                        <span>{user.username}</span>
+                    </p>
                 </div>
                 <div className={'text-center lg:text-start'}>
                     {(Number((euroBalance.balance ?? 0) / 100)).toLocaleString("en-EN", {
@@ -85,8 +90,8 @@ function UserItem({
                 </p>
             </div>
             {hasChildren && isOpen && user.children && user.children.length > 0 && (
-                <div className={cn("" , {
-                    'bg-white/20': isOpen,
+                <div className={cn(" " , {
+                    'bg-white/10': isOpen,
                 })}>
                     {user.children.map((child: typeof user.children[0]) => {
                         const childIsOpen = openIds.has(child.id);
@@ -111,22 +116,42 @@ function UserItem({
 
 function LoggedUser({data} : { data : any }){
     return <div className={'border-x text-white text-xs border-t border-popover'}>
-        <div className={'p-2 border-b border-popover'}>
+        <div className={'p-2 border-b bg-chart-2 border-popover'}>
             My balance
         </div>
-        {
-            data?.wallets.length > 0 && data?.wallets?.map((wallet : any) => {
-                return <div className={'p-2 border-b border-popover grid grid-cols-4'}>
-                    <p>{wallet.name}</p>
-                    <p className={'text-center'}>
-                        {(Number(wallet.balance) / 100).toLocaleString("en-EN", {
-                            minimumFractionDigits: wallet.decimal_places,
-                            maximumFractionDigits: wallet.decimal_places,
-                        })}
-                    </p>
-                </div>
-            })
-        }
+        <div className={''}>
+            <div className={cn('grid w-full text-end mr-12 grid-cols-4' , {
+                "grid-cols-4" : ((data?.wallets?.length ?? 2) + 1 === 3) ,
+            })}>
+                <p className={'opacity-0'}>{data?.username ?? ""}</p>
+                {
+                    data?.wallets.length > 0 && data?.wallets?.map((wallet : any ) => {
+                        return <div className={'py-2 border-b text-start border-popover '}>
+                            <p className={'w-full'}>{wallet.name}</p>
+                        </div>
+                    })
+                }
+            </div>
+            <div className={cn('grid w-full  text-foreground bg-muted/90 text-start grid-cols-4' , {
+                "grid-cols-4" : ((data?.wallets?.length ?? 2) + 1 === 3) ,
+            })}>
+
+                <p className={'w-full text-start flex items-center pl-2'}>{data?.username ?? ""}</p>
+                {
+                    data?.wallets.length > 0 && data?.wallets?.map((wallet : any) => {
+                        return <div className={'py-2'}>
+                            <p className={'text-start '}>
+                                {(Number(wallet.balance) / 100).toLocaleString("en-EN", {
+                                    minimumFractionDigits: wallet.decimal_places,
+                                    maximumFractionDigits: wallet.decimal_places,
+                                })}
+                            </p>
+                        </div>
+                    })
+                }
+
+            </div>
+        </div>
 
     </div>
 }
@@ -208,19 +233,33 @@ function UserListRender() {
         navigate("/");
         return null;
     }
-
     return (
         <div className="min-h-screen text-black bg-popover">
-            <div className="container flex flex-col gap-4 px-2 mx-auto pt-10">
+
+            <div className={'h-10  flex  text-muted bg-popover items-center'}>
+                <div className={'w-10 h-full border-r border-popover flex items-center'} onClick={()=>navigate(-1)}>
+                    <ChevronLeftIcon className={'w-10 '} />
+                </div>
+                <div className={'w-full text-center pr-10 space-x-1 flex justify-center'}>
+                    <p>Users</p>
+                </div>
+            </div>
+            <div className="container flex flex-col gap-4 px-2 mx-auto pt-7">
+
                 <div className={''}>
                     {LoggedUser({data : combinedData?.user})}
                 </div>
                 <div className={'text-white text-xs py-2 '}>
-                    <div className={'grid grid-cols-4 border-t border-x border-popover py-2 px-1'}>
+                    <div className={'p-2 border-b flex flex-row items-center justify-between bg-chart-2 border-popover'}>
+                        <Button className={'p-0 size-3 bg-card hover:bg-card'}></Button>
+                        <p>User Balance</p>
+                        <Button className={'p-0 size-3 bg-destructive hover:bg-destructive'}></Button>
+                    </div>
+                    <div className={'grid grid-cols-4 border-t bg-chart-2 border-x border-popover py-2 px-1'}>
                         <div>Username</div>
-                        <div className={'text-center lg:text-start'}>Balance (€)</div>
-                        <div className={'text-center lg:text-start'}>Balance ($)</div>
-                        <div className={'text-end'}>Action</div>
+                        <div className={'text-center lg:text-start'}>Euro (€)</div>
+                        <div className={'text-center lg:text-start'}>Dollar ($)</div>
+                        <div className={'text-end'}></div>
                     </div>
                     {combinedData && combinedData.children && combinedData.children.length > 0 ? (
                         combinedData.children.map((child: typeof combinedData.children[0]) => {
