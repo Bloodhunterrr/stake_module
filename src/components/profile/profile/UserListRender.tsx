@@ -30,8 +30,9 @@ function UserItem({
     const euroBalance = user.wallets.find((wallet : any) => wallet.slug === "eur") ?? []
     const otherBalance = user.wallets.find((wallet : any) => wallet.slug === "usd") ?? []
     return (
-        <div className={cn("border-b border-black/10 bg-muted/80 text-black", {
+        <div className={cn("border-b border-black/20 bg-white/40 text-black", {
             'animate-pulse bg-white/80': isFetching,
+            "border-none" : hasChildren && isOpen
         })}>
             <div
                 className={cn("w-full grid grid-cols-4 pl-2 justify-between items-center cursor-pointer py-1.5", {
@@ -92,7 +93,7 @@ function UserItem({
             </div>
             {hasChildren && isOpen && user.children && user.children.length > 0 && (
                 <div className={cn(" " , {
-                    'bg-white/10': isOpen,
+                    'bg-black/5': isOpen,
                 })}>
                     {user.children.map((child: typeof user.children[0]) => {
                         const childIsOpen = openIds.has(child.id);
