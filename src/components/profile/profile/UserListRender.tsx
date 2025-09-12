@@ -29,9 +29,10 @@ function UserItem({
     const navigate = useNavigate();
     const euroBalance = user.wallets.find((wallet : any) => wallet.slug === "eur") ?? []
     const otherBalance = user.wallets.find((wallet : any) => wallet.slug === "usd") ?? []
+    const childrens = (user.children_count)
     return (
         <div className={cn("border-b border-black/20 bg-white/40 text-black", {
-            'animate-pulse bg-white/80': isFetching,
+            'animate-pulse bg-white/50': isFetching,
             "border-none" : hasChildren && isOpen
         })}>
             <div
@@ -47,6 +48,7 @@ function UserItem({
                             'bg-card' : !user.is_blocked
                         })}></span>
                         <span>{user.username}</span>
+                        <span>{childrens === 0 ? "" : `(${childrens})`}</span>
                     </p>
                 </div>
                 <div className={'text-center lg:text-start'}>
@@ -300,8 +302,8 @@ function UserListRender() {
                     </div>
                     <div className={'grid grid-cols-4 border-t bg-chart-2 border-x border-popover py-2 px-1'}>
                         <div>Username</div>
-                        <div className={'text-center lg:text-start'}>Euro (€)</div>
-                        <div className={'text-center lg:text-start'}>Dollar ($)</div>
+                        <div className={'text-center lg:text-start'}>EUR</div>
+                        <div className={'text-center lg:text-start'}>USD</div>
                         <div className={'text-end'}></div>
                     </div>
                     {combinedData && combinedData.children && combinedData.children.length > 0 ? (

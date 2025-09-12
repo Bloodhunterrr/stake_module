@@ -118,6 +118,7 @@ export interface User {
     zip_code:        string;
     wallets:         Wallet[];
     is_agent:        boolean;
+    children_count?: number;
 }
 
 export interface Wallet {
