@@ -36,6 +36,8 @@ function UserListRender() {
         return null;
     }
 
+    console.log(data)
+
     return (
             isFetching ? <p>Loading...</p>  :  <div className="min-h-screen text-muted-foregound bg-popover ">
                 <div className={'h-10  flex  border-b border-popover items-center'}>
@@ -95,7 +97,9 @@ function UserListRender() {
                         }
                     </div>
                     <div className={'flex flex-col gap-y-4 py-4'}>
-                        <Button className={'rounded-none bg-chart-2 hover:bg-chart-2'}>
+                        <Button className={'rounded-none bg-chart-2 hover:bg-chart-2'} onClick={()=>{
+                            navigate(`/account/users/transaction/${data?.id}`)
+                        }}>
                             Transaction
                         </Button>
                         <Button className={'rounded-none bg-chart-2 hover:bg-chart-2'}>

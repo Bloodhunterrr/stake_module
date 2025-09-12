@@ -60,6 +60,33 @@ export interface UsersRequest {
     search ?: string
 }
 
+export interface TransactionRequest {
+    start_date?: string;
+    end_date?: string;
+    type?: string;
+    currency?: string | string[];
+    user_id ?: number
+}
+
+export interface ReportRequest {
+    start_date?: string;
+    end_date?: string;
+    currency?: string | string[];
+    search ?: string
+}
+
+export interface TransactionResponse {
+    success: boolean;
+    message: string;
+    data  : []
+}
+
+export interface ReportResponse {
+        success: boolean;
+        message: string;
+        data  : []
+}
+
 export interface User {
     id:              number;
     name:            string;

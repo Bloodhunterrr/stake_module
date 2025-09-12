@@ -278,6 +278,12 @@ const ProfileDropdown = ({
             path: "/notifications",
             show : true
         },
+        {
+            icon: MessagesIcon,
+            label: <Trans>Reports</Trans>,
+            path: "/account/users/reports",
+            show : user.is_agent
+        }
     ];
     const defaultWallet  = user.wallets.filter(singleWallet => singleWallet.default === 1);
     const otherWallets = user.wallets.filter(singleWallet => singleWallet.default !== 1);
@@ -369,20 +375,20 @@ const ProfileDropdown = ({
                             })}{" "}
                         </div>
                         <DropdownMenuItem
-                            className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/40 hover:text-black/70"
+                            className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/70 hover:bg-black/10"
                             onClick={() => navigate("/account/general")}
                         >
                             <Trans>Profile</Trans>
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                            className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/40 hover:text-black/70"
+                            className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/70 hover:bg-black/10"
                             onClick={() => navigate("/account/wallet")}
                         >
                             <Trans>Wallet</Trans>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem
-                            className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/40 hover:text-black/70"
+                            className="w-full border-t rounded-none px-2 py-2 cursor-pointer hover:bg-black/10 text-black/70"
                             onClick={() => logout()}
                         >
                             <Trans>Log out</Trans>

@@ -15,6 +15,8 @@ import PaymentsHistoryPage from "./account/payments";
 import BetsHistoryPage from "./account/bets";
 import UserListRender from "@/components/profile/profile/UserListRender.tsx";
 import EditUser from "@/components/shared/v2/user/edit-user.tsx";
+import TransactionList from "@/components/profile/profile/transaction-list.tsx";
+import Reports from "@/components/profile/profile/reports.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -60,8 +62,11 @@ const routes = createBrowserRouter(
             { path: "payments", element: <PaymentsHistoryPage /> },
             { path: "general", element: <UserInfo /> },
             { path: "users", element: <UserListRender />,},
-            { path: "users/edit/:userId", element: <EditUser /> },
-            { path: "users/create", element: <EditUser /> },
+            //   AGENT PATHS
+             { path: "users/edit/:userId", element: <EditUser /> },
+             { path: "users/transaction/:userId", element: <TransactionList /> },
+             { path: "users/create", element: <EditUser /> },
+             { path: "users/reports", element: <Reports /> },
 
           ],
         },

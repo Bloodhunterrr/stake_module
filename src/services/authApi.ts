@@ -7,7 +7,14 @@ import type {CasinoTransactionReq, CasinoTransactionResponse} from '@/types/casi
 import type {SportHistoryReq, SportHistoryResponse} from '@/types/sportHistory';
 import type {DepositRequest, DepositResponse} from '@/types/deposits';
 import type {WithdrawRequest, WithdrawResponse} from '@/types/withdraws';
-import type {AuthMeResponse, AuthResponse, LoginRequest, UsersRequest , UsersResponse} from "@/types/auth.ts";
+import type {
+    AuthMeResponse,
+    AuthResponse,
+    LoginRequest,
+    ReportRequest, ReportResponse, TransactionRequest, TransactionResponse,
+    UsersRequest,
+    UsersResponse
+} from "@/types/auth.ts";
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {toast} from "react-toastify";
 
@@ -151,6 +158,18 @@ export const authApi = createApi({
                 url: `/agent/users/` + params.user_id,
             }),
         }),
+        getSingleUserTransaction : builder.query<TransactionResponse, TransactionRequest>({
+            query: (params) => ({
+                url: `/agent/transactions?`,
+                params
+            }),
+        }),
+        getReports : builder.query<ReportResponse, ReportRequest>({
+            query: (params) => ({
+                url: `/agent/report?`,
+                params
+            }),
+        }),
     }),
 });
 
@@ -169,5 +188,7 @@ export const {
     useCreateDepositMutation,
     useCreateWithdrawMutation,
     useLazyGetUserListQuery,
-    useLazyGetSingleUserQuery
+    useLazyGetSingleUserQuery,
+    useLazyGetSingleUserTransactionQuery,
+    useLazyGetReportsQuery,
 } = authApi;
