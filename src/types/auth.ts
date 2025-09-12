@@ -87,6 +87,19 @@ export interface ReportResponse {
         data  : []
 }
 
+export interface BlockRequest {
+    id : number;
+    body: { status: boolean },
+}
+
+export interface BlockResponse {
+    success: boolean;
+    message: string;
+    data  : {
+        success: boolean;
+        message: string;
+    }
+}
 export interface User {
     id:              number;
     name:            string;

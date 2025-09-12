@@ -9,7 +9,7 @@ import type {DepositRequest, DepositResponse} from '@/types/deposits';
 import type {WithdrawRequest, WithdrawResponse} from '@/types/withdraws';
 import type {
     AuthMeResponse,
-    AuthResponse,
+    AuthResponse, BlockRequest, BlockResponse,
     LoginRequest,
     ReportRequest, ReportResponse, TransactionRequest, TransactionResponse,
     UsersRequest,
@@ -170,6 +170,13 @@ export const authApi = createApi({
                 params
             }),
         }),
+        putBlockUser : builder.mutation<BlockResponse, BlockRequest>({
+            query: (params) => ({
+                method: 'PUT',
+                url: `/agent/users/${params.id}/block-status`,
+                body : params?.body
+            }),
+        }),
     }),
 });
 
@@ -191,4 +198,5 @@ export const {
     useLazyGetSingleUserQuery,
     useLazyGetSingleUserTransactionQuery,
     useLazyGetReportsQuery,
+    usePutBlockUserMutation,
 } = authApi;

@@ -15,8 +15,8 @@ import PaymentsHistoryPage from "./account/payments";
 import BetsHistoryPage from "./account/bets";
 import UserListRender from "@/components/profile/profile/UserListRender.tsx";
 import EditUser from "@/components/shared/v2/user/edit-user.tsx";
-import TransactionList from "@/components/profile/profile/transaction-list.tsx";
-import Reports from "@/components/profile/profile/reports.tsx";
+import TransactionList from "@/components/profile/profile/TransactionList.tsx";
+import Reports from "@/components/profile/profile/Reports.tsx";
 
 const routes = createBrowserRouter(
   [

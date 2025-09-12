@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import Loading from "@/components/shared/v2/loading.tsx";
-import { useLazyGetSingleUserQuery } from '@/services/authApi.ts';
+import {useLazyGetSingleUserQuery, usePutBlockUserMutation} from '@/services/authApi.ts';
 import {useNavigate, useParams} from "react-router";
 import type {UsersResponse, Wallet} from "@/types/auth.ts";
 import {ChevronLeftIcon} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
 import {Switch} from "@/components/ui/switch.tsx";
 import {cn} from "@/lib/utils.ts";
+import {toast} from "react-toastify";
 
 
 function UserListRender() {
@@ -14,14 +15,31 @@ function UserListRender() {
     const navigate = useNavigate();
     const [data, setData] = useState<UsersResponse['user'] | null>(null)
     const [fetchUserList, { isLoading, isError, isFetching }] = useLazyGetSingleUserQuery();
+    const [putBlockUser] = usePutBlockUserMutation();
+    const [checked, setChecked] = useState(Boolean(data?.is_blocked === 0));
 
-       useEffect(() => {
+   useEffect(() => {
         fetchUserList({ user_id: (Number(userId ?? 0)) }).then((data: any) => {
             setData(data?.data);
+            setChecked(Boolean(data?.data?.is_blocked === 0));
         });
     }, []);
 
-
+    const handleSwitchChange = async (value: boolean) => {
+        setChecked(value);
+        try {
+            const response = await putBlockUser({
+                id: Number(data?.id),
+                body: { status: !value },
+            }).unwrap();
+            if(response.success){
+                toast(`User ${checked ? "blocked" : "unblocked"} successfully`)
+            }
+        } catch (err) {
+            console.error('Error:', err);
+            setChecked(!value);
+        }
+    };
 
     if (isLoading) {
         return (
@@ -35,9 +53,6 @@ function UserListRender() {
         navigate("/");
         return null;
     }
-
-    console.log(data)
-
     return (
             isFetching ? <p>Loading...</p>  :  <div className="min-h-screen text-muted-foregound bg-popover ">
                 <div className={'h-10  flex  border-b border-popover items-center'}>
@@ -74,9 +89,12 @@ function UserListRender() {
                         <div className={'h-full flex items-center justify-between'}>
                             <p>Status</p>
                             <Switch
+                                checked={checked}
+                                onCheckedChange={(value)=>{
+                                    handleSwitchChange(value)
+                                }}
                                 switchClassName={'bg-white data-[state=checked]:bg-muted-foreground transition-all duration-300'}
                                 className={'data-[state=checked]:bg-card data-[state=unchecked]:bg-destructive'}
-                                checked={!(data?.is_blocked ?? true)}
                             />
                         </div>
                     </div>

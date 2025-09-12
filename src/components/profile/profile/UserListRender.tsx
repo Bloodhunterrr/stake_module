@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 import type { UsersResponse} from "@/types/auth.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
-import { useLazyGetUserListQuery } from '@/services/authApi.ts';
+import {useLazyGetUserListQuery, usePutBlockUserMutation} from '@/services/authApi.ts';
 import {ChevronDown, ChevronLeftIcon, ChevronRight} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
+import {toast} from "react-toastify";
 
 function UserItem({
                       user,
@@ -159,9 +160,11 @@ function LoggedUser({data} : { data : any }){
 function UserListRender() {
     const [combinedData, setCombinedData] = useState<UsersResponse | null>(null);
     const [fetchUserList, { isLoading, isError, isFetching }] = useLazyGetUserListQuery();
+    const [putBlockUser] = usePutBlockUserMutation();
     const navigate = useNavigate();
     const [loadedChildren, setLoadedChildren] = useState<Set<number>>(new Set());
     const [openIds, setOpenIds] = useState<Set<number>>(new Set());
+    const [trigger, setTrigger] = useState(true)
 
     const handleChildClick = async (childId: number) => {
         const isAlreadyOpen = openIds.has(childId);
@@ -219,7 +222,18 @@ function UserListRender() {
         fetchUserList({ user_id: 0 }).then((data: any) => {
             setCombinedData(data?.data);
         });
+        setTrigger(false)
+        setOpenIds(new Set())
+        setLoadedChildren(new Set())
+    }, [trigger]);
+
+    useEffect(() => {
+            fetchUserList({ user_id: 0 }).then((data: any) => {
+                setCombinedData(data?.data);
+            });
     }, []);
+
+
 
     if (isLoading) {
         return (
@@ -233,6 +247,21 @@ function UserListRender() {
         navigate("/");
         return null;
     }
+
+    const handleTreeStatusChange = async ({value , id} : {value: boolean , id : number} ) => {
+        try {
+            const response = await putBlockUser({
+                id: Number(id),
+                body: { status: !value },
+            }).unwrap();
+            if(response.success){
+                toast(`User ${!value ? "blocked" : "unblocked"} successfully`)
+                setTrigger(true)
+            }
+        } catch (err) {
+            console.error('Error:', err);
+        }
+    };
     return (
         <div className="min-h-screen text-black bg-popover">
 
@@ -251,9 +280,22 @@ function UserListRender() {
                 </div>
                 <div className={'text-white text-xs py-2 '}>
                     <div className={'p-2 border-b flex flex-row items-center justify-between bg-chart-2 border-popover'}>
-                        <Button className={'p-0 size-3 bg-card hover:bg-card'}></Button>
+                        <Button
+                            onClick={()=>{
+                                if(combinedData?.user) {
+                                    handleTreeStatusChange({value : true , id : combinedData?.user?.id})
+                                }
+                            }}
+
+                            className={'p-0 size-3 bg-card hover:bg-card'}></Button>
                         <p>User Balance</p>
-                        <Button className={'p-0 size-3 bg-destructive hover:bg-destructive'}></Button>
+                        <Button
+                            onClick={()=>{
+                                if(combinedData?.user) {
+                                    handleTreeStatusChange({value : false , id : combinedData?.user.id})
+                                }
+                            }}
+                            className={'p-0 size-3 bg-destructive hover:bg-destructive'}></Button>
                     </div>
                     <div className={'grid grid-cols-4 border-t bg-chart-2 border-x border-popover py-2 px-1'}>
                         <div>Username</div>
