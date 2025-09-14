@@ -36,14 +36,16 @@ function Messages() {
             fetchMessages({type : 'sent'}).unwrap().then((data : MessageResponse) =>{
                 setMessages({
                     ...messages,
-                    sent: data?.data ?? []
+                    sent: data ?? []
                 })
+                console.log(data)
             })
             fetchMessages({type : 'received'}).unwrap().then((data : MessageResponse) =>{
                 setMessages({
                     ...messages,
-                    received: data.data ?? []
+                    received: data ?? []
                 })
+                console.log(data)
             })
         }
         setRefresh(false)
@@ -61,6 +63,7 @@ function Messages() {
                     <p>Received Messages</p>
                     { isLoading  ? <Loading/> :
                         messages?.received.length > 0 ? messages.received.map((message:any) => {
+                            console.log(message.length)
                             return <SingleMessage message={message} />
                         }) : <p className={'py-2 pl-2 bg-popover '}>Not Received any messages yet</p>
                     }
@@ -87,14 +90,12 @@ export default Messages;
 
 
 const SingleMessage = ({message} : {message : any}) => {
-
     const [fetchSingleMessage , {isError , isLoading}] = useLazyGetSingleMessageQuery()
     const [data, setData] = useState<SingleMessageResponse['data'] | undefined>(undefined);
     return (
         <div className={'flex items-center gap-x-3 py-1 px-1 rounded border'} onClick={()=>{
             fetchSingleMessage({id : message.id}).unwrap().then((data : SingleMessageResponse ) =>{
-                console.log(data , 'single')
-                setData(data?.data)
+                setData(data)
             })
         }}>
             <Dialog>
