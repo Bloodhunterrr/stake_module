@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loading from "@/components/shared/v2/loading.tsx";
-import {useLazyGetSingleUserQuery, usePutBlockUserMutation} from '@/services/authApi.ts';
+import {useLazyGetSingleUserQuery, useGetSendSingleMessageMutation , usePutBlockUserMutation} from '@/services/authApi.ts';
 import {useNavigate, useParams} from "react-router";
 import type {UsersResponse, Wallet} from "@/types/auth.ts";
 import {ChevronLeftIcon} from "lucide-react";
@@ -8,6 +8,15 @@ import {Button} from "@/components/ui/button.tsx";
 import {Switch} from "@/components/ui/switch.tsx";
 import {cn} from "@/lib/utils.ts";
 import {toast} from "react-toastify";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
+import {Input} from "@/components/ui/input";
 
 
 function UserListRender() {
@@ -15,8 +24,13 @@ function UserListRender() {
     const navigate = useNavigate();
     const [data, setData] = useState<UsersResponse['user'] | null>(null)
     const [fetchUserList, { isLoading, isError, isFetching }] = useLazyGetSingleUserQuery();
+    const [sendMessage] = useGetSendSingleMessageMutation()
     const [putBlockUser] = usePutBlockUserMutation();
     const [checked, setChecked] = useState(Boolean(data?.is_blocked === 0));
+    const [message, setMessage] = useState({
+        subject : "",
+        content :  ""
+    })
 
    useEffect(() => {
         fetchUserList({ user_id: (Number(userId ?? 0)) }).then((data: any) => {
@@ -53,8 +67,21 @@ function UserListRender() {
         navigate("/");
         return null;
     }
-    return (
-            isFetching ? <p>Loading...</p>  :  <div className="min-h-screen text-muted-foregound bg-popover ">
+
+    const test = () => {
+        sendMessage( {
+            "receiver_ids": [(data?.id ?? 0)],
+            "subject": message.subject,
+            "content": message.content
+        }).then(() => {
+            setMessage({
+                subject:  "",
+                content: "",
+            })
+        })
+    }
+
+    return ( isFetching ? <p>Loading...</p>  :  <div className="min-h-screen text-muted-foregound bg-popover ">
                 <div className={'h-10  flex  border-b border-popover items-center'}>
                     <div className={'w-10 h-full border-r border-popover flex items-center'} onClick={()=>navigate(-1)}>
                         <ChevronLeftIcon className={'w-10 '} />
@@ -83,9 +110,31 @@ function UserListRender() {
                         </div>
                     </div>
                     <div className={'flex h-24 flex-col bg-background/40  p-2'}>
-                        <div className={'h-full flex items-center'}>
-                            <p>Notes</p>
-                        </div>
+                        <Dialog>
+                            <DialogTrigger className={'w-full h-full text-start'}>Notes</DialogTrigger>
+                            <DialogContent
+                                closeButtonClassName={"size-4"}
+                                className={'border-none text-accent'}>
+                                <DialogHeader>
+                                    <DialogTitle className={'w-full text-center'}>Send message to this {(data && data?.username) ?? ''}</DialogTitle>
+                                </DialogHeader>
+                                <Input placeholder={"Title"} value={message.subject} className={'border-popover'} onInput={(event : React.ChangeEvent<HTMLInputElement>)=>{
+                                        setMessage({
+                                            ...message,
+                                            subject : event.target.value
+                                        })
+                                }} />
+                                <Input placeholder={"Body"} value={message.content} className={'border-popover'} onInput={(event : React.ChangeEvent<HTMLInputElement>)=>{
+                                    setMessage({
+                                        ...message,
+                                        content : event.target.value
+                                    })
+                                }}/>
+                                <Button className={'bg-chart-2 hover:bg-chart-2'} onClick={test}>
+                                    Send
+                                </Button>
+                            </DialogContent>
+                        </Dialog>
                         <div className={'h-full flex items-center justify-between'}>
                             <p>Status</p>
                             <Switch

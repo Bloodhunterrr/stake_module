@@ -17,6 +17,7 @@ import UserListRender from "@/components/profile/profile/UserListRender.tsx";
 import EditUser from "@/components/shared/v2/user/edit-user.tsx";
 import TransactionList from "@/components/profile/profile/TransactionList.tsx";
 import Reports from "@/components/profile/profile/Reports.tsx";
+import Messages from "@/components/profile/profile/Messages.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -62,14 +63,16 @@ const routes = createBrowserRouter(
             { path: "payments", element: <PaymentsHistoryPage /> },
             { path: "general", element: <UserInfo /> },
             { path: "users", element: <UserListRender />,},
-            //   AGENT PATHS
+              //AGENT PATHS
              { path: "users/edit/:userId", element: <EditUser /> },
              { path: "users/transaction/:userId", element: <TransactionList /> },
              { path: "users/create", element: <EditUser /> },
              { path: "users/reports", element: <Reports /> },
+             { path: "notifications", element: <Messages />,},
 
           ],
         },
+
         {
           path: "*",
           element: <ErrorPage />,

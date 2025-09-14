@@ -10,8 +10,8 @@ import type {WithdrawRequest, WithdrawResponse} from '@/types/withdraws';
 import type {
     AuthMeResponse,
     AuthResponse, BlockRequest, BlockResponse,
-    LoginRequest,
-    ReportRequest, ReportResponse, TransactionRequest, TransactionResponse,
+    LoginRequest, MessageRequest, MessageResponse,
+    ReportRequest, ReportResponse, SingleMessageResponse, TransactionRequest, TransactionResponse,
     UsersRequest,
     UsersResponse
 } from "@/types/auth.ts";
@@ -177,6 +177,24 @@ export const authApi = createApi({
                 body : params?.body
             }),
         }),
+        getMessages : builder.query<MessageResponse, MessageRequest>({
+            query: (params) => ({
+                url: `agent/messages`,
+                params
+            }),
+        }),
+        getSingleMessage : builder.query<SingleMessageResponse, MessageRequest>({
+            query: (params) => ({
+                url: `agent/messages/${params.id}`,
+            }),
+        }),
+        getSendSingleMessage: builder.mutation<MessageResponse, MessageRequest>({
+            query: (filters) => ({
+                url: "/agent/messages",
+                method: "POST",
+                body: filters,
+            }),
+        }),
     }),
 });
 
@@ -199,4 +217,7 @@ export const {
     useLazyGetSingleUserTransactionQuery,
     useLazyGetReportsQuery,
     usePutBlockUserMutation,
+    useLazyGetMessagesQuery,
+    useLazyGetSingleMessageQuery,
+    useGetSendSingleMessageMutation,
 } = authApi;

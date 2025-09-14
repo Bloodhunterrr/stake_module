@@ -47,7 +47,6 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
     const onSubmit = async (data: LoginFormValues) => {
         try {
             await login(data).unwrap();
-            toast.success(t`Login successful!`);
             setLoginModalOpen(false);
         } catch (err: unknown) {
             handleLoginError(err);

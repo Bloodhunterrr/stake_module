@@ -87,6 +87,95 @@ export interface ReportResponse {
         data  : []
 }
 
+export interface MessageRequest {
+    type ?: string;
+    id ?:string
+    receiver_ids ?: string[] | number[] ,
+    subject ?: string,
+    content ?: string
+}
+
+export interface MessageResponse {
+    "status": string,
+    "endpointName": string,
+    "requestId": string,
+    "originalArgs" ?: {
+    "type": string
+    id : number
+     },
+    "startedTimeStamp": number,
+    "data": {
+        sender ?: {
+            "id": number,
+            "name": string,
+            "email": string,
+            "avatar": null,
+            "username": string,
+            "first_name": null,
+            "last_name": null,
+            "phone": null,
+            "date_of_birth": string,
+            "gender": string,
+            "address": string,
+            "city": string,
+            "state": string,
+            "country": string,
+            "zip_code": string
+        }
+        "id": number,
+        "subject": string,
+        "body": string | string[] | null,
+        "created_at": string
+    }[],
+    "fulfilledTimeStamp": number,
+    "isUninitialized": boolean,
+    "isLoading": boolean,
+    "isSuccess": boolean,
+    "isError": boolean
+}
+
+
+
+
+export interface SingleMessageResponse {
+    "status": string,
+    "endpointName": string,
+    "requestId": string,
+    "originalArgs": {
+        "id": number
+    },
+    "startedTimeStamp": number,
+    "data": {
+        "id": number,
+        "subject": string,
+        "body": string | null,
+        "sender": {
+            "id": number,
+            "name": string,
+            "email": string,
+            "avatar": string |  null,
+            "username": string | null,
+            "first_name": null | string,
+            "last_name": null | string,
+            "phone": null | string,
+            "date_of_birth": null | string,
+            "gender": null | string,
+            "address": null | string,
+            "city": null | string,
+            "state": null | string,
+            "country": null | string,
+            "zip_code": null | string
+        },
+        "created_at": string
+    },
+    "fulfilledTimeStamp": number,
+    "isUninitialized": boolean,
+    "isLoading": boolean,
+    "isSuccess": boolean,
+    "isError": boolean
+}
+
+
 export interface BlockRequest {
     id : number;
     body: { status: boolean },

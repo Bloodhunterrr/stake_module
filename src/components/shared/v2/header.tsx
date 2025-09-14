@@ -93,7 +93,9 @@ export default function Header(props: HeaderProps) {
         <div className="sticky top-0 z-50 bg-background">
             <div
                 className={cn("h-0 transition-all w-full no-scrollbar overflow-x-auto flex items-center flex-row container mx-auto duration-300 ease-in-out",
-                    {"h-11 xl:h-0 opacity-100 px-2 w-full": props.openOptionalSideBar}
+                    {
+                        "h-11 xl:h-0 opacity-100 px-2 w-full ": props.openOptionalSideBar
+                    }
                 )}>
                 {data?.map((R) =>
                     !R.is_sportbook && R.subcategories.length === 0 ? null : (
@@ -252,8 +254,8 @@ const ProfileDropdown = ({
     const navigate = useNavigate();
 
     const menuItems = [
-        {icon: CasinoIcon, label: <Trans>Casino</Trans>, path: "/account/casino" , show : true},
-        {icon: BetHistoryIcon, label: <Trans>Bets</Trans>, path: "/account/bets" , show : true},
+        {icon: CasinoIcon, label: <Trans>Casino</Trans>, path: user.is_agent  ? "/account/casino" : "/account/casino" , show : true},
+        {icon: BetHistoryIcon, label: <Trans>Bets</Trans>, path: user.is_agent ? "/account/bets" : "/account/bets" , show : true},
         {
             icon: PaymentsIcon,
             label: <Trans>Payments</Trans>,
@@ -275,7 +277,7 @@ const ProfileDropdown = ({
         {
             icon: MessagesIcon,
             label: <Trans>Messages</Trans>,
-            path: "/notifications",
+            path: "/account/notifications",
             show : true
         },
         {
@@ -285,6 +287,7 @@ const ProfileDropdown = ({
             show : user.is_agent
         }
     ];
+
     const defaultWallet  = user.wallets.filter(singleWallet => singleWallet.default === 1);
     const otherWallets = user.wallets.filter(singleWallet => singleWallet.default !== 1);
     return (
@@ -294,7 +297,8 @@ const ProfileDropdown = ({
             </DropdownMenuTrigger>
 
             <DropdownMenuContent
-                className="lg:w-96 w-90 mt-4 p-0 bg-white rounded-none" align="end" forceMount>
+                sideOffset={showBalance ? 10 : 5}
+                className="lg:w-96  w-screen min-w-90 mt-4 p-0 bg-white rounded-none" align="end" forceMount>
                 <div className="flex flex-col w-full h-full px-2 py-2">
                     <DropdownMenuLabel className="font-normal">
                         <p className="text-xs font-medium leading-none">{user?.name}</p>
