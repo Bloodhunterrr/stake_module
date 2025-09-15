@@ -98,9 +98,9 @@ export default function Header(props: HeaderProps) {
         className={cn(
           "h-0 transition-all w-full no-scrollbar overflow-x-auto flex items-center flex-row container mx-auto duration-300 ease-in-out",
           {
-            "h-11 xl:h-0 opacity-100 px-2 w-full":
+            "h-11 xl:h-0 opacity-100 px-2 w-full bg-background":
               props.openOptionalSideBar && !props.isNoCategoryOrSportsbook,
-            "h-8 xl:h-0 opacity-100 px-2 w-full":
+            "h-8 xl:h-0 opacity-100 px-2 w-full ":
               props.openOptionalSideBar && props.isNoCategoryOrSportsbook,
           }
         )}

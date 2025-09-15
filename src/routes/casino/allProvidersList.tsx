@@ -143,7 +143,7 @@ const AllProvidersList = () => {
                 <div className="flex gap-2 items-center">
                   <button
                     onClick={() => setSearchModal(true)}
-                    className="flex items-center justify-center gap-2 px-3 py-1 w-[60px] rounded-[24px] border text-sm font-semibold transition
+                    className="flex items-center justify-center gap-1.5 px-3 py-1 w-[60px] rounded-[24px] border text-sm font-semibold transition
                    border-gray-600 text-gray-300 hover:border-card hover:text-white hover:bg-popover/50"
                   >
                     <SearchIcon className="size-5" />
