@@ -45,7 +45,7 @@ function LanguageSwitcher() {
       <PopoverTrigger asChild>
         <Button
           variant="secondary"
-          className="w-full justify-between rounded-lg font-normal transition-all duration-300 hover:bg-accent"
+          className="w-full h-10 justify-between rounded-lg font-normal transition-all duration-300 hover:bg-accent"
         >
           <div className="flex items-center space-x-2">
             <span>{currentLang.name}</span>
@@ -107,7 +107,7 @@ export default function Sidebar({
             console.log("chat");
             if (!isDesktop) toggleSideBar(false);
           }}
-          className={`w-full justify-start rounded-lg bg-chart-2 hover:bg-chart-2   font-normal
+          className={`w-full justify-start h-10 rounded-lg bg-chart-2 hover:bg-chart-2   font-normal
                              ${
                                isDesktop && !sideBarOpen
                                  ? "px-0 size-12 justify-center "
@@ -158,7 +158,7 @@ export default function Sidebar({
           {commonNavContent}
         </div>
       ) : (
-        <Sheet open={sideBarOpen} onOpenChange={toggleSideBar}>
+        <Sheet open={sideBarOpen} onOpenChange={toggleSideBar} >
           <SheetTrigger
             asChild
             className={cn({
@@ -174,7 +174,7 @@ export default function Sidebar({
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-64 p-0 border-none xl:hidden" closeIconClassName="text-white">
+          <SheetContent side="left" className="w-[80%] p-0 border-none xl:hidden" closeIconClassName="text-white">
             <div className="flex items-center justify-between p-4 mb-4">
               {logo && (
                 <img

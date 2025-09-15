@@ -117,7 +117,7 @@ const Sport: React.FC = () => {
       src={playUrl}
       className={cn("w-full h-[calc(100vh-64px)] transition-all duration-300", {
         "h-[calc(100vh-62px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen,
-        "h-[calc(100vh-30px)] transition-all duration-300 -mt-3": isNoCategoryOrSportsbook && !isDesktop
+        "h-[calc(100vh-36px)] transition-all duration-300 -mt-2": isNoCategoryOrSportsbook && !isDesktop
       })}
       allow="clipboard-read; clipboard-write; autoplay; fullscreen"
     />

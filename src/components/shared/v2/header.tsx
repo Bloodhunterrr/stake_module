@@ -377,7 +377,13 @@ const ProfileDropdown = ({
 
       <DropdownMenuContent
         sideOffset={
-          isNoCategoryOrSportsbook && !isDesktop ? 30 : showBalance ? 10 : 5
+          isNoCategoryOrSportsbook && !isDesktop
+            ? showBalance
+              ? 38
+              : 32
+            : showBalance
+            ? 10
+            : 5
         }
         className="lg:w-96 w-screen min-w-90 mt-4 p-0 bg-white rounded-none"
         align="end"
@@ -523,7 +529,7 @@ const ProfileDropdown = ({
               >
                 <span
                   className={`block w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-200 ${
-                    showBalance ? "translate-x-5" : "translate-x-0"
+                    showBalance ? "translate-x-5" : "translate-x-1"
                   }`}
                 />
               </button>
