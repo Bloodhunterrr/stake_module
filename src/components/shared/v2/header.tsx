@@ -146,7 +146,7 @@ export default function Header(props: HeaderProps) {
           <div
             className={cn("flex items-center", {
               "justify-start": !props.isNoCategoryOrSportsbook || isDesktop,
-              "w-12": props.isNoCategoryOrSportsbook && !isDesktop, 
+              "w-12": props.isNoCategoryOrSportsbook && !isDesktop,
             })}
           >
             {!props.isNoCategoryOrSportsbook || isDesktop ? (
@@ -168,9 +168,7 @@ export default function Header(props: HeaderProps) {
                 src={logoMobileSportbook}
                 alt="logo"
                 className="h-[36px] mt-2"
-                  onClick={() =>
-                  props.toggleSideBar(true)
-                }
+                onClick={() => props.toggleSideBar(true)}
               />
             </div>
           )}
@@ -218,6 +216,8 @@ export default function Header(props: HeaderProps) {
                   user={user}
                   showBalance={showBalance}
                   toggleShowBalance={toggleShowBalance}
+                  isNoCategoryOrSportsbook={props.isNoCategoryOrSportsbook}
+                  isDesktop={isDesktop}
                 />
 
                 {user && defaultWallet && showBalance && (
@@ -306,10 +306,14 @@ const ProfileDropdown = ({
   user,
   showBalance,
   toggleShowBalance,
+  isNoCategoryOrSportsbook,
+  isDesktop,
 }: {
   user: User;
   showBalance: boolean;
   toggleShowBalance: () => void;
+  isNoCategoryOrSportsbook: boolean;
+  isDesktop: boolean;
 }) => {
   const [logout] = useLogoutMutation();
   const navigate = useNavigate();
@@ -372,8 +376,10 @@ const ProfileDropdown = ({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        sideOffset={showBalance ? 10 : 5}
-        className="lg:w-96  w-screen min-w-90 mt-4 p-0 bg-white rounded-none"
+        sideOffset={
+          isNoCategoryOrSportsbook && !isDesktop ? 30 : showBalance ? 10 : 5
+        }
+        className="lg:w-96 w-screen min-w-90 mt-4 p-0 bg-white rounded-none"
         align="end"
         forceMount
       >
