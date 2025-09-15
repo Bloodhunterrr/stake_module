@@ -13,9 +13,10 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import type {MessageResponse, SingleMessageResponse} from "@/types/auth.ts";
+
 interface MessagesState {
-    sent: MessageResponse['data'];
-    received: MessageResponse['data'];
+    sent: MessageResponse[];
+    received: MessageResponse[];
 }
 function Messages() {
     const [fetchMessages, { isLoading, isError, isFetching }] = useLazyGetMessagesQuery();
@@ -29,26 +30,40 @@ function Messages() {
     // const user = useAppSelector((state) => state.auth.user);
     // console.log(user)
 
+    console.log(messages)
+
     const [refresh, setRefresh] = useState<boolean>(true);
     useEffect(() => {
-        // received
-        if(refresh){
-            fetchMessages({type : 'sent'}).unwrap().then((data : MessageResponse) =>{
-                setMessages({
-                    ...messages,
-                    sent: data ?? []
+        if (refresh) {
+            // Fetch sent messages
+            fetchMessages({ type: 'sent' })
+                .unwrap()
+                .then((response : any) => {
+                    setMessages({
+                        ...messages,
+                        sent: response ?? [],
+                    });
                 })
-                console.log(data)
-            })
-            fetchMessages({type : 'received'}).unwrap().then((data : MessageResponse) =>{
-                setMessages({
-                    ...messages,
-                    received: data ?? []
+                .catch((error) => {
+                    console.error('Error fetching sent messages:', error);
+                    setMessages((prev) => ({ ...prev, sent: [] }));
+                });
+
+            fetchMessages({ type: 'received' })
+                .unwrap()
+                .then((response: any) => {
+                    console.log(response)
+                    setMessages({
+                        ...messages,
+                        received: response ?? [],
+                    });
                 })
-                console.log(data)
-            })
+                .catch((error) => {
+                    console.error('Error fetching received messages:', error);
+                    setMessages((prev) => ({ ...prev, received: [] }));
+                });
         }
-        setRefresh(false)
+        setRefresh(false);
     }, [refresh]);
 
     console.log(isError)
@@ -91,7 +106,7 @@ export default Messages;
 
 const SingleMessage = ({message} : {message : any}) => {
     const [fetchSingleMessage , {isError , isLoading}] = useLazyGetSingleMessageQuery()
-    const [data, setData] = useState<SingleMessageResponse['data'] | undefined>(undefined);
+    const [data, setData] = useState<SingleMessageResponse | undefined>(undefined);
     return (
         <div className={'flex items-center gap-x-3 py-1 px-1 rounded border'} onClick={()=>{
             fetchSingleMessage({id : message.id}).unwrap().then((data : SingleMessageResponse ) =>{
@@ -114,7 +129,7 @@ const SingleMessage = ({message} : {message : any}) => {
                                 <div>{data?.subject}</div>
                                 <div>{data?.body}</div>
                             </div>)
-                         }
+                        }
 
                     </DialogHeader>
                 </DialogContent>

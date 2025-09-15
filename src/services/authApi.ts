@@ -195,6 +195,30 @@ export const authApi = createApi({
                 body: filters,
             }),
         }),
+        getAllUsersTickets : builder.query<any, any>({
+            query: (params) => ({
+                url: `/agent/tickets`,
+                params
+            }),
+        }),
+        getSingleUsersTickets : builder.query<any, any>({
+            query: (params) => ({
+                url: `/agent/tickets/user`,
+                params
+            }),
+        }),
+        // getAllUsersTickets : builder.query<any, any>({
+        //     query: (params) => ({
+        //         url: `/agent/transactions`,
+        //         params
+        //     }),
+        // }),
+        // getSingleUsersTickets : builder.query<any, any>({
+        //     query: (params) => ({
+        //         url: `/agent/transactions/user`,
+        //         params
+        //     }),
+        // }),
     }),
 });
 
@@ -220,4 +244,6 @@ export const {
     useLazyGetMessagesQuery,
     useLazyGetSingleMessageQuery,
     useGetSendSingleMessageMutation,
+    useLazyGetAllUsersTicketsQuery,
+    useLazyGetSingleUsersTicketsQuery,
 } = authApi;

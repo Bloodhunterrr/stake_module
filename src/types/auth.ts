@@ -51,8 +51,8 @@ export interface GetUserResponse {
 }
 
 export interface UsersResponse {
-        user: GetUserResponse;
-        children: User[];
+    user: GetUserResponse;
+    children: User[];
 }
 
 export interface UsersRequest {
@@ -82,9 +82,9 @@ export interface TransactionResponse {
 }
 
 export interface ReportResponse {
-        success: boolean;
-        message: string;
-        data  : []
+    success: boolean;
+    message: string;
+    data  : []
 }
 
 export interface MessageRequest {
@@ -96,83 +96,37 @@ export interface MessageRequest {
 }
 
 export interface MessageResponse {
-    "status": string,
-    "endpointName": string,
-    "requestId": string,
-    "originalArgs" ?: {
-    "type": string
-    id : number
-     },
-    "startedTimeStamp": number,
-    "data": {
-        sender ?: {
-            "id": number,
-            "name": string,
-            "email": string,
-            "avatar": null,
-            "username": string,
-            "first_name": null,
-            "last_name": null,
-            "phone": null,
-            "date_of_birth": string,
-            "gender": string,
-            "address": string,
-            "city": string,
-            "state": string,
-            "country": string,
-            "zip_code": string
-        }
-        "id": number,
-        "subject": string,
-        "body": string | string[] | null,
-        "created_at": string
-    }[],
-    "fulfilledTimeStamp": number,
-    "isUninitialized": boolean,
-    "isLoading": boolean,
-    "isSuccess": boolean,
-    "isError": boolean
+    "id": number,
+    "subject": string,
+    "body": string | string[] | null,
+    "created_at": string
 }
 
 
 
 
 export interface SingleMessageResponse {
-    "status": string,
-    "endpointName": string,
-    "requestId": string,
-    "originalArgs": {
-        "id": number
-    },
-    "startedTimeStamp": number,
-    "data": {
+    "id": number,
+    "subject": string,
+    "body": string | null,
+    "sender": {
         "id": number,
-        "subject": string,
-        "body": string | null,
-        "sender": {
-            "id": number,
-            "name": string,
-            "email": string,
-            "avatar": string |  null,
-            "username": string | null,
-            "first_name": null | string,
-            "last_name": null | string,
-            "phone": null | string,
-            "date_of_birth": null | string,
-            "gender": null | string,
-            "address": null | string,
-            "city": null | string,
-            "state": null | string,
-            "country": null | string,
-            "zip_code": null | string
-        },
-        "created_at": string
+        "name": string,
+        "email": string,
+        "avatar": string |  null,
+        "username": string | null,
+        "first_name": null | string,
+        "last_name": null | string,
+        "phone": null | string,
+        "date_of_birth": null | string,
+        "gender": null | string,
+        "address": null | string,
+        "city": null | string,
+        "state": null | string,
+        "country": null | string,
+        "zip_code": null | string
     },
-    "fulfilledTimeStamp": number,
-    "isUninitialized": boolean,
-    "isLoading": boolean,
-    "isSuccess": boolean,
-    "isError": boolean
+    "created_at": string
 }
 
 
@@ -244,5 +198,5 @@ export class Convert {
 export interface AuthState {
     accessToken: string | null;
     user: any | null;
-  }
+}
   

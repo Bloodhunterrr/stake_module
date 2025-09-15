@@ -18,6 +18,9 @@ import EditUser from "@/components/shared/v2/user/edit-user.tsx";
 import TransactionList from "@/components/profile/profile/TransactionList.tsx";
 import Reports from "@/components/profile/profile/Reports.tsx";
 import Messages from "@/components/profile/profile/Messages.tsx";
+import SingleTicketPage from "@/components/profile/profile/SingleTicketPage.tsx";
+import SingleUserBets from "@/components/profile/profile/SingleUserBets.tsx";
+import TicketPage from "@/components/profile/profile/TicketPage.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -69,6 +72,11 @@ const routes = createBrowserRouter(
              { path: "users/create", element: <EditUser /> },
              { path: "users/reports", element: <Reports /> },
              { path: "notifications", element: <Messages />,},
+
+             //  TODO => Agent new paths
+             { path : "tickets"  , element: <TicketPage /> },
+             { path : "tickets/:userTicketId"  , element: <SingleTicketPage /> },
+             { path : "tickets/user/:singleBetsId"  , element: <SingleUserBets /> }
 
           ],
         },

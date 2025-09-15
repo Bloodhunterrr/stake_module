@@ -324,7 +324,7 @@ const ProfileDropdown = ({
     {
       icon: BetHistoryIcon,
       label: <Trans>Bets</Trans>,
-      path: user.is_agent ? "/account/bets" : "/account/bets",
+      path: user.is_agent ? "/account/tickets" : "/account/bets",
       show: true,
     },
     {

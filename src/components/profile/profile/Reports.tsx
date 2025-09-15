@@ -21,6 +21,7 @@ function Reports() {
     const [data, setData] = useState<ReportResponse['data'] | null>(null)
     const [searchedWord, setSearchedWord] = useState('')
     const [fetchReportList, { isLoading, isError, isFetching }] = useLazyGetReportsQuery();
+
     const userData = useUserInfo()
 
     const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
@@ -63,7 +64,6 @@ function Reports() {
         return null;
     }
 
-    console.log(data)
 
     return (
         <div className={cn("min-h-screen text-muted-foreground bg-popover ")}>
@@ -134,8 +134,8 @@ function Reports() {
                     <Search className={'absolute left-1 h-full'} />
                     <Input
                         onChange={(value)=>{
-                        setSearchedWord(value.target.value);
-                    }}
+                            setSearchedWord(value.target.value);
+                        }}
                         className={"pl-8 w-full border-popover"}
                         placeholder={'Search'}/>
                 </div>
