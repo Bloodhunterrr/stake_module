@@ -168,6 +168,9 @@ export default function Header(props: HeaderProps) {
                 src={logoMobileSportbook}
                 alt="logo"
                 className="h-[36px] mt-2"
+                  onClick={() =>
+                  props.toggleSideBar(true)
+                }
               />
             </div>
           )}

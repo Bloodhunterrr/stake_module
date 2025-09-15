@@ -107,7 +107,7 @@ export default function Sidebar({
             console.log("chat");
             if (!isDesktop) toggleSideBar(false);
           }}
-          className={`w-full justify-start rounded-lg font-normal
+          className={`w-full justify-start rounded-lg bg-[#126E51]  font-normal
                              ${
                                isDesktop && !sideBarOpen
                                  ? "px-0 size-12 justify-center"
