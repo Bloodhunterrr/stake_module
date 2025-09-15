@@ -101,16 +101,16 @@ export default function Sidebar({
         categorySlug={categorySlug}
         onNavigate={handleNavigate}
       />
-      <div className="mt-auto pt-4 border-t border-border flex flex-col space-y-2">
+      <div className="mt-auto py-4 border-t border-border flex flex-col space-y-2">
         <Button
           onClick={() => {
             console.log("chat");
             if (!isDesktop) toggleSideBar(false);
           }}
-          className={`w-full justify-start rounded-lg bg-[#126E51]  font-normal
+          className={`w-full justify-start rounded-lg bg-chart-2 hover:bg-chart-2   font-normal
                              ${
                                isDesktop && !sideBarOpen
-                                 ? "px-0 size-12 justify-center"
+                                 ? "px-0 size-12 justify-center "
                                  : "px-4"
                              }`}
         >
@@ -142,7 +142,7 @@ export default function Sidebar({
               variant="ghost"
               size="icon"
               onClick={() => toggleSideBar(!sideBarOpen)}
-              className="shrink-0"
+              className="shrink-0 hover:bg-transparent"
             >
               <Menu className="h-6 w-6" />
             </Button>
@@ -169,12 +169,12 @@ export default function Sidebar({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 left-3 z-50 xl:hidden"
+              className="absolute hover:bg-transparent hover:text-accent top-4 left-3 z-50 xl:hidden"
             >
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-64 p-0 xl:hidden" closeIconClassName="text-white">
+          <SheetContent side="left" className="w-64 p-0 border-none xl:hidden" closeIconClassName="text-white">
             <div className="flex items-center justify-between p-4 mb-4">
               {logo && (
                 <img

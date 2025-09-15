@@ -39,7 +39,7 @@ export default function SidebarNav({
                 ${
                   isActiveCategory
                     ? "bg-primary text-white"
-                    : "hover:bg-accent"
+                    : "hover:bg-popover hover:text-white"
                 }`}
               onClick={handleCategoryClick}
             >
