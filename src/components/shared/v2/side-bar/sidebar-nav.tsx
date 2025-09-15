@@ -1,5 +1,4 @@
 import config from "@/config.ts";
-import { LayoutGrid, } from "lucide-react";
 import type { Routes } from "@/types/main.ts";
 import { Button } from "@/components/ui/button.tsx";
 
@@ -17,7 +16,7 @@ export default function SidebarNav({
   onNavigate,
 }: SidebarNavProps) {
   return (
-    <nav className="flex flex-col space-y-4">
+    <nav className="flex flex-col space-y-1">
       {data?.map((category) => {
         const hasSubcategories = category.subcategories?.length > 0;
         if (!category.is_sportbook && !hasSubcategories) {
@@ -28,7 +27,7 @@ export default function SidebarNav({
         const isActiveCategory = categorySlug === category.slug;
 
         return (
-          <div key={category.id} className="group">
+          <div key={category.id} className="group bg-primary/60 text-white rounded-sm">
             <Button
               variant="ghost"
               className={`w-full justify-start rounded-lg font-normal transition-all duration-300
@@ -39,7 +38,7 @@ export default function SidebarNav({
                 }
                 ${
                   isActiveCategory
-                    ? "bg-primary/10 text-primary"
+                    ? "bg-primary text-white"
                     : "hover:bg-accent"
                 }`}
               onClick={handleCategoryClick}
@@ -56,7 +55,7 @@ export default function SidebarNav({
               {sidebarOpen && <span className="truncate">{category.name}</span>}
             </Button>
 
-            {hasSubcategories && sidebarOpen && (
+            {/* {hasSubcategories && sidebarOpen && (
               <ul className="pl-6 mt-2 space-y-1 text-sm text-muted-foreground">
                 {!category.is_sportbook && (
                   <li
@@ -87,7 +86,7 @@ export default function SidebarNav({
                   </li>
                 ))}
               </ul>
-            )}
+            )} */}
           </div>
         );
       })}

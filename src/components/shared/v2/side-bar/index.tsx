@@ -14,7 +14,9 @@ import { useGetMainQuery } from "@/services/mainApi.ts";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet.tsx";
-import logo from "@/assets/images/logo.svg"; 
+import logo from "@/assets/images/logo.svg";
+import { useTheme } from "@/hooks/useTheme.tsx";
+import { cn } from "@/lib/utils.ts";
 
 type Language = {
   code: string;
@@ -26,7 +28,6 @@ type SidebarProps = {
   sideBarOpen: boolean;
   toggleSideBar: (isOpen: boolean) => void;
 };
-
 
 function LanguageSwitcher() {
   const [currentLang, setCurrentLang] = useState<Language>(
@@ -52,7 +53,7 @@ function LanguageSwitcher() {
           <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0" align="end">
+      <PopoverContent className="w-[200px] p-0 bg-white" align="end">
         <ScrollArea className="h-40">
           <div className="flex flex-col space-y-1 p-1">
             {Object.values(ALLOWED_LANGUAGES).map((lang) => (
@@ -83,6 +84,7 @@ export default function Sidebar({
   const navigate = useNavigate();
   const { categorySlug } = useParams<{ categorySlug: string }>();
   const { data } = useGetMainQuery();
+  const { optionalSideBarOpen } = useTheme();
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -157,27 +159,33 @@ export default function Sidebar({
         </div>
       ) : (
         <Sheet open={sideBarOpen} onOpenChange={toggleSideBar}>
-          <SheetTrigger asChild>
+          <SheetTrigger
+            asChild
+            className={cn({
+              "-mt-2.5": !optionalSideBarOpen,
+              "mt-5": optionalSideBarOpen,
+            })}
+          >
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 left-4 z-50 xl:hidden"
+              className="absolute top-4 left-3 z-50 xl:hidden"
             >
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-64 p-0 xl:hidden">
+          <SheetContent side="left" className="w-64 p-0 xl:hidden" closeIconClassName="text-white">
             <div className="flex items-center justify-between p-4 mb-4">
               {logo && (
                 <img
                   src={logo}
                   alt="logo"
-                  className="h-8 cursor-pointer"
+                  className="h-[15px] mt-2 cursor-pointer"
                   onClick={() => handleNavigate("/")}
                 />
               )}
             </div>
-            <div className="h-[calc(100%-80px)] px-4 flex flex-col">
+            <div className="h-[calc(100%-80px)] overflow-auto px-4 flex flex-col">
               {commonNavContent}
             </div>
           </SheetContent>

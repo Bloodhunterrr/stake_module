@@ -1,63 +1,81 @@
-import {Outlet} from "react-router";
-import {useLocation} from "react-router";
-import {useTheme} from "@/hooks/useTheme";
-import {ToastContainer} from "react-toastify";
-// import SideBar from "@/components/shared/v2/side-bar";
-import {useUserInfo} from "@/hooks/useUserInfo";
-import {useIsDesktop} from "@/hooks/useIsDesktop";
-import {useGetMainQuery} from "@/services/mainApi";
-import {useScrollToTop} from "@/hooks/useScrollToTop";
+import { Outlet } from "react-router";
+import { useLocation } from "react-router";
+import { useTheme } from "@/hooks/useTheme";
+import { ToastContainer } from "react-toastify";
+import { useUserInfo } from "@/hooks/useUserInfo";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useGetMainQuery } from "@/services/mainApi";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import Header from "@/components/shared/v2/header.tsx";
 import TitleUpdater from "@/components/title-updater.tsx";
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Loading from "@/components/shared/v2/loading.tsx";
+import Sidebar from "./components/shared/v2/side-bar";
+import { useParams } from "react-router-dom";
 
 const App: React.FC = () => {
-    useUserInfo();
-    const [sideBarOpen, toggleSideBar] = useState<boolean>(false);
-    const isDesktop = useIsDesktop(1280);
-    const {error, isLoading} = useGetMainQuery();
-    const location = useLocation();
-    const containerRef = useRef<HTMLDivElement>(null);
+  useUserInfo();
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+  const isDesktop = useIsDesktop(1280);
+  const isDesktopForSidebar = useIsDesktop(1024);
+  const { data, error, isLoading } = useGetMainQuery();
+  const location = useLocation();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { categorySlug } = useParams<{ categorySlug: string }>();
+  const { theme, optionalSideBarOpen, setOptionalSideBarOpen } = useTheme();
 
-    useScrollToTop(containerRef);
-    const {theme , optionalSideBarOpen, setOptionalSideBarOpen} = useTheme();
+  useScrollToTop(containerRef);
 
-    useEffect(() => {
-        toggleSideBar(false);
-    }, [location.pathname]);
+  useEffect(() => {
+    setSideBarOpen(false);
+  }, [location.pathname]);
 
-    if (error || isLoading) {
-        return <section className={'min-h-screen flex items-center justify-center'}>
-            <Loading/>
-        </section>
-    }
+  const activeCategory = useMemo(() => {
+    if (!data?.length) return null;
+    return data.find((el) => el.slug === categorySlug) ?? data[0];
+  }, [data, categorySlug]);
 
+  const isNoCategoryOrSportsbook =
+    !activeCategory || activeCategory.is_sportbook;
+
+  useEffect(() => {
+    setOptionalSideBarOpen(!isNoCategoryOrSportsbook);
+  }, [isNoCategoryOrSportsbook]);
+
+  if (error || isLoading) {
     return (
-        <div className="bg-background text-primary-foreground">
-            <TitleUpdater />
-
-            {/*<SideBar*/}
-            {/*    isDesktop={isDesktop}*/}
-            {/*    sideBarOpen={sideBarOpen}*/}
-            {/*    toggleSideBar={toggleSideBar}*/}
-            {/*/>*/}
-            <main
-                className={`transition-all duration-300 ease-in-out`}
-            >
-                <Header
-                    location={location.pathname}
-                    setOpenOptionalSideBar={setOptionalSideBarOpen}
-                    openOptionalSideBar={optionalSideBarOpen}
-                    isDesktop={isDesktop}
-                    sideBarOpen={sideBarOpen}
-                    toggleSideBar={toggleSideBar}
-                />
-                <Outlet/>
-            </main>
-            <ToastContainer theme={theme}/>
-        </div>
+      <section className="min-h-screen flex items-center justify-center">
+        <Loading />
+      </section>
     );
+  }
+
+  return (
+    <div className="bg-background text-primary-foreground">
+      <TitleUpdater />
+      <main className="transition-all duration-300 ease-in-out">
+        <Header
+          location={location.pathname}
+          setOpenOptionalSideBar={setOptionalSideBarOpen}
+          openOptionalSideBar={optionalSideBarOpen}
+          isDesktop={isDesktop}
+          sideBarOpen={sideBarOpen}
+          toggleSideBar={setSideBarOpen}
+          isNoCategoryOrSportsbook={isNoCategoryOrSportsbook}
+        />
+
+        {!isDesktopForSidebar && isNoCategoryOrSportsbook && (
+          <Sidebar
+            isDesktop={isDesktopForSidebar}
+            sideBarOpen={sideBarOpen}
+            toggleSideBar={setSideBarOpen}
+          />
+        )}
+        <Outlet />
+      </main>
+      <ToastContainer theme={theme} />
+    </div>
+  );
 };
 
 export default App;

@@ -14,7 +14,6 @@ const Sport: React.FC = () => {
   const { i18n } = useLingui();
   const { categorySlug } = useParams();
   const { optionalSideBarOpen } = useTheme();
-
   const user = useAppSelector((s) => s.auth?.user);
   const defaultWallet: Wallet | null =
     user?.wallets?.find((w: Wallet) => w.default) || null;
@@ -55,6 +54,9 @@ const Sport: React.FC = () => {
 
   const playUrl =
     iframeResp?.play_url ?? (iframeResp as any)?.data?.play_url ?? null;
+
+  const isNoCategoryOrSportsbook =
+    !activeCategory || activeCategory.is_sportbook;
 
   // TODO
   if (activeCategory?.id === 2) {
@@ -114,7 +116,8 @@ const Sport: React.FC = () => {
       title="Sportbook"
       src={playUrl}
       className={cn("w-full h-[calc(100vh-64px)] transition-all duration-300", {
-        "h-[calc(100vh-110px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen,
+        "h-[calc(100vh-62px)] lg:h-[calc(100vh-64px)]": optionalSideBarOpen,
+        "h-[calc(100vh-30px)] transition-all duration-300 -mt-3": isNoCategoryOrSportsbook && !isDesktop
       })}
       allow="clipboard-read; clipboard-write; autoplay; fullscreen"
     />
