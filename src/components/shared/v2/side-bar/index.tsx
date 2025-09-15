@@ -54,7 +54,7 @@ function LanguageSwitcher() {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0 bg-white" align="end">
-        <ScrollArea className="h-40">
+        <ScrollArea className="h-max">
           <div className="flex flex-col space-y-1 p-1">
             {Object.values(ALLOWED_LANGUAGES).map((lang) => (
               <Button
