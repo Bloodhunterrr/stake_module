@@ -200,21 +200,24 @@ function SingleTicketPage() {
             </div>
             <div className={'flex flex-col p-3'}>
                 <div
-                    className={'text-sm text-center h-7 items-center bg-chart-2 border-t border-x  border-accent px-1 border-b flex '}>
-                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0 border-r border-accent'}>Username</p>
-                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>Played</p>
-                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>Won</p>
-                    <p className={'w-full h-full flex items-center justify-center  border-accent'}>Net Win</p>
+                    className={'text-sm text-center h-7 items-center bg-chart-2 px-1   flex '}>
+                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}>Username</p>
+                    <p className={'w-full h-full flex items-center justify-center'}>Played</p>
+                    <p className={'w-full h-full flex items-center justify-center'}>Won</p>
+                    <p className={'w-full h-full flex items-center justify-center'}>Net Win</p>
                 </div>
-                <div className={cn('cursor-pointer border-x border-accent bg-accent/50 text-accent-foreground',{
+                <div className={cn('cursor-pointer  border-accent bg-accent/50 text-accent-foreground',{
                     'animate-pulse bg-accent/40'  : isFetching
                 })}>
                     {
                         data?.children?.map((item : any, i : number) => {
+                            if((item.total_stake +item.total_won+item.total_lost) === 0){
+                                return null
+                            }
                             return (
                                 <div
                                     key={i}
-                                    className={'text-sm text-center h-7 items-center border-accent px-1 border-b flex '}
+                                    className={'text-sm text-center h-7 items-center px-1 border-b border-b-popover flex '}
                                     onClick={()=>{
                                         if(item.is_agent){
                                             navigate(`/account/tickets/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
@@ -222,10 +225,10 @@ function SingleTicketPage() {
                                             navigate(`/account/tickets/user/${item.id}`)
                                         }
                                     }}>
-                                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0 border-r border-accent'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
-                                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>{item.total_stake}</p>
-                                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>{item.total_won}</p>
-                                    <p className={'w-full h-full flex items-center justify-center border-accent'}>{item.total_lost}</p>
+                                    <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost}</p>
                                 </div>
                             )
                         })

@@ -162,31 +162,34 @@ function TicketPage() {
             </div>
             <div className={'flex cursor-pointer flex-col p-3'}>
                 <div
-                    className={'text-sm text-center h-7 items-center bg-chart-2  border-accent px-1 border-t border-x flex '}>
-                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0 border-r border-accent'}>Username</p>
-                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>Played</p>
-                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>Won</p>
+                    className={'text-sm text-center h-7 items-center bg-chart-2  border-accent px-1  flex '}>
+                    <p className={'w-1/3 h-full flex items-center justify-start text-start shrink-0'}>Username</p>
+                    <p className={'w-full h-full flex items-center justify-center'}>Played</p>
+                    <p className={'w-full h-full flex items-center justify-center'}>Won</p>
                     <p className={'w-full h-full flex items-center justify-center text-center'}>Net Win</p>
                 </div>
                 <div className={'cursor-pointer border-x border-accent bg-accent/50 text-accent-foreground'}>
                     {
                         isFetching ? <div
-                                className={'text-sm animate-pulse text-center h-7 items-center border-accent px-1 border-b flex '}>
-                                <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0 border-r border-accent'}></p>
-                                <p className={'w-full h-full flex items-center justify-center border-r border-accent'}></p>
-                                <p className={'w-full h-full flex items-center justify-center border-r border-accent'}></p>
+                                className={'text-sm animate-pulse text-center h-7 items-center  px-1 border-b flex '}>
+                                <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}></p>
+                                <p className={'w-full h-full flex items-center justify-center'}></p>
+                                <p className={'w-full h-full flex items-center justify-center'}></p>
                                 <p className={'w-full h-full flex items-center justify-center text-center'}></p>
                             </div> :
                             data?.children?.length > 0  && data?.children?.map((item : any, index : number) => {
+                                if(item.total_stake  + item.total_won + item.total_lost  === 0){
+                                    return null
+                                }
                                 return <div key={index}
-                                            className={'text-sm text-center h-7 items-center border-accent px-1 border-b flex '}
+                                            className={'text-sm text-center h-7 items-center border-popover px-1 border-b flex '}
                                             onClick={() => {
                                                 navigate(`/account/tickets/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
                                             }}>
-                                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0 border-r border-accent'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
-                                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>{item.total_stake}</p>
-                                    <p className={'w-full h-full flex items-center justify-center border-r border-accent'}>{item.total_won}</p>
-                                    <p className={'w-full h-full flex items-center justify-center  border-accent'}>{item.total_lost}</p>
+                                    <p className={'w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won}</p>
+                                    <p className={'w-full h-full flex items-center justify-center '}>{item.total_lost}</p>
                                 </div>
                             })
                     }
