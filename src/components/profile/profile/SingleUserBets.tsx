@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, Fragment } from "react";
-import { useParams } from "react-router";
+import {useParams} from "react-router";
 import { format } from "date-fns";
 import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
 import { formatDateToDMY } from "@/utils/formatDate";
@@ -56,8 +56,7 @@ interface Ticket {
 
 const SingleUserBets = () => {
     const { singleBetsId } = useParams();
-
-    const [page, setPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [dates, setDates] = useState({
         startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
         endDate: new Date(),
@@ -66,7 +65,6 @@ const SingleUserBets = () => {
     const [selectedStatuses, setSelectedStatuses] = useState<string>();
     const [expandedTicketId, setExpandedTicketId] = useState<string | null>(null);
     const [betType, setBetType] = useState('')
-
     const [fetchSingleTicketData, { data, isLoading, isError, isFetching }] =
         useLazyGetSingleUsersTicketsQuery();
 
@@ -74,23 +72,22 @@ const SingleUserBets = () => {
         value: w.slug.toUpperCase(),
         label: w.slug.toUpperCase(),
     }));
-
     useEffect(() => {
         if (singleBetsId) {
             fetchSingleTicketData({
                 user_id: singleBetsId,
                 start_date: formatDateToDMY(dates.startDate),
                 end_date: formatDateToDMY(dates.endDate),
-                currencies: selectedCurrencies,
+                wallet_name: (selectedCurrencies)?.toLowerCase(),
                 status: selectedStatuses,
                 bet_type : betType === 'all' ? "" : betType,
-                page,
+                page : currentPage,
             })
                 .unwrap()
                 .then((response) => response)
                 .catch((error) => console.error("Failed to fetch tickets:", error));
         }
-    }, [singleBetsId, page, selectedCurrencies, selectedStatuses, dates, fetchSingleTicketData , betType]);
+    }, [singleBetsId, currentPage, selectedCurrencies, selectedStatuses, dates, fetchSingleTicketData , betType]);
 
     const groupedTickets = useMemo(() => {
         if (!data?.tickets?.data) return {};
@@ -121,6 +118,7 @@ const SingleUserBets = () => {
         1: { label: "Lost", color: "bg-red-500" },
     };
 
+
     const formatTimestamp = (timestamp: string | Date) => {
         const date = new Date(timestamp);
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -149,68 +147,71 @@ const SingleUserBets = () => {
 
     return (
         <div className="space-y-3 bg-white min-h-screen container mx-auto">
-            <div className="grid grid-cols-2 pt-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button
-                            variant="outline"
-                            className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-                        >
-                            <CalendarIcon className="sm:mr-2 h-4 w-4" />
-                            {format(dates.startDate, "dd/MM/yyyy")}
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="p-0 bg-white">
-                        <Calendar
-                            className="w-full"
-                            mode="single"
-                            selected={dates.startDate}
-                            onSelect={(date) =>
-                                date && setDates((prev) => ({ ...prev, startDate: date }))
-                            }
-                        />
-                    </PopoverContent>
-                </Popover>
+            <div className="grid grid-cols-2 pt-2 md:grid-cols-2 gap-2 md:gap-4 items-center px-4 md:px-0">
+                <div className={'flex flex-row gap-x-3  w-full col-span-2'}>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="justify-start text-left lg:w-1/3 font-normal rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background"
+                            >
+                                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                                {format(dates.startDate, "dd/MM/yyyy")}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-0 bg-white">
+                            <Calendar
+                                className="w-full"
+                                mode="single"
+                                selected={dates.startDate}
+                                onSelect={(date) =>
+                                    date && setDates((prev) => ({ ...prev, startDate: date }))
+                                }
+                            />
+                        </PopoverContent>
+                    </Popover>
 
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button
-                            variant="outline"
-                            className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-                        >
-                            <CalendarIcon className="sm:mr-2 h-4 w-4" />
-                            {format(dates.endDate, "dd/MM/yyyy")}
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="p-0 bg-white">
-                        <Calendar
-                            className="w-full"
-                            mode="single"
-                            selected={dates.endDate}
-                            onSelect={(date) =>
-                                date && setDates((prev) => ({ ...prev, endDate: date }))
-                            }
-                        />
-                    </PopoverContent>
-                </Popover>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="justify-start lg:w-1/3 text-left font-normal rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background"
+                            >
+                                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                                {format(dates.endDate, "dd/MM/yyyy")}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-0 bg-white">
+                            <Calendar
+                                className="w-full"
+                                mode="single"
+                                selected={dates.endDate}
+                                onSelect={(date) =>
+                                    date && setDates((prev) => ({ ...prev, endDate: date }))
+                                }
+                            />
+                        </PopoverContent>
+                    </Popover>
+                    {
+                        (currencyOptions?.length > 1) && <Select value={selectedCurrencies} onValueChange={(value) =>{
+                            setSelectedCurrencies(value)
+                        }}>
+                            <SelectTrigger className={"h-8  w-1/3  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
+                                <SelectValue placeholder="Currencies"/>
+                            </SelectTrigger>
+                            <SelectContent className={'border-none bg-background rounded-none'}>
+                                {
+                                    currencyOptions?.map((types : any) =>{
+                                        console.log(types)
+                                        return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types.value}>{types.label}</SelectItem>
+                                    })
+                                }
+                            </SelectContent>
+                        </Select>
+                    }
+                </div>
 
-                {
-                    (currencyOptions?.length > 1) && <Select value={selectedCurrencies} onValueChange={(value) =>{
-                        setSelectedCurrencies(value)
-                    }}>
-                        <SelectTrigger className={"h-8  w-full  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
-                            <SelectValue placeholder="Currencies"/>
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                currencyOptions?.map((types : any) =>{
-                                    console.log(types)
-                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types.value}>{types.label}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
-                }
+
 
                 {/*Status*/}
                 <Select value={betType} onValueChange={(value) =>{
@@ -443,9 +444,9 @@ const SingleUserBets = () => {
             {data?.tickets?.data?.length > 0 && (
                 <div className="p-4">
                     <PaginationComponent
-                        totalPages={data.tickets.pagination?.last_page || 1}
-                        currentPage={page}
-                        setPage={setPage}
+                        totalPages={data.tickets.last_page}
+                        currentPage={data.tickets.current_page}
+                        setPage={setCurrentPage}
                     />
                 </div>
             )}
