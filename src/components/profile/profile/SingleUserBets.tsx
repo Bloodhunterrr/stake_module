@@ -21,8 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {CalendarIcon, ChartNoAxesCombined} from "lucide-react";
-import { MultiSelect } from "@/components/ui/multi-select";
-import { Trans, useLingui } from "@lingui/react/macro";
+import { Trans } from "@lingui/react/macro";
 import Loading from "@/components/shared/v2/loading.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 
@@ -57,27 +56,19 @@ interface Ticket {
 
 const SingleUserBets = () => {
     const { singleBetsId } = useParams();
-    const { t } = useLingui();
 
     const [page, setPage] = useState(1);
     const [dates, setDates] = useState({
         startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
         endDate: new Date(),
     });
-    const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
-    const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+    const [selectedCurrencies, setSelectedCurrencies] = useState<string>();
+    const [selectedStatuses, setSelectedStatuses] = useState<string>();
     const [expandedTicketId, setExpandedTicketId] = useState<string | null>(null);
     const [betType, setBetType] = useState('')
 
     const [fetchSingleTicketData, { data, isLoading, isError, isFetching }] =
         useLazyGetSingleUsersTicketsQuery();
-
-    const statusOptions = [
-        { value: "0", label: t`Pending` },
-        { value: "1", label: t`Lost` },
-        { value: "3", label: t`Won` },
-        { value: "4", label: t`Returned` },
-    ];
 
     const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : any) => ({
         value: w.slug.toUpperCase(),
@@ -90,9 +81,9 @@ const SingleUserBets = () => {
                 user_id: singleBetsId,
                 start_date: formatDateToDMY(dates.startDate),
                 end_date: formatDateToDMY(dates.endDate),
-                currencies: selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
-                status: selectedStatuses.length > 0 ? selectedStatuses : undefined,
-                bet_type : betType,
+                currencies: selectedCurrencies,
+                status: selectedStatuses,
+                bet_type : betType === 'all' ? "" : betType,
                 page,
             })
                 .unwrap()
@@ -204,14 +195,24 @@ const SingleUserBets = () => {
                 </Popover>
 
                 {
-                    currencyOptions && <MultiSelect
-                        options={currencyOptions}
-                        value={selectedCurrencies}
-                        onValueChange={setSelectedCurrencies}
-                        placeholder={t`All currencies`}
-                        hideSelectAll
-                    />
+                    (currencyOptions?.length > 1) && <Select value={selectedCurrencies} onValueChange={(value) =>{
+                        setSelectedCurrencies(value)
+                    }}>
+                        <SelectTrigger className={"h-8  w-full  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
+                            <SelectValue placeholder="Currencies"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                currencyOptions?.map((types : any) =>{
+                                    console.log(types)
+                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types.value}>{types.label}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
                 }
+
+                {/*Status*/}
                 <Select value={betType} onValueChange={(value) =>{
                     setBetType(value)
                 }}>
@@ -227,13 +228,22 @@ const SingleUserBets = () => {
                     </SelectContent>
                 </Select>
 
-                <MultiSelect
-                    options={statusOptions}
-                    value={selectedStatuses}
-                    onValueChange={setSelectedStatuses}
-                    placeholder={t`All Statuses`}
-                    hideSelectAll
-                />
+                {/*Status*/}
+                <Select value={selectedStatuses} onValueChange={(value) =>{
+                   setSelectedStatuses(value)
+                }}>
+                    <SelectTrigger className={"h-8  w-full  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
+                        <SelectValue placeholder="Status"/>
+                    </SelectTrigger>
+                    <SelectContent className={'border-none bg-background rounded-none'}>
+                        {
+                            data?.filters && data?.filters?.status.map((types : string , index : number) =>{
+                                return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={String(index)}>{types} </SelectItem>
+                            })
+                        }
+                    </SelectContent>
+                </Select>
+
             </div>
 
             <Table className="text-accent-foreground">

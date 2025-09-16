@@ -192,7 +192,7 @@ export default function CasinoHistoryTable() {
                         <span>
                           {format(new Date(trx.created_at), "HH:mm:ss")}
                         </span>
-                        <span className="text-[12px] block max-w-[170px] sm:max-w-full truncate">
+                        <span className="text-[12px] block max-w-[150px] sm:max-w-full truncate">
                           ( {trx.id})
                         </span>
                       </div>
@@ -204,7 +204,7 @@ export default function CasinoHistoryTable() {
                           {Number(trx.details.bet.amount).toFixed(2)}{" "}
                           {currencyList[trx.currency].symbol_native}
                         </span>
-                        <span className="text-[12px] block max-w-[170px] sm:max-w-full truncate">
+                        <span className="text-[12px] block max-w-[120px] sm:max-w-full truncate">
                           ({trx.game_name})
                         </span>
                       </div>
