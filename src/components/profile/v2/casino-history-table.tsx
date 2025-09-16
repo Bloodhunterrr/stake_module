@@ -21,11 +21,11 @@ import Loading from "@/components/shared/v2/loading.tsx";
 import { Calendar } from "@/components/ui/calendar";
 import { currencyList } from "@/utils/currencyList";
 import { Trans, useLingui } from "@lingui/react/macro";
-import { MultiSelect } from "@/components/ui/multi-select";
 import DateFilter from "@/components/shared/v2/date-filter";
 import type { CasinoTransaction } from "@/types/casinoHistory";
 import { useGetCasinoHistoryMutation } from "@/services/authApi";
 import PaginationComponent from "@/components/shared/v2/pagination";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function CasinoHistoryTable() {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -129,14 +129,22 @@ export default function CasinoHistoryTable() {
           </PopoverContent>
         </Popover>
 
-        {currencyOptions && (
-          <MultiSelect
-            options={currencyOptions}
-            value={selectedCurrencies}
-            onValueChange={(values: string[]) => setSelectedCurrencies(values)}
-            placeholder={t`All currencies`}
-            hideSelectAll={true}
-          />
+          {currencyOptions && (
+          <Select
+            value={selectedCurrencies[0] ?? ""}
+            onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}
+          >
+            <SelectTrigger className="w-full placeholder:text-background text-background">
+              <SelectValue placeholder={t`All currencies`} />
+            </SelectTrigger>
+            <SelectContent className="bg-white">
+              {currencyOptions.map((opt) => (
+                <SelectItem key={opt.value} value={opt.value}>
+                  {opt.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         )}
       </div>
 

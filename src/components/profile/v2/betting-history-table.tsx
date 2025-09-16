@@ -23,9 +23,15 @@ import { format } from "date-fns";
 import Loading from "@/components/shared/v2/loading.tsx";
 import { useAppSelector } from "@/hooks/rtk";
 import type { User } from "@/types/auth";
-import { MultiSelect } from "@/components/ui/multi-select";
 import { Trans, useLingui } from "@lingui/react/macro";
 import type { Odd } from "@/types/sportHistory";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const BettingHistoryTable = () => {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -166,24 +172,39 @@ const BettingHistoryTable = () => {
             />
           </PopoverContent>
         </Popover>
-
         {currencyOptions && (
-          <MultiSelect
-            options={currencyOptions}
-            value={selectedCurrencies}
-            onValueChange={setSelectedCurrencies}
-            placeholder={t`All currencies`}
-            hideSelectAll
-          />
+          <Select
+            value={selectedCurrencies[0] ?? ""}
+            onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}
+          >
+            <SelectTrigger className="w-full placeholder:text-background text-background">
+              <SelectValue placeholder={t`All currencies`} />
+            </SelectTrigger>
+            <SelectContent className="bg-white">
+              {currencyOptions.map((opt) => (
+                <SelectItem key={opt.value} value={opt.value} >
+                  {opt.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         )}
 
-        <MultiSelect
-          options={statusOptions}
-          value={selectedStatuses}
-          onValueChange={setSelectedStatuses}
-          placeholder={t`All Statuses`}
-          hideSelectAll
-        />
+        <Select
+          value={selectedStatuses[0] ?? ""}
+          onValueChange={(val) => setSelectedStatuses(val ? [val] : [])}
+        >
+          <SelectTrigger className="w-full placeholder:text-background text-background">
+            <SelectValue placeholder={t`All Statuses`} />
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            {statusOptions.map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <Table className="text-accent-foreground">
@@ -262,7 +283,7 @@ const BettingHistoryTable = () => {
                                 <span>
                                   <Trans>Cashout</Trans>
                                 </span>
-                                <span>{ticket.win_sum}</span> {" "}
+                                <span>{ticket.win_sum}</span>{" "}
                                 {currencyList[ticket.currency].symbol_native}
                               </span>
                             ) : label.includes("Pending") ? (

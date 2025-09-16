@@ -24,12 +24,18 @@ import { currencyList } from "@/utils/currencyList";
 import { formatDateToDMY } from "@/utils/formatDate";
 import { Trans, useLingui } from "@lingui/react/macro";
 import CloseIcon from "@/assets/icons/close.svg?react";
-import { MultiSelect } from "@/components/ui/multi-select";
 import DateFilter from "@/components/shared/v2/date-filter";
 import type { Transaction } from "@/types/transactionHistory";
 import CheckMarkIcon from "@/assets/icons/check-mark.svg?react";
 import PaginationComponent from "@/components/shared/v2/pagination";
 import { useGetTransactionHistoryMutation } from "@/services/authApi";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const PaymentsHistoryTable = () => {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -146,23 +152,42 @@ const PaymentsHistoryTable = () => {
           </PopoverContent>
         </Popover>
 
-        <MultiSelect
-          options={currencyOptions}
-          value={selectedCurrencies}
-          onValueChange={(values: string[]) => setSelectedCurrencies(values)}
-          placeholder={t`All currencies`}
-          hideSelectAll={true}
-        />
+        {currencyOptions && (
+          <Select
+            value={selectedCurrencies[0] ?? ""}
+            onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}
+          >
+            <SelectTrigger className="w-full placeholder:text-background text-background">
+              <SelectValue placeholder={t`All currencies`} />
+            </SelectTrigger>
+            <SelectContent className="bg-white">
+              {currencyOptions.map((opt) => (
+                <SelectItem key={opt.value} value={opt.value}>
+                  {opt.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
 
-        <MultiSelect
-          options={transactionTypeOptions}
-          value={selectedTransactionTypes}
-          onValueChange={(values: string[]) =>
-            setSelectedTransactionTypes(values)
+        <Select
+          value={selectedTransactionTypes[0] ?? ""}
+          onValueChange={(val: string) =>
+            setSelectedTransactionTypes(val ? [val] : [])
           }
-          placeholder={t`All Actions`}
-          hideSelectAll={true}
-        />
+        >
+                     <SelectTrigger className="w-full placeholder:text-background text-background">
+
+            <SelectValue placeholder={t`All Actions`} />
+          </SelectTrigger>
+          <SelectContent className="bg-white">
+            {transactionTypeOptions.map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <DateFilter
