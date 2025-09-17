@@ -1,66 +1,45 @@
 import {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router";
-import {useLazyGetAllUsersTicketsQuery} from "@/services/authApi.ts";
-import { useSearchParams } from "react-router";
-import {format} from "date-fns";
+import {useLazyGetTransactionsQuery} from "@/services/authApi.ts";
+import {useNavigate} from "react-router";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {CalendarIcon, ChevronLeftIcon} from "lucide-react";
+import {format} from "date-fns";
 import {Calendar} from "@/components/ui/calendar.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
-import {cn} from "@/lib/utils.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
 
-function SingleTicketPage() {
-    const {userTicketId} = useParams();
-    const [fetchSingleData, { isLoading, isError, isFetching }] = useLazyGetAllUsersTicketsQuery();
-    const navigate = useNavigate();
-    const [searchParams , setSearchParams] = useSearchParams();
+function TicketPage() {
+    const [fetchAllUsersTickets, { isLoading, isError, isFetching }] = useLazyGetTransactionsQuery();
     const [data, setData] = useState<any>()
 
-    // Filters States
-    const start = (searchParams.get('startDate'))
-    const end = (searchParams.get('endDate'))
-    const defaultUserWallet = (data?.user?.wallets.find((wallet : any) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
-    const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
+    // Filters
+    const [selectedCurrencies, setSelectedCurrencies] = useState('')
     const [dates, setDates] = useState({
-        startDate: new Date(start ?? ''),
-        endDate: new Date(end ?? ''),
+        startDate:  new Date(),
+        endDate:  new Date(),
     });
     const [betType, setBetType] = useState('')
     const [status, setStatus] = useState('')
 
-    const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : any) => ({
-        value: w.slug.toUpperCase(),
-        label: w.slug.toUpperCase(),
-    }));
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const start = (searchParams.get('startDate'))
-        const end = (searchParams.get('endDate'))
-        if(start && end){
-            console.log(start)
-            setDates({
-                startDate: new Date(start),
-                endDate: new Date(end)
-            })
-        }
-    }, [start , end]);
-
-
-
-    useEffect(() => {
-        fetchSingleData({
+        fetchAllUsersTickets({
             bet_status : status,
             bet_type : betType,
             wallet_name : selectedCurrencies,
             start_date : format(dates.startDate, "yyyy/MM/dd"),
             end_date : format(dates.endDate, "yyyy/MM/dd"),
-            user_id : userTicketId,
         }).unwrap().then(data =>{
             setData(data)
         })
-    },[userTicketId , selectedCurrencies , dates.startDate, dates.endDate , betType , status])
+    },[selectedCurrencies , dates.startDate, dates.endDate , betType , status])
+
+    const currencyOptions = data?.filters?.wallets?.map((w : any) => ({
+        value: w.slug.toUpperCase(),
+        label: w.slug.toUpperCase(),
+    }));
 
     if(isError){
         navigate('/')
@@ -71,10 +50,8 @@ function SingleTicketPage() {
             <Loading />
         </div>
     }
-
-    console.log(defaultUserWallet)
     return (
-        <div className={'container mx-auto'}>
+        <div className={'min-h-screen container mx-auto'}>
             <div className={'h-10  flex  border-b border-popover items-center'}>
                 <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={()=>navigate(-1)}>
                     <ChevronLeftIcon className={'w-10 '} />
@@ -103,15 +80,7 @@ function SingleTicketPage() {
                                 mode="single"
                                 selected={dates.startDate}
                                 onSelect={(date) =>
-                                {
-                                    if(date){
-                                        setSearchParams({
-                                            endDate : format(dates.endDate, "yyyy-MM-dd"),
-                                            startDate: format(date, "yyyy-MM-dd"),
-                                        })
-                                        setDates((prev) => ({...prev, startDate: date}))
-                                    }
-                                }
+                                    date && setDates((prev) => ({ ...prev, startDate: date }))
                                 }
                             />
                         </PopoverContent>
@@ -132,24 +101,17 @@ function SingleTicketPage() {
                                 className="w-full"
                                 mode="single"
                                 selected={dates.endDate}
-                                onSelect={(date) => {
-                                    if(date){
-                                        setSearchParams({
-                                            startDate : format(dates.startDate, "yyyy-MM-dd"),
-                                            endDate: format(date, "yyyy-MM-dd"),
-                                        })
-                                        setDates((prev) => ({...prev, endDate: date}))
-                                    }
-                                }
+                                onSelect={(date) =>
+                                    date && setDates((prev) => ({ ...prev, endDate: date }))
                                 }
                             />
                         </PopoverContent>
                     </Popover>
                     {/*Currency options*/}
-                    <Select value={selectedCurrencies} defaultValue={defaultUserWallet} onValueChange={(value) =>{
+                    <Select value={selectedCurrencies} onValueChange={(value) =>{
                         setSelectedCurrencies(value)
                     }}>
-                        <SelectTrigger className={"h-8!  w-1/4  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                        <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
                             <SelectValue placeholder={"Currency"}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
@@ -172,7 +134,7 @@ function SingleTicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.betType.map((types : any) =>{
+                                data?.filters && data?.filters?.betType.map((types : string) =>{
                                     return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
                                 })
                             }
@@ -197,40 +159,38 @@ function SingleTicketPage() {
 
 
             </div>
-            <div className={'flex flex-col p-3'}>
+            <div className={'flex cursor-pointer flex-col p-3'}>
                 <div
-                    className={'text-sm text-center h-7 items-center bg-chart-2 px-1   flex '}>
-                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}>Username</p>
+                    className={'text-sm text-center h-7 items-center bg-chart-2  border-accent px-1  flex '}>
+                    <p className={'w-1/3 h-full flex items-center justify-start text-start shrink-0'}>Username</p>
                     <p className={'w-full h-full flex items-center justify-center'}>Played</p>
                     <p className={'w-full h-full flex items-center justify-center'}>Won</p>
-                    <p className={'w-full h-full flex items-center justify-center'}>Net Win</p>
+                    <p className={'w-full h-full flex items-center justify-center text-center'}>Net Win</p>
                 </div>
-                <div className={cn('cursor-pointer  border-accent bg-accent/50 text-accent-foreground',{
-                    'animate-pulse bg-accent/40'  : isFetching
-                })}>
+                <div className={'cursor-pointer border-x border-accent bg-accent/50 text-accent-foreground'}>
                     {
-                        data?.children?.map((item : any, i : number) => {
-                            if((item.total_stake +item.total_won+item.total_lost) === 0){
-                                return null
-                            }
-                            return (
-                                <div
-                                    key={i}
-                                    className={'text-sm text-center h-7 items-center px-1 border-b border-b-popover flex '}
-                                    onClick={()=>{
-                                        if(item.is_agent){
-                                            navigate(`/account/tickets/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
-                                        }else {
-                                            navigate(`/account/tickets/user/${item.id}`)
-                                        }
-                                    }}>
-                                    <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
+                        isFetching ? <div
+                                className={'text-sm animate-pulse text-center h-7 items-center  px-1 border-b flex '}>
+                                <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}></p>
+                                <p className={'w-full h-full flex items-center justify-center'}></p>
+                                <p className={'w-full h-full flex items-center justify-center'}></p>
+                                <p className={'w-full h-full flex items-center justify-center text-center'}></p>
+                            </div> :
+                            data?.children?.length > 0  && data?.children?.map((item : any, index : number) => {
+                                if(item.total_stake  + item.total_won + item.total_lost  === 0){
+                                    return null
+                                }
+                                return <div key={index}
+                                            className={'text-sm text-center h-7 items-center border-popover px-1 border-b flex '}
+                                            onClick={() => {
+                                                navigate(`/account/transactions/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                            }}>
+                                    <p className={'w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_won}</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost}</p>
+                                    <p className={'w-full h-full flex items-center justify-center '}>{item.total_lost}</p>
                                 </div>
-                            )
-                        })
+                            })
                     }
                 </div>
             </div>
@@ -238,4 +198,4 @@ function SingleTicketPage() {
     );
 }
 
-export default SingleTicketPage;
+export default TicketPage;

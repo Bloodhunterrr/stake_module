@@ -323,7 +323,7 @@ const ProfileDropdown = ({
       icon: CasinoIcon,
       label: <Trans>Casino</Trans>,
       path: user.is_agent ? "/account/casino" : "/account/casino",
-      show: true,
+      show: !user.is_agent,
     },
     {
       icon: BetHistoryIcon,

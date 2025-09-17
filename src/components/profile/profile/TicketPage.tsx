@@ -107,31 +107,12 @@ function TicketPage() {
                             />
                         </PopoverContent>
                     </Popover>
-                </div>
-
-                <div className={'flex flex-row items-center border-b pb-2 border-popover justify-center gap-x-6 px-2'}>
-                    {/*bet Type*/}
-                    <Select value={betType} onValueChange={(value) =>{
-                        setBetType(value)
-                    }}>
-                        <SelectTrigger className={"h-8  w-1/4  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
-                            <SelectValue placeholder="Select country"/>
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                data?.filters && data?.filters?.betType.map((types : string) =>{
-                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
-
                     {/*Currency options*/}
                     <Select value={selectedCurrencies} onValueChange={(value) =>{
                         setSelectedCurrencies(value)
                     }}>
-                        <SelectTrigger className={"h-8  w-1/4  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background text-background"}>
-                            <SelectValue placeholder={"Select country"}/>
+                        <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectValue placeholder={"Currency"}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -141,11 +122,29 @@ function TicketPage() {
                             }
                         </SelectContent>
                     </Select>
+                </div>
+
+                <div className={'flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
+                    {/*bet Type*/}
+                    <Select value={betType} onValueChange={(value) =>{
+                        setBetType(value)
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent "}>
+                            <SelectValue placeholder="Type"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                data?.filters && data?.filters?.betType.map((types : string) =>{
+                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
                     {/*Status options*/}
                     <Select value={status} onValueChange={(value) =>{
                         setStatus(value)
                     }}>
-                        <SelectTrigger className={"h-8  w-1/4  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background text-background"}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
                             <SelectValue placeholder="Status"/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>

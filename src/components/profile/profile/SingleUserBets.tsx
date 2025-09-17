@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, Fragment } from "react";
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import { format } from "date-fns";
 import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
 import { formatDateToDMY } from "@/utils/formatDate";
@@ -20,10 +20,11 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {CalendarIcon, ChartNoAxesCombined} from "lucide-react";
+import {CalendarIcon, ChartNoAxesCombined, ChevronLeftIcon} from "lucide-react";
 import { Trans } from "@lingui/react/macro";
 import Loading from "@/components/shared/v2/loading.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
+
 
 interface Odd {
     id: string;
@@ -61,6 +62,7 @@ const SingleUserBets = () => {
         startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
         endDate: new Date(),
     });
+    const navigate = useNavigate();
     const [selectedCurrencies, setSelectedCurrencies] = useState<string>();
     const [selectedStatuses, setSelectedStatuses] = useState<string>();
     const [expandedTicketId, setExpandedTicketId] = useState<string | null>(null);
@@ -144,18 +146,28 @@ const SingleUserBets = () => {
             "0",
         )}:${String(date.getUTCMinutes()).padStart(2, "0")}`;
     };
-
+    const user = (data?.tickets?.data?.find((user : any) => user.user_name).user_name ?? "")
     return (
-        <div className="space-y-3 bg-white min-h-screen container mx-auto">
-            <div className="grid grid-cols-2 pt-2 md:grid-cols-2 gap-2 md:gap-4 items-center px-4 md:px-0">
-                <div className={'flex flex-row gap-x-3  w-full col-span-2'}>
+        <div className="space-y-3 min-h-screen container mx-auto">
+            <div className={'h-10  flex  border-b border-popover items-center'}>
+                <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={()=>navigate(-1)}>
+                    <ChevronLeftIcon className={'w-10'} />
+                </div>
+                <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
+                    <p>Bets</p>
+                    <span>-</span>
+                    <p>{user}</p>
+                </div>
+            </div>
+            <div className={' flex flex-col gap-y-3'}>
+                <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
-                                className="justify-start text-left lg:w-1/3 font-normal rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
                             >
-                                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
@@ -170,14 +182,14 @@ const SingleUserBets = () => {
                             />
                         </PopoverContent>
                     </Popover>
-
                     <Popover>
+
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
-                                className="justify-start lg:w-1/3 text-left font-normal rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
                             >
-                                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
@@ -192,71 +204,70 @@ const SingleUserBets = () => {
                             />
                         </PopoverContent>
                     </Popover>
-                    {
-                        (currencyOptions?.length > 1) && <Select value={selectedCurrencies} onValueChange={(value) =>{
-                            setSelectedCurrencies(value)
-                        }}>
-                            <SelectTrigger className={"h-8  w-1/3  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
-                                <SelectValue placeholder="Currencies"/>
-                            </SelectTrigger>
-                            <SelectContent className={'border-none bg-background rounded-none'}>
-                                {
-                                    currencyOptions?.map((types : any) =>{
-                                        console.log(types)
-                                        return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types.value}>{types.label}</SelectItem>
-                                    })
-                                }
-                            </SelectContent>
-                        </Select>
-                    }
+                    {/*Currency options*/}
+                    <Select value={selectedCurrencies} onValueChange={(value) =>{
+                        setSelectedCurrencies(value)
+                    }}>
+                        <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                            <SelectValue placeholder={"Currency"}/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                currencyOptions?.map((currency : any) =>{
+                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className={'flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
+                    {/*bet Type*/}
+                    <Select value={betType} onValueChange={(value) =>{
+                        setBetType(value)
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                            <SelectValue placeholder="Type"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                data?.filters && data?.filters?.betType.map((types : string) =>{
+                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+                    {/*Status options*/}
+                    <Select value={selectedStatuses} onValueChange={(value) =>{
+                        setSelectedStatuses(value)
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectValue placeholder="Status"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                data?.filters && data?.filters?.status.map((status : any , index : number) =>{
+                                    console.log(status)
+                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={String(index)}>{status}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
                 </div>
 
 
-
-                {/*Status*/}
-                <Select value={betType} onValueChange={(value) =>{
-                    setBetType(value)
-                }}>
-                    <SelectTrigger className={"h-8  w-full  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
-                        <SelectValue placeholder="Type"/>
-                    </SelectTrigger>
-                    <SelectContent className={'border-none bg-background rounded-none'}>
-                        {
-                            data?.filters && data?.filters?.betType.map((types : any) =>{
-                                return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
-                            })
-                        }
-                    </SelectContent>
-                </Select>
-
-                {/*Status*/}
-                <Select value={selectedStatuses} onValueChange={(value) =>{
-                   setSelectedStatuses(value)
-                }}>
-                    <SelectTrigger className={"h-8  w-full  rounded-none py-0 bg-muted hover:bg-muted  placeholder:text-background capitalize text-background "}>
-                        <SelectValue placeholder="Status"/>
-                    </SelectTrigger>
-                    <SelectContent className={'border-none bg-background rounded-none'}>
-                        {
-                            data?.filters && data?.filters?.status.map((types : string , index : number) =>{
-                                return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={String(index)}>{types} </SelectItem>
-                            })
-                        }
-                    </SelectContent>
-                </Select>
-
             </div>
 
-            <Table className="text-accent-foreground">
-                <TableHeader className="bg-black/10 h-8">
-                    <TableRow>
-                        <TableHead className="h-8">
+            <Table className="bg-popover hover:bg-popover text-white">
+                <TableHeader className="bg-chart-2 text-white  h-8">
+                    <TableRow className={'hover:bg-transparent border-popover'}>
+                        <TableHead className="h-8 text-white">
                             <Trans>Bet Amount (Bet ID)</Trans>
                         </TableHead>
-                        <TableHead className="h-8">
+                        <TableHead className="h-8 text-white ">
                             <Trans>Time</Trans>
                         </TableHead>
-                        <TableHead className="text-right h-8">
+                        <TableHead className="text-right h-8 text-white">
                             <Trans>Status</Trans>
                         </TableHead>
                     </TableRow>
@@ -278,7 +289,7 @@ const SingleUserBets = () => {
                         Object.entries(groupedTickets).map(([date, tickets] : any) => {
                           return  (
                                 <Fragment key={date}>
-                                    <TableRow className="bg-black/80 hover:bg-black/80 text-white">
+                                    <TableRow className="bg-background/30  border-popover hover:bg-background/30 text-white">
                                         <TableCell colSpan={3}>{date}</TableCell>
                                     </TableRow>
                                     {tickets?.map((ticket: Ticket) => {
@@ -291,14 +302,14 @@ const SingleUserBets = () => {
                                         return (
                                             <Fragment key={ticket.id}>
                                                 <TableRow
-                                                    className="cursor-pointer"
+                                                    className="cursor-pointer bg-poover border-popover hover:bg-poover "
                                                     onClick={() =>
                                                         setExpandedTicketId(
                                                             expandedTicketId === ticket.id ? null : ticket.id,
                                                         )
                                                     }
                                                 >
-                                                    <TableCell className="py-0">
+                                                    <TableCell className="py-0 ">
                                                         <div className="flex flex-col leading-tight">
                                                                 <span>
                                                                   {Number(ticket?.stake_amount).toFixed(2)}{" "}
@@ -342,7 +353,7 @@ const SingleUserBets = () => {
                                                 </TableRow>
 
                                                 {expandedTicketId === ticket.id && (
-                                                    <TableRow className="bg-muted p-0">
+                                                    <TableRow className="bg-popover border-popover hover:bg-popover p-0">
                                                         <TableCell colSpan={3} className="p-0">
                                                             <div className="text-sm">
                                                                 {ticket.details?.odds?.map((odd: Odd) => {
@@ -350,7 +361,7 @@ const SingleUserBets = () => {
                                                                     return (
                                                                         <div
                                                                             key={odd.id}
-                                                                            className="relative flex flex-col border-b border-gray-400"
+                                                                            className="relative flex flex-col border-b border-popover/60"
                                                                         >
                                                                             {(odd.status === 3 || odd.status === 1) && (
                                                                                 <div
@@ -366,7 +377,7 @@ const SingleUserBets = () => {
                                                                                       <span
                                                                                           className={`w-3 h-3 shrink-0 rounded-full ${oddStatus.color}`}
                                                                                       />
-                                                                                <div className="text-xs text-gray-600">
+                                                                                <div className="text-xs text-white">
                                                                                     {formatTimestamp(ticket.created_at)}
                                                                                 </div>
                                                                                 <div className={'w-full text-muted-foreground flex items-center justify-end'}>
@@ -380,7 +391,7 @@ const SingleUserBets = () => {
                                                                                         {odd.event.team1} - {odd.event.team2}
                                                                                     </div>
                                                                                     <div
-                                                                                        className="text-xs text-gray-600 capitalize">
+                                                                                        className="text-xs text-white capitalize">
                                                                                         {odd.market.name} -{" "}
                                                                                         {odd.identifiers.selectedOddIndex}
                                                                                     </div>
@@ -396,7 +407,7 @@ const SingleUserBets = () => {
                                                                 })}
                                                                 <div className="grid px-4 pb-4 grid-cols-3 gap-2 pt-2 text-sm ">
                                                                     <div>
-                                                                        <div className="text-gray-400">
+                                                                        <div className="text-accent">
                                                                             <Trans>Total odds</Trans>
                                                                         </div>
                                                                         <div className={'font-semibold'}>
@@ -409,7 +420,7 @@ const SingleUserBets = () => {
                                                                         </div>
                                                                     </div>
                                                                     <div>
-                                                                        <div className="text-gray-400">
+                                                                        <div className="text-accent">
                                                                             <Trans>Bet amount</Trans>
                                                                         </div>
                                                                         <div className={'font-semibold'}>
@@ -418,7 +429,7 @@ const SingleUserBets = () => {
                                                                         </div>
                                                                     </div>
                                                                     <div>
-                                                                        <div className="text-gray-400">
+                                                                        <div className="text-accent">
                                                                             <Trans>Payout</Trans>
                                                                         </div>
                                                                         <div className={'font-semibold'}>

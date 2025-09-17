@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router";
-import {useLazyGetAllUsersTicketsQuery} from "@/services/authApi.ts";
+import {useLazyGetSingleUsersTransactionQuery} from "@/services/authApi.ts";
 import { useSearchParams } from "react-router";
 import {format} from "date-fns";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
@@ -12,8 +12,8 @@ import {cn} from "@/lib/utils.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
 
 function SingleTicketPage() {
-    const {userTicketId} = useParams();
-    const [fetchSingleData, { isLoading, isError, isFetching }] = useLazyGetAllUsersTicketsQuery();
+    const { userTransactionId } = useParams();
+    const [fetchSingleData, { isLoading, isError, isFetching }] = useLazyGetSingleUsersTransactionQuery();
     const navigate = useNavigate();
     const [searchParams , setSearchParams] = useSearchParams();
     const [data, setData] = useState<any>()
@@ -28,7 +28,6 @@ function SingleTicketPage() {
         endDate: new Date(end ?? ''),
     });
     const [betType, setBetType] = useState('')
-    const [status, setStatus] = useState('')
 
     const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : any) => ({
         value: w.slug.toUpperCase(),
@@ -51,16 +50,15 @@ function SingleTicketPage() {
 
     useEffect(() => {
         fetchSingleData({
-            bet_status : status,
-            bet_type : betType,
-            wallet_name : selectedCurrencies,
+            // type : betType, later
+            currency : selectedCurrencies,
             start_date : format(dates.startDate, "yyyy/MM/dd"),
             end_date : format(dates.endDate, "yyyy/MM/dd"),
-            user_id : userTicketId,
+            user_id : userTransactionId,
         }).unwrap().then(data =>{
             setData(data)
         })
-    },[userTicketId , selectedCurrencies , dates.startDate, dates.endDate , betType , status])
+    },[userTransactionId , selectedCurrencies , dates.startDate, dates.endDate , betType , status])
 
     if(isError){
         navigate('/')
@@ -174,21 +172,6 @@ function SingleTicketPage() {
                             {
                                 data?.filters && data?.filters?.betType.map((types : any) =>{
                                     return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
-                    {/*Status options*/}
-                    <Select value={status} onValueChange={(value) =>{
-                        setStatus(value)
-                    }}>
-                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status"/>
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                data?.filters && data?.filters?.status.map((status : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }
                         </SelectContent>
