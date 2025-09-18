@@ -177,13 +177,19 @@ function TicketPage() {
                                 <p className={'w-full h-full flex items-center justify-center text-center'}></p>
                             </div> :
                             data?.children?.length > 0  && data?.children?.map((item : any, index : number) => {
+                                console.log(item)
                                 if(item.total_stake  + item.total_won + item.total_lost  === 0){
                                     return null
                                 }
                                 return <div key={index}
                                             className={'text-sm text-center h-7 items-center border-popover px-1 border-b flex '}
                                             onClick={() => {
-                                                navigate(`/account/tickets/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                                if(!item.is_agent){
+                                                    navigate(`/account/tickets/user/${item?.id}`);
+                                                }
+                                                else{
+                                                    navigate(`/account/tickets/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                                }
                                             }}>
                                     <p className={'w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>

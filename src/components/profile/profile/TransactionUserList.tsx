@@ -21,7 +21,7 @@ function SingleTicketPage() {
     // Filters States
     const start = (searchParams.get('startDate'))
     const end = (searchParams.get('endDate'))
-    const defaultUserWallet = (data?.user?.wallets.find((wallet : any) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
+    const defaultUserWallet = (data?.user?.wallets?.find((wallet : any) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
     const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
     const [dates, setDates] = useState({
         startDate: new Date(start ?? ''),
@@ -70,7 +70,6 @@ function SingleTicketPage() {
         </div>
     }
 
-    console.log(defaultUserWallet)
     return (
         <div className={'container mx-auto'}>
             <div className={'h-10  flex  border-b border-popover items-center'}>

@@ -146,7 +146,7 @@ const SingleUserBets = () => {
             "0",
         )}:${String(date.getUTCMinutes()).padStart(2, "0")}`;
     };
-    const user = (data?.tickets?.data?.find((user : any) => user.user_name).user_name ?? "")
+    const user = (data?.tickets?.data?.find((user : any) => user.user_name)?.user_name ?? "")
     return (
         <div className="space-y-3 min-h-screen container mx-auto">
             <div className={'h-10  flex  border-b border-popover items-center'}>
