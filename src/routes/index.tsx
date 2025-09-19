@@ -23,6 +23,7 @@ import SingleUserBets from "@/components/profile/profile/SingleUserBets.tsx";
 import TicketPage from "@/components/profile/profile/TicketPage.tsx";
 import TransactionPage from "@/components/profile/profile/TransactionPage.tsx";
 import TransactionUserList from "@/components/profile/profile/TransactionUserList.tsx";
+import SingleUserTransaction from "@/components/profile/profile/SingleUserTransaction.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -80,9 +81,10 @@ const routes = createBrowserRouter(
              { path : "tickets/:userTicketId"  , element: <SingleTicketPage /> },
              { path : "tickets/user/:singleBetsId"  , element: <SingleUserBets /> },
              //  TODO => Transactions Path
-             { path : "transactions"  , element: <TransactionPage /> },
-             { path : "transactions/:userTransactionId"  , element: <TransactionUserList /> },
-             { path : "transactions/user/:singleBetsId"  , element: <SingleUserBets /> }
+             { path : "reports"  , element: <TransactionPage /> },
+             { path : "reports/:userTransactionId"  , element: <TransactionUserList /> },
+              //  TODO => Transactions Path
+              { path : "transactions/user/:singleBetsId"  , element: <SingleUserTransaction /> }
 
           ],
         },

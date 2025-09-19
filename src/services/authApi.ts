@@ -9,7 +9,7 @@ import type {DepositRequest, DepositResponse} from '@/types/deposits';
 import type {WithdrawRequest, WithdrawResponse} from '@/types/withdraws';
 import type {
     AuthMeResponse,
-    AuthResponse, BlockRequest, BlockResponse,
+    AuthResponse, BlockRequest, BlockResponse, getSendSingleMessageRequest, getSendSingleMessageResponse,
     LoginRequest, MessageRequest, MessageResponse,
     ReportRequest, ReportResponse, SingleMessageResponse, TransactionRequest, TransactionResponse,
     UsersRequest,
@@ -195,7 +195,7 @@ export const authApi = createApi({
                 body: filters,
             }),
         }),
-        getAllUsersTickets : builder.query<any, any>({
+        getAllUsersTickets : builder.query<getSendSingleMessageResponse, getSendSingleMessageRequest>({
             query: (params) => ({
                 url: `/agent/tickets`,
                 params

@@ -358,7 +358,7 @@ const ProfileDropdown = ({
     {
       icon: MessagesIcon,
       label: <Trans>Reports</Trans>,
-      path: "/account/users/reports",
+      path: "/account/reports",
       show: user.is_agent,
     },
   ];

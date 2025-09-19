@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import {useLazyGetTransactionsQuery} from "@/services/authApi.ts";
 import {useNavigate} from "react-router";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
@@ -57,7 +57,7 @@ function TicketPage() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Bets</p>
+                    <p>Reports</p>
                     <span>-</span>
                     <p>{data?.user?.name}</p>
                 </div>
@@ -116,8 +116,8 @@ function TicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                currencyOptions?.map((currency : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
+                                currencyOptions?.map((currency : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -134,8 +134,8 @@ function TicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.betType.map((types : string) =>{
-                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                data?.filters && data?.filters?.betType.map((types : string , index : number) =>{
+                                    return  <SelectItem  key={index} className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -149,8 +149,8 @@ function TicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.status.map((status : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
+                                data?.filters && data?.filters?.status.map((status : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -167,7 +167,7 @@ function TicketPage() {
                     <p className={'w-full h-full flex items-center justify-center'}>Won</p>
                     <p className={'w-full h-full flex items-center justify-center text-center'}>Net Win</p>
                 </div>
-                <div className={'cursor-pointer border-x border-accent bg-accent/50 text-accent-foreground'}>
+                <div className={'cursor-pointer border-x border-popover bg-accent/50 text-accent-foreground'}>
                     {
                         isFetching ? <div
                                 className={'text-sm animate-pulse text-center h-7 items-center  px-1 border-b flex '}>
@@ -178,12 +178,17 @@ function TicketPage() {
                             </div> :
                             data?.children?.length > 0  && data?.children?.map((item : any, index : number) => {
                                 if(item.total_stake  + item.total_won + item.total_lost  === 0){
-                                    return null
+                                    return <Fragment key={index}></Fragment>;
                                 }
                                 return <div key={index}
                                             className={'text-sm text-center h-7 items-center border-popover px-1 border-b flex '}
                                             onClick={() => {
-                                                navigate(`/account/transactions/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                                if(item.is_player){
+                                                    navigate(`/account/transactions/user/${item?.id}`)
+                                                    // ?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                                }else{
+                                                    navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                                }
                                             }}>
                                     <p className={'w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>

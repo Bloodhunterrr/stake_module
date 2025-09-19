@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import {useLazyGetAllUsersTicketsQuery} from "@/services/authApi.ts";
 import {useNavigate} from "react-router";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
@@ -116,8 +116,8 @@ function TicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                currencyOptions?.map((currency : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
+                                currencyOptions?.map((currency : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -134,8 +134,8 @@ function TicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.betType.map((types : string) =>{
-                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                data?.filters && data?.filters?.betType.map((types : string , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -149,8 +149,8 @@ function TicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.status.map((status : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
+                                data?.filters && data?.filters?.status.map((status : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -167,7 +167,7 @@ function TicketPage() {
                     <p className={'w-full h-full flex items-center justify-center'}>Won</p>
                     <p className={'w-full h-full flex items-center justify-center text-center'}>Net Win</p>
                 </div>
-                <div className={'cursor-pointer border-x border-accent bg-accent/50 text-accent-foreground'}>
+                <div className={'cursor-pointer border-x border-popover bg-accent/50 text-accent-foreground'}>
                     {
                         isFetching ? <div
                                 className={'text-sm animate-pulse text-center h-7 items-center  px-1 border-b flex '}>
@@ -177,9 +177,8 @@ function TicketPage() {
                                 <p className={'w-full h-full flex items-center justify-center text-center'}></p>
                             </div> :
                             data?.children?.length > 0  && data?.children?.map((item : any, index : number) => {
-                                console.log(item)
                                 if(item.total_stake  + item.total_won + item.total_lost  === 0){
-                                    return null
+                                    return <Fragment key={index}></Fragment>
                                 }
                                 return <div key={index}
                                             className={'text-sm text-center h-7 items-center border-popover px-1 border-b flex '}

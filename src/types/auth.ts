@@ -102,6 +102,38 @@ export interface MessageResponse {
     "created_at": string
 }
 
+export interface getSendSingleMessageRequest {
+    bet_status : string,
+    bet_type : string | number | null,
+    wallet_name : string,
+    start_date : string,
+    end_date : string,
+    user_id ?: string,
+}
+
+
+export interface getSendSingleMessageResponse {
+    user : User
+    filters : {
+        "status": string[],
+        "betType": string[],
+        "wallets": Wallet[]
+    },
+    children : {
+        "id": number,
+        "name": string,
+        "email": string,
+        "is_agent": boolean,
+        "is_player": boolean,
+        "children_count": number,
+        "created_at": string,
+        "total_played": number,
+        "total_stake": number,
+        "total_won": number,
+        "total_lost": number
+    }[]
+}
+
 
 
 

@@ -165,7 +165,8 @@ function UserListRender() {
                     </div>
                     <div className={'flex flex-col gap-y-4 py-4'}>
                         <Button className={'rounded-none bg-chart-2 hover:bg-chart-2'} onClick={()=>{
-                            navigate(`/account/users/transaction/${data?.id}`)
+                            navigate(`/account/transactions/user/${data?.id}`)
+
                         }}>
                             Transaction
                         </Button>

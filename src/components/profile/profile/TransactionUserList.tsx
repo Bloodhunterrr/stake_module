@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router";
-import {useLazyGetSingleUsersTransactionQuery} from "@/services/authApi.ts";
+import {useLazyGetTransactionsQuery} from "@/services/authApi.ts";
 import { useSearchParams } from "react-router";
 import {format} from "date-fns";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
@@ -13,7 +13,7 @@ import Loading from "@/components/shared/v2/loading.tsx";
 
 function SingleTicketPage() {
     const { userTransactionId } = useParams();
-    const [fetchSingleData, { isLoading, isError, isFetching }] = useLazyGetSingleUsersTransactionQuery();
+    const [fetchSingleData, { isLoading, isError, isFetching }] = useLazyGetTransactionsQuery();
     const navigate = useNavigate();
     const [searchParams , setSearchParams] = useSearchParams();
     const [data, setData] = useState<any>()
@@ -77,7 +77,7 @@ function SingleTicketPage() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Bets</p>
+                    <p>Reports</p>
                     <span>-</span>
                     <p>{data?.user?.name}</p>
                 </div>
@@ -151,8 +151,8 @@ function SingleTicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                currencyOptions?.map((currency : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
+                                currencyOptions?.map((currency : any  , index  : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -169,8 +169,8 @@ function SingleTicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.betType.map((types : any) =>{
-                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                data?.filters && data?.filters?.betType.map((types : any , index : number) =>{
+                                    return  <SelectItem key={index}  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -193,17 +193,18 @@ function SingleTicketPage() {
                     {
                         data?.children?.map((item : any, i : number) => {
                             if((item.total_stake +item.total_won+item.total_lost) === 0){
-                                return null
+                                return <Fragment key={i}></Fragment>;
                             }
                             return (
                                 <div
                                     key={i}
                                     className={'text-sm text-center h-7 items-center px-1 border-b border-b-popover flex '}
                                     onClick={()=>{
-                                        if(item.is_agent){
-                                            navigate(`/account/tickets/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
-                                        }else {
-                                            navigate(`/account/tickets/user/${item.id}`)
+                                        if(item.is_player){
+                                            navigate(`/account/transactions/user/${item?.id}`)
+                                            // ?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                        }else{
+                                            navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
                                         }
                                     }}>
                                     <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>

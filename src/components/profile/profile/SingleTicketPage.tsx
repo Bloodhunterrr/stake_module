@@ -10,18 +10,19 @@ import {Calendar} from "@/components/ui/calendar.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {cn} from "@/lib/utils.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
+import type {getSendSingleMessageResponse, Wallet} from "@/types/auth.ts";
 
 function SingleTicketPage() {
     const {userTicketId} = useParams();
     const [fetchSingleData, { isLoading, isError, isFetching }] = useLazyGetAllUsersTicketsQuery();
     const navigate = useNavigate();
     const [searchParams , setSearchParams] = useSearchParams();
-    const [data, setData] = useState<any>()
+    const [data, setData] = useState<getSendSingleMessageResponse>()
 
     // Filters States
     const start = (searchParams.get('startDate'))
     const end = (searchParams.get('endDate'))
-    const defaultUserWallet = (data?.user?.wallets.find((wallet : any) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
+    const defaultUserWallet = (data?.user?.wallets.find((wallet : Wallet) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
     const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
     const [dates, setDates] = useState({
         startDate: new Date(start ?? ''),
@@ -30,7 +31,7 @@ function SingleTicketPage() {
     const [betType, setBetType] = useState('')
     const [status, setStatus] = useState('')
 
-    const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : any) => ({
+    const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : Wallet) => ({
         value: w.slug.toUpperCase(),
         label: w.slug.toUpperCase(),
     }));
@@ -39,7 +40,6 @@ function SingleTicketPage() {
         const start = (searchParams.get('startDate'))
         const end = (searchParams.get('endDate'))
         if(start && end){
-            console.log(start)
             setDates({
                 startDate: new Date(start),
                 endDate: new Date(end)
@@ -154,8 +154,8 @@ function SingleTicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                currencyOptions?.map((currency : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
+                                currencyOptions?.map((currency : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -172,8 +172,8 @@ function SingleTicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.betType.map((types : any) =>{
-                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                data?.filters && data?.filters?.betType.map((types : getSendSingleMessageResponse['filters']['betType'][0] , index : number) =>{
+                                    return  <SelectItem  key={index} className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -187,8 +187,8 @@ function SingleTicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.status.map((status : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
+                                data?.filters && data?.filters?.status.map((status : getSendSingleMessageResponse['filters']['status'][0] , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -209,7 +209,7 @@ function SingleTicketPage() {
                     'animate-pulse bg-accent/40'  : isFetching
                 })}>
                     {
-                        data?.children?.map((item : any, i : number) => {
+                        data?.children?.map((item : getSendSingleMessageResponse['children'][0], i : number) => {
                             if((item.total_stake +item.total_won+item.total_lost) === 0){
                                 return null
                             }

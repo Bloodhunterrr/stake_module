@@ -80,7 +80,7 @@ const SingleUserBets = () => {
                 user_id: singleBetsId,
                 start_date: formatDateToDMY(dates.startDate),
                 end_date: formatDateToDMY(dates.endDate),
-                wallet_name: (selectedCurrencies)?.toLowerCase(),
+                currency: (selectedCurrencies)?.toLowerCase(),
                 status: selectedStatuses,
                 bet_type : betType === 'all' ? "" : betType,
                 page : currentPage,
@@ -119,6 +119,9 @@ const SingleUserBets = () => {
         4: { label: "Returned", color: "bg-[#355be2]" },
         1: { label: "Lost", color: "bg-red-500" },
     };
+
+
+    console.log(data)
 
 
     const formatTimestamp = (timestamp: string | Date) => {
@@ -213,8 +216,8 @@ const SingleUserBets = () => {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                currencyOptions?.map((currency : any) =>{
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
+                                currencyOptions?.map((currency : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -231,8 +234,8 @@ const SingleUserBets = () => {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                data?.filters && data?.filters?.betType.map((types : string) =>{
-                                    return  <SelectItem  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                data?.filters && data?.filters?.betType.map((types : string , index : number) =>{
+                                    return  <SelectItem  key={index} className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -247,8 +250,7 @@ const SingleUserBets = () => {
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
                                 data?.filters && data?.filters?.status.map((status : any , index : number) =>{
-                                    console.log(status)
-                                    return  <SelectItem className={'focus:text-background text-accent rounded-none'} value={String(index)}>{status}</SelectItem>
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={String(index)}>{status}</SelectItem>
                                 })
                             }
                         </SelectContent>
