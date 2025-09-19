@@ -18,12 +18,13 @@ function SingleTicketPage() {
     const navigate = useNavigate();
     const [searchParams , setSearchParams] = useSearchParams();
     const [data, setData] = useState<getSendSingleMessageResponse>()
-
     // Filters States
     const start = (searchParams.get('startDate'))
     const end = (searchParams.get('endDate'))
     const defaultUserWallet = (data?.user?.wallets.find((wallet : Wallet) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
     const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
+    const [category, setCategory] = useState('')
+
     const [dates, setDates] = useState({
         startDate: new Date(start ?? ''),
         endDate: new Date(end ?? ''),
@@ -188,6 +189,25 @@ function SingleTicketPage() {
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
                                 data?.filters && data?.filters?.status.map((status : getSendSingleMessageResponse['filters']['status'][0] , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+                    {/*Static for the moment*/}
+                    <Select value={category} onValueChange={(value) =>{
+                        setCategory(value)
+                        if(value !== "Sport"){
+                            navigate(`/account/reports/${userTicketId}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                        }
+
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectValue placeholder="Status"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                ['Sport' , 'Casino' , 'Live Casino'].map((status : any , index : number) =>{
                                     return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }

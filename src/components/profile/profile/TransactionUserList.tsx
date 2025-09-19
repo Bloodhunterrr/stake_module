@@ -17,6 +17,8 @@ function SingleTicketPage() {
     const navigate = useNavigate();
     const [searchParams , setSearchParams] = useSearchParams();
     const [data, setData] = useState<any>()
+    const [category, setCategory] = useState('')
+
 
     // Filters States
     const start = (searchParams.get('startDate'))
@@ -171,6 +173,26 @@ function SingleTicketPage() {
                             {
                                 data?.filters && data?.filters?.betType.map((types : any , index : number) =>{
                                     return  <SelectItem key={index}  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+
+                    {/*Static for the moment*/}
+                    <Select value={category} onValueChange={(value) =>{
+                        setCategory(value)
+                        if(value === "Sport"){
+                            navigate(`/account/tickets/${userTransactionId}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                        }
+
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectValue placeholder="Status"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                ['Sport' , 'Casino' , 'Live Casino'].map((status : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }
                         </SelectContent>

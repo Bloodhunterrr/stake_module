@@ -15,6 +15,7 @@ function TicketPage() {
 
     // Filters
     const [selectedCurrencies, setSelectedCurrencies] = useState('')
+    const [category, setCategory] = useState('')
     const [dates, setDates] = useState({
         startDate:  new Date(),
         endDate:  new Date(),
@@ -150,6 +151,25 @@ function TicketPage() {
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
                                 data?.filters && data?.filters?.status.map((status : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+                    {/*Static for the moment*/}
+                    <Select value={category} onValueChange={(value) =>{
+                        setCategory(value)
+                        if(value === "Sport"){
+                            navigate(`/account/tickets?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                        }
+
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectValue placeholder="Status"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                ['Sport' , 'Casino' , 'Live Casino'].map((status : any , index : number) =>{
                                     return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }

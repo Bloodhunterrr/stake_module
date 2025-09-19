@@ -8,19 +8,23 @@ import {format} from "date-fns";
 import {Calendar} from "@/components/ui/calendar.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import Loading from "@/components/shared/v2/loading.tsx";
-
+import { useSearchParams } from "react-router";
 function TicketPage() {
     const [fetchAllUsersTickets, { isLoading, isError, isFetching }] = useLazyGetAllUsersTicketsQuery();
+
+    const [searchParams] = useSearchParams()
     const [data, setData] = useState<any>()
+    const [category, setCategory] = useState('')
 
     // Filters
     const [selectedCurrencies, setSelectedCurrencies] = useState('')
     const [dates, setDates] = useState({
-        startDate:  new Date(),
-        endDate:  new Date(),
+        startDate: searchParams.get('startDate') ?? new Date(),
+        endDate:  searchParams.get('endDate') ?? new Date(),
     });
     const [betType, setBetType] = useState('')
     const [status, setStatus] = useState('')
+
 
     const navigate = useNavigate()
 
@@ -78,7 +82,7 @@ function TicketPage() {
                             <Calendar
                                 className="w-full"
                                 mode="single"
-                                selected={dates.startDate}
+                                selected={new Date(dates.startDate)}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({ ...prev, startDate: date }))
                                 }
@@ -100,7 +104,7 @@ function TicketPage() {
                             <Calendar
                                 className="w-full"
                                 mode="single"
-                                selected={dates.endDate}
+                                selected={new Date(dates.endDate)}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({ ...prev, endDate: date }))
                                 }
@@ -150,6 +154,26 @@ function TicketPage() {
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
                                 data?.filters && data?.filters?.status.map((status : any , index : number) =>{
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+
+                    {/*Static for the moment*/}
+                    <Select value={category} onValueChange={(value) =>{
+                        setCategory(value)
+                        if(value !== "Sport"){
+                            navigate(`/account/reports?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                        }
+
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectValue placeholder="Status"/>
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                ['Sport' , 'Casino' , 'Live Casino'].map((status : any , index : number) =>{
                                     return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
                                 })
                             }
