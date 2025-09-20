@@ -11,8 +11,10 @@ import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import {cn} from "@/lib/utils.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
+import {useAppSelector} from "@/hooks/rtk.ts";
 
 const SingleUserTransaction = () => {
+    const contextUser = useAppSelector((s) => s.auth?.user);
     const { singleBetsId } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [searchParams] = useSearchParams();
@@ -29,7 +31,7 @@ const SingleUserTransaction = () => {
     const [fetchSingleTicketData, { data, isLoading, isError, isFetching }] =
         useLazyGetSingleUsersTransactionQuery();
 
-    const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : any) => ({
+    const currencyOptions = contextUser && contextUser?.wallets?.map((w : any) => ({
         value: w.slug.toUpperCase(),
         label: w.slug.toUpperCase(),
     }));
