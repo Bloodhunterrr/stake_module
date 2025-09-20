@@ -208,7 +208,7 @@ function TicketPage() {
                                             className={'text-sm text-center h-7 items-center border-popover px-1 border-b flex '}
                                             onClick={() => {
                                                 if(!item.is_agent){
-                                                    navigate(`/account/tickets/user/${item?.id}`);
+                                                    navigate(`/account/tickets/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
                                                 }
                                                 else{
                                                     navigate(`/account/tickets/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
