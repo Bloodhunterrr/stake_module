@@ -13,6 +13,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import type {MessageResponse, SingleMessageResponse} from "@/types/auth.ts";
+import {Trans} from "@lingui/react/macro";
 
 interface MessagesState {
     sent: MessageResponse[];
@@ -71,22 +72,22 @@ function Messages() {
     return (
         <div className={'bg-background'}>
             <div className={' min-h-screen text-accent gap-y-2 flex flex-col justify-start pt-2  container mx-auto '}>
-                <p className={'w-fit cursor-pointer border-[1px] rounded-2xl p-2'} onClick={()=>setRefresh(true)}>Refresh</p>
+                <p className={'w-fit cursor-pointer border-[1px] rounded-2xl p-2'} onClick={()=>setRefresh(true)}><Trans>Refresh</Trans></p>
                 <div className={cn('w-full h-full p-2' , {
                     "animate-pulse min-h-12 bg-accent/40" : isFetching
                 })}>
-                    <p>Received Messages</p>
+                    <p><Trans>Received Messages</Trans></p>
                     { isLoading  ? <Loading/> :
                         messages?.received.length > 0 ? messages.received.map((message:any) => {
                             console.log(message.length)
                             return <SingleMessage message={message} />
-                        }) : <p className={'py-2 pl-2 bg-popover '}>Not Received any messages yet</p>
+                        }) : <p className={'py-2 pl-2 bg-popover '}><Trans>Not Received any messages yet</Trans></p>
                     }
                 </div>
                 <div className={cn('w-full h-full  flex flex-col gap-y-2 p-2' , {
                     "animate-pulse min-h-12 bg-accent/40" : isFetching
                 })}>
-                    <p>Sent Messages</p>
+                    <p><Trans>Sent Messages</Trans></p>
                     <div className={'flex flex-col gap-y-3'}>
                         { isLoading  ? <Loading/> :
                             messages?.sent.length > 0 && messages.sent.map((message:any) => {
@@ -120,9 +121,9 @@ const SingleMessage = ({message} : {message : any}) => {
                 </DialogTrigger>
                 <DialogContent className={'border-none text-accent'}>
                     <DialogHeader className={'text-accent text-start'}>
-                        <DialogTitle>Message</DialogTitle>
+                        <DialogTitle><Trans>Message</Trans></DialogTitle>
                         { ( isLoading)  ? <Loading/> :
-                            (isError ? <p>There has been an error</p> : <div className={'flex flex-col  text-start'}>
+                            (isError ? <p><Trans>There has been an error</Trans></p> : <div className={'flex flex-col  text-start'}>
                                 <div className={'w-full'}>
                                     {data?.sender?.name}
                                 </div>

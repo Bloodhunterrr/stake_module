@@ -229,7 +229,7 @@ export default function CasinoHistoryTable() {
                         </>
                       ) : (
                         <>
-                          <span>Lost</span>
+                          <span><Trans>Lost</Trans></span>
                           <span className="w-3 h-3 rounded-full bg-red-500 inline-block" />
                         </>
                       )}
