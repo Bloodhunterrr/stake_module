@@ -379,8 +379,8 @@ const ProfileDropdown = ({
         sideOffset={
           isNoCategoryOrSportsbook && !isDesktop
             ? showBalance
-              ? 38
-              : 32
+              ? -4
+              : -10
             : showBalance
             ? 10
             : 5

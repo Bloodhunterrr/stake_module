@@ -169,7 +169,7 @@ export default function Sidebar({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute hover:bg-transparent hover:text-accent top-4 left-3 z-50 xl:hidden"
+              className="fixed hover:bg-transparent hover:text-accent top-4 left-3 z-50 xl:hidden"
             >
               <Menu className="h-6 w-6" />
             </Button>

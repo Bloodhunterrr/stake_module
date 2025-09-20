@@ -34,15 +34,15 @@ const App: React.FC = () => {
 
 const isNoCategoryOrSportsbook = useMemo(() => {
   const pathParts = location.pathname.split("/").filter(Boolean);
-
   // True only for `/` or `/:categorySlug`
   if (pathParts.length === 0) return true; // root
   if (pathParts.length === 1) {
-    const cat = data?.find((el) => el.slug === pathParts[0]);
-    return !cat || cat.is_sportbook;
+    // const cat = data?.find((el) => el.slug === pathParts[0]);
+    // return !cat || cat.is_sportbook;
+      return true
   }
 
-  return false; 
+  return true;
 }, [location.pathname, data]);
 
   useEffect(() => {

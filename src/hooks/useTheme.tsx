@@ -17,7 +17,7 @@ const ThemeContext = createContext<ThemeContextValue>({
 });
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [optionalSideBarOpen, setOptionalSideBarOpen] = useState<boolean>(true);
+  const [optionalSideBarOpen, setOptionalSideBarOpen] = useState<boolean>(false);
   const [theme, setTheme] = useState<Theme>(() => {
     return (localStorage.getItem('theme') as Theme) || 'dark';
   });
