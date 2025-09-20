@@ -124,10 +124,6 @@ const SingleUserBets = () => {
         1: { label: "Lost", color: "bg-red-500" },
     };
 
-
-    console.log(data)
-
-
     const formatTimestamp = (timestamp: string | Date) => {
         const date = new Date(timestamp);
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];

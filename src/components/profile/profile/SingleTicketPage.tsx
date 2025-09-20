@@ -72,8 +72,6 @@ function SingleTicketPage() {
             <Loading />
         </div>
     }
-
-    console.log(defaultUserWallet)
     return (
         <div className={'container mx-auto'}>
             <div className={'h-10  flex  border-b border-popover items-center'}>

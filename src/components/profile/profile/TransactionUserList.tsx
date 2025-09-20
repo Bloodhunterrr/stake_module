@@ -23,7 +23,6 @@ function SingleTicketPage() {
     // Filters States
     const start = (searchParams.get('startDate')) ?? new Date();
     const end = (searchParams.get('endDate')) ?? new Date()
-    console.log(new Date(NaN))
     const defaultUserWallet = (data?.user?.wallets?.find((wallet : any) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
     const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
     const [dates, setDates] = useState({
@@ -41,7 +40,6 @@ function SingleTicketPage() {
         const start = (searchParams.get('startDate'))
         const end = (searchParams.get('endDate'))
         if(start && end){
-            console.log(start)
             setDates({
                 startDate: new Date(start),
                 endDate: new Date(end)

@@ -11,7 +11,7 @@ import TitleUpdater from "@/components/title-updater.tsx";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Loading from "@/components/shared/v2/loading.tsx";
 import Sidebar from "./components/shared/v2/side-bar";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const App: React.FC = () => {
   useUserInfo();
@@ -21,7 +21,7 @@ const App: React.FC = () => {
   const { data, error, isLoading } = useGetMainQuery();
   const location = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
-  const { categorySlug } = useParams<{ categorySlug: string }>();
+  // const { categorySlug } = useParams<{ categorySlug: string }>();
   const { theme, optionalSideBarOpen, setOptionalSideBarOpen } = useTheme();
 
   useScrollToTop(containerRef);
@@ -49,7 +49,6 @@ const isNoCategoryOrSportsbook = useMemo(() => {
     setOptionalSideBarOpen(!isNoCategoryOrSportsbook);
   }, [isNoCategoryOrSportsbook]);
 
-  console.log(isNoCategoryOrSportsbook, categorySlug)
 
   if (error || isLoading) {
     return (
