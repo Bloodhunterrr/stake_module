@@ -257,7 +257,7 @@ msgstr "About BTC"
 msgid "About Us"
 msgstr "About Us"
 
-#: src/components/profile/v2/payments-history-table.tsx:211
+#: src/components/profile/v2/payments-history-table.tsx:200
 msgid "Action"
 msgstr "Action"
 
@@ -273,7 +273,7 @@ msgstr "Affiliates"
 msgid "All"
 msgstr "All"
 
-#: src/components/profile/v2/payments-history-table.tsx:181
+#: src/components/profile/v2/payments-history-table.tsx:171
 msgid "All Actions"
 msgstr "All Actions"
 
@@ -281,7 +281,7 @@ msgstr "All Actions"
 #: src/components/profile/profile/TransactionList.tsx:133
 #: src/components/profile/v2/betting-history-table.tsx:181
 #: src/components/profile/v2/casino-history-table.tsx:138
-#: src/components/profile/v2/payments-history-table.tsx:161
+#: src/components/profile/v2/payments-history-table.tsx:153
 msgid "All currencies"
 msgstr "All currencies"
 
@@ -297,7 +297,7 @@ msgstr "All Statuses"
 msgid "AML Policy"
 msgstr "AML Policy"
 
-#: src/components/profile/v2/payments-history-table.tsx:208
+#: src/components/profile/v2/payments-history-table.tsx:197
 #: src/components/shared/v2/deposit.tsx:157
 #: src/components/shared/v2/withdraw.tsx:159
 msgid "Amount"
@@ -324,7 +324,7 @@ msgstr "Begin Now"
 #~ msgid "Best in the App"
 #~ msgstr "Best in the App"
 
-#: src/components/profile/profile/SingleUserBets.tsx:426
+#: src/components/profile/profile/SingleUserBets.tsx:428
 #: src/components/profile/v2/betting-history-table.tsx:373
 msgid "Bet amount"
 msgstr "Bet amount"
@@ -333,7 +333,7 @@ msgstr "Bet amount"
 #~ msgid "Bet Amount"
 #~ msgstr "Bet Amount"
 
-#: src/components/profile/profile/SingleUserBets.tsx:267
+#: src/components/profile/profile/SingleUserBets.tsx:269
 #: src/components/profile/v2/betting-history-table.tsx:214
 msgid "Bet Amount (Bet ID)"
 msgstr "Bet Amount (Bet ID)"
@@ -371,7 +371,7 @@ msgstr "Bientôt disponible"
 msgid "Blackjack"
 msgstr "Blackjack"
 
-#: src/components/profile/wallet.tsx:115
+#: src/components/profile/wallet.tsx:113
 msgid "Bonus money"
 msgstr "Bonus money"
 
@@ -389,7 +389,7 @@ msgstr "Canada"
 #~ msgid "Cancelled"
 #~ msgstr "Cancelled"
 
-#: src/components/profile/profile/SingleUserBets.tsx:339
+#: src/components/profile/profile/SingleUserBets.tsx:341
 #: src/components/profile/v2/betting-history-table.tsx:284
 msgid "Cashout"
 msgstr "Cashout"
@@ -487,16 +487,17 @@ msgstr "Date of Birth"
 msgid "December"
 msgstr "December"
 
-#~ msgid "Default"
-#~ msgstr "Default"
+#: src/components/profile/wallet.tsx:64
+msgid "Default"
+msgstr "Default"
 
-#: src/components/profile/wallet.tsx:96
+#: src/components/profile/wallet.tsx:94
 #: src/components/shared/v2/deposit.tsx:152
 #: src/components/shared/v2/deposit.tsx:203
 msgid "Deposit"
 msgstr "Deposit"
 
-#: src/components/profile/v2/payments-history-table.tsx:262
+#: src/components/profile/v2/payments-history-table.tsx:248
 msgid "DEPOSIT"
 msgstr "DEPOSIT"
 
@@ -658,7 +659,7 @@ msgstr "I agree to receive offers from our partners."
 msgid "I would like to receive news and offers."
 msgstr "I would like to receive news and offers."
 
-#: src/components/profile/v2/payments-history-table.tsx:205
+#: src/components/profile/v2/payments-history-table.tsx:194
 msgid "ID"
 msgstr "ID"
 
@@ -775,7 +776,7 @@ msgstr "Logging in..."
 #~ msgid "Login successful!"
 #~ msgstr "Login successful!"
 
-#: src/components/profile/profile/SingleUserBets.tsx:335
+#: src/components/profile/profile/SingleUserBets.tsx:337
 #: src/components/profile/v2/betting-history-table.tsx:280
 #: src/components/profile/v2/casino-history-table.tsx:232
 msgid "Lost"
@@ -857,8 +858,10 @@ msgstr "Next"
 msgid "Nexu"
 msgstr "Nexu"
 
+#: src/components/profile/profile/SingleUserBets.tsx:289
+#: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:184
-#: src/components/profile/v2/payments-history-table.tsx:232
+#: src/components/profile/v2/payments-history-table.tsx:219
 #: src/components/shared/v2/no-data-available.tsx:15
 msgid "No data available"
 msgstr "No data available"
@@ -866,8 +869,10 @@ msgstr "No data available"
 #~ msgid "No filters available"
 #~ msgstr "No filters available"
 
+#: src/components/profile/profile/SingleUserBets.tsx:289
+#: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:184
-#: src/components/profile/v2/payments-history-table.tsx:232
+#: src/components/profile/v2/payments-history-table.tsx:219
 msgid "No history found."
 msgstr "No history found."
 
@@ -956,12 +961,12 @@ msgstr "Payments"
 msgid "Payments History"
 msgstr "Payments History"
 
-#: src/components/profile/profile/SingleUserBets.tsx:435
+#: src/components/profile/profile/SingleUserBets.tsx:437
 #: src/components/profile/v2/betting-history-table.tsx:385
 msgid "Payout"
 msgstr "Payout"
 
-#: src/components/profile/profile/SingleUserBets.tsx:344
+#: src/components/profile/profile/SingleUserBets.tsx:346
 #: src/components/profile/v2/betting-history-table.tsx:290
 msgid "Pending"
 msgstr "Pending"
@@ -1066,7 +1071,7 @@ msgstr "Providers"
 msgid "Read More"
 msgstr "Read More"
 
-#: src/components/profile/wallet.tsx:102
+#: src/components/profile/wallet.tsx:100
 msgid "Real money"
 msgstr "Real money"
 
@@ -1198,8 +1203,9 @@ msgstr "Sent Messages"
 msgid "September"
 msgstr "September"
 
-#~ msgid "Set default"
-#~ msgstr "Set default"
+#: src/components/profile/wallet.tsx:64
+msgid "Set default"
+msgstr "Set default"
 
 #: src/components/shared/v2/header.tsx:522
 msgid "Show Balance"
@@ -1234,10 +1240,10 @@ msgstr "Sport Betting Terms"
 #~ msgid "Sports"
 #~ msgstr "Sports"
 
-#: src/components/profile/profile/SingleUserBets.tsx:273
+#: src/components/profile/profile/SingleUserBets.tsx:275
 #: src/components/profile/v2/betting-history-table.tsx:220
 #: src/components/profile/v2/casino-history-table.tsx:166
-#: src/components/profile/v2/payments-history-table.tsx:214
+#: src/components/profile/v2/payments-history-table.tsx:203
 msgid "Status"
 msgstr "Status"
 
@@ -1271,9 +1277,9 @@ msgstr "This wallet is already default"
 #~ msgid "time"
 #~ msgstr "time"
 
-#: src/components/profile/profile/SingleUserBets.tsx:270
+#: src/components/profile/profile/SingleUserBets.tsx:272
 #: src/components/profile/v2/betting-history-table.tsx:217
-#: src/components/profile/v2/payments-history-table.tsx:202
+#: src/components/profile/v2/payments-history-table.tsx:191
 msgid "Time"
 msgstr "Time"
 
@@ -1296,11 +1302,11 @@ msgstr "Today"
 msgid "Top Games"
 msgstr "Top Games"
 
-#: src/components/profile/wallet.tsx:72
+#: src/components/profile/wallet.tsx:71
 msgid "Total balance"
 msgstr "Total balance"
 
-#: src/components/profile/profile/SingleUserBets.tsx:413
+#: src/components/profile/profile/SingleUserBets.tsx:415
 #: src/components/profile/v2/betting-history-table.tsx:359
 msgid "Total odds"
 msgstr "Total odds"
@@ -1390,12 +1396,12 @@ msgstr "WEEKLY CASHBACK"
 #~ msgid "Win Amount"
 #~ msgstr "Win Amount"
 
-#: src/components/profile/wallet.tsx:89
+#: src/components/profile/wallet.tsx:87
 #: src/components/shared/v2/withdraw.tsx:154
 msgid "Withdraw"
 msgstr "Withdraw"
 
-#: src/components/profile/v2/payments-history-table.tsx:264
+#: src/components/profile/v2/payments-history-table.tsx:250
 msgid "WITHDRAW"
 msgstr "WITHDRAW"
 
@@ -1406,7 +1412,7 @@ msgstr "Withdraw initiated successfully!"
 #~ msgid "Withdraw is under review!"
 #~ msgstr "Withdraw is under review!"
 
-#: src/components/profile/profile/SingleUserBets.tsx:347
+#: src/components/profile/profile/SingleUserBets.tsx:349
 #: src/components/profile/v2/betting-history-table.tsx:293
 #: src/components/profile/v2/casino-history-table.tsx:224
 msgid "Won"

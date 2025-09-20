@@ -60,9 +60,8 @@ export default function Wallet() {
                   setDefaultWallet({
                     currency: w.slug.toUpperCase(),
                   });
-                }}
-              >
-                {w.default ? "Default" : "Set default"}
+                }}>
+                {w.default ? t`Default` : t`Set default`}
                 <InfoIcon className="ml-2 h-4 w-4" />
               </Button>
             </CardHeader>
@@ -84,8 +83,7 @@ export default function Wallet() {
                   className="flex-1 bg-gray-200"
                   variant="outline"
                   disabled={!w.limits.can_pay_with_now_payments}
-                  onClick={() => handleOpenWithdraw(w)}
-                >
+                  onClick={() => handleOpenWithdraw(w)}>
                   <Trans>Withdraw</Trans>
                 </Button>
                 <Button

@@ -18,12 +18,12 @@ import type { User } from "@/types/auth";
 import { CalendarIcon } from "lucide-react";
 import { useAppSelector } from "@/hooks/rtk";
 import { Button } from "@/components/ui/button";
-import Loading from "@/components/shared/v2/loading.tsx";
 import { Calendar } from "@/components/ui/calendar";
 import { currencyList } from "@/utils/currencyList";
 import { formatDateToDMY } from "@/utils/formatDate";
 import { Trans, useLingui } from "@lingui/react/macro";
 import CloseIcon from "@/assets/icons/close.svg?react";
+import Loading from "@/components/shared/v2/loading.tsx";
 import DateFilter from "@/components/shared/v2/date-filter";
 import type { Transaction } from "@/types/transactionHistory";
 import CheckMarkIcon from "@/assets/icons/check-mark.svg?react";
@@ -47,9 +47,7 @@ const PaymentsHistoryTable = () => {
 
   const [page, setPage] = useState(1);
   const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
-  const [selectedTransactionTypes, setSelectedTransactionTypes] = useState<
-    string[]
-  >([]);
+  const [selectedTransactionTypes, setSelectedTransactionTypes] = useState<string[]>([]);
   const [selectedDateFilter, setSelectedDateFilter] = useState<string>("");
 
   const [fetchData, { data, isLoading, error }] =
@@ -106,10 +104,8 @@ const PaymentsHistoryTable = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
         <Popover>
           <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
+            <Button variant="outline"
+              className="justify-start text-left font-normal bg-transparent text-accent-foreground">
               <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.startDate
                 ? format(dates.startDate, "dd/MM/yyyy")
@@ -123,8 +119,7 @@ const PaymentsHistoryTable = () => {
               selected={dates.startDate}
               onSelect={(date) =>
                 date && setDates((prev) => ({ ...prev, startDate: date }))
-              }
-            />
+              }/>
           </PopoverContent>
         </Popover>
 
@@ -132,8 +127,7 @@ const PaymentsHistoryTable = () => {
           <PopoverTrigger asChild>
             <Button
               variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
+              className="justify-start text-left font-normal bg-transparent text-accent-foreground">
               <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.endDate
                 ? format(dates.endDate, "dd/MM/yyyy")
@@ -147,16 +141,14 @@ const PaymentsHistoryTable = () => {
               selected={dates.endDate}
               onSelect={(date) =>
                 date && setDates((prev) => ({ ...prev, endDate: date }))
-              }
-            />
+              }/>
           </PopoverContent>
         </Popover>
 
         {currencyOptions && (
           <Select
             value={selectedCurrencies[0] ?? ""}
-            onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}
-          >
+            onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}>
             <SelectTrigger className="w-full placeholder:text-background text-background">
               <SelectValue placeholder={t`All currencies`} />
             </SelectTrigger>
@@ -170,12 +162,10 @@ const PaymentsHistoryTable = () => {
           </Select>
         )}
 
-        <Select
-          value={selectedTransactionTypes[0] ?? ""}
+        <Select value={selectedTransactionTypes[0] ?? ""}
           onValueChange={(val: string) =>
             setSelectedTransactionTypes(val ? [val] : [])
-          }
-        >
+          }>
                      <SelectTrigger className="w-full placeholder:text-background text-background">
 
             <SelectValue placeholder={t`All Actions`} />
@@ -192,8 +182,7 @@ const PaymentsHistoryTable = () => {
 
       <DateFilter
         selected={selectedDateFilter}
-        onSelect={handleDateFilterSelect}
-      />
+        onSelect={handleDateFilterSelect}/>
 
       <Table className="text-accent-foreground">
         <TableHeader className="bg-black/10 h-8">
@@ -225,10 +214,8 @@ const PaymentsHistoryTable = () => {
             </TableRow>
           ) : error || data?.transactions.length === 0 ? (
             <TableRow>
-              <TableCell
-                colSpan={5}
-                className="text-center py-4 text-accent-foreground"
-              >
+              <TableCell colSpan={5}
+                className="text-center py-4 text-accent-foreground">
                 {error ? t`No data available` : t`No history found.`}
               </TableCell>
             </TableRow>
@@ -256,8 +243,7 @@ const PaymentsHistoryTable = () => {
                           trx.type === "deposit"
                             ? "bg-green-100 text-green-700"
                             : "bg-red-100 text-red-700"
-                        }`}
-                      >
+                        }`}>
                         {trx.type.includes("deposit") ? (
                           <Trans>DEPOSIT</Trans>
                         ) : trx.type.includes("withdraw") ? (
@@ -287,8 +273,7 @@ const PaymentsHistoryTable = () => {
           <PaginationComponent
             totalPages={data.pagination.last_page}
             currentPage={page}
-            setPage={setPage}
-          />
+            setPage={setPage}/>
         </div>
       )}
     </div>
