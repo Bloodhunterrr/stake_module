@@ -33,13 +33,8 @@ const LanguageAccordion = () => {
                     </AccordionTrigger>
                     <AccordionContent  className={'py-0 '}>
                         {Object.entries(ALLOWED_LANGUAGES).map(([key, lang]) => (
-                            <button
-                                key={key}
-                                className={`text-left py-2 px-1 border-l-3  hover:bg-gray-100 w-full flex items-center justify-between ${
-                                    currentLang === key ? "font-bold  border-l-card" : "border-l-transparent"
-                                }`}
-                                onClick={() => handleChange(key as Language)}
-                            >
+                            <button key={key} onClick={() => handleChange(key as Language)}
+                                className={`text-left py-2 px-1 border-l-3 hover:bg-gray-100 w-full flex items-cent/er justify-between ${currentLang === key ? "font-bold  border-l-card" : "border-l-transparent"}`}>
                                 <span>{lang.name}</span>
                             </button>
                         ))}

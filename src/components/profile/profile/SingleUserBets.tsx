@@ -1,9 +1,9 @@
+import { format } from "date-fns";
+import { currencyList } from "@/utils/currencyList";
+import { formatDateToDMY } from "@/utils/formatDate";
 import { useEffect, useState, useMemo, Fragment } from "react";
 import {useNavigate, useParams, useSearchParams} from "react-router";
-import { format } from "date-fns";
 import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
-import { formatDateToDMY } from "@/utils/formatDate";
-import { currencyList } from "@/utils/currencyList";
 import {
     Table,
     TableBody,
@@ -12,7 +12,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import PaginationComponent from "@/components/shared/v2/pagination";
 import {
     Popover,
     PopoverTrigger,
@@ -20,9 +19,10 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {CalendarIcon, ChartNoAxesCombined, ChevronLeftIcon} from "lucide-react";
-import { Trans } from "@lingui/react/macro";
+import { Trans, useLingui } from "@lingui/react/macro";
 import Loading from "@/components/shared/v2/loading.tsx";
+import PaginationComponent from "@/components/shared/v2/pagination";
+import {CalendarIcon, ChartNoAxesCombined, ChevronLeftIcon} from "lucide-react";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 
 
@@ -123,6 +123,8 @@ const SingleUserBets = () => {
         4: { label: "Returned", color: "bg-[#355be2]" },
         1: { label: "Lost", color: "bg-red-500" },
     };
+
+    const { t } = useLingui();
 
     const formatTimestamp = (timestamp: string | Date) => {
         const date = new Date(timestamp);
@@ -284,7 +286,7 @@ const SingleUserBets = () => {
                     ) : isError || !data?.tickets?.data?.length ? (
                         <TableRow>
                             <TableCell colSpan={3} className="text-center py-4">
-                                {isError ? "No data available" : "No history found."}
+                                {isError ? t`No data available` : t`No history found.`}
                             </TableCell>
                         </TableRow>
                     ) : (

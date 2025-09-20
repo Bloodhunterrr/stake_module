@@ -231,7 +231,7 @@ const BettingHistoryTable = () => {
           ) : error || !data?.tickets?.length ? (
             <TableRow>
               <TableCell colSpan={3} className="text-center py-4">
-                {error ? "No data available" : "No history found."}
+                {error ? t`No data available` : t`No history found.`}
               </TableCell>
             </TableRow>
           ) : (
