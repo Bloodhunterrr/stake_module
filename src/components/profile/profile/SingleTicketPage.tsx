@@ -19,8 +19,8 @@ function SingleTicketPage() {
     const [searchParams , setSearchParams] = useSearchParams();
     const [data, setData] = useState<getSendSingleMessageResponse>()
     // Filters States
-    const start = (searchParams.get('startDate'))
-    const end = (searchParams.get('endDate'))
+    const start = (searchParams.get('startDate')) ?? new Date();
+    const end = (searchParams.get('endDate')) ?? new Date()
     const defaultUserWallet = (data?.user?.wallets.find((wallet : Wallet) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
     const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
     const [category, setCategory] = useState('')
@@ -241,7 +241,7 @@ function SingleTicketPage() {
                                         if(item.is_agent){
                                             navigate(`/account/tickets/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
                                         }else {
-                                            navigate(`/account/tickets/user/${item.id}`)
+                                            navigate(`/account/tickets/user/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
                                         }
                                     }}>
                                     <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>

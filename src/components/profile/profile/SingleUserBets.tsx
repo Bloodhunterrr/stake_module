@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, Fragment } from "react";
-import {useNavigate, useParams} from "react-router";
+import {useNavigate, useParams, useSearchParams} from "react-router";
 import { format } from "date-fns";
 import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
 import { formatDateToDMY } from "@/utils/formatDate";
@@ -58,9 +58,13 @@ interface Ticket {
 const SingleUserBets = () => {
     const { singleBetsId } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchParams] = useSearchParams();
+    const start = (searchParams.get('startDate')) ?? new Date();
+    const end = (searchParams.get('endDate')) ?? new Date()
+
     const [dates, setDates] = useState({
-        startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
-        endDate: new Date(),
+        startDate: new Date(start ?? ''),
+        endDate: new Date(end ?? ''),
     });
     const navigate = useNavigate();
     const [selectedCurrencies, setSelectedCurrencies] = useState<string>();
@@ -78,7 +82,7 @@ const SingleUserBets = () => {
         if (singleBetsId) {
             fetchSingleTicketData({
                 user_id: singleBetsId,
-                start_date: formatDateToDMY(dates.startDate),
+                start_date: formatDateToDMY(dates?.startDate),
                 end_date: formatDateToDMY(dates.endDate),
                 currency: (selectedCurrencies)?.toLowerCase(),
                 status: selectedStatuses,

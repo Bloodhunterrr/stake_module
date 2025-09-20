@@ -3,7 +3,7 @@ import {Popover, PopoverTrigger, PopoverContent,} from "@/components/ui/popover"
 import { useLazyGetSingleUsersTransactionQuery } from "@/services/authApi";
 import PaginationComponent from "@/components/shared/v2/pagination";
 import {CalendarIcon, ChevronLeftIcon} from "lucide-react";
-import { useNavigate, useParams } from "react-router";
+import {useNavigate, useParams, useSearchParams} from "react-router";
 import { useEffect, useState, Fragment} from "react";
 import { formatDateToDMY } from "@/utils/formatDate";
 import { Calendar } from "@/components/ui/calendar";
@@ -15,9 +15,12 @@ import Loading from "@/components/shared/v2/loading.tsx";
 const SingleUserTransaction = () => {
     const { singleBetsId } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchParams] = useSearchParams();
+    const start = (searchParams.get('startDate')) ?? new Date();
+    const end = (searchParams.get('endDate')) ?? new Date()
     const [dates, setDates] = useState({
-        startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
-        endDate: new Date(),
+        startDate: new Date(start ?? ''),
+        endDate: new Date(end ?? ''),
     });
     const navigate = useNavigate();
     const [selectedCurrencies, setSelectedCurrencies] = useState<string>();

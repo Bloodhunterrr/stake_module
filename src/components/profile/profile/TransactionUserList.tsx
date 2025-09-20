@@ -21,8 +21,9 @@ function SingleTicketPage() {
 
 
     // Filters States
-    const start = (searchParams.get('startDate'))
-    const end = (searchParams.get('endDate'))
+    const start = (searchParams.get('startDate')) ?? new Date();
+    const end = (searchParams.get('endDate')) ?? new Date()
+    console.log(new Date(NaN))
     const defaultUserWallet = (data?.user?.wallets?.find((wallet : any) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
     const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
     const [dates, setDates] = useState({
@@ -223,7 +224,7 @@ function SingleTicketPage() {
                                     className={'text-sm text-center h-7 items-center px-1 border-b border-b-popover flex '}
                                     onClick={()=>{
                                         if(item.is_player){
-                                            navigate(`/account/transactions/user/${item?.id}`)
+                                            navigate(`/account/transactions/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`)
                                             // ?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
                                         }else{
                                             navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
