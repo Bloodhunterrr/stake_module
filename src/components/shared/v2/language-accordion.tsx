@@ -7,6 +7,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import {Trans} from "@lingui/react/macro";
 
 const LanguageAccordion = () => {
     const { i18n } = useLingui();
@@ -26,7 +27,7 @@ const LanguageAccordion = () => {
                 <AccordionItem value="item-1">
                     <AccordionTrigger className={'flex px-2 py-0 flex-row hover:no-underline items-center '}>
                         <div className={'w-full h-9 flex items-end  relative'}>
-                            <p className={'absolute top-0 text-[10px]'}>Language</p>
+                            <p className={'absolute top-0 text-[10px]'}><Trans>Language</Trans></p>
                             <p>{ALLOWED_LANGUAGES[currentLang].name}</p>
                         </div>
                     </AccordionTrigger>

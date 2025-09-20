@@ -110,9 +110,6 @@ msgstr "Fillo Tani"
 msgid "Bet amount"
 msgstr "Shuma e bastit"
 
-#~ msgid "Bet Amount"
-#~ msgstr "Shuma e Bastit"
-
 #: src/components/profile/profile/SingleUserBets.tsx:267
 #: src/components/profile/v2/betting-history-table.tsx:214
 msgid "Bet Amount (Bet ID)"
@@ -121,9 +118,6 @@ msgstr "Shuma e Bastit (Bet ID)"
 #: src/components/profile/v2/casino-history-table.tsx:163
 msgid "Bet Amount (Game)"
 msgstr "Shuma e Bastit (Loja)"
-
-#~ msgid "Bet ID"
-#~ msgstr "ID e Bastit"
 
 #: src/components/shared/v2/header.tsx:330
 msgid "Bets"
@@ -294,8 +288,7 @@ msgstr "Vendos tekstin"
 msgid "Enter your details below to create an account."
 msgstr "Vendos detajet e tua më poshtë për të krijuar një llogari."
 
-#: src/components/shared/v2/login.tsx:86
-#: src/components/shared/v2/signup.tsx:94
+#: src/components/shared/v2/login.tsx:86 src/components/shared/v2/signup.tsx:94
 msgid "Enter your email"
 msgstr "Vendos email-in tënd"
 
@@ -406,6 +399,10 @@ msgstr "Keno & Lotari"
 msgid "KYC Policies"
 msgstr "Politikat KYC"
 
+#: src/components/shared/v2/language-accordion.tsx:30
+msgid "Language"
+msgstr "Gjuha"
+
 #: src/components/profile/profile/UserInfo.tsx:66
 msgid "Last Name"
 msgstr "Mbiemri"
@@ -455,9 +452,6 @@ msgstr "Dil"
 #: src/components/shared/v2/login.tsx:130
 msgid "Logging in..."
 msgstr "Duke hyr..."
-
-#~ msgid "Login successful!"
-#~ msgstr "Hyrja u krye me sukses!"
 
 #: src/components/profile/profile/SingleUserBets.tsx:335
 #: src/components/profile/v2/betting-history-table.tsx:280
@@ -809,9 +803,6 @@ msgstr "Shfaq Balancën"
 msgid "Sign Up"
 msgstr "Regjistrohu"
 
-#~ msgid "Something wrong happened. Try again later!"
-#~ msgstr "Diçka shkoi keq. Provo përsëri më vonë!"
-
 #: src/routes/casino/subCategoryGames.tsx:174
 msgid "Sort"
 msgstr "Rendit"
@@ -942,8 +933,7 @@ msgstr "Virtuale"
 msgid "Virtual Games"
 msgstr "Lojëra Virtuale"
 
-#: src/components/shared/v2/header.tsx:507
-#: src/routes/account/wallet.tsx:9
+#: src/components/shared/v2/header.tsx:507 src/routes/account/wallet.tsx:9
 msgid "Wallet"
 msgstr "Portofol"
 
@@ -954,9 +944,6 @@ msgstr "Adresa e Portofolit"
 #: src/components/casino/lobbyBannerSlider.tsx:72
 msgid "WEEKLY CASHBACK"
 msgstr "KESHBAK JAVOR"
-
-#~ msgid "Win"
-#~ msgstr "Fitore"
 
 #: src/components/profile/wallet.tsx:89
 #: src/components/shared/v2/withdraw.tsx:154
@@ -995,3 +982,18 @@ msgstr "Jeni regjistruar me sukses."
 #: src/components/shared/v2/slot.tsx:33
 msgid "Your balance is 0"
 msgstr "Balanca juaj është 0"
+
+#~ msgid "Bet Amount"
+#~ msgstr "Shuma e Bastit"
+
+#~ msgid "Bet ID"
+#~ msgstr "ID e Bastit"
+
+#~ msgid "Login successful!"
+#~ msgstr "Hyrja u krye me sukses!"
+
+#~ msgid "Something wrong happened. Try again later!"
+#~ msgstr "Diçka shkoi keq. Provo përsëri më vonë!"
+
+#~ msgid "Win"
+#~ msgstr "Fitore"

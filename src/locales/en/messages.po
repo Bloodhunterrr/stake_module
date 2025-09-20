@@ -705,6 +705,10 @@ msgstr "Keno & Lottery"
 msgid "KYC Policies"
 msgstr "KYC Policies"
 
+#: src/components/shared/v2/language-accordion.tsx:30
+msgid "Language"
+msgstr "Language"
+
 #~ msgid "Last name"
 #~ msgstr "Last name"
 
