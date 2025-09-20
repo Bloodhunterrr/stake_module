@@ -215,9 +215,9 @@ function TicketPage() {
                                                 }
                                             }}>
                                     <p className={'w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won}</p>
-                                    <p className={'w-full h-full flex items-center justify-center '}>{item.total_lost}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake.toFixed(2)}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won.toFixed(2)}</p>
+                                    <p className={'w-full h-full flex items-center justify-center '}>{item.total_lost.toFixed(2)}</p>
                                 </div>
                             })
                     }
