@@ -55,11 +55,10 @@ const Sport: React.FC = () => {
   const playUrl =
     iframeResp?.play_url ?? (iframeResp as any)?.data?.play_url ?? null;
 
-  const isNoCategoryOrSportsbook =
-    !activeCategory || activeCategory.is_sportbook;
 
   // TODO
-  if (activeCategory?.id === 2) {
+
+    if (activeCategory?.id === 2) {
     return (
       <iframe
         id="sportbook"
@@ -110,14 +109,15 @@ const Sport: React.FC = () => {
     );
   }
 
+
   return (
     <iframe
       id="sportbook"
       title="Sportbook"
       src={playUrl}
       className={cn("w-full h-[calc(100svh-64px)] transition-all duration-300", {
-        "h-[calc(100svh-64px)] lg:[calc(100svh-64px)]": optionalSideBarOpen,
-        "h-[calc(100svh-36px)] transition-all duration-300 -mt-2": isNoCategoryOrSportsbook && !isDesktop
+        "h-[calc(100svh-110px)] lg:[calc(100svh-64px)]": optionalSideBarOpen,
+        // "h-[calc(100svh-36px)] transition-all duration-300 -mt-2": isNoCategoryOrSportsbook && !isDesktop
       })}
       allow="clipboard-read; clipboard-write; autoplay; fullscreen"
     />

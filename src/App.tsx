@@ -4,12 +4,12 @@ import { useTheme } from "@/hooks/useTheme";
 import { ToastContainer } from "react-toastify";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { useGetMainQuery } from "@/services/mainApi";
+// import { useGetMainQuery } from "@/services/mainApi";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import Header from "@/components/shared/v2/header.tsx";
 import TitleUpdater from "@/components/title-updater.tsx";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import Loading from "@/components/shared/v2/loading.tsx";
+import React, { useEffect, useRef, useState } from "react";
+// import Loading from "@/components/shared/v2/loading.tsx";
 import Sidebar from "./components/shared/v2/side-bar";
 // import { useParams } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const isDesktop = useIsDesktop(1280);
   const isDesktopForSidebar = useIsDesktop(1024);
-  const { data, error, isLoading } = useGetMainQuery();
+  // const { data, error, isLoading } = useGetMainQuery();
   const location = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
   // const { categorySlug } = useParams<{ categorySlug: string }>();
@@ -30,33 +30,32 @@ const App: React.FC = () => {
     setSideBarOpen(false);
   }, [location.pathname]);
 
+// const isNoCategoryOrSportsbook = useMemo(() => {
+//   const pathParts = location.pathname.split("/").filter(Boolean);
+//   // True only for `/` or `/:categorySlug`
+//   if (pathParts.length === 0) return true; // root
+//   if (pathParts.length === 1) {
+//     const cat = data?.find((el) => el.slug === pathParts[0]);
+//     return !(!cat || !cat.is_sportbook);
+//   }
+//
+//   return false;
+// }, [location.pathname, data]);
 
-
-const isNoCategoryOrSportsbook = useMemo(() => {
-  const pathParts = location.pathname.split("/").filter(Boolean);
-  // True only for `/` or `/:categorySlug`
-  if (pathParts.length === 0) return true; // root
-  if (pathParts.length === 1) {
-    // const cat = data?.find((el) => el.slug === pathParts[0]);
-    // return !cat || cat.is_sportbook;
-      return true
-  }
-
-  return true;
-}, [location.pathname, data]);
+ const isNoCategoryOrSportsbook = false
 
   useEffect(() => {
     setOptionalSideBarOpen(!isNoCategoryOrSportsbook);
   }, [isNoCategoryOrSportsbook]);
 
 
-  if (error || isLoading) {
-    return (
-      <section className="min-h-screen flex items-center justify-center">
-        <Loading />
-      </section>
-    );
-  }
+  // if (error || isLoading) {
+  //   return (
+  //     <section className="min-h-screen flex items-center justify-center">
+  //       <Loading />
+  //     </section>
+  //   );
+  // }
 
   return (
     <div className="bg-background text-primary-foreground">
