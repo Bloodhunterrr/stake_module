@@ -252,3 +252,7 @@ export interface CreateUserResponse {
     message: string;
     data: CreateUserData;
 }
+export interface ChangePasswordRequest {
+    user_id: number;
+    password: string;
+}

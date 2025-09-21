@@ -11,7 +11,7 @@ import type {
     AuthMeResponse,
     AuthResponse,
     BlockRequest,
-    BlockResponse, CreateUserRequest,
+    BlockResponse, ChangePasswordRequest, CreateUserRequest,
     CreateUserResponse,
     getSendSingleMessageRequest,
     getSendSingleMessageResponse,
@@ -244,6 +244,16 @@ export const authApi = createApi({
                 body: data
             })
         }),
+        changeUserPassword: builder.mutation<CreateUserResponse, ChangePasswordRequest>({
+            query: (params) => ({
+                url: `/agent/users/${params.user_id}/password`,
+                method: 'PUT',
+                body: {
+                    password: params.password,
+                },
+            }),
+        }),
+
     }),
 });
 
@@ -275,4 +285,5 @@ export const {
     useLazyGetSingleUsersTransactionQuery,
     useSendCreditToWalletMutation,
     useCreateUserMutation,
+    useChangeUserPasswordMutation,
 } = authApi;
