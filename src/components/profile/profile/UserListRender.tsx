@@ -41,8 +41,12 @@ function UserItem({
             >
 
                 <div
-                    onClick={()=>{
-                        navigate(`edit/${user.id}`)
+                    onClick={() => {
+                        if (hasChildren) {
+                            toggleOpen(user.id);
+                        } else if (user.is_agent) {
+                            handleChildClick(user.id);
+                        }
                     }}
                     className={'flex items-center  truncate w-full justify-start gap-x-3'}>
                     <p className={'min-w-32 flex items-center gap-x-1.5 flex-row'}>
