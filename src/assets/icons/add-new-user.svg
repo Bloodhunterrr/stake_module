@@ -1,0 +1,35 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 38 36">
+    <defs>
+        <style>
+            .cls-1, .cls-2 {
+            stroke: #979797;
+            }
+            .cls-1, .cls-2, .cls-3, .cls-4 {
+            fill: #fdffff;
+            }
+            .cls-5 {
+            fill: #eef0f0;
+            stroke-width: 0px;
+            }
+            .cls-2 {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            }
+            .cls-3 {
+            fill-rule: evenodd;
+            }
+            .cls-3, .cls-4 {
+            stroke: #9c9c9c;
+            }
+        </style>
+    </defs>
+    <path class="cls-3"
+          d="M16.5,13.5c4.4,0,8.4,1.5,11.3,3.9,2.9,2.4,4.7,5.6,4.7,9.3s-.3,2.7-.9,3.7c-.6,1-1.5,1.8-2.7,2.4-3,1.5-7.4,1.7-12.4,1.7s-9.5-.2-12.4-1.7c-1.2-.6-2.1-1.4-2.7-2.4-.6-1-.9-2.2-.9-3.7,0-3.6,1.8-6.9,4.7-9.3,2.9-2.4,6.9-3.9,11.3-3.9Z"></path>
+    <ellipse class="cls-5" cx="16.5" cy="10" rx="5.5" ry="7"></ellipse>
+    <circle class="cls-4" cx="16.5" cy="7.5" r="7"></circle>
+    <circle class="cls-5" cx="26.7" cy="26.3" r="9.7"></circle>
+    <circle class="cls-1" cx="27.5" cy="25.2" r="9.2"></circle>
+    <circle class="cls-5" cx="27.5" cy="25.2" r="2.9"></circle>
+    <line class="cls-2" x1="27.5" y1="19.9" x2="27.5" y2="30.5"></line>
+    <line class="cls-2" x1="22.2" y1="25.2" x2="32.8" y2="25.2"></line>
+</svg>

@@ -1,5 +1,6 @@
 import { UserCircle } from "lucide-react";
 import CasinoIcon from "@/assets/icons/casino-icon.svg";
+import AddNewUser from "@/assets/icons/add-new-user.svg";
 import MessagesIcon from "@/assets/icons/messages-icon.svg";
 import PaymentsIcon from "@/assets/icons/payments-icon.svg";
 import BetHistoryIcon from "@/assets/icons/bet-history-icon.svg";
@@ -332,10 +333,10 @@ const ProfileDropdown = ({
       show: true,
     },
     {
-      icon: PaymentsIcon,
-      label: <Trans>Payments</Trans>,
-      path: user.is_agent ? "/account/agent/payments" : "/account/payments",
-      show: true,
+      icon: AddNewUser,
+      label: <Trans>Add New User</Trans>,
+      path: "/account/users/create",
+      show: user.is_agent,
     },
     {
       icon: UserSettingsIcon,
@@ -349,17 +350,23 @@ const ProfileDropdown = ({
       path: "/account/change-password",
       show: true,
     },
-    {
-      icon: MessagesIcon,
-      label: <Trans>Messages</Trans>,
-      path: "/account/notifications",
-      show: true,
-    },
+    // {
+    //   icon: MessagesIcon,
+    //   label: <Trans>Messages</Trans>,
+    //   path: "/account/notifications",
+    //   show: true,
+    // },
     {
       icon: MessagesIcon,
       label: <Trans>Reports</Trans>,
       path: "/account/reports",
       show: user.is_agent,
+    },
+    {
+      icon: PaymentsIcon,
+      label: <Trans>Payments</Trans>,
+      path: user.is_agent ? "/account/agent/payments" : "/account/payments",
+      show: true,
     },
   ];
 
@@ -487,7 +494,7 @@ const ProfileDropdown = ({
                       className="flex flex-col focus:bg-transparent cursor-pointer justify-end"
                       onClick={() => navigate(item.path)}
                     >
-                      <img src={item.icon} alt={item.path} />
+                      <img src={item.icon} alt={item.path} className={'size-9'}/>
                       <span className="text-xs">{item.label}</span>
                     </DropdownMenuItem>
                   );
@@ -500,6 +507,14 @@ const ProfileDropdown = ({
             >
               <Trans>Profile</Trans>
             </DropdownMenuItem>
+
+            <DropdownMenuItem
+              className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/70 hover:bg-black/10"
+              onClick={() => navigate("/account/notifications")}
+            >
+              <Trans>Messages</Trans>
+            </DropdownMenuItem>
+
             <DropdownMenuItem
               className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/70 hover:bg-black/10"
               onClick={() => navigate("/account/wallet")}

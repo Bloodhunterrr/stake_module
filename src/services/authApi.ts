@@ -9,9 +9,20 @@ import type {DepositRequest, DepositResponse} from '@/types/deposits';
 import type {WithdrawRequest, WithdrawResponse} from '@/types/withdraws';
 import type {
     AuthMeResponse,
-    AuthResponse, BlockRequest, BlockResponse, getSendSingleMessageRequest, getSendSingleMessageResponse,
-    LoginRequest, MessageRequest, MessageResponse,
-    ReportRequest, ReportResponse, SingleMessageResponse, TransactionRequest, TransactionResponse,
+    AuthResponse,
+    BlockRequest,
+    BlockResponse, CreateUserRequest,
+    CreateUserResponse,
+    getSendSingleMessageRequest,
+    getSendSingleMessageResponse,
+    LoginRequest,
+    MessageRequest,
+    MessageResponse,
+    ReportRequest,
+    ReportResponse,
+    SingleMessageResponse,
+    TransactionRequest,
+    TransactionResponse,
     UsersRequest,
     UsersResponse
 } from "@/types/auth.ts";
@@ -226,6 +237,13 @@ export const authApi = createApi({
                 body: data
             })
         }),
+        createUser: builder.mutation<CreateUserResponse, CreateUserRequest>({
+            query: (data) => ({
+                url: '/agent/users',
+                method: "POST",
+                body: data
+            })
+        }),
     }),
 });
 
@@ -256,4 +274,5 @@ export const {
     useLazyGetTransactionsQuery,
     useLazyGetSingleUsersTransactionQuery,
     useSendCreditToWalletMutation,
+    useCreateUserMutation,
 } = authApi;

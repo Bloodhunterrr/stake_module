@@ -25,6 +25,7 @@ import TransactionPage from "@/components/profile/profile/TransactionPage.tsx";
 import TransactionUserList from "@/components/profile/profile/TransactionUserList.tsx";
 import SingleUserTransaction from "@/components/profile/profile/SingleUserTransaction.tsx";
 import AgentPayments from "@/components/profile/profile/AgentPayments.tsx";
+import CreateUser from "@/components/shared/v2/user/create-user.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -77,7 +78,7 @@ const routes = createBrowserRouter(
              { path: "agent/payments", element: <AgentPayments /> },
 
              { path: "users/transaction/:userId", element: <TransactionList /> },
-             { path: "users/create", element: <EditUser /> },
+             { path: "users/create", element: <CreateUser /> },
              { path: "users/reports", element: <Reports /> },
              { path: "notifications", element: <Messages />,},
              //  TODO => Agent new paths

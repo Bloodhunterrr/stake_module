@@ -231,4 +231,24 @@ export interface AuthState {
     accessToken: string | null;
     user: any | null;
 }
-  
+
+
+export interface CreateUserRequest {
+    username: string;
+    name: string;
+    email: string;
+    password?: string;
+    wallet_types: string[];
+    default_wallet_type: string;
+}
+
+export interface CreateUserData {
+    message: string;
+    user: User;
+}
+
+export interface CreateUserResponse {
+    success: boolean;
+    message: string;
+    data: CreateUserData;
+}
