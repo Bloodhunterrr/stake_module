@@ -70,11 +70,6 @@ const routes = createBrowserRouter(
             { path: "payments", element: <PaymentsHistoryPage /> },
             { path: "general", element: <UserInfo /> },
 
-
-
-
-
-
               //AGENT PATHS
              { path: "users", element: <UserListRender />,},
              { path: "users/edit/:userId", element: <EditUser /> },

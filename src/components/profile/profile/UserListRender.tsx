@@ -36,14 +36,15 @@ function UserItem({
             "border-none" : hasChildren && isOpen
         })}>
             <div
-                className={cn("w-full grid grid-cols-4 pl-2 justify-between items-center cursor-pointer py-1.5", {
+                className={cn("w-full grid  grid-cols-4 pl-2 justify-between items-center cursor-pointer py-1.5", {
                 })}
-                onClick={()=>{
-                    navigate(`edit/${user.id}`)
-                }}
             >
 
-                <div className={'flex items-center  truncate w-full justify-start gap-x-3'}>
+                <div
+                    onClick={()=>{
+                        navigate(`edit/${user.id}`)
+                    }}
+                    className={'flex items-center  truncate w-full justify-start gap-x-3'}>
                     <p className={'min-w-32 flex items-center gap-x-1.5 flex-row'}>
                         <span className={cn('size-2 rounded-full  bg-destructive ',{
                             'bg-card' : !user.is_blocked
@@ -52,13 +53,21 @@ function UserItem({
                         <span>{childrens === 0 ? "" : `(${childrens})`}</span>
                     </p>
                 </div>
-                <div className={'text-center lg:text-start'}>
+                <div
+                    onClick={()=>{
+                        navigate(`edit/${user.id}`)
+                    }}
+                    className={'text-center lg:text-start'}>
                     {(Number((euroBalance.balance ?? 0) / 100)).toLocaleString("en-EN", {
                         minimumFractionDigits: euroBalance.decimal_places,
                         maximumFractionDigits: euroBalance.decimal_places,
                     })}
                 </div>
-                <div className={'text-center lg:text-start'}>
+                <div
+                    onClick={()=>{
+                        navigate(`edit/${user.id}`)
+                    }}
+                    className={'text-center lg:text-start'}>
                     {(Number((otherBalance.balance ?? 0) / 100)).toLocaleString("en-EN", {
                         minimumFractionDigits: otherBalance.decimal_places,
                         maximumFractionDigits: otherBalance.decimal_places,
