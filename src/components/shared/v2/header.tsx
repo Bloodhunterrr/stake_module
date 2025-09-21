@@ -144,33 +144,31 @@ export default function Header(props: HeaderProps) {
           )}
         >
           <div
-            className={cn("flex items-center", {
-              "justify-start": !props.isNoCategoryOrSportsbook || isDesktop,
-              "w-12": props.isNoCategoryOrSportsbook && !isDesktop,
-            })}
+              className={cn("flex items-center", {
+                "justify-start": !props.isNoCategoryOrSportsbook || isDesktop,
+                "w-12": props.isNoCategoryOrSportsbook && !isDesktop,
+              })}
           >
             {!props.isNoCategoryOrSportsbook || isDesktop ? (
-              <Button
-                variant="ghost"
-                className="p-0 hover:bg-transparent"
-                onClick={() =>
-                  props.setOpenOptionalSideBar(!props.openOptionalSideBar)
-                }
-              >
-                <img src={logo} alt="logo" className="h-[16px]" />
-              </Button>
+                <Button
+                    variant="ghost"
+                    className="p-0 hover:bg-transparent"
+                    onClick={() => props.toggleSideBar(true)}
+                >
+                  <img src={logo} alt="logo" className="h-[16px]" />
+                </Button>
             ) : null}
           </div>
 
           {props.isNoCategoryOrSportsbook && !isDesktop && (
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <img
-                src={logoMobileSportbook}
-                alt="logo"
-                className="h-[36px] mt-2"
-                onClick={() => props.toggleSideBar(true)}
-              />
-            </div>
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <img
+                    src={logoMobileSportbook}
+                    alt="logo"
+                    className="h-[36px] mt-2"
+                    onClick={() => props.setOpenOptionalSideBar(!props.openOptionalSideBar)}
+                />
+              </div>
           )}
           <div className="hidden xl:flex items-center space-x-4">
             {data?.map((R) =>
