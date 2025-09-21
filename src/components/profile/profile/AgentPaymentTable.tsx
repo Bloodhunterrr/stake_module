@@ -283,28 +283,28 @@ const AgentPaymentTable = () => {
                     <div className="flex flex-col justify-between items-center bg-black/10 p-4 text-white">
                         {/* Total Deposit row */}
                         <div className="flex flex-row justify-between w-full">
-                            <span className="font-bold">
-                              <Trans>Total Deposit:</Trans>
-                            </span>
-                            <span>{data.summary.total_deposit}</span>
+    <span className="font-bold">
+      Total Deposit:
+    </span>
+                            <span>{data.summary.total_deposit.toFixed(2)}</span>
                         </div>
 
                         {/* Total Withdrawal row */}
                         <div className="flex flex-row justify-between w-full">
-                            <span className="font-bold">
-                              <Trans>Total Withdrawal:</Trans>
-                            </span>
-                            <span>{data.summary.total_withdraw}</span>
+    <span className="font-bold">
+      Total Withdrawal:
+    </span>
+                            <span>{data.summary.total_withdraw.toFixed(2)}</span>
                         </div>
 
                         {/* Total row */}
                         <div className="flex flex-row justify-between w-full">
-                            <span className="font-bold">
-                              <Trans>Total:</Trans>
-                            </span>
+    <span className="font-bold">
+      Total:
+    </span>
                             <span>
-                              {data.summary.total_deposit - data.summary.total_withdraw}
-                            </span>
+      {(data.summary.total_deposit - data.summary.total_withdraw).toFixed(2)}
+    </span>
                         </div>
                     </div>
                 )}
