@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Loading from "@/components/shared/v2/loading.tsx";
-import {useLazyGetSingleUserQuery, useGetSendSingleMessageMutation , usePutBlockUserMutation} from '@/services/authApi.ts';
+import {
+    useLazyGetSingleUserQuery,
+    useGetSendSingleMessageMutation,
+    useSendCreditToWalletMutation,
+    usePutBlockUserMutation,
+} from '@/services/authApi.ts';
 import {useNavigate, useParams} from "react-router";
 import type {UsersResponse, Wallet} from "@/types/auth.ts";
 import {ChevronLeftIcon} from "lucide-react";
@@ -24,6 +29,7 @@ function UserListRender() {
     const navigate = useNavigate();
     const [data, setData] = useState<UsersResponse['user'] | null>(null)
     const [fetchUserList, { isLoading, isError, isFetching }] = useLazyGetSingleUserQuery();
+    const [transferCredit] = useSendCreditToWalletMutation();
     const [sendMessage] = useGetSendSingleMessageMutation()
     const [putBlockUser] = usePutBlockUserMutation();
     const [checked, setChecked] = useState(Boolean(data?.is_blocked === 0));
@@ -31,13 +37,17 @@ function UserListRender() {
         subject : "",
         content :  ""
     })
+    const [walletInput, setWalletInput] = useState<any>()
+    const [triggerUserData, setTriggerUserData] = useState(false)
 
    useEffect(() => {
         fetchUserList({ user_id: (Number(userId ?? 0)) }).then((data: any) => {
             setData(data?.data);
             setChecked(Boolean(data?.data?.is_blocked === 0));
         });
-    }, []);
+    }, [triggerUserData]);
+
+
 
     const handleSwitchChange = async (value: boolean) => {
         setChecked(value);
@@ -80,6 +90,17 @@ function UserListRender() {
             })
         })
     }
+
+    const transferCreditFunction = ({user_id , wallet_slug , amount} : any) =>{
+        transferCredit({
+            "recipient_id": user_id,
+            "wallet_slug": wallet_slug,
+            "amount": amount
+        }).unwrap().then(() =>{
+            setTriggerUserData(true)
+        })
+    }
+
 
     return ( isFetching ? <p>Loading...</p>  :  <div className="min-h-screen text-muted-foregound bg-popover ">
                 <div className={'h-10  flex  border-b border-popover items-center'}>
@@ -154,11 +175,38 @@ function UserListRender() {
                                 return  <div className={cn('h-12 flex items-center px-2 justify-between',{
                                    "border-b border-b-popover" : index !== (length-1)
                                 })}>
-                                         <p>{wallet.name}</p>
-                                         <p>{(Number(Number(wallet.balance ?? 0) / 100)).toLocaleString("en-EN", {
-                                             minimumFractionDigits: wallet.decimal_places,
-                                             maximumFractionDigits: wallet.decimal_places,
-                                         })}</p>
+                                    <Dialog>
+                                        <DialogTrigger className={'w-full h-full text-start flex flex-row items-center justify-between'}>
+                                            <>
+                                                <p>{wallet.name}</p>
+                                                <p>{(Number(Number(wallet.balance ?? 0) / 100)).toLocaleString("en-EN", {
+                                                    minimumFractionDigits: wallet.decimal_places,
+                                                    maximumFractionDigits: wallet.decimal_places,
+                                                })}</p>
+                                            </>
+                                        </DialogTrigger>
+                                        <DialogContent
+                                            closeButtonClassName={"size-4"}
+                                            className={'border-none text-accent'}>
+                                            <DialogHeader>
+                                                <DialogTitle className={'w-full text-center'}>Deposit / Withdraw {wallet.name} from {(data && data?.username) ?? ''}</DialogTitle>
+                                            </DialogHeader>
+                                            <Input placeholder={"+/- to deposit or withdraw"} value={walletInput} className={'border-popover'} onInput={(event : React.ChangeEvent<HTMLInputElement>)=>{
+                                                setWalletInput(event.target.value)
+                                            }} />
+                                            <Button className={'bg-chart-2 hover:bg-chart-2'} onClick={()=>{
+                                                transferCreditFunction({
+                                                    wallet_slug : wallet?.slug,
+                                                    user_id : userId ?? 0,
+                                                    amount : walletInput ?? 0
+                                                })
+                                                console.log(walletInput)
+                                                setWalletInput('')
+                                            }}>
+                                                Send
+                                            </Button>
+                                        </DialogContent>
+                                    </Dialog>
                                     </div>
                             })
                         }

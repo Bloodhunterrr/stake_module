@@ -219,6 +219,13 @@ export const authApi = createApi({
                 params
             }),
         }),
+        sendCreditToWallet: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/agent/transactions/transfer',
+                method: "POST",
+                body: data
+            })
+        }),
     }),
 });
 
@@ -248,4 +255,5 @@ export const {
     useLazyGetSingleUsersTicketsQuery,
     useLazyGetTransactionsQuery,
     useLazyGetSingleUsersTransactionQuery,
+    useSendCreditToWalletMutation,
 } = authApi;
