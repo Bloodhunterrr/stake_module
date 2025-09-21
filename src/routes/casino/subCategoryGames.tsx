@@ -289,14 +289,14 @@ const SubcategoryGames = () => {
                 categoryId={subcategory?.id}
                 order_by={isSortingEnabled ? "name" : "order"}
                 onTotalChange={setTotalGames}
-                gameDynamicClass="grid grid-cols-2 md:grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
+                gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
               />
             ) : (
               <GameListRenderer
                 categoryId={subcategory?.id}
                 order_by={isSortingEnabled ? "name" : "order"}
                 onTotalChange={setTotalGames}
-                gameDynamicClass="grid grid-cols-2 md:grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
+                gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
               />
             )}
           </div>
