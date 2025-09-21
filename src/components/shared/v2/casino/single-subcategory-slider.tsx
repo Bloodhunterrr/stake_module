@@ -76,7 +76,7 @@ const SubcategorySlider = ({
       {subcategories.length > 1 && (
         <section
           className={cn(
-            "sticky transition-all duration-300 bg-background top-16 z-10 px-4",
+            "sticky transition-all duration-300 bg-background top-10 z-10 px-4",
             {
               "top-27 lg:top-16": optionalSideBarOpen,
             }

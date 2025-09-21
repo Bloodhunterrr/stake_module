@@ -30,7 +30,7 @@ const ProvidersGames = () => {
           <div className="category-games-section">
             <div className="items-grid-wrapper">
               <div
-                className={cn("sticky top-16 bg-background  z-10 py-2 ", {
+                className={cn("sticky top-10 bg-background  z-10 py-2 ", {
                   "top-27 lg:top-16": optionalSideBarOpen,
                 })}
               >
