@@ -24,6 +24,7 @@ import TicketPage from "@/components/profile/profile/TicketPage.tsx";
 import TransactionPage from "@/components/profile/profile/TransactionPage.tsx";
 import TransactionUserList from "@/components/profile/profile/TransactionUserList.tsx";
 import SingleUserTransaction from "@/components/profile/profile/SingleUserTransaction.tsx";
+import AgentPayments from "@/components/profile/profile/AgentPayments.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -68,14 +69,22 @@ const routes = createBrowserRouter(
             { path: "bets", element: <BetsHistoryPage /> },
             { path: "payments", element: <PaymentsHistoryPage /> },
             { path: "general", element: <UserInfo /> },
-            { path: "users", element: <UserListRender />,},
+
+
+
+
+
+
               //AGENT PATHS
+             { path: "users", element: <UserListRender />,},
              { path: "users/edit/:userId", element: <EditUser /> },
+
+             { path: "agent/payments", element: <AgentPayments /> },
+
              { path: "users/transaction/:userId", element: <TransactionList /> },
              { path: "users/create", element: <EditUser /> },
              { path: "users/reports", element: <Reports /> },
              { path: "notifications", element: <Messages />,},
-
              //  TODO => Agent new paths
              { path : "tickets"  , element: <TicketPage /> },
              { path : "tickets/:userTicketId"  , element: <SingleTicketPage /> },
@@ -85,7 +94,6 @@ const routes = createBrowserRouter(
              { path : "reports/:userTransactionId"  , element: <TransactionUserList /> },
               //  TODO => Transactions Path
               { path : "transactions/user/:singleBetsId"  , element: <SingleUserTransaction /> }
-
           ],
         },
 

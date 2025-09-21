@@ -334,7 +334,7 @@ const ProfileDropdown = ({
     {
       icon: PaymentsIcon,
       label: <Trans>Payments</Trans>,
-      path: "/account/payments",
+      path: user.is_agent ? "/account/agent/payments" : "/account/payments",
       show: true,
     },
     {

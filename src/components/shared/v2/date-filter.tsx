@@ -10,13 +10,15 @@ import {
   endOfYear,
 } from "date-fns";
 import { Trans } from "@lingui/react/macro";
+import {cn} from "@/lib/utils.ts";
 
 type DateFilterProps = {
   selected: string;
   onSelect: (startDate: Date, endDate: Date, label: string) => void;
+  className?: string
 };
 
-const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect }) => {
+const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect , className }) => {
   const today = new Date();
 
   const filtersTranslations: Record<string, any> = {
@@ -78,18 +80,17 @@ const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect }) => {
     },
   ];
 
-  console.log(selected);
 
   return (
     <div className="flex w-full overflow-x-auto border-b">
       {filters.map((f) => (
         <div
           key={f.key}
-          className={`flex-1 text-center py-2 cursor-pointer ${
+          className={cn(`flex-1 text-center py-2 cursor-pointer ${
             selected === f.key
               ? "border-b-card border-b text-black"
               : "text-gray-700"
-          }`}
+          }`,className)}
           onClick={() => onSelect(f.start, f.end, f.key)}
         >
           {f.label}
