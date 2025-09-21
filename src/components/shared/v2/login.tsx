@@ -12,9 +12,9 @@ import { Card, CardContent } from '@/components/ui/card.tsx';
 
 const loginSchema = z.object({
     email: z
-        .string()
-        .min(1, {message: 'Email is required.'})
-        .email({message: 'Please enter a valid email address.'}),
+        .string(),
+        // .min(1, {message: 'Email is required.'})
+        // .email({message: 'Please enter a valid email address.'}),
     password: z
         .string()
         .min(1, {message: 'Password is required.'})
@@ -67,7 +67,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
         } else if (error?.status === 404 && errorMsg === 'User not found') {
             setError('email', {
                 type: 'manual',
-                message: 'User with this email not found.',
+                message: 'User with this email/username not found.',
             });
         }
     };
@@ -83,7 +83,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                 <Input
                                     id={'email'}
                                     type={'text'}
-                                    placeholder={t`Enter your email`}
+                                    placeholder={t`Enter your email/username`}
                                     className="placeholder:text-xs text-xs h-12 bg-primary-foreground border-background/50 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('email')}
                                     autoFocus={false}
