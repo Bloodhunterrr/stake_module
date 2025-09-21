@@ -265,13 +265,13 @@ const SingleUserBets = () => {
             <Table className="bg-popover hover:bg-popover text-white">
                 <TableHeader className="bg-chart-2 text-white  h-8">
                     <TableRow className={'hover:bg-transparent border-popover'}>
-                        <TableHead className="h-8 text-white">
+                        <TableHead className="h-8 pr-0 max-w-1/3 text-white">
                             <Trans>Bet Amount (Bet ID)</Trans>
                         </TableHead>
-                        <TableHead className="h-8 text-white ">
+                        <TableHead className="h-8 px-0 text-white text-center max-w-1/3">
                             <Trans>Time</Trans>
                         </TableHead>
-                        <TableHead className="text-right h-8 text-white">
+                        <TableHead className="text-right h-8 text-white max-w-1/3">
                             <Trans>Status</Trans>
                         </TableHead>
                     </TableRow>
@@ -306,50 +306,50 @@ const SingleUserBets = () => {
                                         return (
                                             <Fragment key={ticket.id}>
                                                 <TableRow
-                                                    className="cursor-pointer bg-poover border-popover hover:bg-poover "
+                                                    className="cursor-pointer w-full bg-red-200 bg-poover border-popover hover:bg-poover "
                                                     onClick={() =>
                                                         setExpandedTicketId(
                                                             expandedTicketId === ticket.id ? null : ticket.id,
                                                         )
                                                     }
                                                 >
-                                                    <TableCell className="py-0 ">
+                                                    <TableCell className="py-0 max-w-1/3 ">
                                                         <div className="flex flex-col leading-tight">
                                                                 <span>
                                                                   {Number(ticket?.stake_amount).toFixed(2)}{" "}
                                                                     {currencyList[ticket.currency]?.symbol_native}
                                                                 </span>
                                                             <span
-                                                                className="text-[12px] block max-w-[170px] sm:max-w-full truncate">
+                                                                className="text-[12px] block max-w-[120px] sm:max-w-full truncate">
                                                                 {ticket?.user_name}
                                                                 </span>
                                                         </div>
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell className={'max-w-1/3'}>
                                                         {format(new Date(ticket.created_at), "HH:mm:ss")}
                                                         <span
-                                                            className="text-[12px] block max-w-[170px] sm:max-w-full truncate">
+                                                            className="text-[12px] block max-w-[120px] sm:max-w-full truncate">
                                                                   ({ticket.ext_id})
                                                                 </span>
                                                     </TableCell>
-                                                    <TableCell className="flex justify-end items-center gap-2">
-                                                        {label.includes("Lost") ? (
-                                                            <Trans>Lost</Trans>
-                                                        ) : label.includes("Returned") ? (
-                                                            <span className="space-x-1">
+                                                    <TableCell className="flex justify-end  items-center gap-2">
+                                                            {label.includes("Lost") ? (
+                                                                <Trans>Lost</Trans>
+                                                            ) : label.includes("Returned") ? (
+                                                                <span className="space-x-1">
                                                              <span>
                                                             <Trans>Cashout</Trans>
                                                           </span>
                                                           <span>{ticket.won_amount}</span>{" "} {currencyList[ticket.currency]?.symbol_native}
                                                         </span>
-                                                                                    ) : label.includes("Pending") ? (
-                                                                                        <Trans>Pending</Trans>
-                                                                                    ) : (
-                                                                                        <span>
+                                                            ) : label.includes("Pending") ? (
+                                                                <Trans>Pending</Trans>
+                                                            ) : (
+                                                                <span>
                                                           <Trans>Won</Trans> {ticket.won_amount}{" "}
-                                                                                            {currencyList[ticket.currency]?.symbol_native}
+                                                                    {currencyList[ticket.currency]?.symbol_native}
                                                         </span>
-                                                        )}
+                                                            )}
                                                         <span
                                                             className={`w-3 h-3 rounded-full ${status.color}`}
                                                         />

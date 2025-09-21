@@ -116,55 +116,51 @@ export default function CreateUser() {
             <h2 className="text-2xl font-bold mb-4">Create New User</h2>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div>
+                <div className={'flex flex-col gap-y-0.5'}>
                     <Input
                         id="username"
                         type="text"
                         placeholder="Username"
                         name="username"
                         value={formData.username}
-                        className={"border-none bg-white rounded-t-lg rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
+                        className={"border-none text-background bg-accent border-b border-b-red-200 rounded-t-lg rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div>
                     <Input
                         id="name"
                         placeholder="Name"
                         type="text"
                         name="name"
                         value={formData.name}
-                        className={"border-none bg-white rounded-t-lg rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
+                        className={"border-none  text-background bg-accent rounded-b-lg rounded-t-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                <div>
+                <div className={'flex flex-col gap-y-0.5'}>
                     <Input
                         id="email"
                         placeholder="Email"
                         type="email"
                         name="email"
                         value={formData.email}
-                        className={"border-none  bg-white rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
+                        className={"border-none text-background   bg-accent rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         onChange={handleChange}
                         required
                     />
-                </div>
-                <div>
                     <Input
                         id="password"
                         type="password"
                         name="password"
                         placeholder="Password"
-                        className={"border-none bg-white rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
+                        className={"border-none text-background bg-accent rounded-t-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         value={formData.password}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                <div>
+                <div className={'py-2'}>
                     <Label>Choose wallet:</Label>
                     <div className="flex flex-wrap gap-4 mt-2">
                         {currencyOptions.map(option => (
@@ -180,7 +176,7 @@ export default function CreateUser() {
                     </div>
                 </div>
                 <div>
-                    <Label htmlFor="default-wallet">Chose one these wallet as default:</Label>
+                    <Label htmlFor="default-wallet" className={'py-1 mb-1'}>Chose one these wallet as default:</Label>
                     <Select
                         onValueChange={handleDefaultWalletChange}
                         value={formData.default_wallet_type}
@@ -189,9 +185,9 @@ export default function CreateUser() {
                         <SelectTrigger id="default-wallet" className={'w-full'}>
                             <SelectValue placeholder="Select a default wallet"/>
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className={'border-none bg-background rounded-none placeholder:text-white'}>
                             {defaultWalletOptions.map(option => (
-                                <SelectItem key={option.value} value={option.value}>
+                                <SelectItem key={option.value} value={option.value} className={'focus:text-background text-accent rounded-none'}>
                                     {option.label}
                                 </SelectItem>
                             ))}
@@ -199,7 +195,7 @@ export default function CreateUser() {
                     </Select>
                 </div>
                 <Button type="submit"
-                        className={"h-auto w-full bg-[#5fe8bd] focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none hover:bg-[#5fe8bd]/80 text-white justify-center py-2"}
+                        className={"h-auto w-full bg-chart-2 text-accent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none hover:bg-chart-2/80 justify-center py-2"}
                         disabled={isLoading}>
                     {isLoading ? 'Creating...' : 'Create User'}
                 </Button>
