@@ -83,7 +83,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                 <Input
                                     id={'email'}
                                     type={'text'}
-                                    placeholder={t`Enter your email/username`}
+                                    placeholder={`Enter your email/username`} // TODO add translate
                                     className="placeholder:text-xs text-xs h-12 bg-primary-foreground border-background/50 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('email')}
                                     autoFocus={false}
