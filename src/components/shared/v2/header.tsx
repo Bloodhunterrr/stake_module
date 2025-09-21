@@ -100,7 +100,7 @@ export default function Header(props: HeaderProps) {
           {
             "h-11 xl:h-0 opacity-100 px-2 w-full bg-background":
               props.openOptionalSideBar && !props.isNoCategoryOrSportsbook,
-            "h-8 xl:h-0 opacity-100 px-2 w-full ":
+              "h-11 xl:h-0 opacity-100 px-2 w-full bg-background   ":
               props.openOptionalSideBar && props.isNoCategoryOrSportsbook,
           }
         )}

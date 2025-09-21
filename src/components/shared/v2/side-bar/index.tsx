@@ -161,9 +161,9 @@ export default function Sidebar({
         <Sheet open={sideBarOpen} onOpenChange={toggleSideBar} >
           <SheetTrigger
             asChild
-            className={cn({
+            className={cn("transition-all duration-300",{
               "-mt-2.5": !optionalSideBarOpen,
-              "mt-5": optionalSideBarOpen,
+              "mt-10": optionalSideBarOpen,
             })}
           >
             <Button
