@@ -48,6 +48,7 @@ interface Ticket {
     betID: string;
     created_at: string;
     status: number;
+    event_count : number;
     details: {
         result_payload?: { action: string };
         vendor_status: string;
@@ -125,7 +126,6 @@ const SingleUserBets = () => {
     };
 
     const { t } = useLingui();
-
     const formatTimestamp = (timestamp: string | Date) => {
         const date = new Date(timestamp);
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -152,6 +152,21 @@ const SingleUserBets = () => {
         )}:${String(date.getUTCMinutes()).padStart(2, "0")}`;
     };
     const user = (data?.tickets?.data?.find((user : any) => user.user_name)?.user_name ?? "")
+
+    const calculateCommission = (value : number, event_count : number )  =>{
+        switch (true) {
+            case (event_count === 1) : {
+                return value * 0.04
+            }
+            case (event_count > 1 && event_count <= 2) : {
+                return value * 0.06
+            }
+            case (event_count > 2) : {
+                return value * 0.08
+            }
+        }
+    }
+
     return (
         <div className="space-y-3 min-h-screen container mx-auto">
             <div className={'h-10  flex  border-b border-popover items-center'}>
@@ -258,20 +273,19 @@ const SingleUserBets = () => {
                         </SelectContent>
                     </Select>
                 </div>
-
-
             </div>
-
             <Table className="bg-popover hover:bg-popover text-white">
                 <TableHeader className="bg-chart-2 text-white  h-8">
                     <TableRow className={'hover:bg-transparent border-popover'}>
-                        <TableHead className="h-8 pr-0 max-w-1/3 text-white">
+                        <TableHead className="h-8 px-0 max-w-[100px] text-white">
                             <Trans>Bet Amount (Bet ID)</Trans>
                         </TableHead>
-                        <TableHead className="h-8 px-0 text-white text-center max-w-1/3">
+                        <TableHead className="h-8 px-0 text-white text-center max-w-1/4">
                             <Trans>Time</Trans>
                         </TableHead>
-                        <TableHead className="text-right h-8 text-white max-w-1/3">
+                        <TableHead className="text-right h-8 text-white max-w-1/4">
+                        </TableHead>
+                        <TableHead className="text-right h-8 text-white max-w-1/4">
                             <Trans>Status</Trans>
                         </TableHead>
                     </TableRow>
@@ -279,13 +293,13 @@ const SingleUserBets = () => {
                 <TableBody>
                     {isLoading || isFetching ? (
                         <TableRow>
-                            <TableCell colSpan={3} className="text-center py-4">
+                            <TableCell colSpan={4} className="text-center py-4">
                                 <Loading />
                             </TableCell>
                         </TableRow>
                     ) : isError || !data?.tickets?.data?.length ? (
                         <TableRow>
-                            <TableCell colSpan={3} className="text-center py-4">
+                            <TableCell colSpan={4} className="text-center py-4">
                                 {isError ? t`No data available` : t`No history found.`}
                             </TableCell>
                         </TableRow>
@@ -294,7 +308,7 @@ const SingleUserBets = () => {
                           return  (
                                 <Fragment key={date}>
                                     <TableRow className="bg-background/30  border-popover hover:bg-background/30 text-white">
-                                        <TableCell colSpan={3}>{date}</TableCell>
+                                        <TableCell colSpan={4}>{date}</TableCell>
                                     </TableRow>
                                     {tickets?.map((ticket: Ticket) => {
                                         const status = STATUS_MAP[ticket.status] || STATUS_MAP[1];
@@ -306,15 +320,15 @@ const SingleUserBets = () => {
                                         return (
                                             <Fragment key={ticket.id}>
                                                 <TableRow
-                                                    className="cursor-pointer w-full bg-red-200 bg-poover border-popover hover:bg-poover "
+                                                    className="cursor-pointer h-12 w-full px-0 bg-red-200 bg-poover border-popover hover:bg-poover "
                                                     onClick={() =>
                                                         setExpandedTicketId(
                                                             expandedTicketId === ticket.id ? null : ticket.id,
                                                         )
                                                     }
                                                 >
-                                                    <TableCell className="py-0 max-w-1/3 ">
-                                                        <div className="flex flex-col leading-tight">
+                                                    <TableCell className="p-0 max-w-[20%] ">
+                                                        <div className="flex px-2 flex-col leading-tight">
                                                                 <span>
                                                                   {Number(ticket?.stake_amount).toFixed(2)}{" "}
                                                                     {currencyList[ticket.currency]?.symbol_native}
@@ -325,14 +339,34 @@ const SingleUserBets = () => {
                                                                 </span>
                                                         </div>
                                                     </TableCell>
-                                                    <TableCell className={'max-w-1/3'}>
-                                                        {format(new Date(ticket.created_at), "HH:mm:ss")}
-                                                        <span
-                                                            className="text-[12px] block max-w-[120px] sm:max-w-full truncate">
-                                                                  ({ticket.ext_id})
+
+
+                                                    <TableCell  colSpan={2} className={'max-w-1/2  py-0 px-0'}>
+                                                        <span className={'flex flex-row shrink-0 gap-1'}>
+                                                            <span>
+                                                                {format(new Date(ticket.created_at), "HH:mm:ss")}
+                                                                <span
+                                                                    className="text-[12px] block max-w-[100px] truncate sm:max-w-full">
+                                                                      ({ticket.ext_id})
+                                                                    </span>
+                                                            </span>
+                                                            <span className={'w-1/2 flex text-xs items-center justify-evenly flex-col'}>
+                                                                <span>{ticket?.user_name}</span>
+                                                                {
+                                                                    ticket.status !== 4 &&
+                                                                    <span>
+                                                                    <span>({(calculateCommission(Number(ticket?.stake_amount ?? 0), Number(ticket?.event_count ?? 0) ) ?? 0).toFixed(2)}</span>
+                                                                    <span>{currencyList[ticket.currency]?.symbol_native})</span>
                                                                 </span>
+                                                                }
+
+                                                            </span>
+                                                        </span>
                                                     </TableCell>
-                                                    <TableCell className="flex justify-end  items-center gap-2">
+
+
+
+                                                    <TableCell className="flex justify-end  text-xs items-center gap-2">
                                                             {label.includes("Lost") ? (
                                                                 <Trans>Lost</Trans>
                                                             ) : label.includes("Returned") ? (
@@ -358,7 +392,7 @@ const SingleUserBets = () => {
 
                                                 {expandedTicketId === ticket.id && (
                                                     <TableRow className="bg-popover border-popover hover:bg-popover p-0">
-                                                        <TableCell colSpan={3} className="p-0">
+                                                        <TableCell colSpan={4} className="p-0">
                                                             <div className="text-sm">
                                                                 {ticket.details?.odds?.map((odd: Odd) => {
                                                                     const oddStatus = STATUS_MAP[odd.status] || STATUS_MAP[1];

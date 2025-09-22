@@ -263,14 +263,23 @@ function TicketPage() {
               <p className="w-full h-full flex items-center justify-center text-center"></p>
             </div>
           ) : group.data?.children?.length ? (
-            group.data.children.map((item: any, index: number) => (
-              <ReportRow
-                key={index}
-                item={item}
-                dates={dates}
-                navigate={navigate}
-              />
-            ))
+            group.data.children.map((item: any, index: number) => {
+                if((item.total_played + item.total_stake + item.total_won + item.total_lost) !== 0){
+                    return  <ReportRow
+                        key={index}
+                        item={item}
+                        dates={dates}
+                        navigate={navigate}
+                    />
+                }else {
+                    if(index === 0){
+                        return <div className="text-center flex justify-center items-center text-sm h-[28px]">
+                            No data available
+                        </div>
+                    }
+
+                }
+            })
           ) : (
             <div className="text-center flex justify-center items-center text-sm h-[28px]">
               No data available
@@ -521,25 +530,28 @@ function TicketPage() {
               value={openAccordionItems}
               onValueChange={(vals) => setOpenAccordionItems(vals)}
             >
-              {data.map((group: any) => (
-                <AccordionItem
-                  key={group.id}
-                  value={String(group.id)}
-                  className="border-none py-2"
-                >
-                  <AccordionTrigger className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0">
-                    {group.category}
-                  </AccordionTrigger>
-                  <AccordionContent className="p-0">
-                    <ReportTable
-                      group={group}
-                      dates={dates}
-                      navigate={navigate}
-                      isFetching={isFetching}
-                    />
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
+              {data.map((group: any) => {
+                  // console.log(group.data.children.find(user => (user.total_lost + user.total_played + user.total_won) !== 0))
+                  return (
+                      <AccordionItem
+                          key={group.id}
+                          value={String(group.id)}
+                          className="border-none py-2"
+                      >
+                          <AccordionTrigger className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0">
+                              {group.category}
+                          </AccordionTrigger>
+                          <AccordionContent className="p-0">
+                              <ReportTable
+                                  group={group}
+                                  dates={dates}
+                                  navigate={navigate}
+                                  isFetching={isFetching}
+                              />
+                          </AccordionContent>
+                      </AccordionItem>
+                  )
+              })}
 
               {extraCategories.map((cat: any) => (
                 <AccordionItem
