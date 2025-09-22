@@ -433,22 +433,19 @@ const ProfileDropdown = ({
                 }}
                 className={
                   "border py-0 px-2 text-base rounded-none bg-transparent focus:bg-transparent h-11  flex"
-                }
-              >
-                <DownloadIcon className={"text-background  size-5"} />
-                Deposit
+                }>
+                    <DownloadIcon className={"text-background  size-5"} />
+                    <Trans>Deposit</Trans>
               </DropdownMenuItem>
             </div>
             <div
-              className={"flex flex-row items-center justify-between w-full"}
-            >
+              className={"flex flex-row items-center justify-between w-full"}>
               {otherWallets?.map((w: Wallet) => (
                 <div key={w.slug} className="w-fit">
                   <p
                     className={
                       "h-[14px] flex items-center justify-start w-full truncate text-[11px]"
-                    }
-                  >
+                    }>
                     {w.name}
                   </p>
                   <span className="text-xl font-semibold">
@@ -471,14 +468,12 @@ const ProfileDropdown = ({
           <TabsList className="rounded-none w-full py-0 h-14">
             <TabsTrigger
               value="profile"
-              className=" cursor-pointer data-[state=active]:border-b-card data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:font-semibold text-sm font-light rounded-none"
-            >
+              className=" cursor-pointer data-[state=active]:border-b-card data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:font-semibold text-sm font-light rounded-none">
               <Trans>Profile</Trans>
             </TabsTrigger>
             <TabsTrigger
               value="preferences"
-              className="cursor-pointer data-[state=active]:border-b-card data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:font-semibold text-sm font-light rounded-none"
-            >
+              className="cursor-pointer data-[state=active]:border-b-card data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:font-semibold text-sm font-light rounded-none">
               <Trans>Preferences</Trans>
             </TabsTrigger>
           </TabsList>
@@ -491,8 +486,7 @@ const ProfileDropdown = ({
                     <DropdownMenuItem
                       key={i}
                       className="flex flex-col focus:bg-transparent cursor-pointer justify-end"
-                      onClick={() => navigate(item.path)}
-                    >
+                      onClick={() => navigate(item.path)}>
                       <img src={item.icon} alt={item.path} className={'size-9'}/>
                       <span className="text-xs">{item.label}</span>
                     </DropdownMenuItem>
