@@ -92,18 +92,21 @@ const AgentPaymentTable = () => {
 
     return (
         <div className="space-y-3">
-            <div className=" gap-2 md:gap-4 items-center px-4 md:px-0">
-                <div className="flex gap-2 justify-between">
+            <div className=" gap-2 md:gap-4 items-center  md:px-0">
+                <div className={'w-full border-b border-b-popover pb-2 flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button variant="outline"
-                                className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
-                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 "/>
+                            <Button
+                                variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
+                            >
+                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar className="w-full"
+                            <Calendar
+                                className="w-full"
                                 mode="single"
                                 selected={dates.startDate}
                                 onSelect={(date) =>
@@ -111,17 +114,21 @@ const AgentPaymentTable = () => {
                                 }/>
                         </PopoverContent>
                     </Popover>
-
                     <Popover>
+
                         <PopoverTrigger asChild>
-                            <Button variant="outline"
-                                className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
-                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4"/>
+                            <Button
+                                variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
+                            >
+                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar className="w-full" mode="single"
+                            <Calendar
+                                className="w-full"
+                                mode="single"
                                 selected={dates.endDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({...prev, endDate: date}))
@@ -132,10 +139,10 @@ const AgentPaymentTable = () => {
                     <Select value={selectedCurrencies}
                         onValueChange={(value: string) => {
                             setSelectedCurrencies(value);
-                            setPage(1); // Reset page on filter change
+                            setPage(1);
                         }}>
                         <SelectTrigger
-                            className={"h-8! w-full rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
+                            className={"h-8! w-1/4 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
                             <SelectValue placeholder={t`Currencies`}/>
                         </SelectTrigger>
                         <SelectContent className="border-none bg-background rounded-none">
@@ -228,7 +235,7 @@ const AgentPaymentTable = () => {
                         ) : (
                             Object.entries(groupedTransactions).map(([date, txs]) => (
                                 <Fragment key={date}>
-                                    <TableRow className="bg-black/80 hover:bg-black/80 text-white h-[30px]">
+                                    <TableRow className="bg-background  border-t border-popover hover:bg-background/80 text-white h-[30px]">
                                         <TableCell colSpan={4} className="py-0 px-2 font-medium">
                                             {date}
                                         </TableCell>
@@ -263,9 +270,9 @@ const AgentPaymentTable = () => {
                     </TableBody>
                 </Table>
                 {data && data.transactions.length > 0 && (
-                    <div className="flex flex-col justify-between items-center bg-black/10 p-4 text-white">
+                    <div className="flex flex-col gap-y-1 justify-between items-center bg-black/10 p-4 text-white">
                         {/* Total Deposit row */}
-                        <div className="flex flex-row justify-between w-full border-b  border-b-destructive/80">
+                        <div className="flex flex-row py-2 justify-between w-full border-b  border-b-destructive/80">
                             <span className="font-bold">
                                 <Trans>
                                     Total Deposit:
@@ -275,7 +282,7 @@ const AgentPaymentTable = () => {
                         </div>
 
                         {/* Total Withdrawal row */}
-                        <div className="flex flex-row justify-between w-full  border-b border-b-destructive/80">
+                        <div className="flex flex-row justify-between w-full py-2  border-b border-b-destructive/80">
                             <span className="font-bold">
                                 <Trans>
                                     Total Withdrawal:

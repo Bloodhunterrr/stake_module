@@ -2,38 +2,11 @@ import {Trans} from "@lingui/react/macro";
 import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
-
-interface User {
-    username: string;
-    first_name: string;
-    last_name: string;
-    phone: string;
-    email: string;
-    date_of_birth: string;
-    gender: string;
-    country: string;
-    city: string;
-    address: string;
-    zip_code: string;
-}
-
-const mockUser: User = {
-    username: 'johndoe',
-    first_name: 'John',
-    last_name: 'Doe',
-    phone: '555-123-4567',
-    email: 'john.doe@example.com',
-    date_of_birth: '01-01-1990',
-    gender: 'Male',
-    country: 'United States',
-    city: 'New York',
-    address: '123 Main St',
-    zip_code: '10001',
-};
+import {useAppSelector} from "@/hooks/rtk.ts";
 
 export default function UserInfo() {
-    const user = mockUser;
 
+    const user = useAppSelector((s) => s.auth?.user);
     return (
         <div className={'bg-white '}>
             <div

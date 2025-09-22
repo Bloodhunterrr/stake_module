@@ -16,8 +16,9 @@ function TicketPage() {
     const [data, setData] = useState<any>()
     const [category, setCategory] = useState('')
 
+
     // Filters
-    const [selectedCurrencies, setSelectedCurrencies] = useState('')
+    const [selectedCurrencies, setSelectedCurrencies] = useState('EUR')
     const [dates, setDates] = useState({
         startDate: searchParams.get('startDate') ?? new Date(),
         endDate:  searchParams.get('endDate') ?? new Date(),
@@ -205,7 +206,7 @@ function TicketPage() {
                                     return <Fragment key={index}></Fragment>
                                 }
                                 return <div key={index}
-                                            className={'text-sm text-center h-7 items-center border-popover px-1 border-b flex '}
+                                            className={'text-center h-7 text-xs items-center border-popover px-1 border-b flex '}
                                             onClick={() => {
                                                 if(!item.is_agent){
                                                     navigate(`/account/tickets/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);

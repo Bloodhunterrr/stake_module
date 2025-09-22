@@ -173,10 +173,10 @@ export default function CreateUser() {
                     <Select onValueChange={handleDefaultWalletChange}
                         value={formData.default_wallet_type}
                         disabled={defaultWalletOptions.length === 0}>
-                        <SelectTrigger id="default-wallet" className={'w-full'}>
-                            <SelectValue placeholder="Select a default wallet"/>
+                        <SelectTrigger id="default-wallet" className={'w-full disabled:text-white!'}>
+                            <SelectValue placeholder="Select a default wallet "/>
                         </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none placeholder:text-white'}>
+                        <SelectContent className={'border-none bg-background rounded-none placeholder:text-accent '}>
                             {defaultWalletOptions.map(option => (
                                 <SelectItem key={option.value} value={option.value} className={'focus:text-background text-accent rounded-none'}>
                                     {option.label}

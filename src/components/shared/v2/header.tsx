@@ -203,6 +203,11 @@ export default function Header(props: HeaderProps) {
           </div>
 
           <div className="flex items-center space-x-2">
+              {
+                  user && user.is_agent && <div className={'capitalize text-sm select-none'}>
+                      {user.roles[0].name}
+                  </div>
+              }
             {user ? (
               <main
                 className={cn("relative flex-col mx-2 w-full h-full", {
@@ -218,6 +223,7 @@ export default function Header(props: HeaderProps) {
                   isDesktop={isDesktop}
                 />
 
+
                 {user && defaultWallet && showBalance && (
                   <div
                     className={cn(
@@ -231,6 +237,7 @@ export default function Header(props: HeaderProps) {
                       }
                     )}
                   >
+
                     <span>
                       {(+defaultWallet.balance / 100).toLocaleString("en-EN", {
                         minimumFractionDigits: defaultWallet.decimal_places,

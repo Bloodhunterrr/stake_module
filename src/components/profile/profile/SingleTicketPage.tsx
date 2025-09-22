@@ -234,7 +234,7 @@ function SingleTicketPage() {
                             return (
                                 <div
                                     key={i}
-                                    className={'text-sm text-center h-7 items-center px-1 border-b border-b-popover flex '}
+                                    className={'text-xs text-center h-7 items-center px-1 border-b border-b-popover flex '}
                                     onClick={()=>{
                                         if(item.is_agent){
                                             navigate(`/account/tickets/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
