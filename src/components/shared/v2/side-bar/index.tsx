@@ -163,7 +163,7 @@ export default function Sidebar({
             asChild
             className={cn("transition-all duration-300",{
               "-mt-2.5": !optionalSideBarOpen,
-              "mt-10": optionalSideBarOpen,
+              "mt-8.5": optionalSideBarOpen,
             })}
           >
             <Button

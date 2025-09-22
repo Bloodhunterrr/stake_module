@@ -114,9 +114,9 @@ const AllProvidersList = () => {
         <section>
           <div className="container mx-auto px-2 lg:px-0">
             <div
-              className={cn("sticky top-10 bg-background z-10 py-2", {
-                "top-27 lg:top-10": optionalSideBarOpen,
-              })}
+                className={cn("sticky top-10 lg:top-16 bg-background  z-10 py-2 ", {
+                    "top-22 lg:top-16": optionalSideBarOpen,
+                })}
             >
               <div className="py-3 flex items-center justify-between">
 
