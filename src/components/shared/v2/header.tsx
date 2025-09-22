@@ -270,13 +270,13 @@ export default function Header(props: HeaderProps) {
         <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
           <DialogContent
             showCloseButton={false}
-            overlayClassName={cn("mt-16", {
-              "mt-[110px] lg:mt-16": props.openOptionalSideBar,
+            overlayClassName={cn("mt-[44px]", {
+              "mt-[88px] lg:mt-16": props.openOptionalSideBar,
             })}
             className={cn(
-              "p-0 lg:w-[450px]  top-[64px] translate-y-0 rounded-none bg-secondary",
+              "p-0 lg:w-[450px]  top-[44px] translate-y-0 rounded-none bg-secondary",
               {
-                "top-[110px] lg:top-[64px]": props.openOptionalSideBar,
+                "top-[88px] lg:top-[64px]": props.openOptionalSideBar,
               }
             )}
             onOpenAutoFocus={(e) => e.preventDefault()}
