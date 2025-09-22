@@ -6,6 +6,7 @@ import {formatDateToDMY} from "@/utils/formatDate.ts";
 import {useEffect, useState} from 'react';
 import {cn} from "@/lib/utils.ts";
 import {useAppSelector} from "@/hooks/rtk.ts";
+import { Send , CheckCheck } from 'lucide-react';
 
 
 import {
@@ -17,6 +18,7 @@ import {
 } from "@/components/ui/dialog"
 import type {MessageResponse, SingleMessageResponse} from "@/types/auth.ts";
 import {Trans} from "@lingui/react/macro";
+import {useNavigate} from "react-router-dom";
 
 interface MessagesState {
     sent: MessageResponse[];
@@ -28,6 +30,8 @@ function Messages() {
         sent : [],
         received : []
     })
+
+    const navigate = useNavigate()
 
     // import {useAppSelector} from "@/hooks/rtk.ts";
     const user = useAppSelector((state) => state.auth.user);
@@ -52,7 +56,6 @@ function Messages() {
             fetchMessages({ type: 'received' })
                 .unwrap()
                 .then((response: any) => {
-                    console.log(response)
                     setMessages({
                         ...messages,
                         received: response ?? [],
@@ -66,15 +69,17 @@ function Messages() {
         setRefresh(false);
     }, [refresh]);
 
-    console.log(isError)
-    console.log(messages)
-
+    if(isError){
+        navigate('/')
+    }
 
 
     return (
         <div className={'bg-background'}>
            <section className={'container mx-auto flex flex-row'}>
-               <Tabs defaultValue="received" className="w-full px-2 pt-2">
+               <Tabs onValueChange={()=>{
+                   setRefresh(true)
+               }} defaultValue="received" className="w-full px-2  pt-2">
                    <TabsList>
                        <p className={'data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4 cursor-pointer min-w-20'} onClick={()=>setRefresh(true)}>{isFetching ? <Loading/> : <Trans>Refresh</Trans>}</p>
                        {
@@ -89,18 +94,16 @@ function Messages() {
                                <div className={cn('w-full h-full  flex flex-col gap-y-2 p-2' , {
                                    "animate-pulse min-h-12 bg-accent/40" : isFetching
                                })}>
-                                   <div className={'flex flex-col gap-y-3'}>
+                                   <div className={'flex flex-col py-2 gap-y-3'}>
                                        { isLoading  ? <Loading/> :
                                            messages?.sent.length > 0 && messages.sent.map((message:any) => {
-                                               console.log(message)
-                                               return <SingleMessage message={message} />
+                                               return <SingleMessage message={message} type={'sent'} />
                                            })
                                        }
                                    </div>
 
                                </div>
                            }
-
                        </div>
                    </TabsContent>
                    <TabsContent value="received">
@@ -108,11 +111,13 @@ function Messages() {
                            <div className={cn('w-full h-full' , {
                                "animate-pulse min-h-12 bg-accent/40" : isFetching
                            })}>
+                               <div className={'flex flex-col py-2 gap-y-3'}>
                                { isLoading  ? <Loading/> :
                                    messages?.received.length > 0 ? messages.received.map((message:any) => {
-                                       return <SingleMessage message={message} />
+                                       return <SingleMessage message={message} type={'received'} />
                                    }) : <p className={'py-2 pl-2 bg-popover '}><Trans>Not Received any messages yet</Trans></p>
                                }
+                               </div>
                            </div>
                        </div>
                    </TabsContent>
@@ -125,19 +130,38 @@ function Messages() {
 export default Messages;
 
 
-const SingleMessage = ({message} : {message : any}) => {
+const SingleMessage = ({message , type} : {message : any , type : string}) => {
     const [fetchSingleMessage , {isError , isLoading}] = useLazyGetSingleMessageQuery()
     const [data, setData] = useState<SingleMessageResponse | undefined>(undefined);
     return (
-        <div className={'flex items-center gap-x-3  p-1 rounded border'} onClick={()=>{
+        <div className={'flex items-center gap-x-3 py-2 px-2 rounded-lg border-[1px] border-popover'} onClick={()=>{
             fetchSingleMessage({id : message.id}).unwrap().then((data : SingleMessageResponse ) =>{
                 setData(data)
             })
         }}>
             <Dialog>
                 <DialogTrigger className={'w-full flex flex-row items-center gap-x-4'}>
-                    <p>{formatDateToDMY(message?.created_at)}</p>
+                    <div>
+                        {
+                                type === 'received' &&  <p className={'size-10 relative rounded-full shrink-0 border '}>
+                                <span className={'absolute h-fit top-1/2 left-1/2 -translate-x-1/2 leading-0 -translate-y-1/2'}>{message?.sender?.name?.charAt(0)}</span>
+                            </p>
+                        }
+
+                    </div>
+                    <p className={'text-xs flex flex-col text-start gap-y-1'}>
+                        {
+                            type === 'received' && <span>
+                            {message?.sender?.name}
+                            </span>
+                        }
+                        {formatDateToDMY(message?.created_at).replaceAll("-" , '/')}
+                    </p>
                     <p className={'w-full text-start truncate'}>{message?.subject}</p>
+
+                    {
+                        type === "sent" ? <Send className={'text-card shrink-0'} size={20}/> : <CheckCheck className={'text-card shrink-0'} size={20}/>
+                    }
                 </DialogTrigger>
                 <DialogContent className={'border-none text-accent'}>
                     <DialogHeader className={'text-accent text-start'}>
