@@ -62,21 +62,17 @@ const ProviderSliderFromApi = ({
     <section>
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
-          <h2
-            className={`font-bold flex-1 ${isDesktop ? "text-lg" : "text-sm"}`}
-          >
+          <h2 className={`font-bold flex-1 ${isDesktop ? "text-lg" : "text-sm"}`}>
             <Trans>Providers</Trans>
           </h2>
 
-          <button
-            onClick={() =>
+          <button onClick={() =>
               navigate(
                 categorySlug ? `/${categorySlug}/providers` : "/providers"
               )
             }
             disabled={isFetching || isLoading}
-            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50"
-          >
+            className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50">
             <span>
               <Trans>View all</Trans>
             </span>
@@ -84,33 +80,25 @@ const ProviderSliderFromApi = ({
           </button>
         </div>
 
-        <Carousel
-          opts={{
+        <Carousel opts={{
             align: "start",
             slidesToScroll: isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT,
-          }}
-          className="w-full"
-        >
+          }} className="w-full">
           <CarouselContent className="flex -ml-2">
-            {isLoading || isFetching
-              ? Array.from({
+            {isLoading || isFetching ? Array.from({
                   length: isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT,
                 }).map((_, i) => (
-                  <CarouselItem
-                    key={`sk-${i}`}
+                  <CarouselItem key={`sk-${i}`}
                     className={`pl-2 ${
                       isDesktop ? "basis-1/9" : "basis-[calc(100%/4)]"
-                    }`}
-                  >
+                    }`}>
                     <div className="flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 h-[50px] md:h-[55px]" />
                   </CarouselItem>
                 ))
-              : providers
-                  .filter(
+              : providers.filter(
                     (provider, index, self) =>
                       index === self.findIndex((p) => p.id === provider.id)
-                  )
-                  .map((p: Provider) => (
+                  ).map((p: Provider) => (
                     <CarouselItem
                       key={p.id}
                       className={`pl-2 ${
@@ -118,42 +106,34 @@ const ProviderSliderFromApi = ({
                       } cursor-pointer`}
                       onClick={() =>
                         navigate(`/${categorySlug}/provider/${p.general_code}`)
-                      }
-                    >
+                      }>
                       <div
                         className={`flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 transition h-[50px] md:h-[55px] ${
                           providerCode === p.general_code ? "!bg-popover" : ""
-                        }`}
-                      >
+                        }`}>
                         <img
                           className="max-w-[80%] max-h-9 md:max-w-[156px]"
                           src={
                             p.logo ? `${config.baseUrl}/storage/${p.logo}` : ""
-                          }
-                          loading="lazy"
-                          alt={p.name}
-                        />
+                          } loading="lazy"
+                          alt={p.name}/>
                       </div>
                     </CarouselItem>
                   ))}
           </CarouselContent>
 
-          <CarouselPrevious
-            className="hidden md:flex"
+          <CarouselPrevious className="hidden md:flex"
             onClick={() => setOffset(Math.max(0, offset - limit))}
-            disabled={offset === 0 || isFetching || isLoading}
-          />
+            disabled={offset === 0 || isFetching || isLoading}/>
 
-          <CarouselNext
-            className="hidden md:flex"
+          <CarouselNext className="hidden md:flex"
             onClick={() => setOffset(offset + limit)}
             disabled={
               isFetching ||
               isLoading ||
               providers.length < limit ||
               offset + limit >= total
-            }
-          />
+            }/>
         </Carousel>
       </div>
     </section>
