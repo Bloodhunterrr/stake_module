@@ -59,10 +59,8 @@ const SubcategorySlider = ({
 
   return (
     <>
-      <div
-        onClick={() => setSearchModal(true)}
-        className="flex h-10 min-h-10 container mx-auto rounded-full lg:w-full w-[calc(100%-1rem)] items-center gap-2 mt-4 cursor-pointer px-3 bg-popover hover:bg-popover/80 transition"
-      >
+      <div onClick={() => setSearchModal(true)}
+        className="flex h-10 min-h-10 container mx-auto rounded-full lg:w-full w-[calc(100%-1rem)] items-center gap-2 mt-4 cursor-pointer px-3 bg-popover hover:bg-popover/80 transition">
         <SearchIcon className="size-5" />
         <span className={"font-semibold text-sm"}>
           <Trans>Search</Trans>
@@ -74,32 +72,27 @@ const SubcategorySlider = ({
         </div>
       )}
       {subcategories.length > 1 && (
-        <section
-          className={cn(
+        <section className={cn(
             "sticky transition-all duration-300 bg-background top-10 z-10 px-4",
             {
               "top-27 lg:top-16": optionalSideBarOpen,
             }
-          )}
-        >
+          )}>
           <div className={"flex items-center justify-center w-full"}>
             <div className="overflow-x-auto items-center flex  no-scrollbar py-5">
-              <div
-                className={cn(
+              <div className={cn(
                   "w-fit ml-3 shrink-0  text-[11px] cursor-pointer  ",
                   {
                     "decoration-2 select-none text-card underline underline-offset-8 ":
                       paramsSubcategory === undefined,
                   }
                 )}
-                onClick={() => navigate(`/${categorySlug}`)}
-              >
+                onClick={() => navigate(`/${categorySlug}`)}>
                 <Trans>All</Trans>
               </div>
               {subcategories.map((subcategory: Subcategory, index: number) => {
                 return (
-                  <div
-                    key={subcategory.id}
+                  <div key={subcategory.id}
                     className={cn(
                       "w-fit select-none ml-3 shrink-0  text-[11px] cursor-pointer ",
                       {
@@ -111,10 +104,8 @@ const SubcategorySlider = ({
                     )}
                     onClick={() =>
                       navigate(`/${categorySlug}/games/${subcategory.slug}`)
-                    }
-                  >
-                    {subcategoryTranslations[subcategory.name] ??
-                      subcategory.name}
+                    }>
+                    {subcategoryTranslations[subcategory.name] ?? subcategory.name}
                   </div>
                 );
               })}
@@ -127,8 +118,7 @@ const SubcategorySlider = ({
         <DialogContent
           showCloseButton={false}
           className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full">
-          <Search
-            setSearchModal={setSearchModal}
+          <Search setSearchModal={setSearchModal}
             onCloseSearchModal={() => setSearchModal(false)}/>
         </DialogContent>
       </Dialog>

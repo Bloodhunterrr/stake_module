@@ -89,8 +89,7 @@ export default function Wallet() {
                 <Button
                   className="flex-1 bg-card hover:bg-card/70 text-accent-foreground"
                   disabled={!w.limits.can_pay_with_now_payments}
-                  onClick={() => handleOpenDeposit(w)}
-                >
+                  onClick={() => handleOpenDeposit(w)}>
                   <Trans>Deposit</Trans>
                 </Button>
               </div>
@@ -123,13 +122,10 @@ export default function Wallet() {
 
       {selectedWallet && (
         <>
-          <Deposit
-            isOpen={isDepositOpen}
+          <Deposit isOpen={isDepositOpen}
             onClose={() => setIsDepositOpen(false)}
-            wallet={selectedWallet}
-          />
-          <Withdraw
-            isOpen={isWithdrawOpen}
+            wallet={selectedWallet}/>
+          <Withdraw isOpen={isWithdrawOpen}
             onClose={() => setIsWithdrawOpen(false)}
             wallet={selectedWallet}
           />

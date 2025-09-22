@@ -83,10 +83,8 @@ export default function CasinoHistoryTable() {
       <div className="grid grid-cols-3 gap-2 md:gap-4 items-center md:px-0 px-4">
         <Popover>
           <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
+            <Button variant="outline"
+              className="justify-start text-left font-normal bg-transparent text-accent-foreground">
               <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.startDate
                 ? format(dates.startDate, "dd/MM/yyyy")
@@ -94,23 +92,19 @@ export default function CasinoHistoryTable() {
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0 bg-white">
-            <Calendar
-              className="w-full"
+            <Calendar className="w-full"
               mode="single"
               selected={dates.startDate}
               onSelect={(date) =>
                 date && setDates((prev) => ({ ...prev, startDate: date }))
-              }
-            />
+              }/>
           </PopoverContent>
         </Popover>
 
         <Popover>
           <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="justify-start text-left font-normal bg-transparent text-accent-foreground"
-            >
+            <Button variant="outline"
+              className="justify-start text-left font-normal bg-transparent text-accent-foreground">
               <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.endDate
                 ? format(dates.endDate, "dd/MM/yyyy")
@@ -118,22 +112,19 @@ export default function CasinoHistoryTable() {
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0 bg-white">
-            <Calendar
-              className="w-full"
+            <Calendar className="w-full"
               mode="single"
               selected={dates.endDate}
               onSelect={(date) =>
                 date && setDates((prev) => ({ ...prev, endDate: date }))
-              }
-            />
+              }/>
           </PopoverContent>
         </Popover>
 
           {currencyOptions && (
           <Select
             value={selectedCurrencies[0] ?? ""}
-            onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}
-          >
+            onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}>
             <SelectTrigger className="w-full placeholder:text-background text-background">
               <SelectValue placeholder={t`All currencies`} />
             </SelectTrigger>
@@ -148,10 +139,8 @@ export default function CasinoHistoryTable() {
         )}
       </div>
 
-      <DateFilter
-        selected={selectedDateFilter}
-        onSelect={handleDateFilterSelect}
-      />
+      <DateFilter selected={selectedDateFilter}
+        onSelect={handleDateFilterSelect}/>
 
       <Table className="text-accent-foreground">
         <TableHeader className="bg-black/10 h-8">
@@ -177,10 +166,8 @@ export default function CasinoHistoryTable() {
             </TableRow>
           ) : error || data?.transactions.length === 0 ? (
             <TableRow>
-              <TableCell
-                colSpan={5}
-                className="text-center py-4 text-accent-foreground"
-              >
+              <TableCell colSpan={5}
+                className="text-center py-4 text-accent-foreground">
                 {error ? t`No data available` : t`No history found.`}
               </TableCell>
             </TableRow>
@@ -244,11 +231,9 @@ export default function CasinoHistoryTable() {
 
       {data && data.transactions.length > 0 && (
         <div className="p-4">
-          <PaginationComponent
-            totalPages={data.pagination.last_page}
+          <PaginationComponent totalPages={data.pagination.last_page}
             currentPage={page}
-            setPage={setPage}
-          />
+            setPage={setPage}/>
         </div>
       )}
     </div>

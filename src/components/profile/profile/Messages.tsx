@@ -131,7 +131,6 @@ const SingleMessage = ({message} : {message : any}) => {
                                 <div>{data?.body}</div>
                             </div>)
                         }
-
                     </DialogHeader>
                 </DialogContent>
             </Dialog>

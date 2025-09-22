@@ -11,7 +11,7 @@ const AgentPayments = () => {
             <div className="container m-0 mx-auto flex w-full min-h-screen flex-col gap-2 text-[12px]">
                 <div className={'h-10  flex  text-muted bg-popover items-center'}>
                     <div className={'w-10 h-full border-r border-popover flex items-center'} onClick={()=>navigate(-1)}>
-                        <ChevronLeftIcon className={'w-10 '} />
+                        <ChevronLeftIcon className={'w-10'} />
                     </div>
                     <div className={'w-full text-center text-lg pr-10 space-x-1 flex justify-center'}>
                         <Trans>Payments</Trans>

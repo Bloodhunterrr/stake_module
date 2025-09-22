@@ -14,6 +14,7 @@ import {Label} from "@/components/ui/label";
 import {Button} from "@/components/ui/button";
 import {useAppSelector} from "@/hooks/rtk.ts";
 import {useCreateUserMutation} from "@/services/authApi.ts";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 export default function CreateUser() {
     const user: User = useAppSelector((state) => state.auth?.user);
@@ -110,78 +111,68 @@ export default function CreateUser() {
         formData.wallet_types.includes(option.value)
     );
 
+    const {t} = useLingui();
+
     return (
         <div className={"py-4 min-h-screen px-5 bg-[#474747]"}>
             {/*className="p-5 max-w-xl mx-auto font-sans">*/}
-            <h2 className="text-2xl font-bold mb-4">Create New User</h2>
+            <h2 className="text-2xl font-bold mb-4"><Trans>Create New User</Trans></h2>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className={'flex flex-col gap-y-0.5'}>
-                    <Input
-                        id="username"
+                    <Input id="username"
                         type="text"
-                        placeholder="Username"
+                        placeholder={t`Username`}
                         name="username"
                         value={formData.username}
                         className={"border-none text-background bg-accent border-b border-b-red-200 rounded-t-lg rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         onChange={handleChange}
-                        required
-                    />
-                    <Input
-                        id="name"
-                        placeholder="Name"
+                        required/>
+                    <Input id="name"
+                        placeholder={t`Name`}
                         type="text"
                         name="name"
                         value={formData.name}
                         className={"border-none  text-background bg-accent rounded-b-lg rounded-t-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                 </div>
                 <div className={'flex flex-col gap-y-0.5'}>
-                    <Input
-                        id="email"
-                        placeholder="Email"
+                    <Input id="email"
+                        placeholder={t`Email`}
                         type="email"
                         name="email"
                         value={formData.email}
                         className={"border-none text-background   bg-accent rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         onChange={handleChange}
-                        required
-                    />
-                    <Input
-                        id="password"
+                        required/>
+                    <Input id="password"
                         type="password"
                         name="password"
-                        placeholder="Password"
+                        placeholder={t`Password`}
                         className={"border-none text-background bg-accent rounded-t-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none"}
                         value={formData.password}
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                 </div>
                 <div className={'py-2'}>
-                    <Label>Choose wallet:</Label>
+                    <Label><Trans>Choose wallet:</Trans></Label>
                     <div className="flex flex-wrap gap-4 mt-2">
                         {currencyOptions.map(option => (
                             <div key={option.value} className="flex items-center space-x-2">
-                                <Checkbox
-                                    id={option.value}
+                                <Checkbox id={option.value}
                                     checked={formData.wallet_types.includes(option.value)}
-                                    onCheckedChange={(checked) => handleWalletTypesChange(!!checked, option.value)}
-                                />
+                                    onCheckedChange={(checked) => handleWalletTypesChange(!!checked, option.value)}/>
                                 <Label htmlFor={option.value}>{option.label}</Label>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div>
-                    <Label htmlFor="default-wallet" className={'py-1 mb-1'}>Chose one these wallet as default:</Label>
-                    <Select
-                        onValueChange={handleDefaultWalletChange}
+                    <Label htmlFor="default-wallet" className={'py-1 mb-1'}><Trans>Chose one these wallet as default:</Trans></Label>
+                    <Select onValueChange={handleDefaultWalletChange}
                         value={formData.default_wallet_type}
-                        disabled={defaultWalletOptions.length === 0}
-                    >
+                        disabled={defaultWalletOptions.length === 0}>
                         <SelectTrigger id="default-wallet" className={'w-full'}>
                             <SelectValue placeholder="Select a default wallet"/>
                         </SelectTrigger>
@@ -197,7 +188,7 @@ export default function CreateUser() {
                 <Button type="submit"
                         className={"h-auto w-full bg-chart-2 text-accent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-none hover:bg-chart-2/80 justify-center py-2"}
                         disabled={isLoading}>
-                    {isLoading ? 'Creating...' : 'Create User'}
+                    {isLoading ? t`Creating...` : t`Create User`}
                 </Button>
             </form>
             {getMessage() &&

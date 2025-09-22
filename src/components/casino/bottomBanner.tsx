@@ -25,11 +25,9 @@ const BottomBanner = () => {
           </div>
         )}
 
-        <img
-          src={bottomBannerImg}
+        <img src={bottomBannerImg}
           alt="Crypto"
-          className="bottom-banner-image"
-        />
+          className="bottom-banner-image"/>
       </div>
     </section>
   );

@@ -109,7 +109,7 @@ const PaymentsHistoryTable = () => {
               <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.startDate
                 ? format(dates.startDate, "dd/MM/yyyy")
-                : "Pick start date"}
+                : t`Pick start date`}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0 bg-white">
@@ -125,20 +125,17 @@ const PaymentsHistoryTable = () => {
 
         <Popover>
           <PopoverTrigger asChild>
-            <Button
-              variant="outline"
+            <Button variant="outline"
               className="justify-start text-left font-normal bg-transparent text-accent-foreground">
               <CalendarIcon className="sm:mr-2 h-4 w-4" />
               {dates.endDate
                 ? format(dates.endDate, "dd/MM/yyyy")
-                : "Pick end date"}
+                : t`Pick end date`}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0 bg-white">
-            <Calendar
-              className="w-full"
-              mode="single"
-              selected={dates.endDate}
+            <Calendar className="w-full"
+              mode="single" selected={dates.endDate}
               onSelect={(date) =>
                 date && setDates((prev) => ({ ...prev, endDate: date }))
               }/>
@@ -146,8 +143,7 @@ const PaymentsHistoryTable = () => {
         </Popover>
 
         {currencyOptions && (
-          <Select
-            value={selectedCurrencies[0] ?? ""}
+          <Select value={selectedCurrencies[0] ?? ""}
             onValueChange={(val) => setSelectedCurrencies(val ? [val] : [])}>
             <SelectTrigger className="w-full placeholder:text-background text-background">
               <SelectValue placeholder={t`All currencies`} />
@@ -166,8 +162,7 @@ const PaymentsHistoryTable = () => {
           onValueChange={(val: string) =>
             setSelectedTransactionTypes(val ? [val] : [])
           }>
-                     <SelectTrigger className="w-full placeholder:text-background text-background">
-
+            <SelectTrigger className="w-full placeholder:text-background text-background">
             <SelectValue placeholder={t`All Actions`} />
           </SelectTrigger>
           <SelectContent className="bg-white">
@@ -180,8 +175,7 @@ const PaymentsHistoryTable = () => {
         </Select>
       </div>
 
-      <DateFilter
-        selected={selectedDateFilter}
+      <DateFilter selected={selectedDateFilter}
         onSelect={handleDateFilterSelect}/>
 
       <Table className="text-accent-foreground">

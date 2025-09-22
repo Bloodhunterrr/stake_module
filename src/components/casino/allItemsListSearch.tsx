@@ -67,17 +67,13 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
       <div className="sticky top-0 z-20 bg-background/90 p-2 pt-4 pb-3">
         <div className="relative flex items-center pl-3.5 h-10 rounded-full bg-popover hover:bg-popover/80 w-full gap-2">
           <SearchIcon className="size-5 text-muted-foreground" />
-          <input
-            onChange={handleSearchChange}
+          <input onChange={handleSearchChange}
             value={searchVal}
             placeholder={t`Search`}
-            className="flex placeholder:text-primary-foreground/70 text-primary-foreground placeholder:text-sm placeholder:font-semibold h-10 border-none focus-visible:outline-none focus-visible:ring-0 rounded-full w-full"
-          />
+            className="flex placeholder:text-primary-foreground/70 text-primary-foreground placeholder:text-sm placeholder:font-semibold h-10 border-none focus-visible:outline-none focus-visible:ring-0 rounded-full w-full"/>
           {searchVal && (
-            <div
-              onClick={() => setSearchVal("")}
-              className="absolute right-3 cursor-pointer"
-            >
+            <div onClick={() => setSearchVal("")}
+              className="absolute right-3 cursor-pointer">
               <CloseIcon className="size-5 text-muted-foreground" />
             </div>
           )}
@@ -85,17 +81,14 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
       </div>
 
 
-      <div
-        className="flex-1 overflow-auto mt-2 p-2"
-        style={{ paddingRight: 12 }}
-      >
+      <div className="flex-1 overflow-auto mt-2 p-2"
+        style={{ paddingRight: 12 }}>
         {filteredItems.length === 0 ? (
           <div className="p-4">
             <NoDataAvailable info={null} />
           </div>
         ) : (
-          <div
-            className={`grid gap-4 ${
+          <div className={`grid gap-4 ${
               type === "subcategory"
                 ? isDesktop
                   ? "lg:grid-cols-3"
@@ -103,27 +96,22 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
                 : isDesktop
                 ? "lg:grid-cols-3"
                 : "grid-cols-2"
-            }`}
-          >
+            }`}>
             {filteredItems.map((item) => {
               if (type === "provider") {
                 const provider = item as Provider;
                 return (
-                  <div
-                    key={provider.id}
+                  <div key={provider.id}
                     className="m-category-slider__item"
                     onClick={() => {
                       navigate(`/${categorySlug}/provider/` + provider.code);
                       onClose();
-                    }}
-                  >
+                    }}>
                     <div className="provider-card all-providers bg-popover/50 hover:bg-popover transition flex items-center justify-center cursor-pointer h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
-                      <img
-                        className="provider-card__img h-[calc(100%-15px)]"
+                      <img className="provider-card__img h-[calc(100%-15px)]"
                         src={`${config.baseUrl}/storage/${provider.logo}`}
                         loading="lazy"
-                        alt={provider.name}
-                      />
+                        alt={provider.name}/>
                     </div>
                   </div>
                 );
@@ -131,23 +119,19 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
                 const subcategory = item as Subcategory;
                 if (subcategory.categorySlug === params) {
                   return (
-                    <div
-                      key={subcategory.id}
+                    <div key={subcategory.id}
                       className="m-category-slider__item"
                       onClick={() => {
                         navigate(
                           `/${subcategory.categorySlug}/games/${subcategory.slug}`
                         );
                         onClose();
-                      }}
-                    >
+                      }}>
                       <div className="provider-card all-providers all-subcategories bg-popover/50 hover:bg-popover transition flex gap-2.5 items-center justify-start px-5 h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
-                        <img
-                          className="provider-card__icon h-[calc(100%-15px)]"
+                        <img className="provider-card__icon h-[calc(100%-15px)]"
                           src={`${config.baseUrl}/storage/${subcategory.icon}`}
                           alt={subcategory.name}
-                          loading="lazy"
-                        />
+                          loading="lazy"/>
                         <p className="subcategory-card__name text-[15px] overflow-hidden text-ellipsis whitespace-nowrap text-white font-semibold">
                           {subcategoryTranslations[subcategory.name] ??
                             subcategory.name}

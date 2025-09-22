@@ -96,63 +96,51 @@ const AgentPaymentTable = () => {
                 <div className="flex gap-2 justify-between">
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 "/>
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={dates.startDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({...prev, startDate: date}))
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
 
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4"/>
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
-                                mode="single"
+                            <Calendar className="w-full" mode="single"
                                 selected={dates.endDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({...prev, endDate: date}))
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
 
-                    <Select
-                        value={selectedCurrencies}
+                    <Select value={selectedCurrencies}
                         onValueChange={(value: string) => {
                             setSelectedCurrencies(value);
                             setPage(1); // Reset page on filter change
-                        }}
-                    >
+                        }}>
                         <SelectTrigger
                             className={"h-8! w-full rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
                             <SelectValue placeholder={t`Currencies`}/>
                         </SelectTrigger>
                         <SelectContent className="border-none bg-background rounded-none">
                             {currencyOptions?.map((currency, index) => (
-                                <SelectItem key={index} className={'focus:text-background text-accent rounded-none'}
-                                            value={currency.label}>
+                                <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>
                                     {currency.label}
                                 </SelectItem>
                             ))}
@@ -161,13 +149,11 @@ const AgentPaymentTable = () => {
                 </div>
 
                 <div className="flex gap-2 py-1 justify-between">
-                    <Select
-                        value={selectedTransactionTypes[0] ?? ""}
+                    <Select value={selectedTransactionTypes[0] ?? ""}
                         onValueChange={(val: string) => {
                             setSelectedTransactionTypes(val !== 'null' ? [val] : []);
                             setPage(1);
-                        }}
-                    >
+                        }}>
                         <SelectTrigger
                             className={"h-8! w-full rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
                             <SelectValue placeholder={t`All Actions`}/>
@@ -181,13 +167,11 @@ const AgentPaymentTable = () => {
                             ))}
                         </SelectContent>
                     </Select>
-                    <Select
-                        value={selectedUserId !== undefined ? String(selectedUserId) : "all"}
+                    <Select value={selectedUserId !== undefined ? String(selectedUserId) : "all"}
                         onValueChange={(val) => {
                             setSelectedUserId(val === "all" ? undefined : Number(val));
                             setPage(1);
-                        }}
-                    >
+                        }}>
                         <SelectTrigger
                             className={"h-8! w-full rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
                             <SelectValue placeholder={t`All Users`}/>
@@ -195,11 +179,10 @@ const AgentPaymentTable = () => {
                         <SelectContent className="border-none bg-background rounded-none">
                             {/* Use a unique, non-empty string for the "All Users" value */}
                             <SelectItem value="all" className={'focus:text-background text-accent rounded-none'}>
-                                All Users
+                                <Trans>All Users</Trans>
                             </SelectItem>
                             {data?.users?.map((u) => (
-                                <SelectItem key={u.id} value={String(u.id)}
-                                            className={'focus:text-background text-accent rounded-none'}>
+                                <SelectItem key={u.id} value={String(u.id)} className={'focus:text-background text-accent rounded-none'}>
                                     {u.name}
                                 </SelectItem>
                             ))}
@@ -283,28 +266,34 @@ const AgentPaymentTable = () => {
                     <div className="flex flex-col justify-between items-center bg-black/10 p-4 text-white">
                         {/* Total Deposit row */}
                         <div className="flex flex-row justify-between w-full border-b  border-b-destructive/80">
-    <span className="font-bold">
-      Total Deposit:
-    </span>
+                            <span className="font-bold">
+                                <Trans>
+                                    Total Deposit:
+                                </Trans>
+                            </span>
                             <span>{data.summary.total_deposit.toFixed(2)}</span>
                         </div>
 
                         {/* Total Withdrawal row */}
                         <div className="flex flex-row justify-between w-full  border-b border-b-destructive/80">
-    <span className="font-bold">
-      Total Withdrawal:
-    </span>
+                            <span className="font-bold">
+                                <Trans>
+                                    Total Withdrawal:
+                                </Trans>
+                            </span>
                             <span>{data.summary.total_withdraw.toFixed(2)}</span>
                         </div>
 
                         {/* Total row */}
                         <div className="flex flex-row justify-between w-full">
-    <span className="font-bold">
-      Total:
-    </span>
+                            <span className="font-bold">
+                                <Trans>
+                                    Total:
+                                </Trans>
+                            </span>
                             <span>
-      {(data.summary.total_deposit - data.summary.total_withdraw).toFixed(2)}
-    </span>
+                                {(data.summary.total_deposit - data.summary.total_withdraw).toFixed(2)}
+                            </span>
                         </div>
                     </div>
                 )}
@@ -315,8 +304,7 @@ const AgentPaymentTable = () => {
                     <PaginationComponent
                         totalPages={data.pagination.last_page}
                         currentPage={page}
-                        setPage={setPage}
-                    />
+                        setPage={setPage}/>
                 </div>
             )}
         </div>
