@@ -261,9 +261,9 @@ function UserListRender() {
                     }}>
                         Transaction
                     </Button>
-                    <Button className={'rounded-none bg-chart-2 hover:bg-chart-2'}>
+                    {/* <Button className={'rounded-none bg-chart-2 hover:bg-chart-2'}>
                         Limits
-                    </Button>
+                    </Button> */}
                 </div>
             </div>
         </div>
