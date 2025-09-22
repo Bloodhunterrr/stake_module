@@ -83,7 +83,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                 <Input
                                     id={'email'}
                                     type={'text'}
-                                    placeholder={`Enter your email/username`} // TODO add translate
+                                    placeholder={t`Enter your email/username`}
                                     className="placeholder:text-xs text-xs h-12 bg-primary-foreground border-background/50 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('email')}
                                     autoFocus={false}
@@ -104,15 +104,13 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     placeholder={t`Password`}
                                     className="placeholder:text-xs  bg-primary-foreground text-xs pr-10 h-12 border-background/50 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-1 focus-visible:border-chart-2"
                                     {...register('password')}
-                                    autoFocus={false}
-                                />
+                                    autoFocus={false}/>
 
                                 <button
                                     type="button"
                                     onClick={() => setShowPass(!showPass)}
                                     aria-label={showPass ? 'Hide password' : 'Show password'}
-                                    className="absolute inset-y-0 right-0  flex items-center pr-3"
-                                >
+                                    className="absolute inset-y-0 right-0  flex items-center pr-3">
                                     {showPass ? (
                                         <Eye className="h-4 w-4 text-muted-foreground"/>
                                     ) : (

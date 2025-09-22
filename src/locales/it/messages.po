@@ -228,7 +228,7 @@ msgstr ""
 msgid "{placeholder}"
 msgstr "{placeholder}"
 
-#: src/routes/casino/providersGames.tsx:52
+#: src/routes/casino/providersGames.tsx:49
 msgid "{totalGames, plural, one {# game} other {# games}}"
 msgstr "{totalGames, plural, one {# gioco} other {# giochi}}"
 
@@ -252,7 +252,7 @@ msgstr "Informazioni su BTC"
 msgid "About Us"
 msgstr "Chi Siamo"
 
-#: src/components/profile/v2/payments-history-table.tsx:200
+#: src/components/profile/v2/payments-history-table.tsx:194
 msgid "Action"
 msgstr "Azione"
 
@@ -264,19 +264,20 @@ msgstr "Indirizzo"
 msgid "Affiliates"
 msgstr "Affiliati"
 
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:97
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:91
 msgid "All"
 msgstr "Tutti"
 
-#: src/components/profile/v2/payments-history-table.tsx:171
+#: src/components/profile/profile/AgentPaymentTable.tsx:159
+#: src/components/profile/v2/payments-history-table.tsx:166
 msgid "All Actions"
 msgstr "Tutte le Azioni"
 
 #: src/components/profile/profile/Reports.tsx:129
 #: src/components/profile/profile/TransactionList.tsx:133
 #: src/components/profile/v2/betting-history-table.tsx:181
-#: src/components/profile/v2/casino-history-table.tsx:138
-#: src/components/profile/v2/payments-history-table.tsx:153
+#: src/components/profile/v2/casino-history-table.tsx:129
+#: src/components/profile/v2/payments-history-table.tsx:149
 msgid "All currencies"
 msgstr "Tutte le valute"
 
@@ -288,21 +289,27 @@ msgstr "Tutti i fornitori"
 msgid "All Statuses"
 msgstr "Tutti gli Stati"
 
+#: src/components/profile/profile/AgentPaymentTable.tsx:177
+#: src/components/profile/profile/AgentPaymentTable.tsx:182
+msgid "All Users"
+msgstr "Tutti gli Utenti"
+
 #: src/components/shared/v2/footer.tsx:36
 msgid "AML Policy"
 msgstr "Politica AML"
 
-#: src/components/profile/v2/payments-history-table.tsx:197
+#: src/components/profile/profile/AgentPaymentTable.tsx:204
+#: src/components/profile/v2/payments-history-table.tsx:191
 #: src/components/shared/v2/deposit.tsx:157
 #: src/components/shared/v2/withdraw.tsx:159
 msgid "Amount"
 msgstr "Importo"
 
-#: src/components/shared/v2/date-filter.tsx:28
+#: src/components/shared/v2/date-filter.tsx:30
 msgid "April"
 msgstr "Aprile"
 
-#: src/components/shared/v2/date-filter.tsx:32
+#: src/components/shared/v2/date-filter.tsx:34
 msgid "August"
 msgstr "Agosto"
 
@@ -332,7 +339,7 @@ msgstr "Importo scommessa"
 msgid "Bet Amount (Bet ID)"
 msgstr "Importo Scommessa (Bet ID)"
 
-#: src/components/profile/v2/casino-history-table.tsx:163
+#: src/components/profile/v2/casino-history-table.tsx:152
 msgid "Bet Amount (Game)"
 msgstr "Importo Scommessa (Game)"
 
@@ -342,7 +349,7 @@ msgstr "Importo Scommessa (Game)"
 #~ msgid "Bet type"
 #~ msgstr "Tipo di scommessa"
 
-#: src/components/shared/v2/header.tsx:330
+#: src/components/shared/v2/header.tsx:328
 msgid "Bets"
 msgstr "Scommesse"
 
@@ -364,7 +371,7 @@ msgstr "Prossimamente"
 msgid "Blackjack"
 msgstr "Blackjack"
 
-#: src/components/profile/wallet.tsx:113
+#: src/components/profile/wallet.tsx:112
 msgid "Bonus money"
 msgstr "Soldi bonus"
 
@@ -388,7 +395,7 @@ msgid "Cashout"
 msgstr "Prelievo"
 
 #: src/components/shared/v2/header.tsx:86
-#: src/components/shared/v2/header.tsx:324
+#: src/components/shared/v2/header.tsx:322
 msgid "Casino"
 msgstr "Casinò"
 
@@ -419,6 +426,14 @@ msgstr "Cambia Password"
 #: src/components/casino/feedbackForm.tsx:88
 msgid "characters left"
 msgstr "caratteri rimanenti"
+
+#: src/components/shared/v2/user/create-user.tsx:159
+msgid "Choose wallet:"
+msgstr "Scegli il portafoglio:"
+
+#: src/components/shared/v2/user/create-user.tsx:172
+msgid "Chose one these wallet as default:"
+msgstr "Scegli uno di questi portafogli come predefinito:"
 
 #: src/components/profile/profile/UserInfo.tsx:121
 msgid "City"
@@ -465,9 +480,25 @@ msgstr "Giochi Crash"
 #~ msgid "Create an alphanumeric password that is easy for you to remember and hard for others to guess."
 #~ msgstr "Crea una password alfanumerica facile da ricordare per te e difficile da indovinare per gli altri."
 
+#: src/components/shared/v2/user/create-user.tsx:119
+msgid "Create New User"
+msgstr "Crea Nuovo Utente"
+
+#: src/components/shared/v2/user/create-user.tsx:191
+msgid "Create User"
+msgstr "Crea Utente"
+
 #: src/components/shared/v2/signup.tsx:74
 msgid "Create your account"
 msgstr "Crea il tuo account"
+
+#: src/components/shared/v2/user/create-user.tsx:191
+msgid "Creating..."
+msgstr "Creazione..."
+
+#: src/components/profile/profile/AgentPaymentTable.tsx:139
+msgid "Currencies"
+msgstr "Valute"
 
 #~ msgid "Date"
 #~ msgstr "Data"
@@ -476,7 +507,7 @@ msgstr "Crea il tuo account"
 msgid "Date of Birth"
 msgstr "Data di nascita"
 
-#: src/components/shared/v2/date-filter.tsx:36
+#: src/components/shared/v2/date-filter.tsx:38
 msgid "December"
 msgstr "Dicembre"
 
@@ -484,13 +515,13 @@ msgstr "Dicembre"
 msgid "Default"
 msgstr "Predefinito"
 
-#: src/components/profile/wallet.tsx:94
+#: src/components/profile/wallet.tsx:93
 #: src/components/shared/v2/deposit.tsx:152
 #: src/components/shared/v2/deposit.tsx:203
 msgid "Deposit"
 msgstr "Deposito"
 
-#: src/components/profile/v2/payments-history-table.tsx:248
+#: src/components/profile/v2/payments-history-table.tsx:242
 msgid "DEPOSIT"
 msgstr "DEPOSITO"
 
@@ -527,6 +558,7 @@ msgstr "Tema Egiziano"
 
 #: src/components/profile/profile/UserInfo.tsx:78
 #: src/components/shared/v2/signup.tsx:87
+#: src/components/shared/v2/user/create-user.tsx:142
 msgid "Email"
 msgstr "Email"
 
@@ -542,10 +574,13 @@ msgstr "Inserisci il testo"
 msgid "Enter your details below to create an account."
 msgstr "Inserisci i tuoi dati qui sotto per creare un account."
 
-#: src/components/shared/v2/login.tsx:86
 #: src/components/shared/v2/signup.tsx:94
 msgid "Enter your email"
 msgstr "Inserisci la tua email"
+
+#: src/components/shared/v2/login.tsx:86
+msgid "Enter your email/username"
+msgstr "Inserisci la tua email/nome utente"
 
 #: src/components/shared/v2/signup.tsx:112
 msgid "Enter your password"
@@ -571,7 +606,7 @@ msgstr "Metodi di Verifica Equità e RNG"
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/components/shared/v2/date-filter.tsx:26
+#: src/components/shared/v2/date-filter.tsx:28
 msgid "February"
 msgstr "Febbraio"
 
@@ -633,7 +668,7 @@ msgstr "Genere"
 #~ msgid "Go to the home page"
 #~ msgstr "Vai alla pagina principale"
 
-#: src/components/shared/v2/login.tsx:135
+#: src/components/shared/v2/login.tsx:133
 msgid "Have trouble logging in?"
 msgstr "Hai problemi ad accedere?"
 
@@ -652,7 +687,7 @@ msgstr "Accetto di ricevere offerte dai nostri partner."
 msgid "I would like to receive news and offers."
 msgstr "Vorrei ricevere novità e offerte."
 
-#: src/components/profile/v2/payments-history-table.tsx:194
+#: src/components/profile/v2/payments-history-table.tsx:188
 msgid "ID"
 msgstr "ID"
 
@@ -672,19 +707,19 @@ msgstr "Giochi Istantanei"
 #~ msgid "Jackpot"
 #~ msgstr "Jackpot"
 
-#: src/components/shared/v2/date-filter.tsx:25
+#: src/components/shared/v2/date-filter.tsx:27
 msgid "January"
 msgstr "Gennaio"
 
-#: src/components/shared/v2/login.tsx:134
+#: src/components/shared/v2/login.tsx:132
 msgid "Join Now"
 msgstr "Iscriviti ora"
 
-#: src/components/shared/v2/date-filter.tsx:31
+#: src/components/shared/v2/date-filter.tsx:33
 msgid "July"
 msgstr "Luglio"
 
-#: src/components/shared/v2/date-filter.tsx:30
+#: src/components/shared/v2/date-filter.tsx:32
 msgid "June"
 msgstr "Giugno"
 
@@ -726,7 +761,7 @@ msgstr "Licenza"
 msgid "Live Chat"
 msgstr "Chat dal vivo"
 
-#: src/routes/sport/index.tsx:83
+#: src/routes/sport/index.tsx:82
 msgid "Loading sportsbook…"
 msgstr "Caricamento sportsbook…"
 
@@ -746,19 +781,19 @@ msgstr "Lobby"
 msgid "Lobby Crash"
 msgstr "Lobby Crash"
 
-#: src/components/shared/v2/header.tsx:258
+#: src/components/shared/v2/header.tsx:256
 msgid "Log in"
 msgstr "Login"
 
-#: src/components/shared/v2/login.tsx:130
+#: src/components/shared/v2/login.tsx:128
 msgid "Log In"
 msgstr "Login"
 
-#: src/components/shared/v2/header.tsx:514
+#: src/components/shared/v2/header.tsx:521
 msgid "Log out"
 msgstr "Disconnetti"
 
-#: src/components/shared/v2/login.tsx:130
+#: src/components/shared/v2/login.tsx:128
 msgid "Logging in..."
 msgstr "Accesso in corso..."
 
@@ -770,7 +805,7 @@ msgstr "Accesso in corso..."
 
 #: src/components/profile/profile/SingleUserBets.tsx:337
 #: src/components/profile/v2/betting-history-table.tsx:280
-#: src/components/profile/v2/casino-history-table.tsx:232
+#: src/components/profile/v2/casino-history-table.tsx:219
 msgid "Lost"
 msgstr "Perso"
 
@@ -782,11 +817,11 @@ msgstr "Lotteria"
 msgid "Male"
 msgstr "Maschio"
 
-#: src/components/shared/v2/date-filter.tsx:27
+#: src/components/shared/v2/date-filter.tsx:29
 msgid "March"
 msgstr "Marzo"
 
-#: src/components/shared/v2/date-filter.tsx:29
+#: src/components/shared/v2/date-filter.tsx:31
 msgid "May"
 msgstr "Maggio"
 
@@ -804,7 +839,7 @@ msgstr "Megaways"
 msgid "Message"
 msgstr "Messaggio"
 
-#: src/components/shared/v2/header.tsx:354
+#: src/components/shared/v2/header.tsx:507
 msgid "Messages"
 msgstr "Messaggi"
 
@@ -819,6 +854,10 @@ msgstr "Altre pagine"
 #: src/components/ui/multi-select.tsx:782
 msgid "Multi-select dropdown. Use arrow keys to navigate, Enter to select, and Escape to close."
 msgstr "Menù a discesa con selezione multipla. Usa i tasti freccia per navigare, Invio per selezionare ed Esc per chiudere."
+
+#: src/components/shared/v2/user/create-user.tsx:132
+msgid "Name"
+msgstr "Nome"
 
 #: src/components/shared/v2/deposit.tsx:208
 #: src/components/shared/v2/withdraw.tsx:259
@@ -850,10 +889,11 @@ msgstr "Prossimo"
 msgid "Nexu"
 msgstr "Nexu"
 
+#: src/components/profile/profile/AgentPaymentTable.tsx:225
 #: src/components/profile/profile/SingleUserBets.tsx:289
 #: src/components/profile/v2/betting-history-table.tsx:234
-#: src/components/profile/v2/casino-history-table.tsx:184
-#: src/components/profile/v2/payments-history-table.tsx:219
+#: src/components/profile/v2/casino-history-table.tsx:171
+#: src/components/profile/v2/payments-history-table.tsx:213
 #: src/components/shared/v2/no-data-available.tsx:15
 msgid "No data available"
 msgstr "Nessun dato disponibile"
@@ -861,10 +901,11 @@ msgstr "Nessun dato disponibile"
 #~ msgid "No filters available"
 #~ msgstr "Nessun filtro disponibile"
 
+#: src/components/profile/profile/AgentPaymentTable.tsx:225
 #: src/components/profile/profile/SingleUserBets.tsx:289
 #: src/components/profile/v2/betting-history-table.tsx:234
-#: src/components/profile/v2/casino-history-table.tsx:184
-#: src/components/profile/v2/payments-history-table.tsx:219
+#: src/components/profile/v2/casino-history-table.tsx:171
+#: src/components/profile/v2/payments-history-table.tsx:213
 msgid "No history found."
 msgstr "Nessuna cronologia trovata."
 
@@ -882,11 +923,11 @@ msgstr "Nessuna opzione selezionata"
 msgid "No results found."
 msgstr "Nessun risultato trovato."
 
-#: src/routes/sport/index.tsx:93
+#: src/routes/sport/index.tsx:92
 msgid "No sportsbook category selected."
 msgstr "Nessuna categoria di scommesse sportive selezionata."
 
-#: src/routes/sport/index.tsx:106
+#: src/routes/sport/index.tsx:105
 msgid "No sportsbook URL available."
 msgstr "Nessun URL di scommesse sportive disponibile."
 
@@ -901,6 +942,10 @@ msgstr "Non binario"
 msgid "Not Received any messages yet"
 msgstr "Nessun messaggio ricevuto"
 
+#: src/components/profile/profile/AgentPaymentTable.tsx:207
+msgid "Note"
+msgstr "Nota"
+
 #~ msgid "Nothing is found"
 #~ msgstr "Niente è stato trovato"
 
@@ -910,11 +955,11 @@ msgstr "Nessun messaggio ricevuto"
 #~ msgid "Notifications"
 #~ msgstr "Notifiche"
 
-#: src/components/shared/v2/date-filter.tsx:35
+#: src/components/shared/v2/date-filter.tsx:37
 msgid "November"
 msgstr "Novembre"
 
-#: src/components/shared/v2/date-filter.tsx:34
+#: src/components/shared/v2/date-filter.tsx:36
 msgid "October"
 msgstr "Ottobre"
 
@@ -935,9 +980,10 @@ msgstr "O gioca in modalità demo"
 #~ msgid "Page you were looking for was not found."
 #~ msgstr "La pagina che stavi cercando non è stata trovata."
 
-#: src/components/shared/v2/header.tsx:348
+#: src/components/shared/v2/header.tsx:514
 #: src/components/shared/v2/login.tsx:104
 #: src/components/shared/v2/signup.tsx:108
+#: src/components/shared/v2/user/create-user.tsx:152
 msgid "Password"
 msgstr "Password"
 
@@ -945,7 +991,8 @@ msgstr "Password"
 msgid "Password changed successfully."
 msgstr "Password modificata con successo."
 
-#: src/components/shared/v2/header.tsx:336
+#: src/components/profile/profile/AgentPayments.tsx:17
+#: src/components/shared/v2/header.tsx:359
 msgid "Payments"
 msgstr "Pagamenti"
 
@@ -970,11 +1017,13 @@ msgstr "In sospeso"
 msgid "Phone Number"
 msgstr "Numero di Telefono"
 
-#: src/components/profile/v2/casino-history-table.tsx:117
+#: src/components/profile/v2/casino-history-table.tsx:111
+#: src/components/profile/v2/payments-history-table.tsx:133
 msgid "Pick end date"
 msgstr "Seleziona la data di fine"
 
-#: src/components/profile/v2/casino-history-table.tsx:93
+#: src/components/profile/v2/casino-history-table.tsx:91
+#: src/components/profile/v2/payments-history-table.tsx:112
 msgid "Pick start date"
 msgstr "Seleziona la data di inizio"
 
@@ -1010,7 +1059,7 @@ msgstr "Codice Postale"
 msgid "Prefer not to say"
 msgstr "Preferisco non dirlo"
 
-#: src/components/shared/v2/header.tsx:476
+#: src/components/shared/v2/header.tsx:475
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -1022,8 +1071,8 @@ msgstr "Precedente"
 msgid "Privacy Policy"
 msgstr "Informativa sulla Privacy"
 
-#: src/components/shared/v2/header.tsx:470
-#: src/components/shared/v2/header.tsx:501
+#: src/components/shared/v2/header.tsx:469
+#: src/components/shared/v2/header.tsx:500
 msgid "Profile"
 msgstr "Profilo"
 
@@ -1053,6 +1102,7 @@ msgstr "Fornitore"
 #: src/components/casino/lobbySlider.tsx:323
 #: src/components/casino/provider-slider-from-api.tsx:68
 #: src/components/casino/providerSlider.tsx:37
+#: src/components/casino/subcategorySlider.tsx:67
 #: src/components/shared/v2/casino/search.tsx:393
 #: src/routes/casino/allProvidersList.tsx:108
 #: src/routes/casino/subCategoryGames.tsx:238
@@ -1063,7 +1113,7 @@ msgstr "Fornitori"
 msgid "Read More"
 msgstr "Per saperne di più"
 
-#: src/components/profile/wallet.tsx:100
+#: src/components/profile/wallet.tsx:99
 msgid "Real money"
 msgstr "Soldi veri"
 
@@ -1080,7 +1130,7 @@ msgstr "Ricarica e preleva in Crypto."
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: src/components/shared/v2/header.tsx:360
+#: src/components/shared/v2/header.tsx:353
 msgid "Reports"
 msgstr "Report"
 
@@ -1123,14 +1173,14 @@ msgstr "Roulette"
 #~ msgid "Saving..."
 #~ msgstr "Salvataggio..."
 
-#: src/components/casino/allItemsListSearch.tsx:73
+#: src/components/casino/allItemsListSearch.tsx:72
 #: src/components/casino/lobbySlider.tsx:135
 #: src/components/casino/lobbySlider.tsx:315
-#: src/components/casino/subcategorySlider.tsx:80
+#: src/components/casino/subcategorySlider.tsx:73
 #: src/components/shared/v2/casino/search.tsx:216
 #: src/components/shared/v2/casino/search.tsx:223
-#: src/components/shared/v2/casino/single-subcategory-slider.tsx:68
-#: src/components/shared/v2/header.tsx:294
+#: src/components/shared/v2/casino/single-subcategory-slider.tsx:66
+#: src/components/shared/v2/header.tsx:292
 #: src/routes/casino/subCategoryGames.tsx:230
 msgid "Search"
 msgstr "Cerca"
@@ -1191,7 +1241,7 @@ msgstr "Invia messaggio"
 msgid "Sent Messages"
 msgstr "Messaggi inviati"
 
-#: src/components/shared/v2/date-filter.tsx:33
+#: src/components/shared/v2/date-filter.tsx:35
 msgid "September"
 msgstr "Settembre"
 
@@ -1199,7 +1249,7 @@ msgstr "Settembre"
 msgid "Set default"
 msgstr "Imposta come predefinito"
 
-#: src/components/shared/v2/header.tsx:522
+#: src/components/shared/v2/header.tsx:529
 msgid "Show Balance"
 msgstr "Mostra Saldo"
 
@@ -1231,10 +1281,11 @@ msgstr "Termini Scommesse Sportive"
 #~ msgid "Sports"
 #~ msgstr "Sport"
 
+#: src/components/profile/profile/AgentPaymentTable.tsx:210
 #: src/components/profile/profile/SingleUserBets.tsx:275
 #: src/components/profile/v2/betting-history-table.tsx:220
-#: src/components/profile/v2/casino-history-table.tsx:166
-#: src/components/profile/v2/payments-history-table.tsx:203
+#: src/components/profile/v2/casino-history-table.tsx:155
+#: src/components/profile/v2/payments-history-table.tsx:197
 msgid "Status"
 msgstr "Stato"
 
@@ -1268,13 +1319,14 @@ msgstr "Questo portafoglio è già predefinito"
 #~ msgid "time"
 #~ msgstr "ora"
 
+#: src/components/profile/profile/AgentPaymentTable.tsx:201
 #: src/components/profile/profile/SingleUserBets.tsx:272
 #: src/components/profile/v2/betting-history-table.tsx:217
-#: src/components/profile/v2/payments-history-table.tsx:191
+#: src/components/profile/v2/payments-history-table.tsx:185
 msgid "Time"
 msgstr "Tempo"
 
-#: src/components/profile/v2/casino-history-table.tsx:160
+#: src/components/profile/v2/casino-history-table.tsx:149
 msgid "Time (Bet ID)"
 msgstr "Tempo (Bet ID)"
 
@@ -1285,7 +1337,7 @@ msgstr "Tempo (Bet ID)"
 msgid "To edit the data, please contact support."
 msgstr "Per modificare i dati, contattare l'assistenza."
 
-#: src/components/shared/v2/date-filter.tsx:23
+#: src/components/shared/v2/date-filter.tsx:25
 msgid "Today"
 msgstr "Oggi"
 
@@ -1297,10 +1349,22 @@ msgstr "I Migliori Giochi"
 msgid "Total balance"
 msgstr "Saldo totale"
 
+#: src/components/profile/profile/AgentPaymentTable.tsx:270
+msgid "Total Deposit:"
+msgstr "Deposito Totale:"
+
 #: src/components/profile/profile/SingleUserBets.tsx:415
 #: src/components/profile/v2/betting-history-table.tsx:359
 msgid "Total odds"
 msgstr "Quote totali"
+
+#: src/components/profile/profile/AgentPaymentTable.tsx:280
+msgid "Total Withdrawal:"
+msgstr "Prelievo Totale:"
+
+#: src/components/profile/profile/AgentPaymentTable.tsx:290
+msgid "Total:"
+msgstr "Totale:"
 
 #~ msgid "Transactions history"
 #~ msgstr "Cronologia transazioni"
@@ -1309,7 +1373,7 @@ msgstr "Quote totali"
 msgid "Type to filter options. Use arrow keys to navigate results."
 msgstr "Digita per filtrare le opzioni. Usa i tasti freccia per navigare tra i risultati."
 
-#: src/routes/sport/index.tsx:104
+#: src/routes/sport/index.tsx:103
 msgid "Unable to load sportsbook."
 msgstr "Impossibile caricare la scommessa sportiva."
 
@@ -1322,10 +1386,11 @@ msgid "up to 25%"
 msgstr "fino al 25%"
 
 #: src/components/profile/profile/UserInfo.tsx:54
+#: src/components/shared/v2/user/create-user.tsx:125
 msgid "Username"
 msgstr "Nome utente"
 
-#: src/components/shared/v2/header.tsx:342
+#: src/components/shared/v2/header.tsx:341
 msgid "Users"
 msgstr "Utenti"
 
@@ -1361,7 +1426,7 @@ msgstr "Virtual"
 msgid "Virtual Games"
 msgstr "Giochi Virtuali"
 
-#: src/components/shared/v2/header.tsx:507
+#: src/components/shared/v2/header.tsx:347
 #: src/routes/account/wallet.tsx:9
 msgid "Wallet"
 msgstr "Portafoglio"
@@ -1391,7 +1456,7 @@ msgstr "RIMBORSO SETTIMANALE"
 msgid "Withdraw"
 msgstr "Prelievo"
 
-#: src/components/profile/v2/payments-history-table.tsx:250
+#: src/components/profile/v2/payments-history-table.tsx:244
 msgid "WITHDRAW"
 msgstr "RITIRARE"
 
@@ -1404,7 +1469,7 @@ msgstr "Prelievo avviato con successo!"
 
 #: src/components/profile/profile/SingleUserBets.tsx:349
 #: src/components/profile/v2/betting-history-table.tsx:293
-#: src/components/profile/v2/casino-history-table.tsx:224
+#: src/components/profile/v2/casino-history-table.tsx:211
 msgid "Won"
 msgstr "Vinto"
 
@@ -1415,7 +1480,7 @@ msgstr "Vinto"
 msgid "y2worldsoft"
 msgstr "y2worldsoft"
 
-#: src/components/shared/v2/date-filter.tsx:24
+#: src/components/shared/v2/date-filter.tsx:26
 msgid "Yesterday"
 msgstr "Ieri"
 
