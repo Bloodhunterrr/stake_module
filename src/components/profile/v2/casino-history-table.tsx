@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router";
+import {useTheme} from "@/hooks/useTheme.tsx";
 
 export default function CasinoHistoryTable() {
   const user: User = useAppSelector((state) => state.auth?.user);
@@ -162,12 +163,13 @@ export default function CasinoHistoryTable() {
 
   const { t } = useLingui();
 
-  return (
-    <div
-      className={
-        "container m-0 mx-auto flex w-full h-[93vh]  bg-white flex-col gap-2  text-[12px]"
-      }
-    >
+
+    const {optionalSideBarOpen} = useTheme()
+
+    return (
+        <div className={cn("space-y-3 lg:h-[calc(100vh-64px)] h-[calc(100vh-44px)] container mx-auto ",{
+            "lg:h-[calc(100vh-64px)] h-[calc(100vh-88px)]" : optionalSideBarOpen
+        })}>
       <div className="space-y-3 h-[calc(100vh-164px)] container mx-auto">
         <div className={"h-14  flex  items-center"}>
           <div
@@ -191,7 +193,7 @@ export default function CasinoHistoryTable() {
                 variant="outline"
                 className="justify-start text-left font-normal bg-transparent text-accent-foreground"
               >
-                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                <CalendarIcon className="sm:mr-2 -mr-1.5 px-0 size-3 lg:h-4 lg:w-4" />
                 {dates.startDate
                   ? format(dates.startDate, "dd/MM/yyyy")
                   : t`Pick start date`}
@@ -213,9 +215,9 @@ export default function CasinoHistoryTable() {
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
-                className="justify-start text-left font-normal bg-transparent text-accent-foreground"
+                className="justify-start text-left font-normal px-0 bg-transparent text-accent-foreground"
               >
-                <CalendarIcon className="sm:mr-2 h-4 w-4" />
+                <CalendarIcon className="sm:mr-2 -mr-1.5 px-0 size-3 lg:h-4 lg:w-4" />
                 {dates.endDate
                   ? format(dates.endDate, "dd/MM/yyyy")
                   : t`Pick end date`}
@@ -257,13 +259,9 @@ export default function CasinoHistoryTable() {
           onSelect={handleDateFilterSelect}
         />
 
-        <div
-          ref={containerRef}
-          className={cn(
-            "overflow-y-auto h-[calc(100vh-195px)] lg:h-[calc(100vh-250px)]",
-            { "h-[calc(100vh-239px)]": false }
-          )}
-        >
+          <div ref={containerRef} className={cn("overflow-y-auto no-scrollbar h-[calc(100vh-214px)] lg:h-[calc(100vh-236px)]",
+              { "h-[calc(100vh-258px)] lg:h-[calc(100vh-180px)]": optionalSideBarOpen }
+          )}>
           <Table className="text-accent-foreground">
             <TableHeader className="bg-black/10 h-8">
               <TableRow>
@@ -300,12 +298,12 @@ export default function CasinoHistoryTable() {
 
                     {txs.map((trx) => (
                       <TableRow key={trx.id}>
-                        <TableCell className="py-0">
+                        <TableCell className="py-0 text-xs">
                           <div className="flex flex-col leading-tight">
                             <span>
                               {format(new Date(trx.created_at), "HH:mm:ss")}
                             </span>
-                            <span className="text-[12px] block max-w-[150px] sm:max-w-full truncate">
+                            <span className="text-[12px] block max-w-[110px] sm:max-w-full truncate">
                               ( {trx.id})
                             </span>
                           </div>
@@ -317,21 +315,21 @@ export default function CasinoHistoryTable() {
                               {Number(trx.details.bet.amount).toFixed(2)}{" "}
                               {currencyList[trx.currency].symbol_native}
                             </span>
-                            <span className="text-[12px] block max-w-[120px] sm:max-w-full truncate">
+                            <span className="text-[11px] block max-w-[100px] sm:max-w-full truncate">
                               ({trx.game_name})
                             </span>
                           </div>
                         </TableCell>
 
-                        <TableCell className="flex justify-end items-center gap-2">
+                        <TableCell className="flex justify-end lg:max-w-full max-w-[90px] items-center gap-2">
                           {Number(trx.details.win?.amount) > 0 ? (
                             <>
-                              <span>
+                              <span className={'text-xs'}>
                                 {" "}
                                 <Trans>Won</Trans> {trx.details.win.amount}{" "}
                                 {currencyList[trx.currency].symbol_native}
                               </span>
-                              <span className="w-3 h-3 rounded-full bg-green-500 inline-block" />
+                              <span className="w-3 h-3 shrink-0 rounded-full bg-green-500 inline-block" />
                             </>
                           ) : (
                             <>

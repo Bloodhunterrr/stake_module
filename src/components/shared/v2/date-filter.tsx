@@ -86,7 +86,7 @@ const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect , className 
       {filters.map((f) => (
         <div
           key={f.key}
-          className={cn(`flex-1 text-center py-2 cursor-pointer ${
+          className={cn(`flex-1 text-center text-xs lg:text-base py-2 cursor-pointer ${
             selected === f.key
               ? "border-b-card border-b text-black"
               : "text-gray-700"
