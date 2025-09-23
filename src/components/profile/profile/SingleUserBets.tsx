@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { currencyList } from "@/utils/currencyList";
 import { formatDateToDMY } from "@/utils/formatDate";
-import { useEffect, useState, useMemo, Fragment, useRef } from "react";
+import {useEffect, useState, useMemo, Fragment, useRef, useCallback} from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
 import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
 import {
@@ -94,46 +94,76 @@ const SingleUserBets = () => {
         );
     }, [tickets]);
 
-    const fetchMoreTickets = async (pageToFetch: number) => {
-        //
-        // if (!singleBetsId || isLoadingMore || !hasMore || !startDate || !endDate) {
-        //     return;
-        // }
+    // In the SingleUserBets component
+
+    // In the SingleUserBets component
+
+    const fetchMoreTickets = useCallback(async (pageToFetch: number) => {
+        // The safety check now lives inside the memoized function
+        if (!singleBetsId || !startDate || !endDate) {
+            // If the main filters aren't set, do nothing.
+            return;
+        }
+
+        // Prevent re-fetching while already loading
+        if (isLoadingMore) return;
+
+        // For infinite scroll, stop if there's no more data
+        if (pageToFetch > 1 && !hasMore) return;
+
         setIsLoadingMore(true);
         try {
             const response = await fetchSingleTicketData({
                 user_id: singleBetsId,
-                start_date: formatDateToDMY(startDate ?? new Date()),
-                end_date: formatDateToDMY(endDate ?? new Date()),
+                start_date: formatDateToDMY(startDate),
+                end_date: formatDateToDMY(endDate),
                 currency: selectedCurrencies?.toLowerCase(),
                 status: selectedStatuses,
                 bet_type: betType === 'all' ? "" : betType,
                 page: pageToFetch,
             }).unwrap();
 
-            if (response?.tickets?.data) {
-                setTickets(prevTickets => [...prevTickets, ...response.tickets.data]);
+            const newTickets = response?.tickets?.data;
+
+            if (newTickets && newTickets.length > 0) {
+                if (pageToFetch === 1) {
+                    setTickets(newTickets); // Replace on page 1
+                } else {
+                    setTickets(prevTickets => [...prevTickets, ...newTickets]); // Append on other pages
+                }
                 setHasMore(response.tickets.current_page < response.tickets.last_page);
                 setPage(pageToFetch + 1);
             } else {
+                if (pageToFetch === 1) {
+                    setTickets([]); // Clear if no results
+                }
                 setHasMore(false);
             }
         } catch (error) {
             console.error("Failed to fetch tickets:", error);
+            if (pageToFetch === 1) {
+                setTickets([]);
+            }
             setHasMore(false);
         } finally {
             setIsLoadingMore(false);
         }
-    };
+    }, [
+        singleBetsId,
+        startDate,
+        endDate,
+        selectedCurrencies,
+        selectedStatuses,
+        betType,
+        fetchSingleTicketData,
+    ]);
+
 
     useEffect(() => {
-        // Reset state and fetch new data when any filter changes
-        setTickets([]);
         setPage(1);
         setHasMore(true);
-        // Conditionally trigger fetch only if both dates are set
         fetchMoreTickets(1);
-    }, [singleBetsId, selectedCurrencies, selectedStatuses, startDate, endDate, betType]);
+        }, [fetchMoreTickets]);
 
 
     useEffect(() => {
@@ -352,7 +382,6 @@ const SingleUserBets = () => {
                         {tickets.length === 0 && (isLoading || isFetching) ? (
                             <TableRow>
                                 <TableCell colSpan={4} className="text-center py-4">
-                                    <Loading />
                                 </TableCell>
                             </TableRow>
                         ) : isError || tickets.length === 0 ? (

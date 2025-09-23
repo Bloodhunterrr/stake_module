@@ -71,51 +71,61 @@ export default function CasinoHistoryTable() {
     label: w.slug.toUpperCase(),
   }));
 
-  const fetchTickets = useCallback(
-    async (pageToFetch: number) => {
-      setIsLoadingMore(true);
+    // In your CasinoHistoryTable component
 
-      try {
-        const response = await fetchData({
-          start_date: format(dates.startDate, "dd-MM-yyyy"),
-          end_date: format(dates.endDate, "dd-MM-yyyy"),
-          currencies:
-            selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
-          page: pageToFetch,
-        }).unwrap();
+    const fetchTickets = useCallback(
+        async (pageToFetch: number) => {
+            // Guard clause to prevent fetching without valid dates
+            if (!dates.startDate || !dates.endDate) return;
 
-        if (response?.transactions) {
-          setTickets((prevTickets) => [
-            ...prevTickets,
-            ...response.transactions,
-          ]);
-          setHasMore(
-            response.pagination.current_page < response.pagination.last_page
-          );
-          setPage((prevPage) => prevPage + 1);
-        } else {
-          setHasMore(false);
-        }
-      } catch (error) {
-        console.error("Failed to fetch tickets:", error);
-        setHasMore(false);
-      } finally {
-        setIsLoadingMore(false);
-      }
-    },
-    [dates, selectedCurrencies, fetchData]
-  );
+            setIsLoadingMore(true);
+            try {
+                const response = await fetchData({
+                    start_date: format(dates.startDate, "dd-MM-yyyy"),
+                    end_date: format(dates.endDate, "dd-MM-yyyy"),
+                    currencies: selectedCurrencies.length > 0 ? selectedCurrencies : undefined,
+                    page: pageToFetch,
+                }).unwrap();
 
-  useEffect(() => {
-    setTickets([]);
-    setPage(1);
-    setHasMore(true);
-    if (dates.startDate && dates.endDate) {
-      fetchTickets(1);
-    }
-  }, [dates, selectedCurrencies, fetchTickets]);
+                const newTransactions = response?.transactions;
 
-  // This effect manages the scroll event listener. It references `hasMore` and `isLoadingMore` directly.
+                if (newTransactions && newTransactions.length > 0) {
+                    // ✅ IF IT'S PAGE 1 (a new filter), REPLACE THE DATA
+                    if (pageToFetch === 1) {
+                        setTickets(newTransactions);
+                    } else {
+                        // ✅ FOR ANY OTHER PAGE (infinite scroll), APPEND
+                        setTickets((prevTickets) => [...prevTickets, ...newTransactions]);
+                    }
+                    setHasMore(response.pagination.current_page < response.pagination.last_page);
+                    setPage(pageToFetch + 1);
+                } else {
+                    // If page 1 has no results, clear the tickets
+                    if (pageToFetch === 1) {
+                        setTickets([]);
+                    }
+                    setHasMore(false);
+                }
+            } catch (error) {
+                console.error("Failed to fetch tickets:", error);
+                if (pageToFetch === 1) {
+                    setTickets([]);
+                }
+                setHasMore(false);
+            } finally {
+                setIsLoadingMore(false);
+            }
+        },
+        [dates, selectedCurrencies, fetchData]
+    );
+
+
+    useEffect(() => {
+        setPage(1);
+        setHasMore(true);
+        fetchTickets(1); // The fetch function now correctly handles replacing the data.
+    }, [fetchTickets]); // The dependency array can be simplified to just this.
+
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;

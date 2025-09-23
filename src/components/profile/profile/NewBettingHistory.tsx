@@ -72,42 +72,58 @@ const NewBettingHistory = () => {
     // This `useCallback` now has a stable dependency array.
     // We use the functional updates `setPage(prevPage => ...)` to avoid
     // depending on `page` directly.
-    const fetchTickets = useCallback(async (pageToFetch: number) => {
-        setIsLoadingMore(true);
+    // In your NewBettingHistory component
 
+    const fetchTickets = useCallback(async (pageToFetch: number) => {
+        // Prevent fetching if dates aren't set
+        if (!dates.startDate || !dates.endDate) return;
+
+        setIsLoadingMore(true);
         try {
             const response = await fetchData({
-                start_date: dates.startDate ? formatDateToDMY(dates.startDate) : undefined,
-                end_date: dates.endDate ? formatDateToDMY(dates.endDate) : undefined,
+                start_date: formatDateToDMY(dates.startDate),
+                end_date: formatDateToDMY(dates.endDate),
                 currencies: selectedCurrencies ? [selectedCurrencies] : undefined,
-                status:  selectedStatuses !== '' ? [selectedStatuses] : undefined,
+                status: selectedStatuses !== '' ? [selectedStatuses] : undefined,
                 page: pageToFetch,
             }).unwrap();
 
-            if (response?.tickets) {
-                setTickets(prevTickets => [...prevTickets, ...response.tickets]);
+            const newTickets = response?.tickets;
+
+            if (newTickets && newTickets.length > 0) {
+                // ✅ IF IT'S PAGE 1, REPLACE THE DATA
+                if (pageToFetch === 1) {
+                    setTickets(newTickets);
+                } else {
+                    // ✅ FOR ANY OTHER PAGE, APPEND
+                    setTickets(prevTickets => [...prevTickets, ...newTickets]);
+                }
                 setHasMore(response.pagination.current_page < response.pagination.last_page);
-                setPage(prevPage => prevPage + 1);
+                setPage(pageToFetch + 1); // Use direct value, not functional update here
             } else {
+                // If page 1 has no results, clear the tickets
+                if (pageToFetch === 1) {
+                    setTickets([]);
+                }
                 setHasMore(false);
             }
         } catch (error) {
             console.error("Failed to fetch tickets:", error);
+            if (pageToFetch === 1) {
+                setTickets([]);
+            }
             setHasMore(false);
         } finally {
             setIsLoadingMore(false);
         }
     }, [dates, selectedCurrencies, selectedStatuses, fetchData]);
 
-    // This effect handles filter changes and triggers the initial fetch.
     useEffect(() => {
-        setTickets([]);
+        // No longer need to manually clear tickets here
         setPage(1);
         setHasMore(true);
-        if (dates.startDate && dates.endDate) {
-            fetchTickets(1);
-        }
-    }, [dates, selectedCurrencies, selectedStatuses, fetchTickets]);
+        fetchTickets(1); // fetchTickets will handle replacing the data
+    }, [fetchTickets]); // This dependency array is now much simpler
 
     // This effect manages the scroll event listener. It references `hasMore` and `isLoadingMore` directly.
     useEffect(() => {
@@ -303,7 +319,6 @@ const NewBettingHistory = () => {
                         {isLoading && tickets.length === 0 ? (
                             <TableRow>
                                 <TableCell colSpan={3} className="text-center py-4">
-                                    <Loading />
                                 </TableCell>
                             </TableRow>
                         ) : error || tickets.length === 0 ? (
