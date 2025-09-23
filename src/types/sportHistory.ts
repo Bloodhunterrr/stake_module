@@ -1,8 +1,8 @@
 import type { Pagination } from "./shared";
 
 export interface SportHistoryReq {
-  start_date: string;
-  end_date: string;
+  start_date: string | undefined;
+  end_date: string | undefined;
   currencies?: Array<string>;
   // IgPixel Ticket status are
   // 0 => Pending
