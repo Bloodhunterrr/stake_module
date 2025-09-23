@@ -1,7 +1,9 @@
-import { useEffect, useState, useMemo, Fragment, useRef, useCallback } from "react";
-import { formatDateToDMY } from "@/utils/formatDate";
+import { format } from "date-fns";
 import { currencyList } from "@/utils/currencyList";
-import { useGetSportHistoryMutation } from "@/services/authApi";
+import { formatDateToDMY } from "@/utils/formatDate";
+import { useEffect, useState, useMemo, Fragment, useRef } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router";
+import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
 import {
     Table,
     TableBody,
@@ -17,76 +19,102 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {CalendarIcon, ChevronLeftIcon} from "lucide-react";
-import { format } from "date-fns";
-import Loading from "@/components/shared/v2/loading.tsx";
-import { useAppSelector } from "@/hooks/rtk";
-import type { User } from "@/types/auth";
 import { Trans, useLingui } from "@lingui/react/macro";
-import type { Odd } from "@/types/sportHistory";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils.ts";
-import {useNavigate} from "react-router-dom";
+import Loading from "@/components/shared/v2/loading.tsx";
+import { CalendarIcon, ChartNoAxesCombined, ChevronLeftIcon } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+import {cn} from "@/lib/utils.ts";
+import {useTheme} from "@/hooks/useTheme.tsx";
 
-const BettingHistoryTable = () => {
-    const user: User = useAppSelector((state) => state.auth?.user);
 
-    const [tickets, setTickets] = useState<any[]>([]);
+interface Odd {
+    id: string;
+    status: number;
+    event: { inf?: string; team1: string; team2: string };
+    market: { name: string };
+    identifiers: { selectedOddIndex: string };
+    rate: number;
+}
+
+interface Ticket {
+    ext_id: string;
+    won_amount: string;
+    stake_amount: string;
+    id: string;
+    user_name: string;
+    bet_type: string;
+    bet_sum: number;
+    win_sum: number;
+    currency: string;
+    betID: string;
+    created_at: string;
+    status: number;
+    event_count: number;
+    details: {
+        result_payload?: { action: string };
+        vendor_status: string;
+        odds: Odd[];
+    };
+}
+
+const SingleUserBets = () => {
+    const { singleBetsId } = useParams();
+    const [searchParams] = useSearchParams();
+    const start = searchParams.get('startDate');
+    const end = searchParams.get('endDate');
+
+    // Separate date states initialized to null if no search param exists
+    const [startDate, setStartDate] = useState<Date | undefined>(start ? new Date(start) : undefined);
+    const [endDate, setEndDate] = useState<Date | undefined>(end ? new Date(end) : undefined);
+
+    const navigate = useNavigate();
+    const [selectedCurrencies, setSelectedCurrencies] = useState<string>();
+    const [selectedStatuses, setSelectedStatuses] = useState<string>();
+    const [expandedTicketId, setExpandedTicketId] = useState<string | null>(null);
+    const [betType, setBetType] = useState('');
+
+    const [tickets, setTickets] = useState<Ticket[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
-    const [dates, setDates] = useState<{
-        startDate: Date | undefined;
-        endDate: Date | undefined;
-    }>({
-        startDate: new Date(new Date().setDate(new Date().getDate() - 7)),
-        endDate: new Date(),
-    });
-    const navigate = useNavigate()
-    const [selectedCurrencies, setSelectedCurrencies] = useState<string>("");
-    const [selectedStatuses, setSelectedStatuses] = useState<string>('');
-    const [expandedTicketId, setExpandedTicketId] = useState<number | null>(null);
-
-    const [fetchData, { isLoading, error }] = useGetSportHistoryMutation();
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const statusOptions = [
-        { value: "0", label: "Pending" },
-        { value: "1", label: "Lost" },
-        { value: "3", label: "Won" },
-        { value: "4", label: "Returned" },
-    ];
+    const [fetchSingleTicketData, { data, isLoading, isError, isFetching }] = useLazyGetSingleUsersTicketsQuery();
 
-    const currencyOptions = user?.wallets.map((w) => ({
-        value: w.slug.toUpperCase(),
-        label: w.slug.toUpperCase(),
-    }));
+    const groupedTickets = useMemo(() => {
+        if (!tickets || tickets.length === 0) return {};
+        return tickets.reduce(
+            (acc: Record<string, Ticket[]>, ticket: Ticket) => {
+                const dateKey = format(new Date(ticket.created_at), "dd/MM/yyyy");
+                if (!acc[dateKey]) acc[dateKey] = [];
+                acc[dateKey].push(ticket);
+                return acc;
+            },
+            {},
+        );
+    }, [tickets]);
 
-    // This `useCallback` now has a stable dependency array.
-    // We use the functional updates `setPage(prevPage => ...)` to avoid
-    // depending on `page` directly.
-    const fetchTickets = useCallback(async (pageToFetch: number) => {
+    const fetchMoreTickets = async (pageToFetch: number) => {
+        //
+        // if (!singleBetsId || isLoadingMore || !hasMore || !startDate || !endDate) {
+        //     return;
+        // }
         setIsLoadingMore(true);
-
         try {
-            const response = await fetchData({
-                start_date: dates.startDate ? formatDateToDMY(dates.startDate) : undefined,
-                end_date: dates.endDate ? formatDateToDMY(dates.endDate) : undefined,
-                currencies: selectedCurrencies ? [selectedCurrencies] : undefined,
-                status:  selectedStatuses !== '' ? [selectedStatuses] : undefined,
+            const response = await fetchSingleTicketData({
+                user_id: singleBetsId,
+                start_date: formatDateToDMY(startDate ?? new Date()),
+                end_date: formatDateToDMY(endDate ?? new Date()),
+                currency: selectedCurrencies?.toLowerCase(),
+                status: selectedStatuses,
+                bet_type: betType === 'all' ? "" : betType,
                 page: pageToFetch,
             }).unwrap();
 
-            if (response?.tickets) {
-                setTickets(prevTickets => [...prevTickets, ...response.tickets]);
-                setHasMore(response.pagination.current_page < response.pagination.last_page);
-                setPage(prevPage => prevPage + 1);
+            if (response?.tickets?.data) {
+                setTickets(prevTickets => [...prevTickets, ...response.tickets.data]);
+                setHasMore(response.tickets.current_page < response.tickets.last_page);
+                setPage(pageToFetch + 1);
             } else {
                 setHasMore(false);
             }
@@ -96,19 +124,18 @@ const BettingHistoryTable = () => {
         } finally {
             setIsLoadingMore(false);
         }
-    }, [dates, selectedCurrencies, selectedStatuses, fetchData]);
+    };
 
-    // This effect handles filter changes and triggers the initial fetch.
     useEffect(() => {
+        // Reset state and fetch new data when any filter changes
         setTickets([]);
         setPage(1);
         setHasMore(true);
-        if (dates.startDate && dates.endDate) {
-            fetchTickets(1);
-        }
-    }, [dates, selectedCurrencies, selectedStatuses, fetchTickets]);
+        // Conditionally trigger fetch only if both dates are set
+        fetchMoreTickets(1);
+    }, [singleBetsId, selectedCurrencies, selectedStatuses, startDate, endDate, betType]);
 
-    // This effect manages the scroll event listener. It references `hasMore` and `isLoadingMore` directly.
+
     useEffect(() => {
         const handleScroll = () => {
             if (!containerRef.current) return;
@@ -116,7 +143,7 @@ const BettingHistoryTable = () => {
             const isNearBottom = scrollTop + clientHeight >= scrollHeight - 100;
 
             if (isNearBottom && !isLoadingMore && hasMore) {
-                fetchTickets(page);
+                fetchMoreTickets(page);
             }
         };
 
@@ -130,24 +157,12 @@ const BettingHistoryTable = () => {
                 container.removeEventListener('scroll', handleScroll);
             }
         };
-    }, [isLoadingMore, hasMore, page, fetchTickets]);
+    }, [isLoadingMore, hasMore, page, fetchMoreTickets]);
 
-    const groupedTickets = useMemo(() => {
-        if (!tickets) return {};
-        return tickets.reduce(
-            (acc: Record<string, typeof tickets>, ticket) => {
-                const dateKey = format(new Date(ticket.created_date), "dd/MM/yyyy");
-                if (!acc[dateKey]) acc[dateKey] = [];
-                acc[dateKey].push(ticket);
-                return acc;
-            },
-            {}
-        );
-    }, [tickets]);
 
     const STATUS_MAP: Record<
         number,
-        { label: string | ((ticket: any) => string); color: string }
+        { label: string | ((ticket: Ticket) => string); color: string }
     > = {
         0: { label: "Pending", color: "bg-[#f67024]" },
         3: {
@@ -162,7 +177,6 @@ const BettingHistoryTable = () => {
     };
 
     const { t } = useLingui();
-
     const formatTimestamp = (timestamp: string | Date) => {
         const date = new Date(timestamp);
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -182,314 +196,363 @@ const BettingHistoryTable = () => {
         ];
         return `${days[date.getUTCDay()]} ${String(date.getUTCDate()).padStart(
             2,
-            "0"
+            "0",
         )} ${months[date.getUTCMonth()]} ${String(date.getUTCHours()).padStart(
             2,
-            "0"
+            "0",
         )}:${String(date.getUTCMinutes()).padStart(2, "0")}`;
     };
 
+    const user = (tickets?.find((user: any) => user.user_name)?.user_name ?? "");
+
+    const { optionalSideBarOpen } = useTheme();
+
+
+    const calculateCommission = (value: number, event_count: number) => {
+        switch (true) {
+            case (event_count === 1): {
+                return value * 0.04
+            }
+            case (event_count > 1 && event_count <= 2): {
+                return value * 0.06
+            }
+            case (event_count > 2): {
+                return value * 0.08
+            }
+            default: {
+                return 0;
+            }
+        }
+    };
+
     return (
-        <div className={'container m-0 mx-auto flex w-full h-[93vh]  bg-white flex-col gap-2  text-[12px]'}>
-            <div className="space-y-3 h-[calc(100vh-164px)] container mx-auto ">
-                <div className={'h-14  flex  items-center'}>
-                    <div className={'w-10 h-full  text-black flex items-center'} onClick={() => navigate(-1)}>
-                        <ChevronLeftIcon className={'w-10'} />
-                    </div>
-                    <div className={'w-full  text-start text-black  text-lg pr-10 space-x-1 flex justify-start'}>
-                        <Trans>Betting History</Trans>
-                    </div>
+        <div className="space-y-3 h-[calc(100vh-164px)] container mx-auto ">
+            <div className={'h-10  flex  border-b border-popover items-center'}>
+                <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={() => navigate(-1)}>
+                    <ChevronLeftIcon className={'w-10'} />
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
+                <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
+                    <p>Bets</p>
+                    <span>-</span>
+                    <p>{user}</p>
+                </div>
+            </div>
+            <div className={' flex flex-col gap-y-3'}>
+                <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
-                                className="justify-start text-left font-normal bg-transparent text-accent-foreground"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
                             >
-                                <CalendarIcon className="sm:mr-2 h-4 w-4" />
-                                {dates.startDate ? format(dates.startDate, "dd/MM/yyyy") : "Start Date"}
+                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
+                                {startDate ? format(startDate, "dd/MM/yyyy") : "Start Date"}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
                             <Calendar
                                 className="w-full"
                                 mode="single"
-                                selected={dates.startDate}
+                                selected={startDate}
                                 onSelect={(date) =>
-                                    date && setDates((prev) => ({ ...prev, startDate: date }))
+                                    date && setStartDate(date)
                                 }
                             />
                         </PopoverContent>
                     </Popover>
-
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
-                                className="justify-start text-left font-normal bg-transparent text-accent-foreground"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
                             >
-                                <CalendarIcon className="sm:mr-2 h-4 w-4" />
-                                {dates.endDate ? format(dates.endDate, "dd/MM/yyyy") : "End Date"}
+                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
+                                {endDate ? format(endDate, "dd/MM/yyyy") : "End Date"}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
                             <Calendar
                                 className="w-full"
                                 mode="single"
-                                selected={dates.endDate}
+                                selected={endDate}
                                 onSelect={(date) =>
-                                    date && setDates((prev) => ({ ...prev, endDate: date }))
+                                    date && setEndDate(date)
                                 }
                             />
                         </PopoverContent>
                     </Popover>
-                    {currencyOptions && (
-                        <Select
-                            value={selectedCurrencies}
-                            onValueChange={(val) => setSelectedCurrencies(val)}
-                        >
-                            <SelectTrigger className="w-full placeholder:text-background text-background">
-                                <SelectValue placeholder={t`All currencies`} />
-                            </SelectTrigger>
-                            <SelectContent className="bg-white">
-                                {currencyOptions.map((opt) => (
-                                    <SelectItem key={opt.value} value={opt.value} >
-                                        {opt.label}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                    )}
-
-                    <Select
-                        value={selectedStatuses}
-                        onValueChange={(val) => setSelectedStatuses(val)}
-                    >
-                        <SelectTrigger className="w-full placeholder:text-background text-background">
-                            <SelectValue placeholder={t`All Statuses`} />
+                    <Select value={selectedCurrencies} onValueChange={(value) => {
+                        setSelectedCurrencies(value)
+                    }}>
+                        <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                            <SelectValue placeholder={"Currency"} />
                         </SelectTrigger>
-                        <SelectContent className="bg-white">
-                            {statusOptions.map((opt) => (
-                                <SelectItem key={opt.value} value={opt.value}>
-                                    {opt.label}
-                                </SelectItem>
-                            ))}
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                data?.filters?.wallets?.map((w: any, index: number) => {
+                                    return <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={w.slug.toUpperCase()}>{w.slug.toUpperCase()}</SelectItem>
+                                })
+                            }
                         </SelectContent>
                     </Select>
                 </div>
 
-                <div ref={containerRef} className={cn("overflow-y-auto h-[calc(100vh-195px)] lg:h-[calc(100vh-215px)]", { "h-[calc(100vh-239px)]": false })}>
-                    <Table className="text-accent-foreground">
-                        <TableHeader className="bg-black/10 h-8 sticky top-0 z-10">
+                <div className={'flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
+                    <Select value={betType} onValueChange={(value) => {
+                        setBetType(value)
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                            <SelectValue placeholder="Type" />
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                data?.filters?.betType?.map((type: string, index: number) => {
+                                    return <SelectItem key={index} className={'focus:text-background text-accent rounded-none capitalize'} value={type}>{type}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+                    <Select value={selectedStatuses} onValueChange={(value) => {
+                        setSelectedStatuses(value)
+                    }}>
+                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectValue placeholder="Status" />
+                        </SelectTrigger>
+                        <SelectContent className={'border-none bg-background rounded-none'}>
+                            {
+                                data?.filters?.status?.map((status: any, index: number) => {
+                                    return <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={String(index)}>{status}</SelectItem>
+                                })
+                            }
+                        </SelectContent>
+                    </Select>
+                </div>
+            </div>
+            {/* The scrollable container */}
+            <div ref={containerRef} className={cn("overflow-y-auto h-[calc(100vh-195px)] lg:h-[calc(100vh-215px)]",{
+                "h-[calc(100vh-239px)]" : optionalSideBarOpen
+            })}>
+                <Table className="bg-popover hover:bg-popover text-white">
+                    <TableHeader className="bg-chart-2 text-white  h-8">
+                        <TableRow className={'hover:bg-transparent border-popover'}>
+                            <TableHead className="h-8 px-0 max-w-[100px] text-white">
+                                <Trans>Bet Amount (Bet ID)</Trans>
+                            </TableHead>
+                            <TableHead className="h-8 px-0 text-white text-center max-w-1/4">
+                                <Trans>Time</Trans>
+                            </TableHead>
+                            <TableHead className="text-right h-8 text-white max-w-1/4">
+                            </TableHead>
+                            <TableHead className="text-right h-8 text-white max-w-1/4">
+                                <Trans>Status</Trans>
+                            </TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {tickets.length === 0 && (isLoading || isFetching) ? (
                             <TableRow>
-                                <TableHead className="h-8">
-                                    <Trans>Bet Amount (Bet ID)</Trans>
-                                </TableHead>
-                                <TableHead className="h-8">
-                                    <Trans>Time</Trans>
-                                </TableHead>
-                                <TableHead className="text-right h-8">
-                                    <Trans>Status</Trans>
-                                </TableHead>
+                                <TableCell colSpan={4} className="text-center py-4">
+                                    <Loading />
+                                </TableCell>
                             </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {isLoading && tickets.length === 0 ? (
-                                <TableRow>
-                                    <TableCell colSpan={3} className="text-center py-4">
-                                        <Loading />
-                                    </TableCell>
-                                </TableRow>
-                            ) : error || tickets.length === 0 ? (
-                                <TableRow>
-                                    <TableCell colSpan={3} className="text-center py-4">
-                                        {error ? t`No data available` : t`No history found.`}
-                                    </TableCell>
-                                </TableRow>
-                            ) : (
-                                Object.entries(groupedTickets).map(([date, dateTickets]) => {
-                                    return (
-                                        <Fragment key={date}>
-                                            <TableRow className="bg-black/80 hover:bg-black/80 text-white sticky top-8 z-10">
-                                                <TableCell colSpan={3}>{date}</TableCell>
-                                            </TableRow>
-                                            {dateTickets.map((ticket) => {
-                                                const status = STATUS_MAP[ticket.status] || STATUS_MAP[1];
-                                                const label =
-                                                    typeof status.label === "function"
-                                                        ? status.label(ticket)
-                                                        : status.label;
+                        ) : isError || tickets.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={4} className="text-center py-4">
+                                    {isError ? t`No data available` : t`No history found.`}
+                                </TableCell>
+                            </TableRow>
+                        ) : (
+                            Object.entries(groupedTickets).map(([date, tickets]: any) => {
+                                return (
+                                    <Fragment key={date}>
+                                        <TableRow className="bg-background/30  border-popover hover:bg-background/30 text-white">
+                                            <TableCell colSpan={4}>{date}</TableCell>
+                                        </TableRow>
+                                        {tickets?.map((ticket: Ticket) => {
+                                            const status = STATUS_MAP[ticket.status] || STATUS_MAP[1];
+                                            const label =
+                                                typeof status.label === "function"
+                                                    ? status.label(ticket)
+                                                    : status.label;
 
-                                                return (
-                                                    <Fragment key={ticket.id}>
-                                                        <TableRow
-                                                            className="cursor-pointer"
-                                                            onClick={() =>
-                                                                setExpandedTicketId(
-                                                                    expandedTicketId === ticket.id ? null : ticket.id
-                                                                )
-                                                            }
-                                                        >
-                                                            <TableCell className="py-0">
-                                                                <div className="flex flex-col leading-tight">
-                                <span>
-                                  {Number(ticket.bet_sum).toFixed(2)}{" "}
-                                    {currencyList[ticket.currency]?.symbol_native}
-                                </span>
-                                                                    <span className="text-[12px] block max-w-[170px] sm:max-w-full truncate">
-                                  ({ticket.betID})
-                                </span>
-                                                                </div>
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {format(new Date(ticket.created_date), "HH:mm:ss")}
-                                                            </TableCell>
-                                                            <TableCell className="flex justify-end items-center gap-2">
-                                                                {label.includes("Lost") ? (
-                                                                    <Trans>Lost</Trans>
-                                                                ) : label.includes("Returned") ? (
-                                                                    <span className={"space-x-1"}>
-                                  <span>
-                                    <Trans>Cashout</Trans>
-                                  </span>
-                                  <span>{ticket.win_sum}</span>{" "}
-                                                                        {currencyList[ticket.currency].symbol_native}
-                                </span>
-                                                                ) : label.includes("Pending") ? (
-                                                                    <Trans>Pending</Trans>
-                                                                ) : (
-                                                                    <span>
-                                  <Trans>Won</Trans> {label.split(" ")[1]}{" "}
-                                                                        {currencyList[ticket.currency].symbol_native}
-                                </span>
-                                                                )}
+                                            return (
+                                                <Fragment key={ticket.id}>
+                                                    <TableRow
+                                                        className="cursor-pointer h-12 w-full px-0 bg-red-200 bg-poover border-popover hover:bg-poover "
+                                                        onClick={() =>
+                                                            setExpandedTicketId(
+                                                                expandedTicketId === ticket.id ? null : ticket.id,
+                                                            )
+                                                        }
+                                                    >
+                                                        <TableCell className="p-0 max-w-[20%] ">
+                                                            <div className="flex px-2 flex-col leading-tight">
+                                                                <span>
+                                                                    {Number(ticket?.stake_amount).toFixed(2)}{" "}
+                                                                    {currencyList[ticket.currency]?.symbol_native}
+                                                                </span>
                                                                 <span
-                                                                    className={`w-3 h-3 rounded-full ${status.color}`}
-                                                                />
-                                                            </TableCell>
-                                                        </TableRow>
-                                                        {expandedTicketId === ticket.id && (
-                                                            <TableRow className="bg-muted p-0">
-                                                                <TableCell colSpan={3} className="p-0">
-                                                                    <div className="text-sm">
-                                                                        {ticket.details?.odds?.map((odd: Odd) => {
-                                                                            const oddStatus =
-                                                                                STATUS_MAP[odd.status] || STATUS_MAP[1];
-                                                                            return (
+                                                                    className="text-[12px] block max-w-[120px] sm:max-w-full truncate">
+                                                                    {ticket?.user_name}
+                                                                </span>
+                                                            </div>
+                                                        </TableCell>
+                                                        <TableCell colSpan={2} className={'max-w-1/2  py-0 px-0'}>
+                                                            <span className={'flex flex-row shrink-0 gap-1'}>
+                                                                <span>
+                                                                    {format(new Date(ticket.created_at), "HH:mm:ss")}
+                                                                    <span
+                                                                        className="text-[12px] block max-w-[100px] truncate sm:max-w-full">
+                                                                        ({ticket.ext_id})
+                                                                    </span>
+                                                                </span>
+                                                                <span className={'w-1/2 flex text-xs items-center justify-evenly flex-col'}>
+                                                                    <span>{ticket?.user_name}</span>
+                                                                    {
+                                                                        ticket.status !== 4 &&
+                                                                        <span>
+                                                                            <span>({(calculateCommission(Number(ticket?.stake_amount ?? 0), Number(ticket?.event_count ?? 0)) ?? 0).toFixed(2)}</span>
+                                                                            <span>{currencyList[ticket.currency]?.symbol_native})</span>
+                                                                        </span>
+                                                                    }
+                                                                </span>
+                                                            </span>
+                                                        </TableCell>
+                                                        <TableCell className="flex justify-end  text-xs items-center gap-2">
+                                                            {label.includes("Lost") ? (
+                                                                <Trans>Lost</Trans>
+                                                            ) : label.includes("Returned") ? (
+                                                                <span className="space-x-1">
+                                                                    <span>
+                                                                        <Trans>Cashout</Trans>
+                                                                    </span>
+                                                                    <span>{ticket.won_amount}</span>{" "} {currencyList[ticket.currency]?.symbol_native}
+                                                                </span>
+                                                            ) : label.includes("Pending") ? (
+                                                                <Trans>Pending</Trans>
+                                                            ) : (
+                                                                <span>
+                                                                    <Trans>Won</Trans> {ticket.won_amount}{" "}
+                                                                    {currencyList[ticket.currency]?.symbol_native}
+                                                                </span>
+                                                            )}
+                                                            <span
+                                                                className={`w-3 h-3 rounded-full ${status.color}`}
+                                                            />
+                                                        </TableCell>
+                                                    </TableRow>
+                                                    {expandedTicketId === ticket.id && (
+                                                        <TableRow className="bg-popover border-popover hover:bg-popover p-0">
+                                                            <TableCell colSpan={4} className="p-0">
+                                                                <div className="text-sm">
+                                                                    {ticket.details?.odds?.map((odd: Odd) => {
+                                                                        const oddStatus = STATUS_MAP[odd.status] || STATUS_MAP[1];
+                                                                        return (
+                                                                            <div
+                                                                                key={odd.id}
+                                                                                className="relative flex flex-col border-b border-popover/60"
+                                                                            >
+                                                                                {(odd.status === 3 || odd.status === 1) && (
+                                                                                    <div
+                                                                                        className={`absolute top-0 left-0 h-full w-1/2 ${
+                                                                                            odd.status === 3
+                                                                                                ? "bg-gradient-to-r from-green-400/30 to-transparent"
+                                                                                                : "bg-gradient-to-r from-red-400/30 to-transparent"
+                                                                                        }`}
+                                                                                    />
+                                                                                )}
                                                                                 <div
-                                                                                    key={odd.id}
-                                                                                    className="relative flex flex-col border-b border-gray-400"
-                                                                                >
-                                                                                    {(odd.status === 3 ||
-                                                                                        odd.status === 1) && (
-                                                                                        <div
-                                                                                            className={`absolute top-0 left-0 h-full w-1/2 ${
-                                                                                                odd.status === 3
-                                                                                                    ? "bg-gradient-to-r from-green-400/30 to-transparent"
-                                                                                                    : "bg-gradient-to-r from-red-400/30 to-transparent"
-                                                                                            }`}
-                                                                                        />
-                                                                                    )}
-                                                                                    <div className="flex items-center gap-2 px-4 py-1 relative z-10">
-                                          <span
-                                              className={`w-3 h-3 rounded-full ${oddStatus.color}`}
-                                          />
-                                                                                        <div className="text-xs text-gray-600">
-                                                                                            {formatTimestamp(
-                                                                                                ticket.created_date
-                                                                                            )}
-                                                                                        </div>
+                                                                                    className="flex items-center w-full gap-2 px-4 py-1 relative z-10">
+                                                                                    <span
+                                                                                        className={`w-3 h-3 shrink-0 rounded-full ${oddStatus.color}`}
+                                                                                    />
+                                                                                    <div className="text-xs text-white">
+                                                                                        {formatTimestamp(ticket.created_at)}
                                                                                     </div>
-                                                                                    <div className="flex justify-between px-4 py-1 relative z-10">
+                                                                                    <div className={'w-full text-muted-foreground flex items-center justify-end'}>
+                                                                                        <ChartNoAxesCombined size={18} />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    className="flex justify-between px-4 py-1 relative z-10">
+                                                                                    <div>
                                                                                         <div>
-                                                                                            <div>
-                                                                                                {odd.event.team1} -{" "}
-                                                                                                {odd.event.team2}
-                                                                                            </div>
-                                                                                            <div className="text-xs text-gray-600 capitalize">
-                                                                                                {odd.market.name} -{" "}
-                                                                                                {odd.identifiers.selectedOddIndex}
-                                                                                            </div>
+                                                                                            {odd.event.team1} - {odd.event.team2}
                                                                                         </div>
-                                                                                        <div className="font-semibold">
-                                                                                            {odd.rate}
+                                                                                        <div
+                                                                                            className="text-xs text-white capitalize">
+                                                                                            {odd.market.name} -{" "}
+                                                                                            {odd.identifiers.selectedOddIndex}
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            );
-                                                                        })}
-                                                                        <div className="grid px-4 pb-4 grid-cols-3 gap-2 pt-2 text-xs">
-                                                                            <div>
-                                                                                <div className="text-gray-400">
-                                                                                    <Trans>Total odds</Trans>
-                                                                                </div>
-                                                                                <div>
-                                                                                    {ticket.details?.odds
-                                                                                        ?.reduce(
-                                                                                            (all: number, curr: any) =>
-                                                                                                all * curr.rate,
-                                                                                            1
-                                                                                        )
-                                                                                        .toFixed(2) ?? 0}
+                                                                                    <div className="font-semibold flex items-center flex-col h-full">
+
+                                                                                        <span>{odd.rate.toFixed(2)}</span>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div>
-                                                                                <div className="text-gray-400">
-                                                                                    <Trans>Bet amount</Trans>
-                                                                                </div>
-                                                                                <div>
-                                                                                    {ticket.bet_sum}{" "}
-                                                                                    {
-                                                                                        currencyList[ticket.currency]
-                                                                                            ?.symbol_native
-                                                                                    }
-                                                                                </div>
+
+                                                                        );
+                                                                    })}
+                                                                    <div className="grid px-4 pb-4 grid-cols-3 gap-2 pt-2 text-sm ">
+                                                                        <div>
+                                                                            <div className="text-accent">
+                                                                                <Trans>Total odds</Trans>
                                                                             </div>
-                                                                            <div>
-                                                                                <div className="text-gray-400">
-                                                                                    <Trans>Payout</Trans>
-                                                                                </div>
-                                                                                <div>
-                                                                                    {ticket.win_sum}{" "}
-                                                                                    {
-                                                                                        currencyList[ticket.currency]
-                                                                                            ?.symbol_native
-                                                                                    }
-                                                                                </div>
+                                                                            <div className={'font-semibold'}>
+                                                                                {ticket.details?.odds
+                                                                                    ?.reduce(
+                                                                                        (all: number, curr: Odd) => all * curr.rate,
+                                                                                        1,
+                                                                                    )
+                                                                                    .toFixed(2) ?? 0}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div className="text-accent">
+                                                                                <Trans>Bet amount</Trans>
+                                                                            </div>
+                                                                            <div className={'font-semibold'}>
+                                                                                {ticket?.stake_amount}{" "}
+                                                                                {currencyList[ticket.currency]?.symbol_native}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div className="text-accent">
+                                                                                <Trans>Payout</Trans>
+                                                                            </div>
+                                                                            <div className={'font-semibold'}>
+                                                                                {ticket?.won_amount}{" "}
+                                                                                {currencyList[ticket.currency]?.symbol_native}
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                        )}
-                                                    </Fragment>
-                                                );
-                                            })}
-                                        </Fragment>
-                                    );
-                                })
-                            )}
-                            {isLoadingMore && (
-                                <TableRow>
-                                    <TableCell colSpan={3} className="text-center py-4">
-                                        <Loading />
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                            {!hasMore && tickets.length > 0 && (
-                                <TableRow>
-                                    <TableCell colSpan={3} className="text-center text-sm text-muted-foreground py-4">
-                                        <Trans>You've reached the end of the list.</Trans>
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
+                                                                </div>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    )}
+                                                </Fragment>
+                                            );
+                                        })}
+                                    </Fragment>
+                                )
+                            })
+                        )}
+                    </TableBody>
+                </Table>
+                {isLoadingMore && (
+                    <div className="flex justify-center p-4">
+                        <Loading />
+                    </div>
+                )}
+                {!hasMore && tickets.length > 0 && (
+                    <div className="text-center text-sm text-muted-foreground p-4">
+                        You've reached the end of the list.
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
-export default BettingHistoryTable;
+export default SingleUserBets;
