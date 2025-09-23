@@ -270,7 +270,7 @@ const AgentPaymentTable = () => {
                     </TableBody>
                 </Table>
                 {data && data.transactions.length > 0 && (
-                    <div className="flex flex-col gap-y-1 justify-between items-center bg-black/10 p-4 text-white">
+                    <div className="flex flex-col gap-y-1 justify-between items-center bg-black/10 py-4 px-2 text-white">
                         {/* Total Deposit row */}
                         <div className="flex flex-row py-2 justify-between w-full border-b  border-b-destructive/80">
                             <span className="font-bold">
@@ -282,7 +282,7 @@ const AgentPaymentTable = () => {
                         </div>
 
                         {/* Total Withdrawal row */}
-                        <div className="flex flex-row justify-between w-full py-2  border-b border-b-destructive/80">
+                        <div className="flex flex-row justify-between w-full py-2 border-b border-b-destructive/80">
                             <span className="font-bold">
                                 <Trans>
                                     Total Withdrawal:

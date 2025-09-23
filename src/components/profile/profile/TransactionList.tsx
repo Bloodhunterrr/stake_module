@@ -11,7 +11,7 @@ import {Calendar} from "@/components/ui/calendar.tsx";
 import {MultiSelect} from "@/components/ui/multi-select.tsx";
 import {formatDateToDMY} from "@/utils/formatDate.ts";
 import {cn} from "@/lib/utils.ts";
-import {useLingui} from "@lingui/react/macro";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 
 function UserListRender() {
@@ -76,7 +76,9 @@ function UserListRender() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Transactions</p><span>-</span><p>{user?.username ?? ''}</p>
+                    <p className={"mr-1"}><Trans>Transactions</Trans></p>
+                    <span>-</span>
+                    <p>{user?.username ?? ''}</p>
                 </div>
             </div>
             <div className="grid grid-cols-3 container mx-auto py-3 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">

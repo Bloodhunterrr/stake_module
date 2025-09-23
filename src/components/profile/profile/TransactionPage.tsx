@@ -312,7 +312,7 @@ function TicketPage() {
         <div className={
             "w-full text-muted text-center pr-10 space-x-1 flex justify-center"
           }>
-          <Trans>Reports</Trans>
+          <p className={"mr-1"}><Trans>Reports</Trans></p>
           <span>-</span>
           <p>{userCategory?.data?.user?.name}</p>
         </div>

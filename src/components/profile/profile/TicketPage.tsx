@@ -67,7 +67,7 @@ function TicketPage() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <Trans>Bets</Trans>
+                    <p className={"mr-1"}><Trans>Bets</Trans></p>
                     <span>-</span>
                     <p>{data?.user?.name}</p>
                 </div>

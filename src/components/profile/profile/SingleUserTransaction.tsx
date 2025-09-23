@@ -76,7 +76,7 @@ const SingleUserTransaction = () => {
                     <ChevronLeftIcon className={'w-10'} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <Trans>Transaction</Trans>
+                    <p className={"mr-1"}><Trans>Transaction</Trans></p>
                     <span>-</span>
                     <p>{user}</p>
                 </div>

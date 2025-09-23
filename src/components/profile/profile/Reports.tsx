@@ -1,19 +1,19 @@
+import { format } from "date-fns";
+import { cn } from "@/lib/utils.ts";
+import { useNavigate } from "react-router";
 import { useState, useEffect } from 'react';
+import { Input } from "@/components/ui/input.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { useUserInfo } from "@/hooks/useUserInfo.ts";
+import type { ReportResponse } from "@/types/auth.ts";
+import { Trans, useLingui } from "@lingui/react/macro";
+import { formatDateToDMY } from "@/utils/formatDate.ts";
+import { Calendar } from "@/components/ui/calendar.tsx";
 import Loading from "@/components/shared/v2/loading.tsx";
-import {useLazyGetReportsQuery} from '@/services/authApi.ts';
-import {useNavigate} from "react-router";
-import type {ReportResponse} from "@/types/auth.ts";
-import {CalendarIcon, ChevronLeftIcon, Search} from "lucide-react";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
-import {Button} from "@/components/ui/button.tsx";
-import {format} from "date-fns";
-import {Calendar} from "@/components/ui/calendar.tsx";
-import {MultiSelect} from "@/components/ui/multi-select.tsx";
-import {formatDateToDMY} from "@/utils/formatDate.ts";
-import {cn} from "@/lib/utils.ts";
-import {useLingui} from "@lingui/react/macro";
-import {useUserInfo} from "@/hooks/useUserInfo.ts";
-import {Input} from "@/components/ui/input.tsx";
+import { MultiSelect } from "@/components/ui/multi-select.tsx";
+import { useLazyGetReportsQuery } from "@/services/authApi.ts";
+import { CalendarIcon, ChevronLeftIcon, Search } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
 
 
 function Reports() {
@@ -72,7 +72,7 @@ function Reports() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Reports</p>
+                    <p><Trans>Reports</Trans></p>
                 </div>
             </div>
             <div className="grid grid-cols-3 container mx-auto py-3 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
