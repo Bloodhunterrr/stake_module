@@ -45,7 +45,7 @@ function Messages() {
                 .then((response : any) => {
                     setMessages({
                         ...messages,
-                        sent: response ?? [],
+                        sent: response ??(messages?.sent ?? []),
                     });
                 })
                 .catch((error) => {
@@ -58,7 +58,7 @@ function Messages() {
                 .then((response: any) => {
                     setMessages({
                         ...messages,
-                        received: response ?? [],
+                        received: response ?? (messages?.received ?? []),
                     });
                 })
                 .catch((error) => {
