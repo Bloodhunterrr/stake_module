@@ -11,6 +11,7 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/c
 import {cn} from "@/lib/utils.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
 import type {getSendSingleMessageResponse, Wallet} from "@/types/auth.ts";
+import { useLingui, Trans } from "@lingui/react/macro";
 
 function SingleTicketPage() {
     const {userTicketId} = useParams();
@@ -72,6 +73,9 @@ function SingleTicketPage() {
             <Loading />
         </div>
     }
+
+    const { t } = useLingui()
+
     return (
         <div className={'container mx-auto'}>
             <div className={'h-10  flex  border-b border-popover items-center'}>
@@ -79,7 +83,7 @@ function SingleTicketPage() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Bets</p>
+                    <Trans>Bets</Trans>
                     <span>-</span>
                     <p>{data?.user?.name}</p>
                 </div>
@@ -88,17 +92,14 @@ function SingleTicketPage() {
                 <div className={'w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={dates.startDate}
                                 onSelect={(date) =>
@@ -111,24 +112,20 @@ function SingleTicketPage() {
                                         setDates((prev) => ({...prev, startDate: date}))
                                     }
                                 }
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
                     <Popover>
 
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={dates.endDate}
                                 onSelect={(date) => {
@@ -149,7 +146,7 @@ function SingleTicketPage() {
                         setSelectedCurrencies(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/4  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder={"Currency"}/>
+                            <SelectValue placeholder={t`Currency`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -167,7 +164,7 @@ function SingleTicketPage() {
                         setBetType(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder="Type"/>
+                            <SelectValue placeholder={t`Type`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -182,7 +179,7 @@ function SingleTicketPage() {
                         setStatus(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status"/>
+                            <SelectValue placeholder={t`Status`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -201,7 +198,7 @@ function SingleTicketPage() {
 
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status"/>
+                            <SelectValue placeholder={t`Status`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -216,12 +213,11 @@ function SingleTicketPage() {
 
             </div>
             <div className={'flex flex-col p-3'}>
-                <div
-                    className={'text-sm text-center h-7 items-center bg-chart-2 px-1   flex '}>
-                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}>Username</p>
-                    <p className={'w-full h-full flex items-center justify-center'}>Played</p>
-                    <p className={'w-full h-full flex items-center justify-center'}>Won</p>
-                    <p className={'w-full h-full flex items-center justify-center'}>Net Win</p>
+                <div className={'text-sm text-center h-7 items-center bg-chart-2 px-1   flex '}>
+                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}><Trans>Username</Trans></p>
+                    <p className={'w-full h-full flex items-center justify-center'}><Trans>Played</Trans></p>
+                    <p className={'w-full h-full flex items-center justify-center'}><Trans>Won</Trans></p>
+                    <p className={'w-full h-full flex items-center justify-center'}><Trans>Net Win</Trans></p>
                 </div>
                 <div className={cn('cursor-pointer  border-accent bg-accent/50 text-accent-foreground',{
                     'animate-pulse bg-accent/40'  : isFetching
@@ -232,8 +228,7 @@ function SingleTicketPage() {
                                 return null
                             }
                             return (
-                                <div
-                                    key={i}
+                                <div key={i}
                                     className={'text-xs text-center h-7 items-center px-1 border-b border-b-popover flex '}
                                     onClick={()=>{
                                         if(item.is_agent){

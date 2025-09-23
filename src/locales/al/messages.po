@@ -13,11 +13,15 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.7\n"
 
+#: src/components/profile/profile/TransactionPage.tsx:203
+msgid " No data available"
+msgstr "Nuk ka të dhëna të disponueshme"
+
 #: src/components/ui/multi-select.tsx:981
 msgid "{placeholder}"
 msgstr "{placeholder}"
 
-#: src/routes/casino/providersGames.tsx:49
+#: src/routes/casino/providersGames.tsx:48
 msgid "{totalGames, plural, one {# game} other {# games}}"
 msgstr "{totalGames, plural, one {# lojë} other {# lojëra}}"
 
@@ -45,7 +49,11 @@ msgstr "Rreth Nesh"
 msgid "Action"
 msgstr "Veprim"
 
-#: src/components/profile/profile/UserInfo.tsx:127
+#: src/components/shared/v2/header.tsx:307
+msgid "Add New User"
+msgstr "Krijo Përdorues"
+
+#: src/components/profile/profile/UserInfo.tsx:100
 msgid "Address"
 msgstr "Adresë"
 
@@ -53,11 +61,12 @@ msgstr "Adresë"
 msgid "Affiliates"
 msgstr "Filialet"
 
+#: src/components/profile/profile/TransactionPage.tsx:503
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:91
 msgid "All"
 msgstr "Të Gjitha"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:159
+#: src/components/profile/profile/AgentPaymentTable.tsx:166
 #: src/components/profile/v2/payments-history-table.tsx:166
 msgid "All Actions"
 msgstr "Të Gjitha Veprimet"
@@ -78,8 +87,8 @@ msgstr "Të Gjithë Providerët"
 msgid "All Statuses"
 msgstr "Të Gjitha Statuset"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:177
-#: src/components/profile/profile/AgentPaymentTable.tsx:182
+#: src/components/profile/profile/AgentPaymentTable.tsx:184
+#: src/components/profile/profile/AgentPaymentTable.tsx:189
 msgid "All Users"
 msgstr "Të Gjithë Përdoruesit"
 
@@ -87,7 +96,7 @@ msgstr "Të Gjithë Përdoruesit"
 msgid "AML Policy"
 msgstr "Politika AML"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:204
+#: src/components/profile/profile/AgentPaymentTable.tsx:211
 #: src/components/profile/v2/payments-history-table.tsx:191
 #: src/components/shared/v2/deposit.tsx:157
 #: src/components/shared/v2/withdraw.tsx:159
@@ -112,7 +121,7 @@ msgstr "Baccarat"
 msgid "Begin Now"
 msgstr "Fillo Tani"
 
-#: src/components/profile/profile/SingleUserBets.tsx:428
+#: src/components/profile/profile/SingleUserBets.tsx:445
 #: src/components/profile/v2/betting-history-table.tsx:373
 msgid "Bet amount"
 msgstr "Shuma e bastit"
@@ -120,7 +129,7 @@ msgstr "Shuma e bastit"
 #~ msgid "Bet Amount"
 #~ msgstr "Shuma e Bastit"
 
-#: src/components/profile/profile/SingleUserBets.tsx:269
+#: src/components/profile/profile/SingleUserBets.tsx:273
 #: src/components/profile/v2/betting-history-table.tsx:214
 msgid "Bet Amount (Bet ID)"
 msgstr "Shuma e Bastit (Bet ID)"
@@ -132,7 +141,9 @@ msgstr "Shuma e Bastit (Loja)"
 #~ msgid "Bet ID"
 #~ msgstr "ID e Bastit"
 
-#: src/components/shared/v2/header.tsx:328
+#: src/components/profile/profile/SingleTicketPage.tsx:86
+#: src/components/profile/profile/SingleUserBets.tsx:177
+#: src/components/shared/v2/header.tsx:302
 msgid "Bets"
 msgstr "Baste"
 
@@ -159,17 +170,17 @@ msgstr "Para bonus"
 msgid "Bonus Terms"
 msgstr "Kushtet e Bonusit"
 
-#: src/components/profile/profile/UserInfo.tsx:113
+#: src/components/profile/profile/UserInfo.tsx:86
 msgid "Canada"
 msgstr "Kanada"
 
-#: src/components/profile/profile/SingleUserBets.tsx:341
+#: src/components/profile/profile/SingleUserBets.tsx:366
 #: src/components/profile/v2/betting-history-table.tsx:284
 msgid "Cashout"
 msgstr "Tërheqje parash"
 
 #: src/components/shared/v2/header.tsx:86
-#: src/components/shared/v2/header.tsx:322
+#: src/components/shared/v2/header.tsx:297
 msgid "Casino"
 msgstr "Kazino"
 
@@ -206,7 +217,7 @@ msgstr "Zgjidh portofolin:"
 msgid "Chose one these wallet as default:"
 msgstr "Zgjidhni një nga këto portofolë:"
 
-#: src/components/profile/profile/UserInfo.tsx:121
+#: src/components/profile/profile/UserInfo.tsx:94
 msgid "City"
 msgstr "Qyteti"
 
@@ -231,7 +242,7 @@ msgstr "Konfirmo Fjalëkalimin e Ri"
 msgid "Cookie Policy"
 msgstr "Politika e Cookies"
 
-#: src/components/profile/profile/UserInfo.tsx:106
+#: src/components/profile/profile/UserInfo.tsx:79
 msgid "Country"
 msgstr "Vendi"
 
@@ -255,11 +266,17 @@ msgstr "Krijo llogarinë tënde"
 msgid "Creating..."
 msgstr "Duke krijuar..."
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:139
+#: src/components/profile/profile/AgentPaymentTable.tsx:146
 msgid "Currencies"
 msgstr "Monedhat"
 
-#: src/components/profile/profile/UserInfo.tsx:84
+#: src/components/profile/profile/SingleTicketPage.tsx:149
+#: src/components/profile/profile/SingleUserBets.tsx:224
+#: src/components/profile/profile/SingleUserTransaction.tsx:126
+msgid "Currency"
+msgstr "Monedha"
+
+#: src/components/profile/profile/UserInfo.tsx:57
 msgid "Date of Birth"
 msgstr "Data e Lindjes"
 
@@ -274,6 +291,7 @@ msgstr "I Zgjedhuri"
 #: src/components/profile/wallet.tsx:93
 #: src/components/shared/v2/deposit.tsx:152
 #: src/components/shared/v2/deposit.tsx:203
+#: src/components/shared/v2/header.tsx:394
 msgid "Deposit"
 msgstr "Depozito"
 
@@ -312,7 +330,7 @@ msgstr "Menyja rënëse u mbyll."
 msgid "Egyptian Theme"
 msgstr "Temë Egjiptiane"
 
-#: src/components/profile/profile/UserInfo.tsx:78
+#: src/components/profile/profile/UserInfo.tsx:51
 #: src/components/shared/v2/signup.tsx:87
 #: src/components/shared/v2/user/create-user.tsx:142
 msgid "Email"
@@ -342,6 +360,10 @@ msgstr "Fut email-in/emrin e përdoruesit"
 msgid "Enter your password"
 msgstr "Vendos fjalëkalimin tënd"
 
+#: src/components/shared/v2/withdraw.tsx:143
+msgid "Failed to initiate withdraw. Contact Support"
+msgstr "Tërheqja dështoi. Kontaktoni Suportin"
+
 #: src/components/shared/v2/footer.tsx:45
 msgid "Fairness & RNG Testing Methods"
 msgstr "Metoda e Testimit të Drejtësisë & RNG"
@@ -354,7 +376,7 @@ msgstr "Pyetjet e Bëra Shpesh (FAQ)"
 msgid "February"
 msgstr "Shkurt"
 
-#: src/components/profile/profile/UserInfo.tsx:97
+#: src/components/profile/profile/UserInfo.tsx:70
 msgid "Female"
 msgstr "Femër"
 
@@ -369,7 +391,7 @@ msgstr "Filtro"
 msgid "Filters"
 msgstr "Filtrat"
 
-#: src/components/profile/profile/UserInfo.tsx:60
+#: src/components/profile/profile/UserInfo.tsx:33
 msgid "First Name"
 msgstr "Emri"
 
@@ -387,7 +409,7 @@ msgstr "Game Show"
 msgid "games"
 msgstr "lojëra"
 
-#: src/components/profile/profile/UserInfo.tsx:90
+#: src/components/profile/profile/UserInfo.tsx:63
 msgid "Gender"
 msgstr "Gjinia"
 
@@ -417,6 +439,10 @@ msgstr "ID"
 #: src/routes/casino/subCategoryGames.tsx:100
 msgid "Instant Games"
 msgstr "Lojëra të Menjëhershme"
+
+#: src/components/shared/v2/withdraw.tsx:123
+msgid "Invalid wallet address format"
+msgstr "Format i pavlefshëm i adresës së portofolit"
 
 #: src/components/shared/v2/date-filter.tsx:27
 msgid "January"
@@ -449,7 +475,7 @@ msgstr "Politikat KYC"
 msgid "Language"
 msgstr "Gjuha"
 
-#: src/components/profile/profile/UserInfo.tsx:66
+#: src/components/profile/profile/UserInfo.tsx:39
 msgid "Last Name"
 msgstr "Mbiemri"
 
@@ -462,7 +488,7 @@ msgid "License"
 msgstr "Licencë"
 
 #: src/components/shared/v2/deposit.tsx:210
-#: src/components/shared/v2/withdraw.tsx:261
+#: src/components/shared/v2/withdraw.tsx:258
 msgid "Live Chat"
 msgstr "Bisedë Live"
 
@@ -483,7 +509,7 @@ msgstr "Lobi"
 msgid "Lobby Crash"
 msgstr "Lobi Crash"
 
-#: src/components/shared/v2/header.tsx:256
+#: src/components/shared/v2/header.tsx:236
 msgid "Log in"
 msgstr "Hyr"
 
@@ -491,7 +517,7 @@ msgstr "Hyr"
 msgid "Log In"
 msgstr "Hyr"
 
-#: src/components/shared/v2/header.tsx:521
+#: src/components/shared/v2/header.tsx:470
 msgid "Log out"
 msgstr "Dil"
 
@@ -502,7 +528,7 @@ msgstr "Duke hyr..."
 #~ msgid "Login successful!"
 #~ msgstr "Hyrja u krye me sukses!"
 
-#: src/components/profile/profile/SingleUserBets.tsx:337
+#: src/components/profile/profile/SingleUserBets.tsx:362
 #: src/components/profile/v2/betting-history-table.tsx:280
 #: src/components/profile/v2/casino-history-table.tsx:219
 msgid "Lost"
@@ -512,7 +538,7 @@ msgstr "Humbur"
 msgid "Lottery"
 msgstr "Lotari"
 
-#: src/components/profile/profile/UserInfo.tsx:96
+#: src/components/profile/profile/UserInfo.tsx:69
 msgid "Male"
 msgstr "Mashkull"
 
@@ -531,15 +557,15 @@ msgstr "Maj"
 msgid "Megaways"
 msgstr "Megaways"
 
-#: src/components/profile/profile/Messages.tsx:124
+#: src/components/profile/profile/Messages.tsx:168
 msgid "Message"
 msgstr "Mesazhi"
 
-#: src/components/shared/v2/header.tsx:507
+#: src/components/shared/v2/header.tsx:458
 msgid "Messages"
 msgstr "Mesazhet"
 
-#: src/components/profile/profile/UserInfo.tsx:114
+#: src/components/profile/profile/UserInfo.tsx:87
 msgid "Mexico"
 msgstr "Meksikë"
 
@@ -556,9 +582,13 @@ msgid "Name"
 msgstr "Emri"
 
 #: src/components/shared/v2/deposit.tsx:208
-#: src/components/shared/v2/withdraw.tsx:259
+#: src/components/shared/v2/withdraw.tsx:256
 msgid "Need Help?"
 msgstr "Keni nevojë për ndihmë?"
+
+#: src/components/profile/profile/SingleTicketPage.tsx:220
+msgid "Net Win"
+msgstr "Fitore Neto"
 
 #: src/components/profile/v2/change-password-form.tsx:139
 msgid "New Password"
@@ -582,8 +612,8 @@ msgstr "Tjetra"
 msgid "Nexu"
 msgstr "Nexu"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:225
-#: src/components/profile/profile/SingleUserBets.tsx:289
+#: src/components/profile/profile/AgentPaymentTable.tsx:232
+#: src/components/profile/profile/SingleUserBets.tsx:295
 #: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:171
 #: src/components/profile/v2/payments-history-table.tsx:213
@@ -591,8 +621,8 @@ msgstr "Nexu"
 msgid "No data available"
 msgstr "Nuk ka të dhëna të disponueshme"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:225
-#: src/components/profile/profile/SingleUserBets.tsx:289
+#: src/components/profile/profile/AgentPaymentTable.tsx:232
+#: src/components/profile/profile/SingleUserBets.tsx:295
 #: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:171
 #: src/components/profile/v2/payments-history-table.tsx:213
@@ -615,15 +645,15 @@ msgstr "Nuk është zgjedhur asnjë kategori e faqes së basteve sportive."
 msgid "No sportsbook URL available."
 msgstr "Nuk ka URL të disponueshme të faqes së basteve sportive."
 
-#: src/components/profile/profile/UserInfo.tsx:98
+#: src/components/profile/profile/UserInfo.tsx:71
 msgid "Non-binary"
 msgstr "Jo-binare"
 
-#: src/components/profile/profile/Messages.tsx:84
+#: src/components/profile/profile/Messages.tsx:118
 msgid "Not Received any messages yet"
 msgstr "Nuk ka ardhur asnjë mesazh"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:207
+#: src/components/profile/profile/AgentPaymentTable.tsx:214
 msgid "Note"
 msgstr "Shënim"
 
@@ -643,7 +673,7 @@ msgstr "Fjalëkalimi i Vjetër"
 msgid "Or play demo"
 msgstr "Ose luaj demo"
 
-#: src/components/shared/v2/header.tsx:514
+#: src/components/shared/v2/header.tsx:464
 #: src/components/shared/v2/login.tsx:104
 #: src/components/shared/v2/signup.tsx:108
 #: src/components/shared/v2/user/create-user.tsx:152
@@ -655,7 +685,7 @@ msgid "Password changed successfully."
 msgstr "Fjalëkalimi u ndryshua me sukses."
 
 #: src/components/profile/profile/AgentPayments.tsx:17
-#: src/components/shared/v2/header.tsx:359
+#: src/components/shared/v2/header.tsx:327
 msgid "Payments"
 msgstr "Pagesat"
 
@@ -663,17 +693,17 @@ msgstr "Pagesat"
 msgid "Payments History"
 msgstr "Historia e Pagesave"
 
-#: src/components/profile/profile/SingleUserBets.tsx:437
+#: src/components/profile/profile/SingleUserBets.tsx:454
 #: src/components/profile/v2/betting-history-table.tsx:385
 msgid "Payout"
 msgstr "Pagesa"
 
-#: src/components/profile/profile/SingleUserBets.tsx:346
+#: src/components/profile/profile/SingleUserBets.tsx:371
 #: src/components/profile/v2/betting-history-table.tsx:290
 msgid "Pending"
 msgstr "Në pritje"
 
-#: src/components/profile/profile/UserInfo.tsx:72
+#: src/components/profile/profile/UserInfo.tsx:45
 msgid "Phone Number"
 msgstr "Numri i Telefonit"
 
@@ -687,9 +717,25 @@ msgstr "Zgjidh datën e mbarimit"
 msgid "Pick start date"
 msgstr "Zgjidh datën e fillimit"
 
+#: src/components/profile/profile/SingleTicketPage.tsx:218
+msgid "Played"
+msgstr "Luajtur"
+
+#: src/components/shared/v2/withdraw.tsx:113
+msgid "Please enter a wallet address"
+msgstr "Ju lutemi futni një adresë portofoli"
+
+#: src/components/shared/v2/withdraw.tsx:107
+msgid "Please enter an amount between"
+msgstr "Ju lutemi futni një shumë midis"
+
 #: src/components/casino/feedbackForm.tsx:35
 msgid "Please leave some feedback or report a bug/issue you have faced."
 msgstr "Ju lutem lini disa komente ose raportoni një problem/çështje me të cilën jeni përballur."
+
+#: src/components/shared/v2/withdraw.tsx:96
+msgid "Please select a cryptocurrency"
+msgstr "Ju lutemi zgjidhni një Kripto"
 
 #: src/components/shared/v2/deposit.tsx:117
 msgid "Please select a wallet"
@@ -699,15 +745,15 @@ msgstr "Ju lutem zgjidhni një portofol"
 msgid "Please top up your account to play for real money."
 msgstr "Ju lutem mbushni llogarinë tuaj për të luajtur për para të vërteta."
 
-#: src/components/profile/profile/UserInfo.tsx:133
+#: src/components/profile/profile/UserInfo.tsx:106
 msgid "Postal Code"
 msgstr "Kodi Postar"
 
-#: src/components/profile/profile/UserInfo.tsx:99
+#: src/components/profile/profile/UserInfo.tsx:72
 msgid "Prefer not to say"
 msgstr "Preferoj të mos them"
 
-#: src/components/shared/v2/header.tsx:475
+#: src/components/shared/v2/header.tsx:430
 msgid "Preferences"
 msgstr "Preferencat"
 
@@ -719,12 +765,12 @@ msgstr "E mëparshmja"
 msgid "Privacy Policy"
 msgstr "Politika e Privatësisë"
 
-#: src/components/shared/v2/header.tsx:469
-#: src/components/shared/v2/header.tsx:500
+#: src/components/shared/v2/header.tsx:426
+#: src/components/shared/v2/header.tsx:452
 msgid "Profile"
 msgstr "Profili"
 
-#: src/components/profile/profile/UserInfo.tsx:44
+#: src/components/profile/profile/UserInfo.tsx:17
 msgid "Profile Info"
 msgstr "Info Profili"
 
@@ -742,7 +788,7 @@ msgstr "Provider"
 
 #: src/components/casino/lobbySlider.tsx:143
 #: src/components/casino/lobbySlider.tsx:323
-#: src/components/casino/provider-slider-from-api.tsx:68
+#: src/components/casino/provider-slider-from-api.tsx:66
 #: src/components/casino/providerSlider.tsx:37
 #: src/components/casino/subcategorySlider.tsx:67
 #: src/components/shared/v2/casino/search.tsx:393
@@ -759,20 +805,23 @@ msgstr "Lexo Më Shumë"
 msgid "Real money"
 msgstr "Para të vërteta"
 
-#: src/components/profile/profile/Messages.tsx:79
-msgid "Received Messages"
-msgstr "Mesazhe të Ardhura"
+#: src/components/profile/profile/Messages.tsx:88
+msgid "Received"
+msgstr "Të Ardhura"
+
+#~ msgid "Received Messages"
+#~ msgstr "Mesazhe të Ardhura"
 
 #: src/components/casino/bottomBanner.tsx:12
 #: src/components/casino/bottomBanner.tsx:21
 msgid "Recharge et retire en Crypto."
 msgstr "Rimbush dhe tërheq me Kripto."
 
-#: src/components/profile/profile/Messages.tsx:75
+#: src/components/profile/profile/Messages.tsx:84
 msgid "Refresh"
 msgstr "Rifresko"
 
-#: src/components/shared/v2/header.tsx:353
+#: src/components/shared/v2/header.tsx:322
 msgid "Reports"
 msgstr "Raportet"
 
@@ -813,7 +862,7 @@ msgstr "Ruletë"
 #: src/components/shared/v2/casino/search.tsx:216
 #: src/components/shared/v2/casino/search.tsx:223
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:66
-#: src/components/shared/v2/header.tsx:292
+#: src/components/shared/v2/header.tsx:268
 #: src/routes/casino/subCategoryGames.tsx:230
 msgid "Search"
 msgstr "Kërko"
@@ -833,6 +882,10 @@ msgstr "Rezultatet e kërkimit"
 #: src/components/casino/lobbyBannerSlider.tsx:70
 msgid "SECOND DEPOSIT BONUS"
 msgstr "BONUSI I DYTË I DEPOZITËS"
+
+#: src/components/shared/v2/user/create-user.tsx:177
+msgid "Select a default wallet"
+msgstr "Zgjidh një portofol bazë"
 
 #: src/components/shared/v2/deposit.tsx:179
 #: src/components/shared/v2/withdraw.tsx:181
@@ -855,9 +908,12 @@ msgstr "Auto-Përjashtimi"
 msgid "Send message"
 msgstr "Dërgo mesazh"
 
-#: src/components/profile/profile/Messages.tsx:90
-msgid "Sent Messages"
-msgstr "Mesazhe të Dërguara"
+#: src/components/profile/profile/Messages.tsx:86
+msgid "Sent"
+msgstr "Të Dërguara"
+
+#~ msgid "Sent Messages"
+#~ msgstr "Mesazhe të Dërguara"
 
 #: src/components/shared/v2/date-filter.tsx:35
 msgid "September"
@@ -867,7 +923,7 @@ msgstr "Shtator"
 msgid "Set default"
 msgstr "Caktoje si të Zgjedhur"
 
-#: src/components/shared/v2/header.tsx:529
+#: src/components/shared/v2/header.tsx:478
 msgid "Show Balance"
 msgstr "Shfaq Balancën"
 
@@ -890,8 +946,12 @@ msgstr "Sport"
 msgid "Sport Betting Terms"
 msgstr "Kushtet e Basteve Sportive"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:210
-#: src/components/profile/profile/SingleUserBets.tsx:275
+#: src/components/profile/profile/AgentPaymentTable.tsx:217
+#: src/components/profile/profile/SingleTicketPage.tsx:182
+#: src/components/profile/profile/SingleTicketPage.tsx:201
+#: src/components/profile/profile/SingleUserBets.tsx:257
+#: src/components/profile/profile/SingleUserBets.tsx:281
+#: src/components/profile/profile/SingleUserTransaction.tsx:159
 #: src/components/profile/v2/betting-history-table.tsx:220
 #: src/components/profile/v2/casino-history-table.tsx:155
 #: src/components/profile/v2/payments-history-table.tsx:197
@@ -917,7 +977,7 @@ msgstr "testpopok"
 msgid "Thank you for making our service better"
 msgstr "Faleminderit që e bëni shërbimin tonë më të mirë"
 
-#: src/components/profile/profile/Messages.tsx:126
+#: src/components/profile/profile/Messages.tsx:170
 msgid "There has been an error"
 msgstr "Ka pasur një gabim"
 
@@ -925,8 +985,8 @@ msgstr "Ka pasur një gabim"
 msgid "This wallet is already default"
 msgstr "Ky portofol është tashmë i paracaktuar"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:201
-#: src/components/profile/profile/SingleUserBets.tsx:272
+#: src/components/profile/profile/AgentPaymentTable.tsx:208
+#: src/components/profile/profile/SingleUserBets.tsx:276
 #: src/components/profile/v2/betting-history-table.tsx:217
 #: src/components/profile/v2/payments-history-table.tsx:185
 msgid "Time"
@@ -936,7 +996,7 @@ msgstr "Koha"
 msgid "Time (Bet ID)"
 msgstr "Koha (Bet ID)"
 
-#: src/components/profile/profile/UserInfo.tsx:47
+#: src/components/profile/profile/UserInfo.tsx:20
 msgid "To edit the data, please contact support."
 msgstr "Për të redaktuar të dhënat, ju lutem kontaktoni suportin."
 
@@ -952,22 +1012,32 @@ msgstr "Lojërat Kryesore"
 msgid "Total balance"
 msgstr "Balanca totale"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:270
+#: src/components/profile/profile/AgentPaymentTable.tsx:277
 msgid "Total Deposit:"
 msgstr "Depozitim Total:"
 
-#: src/components/profile/profile/SingleUserBets.tsx:415
+#: src/components/profile/profile/SingleUserBets.tsx:432
 #: src/components/profile/v2/betting-history-table.tsx:359
 msgid "Total odds"
 msgstr "Shanset totale"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:280
+#: src/components/profile/profile/AgentPaymentTable.tsx:287
 msgid "Total Withdrawal:"
 msgstr "Tërheqje Totale:"
 
-#: src/components/profile/profile/AgentPaymentTable.tsx:290
+#: src/components/profile/profile/AgentPaymentTable.tsx:297
 msgid "Total:"
 msgstr "Totali:"
+
+#: src/components/profile/profile/SingleUserTransaction.tsx:79
+msgid "Transaction"
+msgstr "Transferimi"
+
+#: src/components/profile/profile/SingleTicketPage.tsx:167
+#: src/components/profile/profile/SingleUserBets.tsx:242
+#: src/components/profile/profile/SingleUserTransaction.tsx:144
+msgid "Type"
+msgstr "Tipi"
 
 #: src/components/ui/multi-select.tsx:1024
 msgid "Type to filter options. Use arrow keys to navigate results."
@@ -977,7 +1047,7 @@ msgstr "Shkruaj për të filtruar opsionet. Përdor shigjetat për të lëvizur 
 msgid "Unable to load sportsbook."
 msgstr "Nuk mund të ngarkohet lista e basteve sportive."
 
-#: src/components/profile/profile/UserInfo.tsx:112
+#: src/components/profile/profile/UserInfo.tsx:85
 msgid "United States"
 msgstr "Shtetet e Bashkuara"
 
@@ -985,12 +1055,13 @@ msgstr "Shtetet e Bashkuara"
 msgid "up to 25%"
 msgstr "deri në 25%"
 
-#: src/components/profile/profile/UserInfo.tsx:54
+#: src/components/profile/profile/SingleTicketPage.tsx:217
+#: src/components/profile/profile/UserInfo.tsx:27
 #: src/components/shared/v2/user/create-user.tsx:125
 msgid "Username"
 msgstr "Emri i përdoruesit"
 
-#: src/components/shared/v2/header.tsx:341
+#: src/components/shared/v2/header.tsx:312
 msgid "Users"
 msgstr "Përdoruesit"
 
@@ -1003,7 +1074,7 @@ msgstr "Video Slots"
 
 #: src/components/casino/lobbySlider.tsx:111
 #: src/components/casino/lobbySlider.tsx:292
-#: src/components/casino/provider-slider-from-api.tsx:81
+#: src/components/casino/provider-slider-from-api.tsx:77
 #: src/components/casino/providerSlider.tsx:47
 msgid "View all"
 msgstr "Shiko të gjitha"
@@ -1023,7 +1094,7 @@ msgstr "Virtuale"
 msgid "Virtual Games"
 msgstr "Lojëra Virtuale"
 
-#: src/components/shared/v2/header.tsx:347
+#: src/components/shared/v2/header.tsx:317
 #: src/routes/account/wallet.tsx:9
 msgid "Wallet"
 msgstr "Portofol"
@@ -1052,7 +1123,8 @@ msgstr "TËRHEQJE"
 msgid "Withdraw initiated successfully!"
 msgstr "Tërheqja u iniciua me sukses!"
 
-#: src/components/profile/profile/SingleUserBets.tsx:349
+#: src/components/profile/profile/SingleTicketPage.tsx:219
+#: src/components/profile/profile/SingleUserBets.tsx:374
 #: src/components/profile/v2/betting-history-table.tsx:293
 #: src/components/profile/v2/casino-history-table.tsx:211
 msgid "Won"

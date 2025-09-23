@@ -169,12 +169,12 @@ const SingleUserBets = () => {
 
     return (
         <div className="space-y-3 min-h-screen container mx-auto">
-            <div className={'h-10  flex  border-b border-popover items-center'}>
+            <div className={'h-10  flex border-b border-popover items-center'}>
                 <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={()=>navigate(-1)}>
                     <ChevronLeftIcon className={'w-10'} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Bets</p>
+                    <Trans>Bets</Trans>
                     <span>-</span>
                     <p>{user}</p>
                 </div>
@@ -183,45 +183,37 @@ const SingleUserBets = () => {
                 <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
-                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
+                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={dates.startDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({ ...prev, startDate: date }))
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
                     <Popover>
 
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={dates.endDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({ ...prev, endDate: date }))
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
                     {/*Currency options*/}
@@ -229,7 +221,7 @@ const SingleUserBets = () => {
                         setSelectedCurrencies(value)
                     }}>
                         <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder={"Currency"}/>
+                            <SelectValue placeholder={t`Currency`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -247,7 +239,7 @@ const SingleUserBets = () => {
                         setBetType(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder="Type"/>
+                            <SelectValue placeholder={t`Type`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -262,7 +254,7 @@ const SingleUserBets = () => {
                         setSelectedStatuses(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status"/>
+                            <SelectValue placeholder={t`Status`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -275,7 +267,7 @@ const SingleUserBets = () => {
                 </div>
             </div>
             <Table className="bg-popover hover:bg-popover text-white">
-                <TableHeader className="bg-chart-2 text-white  h-8">
+                <TableHeader className="bg-chart-2 text-white h-8">
                     <TableRow className={'hover:bg-transparent border-popover'}>
                         <TableHead className="h-8 px-0 max-w-[100px] text-white">
                             <Trans>Bet Amount (Bet ID)</Trans>
@@ -325,8 +317,7 @@ const SingleUserBets = () => {
                                                         setExpandedTicketId(
                                                             expandedTicketId === ticket.id ? null : ticket.id,
                                                         )
-                                                    }
-                                                >
+                                                    }>
                                                     <TableCell className="p-0 max-w-[20%] ">
                                                         <div className="flex px-2 flex-col leading-tight">
                                                                 <span>
@@ -384,9 +375,7 @@ const SingleUserBets = () => {
                                                                     {currencyList[ticket.currency]?.symbol_native}
                                                         </span>
                                                             )}
-                                                        <span
-                                                            className={`w-3 h-3 rounded-full ${status.color}`}
-                                                        />
+                                                        <span className={`w-3 h-3 rounded-full ${status.color}`}/>
                                                     </TableCell>
                                                 </TableRow>
 
@@ -397,24 +386,18 @@ const SingleUserBets = () => {
                                                                 {ticket.details?.odds?.map((odd: Odd) => {
                                                                     const oddStatus = STATUS_MAP[odd.status] || STATUS_MAP[1];
                                                                     return (
-                                                                        <div
-                                                                            key={odd.id}
-                                                                            className="relative flex flex-col border-b border-popover/60"
-                                                                        >
+                                                                        <div key={odd.id}
+                                                                            className="relative flex flex-col border-b border-popover/60">
                                                                             {(odd.status === 3 || odd.status === 1) && (
-                                                                                <div
-                                                                                    className={`absolute top-0 left-0 h-full w-1/2 ${
+                                                                                <div className={`absolute top-0 left-0 h-full w-1/2 ${
                                                                                         odd.status === 3
                                                                                             ? "bg-gradient-to-r from-green-400/30 to-transparent"
                                                                                             : "bg-gradient-to-r from-red-400/30 to-transparent"
-                                                                                    }`}
-                                                                                />
+                                                                                    }`}/>
                                                                             )}
                                                                             <div
                                                                                 className="flex items-center w-full gap-2 px-4 py-1 relative z-10">
-                                                                                      <span
-                                                                                          className={`w-3 h-3 shrink-0 rounded-full ${oddStatus.color}`}
-                                                                                      />
+                                                                                      <span className={`w-3 h-3 shrink-0 rounded-full ${oddStatus.color}`}/>
                                                                                 <div className="text-xs text-white">
                                                                                     {formatTimestamp(ticket.created_at)}
                                                                                 </div>

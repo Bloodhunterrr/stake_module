@@ -29,8 +29,7 @@ const ProvidersGames = () => {
         <section id="category-section" className="CategorySection">
           <div className="category-games-section">
             <div className="items-grid-wrapper">
-              <div
-                  className={cn("sticky top-10 lg:top-16 bg-background  z-10 py-2 ", {
+              <div className={cn("sticky top-10 lg:top-16 bg-background  z-10 py-2 ", {
                       "top-22 lg:top-16": optionalSideBarOpen,
                   })}>
                 <div className="p-3 flex items-center justify-between">
@@ -78,8 +77,7 @@ const ProvidersGames = () => {
                   provider_general_codes={providerCode ? [providerCode] : null}
                   order_by={isSortingEnabled ? "name" : "order"}
                   onTotalChange={setTotalGames}
-                  gameDynamicClass="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
-                />
+                  gameDynamicClass="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"/>
               </div>
             </div>
           </div>
@@ -88,8 +86,7 @@ const ProvidersGames = () => {
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent showCloseButton={false}
           className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full">
-          <Search
-            setSearchModal={setSearchModal}
+          <Search setSearchModal={setSearchModal}
             onCloseSearchModal={() => setSearchModal(false)}/>
         </DialogContent>
       </Dialog>

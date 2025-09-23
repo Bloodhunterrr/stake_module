@@ -1,17 +1,18 @@
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
-import {Popover, PopoverTrigger, PopoverContent,} from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { useLazyGetSingleUsersTransactionQuery } from "@/services/authApi";
 import PaginationComponent from "@/components/shared/v2/pagination";
-import {CalendarIcon, ChevronLeftIcon} from "lucide-react";
-import {useNavigate, useParams, useSearchParams} from "react-router";
+import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
+import { useNavigate, useParams, useSearchParams } from "react-router";
 import { useEffect, useState, Fragment} from "react";
 import { formatDateToDMY } from "@/utils/formatDate";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
-import {cn} from "@/lib/utils.ts";
+import { cn } from "@/lib/utils.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
-import {useAppSelector} from "@/hooks/rtk.ts";
+import { useAppSelector } from "@/hooks/rtk.ts";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 const SingleUserTransaction = () => {
     const contextUser = useAppSelector((s) => s.auth?.user);
@@ -56,6 +57,7 @@ const SingleUserTransaction = () => {
 
     const user = (data && data[0]?.user) ?? ""
 
+    const { t } = useLingui()
 
     if(isError){
         navigate('/')
@@ -74,7 +76,7 @@ const SingleUserTransaction = () => {
                     <ChevronLeftIcon className={'w-10'} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Transaction</p>
+                    <Trans>Transaction</Trans>
                     <span>-</span>
                     <p>{user}</p>
                 </div>
@@ -83,45 +85,37 @@ const SingleUserTransaction = () => {
                 <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={dates.startDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({ ...prev, startDate: date }))
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
                     <Popover>
 
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={dates.endDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({ ...prev, endDate: date }))
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
                     {/*Currency options*/}
@@ -129,7 +123,7 @@ const SingleUserTransaction = () => {
                         setSelectedCurrencies(value)
                     }}>
                         <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder={"Currency"}/>
+                            <SelectValue placeholder={t`Currency`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -147,7 +141,7 @@ const SingleUserTransaction = () => {
                         setBetType(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder="Type"/>
+                            <SelectValue placeholder={t`Type`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -162,7 +156,7 @@ const SingleUserTransaction = () => {
                         setSelectedStatuses(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status"/>
+                            <SelectValue placeholder={t`Status`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {

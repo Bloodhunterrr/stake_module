@@ -93,7 +93,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
     }
 
     if (!selectedCrypto) {
-      setCryptoError(`Please select a cryptocurrency`);
+      setCryptoError(t`Please select a cryptocurrency`);
       hasError = true;
     }
 
@@ -104,13 +104,13 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
       parsedAmount > maxWithdraw
     ) {
       setError(
-        `Please enter an amount between ${minWithdraw} and ${maxWithdraw} ${selectedWallet?.slug.toUpperCase()}`
+          t`Please enter an amount between` + `${minWithdraw} & ${maxWithdraw} ${selectedWallet?.slug.toUpperCase()}`
       );
       hasError = true;
     }
 
     if (!walletAddress.trim()) {
-      setWalletAddressError(`Please enter a wallet address`);
+      setWalletAddressError(t`Please enter a wallet address`);
       hasError = true;
     } else if (selectedCrypto) {
       const selectedCryptoData = cryptoData?.cryptos.find(
@@ -120,7 +120,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
         selectedCryptoData?.wallet_regex &&
         !validateWalletAddress(walletAddress, selectedCryptoData.wallet_regex)
       ) {
-        setWalletAddressError(`Invalid wallet address format`);
+        setWalletAddressError(t`Invalid wallet address format`);
         hasError = true;
       }
     }
@@ -140,7 +140,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
       toast.success(t`Withdraw initiated successfully!`);
       onClose(); // or dispatch(setModal({ modal: 'withdraw-info' }))
     } catch (err) {
-      setError(`Failed to initiate withdraw. Contact Support`);
+      setError(t`Failed to initiate withdraw. Contact Support`);
       console.error("Withdraw error:", err);
     }
   };
@@ -229,8 +229,7 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
 
           <div className="grid gap-2">
             <Label htmlFor="wallet-address"><Trans>Wallet Address</Trans></Label>
-            <Input
-              id="wallet-address"
+            <Input id="wallet-address"
               value={walletAddress}
               onChange={(e) => setWalletAddress(e.target.value)}
               className={cn(
@@ -247,14 +246,12 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
         </div>
 
         <div className="flex flex-col gap-4">
-          <Button
-            onClick={handleSubmit}
+          <Button onClick={handleSubmit}
             disabled={isWithdrawing}
             className="w-full bg-card hover:bg-card/70 text-accent-foreground">
             {isWithdrawing ? "Withdrawing..." : "Withdraw"}
           </Button>
-          <div
-            onClick={() => console.log("chat")}
+          <div onClick={() => console.log("chat")}
             className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
             <Trans>Need Help?</Trans>
             <Support className="h-4 w-4" />
@@ -313,8 +310,7 @@ const WithdrawChips = ({ selectedWallet, handleChipClick }: ChipsProps) => {
         <button
           key={chip}
           onClick={() => handleChipClick(chip.toString())}
-          className="flex-shrink-0 rounded-full bg-secondary px-4 py-2 text-sm font-semibold transition-colors hover:bg-secondary/80"
-        >
+          className="flex-shrink-0 rounded-full bg-secondary px-4 py-2 text-sm font-semibold transition-colors hover:bg-secondary/80">
           {chip.toLocaleString("en-EN")} {selectedSymbol}
         </button>
       ))}
