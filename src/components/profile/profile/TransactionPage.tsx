@@ -23,7 +23,7 @@ import {
 import Loading from "@/components/shared/v2/loading.tsx";
 import DateFilter from "@/components/shared/v2/date-filter";
 import { useGetMainQuery } from "@/services/mainApi";
-import { Trans } from "@lingui/react/macro";
+import { Trans, useLingui } from "@lingui/react/macro";
 import {
   Accordion,
   AccordionContent,
@@ -298,23 +298,21 @@ function TicketPage() {
     );
   }
 
+  const { t } = useLingui();
+
   return (
     <div className={"min-h-screen container mx-auto"}>
       <div className={"h-10  flex  border-b border-popover items-center"}>
-        <div
-          className={
+        <div className={
             "w-10 h-full border-r text-muted border-popover flex items-center"
           }
-          onClick={() => navigate(-1)}
-        >
+          onClick={() => navigate(-1)}>
           <ChevronLeftIcon className={"w-10 "} />
         </div>
-        <div
-          className={
+        <div className={
             "w-full text-muted text-center pr-10 space-x-1 flex justify-center"
-          }
-        >
-          <p>Reports</p>
+          }>
+          <Trans>Reports</Trans>
           <span>-</span>
           <p>{userCategory?.data?.user?.name}</p>
         </div>
@@ -323,74 +321,59 @@ function TicketPage() {
         <div
           className={
             "w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly"
-          }
-        >
+          }>
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-              >
+              <Button variant="outline"
+                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                 {format(dates.startDate, "dd/MM/yyyy")}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-0 bg-white">
-              <Calendar
-                className="w-full"
+              <Calendar className="w-full"
                 mode="single"
                 selected={dates.startDate}
                 onSelect={(date) => {
                   setSelectedDateFilter("");
                   date && setDates((prev) => ({ ...prev, startDate: date }));
-                }}
-              />
+                }}/>
             </PopoverContent>
           </Popover>
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-              >
+              <Button variant="outline"
+                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                 {format(dates.endDate, "dd/MM/yyyy")}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-0 bg-white">
-              <Calendar
-                className="w-full"
+              <Calendar className="w-full"
                 mode="single"
                 selected={dates.endDate}
                 onSelect={(date) => {
                   setSelectedDateFilter("");
                   date && setDates((prev) => ({ ...prev, endDate: date }));
-                }}
-              />
+                }}/>
             </PopoverContent>
           </Popover>
 
-          <Select
-            value={selectedCurrencies}
+          <Select value={selectedCurrencies}
             onValueChange={(value) => {
               setSelectedCurrencies(value);
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"
-              }
-            >
-              <SelectValue placeholder={"Currency"} />
+            }}>
+            <SelectTrigger className={
+                "h-8! w-1/4 rounded-none bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
+              }>
+              <SelectValue placeholder={t`Currency`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
               {currencyOptions?.map((currency: any, index: number) => {
                 return (
-                  <SelectItem
-                    key={index}
+                  <SelectItem key={index}
                     className={"focus:text-background text-accent rounded-none"}
-                    value={currency.label}
-                  >
+                    value={currency.label}>
                     {currency.label}
                   </SelectItem>
                 );
@@ -399,37 +382,28 @@ function TicketPage() {
           </Select>
         </div>
 
-        <div
-          className={
+        <div className={
             "flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2"
-          }
-        >
+          }>
           {/*bet Type*/}
-          <Select
-            value={betType}
+          <Select value={betType}
             onValueChange={(value) => {
               setBetType(value);
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent "
-              }
-            >
-              <SelectValue placeholder="Type" />
+            }}>
+            <SelectTrigger className={
+                "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent "
+              }>
+              <SelectValue placeholder={t`Type`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
               {filtersCategory?.data?.filters &&
                 filtersCategory?.data?.filters?.betType.map(
                   (types: string, index: number) => {
                     return (
-                      <SelectItem
-                        key={index}
+                      <SelectItem key={index}
                         className={
                           "focus:text-background text-accent rounded-none capitalize"
-                        }
-                        value={types}
-                      >
+                        } value={types}>
                         {types}
                       </SelectItem>
                     );
@@ -439,31 +413,24 @@ function TicketPage() {
           </Select>
 
           {/*Status options*/}
-          <Select
-            value={status}
+          <Select value={status}
             onValueChange={(value) => {
               setStatus(value);
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"
-              }
-            >
-              <SelectValue placeholder="Status" />
+            }}>
+            <SelectTrigger className={
+                "h-8! w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
+              }>
+              <SelectValue placeholder={t`Status`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
               {filtersCategory?.data?.filters &&
                 filtersCategory?.data?.filters?.status.map(
                   (status: any, index: number) => {
                     return (
-                      <SelectItem
-                        key={index}
+                      <SelectItem key={index}
                         className={
                           "focus:text-background text-accent rounded-none"
-                        }
-                        value={status}
-                      >
+                        } value={status}>
                         {status}
                       </SelectItem>
                     );
@@ -473,8 +440,7 @@ function TicketPage() {
           </Select>
 
           {/*Categories*/}
-          <Select
-            value={category}
+          <Select value={category}
             onValueChange={(value) => {
               setCategory(value);
 
@@ -487,27 +453,21 @@ function TicketPage() {
               }
             }}
           >
-            <SelectTrigger
-              className={
-                "h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"
-              }
-            >
-              <SelectValue placeholder="Category" />
+            <SelectTrigger className={
+                "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
+              }>
+              <SelectValue placeholder={t`Category`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
-              <SelectItem
-                key="All"
+              <SelectItem key="All"
                 value="all"
-                className={"focus:text-background text-accent rounded-none"}
-              >
+                className={"focus:text-background text-accent rounded-none"}>
                 <Trans>All</Trans>
               </SelectItem>
               {mainData?.map((data, index) => (
-                <SelectItem
-                  key={index}
+                <SelectItem key={index}
                   className={"focus:text-background text-accent rounded-none"}
-                  value={String(data.id)}
-                >
+                  value={String(data.id)}>
                   {data.name}
                 </SelectItem>
               ))}
@@ -516,62 +476,48 @@ function TicketPage() {
         </div>
       </div>
 
-      <DateFilter
-        className="text-accent text-[12px]"
+      <DateFilter className="text-accent text-[12px]"
         selected={selectedDateFilter}
-        onSelect={handleDateFilterSelect}
-      />
+        onSelect={handleDateFilterSelect}/>
 
       <div className="flex cursor-pointer flex-col p-3">
         {Array.isArray(data) && data.length > 0 ? (
           category === "all" ? (
-            <Accordion
-              type="multiple"
+            <Accordion type="multiple"
               value={openAccordionItems}
-              onValueChange={(vals) => setOpenAccordionItems(vals)}
-            >
+              onValueChange={(vals) => setOpenAccordionItems(vals)}>
               {data.map((group: any) => {
                   // console.log(group.data.children.find(user => (user.total_lost + user.total_played + user.total_won) !== 0))
                   return (
-                      <AccordionItem
-                          key={group.id}
+                      <AccordionItem key={group.id}
                           value={String(group.id)}
-                          className="border-none py-2"
-                      >
+                          className="border-none py-2">
                           <AccordionTrigger className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0">
                               {group.category}
                           </AccordionTrigger>
                           <AccordionContent className="p-0">
-                              <ReportTable
-                                  group={group}
+                              <ReportTable group={group}
                                   dates={dates}
                                   navigate={navigate}
-                                  isFetching={isFetching}
-                              />
+                                  isFetching={isFetching}/>
                           </AccordionContent>
                       </AccordionItem>
                   )
               })}
 
               {extraCategories.map((cat: any) => (
-                <AccordionItem
-                  key={cat.id}
+                <AccordionItem key={cat.id}
                   value={String(cat.id)}
-                  className="border-none py-2"
-                >
-                  <AccordionTrigger
-                    onClick={() => handleToggleCategory(cat)}
-                    className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0"
-                  >
-                    {cat.name}
+                  className="border-none py-2">
+                  <AccordionTrigger onClick={() => handleToggleCategory(cat)}
+                    className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0">
+                      <Trans>{cat.name}</Trans>
                   </AccordionTrigger>
                   <AccordionContent className="p-0">
-                    <ReportTable
-                      group={{ data: accordionData[cat.id] }}
+                    <ReportTable group={{ data: accordionData[cat.id] }}
                       dates={dates}
                       navigate={navigate}
-                      isFetching={isFetching}
-                    />
+                      isFetching={isFetching}/>
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -579,26 +525,20 @@ function TicketPage() {
               {/* Games */}
               {filtersCategory?.data?.filters?.games?.length > 0 &&
                 filtersCategory.data.filters.games.map((g: any) => (
-                  <AccordionItem
-                    key={`game-${g.id}`}
+                  <AccordionItem key={`game-${g.id}`}
                     value={`game-${g.id}`}
-                    className="border-none py-2"
-                  >
+                    className="border-none py-2">
                     <AccordionTrigger
                       className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0"
                       onClick={() => {
                         setGame(String(g.id));
-                      }}
-                    >
-                      {g.name}
+                      }}><Trans>{g.name}</Trans>
                     </AccordionTrigger>
                     <AccordionContent className="p-0">
-                      <ReportTable
-                        group={{ data: g.children || [] }}
+                      <ReportTable group={{ data: g.children || [] }}
                         dates={dates}
                         navigate={navigate}
-                        isFetching={isFetching}
-                      />
+                        isFetching={isFetching}/>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -606,26 +546,21 @@ function TicketPage() {
               {/* Providers */}
               {filtersCategory?.data?.filters?.providers?.length > 0 &&
                 filtersCategory.data.filters.providers.map((p: any) => (
-                  <AccordionItem
-                    key={`provider-${p.id}`}
+                  <AccordionItem key={`provider-${p.id}`}
                     value={`provider-${p.id}`}
-                    className="border-none py-2"
-                  >
+                    className="border-none py-2">
                     <AccordionTrigger
                       className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0"
                       onClick={() => {
                         setProvider(String(p.id));
-                      }}
-                    >
-                      {p.name}
+                      }}>
+                        <Trans>{p.name}</Trans>
                     </AccordionTrigger>
                     <AccordionContent className="p-0">
-                      <ReportTable
-                        group={{ data: p.children || [] }}
+                      <ReportTable group={{ data: p.children || [] }}
                         dates={dates}
                         navigate={navigate}
-                        isFetching={isFetching}
-                      />
+                        isFetching={isFetching}/>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -634,18 +569,16 @@ function TicketPage() {
             data.map((group: any) => (
               <div key={group.id} className="mb-2">
                 <h2 className="font-semibold text-sm pb-2 pt-4">{group.category}</h2>
-                <ReportTable
-                  group={group}
+                <ReportTable group={group}
                   dates={dates}
                   navigate={navigate}
-                  isFetching={isFetching}
-                />
+                  isFetching={isFetching}/>
               </div>
             ))
           )
         ) : (
           <div className="text-center text-sm py-3 text-muted-foreground">
-            No categories available
+              <Trans>No categories available</Trans>
           </div>
         )}
       </div>

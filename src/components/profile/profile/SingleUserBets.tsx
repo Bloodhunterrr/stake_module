@@ -125,7 +125,6 @@ const SingleUserBets = () => {
         1: { label: "Lost", color: "bg-red-500" },
     };
 
-    const { t } = useLingui();
     const formatTimestamp = (timestamp: string | Date) => {
         const date = new Date(timestamp);
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -166,6 +165,8 @@ const SingleUserBets = () => {
             }
         }
     }
+
+    const { t } = useLingui();
 
     return (
         <div className="space-y-3 min-h-screen container mx-auto">
@@ -336,8 +337,7 @@ const SingleUserBets = () => {
                                                         <span className={'flex flex-row shrink-0 gap-1'}>
                                                             <span>
                                                                 {format(new Date(ticket.created_at), "HH:mm:ss")}
-                                                                <span
-                                                                    className="text-[12px] block max-w-[100px] truncate sm:max-w-full">
+                                                                <span className="text-[12px] block max-w-[100px] truncate sm:max-w-full">
                                                                       ({ticket.ext_id})
                                                                     </span>
                                                             </span>

@@ -225,8 +225,14 @@ msgstr ""
 msgid " No data available"
 msgstr "Nessun data disponibile"
 
-#~ msgid "{0}"
-#~ msgstr "{0}"
+#. placeholder {0}: cat.name
+#. placeholder {0}: g.name
+#. placeholder {0}: p.name
+#: src/components/profile/profile/TransactionPage.tsx:514
+#: src/components/profile/profile/TransactionPage.tsx:535
+#: src/components/profile/profile/TransactionPage.tsx:557
+msgid "{0}"
+msgstr "{0}"
 
 #: src/components/ui/multi-select.tsx:981
 msgid "{placeholder}"
@@ -272,7 +278,7 @@ msgstr "Indirizzo"
 msgid "Affiliates"
 msgstr "Affiliati"
 
-#: src/components/profile/profile/TransactionPage.tsx:503
+#: src/components/profile/profile/TransactionPage.tsx:465
 #: src/components/shared/v2/casino/single-subcategory-slider.tsx:91
 msgid "All"
 msgstr "Tutti"
@@ -343,7 +349,7 @@ msgstr "Importo scommessa"
 #~ msgid "Bet Amount"
 #~ msgstr "Importo Scommessa"
 
-#: src/components/profile/profile/SingleUserBets.tsx:273
+#: src/components/profile/profile/SingleUserBets.tsx:274
 #: src/components/profile/v2/betting-history-table.tsx:214
 msgid "Bet Amount (Bet ID)"
 msgstr "Importo Scommessa (Bet ID)"
@@ -359,7 +365,7 @@ msgstr "Importo Scommessa (Game)"
 #~ msgstr "Tipo di scommessa"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:86
-#: src/components/profile/profile/SingleUserBets.tsx:177
+#: src/components/profile/profile/SingleUserBets.tsx:178
 #: src/components/shared/v2/header.tsx:302
 msgid "Bets"
 msgstr "Scommesse"
@@ -425,6 +431,7 @@ msgstr "Casinò Live"
 msgid "Categories"
 msgstr "Categorie"
 
+#: src/components/profile/profile/TransactionPage.tsx:459
 #: src/components/shared/v2/casino/search.tsx:277
 msgid "Category"
 msgstr "Categoria"
@@ -512,8 +519,10 @@ msgid "Currencies"
 msgstr "Valute"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:149
-#: src/components/profile/profile/SingleUserBets.tsx:224
+#: src/components/profile/profile/SingleUserBets.tsx:225
 #: src/components/profile/profile/SingleUserTransaction.tsx:126
+#: src/components/profile/profile/TransactionPage.tsx:369
+#: src/components/profile/profile/TransactionUserList.tsx:147
 msgid "Currency"
 msgstr "Valuta"
 
@@ -885,6 +894,7 @@ msgid "Need Help?"
 msgstr "Hai bisogno di aiuto?"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:220
+#: src/components/profile/profile/TransactionUserList.tsx:205
 msgid "Net Win"
 msgstr "Vittoria Netta"
 
@@ -913,8 +923,12 @@ msgstr "Prossimo"
 msgid "Nexu"
 msgstr "Nexu"
 
+#: src/components/profile/profile/TransactionPage.tsx:581
+msgid "No categories available"
+msgstr ""
+
 #: src/components/profile/profile/AgentPaymentTable.tsx:232
-#: src/components/profile/profile/SingleUserBets.tsx:295
+#: src/components/profile/profile/SingleUserBets.tsx:296
 #: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:171
 #: src/components/profile/v2/payments-history-table.tsx:213
@@ -926,7 +940,7 @@ msgstr "Nessun dato disponibile"
 #~ msgstr "Nessun filtro disponibile"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:232
-#: src/components/profile/profile/SingleUserBets.tsx:295
+#: src/components/profile/profile/SingleUserBets.tsx:296
 #: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:171
 #: src/components/profile/v2/payments-history-table.tsx:213
@@ -1052,6 +1066,7 @@ msgid "Pick start date"
 msgstr "Seleziona la data di inizio"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:218
+#: src/components/profile/profile/TransactionUserList.tsx:203
 msgid "Played"
 msgstr "Giocato"
 
@@ -1170,6 +1185,8 @@ msgstr "Ricarica e preleva in Crypto."
 msgid "Refresh"
 msgstr "Aggiorna"
 
+#: src/components/profile/profile/TransactionPage.tsx:315
+#: src/components/profile/profile/TransactionUserList.tsx:84
 #: src/components/shared/v2/header.tsx:322
 msgid "Reports"
 msgstr "Report"
@@ -1331,9 +1348,11 @@ msgstr "Termini Scommesse Sportive"
 #: src/components/profile/profile/AgentPaymentTable.tsx:217
 #: src/components/profile/profile/SingleTicketPage.tsx:182
 #: src/components/profile/profile/SingleTicketPage.tsx:201
-#: src/components/profile/profile/SingleUserBets.tsx:257
-#: src/components/profile/profile/SingleUserBets.tsx:281
+#: src/components/profile/profile/SingleUserBets.tsx:258
+#: src/components/profile/profile/SingleUserBets.tsx:282
 #: src/components/profile/profile/SingleUserTransaction.tsx:159
+#: src/components/profile/profile/TransactionPage.tsx:423
+#: src/components/profile/profile/TransactionUserList.tsx:185
 #: src/components/profile/v2/betting-history-table.tsx:220
 #: src/components/profile/v2/casino-history-table.tsx:155
 #: src/components/profile/v2/payments-history-table.tsx:197
@@ -1371,7 +1390,7 @@ msgstr "Questo portafoglio è già predefinito"
 #~ msgstr "ora"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:208
-#: src/components/profile/profile/SingleUserBets.tsx:276
+#: src/components/profile/profile/SingleUserBets.tsx:277
 #: src/components/profile/v2/betting-history-table.tsx:217
 #: src/components/profile/v2/payments-history-table.tsx:185
 msgid "Time"
@@ -1425,8 +1444,10 @@ msgstr "Transazione"
 #~ msgstr "Cronologia transazioni"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:167
-#: src/components/profile/profile/SingleUserBets.tsx:242
+#: src/components/profile/profile/SingleUserBets.tsx:243
 #: src/components/profile/profile/SingleUserTransaction.tsx:144
+#: src/components/profile/profile/TransactionPage.tsx:396
+#: src/components/profile/profile/TransactionUserList.tsx:165
 msgid "Type"
 msgstr "Tipo"
 
@@ -1447,6 +1468,7 @@ msgid "up to 25%"
 msgstr "fino al 25%"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:217
+#: src/components/profile/profile/TransactionUserList.tsx:202
 #: src/components/profile/profile/UserInfo.tsx:27
 #: src/components/shared/v2/user/create-user.tsx:125
 msgid "Username"
@@ -1531,6 +1553,7 @@ msgstr "Prelievo avviato con successo!"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:219
 #: src/components/profile/profile/SingleUserBets.tsx:374
+#: src/components/profile/profile/TransactionUserList.tsx:204
 #: src/components/profile/v2/betting-history-table.tsx:293
 #: src/components/profile/v2/casino-history-table.tsx:211
 msgid "Won"
