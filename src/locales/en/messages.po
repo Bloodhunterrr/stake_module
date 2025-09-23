@@ -291,11 +291,11 @@ msgstr "All"
 msgid "All Actions"
 msgstr "All Actions"
 
-#: src/components/profile/profile/Reports.tsx:129
-#: src/components/profile/profile/SingleUserBets.tsx:253
-#: src/components/profile/profile/TransactionList.tsx:133
+#: src/components/profile/profile/NewBettingHistory.tsx:272
+#: src/components/profile/profile/Reports.tsx:120
+#: src/components/profile/profile/TransactionList.tsx:135
 #: src/components/profile/v2/betting-history-table.tsx:181
-#: src/components/profile/v2/casino-history-table.tsx:129
+#: src/components/profile/v2/casino-history-table.tsx:242
 #: src/components/profile/v2/payments-history-table.tsx:149
 msgid "All currencies"
 msgstr "All currencies"
@@ -304,7 +304,7 @@ msgstr "All currencies"
 msgid "All Providers"
 msgstr "All Providers"
 
-#: src/components/profile/profile/SingleUserBets.tsx:270
+#: src/components/profile/profile/NewBettingHistory.tsx:289
 #: src/components/profile/v2/betting-history-table.tsx:198
 msgid "All Statuses"
 msgstr "All Statuses"
@@ -346,7 +346,8 @@ msgstr "Begin Now"
 #~ msgid "Best in the App"
 #~ msgstr "Best in the App"
 
-#: src/components/profile/profile/SingleUserBets.tsx:439
+#: src/components/profile/profile/NewBettingHistory.tsx:459
+#: src/components/profile/profile/SingleUserBets.tsx:542
 #: src/components/profile/v2/betting-history-table.tsx:373
 msgid "Bet amount"
 msgstr "Bet amount"
@@ -355,12 +356,13 @@ msgstr "Bet amount"
 #~ msgid "Bet Amount"
 #~ msgstr "Bet Amount"
 
-#: src/components/profile/profile/SingleUserBets.tsx:287
+#: src/components/profile/profile/NewBettingHistory.tsx:308
+#: src/components/profile/profile/SingleUserBets.tsx:369
 #: src/components/profile/v2/betting-history-table.tsx:214
 msgid "Bet Amount (Bet ID)"
 msgstr "Bet Amount (Bet ID)"
 
-#: src/components/profile/v2/casino-history-table.tsx:152
+#: src/components/profile/v2/casino-history-table.tsx:274
 msgid "Bet Amount (Game)"
 msgstr "Bet Amount (Game)"
 
@@ -377,7 +379,7 @@ msgstr "Bet Amount (Game)"
 msgid "Bets"
 msgstr "Bets"
 
-#: src/components/profile/profile/SingleUserBets.tsx:200
+#: src/components/profile/profile/NewBettingHistory.tsx:219
 msgid "Betting History"
 msgstr "Betting History"
 
@@ -413,7 +415,8 @@ msgstr "Canada"
 #~ msgid "Cancelled"
 #~ msgstr "Cancelled"
 
-#: src/components/profile/profile/SingleUserBets.tsx:354
+#: src/components/profile/profile/NewBettingHistory.tsx:374
+#: src/components/profile/profile/SingleUserBets.tsx:456
 #: src/components/profile/v2/betting-history-table.tsx:284
 msgid "Cashout"
 msgstr "Cashout"
@@ -426,7 +429,7 @@ msgstr "Casino"
 #~ msgid "Casino App"
 #~ msgstr "Casino App"
 
-#: src/routes/account/casino.tsx:14
+#: src/components/profile/v2/casino-history-table.tsx:184
 msgid "Casino History"
 msgstr "Casino History"
 
@@ -840,9 +843,10 @@ msgstr "Logging in..."
 #~ msgid "Login successful!"
 #~ msgstr "Login successful!"
 
-#: src/components/profile/profile/SingleUserBets.tsx:350
+#: src/components/profile/profile/NewBettingHistory.tsx:370
+#: src/components/profile/profile/SingleUserBets.tsx:452
 #: src/components/profile/v2/betting-history-table.tsx:280
-#: src/components/profile/v2/casino-history-table.tsx:219
+#: src/components/profile/v2/casino-history-table.tsx:339
 msgid "Lost"
 msgstr "Lost"
 
@@ -940,13 +944,18 @@ msgstr "Nexu"
 msgid "No categories available"
 msgstr "No categories available"
 
+#: src/components/profile/profile/Reports.tsx:151
+msgid "No Data"
+msgstr "No Data"
+
 #: src/components/profile/profile/AgentPaymentTable.tsx:232
-#: src/components/profile/profile/SingleUserBets.tsx:307
+#: src/components/profile/profile/NewBettingHistory.tsx:327
+#: src/components/profile/profile/SingleUserBets.tsx:390
 #: src/components/profile/profile/TransactionPage.tsx:203
 #: src/components/profile/profile/TransactionPage.tsx:277
 #: src/components/profile/profile/TransactionPage.tsx:285
 #: src/components/profile/v2/betting-history-table.tsx:234
-#: src/components/profile/v2/casino-history-table.tsx:171
+#: src/components/profile/v2/casino-history-table.tsx:289
 #: src/components/profile/v2/payments-history-table.tsx:213
 #: src/components/shared/v2/no-data-available.tsx:15
 msgid "No data available"
@@ -956,9 +965,10 @@ msgstr "No data available"
 #~ msgstr "No filters available"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:232
-#: src/components/profile/profile/SingleUserBets.tsx:307
+#: src/components/profile/profile/NewBettingHistory.tsx:327
+#: src/components/profile/profile/SingleUserBets.tsx:390
 #: src/components/profile/v2/betting-history-table.tsx:234
-#: src/components/profile/v2/casino-history-table.tsx:171
+#: src/components/profile/v2/casino-history-table.tsx:289
 #: src/components/profile/v2/payments-history-table.tsx:213
 msgid "No history found."
 msgstr "No history found."
@@ -1054,12 +1064,14 @@ msgstr "Payments"
 msgid "Payments History"
 msgstr "Payments History"
 
-#: src/components/profile/profile/SingleUserBets.tsx:451
+#: src/components/profile/profile/NewBettingHistory.tsx:471
+#: src/components/profile/profile/SingleUserBets.tsx:551
 #: src/components/profile/v2/betting-history-table.tsx:385
 msgid "Payout"
 msgstr "Payout"
 
-#: src/components/profile/profile/SingleUserBets.tsx:360
+#: src/components/profile/profile/NewBettingHistory.tsx:380
+#: src/components/profile/profile/SingleUserBets.tsx:461
 #: src/components/profile/v2/betting-history-table.tsx:290
 msgid "Pending"
 msgstr "Pending"
@@ -1071,12 +1083,12 @@ msgstr "Pending"
 msgid "Phone Number"
 msgstr "Phone Number"
 
-#: src/components/profile/v2/casino-history-table.tsx:111
+#: src/components/profile/v2/casino-history-table.tsx:221
 #: src/components/profile/v2/payments-history-table.tsx:133
 msgid "Pick end date"
 msgstr "Pick end date"
 
-#: src/components/profile/v2/casino-history-table.tsx:91
+#: src/components/profile/v2/casino-history-table.tsx:197
 #: src/components/profile/v2/payments-history-table.tsx:112
 msgid "Pick start date"
 msgstr "Pick start date"
@@ -1203,6 +1215,7 @@ msgstr "Recharge et retire en Crypto."
 msgid "Refresh"
 msgstr "Refresh"
 
+#: src/components/profile/profile/Reports.tsx:75
 #: src/components/profile/profile/TransactionPage.tsx:315
 #: src/components/profile/profile/TransactionUserList.tsx:84
 #: src/components/shared/v2/header.tsx:322
@@ -1366,16 +1379,17 @@ msgstr "Sport Betting Terms"
 #~ msgstr "Sports"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:217
+#: src/components/profile/profile/NewBettingHistory.tsx:314
 #: src/components/profile/profile/SingleTicketPage.tsx:182
 #: src/components/profile/profile/SingleTicketPage.tsx:201
-#: src/components/profile/profile/SingleUserBets.tsx:293
+#: src/components/profile/profile/SingleUserBets.tsx:377
 #: src/components/profile/profile/SingleUserTransaction.tsx:159
 #: src/components/profile/profile/TicketPage.tsx:151
 #: src/components/profile/profile/TicketPage.tsx:171
 #: src/components/profile/profile/TransactionPage.tsx:423
 #: src/components/profile/profile/TransactionUserList.tsx:184
 #: src/components/profile/v2/betting-history-table.tsx:220
-#: src/components/profile/v2/casino-history-table.tsx:155
+#: src/components/profile/v2/casino-history-table.tsx:277
 #: src/components/profile/v2/payments-history-table.tsx:197
 msgid "Status"
 msgstr "Status"
@@ -1415,13 +1429,14 @@ msgstr "This wallet is already default"
 #~ msgstr "time"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:208
-#: src/components/profile/profile/SingleUserBets.tsx:290
+#: src/components/profile/profile/NewBettingHistory.tsx:311
+#: src/components/profile/profile/SingleUserBets.tsx:372
 #: src/components/profile/v2/betting-history-table.tsx:217
 #: src/components/profile/v2/payments-history-table.tsx:185
 msgid "Time"
 msgstr "Time"
 
-#: src/components/profile/v2/casino-history-table.tsx:149
+#: src/components/profile/v2/casino-history-table.tsx:271
 msgid "Time (Bet ID)"
 msgstr "Time (Bet ID)"
 
@@ -1448,7 +1463,8 @@ msgstr "Total balance"
 msgid "Total Deposit:"
 msgstr "Total Deposit:"
 
-#: src/components/profile/profile/SingleUserBets.tsx:425
+#: src/components/profile/profile/NewBettingHistory.tsx:445
+#: src/components/profile/profile/SingleUserBets.tsx:529
 #: src/components/profile/v2/betting-history-table.tsx:359
 msgid "Total odds"
 msgstr "Total odds"
@@ -1464,6 +1480,10 @@ msgstr "Total:"
 #: src/components/profile/profile/SingleUserTransaction.tsx:79
 msgid "Transaction"
 msgstr "Transaction"
+
+#: src/components/profile/profile/TransactionList.tsx:79
+msgid "Transactions"
+msgstr "Transactions"
 
 #~ msgid "Transactions history"
 #~ msgstr "Transactions history"
@@ -1584,12 +1604,13 @@ msgstr "Withdraw initiated successfully!"
 #~ msgid "Withdraw is under review!"
 #~ msgstr "Withdraw is under review!"
 
+#: src/components/profile/profile/NewBettingHistory.tsx:383
 #: src/components/profile/profile/SingleTicketPage.tsx:219
-#: src/components/profile/profile/SingleUserBets.tsx:363
+#: src/components/profile/profile/SingleUserBets.tsx:464
 #: src/components/profile/profile/TicketPage.tsx:190
 #: src/components/profile/profile/TransactionUserList.tsx:203
 #: src/components/profile/v2/betting-history-table.tsx:293
-#: src/components/profile/v2/casino-history-table.tsx:211
+#: src/components/profile/v2/casino-history-table.tsx:331
 msgid "Won"
 msgstr "Won"
 
@@ -1608,7 +1629,8 @@ msgstr "Yesterday"
 msgid "You have successfully signed up."
 msgstr "You have successfully signed up."
 
-#: src/components/profile/profile/SingleUserBets.tsx:483
+#: src/components/profile/profile/NewBettingHistory.tsx:503
+#: src/components/profile/v2/casino-history-table.tsx:364
 msgid "You've reached the end of the list."
 msgstr "You've reached the end of the list."
 

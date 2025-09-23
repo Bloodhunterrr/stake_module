@@ -78,57 +78,47 @@ function Reports() {
             <div className="grid grid-cols-3 container mx-auto py-3 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button
-                            variant="outline"
-                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                        >
+                        <Button variant="outline"
+                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                             <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                             {format(dates.startDate, "dd/MM/yyyy")}
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="p-0 bg-white">
-                        <Calendar
-                            className="w-full"
+                        <Calendar className="w-full"
                             mode="single"
                             selected={dates.startDate}
                             onSelect={(date) =>
                                 date && setDates((prev) => ({ ...prev, startDate: date }))
-                            }
-                        />
+                            }/>
                     </PopoverContent>
                 </Popover>
 
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button
-                            variant="outline"
-                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                        >
+                        <Button variant="outline"
+                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                             <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                             {format(dates.endDate, "dd/MM/yyyy")}
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="p-0 bg-white">
-                        <Calendar
-                            className="w-full"
+                        <Calendar className="w-full"
                             mode="single"
                             selected={dates.endDate}
                             onSelect={(date) =>
                                 date && setDates((prev) => ({ ...prev, endDate: date }))
-                            }
-                        />
+                            }/>
                     </PopoverContent>
                 </Popover>
 
                 {currencyOptions && (
-                    <MultiSelect
-                        options={currencyOptions}
-                        className={'h-8 rounded-none bg-muted hover:bg-muted  placeholder:text-accent-foreground'}
+                    <MultiSelect options={currencyOptions}
+                        className={'h-8 rounded-none bg-muted hover:bg-muted placeholder:text-accent-foreground'}
                         value={selectedCurrencies}
                         onValueChange={setSelectedCurrencies}
                         placeholder={t`All currencies`}
-                        hideSelectAll
-                    />
+                        hideSelectAll/>
                 )}
                 <div className={' lg:col-span-1 h-8 relative lg:pt-0 pt-2 flex items-center col-span-3 '}>
                     <Search className={'absolute left-1 h-full'} />
@@ -158,7 +148,7 @@ function Reports() {
                                         <p className={'text-start w-1/4 capitalize'}>{raw_data.type_raw}</p>
                                     </div>
                                 )
-                            } ) : <p className={'p-3 text-center'}>No Data</p>
+                            } ) : <p className={'p-3 text-center'}><Trans>No Data</Trans></p>
                         }
                     </div>
                 </div>
