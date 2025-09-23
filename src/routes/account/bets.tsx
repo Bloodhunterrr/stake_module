@@ -1,10 +1,10 @@
-import BettingHistoryTable from "@/components/profile/profile/SingleUserBets.tsx";
+import NewBettingHistory from "@/components/profile/profile/NewBettingHistory.tsx";
 
 const BetsHistoryPage = () => {
 
   return (
       <section className={'bg-white'}>
-              <BettingHistoryTable/>
+              <NewBettingHistory/>
       </section>
 
   );

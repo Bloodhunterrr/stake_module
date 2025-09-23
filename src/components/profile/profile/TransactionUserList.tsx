@@ -110,8 +110,7 @@ function SingleTicketPage() {
                                         setDates((prev) => ({...prev, startDate: date}))
                                     }
                                 }
-                                }
-                            />
+                            }/>
                         </PopoverContent>
                     </Popover>
                     <Popover>

@@ -1,14 +1,16 @@
-import {Fragment, useEffect, useState} from 'react';
-import {useLazyGetAllUsersTicketsQuery} from "@/services/authApi.ts";
-import {useNavigate} from "react-router";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
-import {Button} from "@/components/ui/button.tsx";
-import {CalendarIcon, ChevronLeftIcon} from "lucide-react";
-import {format} from "date-fns";
-import {Calendar} from "@/components/ui/calendar.tsx";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
-import Loading from "@/components/shared/v2/loading.tsx";
+import { format } from "date-fns";
+import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router";
+import { Button } from "@/components/ui/button.tsx";
+import { Fragment, useEffect, useState } from 'react';
+import { Trans, useLingui } from "@lingui/react/macro";
+import { Calendar } from "@/components/ui/calendar.tsx";
+import Loading from "@/components/shared/v2/loading.tsx";
+import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
+import { useLazyGetAllUsersTicketsQuery } from "@/services/authApi.ts";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+
 function TicketPage() {
     const [fetchAllUsersTickets, { isLoading, isError, isFetching }] = useLazyGetAllUsersTicketsQuery();
 
@@ -55,6 +57,9 @@ function TicketPage() {
             <Loading />
         </div>
     }
+
+    const { t } = useLingui();
+
     return (
         <div className={'min-h-screen container mx-auto'}>
             <div className={'h-10  flex  border-b border-popover items-center'}>
@@ -62,7 +67,7 @@ function TicketPage() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Bets</p>
+                    <Trans>Bets</Trans>
                     <span>-</span>
                     <p>{data?.user?.name}</p>
                 </div>
@@ -71,39 +76,32 @@ function TicketPage() {
                 <div className={'w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={new Date(dates.startDate)}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({ ...prev, startDate: date }))
-                                }
-                            />
+                                }/>
                         </PopoverContent>
                     </Popover>
                     <Popover>
 
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
+                            <Calendar className="w-full"
                                 mode="single"
                                 selected={new Date(dates.endDate)}
                                 onSelect={(date) =>
@@ -117,7 +115,7 @@ function TicketPage() {
                         setSelectedCurrencies(value)
                     }}>
                         <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder={"Currency"}/>
+                            <SelectValue placeholder={t`Currency`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -135,7 +133,7 @@ function TicketPage() {
                         setBetType(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder="Type"/>
+                            <SelectValue placeholder={t`Type`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -150,7 +148,7 @@ function TicketPage() {
                         setStatus(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status"/>
+                            <SelectValue placeholder={t`Status`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -170,7 +168,7 @@ function TicketPage() {
 
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status"/>
+                            <SelectValue placeholder={t`Status`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -187,10 +185,10 @@ function TicketPage() {
             <div className={'flex cursor-pointer flex-col p-3'}>
                 <div
                     className={'text-sm text-center h-7 items-center bg-chart-2  border-accent px-1  flex '}>
-                    <p className={'w-1/3 h-full flex items-center justify-start text-start shrink-0'}>Username</p>
-                    <p className={'w-full h-full flex items-center justify-center'}>Played</p>
-                    <p className={'w-full h-full flex items-center justify-center'}>Won</p>
-                    <p className={'w-full h-full flex items-center justify-center text-center'}>Net Win</p>
+                    <p className={'w-1/3 h-full flex items-center justify-start text-start shrink-0'}><Trans>Username</Trans></p>
+                    <p className={'w-full h-full flex items-center justify-center'}><Trans>Played</Trans></p>
+                    <p className={'w-full h-full flex items-center justify-center'}><Trans>Won</Trans></p>
+                    <p className={'w-full h-full flex items-center justify-center text-center'}><Trans>Net Win</Trans></p>
                 </div>
                 <div className={'cursor-pointer border-x border-popover bg-accent/50 text-accent-foreground'}>
                     {
