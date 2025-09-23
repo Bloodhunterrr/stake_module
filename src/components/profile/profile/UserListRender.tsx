@@ -1,12 +1,13 @@
 import { cn } from "@/lib/utils.ts";
-import { useState, useEffect } from 'react';
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
-import type { UsersResponse} from "@/types/auth.ts";
+import { Trans } from "@lingui/react/macro";
+import { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button.tsx";
+import type { UsersResponse } from "@/types/auth.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
-import {useLazyGetUserListQuery, usePutBlockUserMutation} from '@/services/authApi.ts';
-import {ChevronDown, ChevronLeftIcon, ChevronRight} from "lucide-react";
-import {Button} from "@/components/ui/button.tsx";
-import {toast} from "react-toastify";
+import { ChevronDown, ChevronLeftIcon, ChevronRight } from "lucide-react";
+import { useLazyGetUserListQuery, usePutBlockUserMutation } from '@/services/authApi.ts';
 
 function UserItem({
                       user,
@@ -37,8 +38,7 @@ function UserItem({
         })}>
             <div
                 className={cn("w-full grid  grid-cols-4 pl-2 justify-between items-center cursor-pointer py-1.5", {
-                })}
-            >
+                })}>
 
                 <div
                     onClick={() => {
@@ -287,7 +287,7 @@ function UserListRender() {
                     <ChevronLeftIcon className={'w-10 '} />
                 </div>
                 <div className={'w-full text-center pr-10 space-x-1 flex justify-center'}>
-                    <p>Users</p>
+                    <Trans>Users</Trans>
                 </div>
             </div>
             <div className="container flex flex-col gap-4 px-2 mx-auto pt-7">

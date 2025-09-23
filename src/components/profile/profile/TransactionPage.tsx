@@ -200,7 +200,7 @@ function TicketPage() {
     if (item.total_stake + item.total_won + item.total_lost === 0) {
       return (
         <div className="text-center flex justify-center items-center text-sm h-[28px]">
-          <Trans> No data available</Trans>
+          <Trans>No data available</Trans>
         </div>
       );
     }
@@ -274,7 +274,7 @@ function TicketPage() {
                 }else {
                     if(index === 0){
                         return <div className="text-center flex justify-center items-center text-sm h-[28px]">
-                            No data available
+                            <Trans>No data available</Trans>
                         </div>
                     }
 
@@ -282,7 +282,7 @@ function TicketPage() {
             })
           ) : (
             <div className="text-center flex justify-center items-center text-sm h-[28px]">
-              No data available
+                <Trans>No data available</Trans>
             </div>
           )}
         </div>
