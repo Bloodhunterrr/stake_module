@@ -7,6 +7,7 @@ import {useAppSelector} from "@/hooks/rtk.ts";
 export default function UserInfo() {
 
     const user = useAppSelector((s) => s.auth?.user);
+    
     return (
         <div className={'bg-white '}>
             <div
@@ -61,8 +62,8 @@ export default function UserInfo() {
                     {/* Gender Select */}
                     <div className="flex flex-col space-y-2">
                         <Label htmlFor="gender"><Trans>Gender</Trans></Label>
-                        <Select value={user.gender} disabled>
-                            <SelectTrigger>
+                        <Select value={user.gender} disabled >
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select gender"/>
                             </SelectTrigger>
                             <SelectContent>
@@ -78,7 +79,7 @@ export default function UserInfo() {
                     <div className="flex flex-col space-y-2">
                         <Label htmlFor="country"><Trans>Country</Trans></Label>
                         <Select value={user.country} disabled>
-                            <SelectTrigger>
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select country"/>
                             </SelectTrigger>
                             <SelectContent>
