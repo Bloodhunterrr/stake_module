@@ -207,7 +207,6 @@ function TicketPage() {
     setSelectedDateFilter(label);
   };
 
-  console.log(user);
   if (isError) navigate("/");
 
   if (isError) {
@@ -273,8 +272,8 @@ function TicketPage() {
         </div>
 
         <div className="cursor-pointer border-none bg-muted/30 text-accent-foreground">
-          {!isFetching && group.data?.children?.length ? (
-            group.data.children.map((item: any, index: number) => {
+          {!isFetching && group.data?.length ? (
+            group.data.map((item: any, index: number) => {
               if (
                 item.total_played +
                   item.total_stake +
