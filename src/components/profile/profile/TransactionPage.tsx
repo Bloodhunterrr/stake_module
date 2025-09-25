@@ -311,7 +311,14 @@ function TicketPage() {
         </div>
 
         <div className="cursor-pointer border-none bg-muted/30 text-accent-foreground">
-          {!isFetching && group.data?.length ? (
+          {isFetching ? (
+            <div className="text-sm animate-pulse text-center h-7 items-center px-1 border-b flex">
+              <p className="w-[30%] h-full flex items-center justify-start text-start shrink-0"></p>
+              <p className="w-full h-full flex items-center justify-center"></p>
+              <p className="w-full h-full flex items-center justify-center"></p>
+              <p className="w-full h-full flex items-center justify-center text-center"></p>
+            </div>
+          ) : group.data?.length ? (
             group.data.map((item: any, index: number) => {
               if (
                 item.total_played +
