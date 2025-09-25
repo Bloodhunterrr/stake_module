@@ -356,7 +356,7 @@ const ProfileDropdown = ({
         align="end"
         forceMount
       >
-        <div className="flex flex-col w-full h-full px-2 py-2">
+        <div className="flex flex-col w-full h-full px-2 pt-2">
           <DropdownMenuLabel className="font-normal">
             <p className="text-xs font-medium leading-none">{user?.name}</p>
           </DropdownMenuLabel>
@@ -457,6 +457,12 @@ const ProfileDropdown = ({
               onClick={() => navigate("/account/notifications")}>
               <Trans>Messages</Trans>
             </DropdownMenuItem>
+
+              <DropdownMenuItem
+                  className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/70 hover:bg-black/10"
+                  onClick={() => navigate("/")}>
+                  <Trans>Responsible Gambling</Trans>
+              </DropdownMenuItem>
 
             <DropdownMenuItem
               className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/70 hover:bg-black/10"

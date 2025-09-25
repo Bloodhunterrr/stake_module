@@ -18,8 +18,7 @@ function SingleTicketPage() {
     const navigate = useNavigate();
     const [searchParams , setSearchParams] = useSearchParams();
     const [data, setData] = useState<any>()
-    const [category, setCategory] = useState('')
-
+    const [category, setCategory] = useState(searchParams.get('category'))
 
     // Filters States
     const start = (searchParams.get('startDate')) ?? new Date();
@@ -37,6 +36,9 @@ function SingleTicketPage() {
         label: w.slug.toUpperCase(),
     }));
 
+    const { t } = useLingui();
+
+
     useEffect(() => {
         const start = (searchParams.get('startDate'))
         const end = (searchParams.get('endDate'))
@@ -52,7 +54,7 @@ function SingleTicketPage() {
 
     useEffect(() => {
         fetchSingleData({
-            // type : betType, later
+            category_id : category,
             currency : selectedCurrencies,
             start_date : format(dates.startDate, "yyyy/MM/dd"),
             end_date : format(dates.endDate, "yyyy/MM/dd"),
@@ -72,7 +74,6 @@ function SingleTicketPage() {
         </div>
     }
 
-    const { t } = useLingui();
 
     return (
         <div className={'container mx-auto'}>
@@ -173,7 +174,7 @@ function SingleTicketPage() {
                     </Select>
 
                     {/*Static for the moment*/}
-                    <Select value={category} onValueChange={(value) =>{
+                    <Select value={category ?? ""} onValueChange={(value) =>{
                         setCategory(value)
                         if(value === "Sport"){
                             navigate(`/account/tickets/${userTransactionId}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);

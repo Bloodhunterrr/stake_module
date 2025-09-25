@@ -28,7 +28,7 @@ function TicketPage() {
     const [betType, setBetType] = useState('')
     const [status, setStatus] = useState('')
 
-
+    const { t } = useLingui();
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -58,7 +58,6 @@ function TicketPage() {
         </div>
     }
 
-    const { t } = useLingui();
 
     return (
         <div className={'min-h-screen container mx-auto'}>

@@ -213,8 +213,7 @@ function TicketPage() {
     navigate("/");
   }
 
-  function ReportRow({ item, dates, navigate, type }: any) {
-    console.log(item);
+  function ReportRow({ item, dates, navigate, type ,categoryName}: any) {
     if (item.total_stake + item.total_won + item.total_lost === 0) {
       return (
         <div className="text-center flex justify-center items-center text-sm h-[28px]">
@@ -276,6 +275,8 @@ function TicketPage() {
                   dates.endDate
                     ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
                     : ""
+                }${
+                    categoryName ? `&category=${type}` : ""
                 }`
               );
             }
@@ -298,7 +299,7 @@ function TicketPage() {
     );
   }
 
-  function ReportTable({ group, dates, navigate, isFetching, type }: any) {
+  function ReportTable({ group, dates, navigate, isFetching, type  ,categoryName}: any) {
     return (
       <>
         <div className="text-sm text-center h-7 items-center bg-chart-2 border-accent px-1 flex">
@@ -320,6 +321,10 @@ function TicketPage() {
             </div>
           ) : group.data?.length ? (
             group.data.map((item: any, index: number) => {
+                const hasNoData = group.data.every(
+                    (item : any) =>
+                        item.total_played + item.total_stake + item.total_won + item.total_lost === 0
+                );
               if (
                 item.total_played +
                   item.total_stake +
@@ -329,6 +334,7 @@ function TicketPage() {
               ) {
                 return (
                   <ReportRow
+                    categoryName={categoryName}
                     type={type}
                     key={index}
                     item={item}
@@ -337,7 +343,7 @@ function TicketPage() {
                   />
                 );
               } else {
-                if (index === 0) {
+                if (hasNoData && index === 0) {
                   return (
                     <div className="text-center flex justify-center items-center text-sm h-[28px]">
                       <Trans>No data available</Trans>
@@ -355,6 +361,8 @@ function TicketPage() {
       </>
     );
   }
+
+
   return (
     <div className={"min-h-screen container mx-auto"}>
       <div className={"h-10  flex  border-b border-popover items-center"}>
@@ -587,8 +595,9 @@ function TicketPage() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <ReportTable
-                      type={group.id}
-                      group={
+                    categoryName={group.category}
+                    type={group.id}
+                    group={
                         group.data ? group : { data: accordionData[group.id] }
                       }
                       dates={dates}
@@ -621,6 +630,7 @@ function TicketPage() {
                     <AccordionContent>
                       <ReportTable
                         type={group.id}
+                        categoryName={group.category}
                         group={
                           group.data ? group : { data: accordionData[group.id] }
                         }
