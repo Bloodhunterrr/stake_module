@@ -213,7 +213,8 @@ function TicketPage() {
     navigate("/");
   }
 
-  function ReportRow({ item, dates, navigate }: any) {
+  function ReportRow({ item, dates, navigate, type }: any) {
+    console.log(item);
     if (item.total_stake + item.total_won + item.total_lost === 0) {
       return (
         <div className="text-center flex justify-center items-center text-sm h-[28px]">
@@ -226,20 +227,58 @@ function TicketPage() {
       <div
         className="text-sm text-center h-7 items-center border-popover px-1 border-b flex"
         onClick={() => {
-          if (item.is_player) {
-            navigate(`/account/transactions/user/${item?.id}`);
+          if (type === 1) {
+            if (item.is_player) {
+              navigate(
+                `/account/tickets/user/${item?.id}?${
+                  dates.startDate
+                    ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&`
+                    : ""
+                }${
+                  dates.endDate
+                    ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
+                    : ""
+                }`
+              );
+            } else {
+              navigate(
+                `/account/tickets/${item?.id}?${
+                  dates.startDate
+                    ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&`
+                    : ""
+                }${
+                  dates.endDate
+                    ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
+                    : ""
+                }`
+              );
+            }
           } else {
-            navigate(
-              `/account/reports/${item?.id}?${
-                dates.startDate
-                  ? `startDate=${format(dates.startDate, "dd-MM-yyyy")}&`
-                  : ""
-              }${
-                dates.endDate
-                  ? `endDate=${format(dates.endDate, "dd-MM-yyyy")}`
-                  : ""
-              }`
-            );
+            if (item.is_player) {
+              navigate(
+                `/account/transactions/user/${item?.id}?${
+                  dates.startDate
+                    ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&`
+                    : ""
+                }${
+                  dates.endDate
+                    ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
+                    : ""
+                }`
+              );
+            } else {
+              navigate(
+                `/account/reports/${item?.id}?${
+                  dates.startDate
+                    ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&`
+                    : ""
+                }${
+                  dates.endDate
+                    ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
+                    : ""
+                }`
+              );
+            }
           }
         }}
       >
@@ -259,7 +298,7 @@ function TicketPage() {
     );
   }
 
-  function ReportTable({ group, dates, navigate, isFetching }: any) {
+  function ReportTable({ group, dates, navigate, isFetching, type }: any) {
     return (
       <>
         <div className="text-sm text-center h-7 items-center bg-chart-2 border-accent px-1 flex">
@@ -283,6 +322,7 @@ function TicketPage() {
               ) {
                 return (
                   <ReportRow
+                    type={type}
                     key={index}
                     item={item}
                     dates={dates}
@@ -540,6 +580,7 @@ function TicketPage() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <ReportTable
+                      type={group.id}
                       group={
                         group.data ? group : { data: accordionData[group.id] }
                       }
@@ -572,6 +613,7 @@ function TicketPage() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <ReportTable
+                        type={group.id}
                         group={
                           group.data ? group : { data: accordionData[group.id] }
                         }
