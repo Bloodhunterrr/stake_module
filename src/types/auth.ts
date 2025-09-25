@@ -103,9 +103,9 @@ export interface MessageResponse {
 }
 
 export interface getSendSingleMessageRequest {
-    bet_status : string,
-    bet_type : string | number | null,
-    wallet_name : string,
+    bet_status? : string,
+    bet_type? : string | number | null,
+    wallet_name? : string,
     start_date : string,
     end_date : string,
     user_id ?: string,

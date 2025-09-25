@@ -36,8 +36,8 @@ function TicketPage() {
             bet_status : status,
             bet_type : betType,
             wallet_name : selectedCurrencies,
-            start_date : format(dates.startDate, "yyyy/MM/dd"),
-            end_date : format(dates.endDate, "yyyy/MM/dd"),
+            start_date : format(dates.startDate, "dd-MM-yyyy"),
+            end_date : format(dates.endDate, "dd-MM-yyyy"),
         }).unwrap().then(data =>{
             setData(data)
         })

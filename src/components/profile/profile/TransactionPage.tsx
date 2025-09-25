@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useLazyGetAllUsersTicketsQuery,
   useLazyGetTransactionsQuery,
@@ -20,7 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select.tsx";
-import Loading from "@/components/shared/v2/loading.tsx";
 import DateFilter from "@/components/shared/v2/date-filter";
 import { useGetMainQuery } from "@/services/mainApi";
 import { Trans, useLingui } from "@lingui/react/macro";
@@ -31,150 +30,170 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+interface Category {
+  id: number;
+  category: string;
+  data: any;
+}
+
 function TicketPage() {
-  const [fetchAllUsersTransactions, { isLoading, isError, isFetching }] =
+  const [fetchAllUsersTransactions, { isError, isFetching }] =
     useLazyGetTransactionsQuery();
   const [fetchAllUsersTickets] = useLazyGetAllUsersTicketsQuery();
 
-  const [data, setData] = useState<any>();
-  const [extraCategories, setExtraCategories] = useState<any[]>([]);
-
-  const [selectedCurrencies, setSelectedCurrencies] = useState("");
-  const [category, setCategory] = useState("all");
-  const [game, setGame] = useState("");
-  const [provider, setProvider] = useState("");
-
-  const [dates, setDates] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-  });
-  const [betType, setBetType] = useState("");
-  const [status, setStatus] = useState("");
-  const [selectedDateFilter, setSelectedDateFilter] = useState<string>("");
+  const [data, setData] = useState<Category[]>([]);
   const [accordionData, setAccordionData] = useState<{ [key: string]: any[] }>(
     {}
   );
   const [openAccordionItems, setOpenAccordionItems] = useState<string[]>([]);
 
-  const handleDateFilterSelect = (start: Date, end: Date, label: string) => {
-    setDates({ startDate: start, endDate: end });
-    setSelectedDateFilter(label);
-  };
+  const [selectedCurrencies, setSelectedCurrencies] = useState("");
+  const [category, setCategory] = useState("all");
+  const [betType, setBetType] = useState("");
+  const [status, setStatus] = useState("");
+  const [dates, setDates] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+  const [filters, setFilters] = useState<any>(null);
+  const [user, setUser] = useState<any>(null);
+  const [selectedDateFilter, setSelectedDateFilter] = useState<string>("");
 
   const navigate = useNavigate();
-
   const { data: mainData } = useGetMainQuery();
+  const { t } = useLingui();
 
   useEffect(() => {
     if (!mainData) return;
 
-    const fetchData = async () => {
-      let newData: any[] = [];
+    const allCategories = mainData.map((cat) => ({
+      id: cat.id,
+      category: cat.name,
+      data: null,
+    }));
 
-      if (category === "all") {
-        const firstThree = mainData.slice(0, 3);
-        const rest = mainData.slice(3);
+    setData(allCategories);
+    setOpenAccordionItems([]);
+  }, [mainData]);
 
-        const results = await Promise.all(
-          firstThree.map((cat: any) => {
-            if (String(cat.id) === "1") {
-              return fetchAllUsersTickets({
-                bet_status: status,
-                bet_type: betType,
-                wallet_name: selectedCurrencies,
-                start_date: format(dates.startDate, "yyyy/MM/dd"),
-                end_date: format(dates.endDate, "yyyy/MM/dd"),
-              }).unwrap();
-            } else {
-              return fetchAllUsersTransactions({
-                bet_status: status,
-                bet_type: betType,
-                wallet_name: selectedCurrencies,
-                start_date: format(dates.startDate, "yyyy/MM/dd"),
-                end_date: format(dates.endDate, "yyyy/MM/dd"),
-                category_id: cat.id,
-                game_id: game,
-                provider_id: provider,
-              }).unwrap();
-            }
-          })
-        );
-
-        newData = results.map((res, idx) => ({
-          category: firstThree[idx].name,
-          data: res,
-          id: firstThree[idx].id,
-        }));
-
-        setData(newData);
-        setExtraCategories(rest);
-
-        setOpenAccordionItems(newData.slice(0, 3).map((d) => String(d.id)));
-      } else if (category === "1") {
-        const res = await fetchAllUsersTickets({
-          bet_status: status,
-          bet_type: betType,
-          wallet_name: selectedCurrencies,
-          start_date: format(dates.startDate, "yyyy/MM/dd"),
-          end_date: format(dates.endDate, "yyyy/MM/dd"),
-        }).unwrap();
-
-        newData = [{ category: "Sport", data: res, id: "1" }];
-        setData(newData);
-        setOpenAccordionItems(["1"]);
-      } else {
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
         const res = await fetchAllUsersTransactions({
-          bet_status: status,
-          bet_type: betType,
-          wallet_name: selectedCurrencies,
-          start_date: format(dates.startDate, "yyyy/MM/dd"),
-          end_date: format(dates.endDate, "yyyy/MM/dd"),
-          category_id: category,
-          game_id: game,
-          provider_id: provider,
+          start_date: format(dates.startDate, "dd-MM-yyyy"),
+          end_date: format(dates.endDate, "dd-MM-yyyy"),
         }).unwrap();
 
-        const catName =
-          mainData?.find((c: any) => String(c.id) === category)?.name ??
-          "Category";
+        console.log(res);
 
-        newData = [{ category: catName, data: res, id: category }];
-        setData(newData);
-        setOpenAccordionItems([category]);
+        if (res.filters) {
+          setFilters(res.filters);
+        }
+
+        if (res.user) {
+          setUser(res.user);
+        }
+      } catch (error) {
+        console.error("Failed to fetch transactions:", error);
       }
     };
 
-    fetchData();
-  }, [
-    selectedCurrencies,
-    dates.startDate,
-    dates.endDate,
-    betType,
-    status,
-    category,
-    mainData,
-    provider,
-    game,
-  ]);
+    fetchTransactions();
+  }, []);
 
-  const handleToggleCategory = async (cat: any) => {
+  useEffect(() => {
+    if (!data || category === "all") return;
+
+    const fetchSelectedCategoryData = async () => {
+      const cat = data.find((d) => String(d.id) === category);
+      if (!cat) return;
+
+      let res;
+      if (String(cat.id) === "1") {
+        res = await fetchAllUsersTickets({
+          start_date: format(dates.startDate, "dd-MM-yyyy"),
+          end_date: format(dates.endDate, "dd-MM-yyyy"),
+        }).unwrap();
+      } else {
+        res = await fetchAllUsersTransactions({
+          start_date: format(dates.startDate, "dd-MM-yyyy"),
+          end_date: format(dates.endDate, "dd-MM-yyyy"),
+          category_id: cat.id,
+        }).unwrap();
+      }
+
+      setAccordionData((prev) => ({ ...prev, [cat.id]: res?.children || [] }));
+      setOpenAccordionItems([cat.id.toString()]);
+    };
+
+    fetchSelectedCategoryData();
+  }, [category, dates.startDate, dates.endDate, data]);
+
+  const prevDatesRef = useRef({
+    startDate: dates.startDate,
+    endDate: dates.endDate,
+  });
+
+  useEffect(() => {
+    if (!data || category !== "all" || openAccordionItems.length === 0) return;
+
+    const prevDates = prevDatesRef.current;
+
+    if (
+      prevDates.startDate.getTime() === dates.startDate.getTime() &&
+      prevDates.endDate.getTime() === dates.endDate.getTime()
+    ) {
+      return;
+    }
+
+    const fetchAllOpenedCategories = async () => {
+      const updatedAccordionData: { [key: string]: any[] } = {
+        ...accordionData,
+      };
+
+      for (const cat of data) {
+        if (openAccordionItems.includes(String(cat.id))) {
+          let res;
+          if (String(cat.id) === "1") {
+            res = await fetchAllUsersTickets({
+              start_date: format(dates.startDate, "dd-MM-yyyy"),
+              end_date: format(dates.endDate, "dd-MM-yyyy"),
+            }).unwrap();
+          } else {
+            res = await fetchAllUsersTransactions({
+              start_date: format(dates.startDate, "dd-MM-yyyy"),
+              end_date: format(dates.endDate, "dd-MM-yyyy"),
+              category_id: cat.id,
+            }).unwrap();
+          }
+
+          updatedAccordionData[cat.id] = res?.children || [];
+        }
+      }
+
+      setAccordionData(updatedAccordionData);
+
+      prevDatesRef.current = {
+        startDate: dates.startDate,
+        endDate: dates.endDate,
+      };
+    };
+
+    fetchAllOpenedCategories();
+  }, [dates.startDate, dates.endDate, category, openAccordionItems, data]);
+
+  const handleToggleCategory = async (cat: Category) => {
     if (!accordionData[cat.id]) {
       let res;
       if (String(cat.id) === "1") {
         res = await fetchAllUsersTickets({
-          bet_status: status,
-          bet_type: betType,
-          wallet_name: selectedCurrencies,
-          start_date: format(dates.startDate, "yyyy/MM/dd"),
-          end_date: format(dates.endDate, "yyyy/MM/dd"),
+          start_date: format(dates.startDate, "dd-MM-yyyy"),
+          end_date: format(dates.endDate, "dd-MM-yyyy"),
         }).unwrap();
       } else {
         res = await fetchAllUsersTransactions({
-          bet_status: status,
-          bet_type: betType,
-          wallet_name: selectedCurrencies,
-          start_date: format(dates.startDate, "yyyy/MM/dd"),
-          end_date: format(dates.endDate, "yyyy/MM/dd"),
+          start_date: format(dates.startDate, "dd-MM-yyyy"),
+          end_date: format(dates.endDate, "dd-MM-yyyy"),
           category_id: cat.id,
         }).unwrap();
       }
@@ -183,14 +202,13 @@ function TicketPage() {
     }
   };
 
-  const filtersCategory = data?.find((cat: any) => cat.data?.filters);
-  const currencyOptions =
-    filtersCategory?.data?.filters?.wallets?.map((w: any) => ({
-      value: w.slug.toUpperCase(),
-      label: w.slug.toUpperCase(),
-    })) ?? [];
+  const handleDateFilterSelect = (start: Date, end: Date, label: string) => {
+    setDates({ startDate: start, endDate: end });
+    setSelectedDateFilter(label);
+  };
 
-  const userCategory = data?.find((cat: any) => cat.data?.user);
+  console.log(user);
+  if (isError) navigate("/");
 
   if (isError) {
     navigate("/");
@@ -215,11 +233,11 @@ function TicketPage() {
             navigate(
               `/account/reports/${item?.id}?${
                 dates.startDate
-                  ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&`
+                  ? `startDate=${format(dates.startDate, "dd-MM-yyyy")}&`
                   : ""
               }${
                 dates.endDate
-                  ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
+                  ? `endDate=${format(dates.endDate, "dd-MM-yyyy")}`
                   : ""
               }`
             );
@@ -255,219 +273,242 @@ function TicketPage() {
         </div>
 
         <div className="cursor-pointer border-none bg-muted/30 text-accent-foreground">
-          {isFetching ? (
-            <div className="text-sm animate-pulse text-center h-7 items-center px-1 border-b flex">
-              <p className="w-[30%] h-full flex items-center justify-start text-start shrink-0"></p>
-              <p className="w-full h-full flex items-center justify-center"></p>
-              <p className="w-full h-full flex items-center justify-center"></p>
-              <p className="w-full h-full flex items-center justify-center text-center"></p>
-            </div>
-          ) : group.data?.children?.length ? (
+          {!isFetching && group.data?.children?.length ? (
             group.data.children.map((item: any, index: number) => {
-                if((item.total_played + item.total_stake + item.total_won + item.total_lost) !== 0){
-                    return  <ReportRow
-                        key={index}
-                        item={item}
-                        dates={dates}
-                        navigate={navigate}
-                    />
-                }else {
-                    if(index === 0){
-                        return <div className="text-center flex justify-center items-center text-sm h-[28px]">
-                            <Trans>No data available</Trans>
-                        </div>
-                    }
-
+              if (
+                item.total_played +
+                  item.total_stake +
+                  item.total_won +
+                  item.total_lost !==
+                0
+              ) {
+                return (
+                  <ReportRow
+                    key={index}
+                    item={item}
+                    dates={dates}
+                    navigate={navigate}
+                  />
+                );
+              } else {
+                if (index === 0) {
+                  return (
+                    <div className="text-center flex justify-center items-center text-sm h-[28px]">
+                      <Trans>No data available</Trans>
+                    </div>
+                  );
                 }
+              }
             })
           ) : (
             <div className="text-center flex justify-center items-center text-sm h-[28px]">
-                <Trans>No data available</Trans>
+              <Trans>No data available</Trans>
             </div>
           )}
         </div>
       </>
     );
   }
-
-  if (isLoading) {
-    return (
-      <div className={"min-h-screen flex flex-col items-center justify-center"}>
-        <Loading />
-      </div>
-    );
-  }
-
-  const { t } = useLingui();
-
   return (
     <div className={"min-h-screen container mx-auto"}>
       <div className={"h-10  flex  border-b border-popover items-center"}>
-        <div className={
+        <div
+          className={
             "w-10 h-full border-r text-muted border-popover flex items-center"
           }
-          onClick={() => navigate(-1)}>
+          onClick={() => navigate(-1)}
+        >
           <ChevronLeftIcon className={"w-10 "} />
         </div>
-        <div className={
+        <div
+          className={
             "w-full text-muted text-center pr-10 space-x-1 flex justify-center"
-          }>
-          <p className={"mr-1"}><Trans>Reports</Trans></p>
+          }
+        >
+          <p className={"mr-1"}>
+            <Trans>Reports</Trans>
+          </p>
           <span>-</span>
-          <p>{userCategory?.data?.user?.name}</p>
+          <p>{user?.name}</p>
         </div>
       </div>
       <div className={" flex flex-col gap-y-3"}>
         <div
           className={
             "w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly"
-          }>
+          }
+        >
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline"
-                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
+              <Button
+                variant="outline"
+                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
+              >
                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                 {format(dates.startDate, "dd/MM/yyyy")}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-0 bg-white">
-              <Calendar className="w-full"
+              <Calendar
+                className="w-full"
                 mode="single"
                 selected={dates.startDate}
                 onSelect={(date) => {
                   setSelectedDateFilter("");
                   date && setDates((prev) => ({ ...prev, startDate: date }));
-                }}/>
+                }}
+              />
             </PopoverContent>
           </Popover>
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline"
-                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
+              <Button
+                variant="outline"
+                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
+              >
                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                 {format(dates.endDate, "dd/MM/yyyy")}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-0 bg-white">
-              <Calendar className="w-full"
+              <Calendar
+                className="w-full"
                 mode="single"
                 selected={dates.endDate}
                 onSelect={(date) => {
                   setSelectedDateFilter("");
                   date && setDates((prev) => ({ ...prev, endDate: date }));
-                }}/>
+                }}
+              />
             </PopoverContent>
           </Popover>
 
-          <Select value={selectedCurrencies}
+          <Select
+            value={selectedCurrencies}
             onValueChange={(value) => {
               setSelectedCurrencies(value);
-            }}>
-            <SelectTrigger className={
+            }}
+          >
+            <SelectTrigger
+              className={
                 "h-8! w-1/4 rounded-none bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }>
+              }
+            >
               <SelectValue placeholder={t`Currency`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
-              {currencyOptions?.map((currency: any, index: number) => {
-                return (
-                  <SelectItem key={index}
-                    className={"focus:text-background text-accent rounded-none"}
-                    value={currency.label}>
-                    {currency.label}
-                  </SelectItem>
-                );
-              })}
+              {filters?.wallets?.map((w: any, index: number) => (
+                <SelectItem
+                  key={index}
+                  value={w.slug.toUpperCase()}
+                  className={
+                    "focus:text-background text-accent rounded-none capitalize"
+                  }
+                >
+                  {w.slug.toUpperCase()}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
 
-        <div className={
+        <div
+          className={
             "flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2"
-          }>
+          }
+        >
           {/*bet Type*/}
-          <Select value={betType}
+          <Select
+            value={betType}
             onValueChange={(value) => {
               setBetType(value);
-            }}>
-            <SelectTrigger className={
+            }}
+          >
+            <SelectTrigger
+              className={
                 "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent "
-              }>
+              }
+            >
               <SelectValue placeholder={t`Type`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
-              {filtersCategory?.data?.filters &&
-                filtersCategory?.data?.filters?.betType.map(
-                  (types: string, index: number) => {
-                    return (
-                      <SelectItem key={index}
-                        className={
-                          "focus:text-background text-accent rounded-none capitalize"
-                        } value={types}>
-                        {types}
-                      </SelectItem>
-                    );
+              {filters?.betType?.map((type: string, index: number) => (
+                <SelectItem
+                  key={index}
+                  value={type}
+                  className={
+                    "focus:text-background text-accent rounded-none capitalize"
                   }
-                )}
+                >
+                  {type}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
           {/*Status options*/}
-          <Select value={status}
+          <Select
+            value={status}
             onValueChange={(value) => {
               setStatus(value);
-            }}>
-            <SelectTrigger className={
+            }}
+          >
+            <SelectTrigger
+              className={
                 "h-8! w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }>
+              }
+            >
               <SelectValue placeholder={t`Status`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
-              {filtersCategory?.data?.filters &&
-                filtersCategory?.data?.filters?.status.map(
-                  (status: any, index: number) => {
-                    return (
-                      <SelectItem key={index}
-                        className={
-                          "focus:text-background text-accent rounded-none"
-                        } value={status}>
-                        {status}
-                      </SelectItem>
-                    );
+              {filters?.status?.map((status: string, index: number) => (
+                <SelectItem
+                  key={index}
+                  value={status}
+                  className={
+                    "focus:text-background text-accent rounded-none capitalize"
                   }
-                )}
+                >
+                  {status}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
           {/*Categories*/}
-          <Select value={category}
+          <Select
+            value={category}
             onValueChange={(value) => {
               setCategory(value);
 
               if (value === "all") {
-                setOpenAccordionItems(
-                  data?.slice(0, 3).map((d: any) => String(d.id)) || []
-                );
+                setOpenAccordionItems([]);
               } else {
                 setOpenAccordionItems([value]);
               }
             }}
           >
-            <SelectTrigger className={
+            <SelectTrigger
+              className={
                 "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }>
+              }
+            >
               <SelectValue placeholder={t`Category`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
-              <SelectItem key="All"
+              <SelectItem
+                key="All"
                 value="all"
-                className={"focus:text-background text-accent rounded-none"}>
+                className={"focus:text-background text-accent rounded-none"}
+              >
                 <Trans>All</Trans>
               </SelectItem>
               {mainData?.map((data, index) => (
-                <SelectItem key={index}
+                <SelectItem
+                  key={index}
                   className={"focus:text-background text-accent rounded-none"}
-                  value={String(data.id)}>
+                  value={String(data.id)}
+                >
                   {data.name}
                 </SelectItem>
               ))}
@@ -476,109 +517,77 @@ function TicketPage() {
         </div>
       </div>
 
-      <DateFilter className="text-accent text-[12px]"
+      <DateFilter
+        className="text-accent text-[12px]"
         selected={selectedDateFilter}
-        onSelect={handleDateFilterSelect}/>
-
+        onSelect={handleDateFilterSelect}
+      />
       <div className="flex cursor-pointer flex-col p-3">
         {Array.isArray(data) && data.length > 0 ? (
           category === "all" ? (
-            <Accordion type="multiple"
+            <Accordion
+              type="multiple"
               value={openAccordionItems}
-              onValueChange={(vals) => setOpenAccordionItems(vals)}>
-              {data.map((group: any) => {
-                  // console.log(group.data.children.find(user => (user.total_lost + user.total_played + user.total_won) !== 0))
-                  return (
-                      <AccordionItem key={group.id}
-                          value={String(group.id)}
-                          className="border-none py-2">
-                          <AccordionTrigger className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0">
-                              {group.category}
-                          </AccordionTrigger>
-                          <AccordionContent className="p-0">
-                              <ReportTable group={group}
-                                  dates={dates}
-                                  navigate={navigate}
-                                  isFetching={isFetching}/>
-                          </AccordionContent>
-                      </AccordionItem>
-                  )
-              })}
-
-              {extraCategories.map((cat: any) => (
-                <AccordionItem key={cat.id}
-                  value={String(cat.id)}
-                  className="border-none py-2">
-                  <AccordionTrigger onClick={() => handleToggleCategory(cat)}
-                    className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0">
-                      <Trans>{cat.name}</Trans>
+              onValueChange={(vals) => setOpenAccordionItems(vals)}
+            >
+              {data.map((group) => (
+                <AccordionItem
+                  key={group.id}
+                  value={String(group.id)}
+                  className="border-none"
+                >
+                  <AccordionTrigger onClick={() => handleToggleCategory(group)}>
+                    {group.category}
                   </AccordionTrigger>
-                  <AccordionContent className="p-0">
-                    <ReportTable group={{ data: accordionData[cat.id] }}
+                  <AccordionContent>
+                    <ReportTable
+                      group={
+                        group.data ? group : { data: accordionData[group.id] }
+                      }
                       dates={dates}
                       navigate={navigate}
-                      isFetching={isFetching}/>
+                      isFetching={isFetching}
+                    />
                   </AccordionContent>
                 </AccordionItem>
               ))}
-
-              {/* Games */}
-              {filtersCategory?.data?.filters?.games?.length > 0 &&
-                filtersCategory.data.filters.games.map((g: any) => (
-                  <AccordionItem key={`game-${g.id}`}
-                    value={`game-${g.id}`}
-                    className="border-none py-2">
+            </Accordion>
+          ) : (
+            <Accordion
+              type="single"
+              value={openAccordionItems[0]}
+              onValueChange={(val) => setOpenAccordionItems(val ? [val] : [])}
+            >
+              {data
+                .filter((group) => String(group.id) === category)
+                .map((group) => (
+                  <AccordionItem
+                    key={group.id}
+                    value={String(group.id)}
+                    className="border-none"
+                  >
                     <AccordionTrigger
-                      className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0"
-                      onClick={() => {
-                        setGame(String(g.id));
-                      }}><Trans>{g.name}</Trans>
+                      onClick={() => handleToggleCategory(group)}
+                    >
+                      {group.category}
                     </AccordionTrigger>
-                    <AccordionContent className="p-0">
-                      <ReportTable group={{ data: g.children || [] }}
+                    <AccordionContent>
+                      <ReportTable
+                        group={
+                          group.data ? group : { data: accordionData[group.id] }
+                        }
                         dates={dates}
                         navigate={navigate}
-                        isFetching={isFetching}/>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-
-              {/* Providers */}
-              {filtersCategory?.data?.filters?.providers?.length > 0 &&
-                filtersCategory.data.filters.providers.map((p: any) => (
-                  <AccordionItem key={`provider-${p.id}`}
-                    value={`provider-${p.id}`}
-                    className="border-none py-2">
-                    <AccordionTrigger
-                      className="font-semibold text-sm py-2 text-left ring-0 focus:ring-0"
-                      onClick={() => {
-                        setProvider(String(p.id));
-                      }}>
-                        <Trans>{p.name}</Trans>
-                    </AccordionTrigger>
-                    <AccordionContent className="p-0">
-                      <ReportTable group={{ data: p.children || [] }}
-                        dates={dates}
-                        navigate={navigate}
-                        isFetching={isFetching}/>
+                        isFetching={isFetching}
+                      />
                     </AccordionContent>
                   </AccordionItem>
                 ))}
             </Accordion>
-          ) : (
-            data.map((group: any) => (
-              <div key={group.id} className="mb-2">
-                <h2 className="font-semibold text-sm pb-2 pt-4">{group.category}</h2>
-                <ReportTable group={group}
-                  dates={dates}
-                  navigate={navigate}
-                  isFetching={isFetching}/>
-              </div>
-            ))
           )
         ) : (
           <div className="text-center text-sm py-3 text-muted-foreground">
-              <Trans>No categories available</Trans>
+            <Trans>No categories available</Trans>
           </div>
         )}
       </div>
