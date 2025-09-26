@@ -65,13 +65,17 @@ function TicketPage() {
 
   useEffect(() => {
     if (!mainData) return;
-
     const allCategories = mainData.map((cat) => ({
       id: cat.id,
       category: cat.name,
       data: null,
     }));
-    setData(allCategories);
+      const newArray = [...allCategories.slice(0, 1),  {
+          "id": 0,
+          "category": "All",
+          "data": null
+      }, ...allCategories.slice(1)];
+      setData(newArray);
     setOpenAccordionItems([String(allCategories.find(category => category.category === "Sport")?.id)]);
   }, [mainData]);
 
@@ -116,7 +120,7 @@ function TicketPage() {
         res = await fetchAllUsersTransactions({
           start_date: format(dates.startDate, "dd-MM-yyyy"),
           end_date: format(dates.endDate, "dd-MM-yyyy"),
-          category_id: cat.id,
+          category_id: cat.id !== 0 ? cat.id : "",
         }).unwrap();
       }
 
@@ -184,7 +188,7 @@ function TicketPage() {
             res = await fetchAllUsersTransactions({
               start_date: format(dates.startDate, "dd-MM-yyyy"),
               end_date: format(dates.endDate, "dd-MM-yyyy"),
-              category_id: cat.id,
+              category_id: cat.id !== 0 ? cat.id : "",
             }).unwrap();
           }
 
@@ -215,7 +219,7 @@ function TicketPage() {
         res = await fetchAllUsersTransactions({
           start_date: format(dates.startDate, "dd-MM-yyyy"),
           end_date: format(dates.endDate, "dd-MM-yyyy"),
-          category_id: cat.id,
+            category_id: cat.id !== 0 ? cat.id : "",
         }).unwrap();
       }
 
@@ -309,13 +313,13 @@ function TicketPage() {
           {item?.name !== "" ? item.name : "------"} ({item.total_played})
         </p>
         <p className="w-full h-full flex items-center justify-center">
-          {!doDecimal ? (item.total_stake /10) : item.total_stake}
+          {!doDecimal ? (item.total_stake /100).toFixed(2) : item.total_stake.toFixed(2)}
         </p>
         <p className="w-full h-full flex items-center justify-center">
-            {!doDecimal ? (item.total_won /10) : item.total_won}
+            {!doDecimal ? (item.total_won /100).toFixed(2) : item.total_won.toFixed(2)}
         </p>
         <p className="w-full h-full flex items-center justify-center">
-            {!doDecimal ? (item.total_lost /10) : item.total_lost}
+            {!doDecimal ? (item.total_lost /100).toFixed(2) : item.total_lost.toFixed(2)}
         </p>
       </div>
     );
