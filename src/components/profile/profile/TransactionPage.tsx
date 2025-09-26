@@ -246,7 +246,7 @@ function TicketPage() {
 
     return (
       <div
-        className="text-sm text-center h-7 items-center text-white border-popover px-1 border-b flex"
+        className="text-sm text-center h-7 items-center border-popover px-1 border-b flex"
         onClick={() => {
           if (type === 1) {
             if (item.is_player) {
@@ -333,7 +333,7 @@ function TicketPage() {
           <p className="w-full flex items-center justify-center">Net Win</p>
         </div>
 
-        <div className="cursor-pointer border-none bg-muted/30 text-accent-foreground">
+        <div className="cursor-pointer border-none bg-muted/50 text-accent-foreground">
           {isFetching ? (
             <div className="text-sm animate-pulse text-center h-7 items-center px-1 border-b flex">
               <p className="w-[30%] h-full flex items-center justify-start text-start shrink-0"></p>
