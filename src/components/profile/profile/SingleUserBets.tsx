@@ -62,6 +62,8 @@ const SingleUserBets = () => {
     const [searchParams] = useSearchParams();
     const start = searchParams.get('startDate');
     const end = searchParams.get('endDate');
+    const typeParams = searchParams.get('type') ?? ""
+    const statusParams = searchParams.get('status') ?? ""
 
     // Separate date states initialized to null if no search param exists
     const [startDate, setStartDate] = useState<Date | undefined>(start ? new Date(start) : undefined);
@@ -69,9 +71,9 @@ const SingleUserBets = () => {
 
     const navigate = useNavigate();
     const [selectedCurrencies, setSelectedCurrencies] = useState<string>();
-    const [selectedStatuses, setSelectedStatuses] = useState<string>();
+    const [selectedStatuses, setSelectedStatuses] = useState<string>(statusParams);
     const [expandedTicketId, setExpandedTicketId] = useState<string | null>(null);
-    const [betType, setBetType] = useState('');
+    const [betType, setBetType] = useState(typeParams);
 
     const [tickets, setTickets] = useState<Ticket[]>([]);
     const [page, setPage] = useState(1);
@@ -365,11 +367,11 @@ const SingleUserBets = () => {
                 <Table className="bg-popover hover:bg-popover text-white">
                     <TableHeader className="bg-chart-2 text-white  h-8">
                         <TableRow className={'hover:bg-transparent border-popover'}>
-                            <TableHead className="h-8 px-0 max-w-[100px] text-white">
-                                <Trans>Bet Amount (Bet ID)</Trans>
+                            <TableHead className="h-8 px-0 max-w-[110px] text-white">
+                                <Trans>Bet Amount/User</Trans>
                             </TableHead>
                             <TableHead className="h-8 px-0 text-white text-center max-w-1/4">
-                                <Trans>Time</Trans>
+                                <Trans>Time/Id</Trans>
                             </TableHead>
                             <TableHead className="text-right h-8 text-white max-w-1/4">
                             </TableHead>

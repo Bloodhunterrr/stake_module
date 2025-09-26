@@ -22,6 +22,9 @@ function SingleTicketPage() {
     // Filters States
     const start = (searchParams.get('startDate')) ?? new Date();
     const end = (searchParams.get('endDate')) ?? new Date()
+    const typeParams = searchParams.get('type') ?? ""
+    const statusParams = searchParams.get('status') ?? ""
+
     const defaultUserWallet = (data?.user?.wallets.find((wallet : Wallet) => wallet.default === 1 )?.slug?.toUpperCase() ?? "EUR")
     const [selectedCurrencies, setSelectedCurrencies] = useState(defaultUserWallet)
     const [category, setCategory] = useState('')
@@ -30,8 +33,8 @@ function SingleTicketPage() {
         startDate: new Date(start ?? ''),
         endDate: new Date(end ?? ''),
     });
-    const [betType, setBetType] = useState('')
-    const [status, setStatus] = useState('')
+    const [betType, setBetType] = useState(typeParams)
+    const [status, setStatus] = useState(statusParams)
 
     const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : Wallet) => ({
         value: w.slug.toUpperCase(),
@@ -48,7 +51,7 @@ function SingleTicketPage() {
             })
         }
     }, [start , end]);
-
+    const { t } = useLingui()
 
 
     useEffect(() => {
@@ -74,7 +77,6 @@ function SingleTicketPage() {
         </div>
     }
 
-    const { t } = useLingui()
 
     return (
         <div className={'container mx-auto'}>
@@ -158,9 +160,10 @@ function SingleTicketPage() {
                     </Select>
                 </div>
 
-                <div className={'flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
+
+                <div className={' flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
                     {/*bet Type*/}
-                    <Select value={betType} onValueChange={(value) =>{
+                    <Select disabled={true} value={betType} onValueChange={(value) =>{
                         setBetType(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent "}>
@@ -175,7 +178,7 @@ function SingleTicketPage() {
                         </SelectContent>
                     </Select>
                     {/*Status options*/}
-                    <Select value={status} onValueChange={(value) =>{
+                    <Select disabled={true} value={status} onValueChange={(value) =>{
                         setStatus(value)
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
@@ -190,7 +193,7 @@ function SingleTicketPage() {
                         </SelectContent>
                     </Select>
                     {/*Static for the moment*/}
-                    <Select value={category} onValueChange={(value) =>{
+                    <Select disabled={true} value={category} onValueChange={(value) =>{
                         setCategory(value)
                         if(value !== "Sport"){
                             navigate(`/account/reports/${userTicketId}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
@@ -232,9 +235,17 @@ function SingleTicketPage() {
                                     className={'text-xs text-center h-7 items-center px-1 border-b border-b-popover flex '}
                                     onClick={()=>{
                                         if(item.is_agent){
-                                            navigate(`/account/tickets/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
+                                            navigate(`/account/tickets/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}${
+                                                betType ? `&type=${betType}` : ""
+                                            }${
+                                                status ? `&status=${status}` : ""
+                                            }`)
                                         }else {
-                                            navigate(`/account/tickets/user/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}`)
+                                            navigate(`/account/tickets/user/${item.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy/MM/dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy/MM/dd")}` : ""}${
+                                                betType ? `&type=${betType}` : ""
+                                            }${
+                                                status ? `&status=${status}` : ""
+                                            }`)
                                         }
                                     }}>
                                     <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>

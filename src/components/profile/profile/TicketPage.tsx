@@ -167,7 +167,7 @@ function TicketPage() {
 
                     }}>
                         <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder={t`Status`}/>
+                            <SelectValue placeholder={t`Ticket Type`}/>
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
@@ -206,10 +206,19 @@ function TicketPage() {
                                             className={'text-center h-7 text-xs items-center border-popover px-1 border-b flex '}
                                             onClick={() => {
                                                 if(!item.is_agent){
-                                                    navigate(`/account/tickets/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                                    navigate(`/account/tickets/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""
+                                                    }${
+                                                        betType ? `&type=${betType}` : ""
+                                                    }${
+                                                        status ? `&status=${status}` : ""
+                                                    }`);
                                                 }
                                                 else{
-                                                    navigate(`/account/tickets/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                                    navigate(`/account/tickets/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${
+                                                        betType ? `&type=${betType}` : ""
+                                                    }${
+                                                        status ? `&status=${status}` : ""
+                                                    }`);
                                                 }
                                             }}>
                                     <p className={'w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>

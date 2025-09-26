@@ -71,9 +71,8 @@ function TicketPage() {
       category: cat.name,
       data: null,
     }));
-
     setData(allCategories);
-    setOpenAccordionItems([]);
+    setOpenAccordionItems([String(allCategories.find(category => category.category === "Sport")?.id)]);
   }, [mainData]);
 
   useEffect(() => {
@@ -97,8 +96,8 @@ function TicketPage() {
         console.error("Failed to fetch transactions:", error);
       }
     };
-
     fetchTransactions();
+
   }, []);
 
   useEffect(() => {
@@ -107,7 +106,6 @@ function TicketPage() {
     const fetchSelectedCategoryData = async () => {
       const cat = data.find((d) => String(d.id) === category);
       if (!cat) return;
-
       let res;
       if (String(cat.id) === "1") {
         res = await fetchAllUsersTickets({
@@ -134,8 +132,31 @@ function TicketPage() {
     endDate: dates.endDate,
   });
 
+
+    // Initial for sport accordion
+    useEffect(() => {
+        const fetchSportTickets = async () => {
+            try {
+                const res = await fetchAllUsersTickets({
+                    start_date: format(dates.startDate, "dd-MM-yyyy"),
+                    end_date: format(dates.endDate, "dd-MM-yyyy"),
+                }).unwrap();
+                const key = mainData?.map((cat) => ({
+                    id: cat.id,
+                    category: cat.name,
+                    data: null,
+                }))?.find(category => category.category === "Sport")?.id ?? "1"
+                setAccordionData((prev) => ({ ...prev, [key] : res?.children || [] }));
+            } catch (error) {
+                console.error("Failed to fetch Sport tickets:", error);
+            }
+        };
+        fetchSportTickets();
+    }, []);
+
+
   useEffect(() => {
-    if (!data || category !== "all" || openAccordionItems.length === 0) return;
+    if (!data || (category !== "all") || openAccordionItems.length === 0) return;
 
     const prevDates = prevDatesRef.current;
 
@@ -580,9 +601,12 @@ function TicketPage() {
         {Array.isArray(data) && data.length > 0 ? (
           category === "all" ? (
             <Accordion
+              defaultValue={openAccordionItems}
               type="multiple"
               value={openAccordionItems}
-              onValueChange={(vals) => setOpenAccordionItems(vals)}
+              onValueChange={(vals) => {
+                  setOpenAccordionItems(vals)
+              }}
             >
               {data.map((group) => (
                 <AccordionItem
@@ -590,7 +614,7 @@ function TicketPage() {
                   value={String(group.id)}
                   className="border-none"
                 >
-                  <AccordionTrigger onClick={() => handleToggleCategory(group)}>
+                  <AccordionTrigger className={'hover:no-underline cursor-pointer'} onClick={() => handleToggleCategory(group)}>
                     {group.category}
                   </AccordionTrigger>
                   <AccordionContent>
