@@ -247,7 +247,6 @@ function TicketPage() {
         </div>
       );
     }
-
     return (
       <div
         className="text-sm text-center h-7 items-center border-popover px-1 border-b flex"
@@ -289,6 +288,8 @@ function TicketPage() {
                   dates.endDate
                     ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
                     : ""
+                }${
+                    type ? `&category=${type}` : ""
                 }`
               );
             } else {

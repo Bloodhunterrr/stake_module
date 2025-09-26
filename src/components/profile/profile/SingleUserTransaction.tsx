@@ -37,7 +37,6 @@ const SingleUserTransaction = () => {
         value: w.slug.toUpperCase(),
         label: w.slug.toUpperCase(),
     }));
-    console.log(category !== "0")
     useEffect(() => {
         if (singleBetsId) {
             fetchSingleTicketData({
