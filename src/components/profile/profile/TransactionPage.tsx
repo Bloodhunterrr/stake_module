@@ -235,6 +235,7 @@ function TicketPage() {
   }
 
   function ReportRow({ item, dates, navigate, type ,categoryName}: any) {
+      const doDecimal =categoryName.toLowerCase().includes('sport')
     if (item.total_stake + item.total_won + item.total_lost === 0) {
       return (
         <div className="text-center flex justify-center items-center text-sm h-[28px]">
@@ -245,7 +246,7 @@ function TicketPage() {
 
     return (
       <div
-        className="text-sm text-center h-7 items-center border-popover px-1 border-b flex"
+        className="text-sm text-center h-7 items-center text-white border-popover px-1 border-b flex"
         onClick={() => {
           if (type === 1) {
             if (item.is_player) {
@@ -308,13 +309,13 @@ function TicketPage() {
           {item?.name !== "" ? item.name : "------"} ({item.total_played})
         </p>
         <p className="w-full h-full flex items-center justify-center">
-          {item.total_stake}
+          {!doDecimal ? (item.total_stake /10) : item.total_stake}
         </p>
         <p className="w-full h-full flex items-center justify-center">
-          {item.total_won}
+            {!doDecimal ? (item.total_won /10) : item.total_won}
         </p>
         <p className="w-full h-full flex items-center justify-center">
-          {item.total_lost}
+            {!doDecimal ? (item.total_lost /10) : item.total_lost}
         </p>
       </div>
     );
