@@ -64,7 +64,6 @@ function Reports() {
         return null;
     }
 
-
     return (
         <div className={cn("min-h-screen text-muted-foreground bg-popover ")}>
             <div className={'h-10  flex  border-b border-popover items-center'}>
@@ -80,7 +79,7 @@ function Reports() {
                     <PopoverTrigger asChild>
                         <Button variant="outline"
                             className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
-                            <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
+                            <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                             {format(dates.startDate, "dd/MM/yyyy")}
                         </Button>
                     </PopoverTrigger>
@@ -120,18 +119,18 @@ function Reports() {
                         placeholder={t`All currencies`}
                         hideSelectAll/>
                 )}
-                <div className={' lg:col-span-1 h-8 relative lg:pt-0 pt-2 flex items-center col-span-3 '}>
+                <div className={' lg:col-span-1 h-8 relative lg:pt-0 pt-2 flex items-center col-span-3'}>
                     <Search className={'absolute left-1 h-full'} />
                     <Input
                         onChange={(value)=>{
                             setSearchedWord(value.target.value);
                         }}
                         className={"pl-8 w-full border-popover"}
-                        placeholder={'Search'}/>
+                        placeholder={t`Search`}/>
                 </div>
             </div>
 
-            <div className={cn("container text-xs text-white mx-auto  py-2  select-none " ,
+            <div className={cn("container text-xs text-white mx-auto py-2 select-none" ,
                 {
                     "animate-pulse bg-black/10" : isFetching
                 }) }>
@@ -143,7 +142,7 @@ function Reports() {
                                 return (
                                     <div className={'flex flex-row py-2 border-b border-b-muted-foreground pl-2 justify-between'}>
                                         <p className={'w-1/2'}>{created_at}</p>
-                                        <p className={'w-1/4 text-end pr-2 shrink-0' }>{in_amount ? "+" : "-"}{in_amount ? in_amount : out_amount}</p>
+                                        <p className={'w-1/4 text-end pr-2 shrink-0'}>{in_amount ? "+" : "-"}{in_amount ? in_amount : out_amount}</p>
                                         <p className={'text-card text-start w-1/4'}>{user}</p>
                                         <p className={'text-start w-1/4 capitalize'}>{raw_data.type_raw}</p>
                                     </div>
