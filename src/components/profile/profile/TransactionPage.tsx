@@ -49,8 +49,8 @@ function TicketPage() {
 
   const [selectedCurrencies, setSelectedCurrencies] = useState("");
   const [category, setCategory] = useState("all");
-  const [betType, setBetType] = useState("");
-  const [status, setStatus] = useState("");
+  // const [betType, setBetType] = useState("");
+  // const [status, setStatus] = useState("");
   const [dates, setDates] = useState({
     startDate: new Date(),
     endDate: new Date(),
@@ -64,6 +64,7 @@ function TicketPage() {
   const { t } = useLingui();
 
   useEffect(() => {
+    setCategory('all')
     if (!mainData) return;
     const allCategories = mainData.map((cat) => ({
       id: cat.id,
@@ -72,7 +73,7 @@ function TicketPage() {
     }));
       const newArray = [...allCategories.slice(0, 1),  {
           "id": 0,
-          "category": "All",
+          "category": "All Games",
           "data": null
       }, ...allCategories.slice(1)];
       setData(newArray);
@@ -493,109 +494,109 @@ function TicketPage() {
           </Select>
         </div>
 
-        <div
-          className={
-            "flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2"
-          }
-        >
-          {/*bet Type*/}
-          <Select
-            value={betType}
-            onValueChange={(value) => {
-              setBetType(value);
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent "
-              }
-            >
-              <SelectValue placeholder={t`Type`} />
-            </SelectTrigger>
-            <SelectContent className={"border-none bg-background rounded-none"}>
-              {filters?.betType?.map((type: string, index: number) => (
-                <SelectItem
-                  key={index}
-                  value={type}
-                  className={
-                    "focus:text-background text-accent rounded-none capitalize"
-                  }
-                >
-                  {type}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        {/*<div*/}
+        {/*  className={*/}
+        {/*    "flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2"*/}
+        {/*  }*/}
+        {/*>*/}
+        {/*  /!*bet Type*!/*/}
+        {/*  <Select*/}
+        {/*    value={betType}*/}
+        {/*    onValueChange={(value) => {*/}
+        {/*      setBetType(value);*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <SelectTrigger*/}
+        {/*      className={*/}
+        {/*        "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent "*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      <SelectValue placeholder={t`Type`} />*/}
+        {/*    </SelectTrigger>*/}
+        {/*    <SelectContent className={"border-none bg-background rounded-none"}>*/}
+        {/*      {filters?.betType?.map((type: string, index: number) => (*/}
+        {/*        <SelectItem*/}
+        {/*          key={index}*/}
+        {/*          value={type}*/}
+        {/*          className={*/}
+        {/*            "focus:text-background text-accent rounded-none capitalize"*/}
+        {/*          }*/}
+        {/*        >*/}
+        {/*          {type}*/}
+        {/*        </SelectItem>*/}
+        {/*      ))}*/}
+        {/*    </SelectContent>*/}
+        {/*  </Select>*/}
 
-          {/*Status options*/}
-          <Select
-            value={status}
-            onValueChange={(value) => {
-              setStatus(value);
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8! w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }
-            >
-              <SelectValue placeholder={t`Status`} />
-            </SelectTrigger>
-            <SelectContent className={"border-none bg-background rounded-none"}>
-              {filters?.status?.map((status: string, index: number) => (
-                <SelectItem
-                  key={index}
-                  value={status}
-                  className={
-                    "focus:text-background text-accent rounded-none capitalize"
-                  }
-                >
-                  {status}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        {/*  /!*Status options*!/*/}
+        {/*  <Select*/}
+        {/*    value={status}*/}
+        {/*    onValueChange={(value) => {*/}
+        {/*      setStatus(value);*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <SelectTrigger*/}
+        {/*      className={*/}
+        {/*        "h-8! w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      <SelectValue placeholder={t`Status`} />*/}
+        {/*    </SelectTrigger>*/}
+        {/*    <SelectContent className={"border-none bg-background rounded-none"}>*/}
+        {/*      {filters?.status?.map((status: string, index: number) => (*/}
+        {/*        <SelectItem*/}
+        {/*          key={index}*/}
+        {/*          value={status}*/}
+        {/*          className={*/}
+        {/*            "focus:text-background text-accent rounded-none capitalize"*/}
+        {/*          }*/}
+        {/*        >*/}
+        {/*          {status}*/}
+        {/*        </SelectItem>*/}
+        {/*      ))}*/}
+        {/*    </SelectContent>*/}
+        {/*  </Select>*/}
 
-          {/*Categories*/}
-          <Select
-            value={category}
-            onValueChange={(value) => {
-              setCategory(value);
+        {/*  /!*Categories*!/*/}
+        {/*  <Select*/}
+        {/*    value={category}*/}
+        {/*    onValueChange={(value) => {*/}
+        {/*      setCategory(value);*/}
 
-              if (value === "all") {
-                setOpenAccordionItems([]);
-              } else {
-                setOpenAccordionItems([value]);
-              }
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }
-            >
-              <SelectValue placeholder={t`Category`} />
-            </SelectTrigger>
-            <SelectContent className={"border-none bg-background rounded-none"}>
-              <SelectItem
-                key="All"
-                value="all"
-                className={"focus:text-background text-accent rounded-none"}
-              >
-                <Trans>All</Trans>
-              </SelectItem>
-              {mainData?.map((data, index) => (
-                <SelectItem
-                  key={index}
-                  className={"focus:text-background text-accent rounded-none"}
-                  value={String(data.id)}
-                >
-                  {data.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        {/*      if (value === "all") {*/}
+        {/*        setOpenAccordionItems([]);*/}
+        {/*      } else {*/}
+        {/*        setOpenAccordionItems([value]);*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <SelectTrigger*/}
+        {/*      className={*/}
+        {/*        "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      <SelectValue placeholder={t`Category`} />*/}
+        {/*    </SelectTrigger>*/}
+        {/*    <SelectContent className={"border-none bg-background rounded-none"}>*/}
+        {/*      <SelectItem*/}
+        {/*        key="All"*/}
+        {/*        value="all"*/}
+        {/*        className={"focus:text-background text-accent rounded-none"}*/}
+        {/*      >*/}
+        {/*        <Trans>All</Trans>*/}
+        {/*      </SelectItem>*/}
+        {/*      {mainData?.map((data, index) => (*/}
+        {/*        <SelectItem*/}
+        {/*          key={index}*/}
+        {/*          className={"focus:text-background text-accent rounded-none"}*/}
+        {/*          value={String(data.id)}*/}
+        {/*        >*/}
+        {/*          {data.name}*/}
+        {/*        </SelectItem>*/}
+        {/*      ))}*/}
+        {/*    </SelectContent>*/}
+        {/*  </Select>*/}
+        {/*</div>*/}
       </div>
 
       <DateFilter
