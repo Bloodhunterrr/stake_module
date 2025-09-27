@@ -49,8 +49,8 @@ function TicketPage() {
 
   const [selectedCurrencies, setSelectedCurrencies] = useState("");
   const [category, setCategory] = useState("all");
-  const [betType, setBetType] = useState("");
-  const [status, setStatus] = useState("");
+  // const [betType, setBetType] = useState("");
+  // const [status, setStatus] = useState("");
   const [dates, setDates] = useState({
     startDate: new Date(),
     endDate: new Date(),
@@ -64,14 +64,19 @@ function TicketPage() {
   const { t } = useLingui();
 
   useEffect(() => {
+    setCategory('all')
     if (!mainData) return;
-
     const allCategories = mainData.map((cat) => ({
       id: cat.id,
       category: cat.name,
       data: null,
     }));
-    setData(allCategories);
+      const newArray = [...allCategories.slice(0, 1),  {
+          "id": 0,
+          "category": "All Games",
+          "data": null
+      }, ...allCategories.slice(1)];
+      setData(newArray);
     setOpenAccordionItems([String(allCategories.find(category => category.category === "Sport")?.id)]);
   }, [mainData]);
 
@@ -116,7 +121,7 @@ function TicketPage() {
         res = await fetchAllUsersTransactions({
           start_date: format(dates.startDate, "dd-MM-yyyy"),
           end_date: format(dates.endDate, "dd-MM-yyyy"),
-          category_id: cat.id,
+          category_id: cat.id !== 0 ? cat.id : "",
         }).unwrap();
       }
 
@@ -184,7 +189,7 @@ function TicketPage() {
             res = await fetchAllUsersTransactions({
               start_date: format(dates.startDate, "dd-MM-yyyy"),
               end_date: format(dates.endDate, "dd-MM-yyyy"),
-              category_id: cat.id,
+              category_id: cat.id !== 0 ? cat.id : "",
             }).unwrap();
           }
 
@@ -215,7 +220,7 @@ function TicketPage() {
         res = await fetchAllUsersTransactions({
           start_date: format(dates.startDate, "dd-MM-yyyy"),
           end_date: format(dates.endDate, "dd-MM-yyyy"),
-          category_id: cat.id,
+            category_id: cat.id !== 0 ? cat.id : "",
         }).unwrap();
       }
 
@@ -243,7 +248,6 @@ function TicketPage() {
         </div>
       );
     }
-
     return (
       <div
         className="text-sm text-center h-7 items-center border-popover px-1 border-b flex"
@@ -285,6 +289,8 @@ function TicketPage() {
                   dates.endDate
                     ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}`
                     : ""
+                }${
+                    type ? `&category=${type}` : ""
                 }`
               );
             } else {
@@ -306,17 +312,23 @@ function TicketPage() {
         }}
       >
         <p className="w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0">
-          {item?.name !== "" ? item.name : "------"} ({item.total_played})
+          {item?.username} ({item.total_played})
         </p>
-        <p className="w-full h-full flex items-center justify-center">
-          {!doDecimal ? (item.total_stake /10) : item.total_stake}
-        </p>
-        <p className="w-full h-full flex items-center justify-center">
-            {!doDecimal ? (item.total_won /10) : item.total_won}
-        </p>
-        <p className="w-full h-full flex items-center justify-center">
-            {!doDecimal ? (item.total_lost /10) : item.total_lost}
-        </p>
+        <div className="w-full h-full flex items-center justify-center">
+          <p className="w-1/2 h-full flex items-center justify-end">
+            {!doDecimal ? (item.total_stake /100).toFixed(2) : item.total_stake.toFixed(2)}
+          </p>
+        </div>
+        <div className="w-full h-full flex items-center justify-center">
+          <p className="w-1/2 h-full flex items-center justify-end">
+            {!doDecimal ? (item.total_won /100).toFixed(2) : item.total_won.toFixed(2)}
+          </p>
+        </div>
+        <div className="w-full h-full flex items-center justify-center">
+          <p className="w-1/2 h-full flex items-center justify-end">
+            {!doDecimal ? (item.total_lost /100).toFixed(2) : item.total_lost.toFixed(2)}
+          </p>
+        </div>
       </div>
     );
   }
@@ -488,109 +500,109 @@ function TicketPage() {
           </Select>
         </div>
 
-        <div
-          className={
-            "flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2"
-          }
-        >
-          {/*bet Type*/}
-          <Select
-            value={betType}
-            onValueChange={(value) => {
-              setBetType(value);
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent "
-              }
-            >
-              <SelectValue placeholder={t`Type`} />
-            </SelectTrigger>
-            <SelectContent className={"border-none bg-background rounded-none"}>
-              {filters?.betType?.map((type: string, index: number) => (
-                <SelectItem
-                  key={index}
-                  value={type}
-                  className={
-                    "focus:text-background text-accent rounded-none capitalize"
-                  }
-                >
-                  {type}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        {/*<div*/}
+        {/*  className={*/}
+        {/*    "flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2"*/}
+        {/*  }*/}
+        {/*>*/}
+        {/*  /!*bet Type*!/*/}
+        {/*  <Select*/}
+        {/*    value={betType}*/}
+        {/*    onValueChange={(value) => {*/}
+        {/*      setBetType(value);*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <SelectTrigger*/}
+        {/*      className={*/}
+        {/*        "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent "*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      <SelectValue placeholder={t`Type`} />*/}
+        {/*    </SelectTrigger>*/}
+        {/*    <SelectContent className={"border-none bg-background rounded-none"}>*/}
+        {/*      {filters?.betType?.map((type: string, index: number) => (*/}
+        {/*        <SelectItem*/}
+        {/*          key={index}*/}
+        {/*          value={type}*/}
+        {/*          className={*/}
+        {/*            "focus:text-background text-accent rounded-none capitalize"*/}
+        {/*          }*/}
+        {/*        >*/}
+        {/*          {type}*/}
+        {/*        </SelectItem>*/}
+        {/*      ))}*/}
+        {/*    </SelectContent>*/}
+        {/*  </Select>*/}
 
-          {/*Status options*/}
-          <Select
-            value={status}
-            onValueChange={(value) => {
-              setStatus(value);
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8! w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }
-            >
-              <SelectValue placeholder={t`Status`} />
-            </SelectTrigger>
-            <SelectContent className={"border-none bg-background rounded-none"}>
-              {filters?.status?.map((status: string, index: number) => (
-                <SelectItem
-                  key={index}
-                  value={status}
-                  className={
-                    "focus:text-background text-accent rounded-none capitalize"
-                  }
-                >
-                  {status}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        {/*  /!*Status options*!/*/}
+        {/*  <Select*/}
+        {/*    value={status}*/}
+        {/*    onValueChange={(value) => {*/}
+        {/*      setStatus(value);*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <SelectTrigger*/}
+        {/*      className={*/}
+        {/*        "h-8! w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      <SelectValue placeholder={t`Status`} />*/}
+        {/*    </SelectTrigger>*/}
+        {/*    <SelectContent className={"border-none bg-background rounded-none"}>*/}
+        {/*      {filters?.status?.map((status: string, index: number) => (*/}
+        {/*        <SelectItem*/}
+        {/*          key={index}*/}
+        {/*          value={status}*/}
+        {/*          className={*/}
+        {/*            "focus:text-background text-accent rounded-none capitalize"*/}
+        {/*          }*/}
+        {/*        >*/}
+        {/*          {status}*/}
+        {/*        </SelectItem>*/}
+        {/*      ))}*/}
+        {/*    </SelectContent>*/}
+        {/*  </Select>*/}
 
-          {/*Categories*/}
-          <Select
-            value={category}
-            onValueChange={(value) => {
-              setCategory(value);
+        {/*  /!*Categories*!/*/}
+        {/*  <Select*/}
+        {/*    value={category}*/}
+        {/*    onValueChange={(value) => {*/}
+        {/*      setCategory(value);*/}
 
-              if (value === "all") {
-                setOpenAccordionItems([]);
-              } else {
-                setOpenAccordionItems([value]);
-              }
-            }}
-          >
-            <SelectTrigger
-              className={
-                "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }
-            >
-              <SelectValue placeholder={t`Category`} />
-            </SelectTrigger>
-            <SelectContent className={"border-none bg-background rounded-none"}>
-              <SelectItem
-                key="All"
-                value="all"
-                className={"focus:text-background text-accent rounded-none"}
-              >
-                <Trans>All</Trans>
-              </SelectItem>
-              {mainData?.map((data, index) => (
-                <SelectItem
-                  key={index}
-                  className={"focus:text-background text-accent rounded-none"}
-                  value={String(data.id)}
-                >
-                  {data.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        {/*      if (value === "all") {*/}
+        {/*        setOpenAccordionItems([]);*/}
+        {/*      } else {*/}
+        {/*        setOpenAccordionItems([value]);*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <SelectTrigger*/}
+        {/*      className={*/}
+        {/*        "h-8! w-1/2 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      <SelectValue placeholder={t`Category`} />*/}
+        {/*    </SelectTrigger>*/}
+        {/*    <SelectContent className={"border-none bg-background rounded-none"}>*/}
+        {/*      <SelectItem*/}
+        {/*        key="All"*/}
+        {/*        value="all"*/}
+        {/*        className={"focus:text-background text-accent rounded-none"}*/}
+        {/*      >*/}
+        {/*        <Trans>All</Trans>*/}
+        {/*      </SelectItem>*/}
+        {/*      {mainData?.map((data, index) => (*/}
+        {/*        <SelectItem*/}
+        {/*          key={index}*/}
+        {/*          className={"focus:text-background text-accent rounded-none"}*/}
+        {/*          value={String(data.id)}*/}
+        {/*        >*/}
+        {/*          {data.name}*/}
+        {/*        </SelectItem>*/}
+        {/*      ))}*/}
+        {/*    </SelectContent>*/}
+        {/*  </Select>*/}
+        {/*</div>*/}
       </div>
 
       <DateFilter

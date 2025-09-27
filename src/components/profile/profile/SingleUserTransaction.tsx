@@ -21,6 +21,7 @@ const SingleUserTransaction = () => {
     const [searchParams] = useSearchParams();
     const start = (searchParams.get('startDate')) ?? new Date();
     const end = (searchParams.get('endDate')) ?? new Date()
+    const category = searchParams.get('category')
     const [dates, setDates] = useState({
         startDate: new Date(start ?? ''),
         endDate: new Date(end ?? ''),
@@ -36,7 +37,6 @@ const SingleUserTransaction = () => {
         value: w.slug.toUpperCase(),
         label: w.slug.toUpperCase(),
     }));
-
     useEffect(() => {
         if (singleBetsId) {
             fetchSingleTicketData({
@@ -46,7 +46,7 @@ const SingleUserTransaction = () => {
                 currency: (selectedCurrencies)?.toLowerCase(),
                 status: selectedStatuses,
                 // bet_type : betType === 'all' ? "" : betType,
-                bet_type : "Casino",
+                category_id : (category !== null && category !== "0") ? Number(category) : "",
                 page : currentPage,
             })
                 .unwrap()

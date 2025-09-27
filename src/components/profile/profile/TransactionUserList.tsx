@@ -217,16 +217,15 @@ function SingleTicketPage() {
                                     className={'text-sm text-center h-7 items-center px-1 border-b border-b-popover flex '}
                                     onClick={()=>{
                                         if(item.is_player){
-                                            navigate(`/account/transactions/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`)
-                                            // ?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
+                                            navigate(`/account/transactions/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${category  ? `&category=${category}` : ""}`)
                                         }else{
                                             navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${category  ? `&category=${category}` : ""}`);
                                         }
                                     }}>
                                     <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake/10}</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won/10}</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost/10}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake/100}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won/100}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost/100}</p>
                                 </div>
                             )
                         })
