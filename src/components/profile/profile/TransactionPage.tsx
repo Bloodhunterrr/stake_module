@@ -314,15 +314,21 @@ function TicketPage() {
         <p className="w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0">
           {item?.username} ({item.total_played})
         </p>
-        <p className="w-full h-full flex items-center justify-center">
-          {!doDecimal ? (item.total_stake /100).toFixed(2) : item.total_stake.toFixed(2)}
-        </p>
-        <p className="w-full h-full flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center bg-red-100">
+          <p className="w-1/2 h-full flex items-center justify-end">
+            {!doDecimal ? (item.total_stake /100).toFixed(2) : item.total_stake.toFixed(2)}
+          </p>
+        </div>
+        <div className="w-full h-full flex items-center justify-center">
+          <p className="w-1/2 h-full flex items-center justify-end">
             {!doDecimal ? (item.total_won /100).toFixed(2) : item.total_won.toFixed(2)}
-        </p>
-        <p className="w-full h-full flex items-center justify-center">
+          </p>
+        </div>
+        <div className="w-full h-full flex items-center justify-center">
+          <p className="w-1/2 h-full flex items-center justify-end">
             {!doDecimal ? (item.total_lost /100).toFixed(2) : item.total_lost.toFixed(2)}
-        </p>
+          </p>
+        </div>
       </div>
     );
   }
