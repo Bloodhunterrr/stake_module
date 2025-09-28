@@ -29,6 +29,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {cn} from "@/lib/utils.ts";
 
 interface Category {
   id: number;
@@ -47,7 +48,7 @@ function TicketPage() {
   );
   const [openAccordionItems, setOpenAccordionItems] = useState<string[]>([]);
 
-  const [selectedCurrencies, setSelectedCurrencies] = useState("");
+  const [selectedCurrencies, setSelectedCurrencies] = useState("EUR");
   const [category, setCategory] = useState("all");
   // const [betType, setBetType] = useState("");
   // const [status, setStatus] = useState("");
@@ -88,7 +89,6 @@ function TicketPage() {
           end_date: format(dates.endDate, "dd-MM-yyyy"),
         }).unwrap();
 
-        console.log(res);
 
         if (res.filters) {
           setFilters(res.filters);
@@ -240,17 +240,17 @@ function TicketPage() {
   }
 
   function ReportRow({ item, dates, navigate, type ,categoryName}: any) {
-      const doDecimal =categoryName.toLowerCase().includes('sport')
+      const showCommission =categoryName.toLowerCase().includes('sport')
     if (item.total_stake + item.total_won + item.total_lost === 0) {
       return (
-        <div className="text-center flex justify-center items-center text-sm h-[28px]">
+        <div className="text-center flex justify-center items-center text-xs h-[28px]">
           <Trans>No data available</Trans>
         </div>
       );
     }
     return (
       <div
-        className="text-sm text-center h-7 items-center border-popover px-1 border-b flex"
+        className="text-xs text-center h-7 items-center border-popover px-1 border-b flex"
         onClick={() => {
           if (type === 1) {
             if (item.is_player) {
@@ -311,22 +311,33 @@ function TicketPage() {
           }
         }}
       >
-        <p className="w-1/3 h-full flex items-center truncate line-clamp-1 justify-start text-start shrink-0">
-          {item?.username} ({item.total_played})
+        <p className={cn("w-1/3 h-full flex items-center truncate  justify-start text-start shrink-0" , {
+            "w-1/4" : showCommission
+        })}>
+            <span>
+                    {item?.username} ({item.total_played})
+            </span>
         </p>
         <div className="w-full h-full flex items-center justify-center">
           <p className="w-1/2 h-full flex items-center justify-end">
-            {!doDecimal ? (item.total_stake /100).toFixed(2) : item.total_stake.toFixed(2)}
+            {item?.total_stake.toFixed(2)}
           </p>
         </div>
         <div className="w-full h-full flex items-center justify-center">
           <p className="w-1/2 h-full flex items-center justify-end">
-            {!doDecimal ? (item.total_won /100).toFixed(2) : item.total_won.toFixed(2)}
+            {item?.total_won.toFixed(2)}
           </p>
         </div>
+          {
+              showCommission && <div className="w-full h-full flex items-center justify-center">
+                  <p className="w-1/2 h-full flex items-center justify-end">
+                      {item?.sport_commission?.toFixed(2)}
+                  </p>
+              </div>
+          }
         <div className="w-full h-full flex items-center justify-center">
           <p className="w-1/2 h-full flex items-center justify-end">
-            {!doDecimal ? (item.total_lost /100).toFixed(2) : item.total_lost.toFixed(2)}
+            {item?.net_win ?  item?.net_win.toFixed(2) : "-"}
           </p>
         </div>
       </div>
@@ -334,20 +345,28 @@ function TicketPage() {
   }
 
   function ReportTable({ group, dates, navigate, isFetching, type  ,categoryName}: any) {
+      const showCommission = categoryName.toLowerCase().includes('sport');
     return (
       <>
-        <div className="text-sm text-center h-7 items-center bg-chart-2 border-accent px-1 flex">
-          <p className="w-1/3 flex items-center justify-start text-start shrink-0">
+        <div className="text-xs text-center h-7 items-center bg-chart-2 border-accent px-1 flex">
+          <p className={cn("w-1/3 flex items-center justify-start text-start shrink-0" , {
+              'w-1/4' : showCommission
+          })}>
             Username
           </p>
           <p className="w-full flex items-center justify-center">Played</p>
           <p className="w-full flex items-center justify-center">Won</p>
+            {
+                showCommission && <p className="w-full flex items-center justify-center">Comm</p>
+
+            }
           <p className="w-full flex items-center justify-center">Net Win</p>
+
         </div>
 
         <div className="cursor-pointer border-none bg-muted/50 text-accent-foreground">
           {isFetching ? (
-            <div className="text-sm animate-pulse text-center h-7 items-center px-1 border-b flex">
+            <div className="text-xs animate-pulse text-center h-7 items-center px-1 border-b flex">
               <p className="w-[30%] h-full flex items-center justify-start text-start shrink-0"></p>
               <p className="w-full h-full flex items-center justify-center"></p>
               <p className="w-full h-full flex items-center justify-center"></p>
@@ -379,7 +398,7 @@ function TicketPage() {
               } else {
                 if (hasNoData && index === 0) {
                   return (
-                    <div className="text-center flex justify-center items-center text-sm h-[28px]">
+                    <div className="text-center flex justify-center items-center text-xs h-[28px]">
                       <Trans>No data available</Trans>
                     </div>
                   );
@@ -387,7 +406,7 @@ function TicketPage() {
               }
             })
           ) : (
-            <div className="text-center flex justify-center items-center text-sm h-[28px]">
+            <div className="text-center flex justify-center items-center text-xs h-[28px]">
               <Trans>No data available</Trans>
             </div>
           )}
@@ -681,7 +700,7 @@ function TicketPage() {
             </Accordion>
           )
         ) : (
-          <div className="text-center text-sm py-3 text-muted-foreground">
+          <div className="text-center text-xs py-3 text-muted-foreground">
             <Trans>No categories available</Trans>
           </div>
         )}
