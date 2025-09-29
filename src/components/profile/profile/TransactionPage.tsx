@@ -98,7 +98,7 @@ function TicketPage() {
           setUser(res.user);
         }
       } catch (error) {
-        console.error("Failed to fetch transactions:", error);
+        console.error(t`Failed to fetch transactions:`, error);
       }
     };
     fetchTransactions();
@@ -153,7 +153,7 @@ function TicketPage() {
                 }))?.find(category => category.category === "Sport")?.id ?? "1"
                 setAccordionData((prev) => ({ ...prev, [key] : res?.children || [] }));
             } catch (error) {
-                console.error("Failed to fetch Sport tickets:", error);
+                console.error(t`Failed to fetch Sport tickets:`, error);
             }
         };
         fetchSportTickets();
@@ -314,9 +314,7 @@ function TicketPage() {
         <p className={cn("w-1/3 h-full flex items-center truncate  justify-start text-start shrink-0" , {
             "w-1/4" : showCommission
         })}>
-            <span>
-                    {item?.username} ({item.total_played})
-            </span>
+            <span>{item?.username} ({item.total_played})</span>
         </p>
         <div className="w-full h-full flex items-center justify-center">
           <p className="w-1/2 h-full flex items-center justify-end">
@@ -328,8 +326,8 @@ function TicketPage() {
             {item?.total_won.toFixed(2)}
           </p>
         </div>
-          {
-              showCommission && <div className="w-full h-full flex items-center justify-center">
+          { showCommission &&
+              <div className="w-full h-full flex items-center justify-center">
                   <p className="w-1/2 h-full flex items-center justify-end">
                       {item?.sport_commission?.toFixed(2)}
                   </p>
@@ -346,21 +344,18 @@ function TicketPage() {
 
   function ReportTable({ group, dates, navigate, isFetching, type  ,categoryName}: any) {
       const showCommission = categoryName.toLowerCase().includes('sport');
-    return (
-      <>
+    return (<>
         <div className="text-xs text-center h-7 items-center bg-chart-2 border-accent px-1 flex">
           <p className={cn("w-1/3 flex items-center justify-start text-start shrink-0" , {
               'w-1/4' : showCommission
-          })}>
-            Username
-          </p>
-          <p className="w-full flex items-center justify-center">Played</p>
-          <p className="w-full flex items-center justify-center">Won</p>
+          })}><Trans>Username</Trans></p>
+          <p className="w-full flex items-center justify-center"><Trans>Played</Trans></p>
+          <p className="w-full flex items-center justify-center"><Trans>Won</Trans></p>
             {
-                showCommission && <p className="w-full flex items-center justify-center">Comm</p>
+                showCommission && <p className="w-full flex items-center justify-center"><Trans>Comm</Trans></p>
 
             }
-          <p className="w-full flex items-center justify-center">Net Win</p>
+          <p className="w-full flex items-center justify-center"><Trans>Net Win</Trans></p>
 
         </div>
 
@@ -386,14 +381,12 @@ function TicketPage() {
                 0
               ) {
                 return (
-                  <ReportRow
-                    categoryName={categoryName}
+                  <ReportRow categoryName={categoryName}
                     type={type}
                     key={index}
                     item={item}
                     dates={dates}
-                    navigate={navigate}
-                  />
+                    navigate={navigate}/>
                 );
               } else {
                 if (hasNoData && index === 0) {
@@ -411,27 +404,23 @@ function TicketPage() {
             </div>
           )}
         </div>
-      </>
-    );
+      </>);
   }
 
 
   return (
     <div className={"min-h-screen container mx-auto"}>
       <div className={"h-10  flex  border-b border-popover items-center"}>
-        <div
-          className={
+        <div className={
             "w-10 h-full border-r text-muted border-popover flex items-center"
           }
-          onClick={() => navigate(-1)}
-        >
+          onClick={() => navigate(-1)}>
           <ChevronLeftIcon className={"w-10 "} />
         </div>
         <div
           className={
             "w-full text-muted text-center pr-10 space-x-1 flex justify-center"
-          }
-        >
+          }>
           <p className={"mr-1"}>
             <Trans>Reports</Trans>
           </p>
@@ -440,17 +429,11 @@ function TicketPage() {
         </div>
       </div>
       <div className={" flex flex-col gap-y-3"}>
-        <div
-          className={
-            "w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly"
-          }
-        >
+        <div className={ "w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly" }>
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-              >
+              <Button variant="outline"
+                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                 {format(dates.startDate, "dd/MM/yyyy")}
               </Button>
@@ -469,49 +452,39 @@ function TicketPage() {
           </Popover>
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-              >
+              <Button variant="outline"
+                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                 {format(dates.endDate, "dd/MM/yyyy")}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-0 bg-white">
-              <Calendar
-                className="w-full"
+              <Calendar className="w-full"
                 mode="single"
                 selected={dates.endDate}
                 onSelect={(date) => {
                   setSelectedDateFilter("");
                   date && setDates((prev) => ({ ...prev, endDate: date }));
-                }}
-              />
+                }}/>
             </PopoverContent>
           </Popover>
 
-          <Select
-            value={selectedCurrencies}
+          <Select value={selectedCurrencies}
             onValueChange={(value) => {
               setSelectedCurrencies(value);
-            }}
-          >
-            <SelectTrigger
-              className={
+            }}>
+            <SelectTrigger className={
                 "h-8! w-1/4 rounded-none bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-              }
-            >
+              }>
               <SelectValue placeholder={t`Currency`} />
             </SelectTrigger>
             <SelectContent className={"border-none bg-background rounded-none"}>
               {filters?.wallets?.map((w: any, index: number) => (
-                <SelectItem
-                  key={index}
+                <SelectItem key={index}
                   value={w.slug.toUpperCase()}
                   className={
                     "focus:text-background text-accent rounded-none capitalize"
-                  }
-                >
+                  }>
                   {w.slug.toUpperCase()}
                 </SelectItem>
               ))}
@@ -624,28 +597,22 @@ function TicketPage() {
         {/*</div>*/}
       </div>
 
-      <DateFilter
-        className="text-accent text-[12px]"
+      <DateFilter className="text-accent text-[12px]"
         selected={selectedDateFilter}
-        onSelect={handleDateFilterSelect}
-      />
+        onSelect={handleDateFilterSelect}/>
       <div className="flex cursor-pointer flex-col p-3">
         {Array.isArray(data) && data.length > 0 ? (
           category === "all" ? (
-            <Accordion
-              defaultValue={openAccordionItems}
+            <Accordion defaultValue={openAccordionItems}
               type="multiple"
               value={openAccordionItems}
               onValueChange={(vals) => {
                   setOpenAccordionItems(vals)
-              }}
-            >
+              }}>
               {data.map((group) => (
-                <AccordionItem
-                  key={group.id}
+                <AccordionItem key={group.id}
                   value={String(group.id)}
-                  className="border-none"
-                >
+                  className="border-none">
                   <AccordionTrigger className={'hover:no-underline cursor-pointer'} onClick={() => handleToggleCategory(group)}>
                     {group.category}
                   </AccordionTrigger>
@@ -665,35 +632,25 @@ function TicketPage() {
               ))}
             </Accordion>
           ) : (
-            <Accordion
-              type="single"
+            <Accordion type="single"
               value={openAccordionItems[0]}
-              onValueChange={(val) => setOpenAccordionItems(val ? [val] : [])}
-            >
-              {data
-                .filter((group) => String(group.id) === category)
+              onValueChange={(val) => setOpenAccordionItems(val ? [val] : [])}>
+              {data.filter((group) => String(group.id) === category)
                 .map((group) => (
-                  <AccordionItem
-                    key={group.id}
+                  <AccordionItem key={group.id}
                     value={String(group.id)}
-                    className="border-none"
-                  >
-                    <AccordionTrigger
-                      onClick={() => handleToggleCategory(group)}
-                    >
+                    className="border-none">
+                    <AccordionTrigger onClick={() => handleToggleCategory(group)}>
                       {group.category}
                     </AccordionTrigger>
                     <AccordionContent>
-                      <ReportTable
-                        type={group.id}
+                      <ReportTable type={group.id}
                         categoryName={group.category}
                         group={
                           group.data ? group : { data: accordionData[group.id] }
-                        }
-                        dates={dates}
+                        } dates={dates}
                         navigate={navigate}
-                        isFetching={isFetching}
-                      />
+                        isFetching={isFetching}/>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
