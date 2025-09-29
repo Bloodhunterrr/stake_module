@@ -624,11 +624,11 @@ msgstr "Inserisci la tua password"
 
 #: src/components/profile/profile/TransactionPage.tsx:156
 msgid "Failed to fetch Sport tickets:"
-msgstr ""
+msgstr "Impossibile recuperare i biglietti Sport:"
 
 #: src/components/profile/profile/TransactionPage.tsx:101
 msgid "Failed to fetch transactions:"
-msgstr ""
+msgstr "Impossibile recuperare le transazioni:"
 
 #~ msgid "Failed to initiate deposit. Contact Support"
 #~ msgstr "Impossibile avviare il deposito. Contatta il supporto"
@@ -914,7 +914,7 @@ msgstr "Hai bisogno di aiuto?"
 #: src/components/profile/profile/TransactionPage.tsx:358
 #: src/components/profile/profile/TransactionUserList.tsx:205
 msgid "Net Win"
-msgstr "Vittoria Netta"
+msgstr "Differenza"
 
 #~ msgid "New password"
 #~ msgstr "Nuova password"

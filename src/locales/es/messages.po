@@ -624,11 +624,11 @@ msgstr "Introduce tu contraseña"
 
 #: src/components/profile/profile/TransactionPage.tsx:156
 msgid "Failed to fetch Sport tickets:"
-msgstr ""
+msgstr "No se pudieron obtener las entradas deportivas:"
 
 #: src/components/profile/profile/TransactionPage.tsx:101
 msgid "Failed to fetch transactions:"
-msgstr ""
+msgstr "No se pudieron obtener las transacciones:"
 
 #~ msgid "Failed to initiate deposit. Contact Support"
 #~ msgstr "Error al iniciar el depósito. Contacta con el soporte"
@@ -914,7 +914,7 @@ msgstr "¿Necesitas ayuda?"
 #: src/components/profile/profile/TransactionPage.tsx:358
 #: src/components/profile/profile/TransactionUserList.tsx:205
 msgid "Net Win"
-msgstr "Ganancia Neta"
+msgstr "Diferencia"
 
 #~ msgid "New password"
 #~ msgstr "Nueva contraseña"

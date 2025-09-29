@@ -377,11 +377,11 @@ msgstr "Vendos fjalëkalimin tënd"
 
 #: src/components/profile/profile/TransactionPage.tsx:156
 msgid "Failed to fetch Sport tickets:"
-msgstr ""
+msgstr "Dështoi të merrte biletat e Sportit:"
 
 #: src/components/profile/profile/TransactionPage.tsx:101
 msgid "Failed to fetch transactions:"
-msgstr ""
+msgstr "Dështoi në marrjen e transaksioneve:"
 
 #: src/components/shared/v2/withdraw.tsx:143
 msgid "Failed to initiate withdraw. Contact Support"
@@ -619,7 +619,7 @@ msgstr "Keni nevojë për ndihmë?"
 #: src/components/profile/profile/TransactionPage.tsx:358
 #: src/components/profile/profile/TransactionUserList.tsx:205
 msgid "Net Win"
-msgstr "Fitore Neto"
+msgstr "Diferenca"
 
 #: src/components/profile/v2/change-password-form.tsx:139
 msgid "New Password"
