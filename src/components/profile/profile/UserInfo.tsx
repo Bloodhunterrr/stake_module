@@ -1,8 +1,8 @@
-import {Trans} from "@lingui/react/macro";
-import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/input.tsx";
+import { Trans } from "@lingui/react/macro";
+import { useAppSelector } from "@/hooks/rtk.ts";
+import { Label } from "@/components/ui/label.tsx";
+import { Input } from "@/components/ui/input.tsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
-import {useAppSelector} from "@/hooks/rtk.ts";
 
 export default function UserInfo() {
 

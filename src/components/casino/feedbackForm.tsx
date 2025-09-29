@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Trans } from "@lingui/react/macro";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import FeedbackIcon  from "@/assets/icons/feedback-category-icon.svg?react";
+import FeedbackIcon from "@/assets/icons/feedback-category-icon.svg?react";
 
 const FeedbackForm = () => {
   const isDesktop = useIsDesktop();

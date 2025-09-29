@@ -1,10 +1,10 @@
-import {useState} from "react";
-import {cn} from "@/lib/utils.ts";
-import {Moon, Sun} from "lucide-react";
-import {Button} from "@/components/ui/button.tsx";
-import {Outlet, useNavigate, useLocation} from "react-router-dom";
-import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
+import { useState } from "react";
+import { cn } from "@/lib/utils.ts";
+import { Moon, Sun } from "lucide-react";
+import { Button } from "@/components/ui/button.tsx";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs.tsx";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
 
 export default function History() {
     const navigate = useNavigate();

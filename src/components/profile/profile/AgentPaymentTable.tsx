@@ -1,40 +1,22 @@
-import {useEffect, useState, useMemo, Fragment} from "react";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-} from "@/components/ui/popover";
-
-import {format} from "date-fns";
-import type {User} from "@/types/auth";
-import {CalendarIcon} from "lucide-react";
-import {useAppSelector} from "@/hooks/rtk";
-import {Button} from "@/components/ui/button";
-import {Calendar} from "@/components/ui/calendar";
-import {currencyList} from "@/utils/currencyList";
-import {formatDateToDMY} from "@/utils/formatDate";
-import {Trans, useLingui} from "@lingui/react/macro";
+import { format } from "date-fns";
+import type { User } from "@/types/auth";
+import { CalendarIcon } from "lucide-react";
+import { useAppSelector } from "@/hooks/rtk";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { currencyList } from "@/utils/currencyList";
+import { formatDateToDMY } from "@/utils/formatDate";
+import { Trans, useLingui } from "@lingui/react/macro";
 import CloseIcon from "@/assets/icons/close.svg?react";
 import Loading from "@/components/shared/v2/loading.tsx";
-import type {Transaction} from "@/types/transactionHistory";
+import type { Transaction } from "@/types/transactionHistory";
+import { useEffect, useState, useMemo, Fragment } from "react";
 import CheckMarkIcon from "@/assets/icons/check-mark.svg?react";
 import PaginationComponent from "@/components/shared/v2/pagination";
-import {useGetTransactionHistoryMutation} from "@/services/authApi";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+import { useGetTransactionHistoryMutation } from "@/services/authApi";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const AgentPaymentTable = () => {
     const user: User = useAppSelector((state) => state.auth?.user);

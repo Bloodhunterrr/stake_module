@@ -1,13 +1,13 @@
-import React, { useState, useMemo } from "react";
-import {useNavigate, useParams} from "react-router";
-import SearchIcon from "@/assets/icons/search.svg?react";
-import CloseIcon from "@/assets/icons/close.svg?react";
-import type { Subcategory } from "@/types/main";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-import NoDataAvailable from "@/components/shared/v2/no-data-available.tsx";
 import config from "@/config.ts";
-import { Trans, useLingui } from "@lingui/react/macro";
+import type { Subcategory } from "@/types/main";
+import React, { useState, useMemo } from "react";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useNavigate, useParams } from "react-router";
 import type { Provider } from "@/types/provider_list";
+import CloseIcon from "@/assets/icons/close.svg?react";
+import { Trans, useLingui } from "@lingui/react/macro";
+import SearchIcon from "@/assets/icons/search.svg?react";
+import NoDataAvailable from "@/components/shared/v2/no-data-available.tsx";
 
 type Props = {
   items: Provider[] | Subcategory[];

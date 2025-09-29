@@ -1,18 +1,12 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import Search from "./search";
-import FeedbackIcon from "@/assets/icons/feedback-category-icon.svg?react";
-import type { Subcategory } from "@/types/main";
-import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import config from "@/config";
-import {Trans} from "@lingui/react/macro";
+import { useState } from "react";
+import { Trans } from "@lingui/react/macro";
+import type { Subcategory } from "@/types/main";
+import { useNavigate, useParams } from "react-router";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
+import FeedbackIcon from "@/assets/icons/feedback-category-icon.svg?react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 type Props = {
   data: Record<string, { subcategories: Subcategory[] }>[];
@@ -56,11 +50,9 @@ export default function SubcategorySlider({ data }: Props) {
               </CarouselItem>
             ))}
           </CarouselContent>
-
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-
         <div onClick={() => setSearchModal(true)}
           className="flex items-center gap-2 mt-4 cursor-pointer p-3 border rounded-lg hover:bg-accent transition">
           <FeedbackIcon className="w-6 h-6" />

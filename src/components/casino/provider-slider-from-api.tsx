@@ -1,17 +1,11 @@
-import * as React from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import config from "@/config";
+import * as React from "react";
 import { Trans } from "@lingui/react/macro";
-import { useNavigate, useParams } from "react-router";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import type { Provider, ProviderListRequest } from "@/types/provider_list";
+import { useNavigate, useParams } from "react-router";
 import { useGetProviderListQuery } from "@/services/mainApi";
+import type { Provider, ProviderListRequest } from "@/types/provider_list";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const DESKTOP_LIMIT = 9;
 const MOBILE_LIMIT = 3;

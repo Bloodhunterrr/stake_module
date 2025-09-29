@@ -1,17 +1,11 @@
 import * as React from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import config from "@/config";
-import { Trans } from "@lingui/react/macro";
+import { useParams } from "react-router";
 import { useNavigate } from "react-router";
+import { Trans } from "@lingui/react/macro";
 import type { Provider } from "@/types/main";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { useParams } from "react-router";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const DESKTOP_LIMIT = 9;
 const MOBILE_LIMIT = 3;

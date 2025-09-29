@@ -1,12 +1,4 @@
 import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { toast } from "react-toastify";
 import { useAppSelector } from "@/hooks/rtk";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +11,7 @@ import Deposit from "@/components/shared/v2/deposit.tsx";
 import Withdraw from "@/components/shared/v2/withdraw.tsx";
 import { useSetDefaultWalletMutation } from "@/services/authApi";
 import CashBackIcon from "@/assets/icons/cashback-wallet.svg?react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Wallet() {
   const user: User = useAppSelector((state) => state?.auth?.user);

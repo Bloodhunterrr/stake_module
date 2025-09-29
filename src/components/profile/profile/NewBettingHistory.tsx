@@ -1,39 +1,22 @@
-import { useEffect, useState, useMemo, Fragment, useRef, useCallback } from "react";
-import { formatDateToDMY } from "@/utils/formatDate";
-import { currencyList } from "@/utils/currencyList";
-import { useGetSportHistoryMutation } from "@/services/authApi";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {CalendarIcon, ChevronLeftIcon} from "lucide-react";
 import { format } from "date-fns";
-import Loading from "@/components/shared/v2/loading.tsx";
-import { useAppSelector } from "@/hooks/rtk";
-import type { User } from "@/types/auth";
-import { Trans, useLingui } from "@lingui/react/macro";
-import type { Odd } from "@/types/sportHistory";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 import { cn } from "@/lib/utils.ts";
-import {useNavigate} from "react-router-dom";
-import {useTheme} from "@/hooks/useTheme.tsx";
+import type { User } from "@/types/auth";
+import { useAppSelector } from "@/hooks/rtk";
+import { useNavigate } from "react-router-dom";
+import type { Odd } from "@/types/sportHistory";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/useTheme.tsx";
+import { currencyList } from "@/utils/currencyList";
+import { Calendar } from "@/components/ui/calendar";
+import { formatDateToDMY } from "@/utils/formatDate";
+import { Trans, useLingui } from "@lingui/react/macro";
+import Loading from "@/components/shared/v2/loading.tsx";
+import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
+import { useGetSportHistoryMutation } from "@/services/authApi";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { useEffect, useState, useMemo, Fragment, useRef, useCallback } from "react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const NewBettingHistory = () => {
     const user: User = useAppSelector((state) => state.auth?.user);

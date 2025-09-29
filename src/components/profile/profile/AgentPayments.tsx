@@ -1,6 +1,6 @@
-import {ChevronLeftIcon} from "lucide-react";
 import { Trans } from "@lingui/react/macro";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeftIcon } from "lucide-react";
 import AgentPaymentTable from "@/components/profile/profile/AgentPaymentTable.tsx";
 
 const AgentPayments = () => {

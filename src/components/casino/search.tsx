@@ -1,16 +1,16 @@
-import GameListRenderer from "@/routes/casino/gameListRenderer";
-import { useEffect, useMemo, useState } from "react";
-import { useGetMainQuery } from "@/services/mainApi";
-import type { Provider, Subcategory } from "@/types/main";
-import AllItemsList from "./allItemsListSearch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import AllItemsList from "./allItemsListSearch";
+import { Button } from "@/components/ui/button";
+import { useEffect, useMemo, useState } from "react";
+import { useGetMainQuery } from "@/services/mainApi";
 import { Separator } from "@/components/ui/separator";
-import { X, ChevronDown, Search as SearchIcon } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import Loading from "@/components/shared/v2/loading.tsx";
+import type { Provider, Subcategory } from "@/types/main";
+import GameListRenderer from "@/routes/casino/gameListRenderer";
+import { X, ChevronDown, Search as SearchIcon } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const useDebounce = (value: string | null, delay: number): string | null => {
   const [debouncedValue, setDebouncedValue] = useState(value);

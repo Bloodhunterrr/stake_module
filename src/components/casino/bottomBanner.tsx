@@ -1,4 +1,4 @@
-import {Trans} from "@lingui/react/macro";
+import { Trans } from "@lingui/react/macro";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import bottomBannerImg from "@/assets/images/crypto-image-min.png";
 

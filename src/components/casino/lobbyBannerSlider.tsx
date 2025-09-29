@@ -1,14 +1,8 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
 import React from "react";
 import { Button } from "../ui/button";
 import { Trans } from "@lingui/react/macro";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
 import banner1 from "@/assets/images/lobby-banner-1.webp";
 import banner2 from "@/assets/images/lobby-banner-2.webp";
 import banner3 from "@/assets/images/lobby-banner-3.webp";

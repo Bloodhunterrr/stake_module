@@ -24,7 +24,7 @@ interface MessagesState {
     sent: MessageResponse[];
     received: MessageResponse[];
 }
-function Messages() {
+export default function Messages() {
     const [fetchMessages, { isLoading, isError, isFetching }] = useLazyGetMessagesQuery();
     const [messages, setMessages] = useState<MessagesState>({
         sent : [],
@@ -77,45 +77,46 @@ function Messages() {
     return (
         <div className={'bg-background'}>
            <section className={'container mx-auto flex flex-row'}>
-               <Tabs onValueChange={()=>{
-                   setRefresh(true)
-               }} defaultValue="received" className="w-full px-2  pt-2">
+               <Tabs onValueChange={() => { setRefresh(true) }} defaultValue="received" className="w-full px-2 pt-2">
                    <TabsList>
                        <p className={'data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4 cursor-pointer min-w-20'} onClick={()=>setRefresh(true)}>{isFetching ? <Loading/> : <Trans>Refresh</Trans>}</p>
-                       {
-                           user && user.is_agent && <TabsTrigger value="sent" className={'data-[state=active]:bg-background/30 data-[state=active]:text-background'}><Trans>Sent</Trans></TabsTrigger>
+                       { user && user.is_agent &&
+                           <TabsTrigger value="sent" className={'data-[state=active]:bg-background/30 data-[state=active]:text-background'}><Trans>Sent</Trans></TabsTrigger>
                        }
                        <TabsTrigger value="received" className={'data-[state=active]:bg-background/30 data-[state=active]:text-background'}><Trans>Received</Trans></TabsTrigger>
                    </TabsList>
                    <TabsContent value="sent">
-                       <div className={'w-full min-h-screen text-accent gap-y-2 flex flex-col justify-start pt-2   '}>
-                           {
-                               user && user.is_agent &&
-                               <div className={cn('w-full h-full  flex flex-col gap-y-2 p-2' , {
+                       <div className={'w-full min-h-screen text-accent gap-y-2 flex flex-col justify-start pt-2'}>
+                           { user && user.is_agent &&
+                               <div className={cn('w-full h-full flex flex-col gap-y-2 p-2', {
                                    "animate-pulse min-h-12 bg-accent/40" : isFetching
                                })}>
                                    <div className={'flex flex-col py-2 gap-y-3'}>
-                                       { isLoading  ? <Loading/> :
-                                           messages?.sent.length > 0 && messages.sent.map((message:any) => {
-                                               return <SingleMessage message={message} type={'sent'} />
-                                           })
+                                       { isLoading
+                                           ? <Loading/>
+                                           : messages?.sent.length > 0 &&
+                                               messages.sent.map((message:any) => {
+                                                   return <SingleMessage message={message} type={'sent'} />
+                                               })
                                        }
                                    </div>
-
                                </div>
                            }
                        </div>
                    </TabsContent>
                    <TabsContent value="received">
-                       <div className={'w-full min-h-screen text-accent gap-y-2 flex flex-col justify-start pt-2   '}>
-                           <div className={cn('w-full h-full' , {
+                       <div className={'w-full min-h-screen text-accent gap-y-2 flex flex-col justify-start pt-2'}>
+                           <div className={cn('w-full h-full', {
                                "animate-pulse min-h-12 bg-accent/40" : isFetching
                            })}>
                                <div className={'flex flex-col py-2 gap-y-3'}>
-                               { isLoading  ? <Loading/> :
-                                   messages?.received.length > 0 ? messages.received.map((message:any) => {
-                                       return <SingleMessage message={message} type={'received'} />
-                                   }) : <p className={'py-2 pl-2 bg-popover '}><Trans>Not Received any messages yet</Trans></p>
+                               { isLoading
+                                   ? <Loading/>
+                                   : messages?.received.length > 0
+                                       ? messages.received.map((message:any) => {
+                                           return <SingleMessage message={message} type={'received'} />
+                                       })
+                                       : <p className={'py-2 pl-2 bg-popover '}><Trans>Not Received any messages yet</Trans></p>
                                }
                                </div>
                            </div>
@@ -126,9 +127,6 @@ function Messages() {
         </div>
     );
 }
-
-export default Messages;
-
 
 const SingleMessage = ({message , type} : {message : any , type : string}) => {
     const [fetchSingleMessage , {isError , isLoading}] = useLazyGetSingleMessageQuery()
@@ -142,43 +140,42 @@ const SingleMessage = ({message , type} : {message : any , type : string}) => {
             <Dialog>
                 <DialogTrigger className={'w-full flex flex-row items-center gap-x-4'}>
                     <div>
-                        {
-                                type === 'received' &&  <p className={'size-10 relative rounded-full shrink-0 border '}>
+                        { type === 'received' &&
+                            <p className={'size-10 relative rounded-full shrink-0 border '}>
                                 <span className={'absolute h-fit top-1/2 left-1/2 -translate-x-1/2 leading-0 -translate-y-1/2'}>{message?.sender?.name?.charAt(0)}</span>
                             </p>
                         }
-
                     </div>
                     <p className={'text-xs flex flex-col text-start gap-y-1'}>
-                        {
-                            type === 'received' && <span>
-                            {message?.sender?.name}
+                        { type === 'received' &&
+                            <span>
+                                {message?.sender?.name}
                             </span>
                         }
                         {formatDateToDMY(message?.created_at).replaceAll("-" , '/')}
                     </p>
                     <p className={'w-full text-start truncate'}>{message?.subject}</p>
-
-                    {
-                        type === "sent" ? <Send className={'text-card shrink-0'} size={20}/> : <CheckCheck className={'text-card shrink-0'} size={20}/>
+                    { type === "sent"
+                        ? <Send className={'text-card shrink-0'} size={20}/>
+                        : <CheckCheck className={'text-card shrink-0'} size={20}/>
                     }
                 </DialogTrigger>
                 <DialogContent className={'border-none text-accent'}>
                     <DialogHeader className={'text-accent text-start'}>
                         <DialogTitle><Trans>Message</Trans></DialogTitle>
-                        { ( isLoading)  ? <Loading/> :
-                            (isError ? <p><Trans>There has been an error</Trans></p> : <div className={'flex flex-col  text-start'}>
-                                <div className={'w-full'}>
-                                    {data?.sender?.name}
-                                </div>
-                                <div>{data?.subject}</div>
-                                <div>{data?.body}</div>
-                            </div>)
+                        { ( isLoading)
+                            ? <Loading/>
+                            : (isError
+                                ? <p><Trans>There has been an error</Trans></p>
+                                : <div className={'flex flex-col text-start'}>
+                                    <div className={'w-full'}>{data?.sender?.name}</div>
+                                    <div>{data?.subject}</div>
+                                    <div>{data?.body}</div>
+                                </div>)
                         }
                     </DialogHeader>
                 </DialogContent>
             </Dialog>
-
         </div>
     )
 }

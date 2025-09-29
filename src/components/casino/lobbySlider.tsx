@@ -1,37 +1,19 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
-import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
-import React, { useEffect, useRef, useState } from "react";
-import { useGetGameListQuery } from "@/services/mainApi";
-import GameSlot from "@/components/shared/v2/slot";
-import type { Game } from "@/types/game_list";
-import type { Subcategory } from "@/types/main";
+import { Badge } from "../ui/badge";
 import { useNavigate } from "react-router";
 import { Trans } from "@lingui/react/macro";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
-import { SearchIcon, Settings2 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
-import { Badge } from "../ui/badge";
-import { Dialog, DialogContent } from "../ui/dialog";
+import type { Game } from "@/types/game_list";
 import Search from "../shared/v2/casino/search";
+import type { Subcategory } from "@/types/main";
+import GameSlot from "@/components/shared/v2/slot";
+import { Dialog, DialogContent } from "../ui/dialog";
+import { SearchIcon, Settings2 } from "lucide-react";
 import type { Provider } from "@/types/provider_list";
+import { useGetGameListQuery } from "@/services/mainApi";
+import React, { useEffect, useRef, useState } from "react";
+import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 type LobbySliderProps = {
   categorySlug: string;

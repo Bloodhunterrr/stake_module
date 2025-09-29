@@ -1,30 +1,19 @@
 import { format } from "date-fns";
-import { currencyList } from "@/utils/currencyList";
-import { formatDateToDMY } from "@/utils/formatDate";
-import {useEffect, useState, useMemo, Fragment, useRef, useCallback} from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router";
-import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-} from "@/components/ui/popover";
+import { cn } from "@/lib/utils.ts";
+import { useTheme } from "@/hooks/useTheme.tsx";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { currencyList } from "@/utils/currencyList";
+import { formatDateToDMY } from "@/utils/formatDate";
 import { Trans, useLingui } from "@lingui/react/macro";
 import Loading from "@/components/shared/v2/loading.tsx";
+import { useNavigate, useParams, useSearchParams } from "react-router";
+import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { CalendarIcon, ChartNoAxesCombined, ChevronLeftIcon } from "lucide-react";
+import { useEffect, useState, useMemo, Fragment, useRef, useCallback } from "react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
-import {cn} from "@/lib/utils.ts";
-import {useTheme} from "@/hooks/useTheme.tsx";
 
 
 interface Odd {
