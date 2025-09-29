@@ -334,7 +334,10 @@ function TicketPage() {
               </div>
           }
         <div className="w-full h-full flex items-center justify-center">
-          <p className="w-1/2 h-full flex items-center justify-end">
+          <p className={cn("w-1/2 h-full flex items-center justify-end" , {
+              "text-destructive" : item?.net_win && String(item?.net_win).includes('-'),
+              "text-chart-2" : item?.net_win && !String(item?.net_win).includes('-')
+          })}>
             {item?.net_win ?  item?.net_win.toFixed(2) : "-"}
           </p>
         </div>
