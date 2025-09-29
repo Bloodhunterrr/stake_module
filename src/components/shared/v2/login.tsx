@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { Eye, EyeOff } from 'lucide-react';
 import { Input } from '@/components/ui/input.tsx';
@@ -50,15 +49,13 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
             setLoginModalOpen(false);
         } catch (err: unknown) {
             handleLoginError(err);
-            setLoginModalOpen(false);
+            setLoginModalOpen(true);
         }
     };
 
     const handleLoginError = (err: unknown) => {
         const error = err as { data?: { message?: string }; status?: number };
         const errorMsg = error?.data?.message || 'An unexpected error occurred.';
-        toast.error(errorMsg);
-
         if (error?.status === 401 || errorMsg === 'Invalid credentials') {
             setError('password', {
                 type: 'manual',
@@ -70,6 +67,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                 message: 'User with this email/username not found.',
             });
         }
+        console.log(errorMsg)
     };
 
     return (

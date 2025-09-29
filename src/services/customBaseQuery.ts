@@ -33,7 +33,7 @@ export const customBaseQuery: BaseQueryFn<
         const status = result.error.status;
 
         if (status === 401) {
-            toast.warn(('Unauthorized request!!'))
+            // toast.warn(('Unauthorized request!!'))
             api.dispatch(logout())
         }
 

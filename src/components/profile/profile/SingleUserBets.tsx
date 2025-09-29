@@ -81,8 +81,8 @@ const SingleUserBets = () => {
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const [fetchSingleTicketData, { data, isLoading, isError, isFetching }] = useLazyGetSingleUsersTicketsQuery();
 
+    const [fetchSingleTicketData, { data, isLoading, isError, isFetching }] = useLazyGetSingleUsersTicketsQuery();
     const groupedTickets = useMemo(() => {
         if (!tickets || tickets.length === 0) return {};
         return tickets.reduce(
@@ -125,6 +125,8 @@ const SingleUserBets = () => {
                 page: pageToFetch,
             }).unwrap();
 
+            console.log(response , 'test');
+
             const newTickets = response?.tickets?.data;
 
             if (newTickets && newTickets.length > 0) {
@@ -137,11 +139,14 @@ const SingleUserBets = () => {
                 setPage(pageToFetch + 1);
             } else {
                 if (pageToFetch === 1) {
-                    setTickets([]); // Clear if no results
+                    setTickets([]);
                 }
                 setHasMore(false);
             }
-        } catch (error) {
+        } catch (error : any) {
+            if(error && ("status" in error) && error?.status === 401) {
+                navigate('/')
+            }
             console.error("Failed to fetch tickets:", error);
             if (pageToFetch === 1) {
                 setTickets([]);

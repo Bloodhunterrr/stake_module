@@ -223,7 +223,7 @@ function TicketPage() {
             category_id: cat.id !== 0 ? cat.id : "",
         }).unwrap();
       }
-
+        console.log(res)
       setAccordionData((prev) => ({ ...prev, [cat.id]: res?.children || [] }));
     }
   };
@@ -314,7 +314,7 @@ function TicketPage() {
         <p className={cn("w-1/3 h-full flex items-center truncate  justify-start text-start shrink-0" , {
             "w-1/4" : showCommission
         })}>
-            <span>{item?.username} ({item.total_played})</span>
+            <span>{item?.username}</span>
         </p>
         <div className="w-full h-full flex items-center justify-center">
           <p className="w-1/2 h-full flex items-center justify-end">

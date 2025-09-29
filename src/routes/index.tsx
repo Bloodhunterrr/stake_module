@@ -81,11 +81,11 @@ const routes = createBrowserRouter(
              { path: "users/create", element: <CreateUser /> },
              { path: "users/reports", element: <Reports /> },
              { path: "notifications", element: <Messages />,},
-             //  TODO => Agent new paths
+             //  TODO => Agent bets paths
              { path : "tickets"  , element: <TicketPage /> },
              { path : "tickets/:userTicketId"  , element: <SingleTicketPage /> },
              { path : "tickets/user/:singleBetsId"  , element: <SingleUserBets /> },
-             //  TODO => Transactions Path
+             //  TODO => Report Path
              { path : "reports"  , element: <TransactionPage /> },
              { path : "reports/:userTransactionId"  , element: <TransactionUserList /> },
               //  TODO => Transactions Path
