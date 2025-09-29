@@ -185,7 +185,7 @@ export default function Header(props: HeaderProps) {
           <div className="flex items-center space-x-2">
               {
                   user && user.is_agent && <div className={'capitalize text-sm select-none'}>
-                      {user.roles[0].name}
+                      {user.roles[0].name == "shop" ? <Trans>Shop</Trans> : user.roles[0].name}
                   </div>
               }
             {user ? (

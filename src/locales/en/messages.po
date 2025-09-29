@@ -478,7 +478,7 @@ msgstr "Clear all"
 msgid "Close"
 msgstr "Close"
 
-#: src/components/profile/profile/TransactionPage.tsx:358
+#: src/components/profile/profile/TransactionPage.tsx:340
 msgid "Comm"
 msgstr "Comm"
 
@@ -533,7 +533,7 @@ msgstr "Currencies"
 #: src/components/profile/profile/SingleTicketPage.tsx:151
 #: src/components/profile/profile/SingleUserTransaction.tsx:126
 #: src/components/profile/profile/TicketPage.tsx:117
-#: src/components/profile/profile/TransactionPage.tsx:482
+#: src/components/profile/profile/TransactionPage.tsx:464
 #: src/components/profile/profile/TransactionUserList.tsx:147
 msgid "Currency"
 msgstr "Currency"
@@ -631,11 +631,11 @@ msgstr "Enter your password"
 #~ msgid "Failed to fetch play game url!"
 #~ msgstr "Failed to fetch play game url!"
 
-#: src/components/profile/profile/TransactionPage.tsx:156
+#: src/components/profile/profile/TransactionPage.tsx:138
 msgid "Failed to fetch Sport tickets:"
 msgstr "Failed to fetch Sport tickets:"
 
-#: src/components/profile/profile/TransactionPage.tsx:101
+#: src/components/profile/profile/TransactionPage.tsx:83
 msgid "Failed to fetch transactions:"
 msgstr "Failed to fetch transactions:"
 
@@ -921,7 +921,7 @@ msgstr "Need Help?"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:223
 #: src/components/profile/profile/TicketPage.tsx:190
-#: src/components/profile/profile/TransactionPage.tsx:361
+#: src/components/profile/profile/TransactionPage.tsx:343
 #: src/components/profile/profile/TransactionUserList.tsx:205
 msgid "Net Win"
 msgstr "Net Win"
@@ -951,7 +951,7 @@ msgstr "Next"
 msgid "Nexu"
 msgstr "Nexu"
 
-#: src/components/profile/profile/TransactionPage.tsx:664
+#: src/components/profile/profile/TransactionPage.tsx:646
 msgid "No categories available"
 msgstr "No categories available"
 
@@ -962,9 +962,9 @@ msgstr "No Data"
 #: src/components/profile/profile/AgentPaymentTable.tsx:214
 #: src/components/profile/profile/NewBettingHistory.tsx:310
 #: src/components/profile/profile/SingleUserBets.tsx:386
-#: src/components/profile/profile/TransactionPage.tsx:247
-#: src/components/profile/profile/TransactionPage.tsx:398
-#: src/components/profile/profile/TransactionPage.tsx:406
+#: src/components/profile/profile/TransactionPage.tsx:229
+#: src/components/profile/profile/TransactionPage.tsx:380
+#: src/components/profile/profile/TransactionPage.tsx:388
 #: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:287
 #: src/components/profile/v2/payments-history-table.tsx:213
@@ -1106,7 +1106,7 @@ msgstr "Pick start date"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:221
 #: src/components/profile/profile/TicketPage.tsx:188
-#: src/components/profile/profile/TransactionPage.tsx:355
+#: src/components/profile/profile/TransactionPage.tsx:337
 #: src/components/profile/profile/TransactionUserList.tsx:203
 msgid "Played"
 msgstr "Played"
@@ -1228,7 +1228,7 @@ msgid "Refresh"
 msgstr "Refresh"
 
 #: src/components/profile/profile/Reports.tsx:74
-#: src/components/profile/profile/TransactionPage.tsx:428
+#: src/components/profile/profile/TransactionPage.tsx:410
 #: src/components/profile/profile/TransactionUserList.tsx:85
 #: src/components/shared/v2/header.tsx:322
 msgid "Reports"
@@ -1361,6 +1361,10 @@ msgstr "September"
 #: src/components/profile/wallet.tsx:57
 msgid "Set default"
 msgstr "Set default"
+
+#: src/components/shared/v2/header.tsx:188
+msgid "Shop"
+msgstr "Shop"
 
 #: src/components/shared/v2/header.tsx:484
 msgid "Show Balance"
@@ -1539,7 +1543,7 @@ msgstr "User Balance"
 
 #: src/components/profile/profile/SingleTicketPage.tsx:220
 #: src/components/profile/profile/TicketPage.tsx:187
-#: src/components/profile/profile/TransactionPage.tsx:354
+#: src/components/profile/profile/TransactionPage.tsx:336
 #: src/components/profile/profile/TransactionUserList.tsx:202
 #: src/components/profile/profile/UserInfo.tsx:28
 #: src/components/profile/profile/UserListRender.tsx:313
@@ -1630,7 +1634,7 @@ msgstr "Withdraw initiated successfully!"
 #: src/components/profile/profile/SingleTicketPage.tsx:222
 #: src/components/profile/profile/SingleUserBets.tsx:460
 #: src/components/profile/profile/TicketPage.tsx:189
-#: src/components/profile/profile/TransactionPage.tsx:356
+#: src/components/profile/profile/TransactionPage.tsx:338
 #: src/components/profile/profile/TransactionUserList.tsx:204
 #: src/components/profile/v2/betting-history-table.tsx:293
 #: src/components/profile/v2/casino-history-table.tsx:329

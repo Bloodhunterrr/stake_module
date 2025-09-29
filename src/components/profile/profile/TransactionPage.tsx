@@ -1,35 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  useLazyGetAllUsersTicketsQuery,
-  useLazyGetTransactionsQuery,
-} from "@/services/authApi.ts";
-import { useNavigate } from "react-router";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
 import { format } from "date-fns";
-import { Calendar } from "@/components/ui/calendar.tsx";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select.tsx";
-import DateFilter from "@/components/shared/v2/date-filter";
+import { cn } from "@/lib/utils.ts";
+import { useNavigate } from "react-router";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button.tsx";
 import { useGetMainQuery } from "@/services/mainApi";
 import { Trans, useLingui } from "@lingui/react/macro";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {cn} from "@/lib/utils.ts";
+import { Calendar } from "@/components/ui/calendar.tsx";
+import DateFilter from "@/components/shared/v2/date-filter";
+import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
+import { useLazyGetAllUsersTicketsQuery, useLazyGetTransactionsQuery } from "@/services/authApi.ts";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
 
 interface Category {
   id: number;
