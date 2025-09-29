@@ -108,7 +108,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     type="button"
                                     onClick={() => setShowPass(!showPass)}
                                     aria-label={showPass ? 'Hide password' : 'Show password'}
-                                    className="absolute inset-y-0 right-0  flex items-center pr-3">
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 h-12">
                                     {showPass ? (
                                         <Eye className="h-4 w-4 text-muted-foreground"/>
                                     ) : (
