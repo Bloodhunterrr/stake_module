@@ -223,9 +223,9 @@ function SingleTicketPage() {
                                         }
                                     }}>
                                     <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake/100}</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won/100}</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost/100}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_won}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost}</p>
                                 </div>
                             )
                         })
