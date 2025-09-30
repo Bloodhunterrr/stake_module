@@ -222,7 +222,7 @@ function SingleTicketPage() {
                                             navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${category  ? `&category=${category}` : ""}`);
                                         }
                                     }}>
-                                    <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
+                                    <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_won}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost}</p>
