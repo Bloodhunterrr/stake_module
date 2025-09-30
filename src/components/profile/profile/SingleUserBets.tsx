@@ -15,7 +15,6 @@ import { useEffect, useState, useMemo, Fragment, useRef, useCallback } from "rea
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
 
-
 interface Odd {
     id: string;
     status: number;
@@ -159,7 +158,7 @@ const SingleUserBets = () => {
         setPage(1);
         setHasMore(true);
         fetchMoreTickets(1);
-        }, [fetchMoreTickets]);
+    }, [fetchMoreTickets]);
 
 
     useEffect(() => {
@@ -228,7 +227,6 @@ const SingleUserBets = () => {
             "0",
         )}:${String(date.getUTCMinutes()).padStart(2, "0")}`;
     };
-
     const user = (tickets?.find((user: any) => user.user_name)?.user_name ?? "");
 
     const { optionalSideBarOpen } = useTheme();
@@ -252,7 +250,7 @@ const SingleUserBets = () => {
     };
 
     return (
-        <div className="space-y-3 h-[calc(100vh-164px)] container mx-auto ">
+        <div className=" h-[calc(100vh-164px)] container mx-auto ">
             <div className={'h-10  flex  border-b border-popover items-center'}>
                 <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={() => navigate(-1)}>
                     <ChevronLeftIcon className={'w-10'} />
@@ -263,101 +261,102 @@ const SingleUserBets = () => {
                     <p>{user}</p>
                 </div>
             </div>
-            <div className={' flex flex-col gap-y-3'}>
-                <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
-                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
-                                {startDate ? format(startDate, "dd/MM/yyyy") : "Start Date"}
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
-                                mode="single"
-                                selected={startDate}
-                                onSelect={(date) =>
-                                    date && setStartDate(date)
+            {/* The scrollable container */}
+            <div ref={containerRef} className={cn("overflow-y-auto transition-all duration-300 h-[calc(100vh-125px)] lg:h-[calc(100vh-145px)]",{
+                "h-[calc(100vh-168px)]" : optionalSideBarOpen
+            })}>
+                <div className={' flex flex-col py-0.5 gap-y-3'}>
+                    <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
+                                >
+                                    <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
+                                    {startDate ? format(startDate, "dd/MM/yyyy") : "Start Date"}
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="p-0 bg-white">
+                                <Calendar
+                                    className="w-full"
+                                    mode="single"
+                                    selected={startDate}
+                                    onSelect={(date) =>
+                                        date && setStartDate(date)
+                                    }
+                                />
+                            </PopoverContent>
+                        </Popover>
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
+                                >
+                                    <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
+                                    {endDate ? format(endDate, "dd/MM/yyyy") : "End Date"}
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="p-0 bg-white">
+                                <Calendar
+                                    className="w-full"
+                                    mode="single"
+                                    selected={endDate}
+                                    onSelect={(date) =>
+                                        date && setEndDate(date)
+                                    }
+                                />
+                            </PopoverContent>
+                        </Popover>
+                        <Select value={selectedCurrencies} onValueChange={(value) => {
+                            setSelectedCurrencies(value)
+                        }}>
+                            <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                                <SelectValue placeholder={"Currency"} />
+                            </SelectTrigger>
+                            <SelectContent className={'border-none bg-background rounded-none'}>
+                                {
+                                    data?.filters?.wallets?.map((w: any, index: number) => {
+                                        return <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={w.slug.toUpperCase()}>{w.slug.toUpperCase()}</SelectItem>
+                                    })
                                 }
-                            />
-                        </PopoverContent>
-                    </Popover>
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
-                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
-                                {endDate ? format(endDate, "dd/MM/yyyy") : "End Date"}
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
-                                mode="single"
-                                selected={endDate}
-                                onSelect={(date) =>
-                                    date && setEndDate(date)
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className={'flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
+                        <Select value={betType} onValueChange={(value) => {
+                            setBetType(value)
+                        }}>
+                            <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                                <SelectValue placeholder="Type" />
+                            </SelectTrigger>
+                            <SelectContent className={'border-none bg-background rounded-none'}>
+                                {
+                                    data?.filters?.betType?.map((type: string, index: number) => {
+                                        return <SelectItem key={index} className={'focus:text-background text-accent rounded-none capitalize'} value={type}>{type}</SelectItem>
+                                    })
                                 }
-                            />
-                        </PopoverContent>
-                    </Popover>
-                    <Select value={selectedCurrencies} onValueChange={(value) => {
-                        setSelectedCurrencies(value)
-                    }}>
-                        <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder={"Currency"} />
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                data?.filters?.wallets?.map((w: any, index: number) => {
-                                    return <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={w.slug.toUpperCase()}>{w.slug.toUpperCase()}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
+                            </SelectContent>
+                        </Select>
+                        <Select value={selectedStatuses} onValueChange={(value) => {
+                            setSelectedStatuses(value)
+                        }}>
+                            <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                                <SelectValue placeholder="Status" />
+                            </SelectTrigger>
+                            <SelectContent className={'border-none bg-background rounded-none'}>
+                                {
+                                    data?.filters?.status?.map((status: any, index: number) => {
+                                        return <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={String(index)}>{status}</SelectItem>
+                                    })
+                                }
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
 
-                <div className={'flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
-                    <Select value={betType} onValueChange={(value) => {
-                        setBetType(value)
-                    }}>
-                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder="Type" />
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                data?.filters?.betType?.map((type: string, index: number) => {
-                                    return <SelectItem key={index} className={'focus:text-background text-accent rounded-none capitalize'} value={type}>{type}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
-                    <Select value={selectedStatuses} onValueChange={(value) => {
-                        setSelectedStatuses(value)
-                    }}>
-                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder="Status" />
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                data?.filters?.status?.map((status: any, index: number) => {
-                                    return <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={String(index)}>{status}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
-                </div>
-            </div>
-            {/* The scrollable container */}
-            <div ref={containerRef} className={cn("overflow-y-auto h-[calc(100vh-195px)] lg:h-[calc(100vh-215px)]",{
-                "h-[calc(100vh-239px)]" : optionalSideBarOpen
-            })}>
                 <Table className="bg-popover hover:bg-popover text-white">
                     <TableHeader className="bg-chart-2 text-white  h-8">
                         <TableRow className={'hover:bg-transparent border-popover'}>
@@ -575,6 +574,25 @@ const SingleUserBets = () => {
                         You've reached the end of the list.
                     </div>
                 )}
+            </div>
+            <div className={'h-10 flex items-center px-2 justify-between border-y border-y-popover text-sm bg-popover'}>
+                <p>Total</p>
+                {/*<div>*/}
+                {/*    <p>Total Won</p>*/}
+                {/*    {data?.statistics?.total_won}*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <p>Total Lost</p>*/}
+                {/*    {data?.statistics?.total_lost}*/}
+                {/*</div>*/}
+                <div className={cn( "text-card", {
+                    "text-destructive" : String(data?.statistics?.net_win)?.includes('-')
+                })}>
+                   <span>
+                       €
+                   </span>
+                    {data?.statistics?.net_win?.toFixed(2)}
+                </div>
             </div>
         </div>
     );
