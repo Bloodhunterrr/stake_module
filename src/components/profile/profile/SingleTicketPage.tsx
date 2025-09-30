@@ -251,7 +251,7 @@ function SingleTicketPage() {
                                     <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}({item.total_played})</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake.toFixed(2)}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_won.toFixed(2)}</p>
-                                    <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost.toFixed(2)}</p>
+                                    <p className={'w-full h-full flex items-center justify-center'}>{Number(item?.net_win ?? 0)?.toFixed(2)}</p>
                                 </div>
                             )
                         })

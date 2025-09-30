@@ -120,6 +120,7 @@ export interface getSendSingleMessageResponse {
         "wallets": Wallet[]
     },
     children : {
+        net_win?: string | number;
         "id": number,
         "name": string,
         "email": string,
