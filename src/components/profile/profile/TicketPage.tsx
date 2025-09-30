@@ -10,6 +10,7 @@ import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
 import { useLazyGetAllUsersTicketsQuery } from "@/services/authApi.ts";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+import {cn} from "@/lib/utils.ts";
 
 function TicketPage() {
     const [fetchAllUsersTickets, { isLoading, isError, isFetching }] = useLazyGetAllUsersTicketsQuery();
@@ -58,6 +59,7 @@ function TicketPage() {
         </div>
     }
 
+    const totals = data?.totals
 
     return (
         <div className={'min-h-screen container mx-auto'}>
@@ -181,15 +183,15 @@ function TicketPage() {
 
 
             </div>
-            <div className={'flex cursor-pointer flex-col p-3'}>
+            <div className={'flex cursor-pointer flex-col py-3'}>
                 <div
-                    className={'text-sm text-center h-7 items-center bg-chart-2  border-accent px-1  flex '}>
+                    className={'text-[11px] text-center h-7 items-center bg-white/70 text-black border-accent px-1 flex '}>
                     <p className={'w-1/3 h-full flex items-center justify-start text-start shrink-0'}><Trans>Username</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Played</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Won</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center text-center'}><Trans>Net Win</Trans></p>
                 </div>
-                <div className={'cursor-pointer border-x border-popover bg-accent/50 text-accent-foreground'}>
+                <div className={'cursor-pointer border-none bg-background/80 text-accent/60'}>
                     {
                         isFetching ? <div
                                 className={'text-sm animate-pulse text-center h-7 items-center  px-1 border-b flex '}>
@@ -203,7 +205,7 @@ function TicketPage() {
                                     return <Fragment key={index}></Fragment>
                                 }
                                 return <div key={index}
-                                            className={'text-center h-7 text-xs items-center border-popover px-1 border-b flex '}
+                                            className={'text-xs text-center h-7 items-center px-1  border-b border-b-popover flex  '}
                                             onClick={() => {
                                                 if(!item.is_agent){
                                                     navigate(`/account/tickets/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""
@@ -228,6 +230,35 @@ function TicketPage() {
                                 </div>
                             })
                     }
+                    <div className="text-[11px] w-full bg-white/70 text-black  px-1 text-center h-6 items-center border-b flex">
+                        <p
+                            className={cn(
+                                "w-1/3 h-full flex items-center  truncate justify-start text-start shrink-0",
+                            )}
+                        >
+                            <span>Totals</span>
+                        </p>
+                        <div className="w-full h-full  flex items-center justify-center">
+                            <p className="w-1/2 h-full flex items-center justify-center">
+                                {totals?.total_stake?.toFixed(2) ?? "0.00"}
+                            </p>
+                        </div>
+                        <div className="w-full h-full  flex items-center justify-center">
+                            <p className="w-1/2 h-full flex items-center justify-center">
+                                {totals?.total_won?.toFixed(2) ?? "0.00"}
+                            </p>
+                        </div>
+                        <div className="w-full h-full flex items-center justify-center">
+                            <p
+                                className={cn("w-1/2 h-full flex items-center justify-center", {
+                                    "text-destructive": totals?.net_win && String(totals?.net_win).includes("-"),
+                                    "text-chart-2": totals?.net_win && !String(totals?.net_win).includes("-"),
+                                })}
+                            >
+                                {totals?.net_win ? totals?.net_win.toFixed(2) : "-"}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

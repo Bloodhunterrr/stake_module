@@ -262,8 +262,8 @@ const SingleUserBets = () => {
                 </div>
             </div>
             {/* The scrollable container */}
-            <div ref={containerRef} className={cn("overflow-y-auto transition-all duration-300 h-[calc(100vh-125px)] lg:h-[calc(100vh-145px)]",{
-                "h-[calc(100vh-168px)]" : optionalSideBarOpen
+            <div ref={containerRef} className={cn("overflow-y-auto transition-all duration-300 h-[calc(100vh-85px)] lg:h-[calc(100vh-105px)]",{
+                "h-[calc(100vh-128px)]" : optionalSideBarOpen
             })}>
                 <div className={' flex flex-col py-0.5 gap-y-3'}>
                     <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
@@ -358,7 +358,7 @@ const SingleUserBets = () => {
                 </div>
 
                 <Table className="bg-popover hover:bg-popover text-white">
-                    <TableHeader className="bg-chart-2 text-white  h-8">
+                    <TableHeader className="bg-chart-2 hidden text-white  h-8">
                         <TableRow className={'hover:bg-transparent border-popover'}>
                             <TableHead className="h-8 px-0 max-w-[110px] text-white">
                                 <span className="max-md:hidden"><Trans>Bet Amount/User</Trans></span><span className="md:hidden"><Trans>Bet</Trans></span>
@@ -389,7 +389,7 @@ const SingleUserBets = () => {
                             Object.entries(groupedTickets).map(([date, tickets]: any) => {
                                 return (
                                     <Fragment key={date}>
-                                        <TableRow className="bg-background/30  border-popover hover:bg-background/30 text-white">
+                                        <TableRow className="bg-popover/10  border-popover hover:bg-background/30 text-white">
                                             <TableCell colSpan={4}>{date}</TableCell>
                                         </TableRow>
                                         {tickets?.map((ticket: Ticket) => {
@@ -402,7 +402,7 @@ const SingleUserBets = () => {
                                             return (
                                                 <Fragment key={ticket.id}>
                                                     <TableRow
-                                                        className="cursor-pointer h-12 w-full px-0 bg-red-200 bg-poover border-popover hover:bg-poover "
+                                                        className="cursor-pointer h-12 w-full px-0 bg-popover/10 border-popover hover:bg-poover "
                                                         onClick={() =>
                                                             setExpandedTicketId(
                                                                 expandedTicketId === ticket.id ? null : ticket.id,
@@ -466,7 +466,7 @@ const SingleUserBets = () => {
                                                         </TableCell>
                                                     </TableRow>
                                                     {expandedTicketId === ticket.id && (
-                                                        <TableRow className="bg-popover border-popover hover:bg-popover p-0">
+                                                        <TableRow className="bg-popover/10 border-popover hover:bg-popover p-0">
                                                             <TableCell colSpan={4} className="p-0">
                                                                 <div className="text-sm">
                                                                     {ticket.details?.odds?.map((odd: Odd) => {
@@ -562,6 +562,23 @@ const SingleUserBets = () => {
                                 )
                             })
                         )}
+                        <TableRow className={'hover:bg-[#a7a7a7]  bg-[#a7a7a7]  border-popover'}>
+                            <TableHead className="h-11 px-2 max-w-[110px] text-black">
+                                <Trans>Total</Trans>
+                            </TableHead>
+                            <TableHead className="h-8 px-0 text-white text-center max-w-1/4">
+                            </TableHead>
+                            <TableHead className="text-right h-8 text-white max-w-1/4">
+                            </TableHead>
+                            <TableHead className="text-right h-8 text-white max-w-1/4">
+                                <div className={cn( "text-black")}>
+                                       <span>
+                                           €
+                                       </span>
+                                    {data?.statistics?.net_win?.toFixed(2)}
+                                </div>
+                            </TableHead>
+                        </TableRow>
                     </TableBody>
                 </Table>
                 {isLoadingMore && (
@@ -574,25 +591,6 @@ const SingleUserBets = () => {
                         You've reached the end of the list.
                     </div>
                 )}
-            </div>
-            <div className={'h-10 flex items-center px-2 justify-between border-y border-y-popover text-sm bg-popover'}>
-                <p>Total</p>
-                {/*<div>*/}
-                {/*    <p>Total Won</p>*/}
-                {/*    {data?.statistics?.total_won}*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <p>Total Lost</p>*/}
-                {/*    {data?.statistics?.total_lost}*/}
-                {/*</div>*/}
-                <div className={cn( "text-card", {
-                    "text-destructive" : String(data?.statistics?.net_win)?.includes('-')
-                })}>
-                   <span>
-                       €
-                   </span>
-                    {data?.statistics?.net_win?.toFixed(2)}
-                </div>
             </div>
         </div>
     );

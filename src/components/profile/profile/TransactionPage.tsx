@@ -183,7 +183,7 @@ function TicketPage() {
                     if (type === 1) {
                         if (item.is_player) {
                             navigate(
-                                `/account/tickets/user/${item?.id}?${
+                                `/account/reports/category/${item?.id}?${
                                     dates.startDate
                                         ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&`
                                         : ""
@@ -195,7 +195,7 @@ function TicketPage() {
                             );
                         } else {
                             navigate(
-                                `/account/tickets/${item?.id}?${
+                                `/account/reports/category/${item?.id}?${
                                     dates.startDate
                                         ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&`
                                         : ""

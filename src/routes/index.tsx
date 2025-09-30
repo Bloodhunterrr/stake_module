@@ -26,6 +26,7 @@ import TransactionUserList from "@/components/profile/profile/TransactionUserLis
 import SingleUserTransaction from "@/components/profile/profile/SingleUserTransaction.tsx";
 import AgentPayments from "@/components/profile/profile/AgentPayments.tsx";
 import CreateUser from "@/components/shared/v2/user/create-user.tsx";
+import SingleTicketReportPage from "@/components/profile/profile/ReportsSingleCategory.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -88,6 +89,7 @@ const routes = createBrowserRouter(
              //  TODO => Report Path
              { path : "reports"  , element: <TransactionPage /> },
              { path : "reports/:userTransactionId"  , element: <TransactionUserList /> },
+             { path : "reports/category/:categorySlug"  , element: <SingleTicketReportPage /> },
               //  TODO => Transactions Path
               { path : "transactions/user/:singleBetsId"  , element: <SingleUserTransaction /> }
           ],

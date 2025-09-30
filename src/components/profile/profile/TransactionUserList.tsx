@@ -11,6 +11,7 @@ import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
 import { useLazyGetTransactionsQuery } from "@/services/authApi.ts";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+import DateFilter from "@/components/shared/v2/date-filter.tsx";
 
 function SingleTicketPage() {
     const { userTransactionId } = useParams();
@@ -18,7 +19,6 @@ function SingleTicketPage() {
     const navigate = useNavigate();
     const [searchParams , setSearchParams] = useSearchParams();
     const [data, setData] = useState<any>()
-    const [category, setCategory] = useState(searchParams.get('category'))
 
     // Filters States
     const start = (searchParams.get('startDate')) ?? new Date();
@@ -29,13 +29,17 @@ function SingleTicketPage() {
         startDate: new Date(start ?? ''),
         endDate: new Date(end ?? ''),
     });
-    const [betType, setBetType] = useState('')
 
     const currencyOptions = data?.filters && data?.filters?.wallets?.map((w : any) => ({
         value: w.slug.toUpperCase(),
         label: w.slug.toUpperCase(),
     }));
 
+    const [selectedDateFilter, setSelectedDateFilter] = useState<string>("");
+    const handleDateFilterSelect = (start: Date, end: Date, label: string) => {
+        setDates({ startDate: start, endDate: end });
+        setSelectedDateFilter(label);
+    };
     const { t } = useLingui();
 
 
@@ -50,11 +54,8 @@ function SingleTicketPage() {
         }
     }, [start , end]);
 
-
-
     useEffect(() => {
         fetchSingleData({
-            category_id : category,
             currency : selectedCurrencies,
             start_date : format(dates.startDate, "yyyy/MM/dd"),
             end_date : format(dates.endDate, "yyyy/MM/dd"),
@@ -62,7 +63,7 @@ function SingleTicketPage() {
         }).unwrap().then(data =>{
             setData(data)
         })
-    },[userTransactionId , selectedCurrencies , dates.startDate, dates.endDate , betType , status])
+    },[userTransactionId , selectedCurrencies , dates.startDate, dates.endDate ])
 
     if(isError){
         navigate('/')
@@ -74,6 +75,8 @@ function SingleTicketPage() {
         </div>
     }
 
+
+    const totals = data?.totals
 
     return (
         <div className={'container mx-auto'}>
@@ -87,56 +90,57 @@ function SingleTicketPage() {
                     <p>{data?.user?.name}</p>
                 </div>
             </div>
-            <div className={' flex flex-col gap-y-3'}>
+            <div className={' flex flex-col '}>
                 <div className={'w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
+                                    className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
                             <Calendar className="w-full"
-                                mode="single"
-                                selected={dates.startDate}
-                                onSelect={(date) =>
-                                {
-                                    if(date){
-                                        setSearchParams({
-                                            endDate : format(dates.endDate, "yyyy-MM-dd"),
-                                            startDate: format(date, "yyyy-MM-dd"),
-                                        })
-                                        setDates((prev) => ({...prev, startDate: date}))
-                                    }
-                                }
-                            }/>
+                                      mode="single"
+                                      selected={dates.startDate}
+                                      onSelect={(date) => {
+                                          setSelectedDateFilter("");
+                                          if(date) {
+                                              setSearchParams({
+                                                  endDate : format(dates.endDate, "yyyy-MM-dd"),
+                                                  startDate: format(date, "yyyy-MM-dd"),
+                                              })
+                                              setDates((prev : any) => ({ ...prev, startDate: date }));
+                                          }
+                                      }
+                                      }/>
                         </PopoverContent>
                     </Popover>
                     <Popover>
 
                         <PopoverTrigger asChild>
                             <Button variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
+                                    className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="p-0 bg-white">
                             <Calendar className="w-full"
-                                mode="single"
-                                selected={dates.endDate}
-                                onSelect={(date) => {
-                                    if(date){
-                                        setSearchParams({
-                                            startDate : format(dates.startDate, "yyyy-MM-dd"),
-                                            endDate: format(date, "yyyy-MM-dd"),
-                                        })
-                                        setDates((prev) => ({...prev, endDate: date}))
-                                    }
-                                }
-                                }/>
+                                      mode="single"
+                                      selected={dates.endDate}
+                                      onSelect={(date) => {
+                                          setSelectedDateFilter("")
+                                          if(date){
+                                              setSearchParams({
+                                                  startDate : format(dates.startDate, "yyyy-MM-dd"),
+                                                  endDate: format(date, "yyyy-MM-dd"),
+                                              })
+                                              setDates((prev : any) => ({ ...prev, endDate: date }));
+                                          }
+                                      }}
+                            />
                         </PopoverContent>
                     </Popover>
                     {/*Currency options*/}
@@ -148,63 +152,28 @@ function SingleTicketPage() {
                         </SelectTrigger>
                         <SelectContent className={'border-none bg-background rounded-none'}>
                             {
-                                currencyOptions?.map((currency : any  , index  : number) =>{
+                                currencyOptions?.map((currency : any , index : number) =>{
                                     return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
                                 })
                             }
                         </SelectContent>
                     </Select>
                 </div>
-
-                <div className={'flex flex-row items-center border-b pb-2 border-popover justify-between gap-x-2 px-2'}>
-                    {/*bet Type*/}
-                    <Select value={betType} onValueChange={(value) =>{
-                        setBetType(value)
-                    }}>
-                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent "}>
-                            <SelectValue placeholder={t`Type`}/>
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                data?.filters && data?.filters?.betType.map((types : any , index : number) =>{
-                                    return  <SelectItem key={index}  className={'focus:text-background text-accent rounded-none capitalize'} value={types}>{types}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
-
-                    {/*Static for the moment*/}
-                    <Select value={category ?? ""} onValueChange={(value) =>{
-                        setCategory(value)
-                        if(value === "Sport"){
-                            navigate(`/account/tickets/${userTransactionId}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
-                        }
-
-                    }}>
-                        <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
-                            <SelectValue placeholder={t`Status`}/>
-                        </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
-                            {
-                                ['Sport' , 'Casino' , 'Live Casino'].map((status : any , index : number) =>{
-                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={status}>{status}</SelectItem>
-                                })
-                            }
-                        </SelectContent>
-                    </Select>
-                </div>
-
-
+                <DateFilter
+                    className="text-accent text-[12px]"
+                    selected={selectedDateFilter}
+                    onSelect={handleDateFilterSelect}
+                />
             </div>
-            <div className={'flex flex-col p-3'}>
+            <div className={'flex flex-col py-3'}>
                 <div
-                    className={'text-sm text-center h-7 items-center bg-chart-2 px-1   flex '}>
+                    className={'text-[11px] text-center h-7 items-center bg-white/70 text-black border-accent px-1 flex'}>
                     <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}><Trans>Username</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Played</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Won</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Net Win</Trans></p>
                 </div>
-                <div className={cn('cursor-pointer  border-accent bg-accent/50 text-accent-foreground',{
+                <div className={cn('cursor-pointer border-none bg-background/80 text-accent/60',{
                     'animate-pulse bg-accent/40'  : isFetching
                 })}>
                     {
@@ -214,12 +183,12 @@ function SingleTicketPage() {
                             }
                             return (
                                 <div key={i}
-                                    className={'text-sm text-center h-7 items-center px-1 border-b border-b-popover flex '}
+                                    className={'text-xs text-center h-7 items-center px-1  border-b border-b-popover flex'}
                                     onClick={()=>{
                                         if(item.is_player){
-                                            navigate(`/account/transactions/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${category  ? `&category=${category}` : ""}`)
+                                            navigate(`/account/transactions/user/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`)
                                         }else{
-                                            navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}${category  ? `&category=${category}` : ""}`);
+                                            navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
                                         }
                                     }}>
                                     <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}</p>
@@ -230,6 +199,35 @@ function SingleTicketPage() {
                             )
                         })
                     }
+                    <div className="text-[11px] w-full bg-white px-1 text-black text-center h-6 items-center border-b flex">
+                        <p
+                            className={cn(
+                                "w-[30%] h-full flex items-center  truncate justify-start text-start shrink-0",
+                            )}
+                        >
+                            <span>Totals</span>
+                        </p>
+                        <div className="w-full h-full  flex items-center justify-center">
+                            <p className="w-1/2 h-full flex items-center justify-center">
+                                {totals?.total_stake?.toFixed(2) ?? "0.00"}
+                            </p>
+                        </div>
+                        <div className="w-full h-full  flex items-center justify-center">
+                            <p className="w-1/2 h-full flex items-center justify-center">
+                                {totals?.total_won?.toFixed(2) ?? "0.00"}
+                            </p>
+                        </div>
+                        <div className="w-full h-full flex items-center justify-center">
+                            <p
+                                className={cn("w-1/2 h-full flex items-center justify-center", {
+                                    "text-destructive": totals?.net_win && String(totals?.net_win).includes("-"),
+                                    "text-chart-2": totals?.net_win && !String(totals?.net_win).includes("-"),
+                                })}
+                            >
+                                {totals?.net_win ? totals?.net_win.toFixed(2) : "-"}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

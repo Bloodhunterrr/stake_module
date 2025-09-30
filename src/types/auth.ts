@@ -132,7 +132,9 @@ export interface getSendSingleMessageResponse {
         "total_stake": number,
         "total_won": number,
         "total_lost": number
-    }[]
+        sport_commission ?: number
+    }[],
+    totals : any
 }
 
 
