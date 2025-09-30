@@ -362,7 +362,7 @@ const SingleUserBets = () => {
                     <TableHeader className="bg-chart-2 text-white  h-8">
                         <TableRow className={'hover:bg-transparent border-popover'}>
                             <TableHead className="h-8 px-0 max-w-[110px] text-white">
-                                <Trans>Bet Amount/User</Trans>
+                                <span className="max-md:hidden"><Trans>Bet Amount/User</Trans></span><span className="md:hidden"><Trans>Bet</Trans></span>
                             </TableHead>
                             <TableHead className="h-8 px-0 text-white text-center max-w-1/4">
                                 <Trans>Time/Id</Trans>

@@ -342,6 +342,10 @@ msgstr "Begin Now"
 #~ msgid "Best in the App"
 #~ msgstr "Best in the App"
 
+#: src/components/profile/profile/SingleUserBets.tsx:365
+msgid "Bet"
+msgstr "Bet"
+
 #: src/components/profile/profile/NewBettingHistory.tsx:442
 #: src/components/profile/profile/SingleUserBets.tsx:538
 #: src/components/profile/v2/betting-history-table.tsx:373
