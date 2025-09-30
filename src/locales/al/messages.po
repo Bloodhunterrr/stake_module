@@ -118,12 +118,12 @@ msgstr "Baccarat"
 msgid "Begin Now"
 msgstr "Fillo Tani"
 
-#: src/components/profile/profile/SingleUserBets.tsx:365
+#: src/components/profile/profile/SingleUserBets.tsx:364
 msgid "Bet"
 msgstr "Basti"
 
 #: src/components/profile/profile/NewBettingHistory.tsx:442
-#: src/components/profile/profile/SingleUserBets.tsx:538
+#: src/components/profile/profile/SingleUserBets.tsx:537
 #: src/components/profile/v2/betting-history-table.tsx:373
 msgid "Bet amount"
 msgstr "Shuma e bastit"
@@ -137,12 +137,13 @@ msgstr "Shuma e Bastit (Bet ID)"
 msgid "Bet Amount (Game)"
 msgstr "Shuma e Bastit (Loja)"
 
-#: src/components/profile/profile/SingleUserBets.tsx:365
+#: src/components/profile/profile/SingleUserBets.tsx:364
 msgid "Bet Amount/User"
 msgstr "Shuma e Bastit/Përdoruesit"
 
-#: src/components/profile/profile/SingleTicketPage.tsx:88
-#: src/components/profile/profile/TicketPage.tsx:69
+#: src/components/profile/profile/ReportsSingleCategory.tsx:89
+#: src/components/profile/profile/SingleTicketPage.tsx:91
+#: src/components/profile/profile/TicketPage.tsx:71
 #: src/components/shared/v2/header.tsx:302
 msgid "Bets"
 msgstr "Baste"
@@ -175,7 +176,7 @@ msgid "Canada"
 msgstr "Kanada"
 
 #: src/components/profile/profile/NewBettingHistory.tsx:357
-#: src/components/profile/profile/SingleUserBets.tsx:452
+#: src/components/profile/profile/SingleUserBets.tsx:451
 #: src/components/profile/v2/betting-history-table.tsx:284
 msgid "Cashout"
 msgstr "Tërheqje parash"
@@ -235,7 +236,8 @@ msgstr "Pastro të gjitha"
 msgid "Close"
 msgstr "Mbyll"
 
-#: src/components/profile/profile/TransactionPage.tsx:340
+#: src/components/profile/profile/ReportsSingleCategory.tsx:174
+#: src/components/profile/profile/TransactionPage.tsx:296
 msgid "Comm"
 msgstr "Comm"
 
@@ -275,11 +277,12 @@ msgstr "Duke krijuar..."
 msgid "Currencies"
 msgstr "Monedhat"
 
-#: src/components/profile/profile/SingleTicketPage.tsx:151
+#: src/components/profile/profile/ReportsSingleCategory.tsx:152
+#: src/components/profile/profile/SingleTicketPage.tsx:154
 #: src/components/profile/profile/SingleUserTransaction.tsx:126
-#: src/components/profile/profile/TicketPage.tsx:117
-#: src/components/profile/profile/TransactionPage.tsx:464
-#: src/components/profile/profile/TransactionUserList.tsx:147
+#: src/components/profile/profile/TicketPage.tsx:119
+#: src/components/profile/profile/TransactionPage.tsx:426
+#: src/components/profile/profile/TransactionUserList.tsx:151
 msgid "Currency"
 msgstr "Monedha"
 
@@ -367,11 +370,11 @@ msgstr "Fut email-in/emrin e përdoruesit"
 msgid "Enter your password"
 msgstr "Vendos fjalëkalimin tënd"
 
-#: src/components/profile/profile/TransactionPage.tsx:138
+#: src/components/profile/profile/TransactionPage.tsx:103
 msgid "Failed to fetch Sport tickets:"
 msgstr "Dështoi të merrte biletat e Sportit:"
 
-#: src/components/profile/profile/TransactionPage.tsx:83
+#: src/components/profile/profile/TransactionPage.tsx:87
 msgid "Failed to fetch transactions:"
 msgstr "Dështoi në marrjen e transaksioneve:"
 
@@ -541,7 +544,7 @@ msgid "Logging in..."
 msgstr "Duke hyr..."
 
 #: src/components/profile/profile/NewBettingHistory.tsx:353
-#: src/components/profile/profile/SingleUserBets.tsx:448
+#: src/components/profile/profile/SingleUserBets.tsx:447
 #: src/components/profile/v2/betting-history-table.tsx:280
 #: src/components/profile/v2/casino-history-table.tsx:337
 msgid "Lost"
@@ -603,10 +606,11 @@ msgstr "Emri"
 msgid "Need Help?"
 msgstr "Keni nevojë për ndihmë?"
 
-#: src/components/profile/profile/SingleTicketPage.tsx:223
-#: src/components/profile/profile/TicketPage.tsx:190
-#: src/components/profile/profile/TransactionPage.tsx:343
-#: src/components/profile/profile/TransactionUserList.tsx:205
+#: src/components/profile/profile/ReportsSingleCategory.tsx:175
+#: src/components/profile/profile/SingleTicketPage.tsx:226
+#: src/components/profile/profile/TicketPage.tsx:192
+#: src/components/profile/profile/TransactionPage.tsx:300
+#: src/components/profile/profile/TransactionUserList.tsx:174
 msgid "Net Win"
 msgstr "Diferenca"
 
@@ -632,7 +636,7 @@ msgstr "Tjetra"
 msgid "Nexu"
 msgstr "Nexu"
 
-#: src/components/profile/profile/TransactionPage.tsx:646
+#: src/components/profile/profile/TransactionPage.tsx:558
 msgid "No categories available"
 msgstr "Nuk ka kategori të disponueshme"
 
@@ -642,10 +646,10 @@ msgstr "Nuk ka të Dhëna"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:214
 #: src/components/profile/profile/NewBettingHistory.tsx:310
-#: src/components/profile/profile/SingleUserBets.tsx:386
-#: src/components/profile/profile/TransactionPage.tsx:229
-#: src/components/profile/profile/TransactionPage.tsx:380
-#: src/components/profile/profile/TransactionPage.tsx:388
+#: src/components/profile/profile/SingleUserBets.tsx:385
+#: src/components/profile/profile/TransactionPage.tsx:175
+#: src/components/profile/profile/TransactionPage.tsx:333
+#: src/components/profile/profile/TransactionPage.tsx:341
 #: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:287
 #: src/components/profile/v2/payments-history-table.tsx:213
@@ -655,7 +659,7 @@ msgstr "Nuk ka të dhëna të disponueshme"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:214
 #: src/components/profile/profile/NewBettingHistory.tsx:310
-#: src/components/profile/profile/SingleUserBets.tsx:386
+#: src/components/profile/profile/SingleUserBets.tsx:385
 #: src/components/profile/v2/betting-history-table.tsx:234
 #: src/components/profile/v2/casino-history-table.tsx:287
 #: src/components/profile/v2/payments-history-table.tsx:213
@@ -727,13 +731,13 @@ msgid "Payments History"
 msgstr "Historia e Pagesave"
 
 #: src/components/profile/profile/NewBettingHistory.tsx:454
-#: src/components/profile/profile/SingleUserBets.tsx:547
+#: src/components/profile/profile/SingleUserBets.tsx:546
 #: src/components/profile/v2/betting-history-table.tsx:385
 msgid "Payout"
 msgstr "Pagesa"
 
 #: src/components/profile/profile/NewBettingHistory.tsx:363
-#: src/components/profile/profile/SingleUserBets.tsx:457
+#: src/components/profile/profile/SingleUserBets.tsx:456
 #: src/components/profile/v2/betting-history-table.tsx:290
 msgid "Pending"
 msgstr "Në pritje"
@@ -752,10 +756,11 @@ msgstr "Zgjidh datën e mbarimit"
 msgid "Pick start date"
 msgstr "Zgjidh datën e fillimit"
 
-#: src/components/profile/profile/SingleTicketPage.tsx:221
-#: src/components/profile/profile/TicketPage.tsx:188
-#: src/components/profile/profile/TransactionPage.tsx:337
-#: src/components/profile/profile/TransactionUserList.tsx:203
+#: src/components/profile/profile/ReportsSingleCategory.tsx:172
+#: src/components/profile/profile/SingleTicketPage.tsx:224
+#: src/components/profile/profile/TicketPage.tsx:190
+#: src/components/profile/profile/TransactionPage.tsx:289
+#: src/components/profile/profile/TransactionUserList.tsx:172
 msgid "Played"
 msgstr "Luajtur"
 
@@ -857,8 +862,8 @@ msgid "Refresh"
 msgstr "Rifresko"
 
 #: src/components/profile/profile/Reports.tsx:74
-#: src/components/profile/profile/TransactionPage.tsx:410
-#: src/components/profile/profile/TransactionUserList.tsx:85
+#: src/components/profile/profile/TransactionPage.tsx:360
+#: src/components/profile/profile/TransactionUserList.tsx:88
 #: src/components/shared/v2/header.tsx:322
 msgid "Reports"
 msgstr "Raportet"
@@ -989,12 +994,11 @@ msgstr "Kushtet e Basteve Sportive"
 
 #: src/components/profile/profile/AgentPaymentTable.tsx:199
 #: src/components/profile/profile/NewBettingHistory.tsx:297
-#: src/components/profile/profile/SingleTicketPage.tsx:185
-#: src/components/profile/profile/SingleTicketPage.tsx:204
-#: src/components/profile/profile/SingleUserBets.tsx:373
+#: src/components/profile/profile/SingleTicketPage.tsx:188
+#: src/components/profile/profile/SingleTicketPage.tsx:207
+#: src/components/profile/profile/SingleUserBets.tsx:372
 #: src/components/profile/profile/SingleUserTransaction.tsx:159
-#: src/components/profile/profile/TicketPage.tsx:150
-#: src/components/profile/profile/TransactionUserList.tsx:185
+#: src/components/profile/profile/TicketPage.tsx:152
 #: src/components/profile/v2/betting-history-table.tsx:220
 #: src/components/profile/v2/casino-history-table.tsx:275
 #: src/components/profile/v2/payments-history-table.tsx:197
@@ -1032,7 +1036,7 @@ msgstr "Nuk ka përdorues të tjerë"
 msgid "This wallet is already default"
 msgstr "Ky portofol është tashmë i paracaktuar"
 
-#: src/components/profile/profile/TicketPage.tsx:170
+#: src/components/profile/profile/TicketPage.tsx:172
 msgid "Ticket Type"
 msgstr "Tipi Biletës"
 
@@ -1047,7 +1051,7 @@ msgstr "Koha"
 msgid "Time (Bet ID)"
 msgstr "Koha (Bet ID)"
 
-#: src/components/profile/profile/SingleUserBets.tsx:368
+#: src/components/profile/profile/SingleUserBets.tsx:367
 msgid "Time/Id"
 msgstr "Koha/ID"
 
@@ -1063,6 +1067,10 @@ msgstr "Sot"
 msgid "Top Games"
 msgstr "Lojërat Kryesore"
 
+#: src/components/profile/profile/SingleUserBets.tsx:567
+msgid "Total"
+msgstr "Totali"
+
 #: src/components/profile/wallet.tsx:64
 msgid "Total balance"
 msgstr "Balanca totale"
@@ -1072,7 +1080,7 @@ msgid "Total Deposit:"
 msgstr "Depozitim Total:"
 
 #: src/components/profile/profile/NewBettingHistory.tsx:428
-#: src/components/profile/profile/SingleUserBets.tsx:525
+#: src/components/profile/profile/SingleUserBets.tsx:524
 #: src/components/profile/v2/betting-history-table.tsx:359
 msgid "Total odds"
 msgstr "Shanset totale"
@@ -1093,10 +1101,9 @@ msgstr "Transferimi"
 msgid "Transactions"
 msgstr "Transferimet"
 
-#: src/components/profile/profile/SingleTicketPage.tsx:170
+#: src/components/profile/profile/SingleTicketPage.tsx:173
 #: src/components/profile/profile/SingleUserTransaction.tsx:144
-#: src/components/profile/profile/TicketPage.tsx:135
-#: src/components/profile/profile/TransactionUserList.tsx:165
+#: src/components/profile/profile/TicketPage.tsx:137
 msgid "Type"
 msgstr "Tipi"
 
@@ -1120,10 +1127,11 @@ msgstr "deri në 25%"
 msgid "User Balance"
 msgstr "Bilanci i Përdoruesit"
 
-#: src/components/profile/profile/SingleTicketPage.tsx:220
-#: src/components/profile/profile/TicketPage.tsx:187
-#: src/components/profile/profile/TransactionPage.tsx:336
-#: src/components/profile/profile/TransactionUserList.tsx:202
+#: src/components/profile/profile/ReportsSingleCategory.tsx:171
+#: src/components/profile/profile/SingleTicketPage.tsx:223
+#: src/components/profile/profile/TicketPage.tsx:189
+#: src/components/profile/profile/TransactionPage.tsx:286
+#: src/components/profile/profile/TransactionUserList.tsx:171
 #: src/components/profile/profile/UserInfo.tsx:28
 #: src/components/profile/profile/UserListRender.tsx:313
 #: src/components/shared/v2/user/create-user.tsx:125
@@ -1190,11 +1198,12 @@ msgid "Withdraw initiated successfully!"
 msgstr "Tërheqja u iniciua me sukses!"
 
 #: src/components/profile/profile/NewBettingHistory.tsx:366
-#: src/components/profile/profile/SingleTicketPage.tsx:222
-#: src/components/profile/profile/SingleUserBets.tsx:460
-#: src/components/profile/profile/TicketPage.tsx:189
-#: src/components/profile/profile/TransactionPage.tsx:338
-#: src/components/profile/profile/TransactionUserList.tsx:204
+#: src/components/profile/profile/ReportsSingleCategory.tsx:173
+#: src/components/profile/profile/SingleTicketPage.tsx:225
+#: src/components/profile/profile/SingleUserBets.tsx:459
+#: src/components/profile/profile/TicketPage.tsx:191
+#: src/components/profile/profile/TransactionPage.tsx:292
+#: src/components/profile/profile/TransactionUserList.tsx:173
 #: src/components/profile/v2/betting-history-table.tsx:293
 #: src/components/profile/v2/casino-history-table.tsx:329
 msgid "Won"
