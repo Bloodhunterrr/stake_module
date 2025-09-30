@@ -352,7 +352,7 @@ const ProfileDropdown = ({
             ? 10
             : 5
         }
-        className="lg:w-96 w-screen min-w-90 mt-4 p-0 bg-white rounded-none"
+        className="lg:w-96 w-screen min-w-90 max-[380px]:min-w-full mt-4 p-0 bg-white rounded-none"
         align="end"
         forceMount
       >

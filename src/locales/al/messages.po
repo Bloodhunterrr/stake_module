@@ -293,7 +293,7 @@ msgstr "Dhjetor"
 
 #: src/components/profile/wallet.tsx:57
 msgid "Default"
-msgstr "I Zgjedhuri"
+msgstr "Default"
 
 #: src/components/profile/wallet.tsx:86
 #: src/components/shared/v2/deposit.tsx:152
@@ -961,7 +961,7 @@ msgstr "Shtator"
 
 #: src/components/profile/wallet.tsx:57
 msgid "Set default"
-msgstr "Caktoje si të Zgjedhur"
+msgstr "Caktoje si default"
 
 #: src/components/shared/v2/header.tsx:188
 msgid "Shop"
