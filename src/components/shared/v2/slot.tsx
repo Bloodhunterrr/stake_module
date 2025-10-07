@@ -45,8 +45,7 @@ export const ModalBalanceInfo = ({
             onClose();
             dispatch(setModal({ modal: "deposit" }));
           }}
-          className="px-6 py-2 bg-card rounded-lg hover:bg-card/80 text-accent-foreground transition"
-        >
+          className="px-6 py-2 bg-card rounded-lg hover:bg-card/80 text-accent-foreground transition">
           <Trans>Deposit now</Trans>
         </button>
 
@@ -126,7 +125,7 @@ const GameSlot = ({
 
   if (isLoading) {
     return (
-      <div className="aspect-square bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
+      <div className="aspect-[120/160] bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
         <div
           className="w-full h-full bg-center bg-card/10"
           style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
@@ -138,20 +137,15 @@ const GameSlot = ({
   return (
     <>
       <div
-        className="relative aspect-square rounded-lg overflow-hidden hover:lg:scale-[1.02] transition-transform duration-300 shadow-lg cursor-pointer group"
-        onClick={handleGameClick}
-      >
-        <div
-          className="absolute inset-0 bg-center bg-cover opacity-40"
-          style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
-        />
+        className="relative aspect-[120/160] rounded-lg overflow-hidden hover:lg:translate-y-[-4%] transition-transform duration-300 shadow-lg cursor-pointer group"
+        onClick={handleGameClick}>
+        <div className="absolute inset-0 bg-center bg-cover opacity-40"
+          style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}/>
 
-        <img
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 "
+        <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 "
           src={game?.image}
           loading="lazy"
-          alt={game?.name}
-        />
+          alt={game?.name}/>
 
         <HeartIcon className="absolute top-2 right-2 w-5 h-5 text-white opacity-80 hover:opacity-100" />
 
@@ -177,12 +171,10 @@ const GameSlot = ({
         </DialogContent>
       </Dialog>
       <Dialog open={loginModal} onOpenChange={closeLogin}>
-        <DialogContent
-            showCloseButton={false}
+        <DialogContent showCloseButton={false}
           className="p-0 lg:w-[450px] rounded-none bg-secondary"
           onOpenAutoFocus={(e) => e.preventDefault()}
-          onCloseAutoFocus={(e) => e.preventDefault()}
-        >
+          onCloseAutoFocus={(e) => e.preventDefault()}>
           <Login setLoginModalOpen={closeLogin} />
         </DialogContent>
       </Dialog>

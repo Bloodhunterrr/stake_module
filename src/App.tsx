@@ -16,7 +16,6 @@ const App: React.FC = () => {
     useUserInfo();
     const [sideBarOpen, setSideBarOpen] = useState(false);
     const isDesktop = useIsDesktop(1280);
-    const isDesktopForSidebar = useIsDesktop(1024);
     const { data, error, isLoading } = useGetMainQuery();
     const location = useLocation();
     const containerRef = useRef<HTMLDivElement>(null);
@@ -58,9 +57,9 @@ const App: React.FC = () => {
     }
 
     return (
-        <div className="bg-background text-primary-foreground">
+        <div className="bg-transparent text-primary-foreground min-h-[100dvh]">
             <TitleUpdater />
-            <main className="transition-all relative duration-300 ease-in-out">
+            <main className="transition-all relative duration-300 ease-in-out h-full">
                 <Header
                     location={location.pathname}
                     setOpenOptionalSideBar={setOptionalSideBarOpen}
@@ -71,9 +70,9 @@ const App: React.FC = () => {
                     isNoCategoryOrSportsbook={isNoCategoryOrSportsbook}
                 />
 
-                {!isDesktopForSidebar && isNoCategoryOrSportsbook && (
+                {!isDesktop && isNoCategoryOrSportsbook && (
                     <Sidebar
-                        isDesktop={isDesktopForSidebar}
+                        isDesktop={isDesktop}
                         sideBarOpen={sideBarOpen}
                         toggleSideBar={setSideBarOpen}
                     />

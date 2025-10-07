@@ -2,7 +2,6 @@ import { useGetMainQuery, useGetProviderListQuery } from "@/services/mainApi";
 import { useNavigate, useParams } from "react-router";
 import Sport from "@/routes/sport";
 import InstallAppBanner from "@/components/shared/install-app-banner";
-import Footer from "@/components/shared/v2/footer.tsx";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import Jackpot from "@/components/shared/v2/jackpot";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
@@ -51,8 +50,8 @@ const Lobby = () => {
   const categoryProviders = providerData?.providers ?? [];
 
   return (
-    <div className="lg:px-0 px-3 gap-5 flex flex-col container mx-auto">
-      <section className="container mx-auto">
+    <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 px-3 gap-5 flex flex-col w-[calc(94dvw_-_60px)] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
+      <section className="w-full mx-auto">
         <SingleSubcategorySlider
           data={data.map((category) => ({
             [category.slug]: {
@@ -62,9 +61,10 @@ const Lobby = () => {
         />
       </section>
 
+
       {activeCategory && <ProviderSliderFromApi categorySlug={categorySlug} />}
 
-      <section className="container space-y-4 mx-auto">
+      <section className="w-full space-y-4 mx-auto">
         <LobbyBannerSlider />
       </section>
 
@@ -99,8 +99,6 @@ const Lobby = () => {
           );
         })}
       </div>
-
-      <Footer />
     </div>
   );
 };

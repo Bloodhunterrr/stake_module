@@ -206,46 +206,41 @@ const Search = ({
   const { t } = useLingui();
   const params = useParams();
   return (
-    <div className="flex flex-col items-start w-full container mx-auto  gap-4">
-      <div className="flex sticky top-0 z-20 bg-background/90 flex-col px-2 pb-2 items-center w-full gap-2 ">
-        <p
-          className={
+    <div className="flex flex-col items-start w-full container mx-auto gap-4">
+      <div className="flex sticky top-0 z-20 bg-[#1a2e38]/90 flex-col px-2 pb-2 items-center w-full gap-2">
+        <p className={
             "h-12 flex items-center mt-6 text-semibold text-2xl text-muted lg:text-4xl"
-          }
-        >
+          }>
           <Trans>Search</Trans>
         </p>
-        <div className="relative flex items-center pl-3.5 h-10 rounded-full bg-popover hover:bg-popover/80 w-full ">
-          <SearchIcon className=" size-5 text-muted-foreground " />
+        <div className="relative flex items-center pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full">
+          <SearchIcon className="size-6 text-[var(--grey-300)]" />
           <Input
             tabIndex={1}
             aria-label="Search games"
             placeholder={t`Search`}
             value={searchQuery ?? ""}
             onChange={handleSearchChange}
-            className="flex placeholder:text-primary-foreground text-primary-foreground placeholder:text-sm placeholder:font-semibold h-10 border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0  rounded-full items-center gap-2 cursor-pointer px-3 transition"
-          />
-          {searchQuery && (
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="absolute right-10 hover:bg-transparent border-0 border-transparent   top-1/2 -translate-y-1/2"
-              onClick={() => setSearchQuery("")}
-              aria-label="Clear search"
-            >
-              <X className="size-5 text-primary-foreground " />
-            </Button>
-          )}
+            className="flex placeholder:text-white/40 text-white placeholder:text-md placeholder:font-normal h-12 border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0 rounded-full items-center gap-2 px-3 transition"/>
+          {/*{searchQuery && (*/}
+          {/*  <Button*/}
+          {/*    type="button"*/}
+          {/*    variant="ghost"*/}
+          {/*    size="icon"*/}
+          {/*    className="absolute right-10 hover:bg-transparent border-0 border-transparent top-1/2 -translate-y-1/2"*/}
+          {/*    onClick={() => setSearchQuery("")}*/}
+          {/*    aria-label="Clear search">*/}
+          {/*    <X className="size-5 text-[#ffffff80] hover:text-white transition-all duration-[0.1s]" />*/}
+          {/*  </Button>*/}
+          {/*)}*/}
           <div
             onClick={() => {
               if (setSearchModal) {
                 setSearchModal(false);
               }
             }}
-            className="h-full flex items-center justify-end pr-2 cursor-pointer w-12 text-primary-foreground text-[11px] font-medium mr-2"
-          >
-            <Trans>Close</Trans>
+            className="h-full flex items-center justify-end cursor-pointer w-12 text-primary-foreground text-[10px] font-medium">
+            <X className="size-5 text-[#ffffff80] hover:text-white transition-all duration-[0.1s]" />
           </div>
         </div>
 
@@ -253,8 +248,7 @@ const Search = ({
           <Button
             variant="outline"
             onClick={() => setProviderModal(true)}
-            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10"
-          >
+            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10">
             <span className="flex items-center gap-2">
               <Trans>Provider</Trans>
             </span>
@@ -268,15 +262,13 @@ const Search = ({
             </div>
           </Button>
 
-          <Button
-            variant="outline"
+          <Button variant="outline"
             onClick={() => setCategoryModal(true)}
-            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10"
-          >
+            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10">
             <span className="flex items-center gap-2">
               <Trans>Category</Trans>
             </span>
-            <div className="flex items-center gap-2  relative left-1 group-hover:!bg-black">
+            <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">
               {selectedCategoryItems.length > 0 && (
                 <Badge variant="secondary" className="rounded-full">
                   {selectedCategoryItems.length}
@@ -303,7 +295,7 @@ const Search = ({
             <Badge
               key={`selected-${item.combinedId}`}
               variant="secondary"
-              className="flex  items-center gap-1"
+              className="flex items-center gap-1"
             >
               <span>{item.name}</span>
               <button
@@ -321,48 +313,49 @@ const Search = ({
           </Button>
         </div>
       )}
+      <div className="flex flex-col items-start w-full container mx-auto gap-4">
+          <div className="flex flex-row items-center px-2 gap-3">
+              <h3 className="text-md font-bold text-white">
+                  <Trans>Search results</Trans>
+              </h3>
+              {totalGames > 0 && (
+                  <Badge
+                      variant="outline"
+                      className="text-sm font-bold h-6 bg-foreground/50  border-foreground/50 select-none rounded-full text-card  px-1.5"
+                  >
+                      {totalGames}
+                  </Badge>
+              )}
+          </div>
 
-      <div className="flex flex-row items-center px-2 gap-3">
-        <h3 className="text-md font-bold text-white">
-          <Trans>Search results</Trans>
-        </h3>
-        {totalGames > 0 && (
-          <Badge
-            variant="outline"
-            className="text-sm font-bold h-6 bg-foreground/50  border-foreground/50 select-none rounded-full text-card  px-1.5"
-          >
-            {totalGames}
-          </Badge>
-        )}
+          <div className={"w-full flex flex-col items-center justify-center"}>
+              <div className="p-3 w-full">
+                  {isLoading ? (
+                      <div className="flex h-40 items-center justify-center">
+                          <LoaderCircle className="w-10 h-10 animate-spin text-card stroke-[1px]" />
+                      </div>
+                  ) : (
+                      <GameListRenderer
+                          categoriesIDs={selectedCategoryItems.map((c) => c.id)}
+                          providersIDs={selectedProviderItems.map((p) => p.id)}
+                          searchQuery={debouncedSearch ?? ""}
+                          order_by="order"
+                          onTotalChange={setTotalGames}
+                          skip={false}
+                          gameDynamicClass="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+                          showNoData={true}
+                      />
+                  )}
+              </div>
+          </div>
       </div>
 
-      <div className={"w-full flex flex-col items-center justify-center"}>
-        <div className="p-3 w-full">
-          {isLoading ? (
-            <div className="flex h-40 items-center justify-center">
-              <LoaderCircle className="w-10 h-10 animate-spin text-card stroke-[1px]" />
-            </div>
-          ) : (
-            <GameListRenderer
-              categoriesIDs={selectedCategoryItems.map((c) => c.id)}
-              providersIDs={selectedProviderItems.map((p) => p.id)}
-              searchQuery={debouncedSearch ?? ""}
-              order_by="order"
-              onTotalChange={setTotalGames}
-              skip={false}
-              gameDynamicClass="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
-              showNoData={true}
-            />
-          )}
-        </div>
-      </div>
 
       <Dialog open={categoryModal} onOpenChange={setCategoryModal}>
         <DialogContent
           overlayClassName={"bg-black/80"}
-          className="lg:max-h-[80vh] w-full h-full gap-0 min-w-full rounded-none border-none overflow-hidden p-0 xl:min-w-[700px]"
-          closeButtonClassName="text-primary-foreground w-[20px] h-[20px]"
-        >
+          className="lg:max-h-[80vh] h-full gap-0 rounded-none border-none overflow-hidden p-0 w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)]"
+          closeButtonClassName="text-primary-foreground w-[20px] h-[20px]">
           <DialogHeader className="lg:px-6 h-14 lg:h-9 flex items-center justify-center pb-0 border-none lg:pt-5">
             <DialogTitle className="text-white/70">
               <Trans>Categories</Trans>
@@ -385,7 +378,7 @@ const Search = ({
       <Dialog open={providerModal} onOpenChange={setProviderModal}>
         <DialogContent
           overlayClassName={"bg-black/80"}
-          className="lg:max-h-[80vh] w-full h-full gap-0 min-w-full rounded-none border-none overflow-hidden p-0 xl:min-w-[700px]"
+          className="lg:max-h-[80vh]  h-full gap-0 rounded-none border-none overflow-hidden p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)]"
           closeButtonClassName="text-primary-foreground w-[20px] h-[20px]"
         >
           <DialogHeader className="lg:px-6 h-14 lg:h-9 flex items-center justify-center pb-0 border-none lg:pt-5">

@@ -64,17 +64,17 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <div className="sticky top-0 z-20 bg-background/90 p-2 pt-4 pb-3">
-        <div className="relative flex items-center pl-3.5 h-10 rounded-full bg-popover hover:bg-popover/80 w-full gap-2">
-          <SearchIcon className="size-5 text-muted-foreground" />
+      <div className="sticky top-0 z-20 bg-[#1a2e38]/90 p-2 pt-4 pb-3">
+        <div className="relative flex items-center pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full gap-2">
+          <SearchIcon className="size-6 text-[var(--grey-300)]" />
           <input onChange={handleSearchChange}
             value={searchVal}
             placeholder={t`Search`}
-            className="flex placeholder:text-primary-foreground/70 text-primary-foreground placeholder:text-sm placeholder:font-semibold h-10 border-none focus-visible:outline-none focus-visible:ring-0 rounded-full w-full"/>
+            className="flex placeholder:text-white/40 text-white placeholder:text-md placeholder:font-normal h-12 border-none focus-visible:outline-none focus-visible:ring-0 rounded-full w-full"/>
           {searchVal && (
             <div onClick={() => setSearchVal("")}
               className="absolute right-3 cursor-pointer">
-              <CloseIcon className="size-5 text-muted-foreground" />
+
             </div>
           )}
         </div>

@@ -166,15 +166,15 @@ export default function Sidebar({
               "mt-8.5": optionalSideBarOpen,
             })}
           >
-            <Button
-              variant="ghost"
-              size="icon"
-              className="fixed hover:bg-transparent hover:text-accent top-4 left-3 z-50 xl:hidden"
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
+            {/*<Button*/}
+            {/*  variant="ghost"*/}
+            {/*  size="icon"*/}
+            {/*  className="fixed hover:bg-transparent hover:text-accent top-4 left-3 z-50 xl:hidden"*/}
+            {/*>*/}
+            {/*  <Menu className="h-6 w-6" />*/}
+            {/*</Button>*/}
           </SheetTrigger>
-          <SheetContent side="left" className="w-[80%] p-0 border-none xl:hidden" closeIconClassName="text-white">
+          <SheetContent side="left" className="w-[80%] p-0 border-none xl:hidden">
             <div className="flex items-center justify-between p-4 mb-4">
               {logo && (
                 <img

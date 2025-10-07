@@ -572,9 +572,7 @@ const SingleUserBets = () => {
                             </TableHead>
                             <TableHead className="text-right h-8 text-white max-w-1/4">
                                 <div className={cn( "text-black")}>
-                                       <span>
-                                           €
-                                       </span>
+                                       <span>€</span>
                                     {data?.statistics?.net_win?.toFixed(2)}
                                 </div>
                             </TableHead>

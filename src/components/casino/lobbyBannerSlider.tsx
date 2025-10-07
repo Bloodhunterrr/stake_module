@@ -90,8 +90,7 @@ export default function LobbyBannerSlider() {
             {slides.map((slide) => (
                 <CarouselItem
                     key={slide.id}
-                    className="md:basis-1/3 sm:basis-1/2 basis-full p-[5px] hover:scale-[1.03] transition-all duration-300 "
-                >
+                    className="md:basis-1/3 sm:basis-1/2 basis-full py-2 px-[5px] lg:hover:translate-y-[-4%] transition-all duration-300 ">
                   <div className="
                   flex items-center h-[190px] w-full
                    transition-all duration-200 

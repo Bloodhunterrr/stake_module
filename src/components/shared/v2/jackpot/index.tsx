@@ -129,7 +129,7 @@ export default function Jackpot() {
                                 key={jackpot.id}
                                 className="group flex flex-1 flex-col items-center gap-3 rounded-xl border-2 border-zinc-700 bg-zinc-800/50 p-3 sm:p-4 lg:flex-row backdrop-blur-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-white/20">
                                 <div
-                                    className="flex w-7 h-7 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-amber-400 p-1.5 shadow-lg transition-all duration-300 group-hover:scale-110">
+                                    className="flex w-7 h-7 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-amber-400 p-1.5 shadow-lg transition-all duration-300 lg:group-hover:translate-y-[-4%]">
                                     {jackpot.icon}
                                 </div>
                                 <CardContent className="p-0 text-center lg:text-left">

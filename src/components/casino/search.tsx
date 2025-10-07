@@ -238,7 +238,7 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
 
       {/* Category Dialog */}
       <Dialog open={categoryModal} onOpenChange={setCategoryModal}>
-        <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
+        <DialogContent className="max-h-[80vh] overflow-hidden p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)]" closeButtonClassName="text-white w-[20px] h-[20px]">
           <DialogHeader className="px-6 pt-6">
             <DialogTitle className="text-white/70">Categories</DialogTitle>
           </DialogHeader>
@@ -258,7 +258,7 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
 
       {/* Provider Dialog */}
       <Dialog open={providerModal} onOpenChange={setProviderModal}>
-        <DialogContent className="max-h-[80vh] overflow-hidden p-0 xl:min-w-[700px]" closeButtonClassName="text-white w-[20px] h-[20px]">
+        <DialogContent className="max-h-[80vh] overflow-hidden p-0 w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)]" closeButtonClassName="text-white w-[20px] h-[20px]">
           <DialogHeader className="px-6 pt-5">
             <DialogTitle className="text-white/70">Providers</DialogTitle>
           </DialogHeader>

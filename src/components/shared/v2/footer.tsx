@@ -6,23 +6,18 @@ import logo from "@/assets/images/logo.svg";
 
 export default function Footer() {
     return (
-        <section className="container mx-auto">
-            <div className="pb-[70px] sm:pb-[54px] sm:pt-6">
-                <nav className="border-b border-gray-700 mb-10 py-2.5 sm:py-[30px] pb-[40px]">
+        <section className="w-[calc(100svw-44px)] lg:w-[calc(100svw-60px)] ml-auto bg-[var(--grey-800)] relative bottom-0">
+            <div className="container mx-auto pb-[70px] sm:pb-[54px] sm:pt-6">
+                <nav className="border-b-2 border-[var(--grey-500)] mb-10 py-2.5 sm:py-[30px] pb-[40px]">
                     <div className="flex flex-col sm:flex-row sm:justify-between">
                         <a href="/public" className="block">
                             <img
                                 src={logo}
                                 alt={`${config.skinName} logo`}
-                                className="max-w-[152px] h-[40px]"
-                            />
+                                className="max-w-[152px] h-[40px]"/>
                         </a>
 
-                        <div
-                            className="grid gap-3 gap-x-6 text-[12px] font-semibold text-gray-400 w-full sm:w-auto
-              grid-cols-2 [grid-template-rows:repeat(10,auto)]
-              sm:grid-cols-4 sm:[grid-auto-flow:column] sm:[grid-template-rows:repeat(5,auto)]"
-                        >
+                        <div className="grid gap-3 gap-x-6 text-[12px] font-semibold text-gray-400 w-full sm:w-auto grid-cols-2 [grid-template-rows:repeat(10,auto)] sm:grid-cols-4 sm:[grid-auto-flow:column] sm:[grid-template-rows:repeat(5,auto)]">
                             <a href="#" className="block hover:text-white transition-colors">
                                 <Trans>Promotions</Trans>
                             </a>
@@ -80,11 +75,9 @@ export default function Footer() {
                         </div>
 
                         <div className="flex sm:hidden items-center gap-1.5 bg-gray-800 rounded w-full py-1 px-2 mb-5 relative cursor-pointer">
-                            <img
-                                className="w-10 m-1 z-10"
+                            <img className="w-10 m-1 z-10"
                                 src="https://cdn.beton-static.com/front/components/home/app/appButton-icon.png"
-                                alt="App"
-                            />
+                                alt="App"/>
                             <div className="flex flex-col">
                                 <p className="text-xs font-bold leading-6">Casino App</p>
                             </div>

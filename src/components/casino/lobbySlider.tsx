@@ -31,8 +31,9 @@ export const DesktopSlider = ({
   const navigate = useNavigate();
   const [offset, setOffset] = useState(0);
 
-  const limit = subcategory.landing_page_game_number;
+  const limit = 8;
   const [searchModal, setSearchModal] = useState(false);
+
 
   const { data, isLoading, isFetching } = useGetGameListQuery({
     category_ids: subcategory?.id ? [subcategory.id] : [],
@@ -42,7 +43,18 @@ export const DesktopSlider = ({
   });
 
   const games = isLoading ? Array(limit).fill(null) : data?.games ?? [];
-  const columns = subcategory.landing_page_game_row_number;
+  const useWindowWidth = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+    useEffect(() => {
+      const handleResize = () => setWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return width;
+  };
+    const width = useWindowWidth();
+    const columns = width >= 1410 ? 8 : width >= 1260 ? 7 : width >= 910 ? 6 : width >= 720 ? 5 : 4;
 
   const handlePrev = () => {
     setOffset((prev) => Math.max(prev - limit, 0));
@@ -98,21 +110,17 @@ export const DesktopSlider = ({
                 <Trans>Filter</Trans>
               </SheetTrigger>
 
-              <SheetContent
-                  className="border-none w-full border-r sm:max-w-sm"
-                  closeIconClassName="text-primary-foreground focus:ring-0"
-              >
+              <SheetContent className="border-none w-full border-r sm:max-w-sm"
+                  closeIconClassName="text-primary-foreground focus:ring-0">
                 <SheetHeader className="h-26 flex items-center justify-end">
                   <SheetTitle className="text-2xl font-semibold text-primary-foreground">
                     <Trans>Filters</Trans>
                   </SheetTitle>
                 </SheetHeader>
 
-                <div
-                    onClick={() => setSearchModal(true)}
-                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition"
-                >
-                  <SearchIcon className="size-5 text-muted-foreground" />
+                <div onClick={() => setSearchModal(true)}
+                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition">
+                  <SearchIcon className="size-5 text-[var(--grey-300)]" />
                   <span className="font-semibold text-primary-foreground text-sm">
                   <Trans>Search</Trans>
                 </span>
@@ -147,18 +155,12 @@ export const DesktopSlider = ({
                   </Accordion>
                 </div>
 
-                <Dialog
-                    open={searchModal}
-                    onOpenChange={() => setSearchModal(false)}
-                >
-                  <DialogContent
-                      showCloseButton={false}
-                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full"
-                  >
-                    <Search
-                        setSearchModal={setSearchModal}
-                        onCloseSearchModal={() => setSearchModal(false)}
-                    />
+                <Dialog open={searchModal}
+                    onOpenChange={() => setSearchModal(false)}>
+                  <DialogContent showCloseButton={false}
+                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] !min-w-[calc(100%-60px)] !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+                    <Search setSearchModal={setSearchModal}
+                        onCloseSearchModal={() => setSearchModal(false)}/>
                   </DialogContent>
                 </Dialog>
               </SheetContent>
@@ -177,14 +179,13 @@ export const DesktopSlider = ({
 
         <Carousel
             opts={{ align: "start", loop: false }}
-            className="w-full relative group/items"
-        >
-          <CarouselContent className="py-2 flex flex-wrap">
+            className="w-full relative group/items">
+          <CarouselContent className="py-2 flex flex-row">
             {games.map((game, index) => (
                 <CarouselItem
                     style={{ flexBasis: `${100 / columns}%` }}
                     key={game?.id ?? `skeleton-${index}`}
-                    className={`hover:scale-105 transition-all duration-300 py-2`}
+                    className={`lg:hover:translate-y-[-4%] transition-all duration-300 py-3`}
                 >
                   <GameSlot game={game} isLoading={isLoading || isFetching} />
                 </CarouselItem>
@@ -292,7 +293,7 @@ const MobileSlider = ({
                     onClick={() => setSearchModal(true)}
                     className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition"
                 >
-                  <SearchIcon className="size-5 text-muted-foreground" />
+                  <SearchIcon className="size-5 text-[var(--grey-300)]" />
                   <span className="font-semibold text-primary-foreground text-sm">
                   <Trans>Search</Trans>
                 </span>
@@ -333,7 +334,7 @@ const MobileSlider = ({
                 >
                   <DialogContent
                       showCloseButton={false}
-                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen w-full h-full"
+                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] !min-w-[calc(100%-60px)] !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]"
                   >
                     <Search
                         setSearchModal={setSearchModal}

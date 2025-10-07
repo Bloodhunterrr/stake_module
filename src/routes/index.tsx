@@ -1,5 +1,4 @@
 import App from "../App";
-import Lobby from "./casino";
 import GameIframe from "./casino/gamesIframe";
 import { createBrowserRouter } from "react-router";
 import type { DOMRouterOpts } from "react-router-dom";
@@ -27,6 +26,7 @@ import SingleUserTransaction from "@/components/profile/profile/SingleUserTransa
 import AgentPayments from "@/components/profile/profile/AgentPayments.tsx";
 import CreateUser from "@/components/shared/v2/user/create-user.tsx";
 import SingleTicketReportPage from "@/components/profile/profile/ReportsSingleCategory.tsx";
+import LobbyFooter from "@/routes/casino/lobbyFooter.tsx";
 
 const routes = createBrowserRouter(
   [
@@ -36,11 +36,11 @@ const routes = createBrowserRouter(
       children: [
         {
           index: true,
-          element: <Lobby />,
+          element: <LobbyFooter />,
         },
         {
           path: ":categorySlug",
-          element: <Lobby />,
+          element: <LobbyFooter />,
         },
         {
           path: ":categorySlug/games/:subCategorySlug",
