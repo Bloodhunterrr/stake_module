@@ -11,13 +11,13 @@ You'll need to have **Node.js** installed on your machine.
 1. Clone the repository:
 
    ```
-   git clone https://github.com/Altechsol/default-betting-module.git
+   git clone https://github.com/Bloodhunterrr/stake_module.git
    ```
 
 2. Navigate into the project directory:
 
    ```
-   cd default-betting-module
+   cd stake-module
    ```
 
 3. Install the dependencies:
@@ -71,3 +71,4 @@ service like Vercel, Netlify, Cloudflare Pages, or even a simple Nginx or Apache
 
 This project is [MIT](lic.url) licensed.
 Author: Izet Selimaj
+Edited by: FLS
