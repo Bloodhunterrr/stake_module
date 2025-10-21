@@ -115,7 +115,7 @@ const SubcategoryGames = () => {
   };
 
   return (
-    <div className="lg:px-0 px-3  flex flex-col container mx-auto">
+    <div className="lg:px-0 flex flex-col container mx-auto">
       {mainData && (
         <SingleSubcategorySlider
           showBanner={false}

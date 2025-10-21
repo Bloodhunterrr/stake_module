@@ -34,8 +34,7 @@ export default function AuthModals({
     return (
         <>
             <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
-                <DialogContent
-                    showCloseButton={false}
+                <DialogContent showCloseButton={false}
                     overlayClassName={cn("bg-black/75 mt-[44px] lg:mt-15", {
                         "mt-[88px] lg:mt-15": openOptionalSideBar,
                     })}

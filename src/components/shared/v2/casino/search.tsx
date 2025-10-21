@@ -206,13 +206,8 @@ const Search = ({
   const params = useParams();
   return (
     <div className="flex flex-col items-start w-full container mx-auto gap-4">
-      <div className="flex sticky top-0 z-20 bg-[#1a2e38]/90 flex-col px-2 pb-2 items-center w-full gap-2">
-        <p className={
-            "h-12 flex items-center mt-6 text-semibold text-2xl text-muted lg:text-4xl"
-          }>
-          <Trans>Search</Trans>
-        </p>
-        <div className="relative flex items-center pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full">
+      <div className="flex sticky top-0 z-20 bg-[#1a2e38]/90 flex-col pb-2 pt-5 items-center w-full gap-2 px-[10px] max-md:px-[3vw]">
+        <div className="relative flex items-center px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full">
           <SearchIcon className="size-6 text-[var(--grey-300)]" />
           <Input
             tabIndex={1}
@@ -310,7 +305,7 @@ const Search = ({
         </div>
       )}
       <div className="flex flex-col items-start w-full container mx-auto gap-4">
-          <div className="flex flex-row items-center px-2 gap-3">
+          <div className="flex flex-row items-center px-[10px] max-md:px-[3vw] gap-3">
               <h3 className="text-md font-semibold text-white">
                   <Trans>Search results</Trans>
               </h3>
@@ -322,7 +317,7 @@ const Search = ({
               )}
           </div>
           <div className={"w-full flex flex-col items-center justify-center"}>
-              <div className="p-3 w-full">
+              <div className="py-3 px-[10px] max-md:px-[3vw] w-full">
                   {isLoading ? (
                       <div className="flex h-40 items-center justify-center">
                           <LoaderCircle className="w-10 h-10 animate-spin text-card stroke-[1px]" />

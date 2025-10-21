@@ -20,6 +20,11 @@ export default function NavbarMobile({
                                      }: SidebarProps) {
     const navigate = useNavigate();
 
+    const handleNavigation = (slug: string) => {
+        navigate(`/${slug}`);
+        (document.querySelector(".closeBtn") as HTMLElement)?.click();
+    };
+
     return (
         <Sheet>
             <div className="hidden max-md:flex fixed bottom-0 h-[68px] w-full bg-[var(--grey-700)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] px-[3vw] max-[500px]:px-4 z-900">
@@ -38,27 +43,27 @@ export default function NavbarMobile({
                         {data?.map((R) =>
                             !R.is_sportbook && R.subcategories.length === 0 ? null
                                 : (
-                                <Button key={R.id} variant="ghost" className={cn(
-                                    "flex w-full h-full flex-col gap-y-0.75 relative items-center rounded-[0] bg-[var(--grey-700)] hover:bg-[var(--grey-700)] text-primary-foreground hover:text-primary-foreground text-[11px] px-2 font-medium",
-                                    {
-                                        "border-t-4 border-blue-400": location.split("/")[1] === R.slug,
-                                        "max-[600px]:hidden": R.name !== "Sport" && R.name !== "Casino",
-                                        "order-[-2] group": R.name === "Sport",
-                                        "order-[-1] group": R.name === "Casino",
-                                    }
-                                )} onMouseEnter={(e) => handleMouseEnter(e, R)}
-                                    onMouseLeave={(e) => handleMouseLeave(e, R)}
-                                    onClick={() => navigate(`/${R.slug}`)}>
-                                    <img className="h-5 w-5 z-[2]"
-                                         style={{filter: location.split("/")[1] === R.slug
-                                                 ? "brightness(0%) invert(100%)"
-                                                 : "brightness(0%) invert(77%) sepia(26%) saturate(212%) hue-rotate(186deg) brightness(95%) contrast(84%)",
-                                         }} src={config.baseUrl + "/storage/" + R.icon} alt={R.name}/>
-                                    <div className="text-white">
-                                        {headersTranslations[R.name] ?? R.name}
-                                    </div>
-                                </Button>
-                            )
+                                    <Button key={R.id} variant="ghost" className={cn(
+                                        "flex w-full h-full flex-col gap-y-0.75 relative items-center rounded-[0] bg-[var(--grey-700)] hover:bg-[var(--grey-700)] text-primary-foreground hover:text-primary-foreground text-[11px] px-2 font-medium",
+                                        {
+                                            "border-t-4 border-blue-400": location.split("/")[1] === R.slug,
+                                            "max-[600px]:hidden": R.name !== "Sport" && R.name !== "Casino",
+                                            "order-[-2] group": R.name === "Sport",
+                                            "order-[-1] group": R.name === "Casino",
+                                        }
+                                    )} onMouseEnter={(e) => handleMouseEnter(e, R)}
+                                            onMouseLeave={(e) => handleMouseLeave(e, R)}
+                                            onClick={() => handleNavigation(R.slug)}>
+                                        <img className="h-5 w-5 z-[2]"
+                                             style={{filter: location.split("/")[1] === R.slug
+                                                     ? "brightness(0%) invert(100%)"
+                                                     : "brightness(0%) invert(77%) sepia(26%) saturate(212%) hue-rotate(186deg) brightness(95%) contrast(84%)",
+                                             }} src={config.baseUrl + "/storage/" + R.icon} alt={R.name}/>
+                                        <div className="text-white">
+                                            {headersTranslations[R.name] ?? R.name}
+                                        </div>
+                                    </Button>
+                                )
                         )}
                     </div>
                 </div>
@@ -85,7 +90,7 @@ export default function NavbarMobile({
                                                 "order-[-2]": R.name === "Sport",
                                                 "order-[-1]": R.name === "Casino",
                                             }
-                                        )} onClick={() => navigate(`/${R.slug}`)}>
+                                        )} onClick={() => handleNavigation(R.slug)}>
                                     <img src={R.name === "Sport"
                                         ? "https://stake.com/_app/immutable/assets/default-casino.CqlOLRkM.svg"
                                         : "https://stake.com/_app/immutable/assets/default-sports.KM8Zs5_U.svg"
@@ -124,7 +129,7 @@ export default function NavbarMobile({
                                             }
                                         )} onMouseEnter={(e) => handleMouseEnter(e, R)}
                                         onMouseLeave={(e) => handleMouseLeave(e, R)}
-                                        onClick={() => navigate(`/${R.slug}`)}>
+                                        onClick={() => handleNavigation(R.slug)}>
                                     <img className="h-5 w-5" style={{
                                         filter: location.split("/")[1] === R.slug
                                             ? "brightness(0%) invert(100%)"

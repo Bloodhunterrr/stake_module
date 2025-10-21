@@ -61,7 +61,7 @@ export default function Lobby() {
         : activeCategory?.subcategories;
 
     return (
-        <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 px-3 gap-5 flex flex-col w-[calc(94dvw_-_60px)] max-md:w-[94dvw] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
+        <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 gap-5 flex flex-col w-[calc(94dvw_-_60px)] max-md:w-[94dvw] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
             <section className="w-full mx-auto">
                 <SingleSubcategorySlider data={data.map((category) => ({
                     [category.slug]: {

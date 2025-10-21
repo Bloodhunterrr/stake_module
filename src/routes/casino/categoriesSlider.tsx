@@ -13,7 +13,6 @@ export default function CategoriesSlider({ categories, onSubcategoryClick, activ
     return (
         <div className="bg-[var(--grey-700)] p-1.5 rounded-full overflow-auto scrollX">
             <div className="relative flex gap-3">
-                {/* All Categories Button */}
                 <div className={`inline-flex relative items-center gap-2 justify-center py-[0.625rem] px-[1.25rem] rounded-full 
                                 ${!activeSubcategory ? 'bg-[var(--grey-400)] ' : 'bg-transparent'} 
                                 lg:hover:bg-[var(--grey-400)] text-white [&_svg]:text-white cursor-pointer capitalize`}
@@ -21,7 +20,6 @@ export default function CategoriesSlider({ categories, onSubcategoryClick, activ
                     All {casino?.replaceAll("-"," ")}
                 </div>
 
-                {/* Subcategory Buttons */}
                 {categories?.subcategories.map((subcategory, index) => (
                     <CategoryBtn
                         key={index}
