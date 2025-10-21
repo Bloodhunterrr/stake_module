@@ -125,7 +125,7 @@ const GameSlot = ({
 
   if (isLoading) {
     return (
-      <div className="aspect-[120/160] bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
+      <div className="aspect-[4496/6031] bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
         <div
           className="w-full h-full bg-center bg-card/10"
           style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
@@ -136,31 +136,33 @@ const GameSlot = ({
 
   return (
     <>
-      <div
-        className="relative aspect-[120/160] rounded-lg overflow-hidden hover:lg:translate-y-[-4%] transition-transform duration-300 shadow-lg cursor-pointer group"
-        onClick={handleGameClick}>
-        <div className="absolute inset-0 bg-center bg-cover opacity-40"
-          style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}/>
+        <div className="flex flex-col">
+            <div
+                className="relative aspect-[4496/6031] rounded-lg overflow-hidden hover:lg:translate-y-[-4%] transition-transform duration-300 shadow-lg cursor-pointer group"
+                onClick={handleGameClick}>
+                <div className="absolute inset-0 bg-center bg-cover opacity-40"
+                     style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}/>
 
-        <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 "
-          src={game?.image}
-          loading="lazy"
-          alt={game?.name}/>
+                <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 "
+                     src={game?.image}
+                     loading="lazy"
+                     alt={game?.name}/>
 
-        <HeartIcon className="absolute top-2 right-2 w-5 h-5 text-white opacity-80 hover:opacity-100" />
-
-        <div className="absolute bottom-0 w-full bg-gradient-to-t from-gray-800 via-gray-800/80 to-transparent p-2 text-center">
-          <p className="text-white text-sm font-bold truncate">{game?.name}</p>
-          <p className="text-gray-300 text-xs truncate">
-            {game?.provider_type}
-          </p>
+                <HeartIcon className="absolute top-2 right-2 w-5 h-5 text-white opacity-80 hover:opacity-100" />
+                {playLoading && (
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <Loading />
+                    </div>
+                )}
+            </div>
+            <div className="relative bottom-0 w-full text-[12px] pt-1 px-1">
+                <p className="text-white font-semibold truncate">{game?.name}</p>
+                <p className="text-[var(--grey-400)] truncate">
+                    {game?.provider_type}
+                </p>
+            </div>
         </div>
-        {playLoading && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <Loading />
-          </div>
-        )}
-      </div>
+
 
       <Dialog open={depositModal} onOpenChange={() => setDepositModal(false)}>
         <DialogContent className="lg:w-[450px] rounded-lg ">

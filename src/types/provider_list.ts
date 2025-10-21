@@ -2,7 +2,7 @@ export interface ProviderListRequest {
   device: 'mobile' | 'desktop';
   provider_general_codes?: string[];
   routeSlug?: string[];
-  category_ids?: number[];
+  subcategory_ids?: number[];
   limit?: number;
   offset?: number;
   order_by?: 'order' | 'name' | 'general_name' | 'created_at' | 'updated_at';

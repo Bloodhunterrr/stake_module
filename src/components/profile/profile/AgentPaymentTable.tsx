@@ -73,23 +73,19 @@ const AgentPaymentTable = () => {
     const {t} = useLingui();
 
     return (
-        <div className="space-y-3">
-            <div className=" gap-2 md:gap-4 items-center  md:px-0">
-                <div className={'w-full border-b border-b-popover pb-2 flex flex-row items-center justify-evenly'}>
+        <div className="flex flex-row max-[920px]:flex-col gap-6 w-full my-6">
+            <div className="sticky max-w-full min-w-[180px] h-max top-[20px] p-3 flex flex-col gap-2 bg-[var(--grey-700)] rounded-[8px] text-[var(--grey-100)]">
+                <div className={'min-[920px]:w-full flex flex-row min-[920px]:flex-col gap-2 items-center justify-evenly'}>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 min-[920px]:w-full h-8 text-left font-normal rounded-sm border-[var(--grey-400)] bg-transparent hover:bg-[var(--grey-900)] text-white hover:text-white">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                 {format(dates.startDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
-                                mode="single"
+                        <PopoverContent className="p-0 bg-white z-[100]">
+                            <Calendar className="w-full" mode="single"
                                 selected={dates.startDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({...prev, startDate: date}))
@@ -99,18 +95,14 @@ const AgentPaymentTable = () => {
                     <Popover>
 
                         <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
+                            <Button variant="outline"
+                                className="justify-start w-1/3 min-[920px]:w-full h-8 text-left font-normal rounded-sm border-[var(--grey-400)] bg-transparent hover:bg-[var(--grey-900)] text-white hover:text-white">
                                 <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                                 {format(dates.endDate, "dd/MM/yyyy")}
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
-                                mode="single"
+                        <PopoverContent className="p-0 bg-white z-[100]">
+                            <Calendar className="w-full" mode="single"
                                 selected={dates.endDate}
                                 onSelect={(date) =>
                                     date && setDates((prev) => ({...prev, endDate: date}))
@@ -124,10 +116,10 @@ const AgentPaymentTable = () => {
                             setPage(1);
                         }}>
                         <SelectTrigger
-                            className={"h-8! w-1/4 rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
+                            className={"h-8! w-1/4 min-[920px]:w-full rounded-xs bg-transparent hover:bg-[var(--grey-900)] data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold"}>
                             <SelectValue placeholder={t`Currencies`}/>
                         </SelectTrigger>
-                        <SelectContent className="border-none bg-background rounded-none">
+                        <SelectContent className={"border-none bg-[var(--grey-900)] rounded-md"}>
                             {currencyOptions?.map((currency, index) => (
                                 <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>
                                     {currency.label}
@@ -137,17 +129,16 @@ const AgentPaymentTable = () => {
                     </Select>
                 </div>
 
-                <div className="flex gap-2 py-1 justify-between">
+                <div className={"min-[920px]:w-full flex flex-row min-[920px]:flex-col items-center justify-between gap-2"}>
                     <Select value={selectedTransactionTypes[0] ?? ""}
                         onValueChange={(val: string) => {
                             setSelectedTransactionTypes(val !== 'null' ? [val] : []);
                             setPage(1);
                         }}>
-                        <SelectTrigger
-                            className={"h-8! w-full rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
+                        <SelectTrigger className={"h-8! w-1/2 min-[920px]:w-full rounded-xs py-0 bg-transparent hover:bg-[var(--grey-900)] data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold"}>
                             <SelectValue placeholder={t`All Actions`}/>
                         </SelectTrigger>
-                        <SelectContent className="border-none bg-background rounded-none">
+                        <SelectContent className="border-none bg-[var(--grey-900)] rounded-md">
                             {transactionTypeOptions.map((opt) => (
                                 <SelectItem key={opt.value} value={opt.value ?? 'null'}
                                             className={'focus:text-background text-accent rounded-none'}>
@@ -162,10 +153,10 @@ const AgentPaymentTable = () => {
                             setPage(1);
                         }}>
                         <SelectTrigger
-                            className={"h-8! w-full rounded-none py-0 bg-transparent hover:bg-transparent placeholder:text-white! border-none text-accent"}>
+                            className={"h-8! w-1/2 min-[920px]:w-full rounded-xs py-0 bg-transparent hover:bg-[var(--grey-900)] data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold"}>
                             <SelectValue placeholder={t`All Users`}/>
                         </SelectTrigger>
-                        <SelectContent className="border-none bg-background rounded-none">
+                        <SelectContent className="border-none bg-[var(--grey-900)] rounded-md">
                             {/* Use a unique, non-empty string for the "All Users" value */}
                             <SelectItem value="all" className={'focus:text-background text-accent rounded-none'}>
                                 <Trans>All Users</Trans>
@@ -179,123 +170,124 @@ const AgentPaymentTable = () => {
                     </Select>
                 </div>
 
-
             </div>
+            <div className="flex flex-col w-full">
+                <div className={'rounded-[8px] p-6 bg-[var(--grey-700)] w-full h-full'}>
+                    <div className={'flex cursor-pointer flex-col py-3 px-4 rounded-[8px] border border-[color:var(--grey-400)] bg-[var(--grey-600)] border-solid'}>
+                        <Table className="bg-transparent text-white w-full">
+                            <TableHeader className="w-full">
+                                <TableRow className={"text-md font-bold text-center !min-w-full w-full h-10 !bg-[var(--grey-600)] !text-[var(--grey-200)] border-none px-1"}>
+                                    <TableHead className="w-[25%] h-full !text-[var(--grey-200)] text-center">
+                                        <Trans>Time</Trans>
+                                    </TableHead>
+                                    <TableHead className="w-[25%] h-full !text-[var(--grey-200)] text-center">
+                                        <Trans>Amount</Trans>
+                                    </TableHead>
+                                    <TableHead className="w-[25%] h-full !text-[var(--grey-200)] text-center">
+                                        <Trans>Note</Trans>
+                                    </TableHead>
+                                    <TableHead className="w-[25%] h-full !text-[var(--grey-200)] text-center">
+                                        <Trans>Status</Trans>
+                                    </TableHead>
+                                </TableRow>
+                            </TableHeader>
 
-            <div className={'p-2'}>
-                <Table className="bg-popover text-accent-foreground">
-                    <TableHeader className="bg-black/10 hidden h-8">
-                        <TableRow>
-                            <TableHead className="h-8">
-                                <Trans>Time</Trans>
-                            </TableHead>
-                            <TableHead className="h-8">
-                                <Trans>Amount</Trans>
-                            </TableHead>
-                            <TableHead className="h-8 text-center">
-                                <Trans>Note</Trans>
-                            </TableHead>
-                            <TableHead className="h-8 text-center">
-                                <Trans>Status</Trans>
-                            </TableHead>
-                        </TableRow>
-                    </TableHeader>
-
-                    <TableBody>
-                        {isLoading ? (
-                            <TableRow>
-                                <TableCell colSpan={4} className="text-center py-4">
-                                    <Loading/>
-                                </TableCell>
-                            </TableRow>
-                        ) : error || data?.transactions.length === 0 ? (
-                            <TableRow>
-                                <TableCell colSpan={4} className="text-center py-4 text-accent-foreground">
-                                    {error ? t`No data available` : t`No history found.`}
-                                </TableCell>
-                            </TableRow>
-                        ) : (
-                            Object.entries(groupedTransactions).map(([date, txs]) => (
-                                <Fragment key={date}>
-                                    <TableRow className="bg-background  border-t border-popover hover:bg-background/80 text-white h-[30px]">
-                                        <TableCell colSpan={4} className="py-0 px-2 font-medium">
-                                            {date}
+                            <TableBody className={'cursor-pointer border-none bg-transparent text-white'}>
+                                {isLoading ? (
+                                    <TableRow>
+                                        <TableCell colSpan={4} className="text-center py-4">
+                                            <Loading/>
                                         </TableCell>
                                     </TableRow>
-
-                                    {txs.map((trx) => {
-                                        return (
-                                            <TableRow key={trx.id}
-                                                      className={'hover:bg-transparent text-accent text-xs border-b-destructive/80'}>
-                                                <TableCell>
-                                                    {format(new Date(trx.created_at), "HH:mm")}
-                                                </TableCell>
-                                                <TableCell className={'text-end'}>
-                                                    {trx.amount} {currencyList[trx.currency].symbol_native}
-                                                </TableCell>
-                                                <TableCell className="text-start text-card">
-                                                    {trx.note}
-                                                </TableCell>
-                                                <TableCell className="flex justify-center">
-                                                    {trx.confirmed ? (
-                                                        <CheckMarkIcon className="text-green-600 size-5"/>
-                                                    ) : (
-                                                        <CloseIcon className="text-red-600 size-5"/>
-                                                    )}
+                                ) : error || data?.transactions.length === 0 ? (
+                                    <TableRow>
+                                        <TableCell colSpan={4} className="text-center py-4 text-destructive">
+                                            {error ? t`No data available` : t`No history found.`}
+                                        </TableCell>
+                                    </TableRow>
+                                ) : (
+                                    Object.entries(groupedTransactions).map(([date, txs]) => (
+                                        <Fragment key={date}>
+                                            <TableRow className="text-md w-full bg-[var(--grey-900)] text-white px-1 h-10 border-b border-b-[var(--grey-400)] hover:bg-[var(--grey-900)]">
+                                                <TableCell colSpan={4} className="py-0 px-2 font-medium">
+                                                    {date}
                                                 </TableCell>
                                             </TableRow>
-                                        )
-                                    })}
-                                </Fragment>
-                            ))
+
+                                            {txs.map((trx) => {
+                                                return (
+                                                    <TableRow key={trx.id} className={'text-sm text-center h-10 px-1 border-b-[var(--grey-300)] hover:bg-transparent'}>
+                                                        <TableCell className={'w-[25%] h-full'}>
+                                                            {format(new Date(trx.created_at), "HH:mm")}
+                                                        </TableCell>
+                                                        <TableCell className={'w-[25%] h-full'}>
+                                                            {trx.amount} {currencyList[trx.currency].symbol_native}
+                                                        </TableCell>
+                                                        <TableCell className="w-[25%] h-full">
+                                                            {trx.note}
+                                                        </TableCell>
+                                                        <TableCell className="w-[25%] h-full">
+                                                            {trx.confirmed ? (
+                                                                <CheckMarkIcon className="text-green-600 animate-pulse size-5 mx-auto"/>
+                                                            ) : (
+                                                                <CloseIcon className="text-red-600 animate-pulse size-5 mx-auto"/>
+                                                            )}
+                                                        </TableCell>
+                                                    </TableRow>
+                                                )
+                                            })}
+                                        </Fragment>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                        {data && data.transactions.length > 0 && (
+                            <div className="flex flex-col gap-y-1 justify-between items-center bg-[var(--grey-700)] px-2 pb-3 pt-1 text-white mt-2">
+                                {/* Total Deposit row */}
+                                <div className="flex flex-row py-2 justify-between w-full border-b border-b-[var(--grey-300)]">
+                                    <span className="font-bold">
+                                        <Trans>
+                                            Total Deposit:
+                                        </Trans>
+                                    </span>
+                                    <span>{data.summary.total_deposit.toFixed(2)}</span>
+                                </div>
+
+                                {/* Total Withdrawal row */}
+                                <div className="flex flex-row justify-between w-full py-2 border-b border-b-[var(--grey-300)]">
+                                    <span className="font-bold">
+                                        <Trans>
+                                            Total Withdrawal:
+                                        </Trans>
+                                    </span>
+                                    <span>{data.summary.total_withdraw.toFixed(2)}</span>
+                                </div>
+
+                                {/* Total row */}
+                                <div className="flex flex-row justify-between w-full">
+                                    <span className="font-bold">
+                                        <Trans>
+                                            Total:
+                                        </Trans>
+                                    </span>
+                                    <span>
+                                        {(data.summary.total_deposit - data.summary.total_withdraw).toFixed(2)}
+                                    </span>
+                                </div>
+                            </div>
                         )}
-                    </TableBody>
-                </Table>
+                    </div>
+                </div>
+
                 {data && data.transactions.length > 0 && (
-                    <div className="flex flex-col gap-y-1 justify-between items-center bg-black/10 py-4 px-2 text-white">
-                        {/* Total Deposit row */}
-                        <div className="flex flex-row py-2 justify-between w-full border-b  border-b-destructive/80">
-                            <span className="font-bold">
-                                <Trans>
-                                    Total Deposit:
-                                </Trans>
-                            </span>
-                            <span>{data.summary.total_deposit.toFixed(2)}</span>
-                        </div>
-
-                        {/* Total Withdrawal row */}
-                        <div className="flex flex-row justify-between w-full py-2 border-b border-b-destructive/80">
-                            <span className="font-bold">
-                                <Trans>
-                                    Total Withdrawal:
-                                </Trans>
-                            </span>
-                            <span>{data.summary.total_withdraw.toFixed(2)}</span>
-                        </div>
-
-                        {/* Total row */}
-                        <div className="flex flex-row justify-between w-full">
-                            <span className="font-bold">
-                                <Trans>
-                                    Total:
-                                </Trans>
-                            </span>
-                            <span>
-                                {(data.summary.total_deposit - data.summary.total_withdraw).toFixed(2)}
-                            </span>
-                        </div>
+                    <div className="p-4">
+                        <PaginationComponent
+                            totalPages={data.pagination.last_page}
+                            currentPage={page}
+                            setPage={setPage}/>
                     </div>
                 )}
             </div>
-
-            {data && data.transactions.length > 0 && (
-                <div className="p-4">
-                    <PaginationComponent
-                        totalPages={data.pagination.last_page}
-                        currentPage={page}
-                        setPage={setPage}/>
-                </div>
-            )}
         </div>
     );
 };

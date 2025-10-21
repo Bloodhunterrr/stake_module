@@ -8,7 +8,7 @@ export interface GameListResponse {
 }
 
 export interface GameListRequest {
-    category_ids?: Array<number>;
+    subcategory_ids?: Array<number>;
     provider_general_codes?: string[];
     provider_ids?: Array<number>;
     device: 'mobile' | 'desktop',

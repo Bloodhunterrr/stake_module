@@ -18,12 +18,12 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 type LobbySliderProps = {
   categorySlug: string;
   subcategory: Subcategory;
-  providers: any;
+  providers: Provider[];
 };
 
 const MOBILE_GAME_LIMIT = 5;
 
-export const DesktopSlider = ({
+const DesktopSlider = ({
                                 categorySlug,
                                 subcategory,
                                 providers,
@@ -36,7 +36,7 @@ export const DesktopSlider = ({
 
 
   const { data, isLoading, isFetching } = useGetGameListQuery({
-    category_ids: subcategory?.id ? [subcategory.id] : [],
+    subcategory_ids: subcategory?.id ? [subcategory.id] : [],
     device: "desktop",
     offset,
     limit,
@@ -54,7 +54,7 @@ export const DesktopSlider = ({
     return width;
   };
     const width = useWindowWidth();
-    const columns = width >= 1410 ? 8 : width >= 1260 ? 7 : width >= 910 ? 6 : width >= 720 ? 5 : 4;
+    const columns = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : 4;
 
   const handlePrev = () => {
     setOffset((prev) => Math.max(prev - limit, 0));
@@ -70,7 +70,7 @@ export const DesktopSlider = ({
 
   const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
 
-  const subcategoryTranslations: Record<string, any> = {
+  const subcategoryTranslations: Record<string, string | React.ReactNode> = {
     "Megaways": <Trans>Megaways</Trans>,
     "Video Slots": <Trans>Video Slots</Trans>,
     "Instant Games": <Trans>Instant Games</Trans>,
@@ -86,22 +86,18 @@ export const DesktopSlider = ({
     "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
   };
 
-  console.log("providers", providers);
   return (
       <section className="w-full mb-8">
         <div className="flex w-full items-center justify-between">
-          <h2 className="font-bold mr-auto text-2xl px-3">
+          <h2 className="font-bold mr-auto text-xl leading-7 px-3">
             {subcategoryTranslations[subcategory.name] ?? subcategory.name}
           </h2>
           <div className="flex flex-row gap-2">
             {" "}
-            <button
-                onClick={() =>
+            <button onClick={() =>
                     navigate(`/${categorySlug}/games/${subcategory.slug}`)
-                }
-                disabled={isLoading}
-                className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50"
-            >
+                } disabled={isLoading}
+                className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50">
               <Trans>View all</Trans>
             </button>
             <Sheet>
@@ -110,10 +106,10 @@ export const DesktopSlider = ({
                 <Trans>Filter</Trans>
               </SheetTrigger>
 
-              <SheetContent className="border-none w-full border-r sm:max-w-sm"
-                  closeIconClassName="text-primary-foreground focus:ring-0">
+              <SheetContent className="border-none w-full border-r sm:max-w-sm h-[calc(100vh_-_128px)] top-[60px]"
+                closeClassName="text-primary-foreground focus:ring-0">
                 <SheetHeader className="h-26 flex items-center justify-end">
-                  <SheetTitle className="text-2xl font-semibold text-primary-foreground">
+                  <SheetTitle className="text-xl leading-7 font-Wbold text-primary-foreground">
                     <Trans>Filters</Trans>
                   </SheetTitle>
                 </SheetHeader>
@@ -145,8 +141,7 @@ export const DesktopSlider = ({
                                     )
                                 }
                                 variant="secondary"
-                                className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
-                            >
+                                className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase">
                               {p.name}
                             </Badge>
                         ))}
@@ -158,7 +153,7 @@ export const DesktopSlider = ({
                 <Dialog open={searchModal}
                     onOpenChange={() => setSearchModal(false)}>
                   <DialogContent showCloseButton={false}
-                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] !min-w-[calc(100%-60px)] !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
                     <Search setSearchModal={setSearchModal}
                         onCloseSearchModal={() => setSearchModal(false)}/>
                   </DialogContent>
@@ -185,33 +180,22 @@ export const DesktopSlider = ({
                 <CarouselItem
                     style={{ flexBasis: `${100 / columns}%` }}
                     key={game?.id ?? `skeleton-${index}`}
-                    className={`lg:hover:translate-y-[-4%] transition-all duration-300 py-3`}
-                >
+                    className={`lg:hover:translate-y-[-4%] transition-all duration-300 py-3`}>
                   <GameSlot game={game} isLoading={isLoading || isFetching} />
                 </CarouselItem>
             ))}
           </CarouselContent>
 
-          <CarouselPrevious
-              onClick={handlePrev}
-              disabled={Number(data?.offset ?? 0) === 0}
-              className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"
-          />
-          <CarouselNext
-              onClick={handleNext}
-              disabled={shouldNext}
-              className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"
-          />
+          <CarouselPrevious onClick={handlePrev} disabled={Number(data?.offset ?? 0) === 0}
+              className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"/>
+          <CarouselNext onClick={handleNext} disabled={shouldNext}
+              className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"/>
         </Carousel>
       </section>
   );
 };
 
-const MobileSlider = ({
-                        categorySlug,
-                        subcategory,
-                        providers,
-                      }: LobbySliderProps) => {
+const MobileSlider = ({categorySlug, subcategory, providers}: LobbySliderProps) => {
   const navigate = useNavigate();
   const [games, setGames] = useState<Game[]>([]);
   const [offset, setOffset] = useState(0);
@@ -219,7 +203,7 @@ const MobileSlider = ({
 
   const { data, isFetching } = useGetGameListQuery(
       {
-        category_ids: subcategory?.id ? [subcategory.id] : [],
+        subcategory_ids: subcategory?.id ? [subcategory.id] : [],
         device: "mobile",
         offset,
         limit: MOBILE_GAME_LIMIT,
@@ -264,12 +248,9 @@ const MobileSlider = ({
         <div className="flex items-center w-full justify-between mb-3">
           <h6 className="font-semibold">{subcategory.name}</h6>
           <div className="flex gap-2">
-            <button
-                onClick={() =>
+            <button onClick={() =>
                     navigate(`/${categorySlug}/games/${subcategory.slug}`)
-                }
-                className=" text-primary-foreground border rounded-full py-1 px-1.5 text-xs"
-            >
+                } className=" text-primary-foreground border rounded-full py-1 px-1.5 text-xs">
               {/*Deleted Totals*/}
               {/*{data?.total != null && <span>({data.total})</span>}*/}
               <Trans>View all</Trans>
@@ -279,20 +260,16 @@ const MobileSlider = ({
                 <Settings2 size={20} />
               </SheetTrigger>
 
-              <SheetContent
-                  className="border-none w-full border-r sm:max-w-sm"
-                  closeIconClassName="text-primary-foreground focus:ring-0"
-              >
+              <SheetContent className="border-none w-full border-r sm:max-w-sm h-[calc(100vh_-_128px)] top-[60px]"
+                closeClassName="text-primary-foreground focus:ring-0">
                 <SheetHeader className="h-26 flex items-center justify-end">
                   <SheetTitle className="text-2xl font-semibold text-primary-foreground">
                     <Trans>Filters</Trans>
                   </SheetTitle>
                 </SheetHeader>
 
-                <div
-                    onClick={() => setSearchModal(true)}
-                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition"
-                >
+                <div onClick={() => setSearchModal(true)}
+                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition">
                   <SearchIcon className="size-5 text-[var(--grey-300)]" />
                   <span className="font-semibold text-primary-foreground text-sm">
                   <Trans>Search</Trans>
@@ -316,10 +293,8 @@ const MobileSlider = ({
                                     navigate(
                                         `/${categorySlug}/provider/${p.general_code}`
                                     )
-                                }
-                                variant="secondary"
-                                className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase"
-                            >
+                                } variant="secondary"
+                                className="text-xs cursor-pointer bg-popover border-[1px] border-card/30 text-primary-foreground p-1 uppercase">
                               {p.name}
                             </Badge>
                         ))}
@@ -328,18 +303,11 @@ const MobileSlider = ({
                   </Accordion>
                 </div>
 
-                <Dialog
-                    open={searchModal}
-                    onOpenChange={() => setSearchModal(false)}
-                >
-                  <DialogContent
-                      showCloseButton={false}
-                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] !min-w-[calc(100%-60px)] !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]"
-                  >
-                    <Search
-                        setSearchModal={setSearchModal}
-                        onCloseSearchModal={() => setSearchModal(false)}
-                    />
+                <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
+                  <DialogContent showCloseButton={false}
+                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+                    <Search setSearchModal={setSearchModal}
+                        onCloseSearchModal={() => setSearchModal(false)}/>
                   </DialogContent>
                 </Dialog>
               </SheetContent>
@@ -347,16 +315,11 @@ const MobileSlider = ({
           </div>
         </div>
 
-        <div
-            ref={carouselRef}
-            onScroll={handleScroll}
-            className="flex gap-2 overflow-x-auto no-scrollbar snap-x"
-        >
+        <div ref={carouselRef} onScroll={handleScroll}
+            className="flex gap-2 overflow-x-auto no-scrollbar snap-x">
           {games.map((game, i) => (
-              <div
-                  key={`${game?.id ?? "skeleton"}-${i}`}
-                  className="flex-shrink-0 w-[150px] snap-start"
-              >
+              <div key={`${game?.id ?? "skeleton"}-${i}`}
+                  className="flex-shrink-0 w-[150px] snap-start">
                 <GameSlot game={game} isLoading={game === null} />
               </div>
           ))}
@@ -372,7 +335,7 @@ const MobileSlider = ({
   );
 };
 
-const LobbySlider = (props: LobbySliderProps) => {
+export default function LobbySlider(props: LobbySliderProps) {
   return (
       <section>
         <div className="hidden lg:flex">
@@ -384,5 +347,3 @@ const LobbySlider = (props: LobbySliderProps) => {
       </section>
   );
 };
-
-export default LobbySlider;

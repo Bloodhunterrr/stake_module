@@ -7,8 +7,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {cn} from "@/lib/utils.ts";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ triggerClassName }: { triggerClassName?: string }) => {
   const { i18n } = useLingui();
   const [currentLang, setCurrentLang] = useState<Language>(
     (localStorage.getItem("lang") as Language) || "en"
@@ -26,25 +27,24 @@ const LanguageSwitcher = () => {
 
   return (
     <Popover open={openState} onOpenChange={(value) => setOpenState(value)}>
-      <PopoverTrigger asChild >
-        <button className="flex items-center gap-2">
+      <PopoverTrigger asChild>
+        <button className={cn("flex items-center gap-2", triggerClassName)}>
           <span>{ALLOWED_LANGUAGES[currentLang].name}</span>
           <ChevronDown className="w-4 h-4" />
         </button>
       </PopoverTrigger>
 
-      <PopoverContent className="p-0  bg-muted  rounded-none shadow-md grid grid-cols-2">
+      <PopoverContent className={cn("p-0 py-2 bg-muted border-none shadow-md grid grid-cols-1 overflow-y-hidden rounded-md w-max mb-1\n" +
+                                    "before:content-[''] before:absolute before:-translate-x-2/4 before:w-0 before:h-0 before:border-x-[6px] before:border-x-transparent\n" +
+                                    "before:border-t-[6px] before:border-t-muted before:border-b-0 before:border-b-transparent before:border-solid before:left-1/2 before:bottom-[-6px] before:mb-1")}>
         {Object.entries(ALLOWED_LANGUAGES).map(([key, lang]) => (
-          <button
-            key={key}
-            className={`text-left px-3 py-2 rounded-none hover:bg-background/10 flex items-center justify-between ${
-              currentLang === key ? "text-green-800 bg-muted-foreground/30  " : ""
-            }`}
-            onClick={() => handleChange(key as Language)}
-          >
+          <button key={key}
+            className={`text-left w-max min-w-25 p-3 rounded-none hover:bg-[var(--grey-200)] flex items-center justify-between gap-2 cursor-pointer ${
+              currentLang === key ? "text-blue-500 hover:bg-muted " : ""
+            }`} onClick={() => handleChange(key as Language)}>
             <span>{lang.name}</span>
             {currentLang === key && (
-              <Check className="w-4 h-4 text-green-800" />
+              <Check className="w-4 h-4 text-blue-500" />
             )}
           </button>
         ))}

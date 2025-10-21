@@ -6,9 +6,7 @@ import { Trans } from "@lingui/react/macro";
 import type { Provider } from "@/types/main";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-
-const DESKTOP_LIMIT = 9;
-const MOBILE_LIMIT = 3;
+import {useEffect, useState} from "react";
 
 interface Props {
   providers: Provider[];
@@ -21,6 +19,19 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
   const { categorySlug } = useParams<{
     categorySlug?: string;
   }>();
+
+    const useWindowWidth = () => {
+        const [width, setWidth] = useState(window.innerWidth);
+        useEffect(() => {
+            const handleResize = () => setWidth(window.innerWidth);
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }, []);
+
+        return width;
+    };
+    const width = useWindowWidth();
+    const limit = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : 4;
 
   return (
     <section>
@@ -47,16 +58,21 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
         <Carousel
           opts={{
             align: "start",
-            slidesToScroll: isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT,
+            slidesToScroll: limit,
           }}
           className="w-full">
+            <div className="relative w-max">
+                <CarouselPrevious className="hidden md:flex"/>
+                <CarouselNext className="hidden md:flex"
+                              disabled = {
+                                  providers.length < (limit)
+                              } />
+            </div>
           <CarouselContent className="flex -ml-2">
             {providers.map((p) => (
               <CarouselItem
                 key={p.id}
-                className={`pl-2 ${
-                  isDesktop ? "basis-1/9" : "basis-[calc(100%/4)]" 
-                } cursor-pointer`}
+                className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 basis-1/4 cursor-pointer`}
                 onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
               >
                 <div className="flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px]">
@@ -70,12 +86,6 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-
-          <CarouselPrevious className="hidden md:flex"/>
-          <CarouselNext className="hidden md:flex"
-          disabled = {
-              providers.length < (isDesktop ? DESKTOP_LIMIT : MOBILE_LIMIT)
-          } />
         </Carousel>
       </div>
     </section>

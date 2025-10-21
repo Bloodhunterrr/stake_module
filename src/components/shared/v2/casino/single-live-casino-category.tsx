@@ -41,7 +41,7 @@ const LiveCasinoGameListRenderer = ({
     const [initialLoadDone, setInitialLoadDone] = useState(false);
 
     const listReq: GameListRequest = {
-        category_ids: categoryId ? [categoryId] : (categoriesIDs ? categoriesIDs : []),
+        subcategory_ids: categoryId ? [categoryId] : (categoriesIDs ? categoriesIDs : []),
         provider_ids: providerId ? [providerId] : (providersIDs ? providersIDs : []),
         offset,
         limit: GAME_LIMIT,

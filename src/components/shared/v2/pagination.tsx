@@ -46,7 +46,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
             }}
             className={`px-3 py-1 ${
               localPage === index + 1
-                ? "bg-card text-black font-semibold hover:bg-card/80"
+                ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >
@@ -68,7 +68,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
             }}
             className={`px-3 py-1 ${
               localPage === 1
-                ? "bg-card text-black font-semibold hover:bg-card/80"
+                ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >
@@ -98,7 +98,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
                 }}
                 className={`px-3 py-1 ${
                   localPage === i
-                    ? "bg-card text-black font-semibold hover:bg-card/80"
+                    ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -127,7 +127,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
             }}
             className={`px-3 py-1 ${
               localPage === totalPages
-                ? "bg-card text-black font-semibold hover:bg-card/80"
+                ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >

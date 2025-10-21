@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { cn } from "@/lib/utils.ts";
+import { CalendarIcon, X } from "lucide-react";
 import { useSearchParams } from "react-router";
 import { Button } from "@/components/ui/button.tsx";
 import { Fragment, useEffect, useState } from 'react';
@@ -7,11 +8,10 @@ import { useNavigate, useParams } from "react-router";
 import { Trans, useLingui } from "@lingui/react/macro";
 import { Calendar } from "@/components/ui/calendar.tsx";
 import Loading from "@/components/shared/v2/loading.tsx";
-import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
+import DateFilter from "@/components/shared/v2/date-filter.tsx";
 import { useLazyGetTransactionsQuery } from "@/services/authApi.ts";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
-import DateFilter from "@/components/shared/v2/date-filter.tsx";
 
 function SingleTicketPage() {
     const { userTransactionId } = useParams();
@@ -80,14 +80,14 @@ function SingleTicketPage() {
 
     return (
         <div className={'container mx-auto'}>
-            <div className={'h-10  flex  border-b border-popover items-center'}>
-                <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={()=>navigate(-1)}>
-                    <ChevronLeftIcon className={'w-10 '} />
-                </div>
-                <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
+            <div className={'h-10 w-full flex items-center mt-6'}>
+                <div className={'w-max text-2xl font-bold text-white text-center pr-10 space-x-1 flex gap-1 justify-center mr-auto'}>
                     <p className={"mr-1"}><Trans>Reports</Trans></p>
                     <span>-</span>
                     <p>{data?.user?.name}</p>
+                </div>
+                <div className={'w-10 h-full text-[var(--grey-200)] hover:text-white flex items-center'} onClick={()=>navigate(-1)}>
+                    <X className={'w-10'} />
                 </div>
             </div>
             <div className={' flex flex-col '}>
@@ -147,13 +147,13 @@ function SingleTicketPage() {
                     <Select value={selectedCurrencies} defaultValue={defaultUserWallet} onValueChange={(value) =>{
                         setSelectedCurrencies(value)
                     }}>
-                        <SelectTrigger className={"h-8!  w-1/4  rounded-none py-0 bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                        <SelectTrigger className={"h-8! w-1/4 min-[920px]:w-full rounded-xs bg-transparent hover:bg-[var(--grey-900)] data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold"}>
                             <SelectValue placeholder={t`Currency`}/>
                         </SelectTrigger>
-                        <SelectContent className={'border-none bg-background rounded-none'}>
+                        <SelectContent className={'border-none bg-[var(--grey-900)] rounded-md'}>
                             {
                                 currencyOptions?.map((currency : any , index : number) =>{
-                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-none'} value={currency.label}>{currency.label}</SelectItem>
+                                    return  <SelectItem key={index} className={'focus:text-background text-accent rounded-sm'} value={currency.label}>{currency.label}</SelectItem>
                                 })
                             }
                         </SelectContent>
@@ -166,9 +166,8 @@ function SingleTicketPage() {
                 />
             </div>
             <div className={'flex flex-col py-3'}>
-                <div
-                    className={'text-[11px] text-center h-7 items-center bg-white/70 text-black border-accent px-1 flex'}>
-                    <p className={'w-[30%] h-full flex items-center justify-start text-start shrink-0'}><Trans>Username</Trans></p>
+                <div className={'text-[11px] text-center h-7 items-center bg-white/70 text-black border-accent px-1 flex'}>
+                    <p className={'w-1/3 h-full flex items-center justify-start text-start shrink-0'}><Trans>Username</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Played</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Won</Trans></p>
                     <p className={'w-full h-full flex items-center justify-center'}><Trans>Net Win</Trans></p>
@@ -191,7 +190,7 @@ function SingleTicketPage() {
                                             navigate(`/account/reports/${item?.id}?${dates.startDate ? `startDate=${format(dates.startDate, "yyyy-MM-dd")}&` : ""}${dates.endDate ? `endDate=${format(dates.endDate, "yyyy-MM-dd")}` : ""}`);
                                         }
                                     }}>
-                                    <p className={'w-[30%] h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}</p>
+                                    <p className={'w-1/3 h-full flex items-center justify-start line-clamp-1 text-start shrink-0 truncate'}>{item?.name !== '' ? item.name : '------'}{" "}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_stake}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_won}</p>
                                     <p className={'w-full h-full flex items-center justify-center'}>{item.total_lost}</p>
@@ -202,7 +201,7 @@ function SingleTicketPage() {
                     <div className="text-[11px] w-full bg-white px-1 text-black text-center h-6 items-center border-b flex">
                         <p
                             className={cn(
-                                "w-[30%] h-full flex items-center  truncate justify-start text-start shrink-0",
+                                "w-1/3 h-full flex items-center  truncate justify-start text-start shrink-0",
                             )}
                         >
                             <span>Totals</span>

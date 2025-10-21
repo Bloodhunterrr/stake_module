@@ -5,12 +5,12 @@ import { ToastContainer } from "react-toastify";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useGetMainQuery } from "@/services/mainApi";
-import { useScrollToTop } from "@/hooks/useScrollToTop";
+import Sidebar from "./components/shared/v2/side-bar";
 import Header from "@/components/shared/v2/header.tsx";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+import Loading from "@/components/shared/v2/loading.tsx";
 import TitleUpdater from "@/components/title-updater.tsx";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Loading from "@/components/shared/v2/loading.tsx";
-import Sidebar from "./components/shared/v2/side-bar";
 
 const App: React.FC = () => {
     useUserInfo();
@@ -67,18 +67,16 @@ const App: React.FC = () => {
                     isDesktop={isDesktop}
                     sideBarOpen={sideBarOpen}
                     toggleSideBar={setSideBarOpen}
-                    isNoCategoryOrSportsbook={isNoCategoryOrSportsbook}
-                />
-
+                    isNoCategoryOrSportsbook={isNoCategoryOrSportsbook} />
                 {!isDesktop && isNoCategoryOrSportsbook && (
                     <Sidebar
                         isDesktop={isDesktop}
                         sideBarOpen={sideBarOpen}
-                        toggleSideBar={setSideBarOpen}
-                    />
+                        toggleSideBar={setSideBarOpen} />
                 )}
                 <Outlet />
             </main>
+
             <ToastContainer theme={theme} />
         </div>
     );

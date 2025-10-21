@@ -7,10 +7,10 @@ import { currencyList } from "@/utils/currencyList";
 import { formatDateToDMY } from "@/utils/formatDate";
 import { Trans, useLingui } from "@lingui/react/macro";
 import Loading from "@/components/shared/v2/loading.tsx";
+import { CalendarIcon, ChartNoAxesCombined, X } from "lucide-react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
 import { useLazyGetSingleUsersTicketsQuery } from "@/services/authApi";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
-import { CalendarIcon, ChartNoAxesCombined, ChevronLeftIcon } from "lucide-react";
 import { useEffect, useState, useMemo, Fragment, useRef, useCallback } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
@@ -251,14 +251,14 @@ const SingleUserBets = () => {
 
     return (
         <div className=" h-[calc(100vh-164px)] container mx-auto ">
-            <div className={'h-10  flex  border-b border-popover items-center'}>
-                <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={() => navigate(-1)}>
-                    <ChevronLeftIcon className={'w-10'} />
-                </div>
-                <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
+            <div className={'h-10 w-full flex items-center mt-6'}>
+                <div className={'w-max text-2xl font-bold text-white text-center pr-10 space-x-1 flex gap-1 justify-center mr-auto'}>
                     <p>Bets</p>
                     <span>-</span>
                     <p>{user}</p>
+                </div>
+                <div className={'w-10 h-full text-[var(--grey-200)] hover:text-white flex items-center'} onClick={()=>navigate(-1)}>
+                    <X className={'w-10'} />
                 </div>
             </div>
             {/* The scrollable container */}
@@ -312,7 +312,7 @@ const SingleUserBets = () => {
                         <Select value={selectedCurrencies} onValueChange={(value) => {
                             setSelectedCurrencies(value)
                         }}>
-                            <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                            <SelectTrigger className={"h-8! w-1/4  rounded-none  bg-transparent hover:bg-transparent  data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold "}>
                                 <SelectValue placeholder={"Currency"} />
                             </SelectTrigger>
                             <SelectContent className={'border-none bg-background rounded-none'}>
@@ -329,7 +329,7 @@ const SingleUserBets = () => {
                         <Select value={betType} onValueChange={(value) => {
                             setBetType(value)
                         }}>
-                            <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  placeholder:text-accent border-none text-accent "}>
+                            <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0  bg-transparent hover:bg-transparent  data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold "}>
                                 <SelectValue placeholder="Type" />
                             </SelectTrigger>
                             <SelectContent className={'border-none bg-background rounded-none'}>
@@ -343,7 +343,7 @@ const SingleUserBets = () => {
                         <Select value={selectedStatuses} onValueChange={(value) => {
                             setSelectedStatuses(value)
                         }}>
-                            <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   placeholder:text-accent border-none text-accent"}>
+                            <SelectTrigger className={"h-8!  w-1/2  rounded-none py-0   bg-transparent hover:bg-transparent   data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold"}>
                                 <SelectValue placeholder="Status" />
                             </SelectTrigger>
                             <SelectContent className={'border-none bg-background rounded-none'}>

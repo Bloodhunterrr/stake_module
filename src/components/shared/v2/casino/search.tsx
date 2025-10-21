@@ -14,7 +14,6 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   X,
-  ChevronDown,
   Search as SearchIcon,
   LoaderCircle,
 } from "lucide-react";
@@ -244,40 +243,37 @@ const Search = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            onClick={() => setProviderModal(true)}
-            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10">
-            <span className="flex items-center gap-2">
-              <Trans>Provider</Trans>
-            </span>
-            <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">
-              {selectedProviderItems.length > 0 && (
-                <Badge variant="secondary" className="rounded-full">
-                  {selectedProviderItems.length}
-                </Badge>
-              )}
-              <ChevronDown className="h-4 w-4 opacity-70" />
-            </div>
-          </Button>
+        {/*<div className="flex items-center gap-2">*/}
+        {/*  <Button variant="outline" onClick={() => setProviderModal(true)}*/}
+        {/*    className="min-w-[9rem] justify-between text-white border-2 border-[var(--grey-400)] hover:border-[var(--grey-300)] hover:bg-[var(--grey-600)] hover:text-white bg-[var(--grey-700)]">*/}
+        {/*    <span className="flex items-center gap-2">*/}
+        {/*      <Trans>Provider</Trans>*/}
+        {/*    </span>*/}
+        {/*    <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">*/}
+        {/*      {selectedProviderItems.length > 0 && (*/}
+        {/*        <Badge variant="secondary" className="rounded-full">*/}
+        {/*          {selectedProviderItems.length}*/}
+        {/*        </Badge>*/}
+        {/*      )}*/}
+        {/*      <ChevronDown className="h-4 w-4 opacity-70" />*/}
+        {/*    </div>*/}
+        {/*  </Button>*/}
 
-          <Button variant="outline"
-            onClick={() => setCategoryModal(true)}
-            className="min-w-[9rem] justify-between text-card border-card/30 hover:border-card hover:bg-background hover:text-card bg-background/10">
-            <span className="flex items-center gap-2">
-              <Trans>Category</Trans>
-            </span>
-            <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">
-              {selectedCategoryItems.length > 0 && (
-                <Badge variant="secondary" className="rounded-full">
-                  {selectedCategoryItems.length}
-                </Badge>
-              )}
-              <ChevronDown className="h-4 w-4 opacity-70" />
-            </div>
-          </Button>
-        </div>
+        {/*  <Button variant="outline" onClick={() => setCategoryModal(true)}*/}
+        {/*    className="min-w-[9rem] justify-between text-white border-2 border-[var(--grey-400)] hover:border-[var(--grey-300)] hover:bg-[var(--grey-600)] hover:text-white bg-[var(--grey-700)]">*/}
+        {/*    <span className="flex items-center gap-2">*/}
+        {/*      <Trans>Category</Trans>*/}
+        {/*    </span>*/}
+        {/*    <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">*/}
+        {/*      {selectedCategoryItems.length > 0 && (*/}
+        {/*        <Badge variant="secondary" className="rounded-full">*/}
+        {/*          {selectedCategoryItems.length}*/}
+        {/*        </Badge>*/}
+        {/*      )}*/}
+        {/*      <ChevronDown className="h-4 w-4 opacity-70" />*/}
+        {/*    </div>*/}
+        {/*  </Button>*/}
+        {/*</div>*/}
       </div>
 
       {selectedCount > 0 && (
@@ -315,19 +311,16 @@ const Search = ({
       )}
       <div className="flex flex-col items-start w-full container mx-auto gap-4">
           <div className="flex flex-row items-center px-2 gap-3">
-              <h3 className="text-md font-bold text-white">
+              <h3 className="text-md font-semibold text-white">
                   <Trans>Search results</Trans>
               </h3>
               {totalGames > 0 && (
-                  <Badge
-                      variant="outline"
-                      className="text-sm font-bold h-6 bg-foreground/50  border-foreground/50 select-none rounded-full text-card  px-1.5"
-                  >
+                  <Badge variant="outline"
+                      className="text-sm font-bold h-6 bg-[var(--grey-700)] border-2 border-[var(--grey-400)] select-none rounded-1 text-white py-1 px-1.5">
                       {totalGames}
                   </Badge>
               )}
           </div>
-
           <div className={"w-full flex flex-col items-center justify-center"}>
               <div className="p-3 w-full">
                   {isLoading ? (
@@ -354,7 +347,7 @@ const Search = ({
       <Dialog open={categoryModal} onOpenChange={setCategoryModal}>
         <DialogContent
           overlayClassName={"bg-black/80"}
-          className="lg:max-h-[80vh] h-full gap-0 rounded-none border-none overflow-hidden p-0 w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)]"
+          className="lg:max-h-[80vh] h-full gap-0 rounded-none border-none overflow-hidden p-0 w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full"
           closeButtonClassName="text-primary-foreground w-[20px] h-[20px]">
           <DialogHeader className="lg:px-6 h-14 lg:h-9 flex items-center justify-center pb-0 border-none lg:pt-5">
             <DialogTitle className="text-white/70">
@@ -378,7 +371,7 @@ const Search = ({
       <Dialog open={providerModal} onOpenChange={setProviderModal}>
         <DialogContent
           overlayClassName={"bg-black/80"}
-          className="lg:max-h-[80vh]  h-full gap-0 rounded-none border-none overflow-hidden p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)]"
+          className="lg:max-h-[80vh]  h-full gap-0 rounded-none border-none overflow-hidden p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full"
           closeButtonClassName="text-primary-foreground w-[20px] h-[20px]"
         >
           <DialogHeader className="lg:px-6 h-14 lg:h-9 flex items-center justify-center pb-0 border-none lg:pt-5">

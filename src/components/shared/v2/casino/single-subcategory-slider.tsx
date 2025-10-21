@@ -60,9 +60,9 @@ const SubcategorySlider = ({
   return (
     <>
       <div onClick={() => setSearchModal(true)}
-        className="flex h-10 min-h-10 mx-auto rounded-full w-full items-center gap-2 mt-4 cursor-pointer px-3 bg-popover hover:bg-popover/80 transition">
+        className="relative flex items-center gap-4 pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full mt-6">
         <SearchIcon className="size-5" />
-        <span className={"font-semibold text-sm"}>
+        <span className={"font-normal text-md text-white/40"}>
           <Trans>Search</Trans>
         </span>
       </div>
@@ -117,7 +117,7 @@ const SubcategorySlider = ({
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent
           showCloseButton={false}
-          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen overflow-y-auto shrink-0 p-0 min-w-screen top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] !min-w-[calc(100%-60px)] !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
           <Search setSearchModal={setSearchModal}
             onCloseSearchModal={() => setSearchModal(false)}/>
         </DialogContent>

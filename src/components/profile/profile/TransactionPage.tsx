@@ -7,11 +7,12 @@ import { useGetMainQuery } from "@/services/mainApi";
 import { Trans, useLingui } from "@lingui/react/macro";
 import { Calendar } from "@/components/ui/calendar.tsx";
 import DateFilter from "@/components/shared/v2/date-filter";
-import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
+import {CalendarIcon, TicketCheck, X} from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
 import { useLazyGetAllUsersTicketsQuery, useLazyGetTransactionsQuery } from "@/services/authApi.ts";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
+import Footer from "@/components/shared/v2/footer.tsx";
 
 interface Category {
     id: number;
@@ -177,8 +178,7 @@ function TicketPage() {
             );
         }
         return (
-            <div
-                className="text-xs text-center h-7 items-center border-popover px-1 border-b flex"
+            <div className="text-xs text-center h-10 items-center px-1 border-b border-b-[var(--grey-300)] flex"
                 onClick={() => {
                     if (type === 1) {
                         if (item.is_player) {
@@ -233,42 +233,21 @@ function TicketPage() {
                             );
                         }
                     }
-                }}
-            >
-                <p
-                    className={cn("w-1/3 h-full flex items-center truncate justify-start text-start shrink-0", {
-                        "w-1/4": showCommission,
-                    })}
-                >
+                }}>
+                <p className={'w-1/3 h-full flex items-center truncate line-clamp-1 justify-center text-start shrink-0'}>
                     <span>{item?.username}</span>
                 </p>
-                <div className="w-full h-full flex items-center justify-center">
-                    <p className="w-1/2 h-full flex items-center justify-end">
-                        {item?.total_stake.toFixed(2)}
-                    </p>
-                </div>
-                <div className="w-full h-full flex items-center justify-center">
-                    <p className="w-1/2 h-full flex items-center justify-end">
-                        {item?.total_won.toFixed(2)}
-                    </p>
-                </div>
+                <p className="w-full h-full flex items-center justify-center">{item?.total_stake.toFixed(2)}</p>
+                <p className="w-full h-full flex items-center justify-center">{item?.total_won.toFixed(2)}</p>
                 {showCommission && (
-                    <div className="w-full h-full flex items-center justify-center">
-                        <p className="w-1/2 h-full flex items-center justify-end">
-                            {item?.sport_commission?.toFixed(2)}
-                        </p>
-                    </div>
+                    <p className="w-full h-full flex items-center justify-center">{item?.sport_commission?.toFixed(2)}</p>
                 )}
-                <div className="w-full h-full flex items-center justify-center">
-                    <p
-                        className={cn("w-1/2 h-full flex items-center justify-end", {
-                            "text-destructive": item?.net_win && String(item?.net_win).includes("-"),
-                            "text-chart-2": item?.net_win && !String(item?.net_win).includes("-"),
-                        })}
-                    >
-                        {item?.net_win ? item?.net_win.toFixed(2) : "-"}
-                    </p>
-                </div>
+                <p className={cn("w-full h-full flex items-center justify-center", {
+                        "text-destructive": item?.net_win && String(item?.net_win).includes("-"),
+                        "text-chart-2": item?.net_win && !String(item?.net_win).includes("-"),
+                    })}>
+                    {item?.net_win ? item?.net_win.toFixed(2) : "-"}
+                </p>
             </div>
         );
     }
@@ -277,34 +256,30 @@ function TicketPage() {
         const showCommission = categoryName.toLowerCase().includes("sport");
         return (
             <>
-                <div className="text-[11px] text-center h-7 items-center bg-white/70 text-black border-accent px-1 flex">
-                    <p
-                        className={cn("w-1/3 flex items-center justify-start text-start shrink-0", {
-                            "w-1/4": showCommission,
-                        })}
-                    >
+                <div className="text-md font-bold text-center h-10 items-center justify-center bg-[var(--grey-600)] text-[var(--grey-200)] border-accent px-1 flex">
+                    <p className={cn("w-1/3 h-full flex items-center justify-center text-start shrink-0")}>
                         <Trans>Username</Trans>
                     </p>
-                    <p className="w-full flex items-center justify-center">
+                    <p className="w-full h-full flex items-center justify-center">
                         <Trans>Played</Trans>
                     </p>
-                    <p className="w-full flex items-center justify-center">
+                    <p className="w-full h-full flex items-center justify-center">
                         <Trans>Won</Trans>
                     </p>
                     {showCommission && (
-                        <p className="w-full flex items-center justify-center">
+                        <p className="w-full h-full flex items-center justify-center">
                             <Trans>Comm</Trans>
                         </p>
                     )}
-                    <p className="w-full flex items-center justify-center">
+                    <p className="w-full h-full flex items-center justify-center">
                         <Trans>Net Win</Trans>
                     </p>
                 </div>
 
-                <div className="cursor-pointer border-none bg-background/80 text-accent/60">
+                <div className="cursor-pointer border-none bg-transparent text-white">
                     {(isFetching && (clickedAccordion === type)) ? (
-                        <div className="text-xs animate-pulse text-center h-7 items-center px-1 border-b flex">
-                            <p className="w-[30%] h-full flex items-center justify-start text-start shrink-0"></p>
+                        <div className="text-xs text-center h-10 items-center px-1 border-b border-b-[var(--grey-300)] flex">
+                            <p className="w-1/3 h-full flex items-center justify-start text-start shrink-0"></p>
                             <p className="w-full h-full flex items-center justify-center"></p>
                             <p className="w-full h-full flex items-center justify-center"></p>
                             <p className="w-full h-full flex items-center justify-center text-center"></p>
@@ -323,8 +298,7 @@ function TicketPage() {
                                         key={index}
                                         item={item}
                                         dates={dates}
-                                        navigate={navigate}
-                                    />
+                                        navigate={navigate}/>
                                 );
                             } else {
                                 if (hasNoData && index === 0) {
@@ -347,218 +321,166 @@ function TicketPage() {
     }
 
     return (
-        <div className="min-h-screen container mx-auto">
-            <div className="h-10 flex border-b border-popover items-center">
-                <div
-                    className="w-10 h-full border-r text-muted border-popover flex items-center"
-                    onClick={() => navigate(-1)}
-                >
-                    <ChevronLeftIcon className="w-10" />
-                </div>
-                <div className="w-full text-muted text-center pr-10 space-x-1 flex justify-center">
-                    <p className="mr-1">
-                        <Trans>Reports</Trans>
-                    </p>
-                    <span>-</span>
-                    <p>{user?.name}</p>
-                </div>
-            </div>
-            <div className="flex flex-col gap-y-3">
-                <div className="w-full border-b border-b-popover py-2 flex flex-row items-center justify-evenly">
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
-                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
-                                {format(dates.startDate, "dd/MM/yyyy")}
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
-                                mode="single"
-                                selected={dates.startDate}
-                                onSelect={(date) => {
-                                    setSelectedDateFilter("");
-                                    if(date) {
-                                        setDates((prev : any) => ({ ...prev, startDate: date }));
-                                    }
-                                }}
-                            />
-                        </PopoverContent>
-                    </Popover>
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                            >
-                                <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
-                                {format(dates.endDate, "dd/MM/yyyy")}
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="p-0 bg-white">
-                            <Calendar
-                                className="w-full"
-                                mode="single"
-                                selected={dates.endDate}
-                                onSelect={(date) => {
-                                    setSelectedDateFilter("")
-                                    if(date){
-                                        setDates((prev : any) => ({ ...prev, endDate: date }));
-                                    }
-                                }}
-                            />
-                        </PopoverContent>
-                    </Popover>
-
-                    <Select
-                        value={selectedCurrencies}
-                        onValueChange={(value) => {
-                            setSelectedCurrencies(value);
-                        }}
-                    >
-                        <SelectTrigger
-                            className="h-8! w-1/4 rounded-none bg-transparent hover:bg-transparent placeholder:text-accent border-none text-accent"
-                        >
-                            <SelectValue placeholder={t`Currency`} />
-                        </SelectTrigger>
-                        <SelectContent className="border-none bg-background rounded-none">
-                            {filters?.wallets?.map((w: any, index: number) => (
-                                <SelectItem
-                                    key={index}
-                                    value={w.slug.toUpperCase()}
-                                    className="focus:text-background text-accent rounded-none capitalize"
-                                >
-                                    {w.slug.toUpperCase()}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-            </div>
-
-            <DateFilter
-                className="text-accent text-[12px]"
-                selected={selectedDateFilter}
-                onSelect={handleDateFilterSelect}
-            />
-            <div className="flex cursor-pointer pt-2 flex-col">
-                {Array.isArray(data) && data.length > 0 ? (
-                    category === "all" ? (
-                        <Accordion
-                            type="multiple"
-                            className="space-y-2"
-                            value={openAccordionItems}
-                            onValueChange={(vals) => setOpenAccordionItems(vals)}
-                        >
-                            {data.map((group : any) => {
-                                const totals = accordionData[group.id]?.totals;
-                                const showCommission = group.category.toLowerCase().includes("sport");
-                                return (
-                                    <AccordionItem
-                                        key={group.id}
-                                        value={String(group.id)}
-                                        onClick={()=>{
-                                            setClickedAccordion(group.id)
-                                        }}
-                                        className="border-t  border-b-transparent bg-popover"
-                                    >
-                                        <AccordionTrigger
-                                            className="hover:no-underline px-3 h-11 py-0 flex items-center cursor-pointer"
-                                            onClick={() => handleToggleCategory(group)}
-                                        >
-                                            {group.category}
-                                        </AccordionTrigger>
-                                        <AccordionContent className="pb-0">
-                                            <ReportTable
-                                                categoryName={group.category}
-                                                type={group.id}
-                                                group={group.data ? group : { data: accordionData[group.id] }}
-                                                dates={dates}
-                                                navigate={navigate}
-                                                isFetching={isFetching}
-                                            />
-                                            {/* TOTALS */}
-                                            <div className="text-[11px] w-full bg-white text-black text-center h-6 items-center px-1 border-b flex">
-                                                <p
-                                                    className={cn(
-                                                        "w-1/3 h-full flex items-center truncate justify-start text-start shrink-0",
-                                                        {
-                                                            "w-1/4": showCommission,
-                                                        }
-                                                    )}
-                                                >
-                                                    <span>Totals</span>
-                                                </p>
-                                                <div className="w-full h-full flex items-center justify-center">
-                                                    <p className="w-1/2 h-full flex items-center justify-end">
-                                                        {totals?.total_stake?.toFixed(2) ?? "0.00"}
-                                                    </p>
-                                                </div>
-                                                <div className="w-full h-full flex items-center justify-center">
-                                                    <p className="w-1/2 h-full flex items-center justify-end">
-                                                        {totals?.total_won?.toFixed(2) ?? "0.00"}
-                                                    </p>
-                                                </div>
-                                                {showCommission && (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <p className="w-1/2 h-full flex items-center justify-end">
-                                                            {totals?.sport_commission?.toFixed(2) ?? "0.00"}
-                                                        </p>
-                                                    </div>
-                                                )}
-                                                <div className="w-full h-full flex items-center justify-center">
-                                                    <p
-                                                        className={cn("w-1/2 h-full flex items-center justify-end", {
-                                                            "text-destructive": totals?.net_win && String(totals?.net_win).includes("-"),
-                                                            "text-chart-2": totals?.net_win && !String(totals?.net_win).includes("-"),
-                                                        })}
-                                                    >
-                                                        {totals?.net_win ? totals?.net_win.toFixed(2) : "-"}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                );
-                            })}
-                        </Accordion>
-                    ) : (
-                        <Accordion
-                            type="single"
-                            value={openAccordionItems[0]}
-                            onValueChange={(val) => setOpenAccordionItems(val ? [val] : [])}
-                        >
-                            {data
-                                .filter((group) => String(group.id) === category)
-                                .map((group) => (
-                                    <AccordionItem key={group.id} value={String(group.id)} className="border-none">
-                                        <AccordionTrigger onClick={() => handleToggleCategory(group)}>
-                                            {group.category}
-                                        </AccordionTrigger>
-                                        <AccordionContent>
-                                            <ReportTable
-                                                type={group.id}
-                                                categoryName={group.category}
-                                                group={group.data ? group : { data: accordionData[group.id] }}
-                                                dates={dates}
-                                                navigate={navigate}
-                                                isFetching={isFetching}
-                                            />
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                ))}
-                        </Accordion>
-                    )
-                ) : (
-                    <div className="text-center text-xs py-3 text-muted-foreground">
-                        <Trans>No categories available</Trans>
+        <div className="min-h-screen w-full bg-[var(--grey-600)] flex flex-col justify-between">
+            <div className="min-h-max w-[calc(94dvw_-_60px)] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto flex flex-col items-center py-0">
+                <div className={"h-10 w-full flex items-center mt-6"}>
+                    <div className={'w-max text-2xl font-bold text-white text-center pr-10 space-x-1 flex gap-1 justify-center mr-auto'}>
+                        <TicketCheck className={'ml-1 mt-0.5 size-8 text-[var(--grey-100)]'}/>
+                        <p className={"mr-1"}><Trans>Reports</Trans></p>
+                        <span>-</span>
+                        <p>{user?.name}</p>
                     </div>
-                )}
+                    <div className={'w-10 h-full text-[var(--grey-200)] hover:text-white flex items-center'} onClick={()=>navigate(-1)}>
+                        <X className={'w-10'} />
+                    </div>
+                </div>
+                <div className="flex flex-row max-[920px]:flex-col gap-6 w-full my-6">
+                    <div className={"sticky max-w-full min-w-[180px] h-max top-[20px] p-3 flex flex-col gap-2 bg-[var(--grey-700)] rounded-[8px] text-[var(--grey-100)]"}>
+                        <div className="min-[920px]:w-full flex flex-row min-[920px]:flex-col gap-2 items-center justify-evenly">
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button variant="outline"
+                                        className="justify-start w-1/3 min-[920px]:w-full h-8 text-left font-normal rounded-sm border-[var(--grey-400)] bg-transparent hover:bg-[var(--grey-900)] text-white hover:text-white">
+                                        <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
+                                        {format(dates.startDate, "dd/MM/yyyy")}
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="p-0 bg-white z-[100]">
+                                    <Calendar className="w-full" mode="single"
+                                        selected={dates.startDate}
+                                        onSelect={(date) => {
+                                            setSelectedDateFilter("");
+                                            if(date) {
+                                                setDates((prev : any) => ({ ...prev, startDate: date }));
+                                            }
+                                        }}/>
+                                </PopoverContent>
+                            </Popover>
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button variant="outline"
+                                        className="justify-start w-1/3 min-[920px]:w-full h-8 text-left font-normal rounded-sm border-[var(--grey-400)] bg-transparent hover:bg-[var(--grey-900)] text-white hover:text-white">
+                                        <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
+                                        {format(dates.endDate, "dd/MM/yyyy")}
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="p-0 bg-white z-[100]">
+                                    <Calendar className="w-full" mode="single"
+                                        selected={dates.endDate}
+                                        onSelect={(date) => {
+                                            setSelectedDateFilter("")
+                                            if(date){
+                                                setDates((prev : any) => ({ ...prev, endDate: date }));
+                                            }
+                                        }}/>
+                                </PopoverContent>
+                            </Popover>
+
+                            <Select value={selectedCurrencies} onValueChange={(value) => {
+                                    setSelectedCurrencies(value);
+                                }}>
+                                <SelectTrigger className="h-8! w-1/4 min-[920px]:w-full rounded-xs bg-transparent hover:bg-[var(--grey-900)] data-[placeholder]:text-white placeholder:text-white border-none text-white font-semibold">
+                                    <SelectValue placeholder={t`Currency`} />
+                                </SelectTrigger>
+                                <SelectContent className="border-none bg-[var(--grey-900)] rounded-md">
+                                    {filters?.wallets?.map((w: any, index: number) => (
+                                        <SelectItem key={index} value={w.slug.toUpperCase()}
+                                            className="focus:text-background text-accent rounded-sm capitalize">
+                                            {w.slug.toUpperCase()}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
+                    <div className="flex flex-col w-full gap-y-2">
+                        <DateFilter className="text-accent text-[12px]" selected={selectedDateFilter} onSelect={handleDateFilterSelect}/>
+                        <div className="flex cursor-pointer pb-2 flex-col">
+                            {Array.isArray(data) && data.length > 0 ? (
+                                category === "all" ? (
+                                    <Accordion type="multiple" className="space-y-2" value={openAccordionItems}
+                                               onValueChange={(vals) => setOpenAccordionItems(vals)}>
+                                        {data.map((group : any) => {
+                                            const totals = accordionData[group.id]?.totals;
+                                            const showCommission = group.category.toLowerCase().includes("sport");
+                                            return (
+                                                <AccordionItem key={group.id} value={String(group.id)}
+                                                               onClick={()=>{
+                                                                   setClickedAccordion(group.id)
+                                                               }} className="border-t border-t-[var(--grey-300)] border-b-transparent bg-[var(--grey-700)]">
+                                                    <AccordionTrigger className="hover:no-underline px-3 h-11 py-0 flex items-center cursor-pointer"
+                                                                      onClick={() => handleToggleCategory(group)}>
+                                                        {group.category}
+                                                    </AccordionTrigger>
+                                                    <AccordionContent className="flex cursor-pointer flex-col py-3 px-4 rounded-[8px] border border-[color:var(--grey-400)] bg-[var(--grey-600)] border-solid mx-2 mb-2">
+                                                        <ReportTable categoryName={group.category} type={group.id}
+                                                                     group={group.data ? group : { data: accordionData[group.id] }}
+                                                                     dates={dates} navigate={navigate}
+                                                                     isFetching={isFetching}/>
+                                                        {/* TOTALS */}
+                                                        <div className="text-md w-full bg-[var(--grey-900)] text-white px-1 text-center h-10 items-center border-b border-b-[var(--grey-400)] flex">
+                                                            <p className={cn("w-1/3 h-full flex items-center truncate justify-center text-start shrink-0")}>
+                                                                <span>Totals</span>
+                                                            </p>
+                                                            <div className="w-full h-full flex items-center justify-center">
+                                                                <p className="w-1/2 h-full flex items-center justify-center">
+                                                                    {totals?.total_stake?.toFixed(2) ?? "0.00"}
+                                                                </p>
+                                                            </div>
+                                                            <div className="w-full h-full flex items-center justify-center">
+                                                                <p className="w-1/2 h-full flex items-center justify-center">
+                                                                    {totals?.total_won?.toFixed(2) ?? "0.00"}
+                                                                </p>
+                                                            </div>
+                                                            {showCommission && (
+                                                                <div className="w-full h-full flex items-center justify-center">
+                                                                    <p className="w-1/2 h-full flex items-center justify-center">
+                                                                        {totals?.sport_commission?.toFixed(2) ?? "0.00"}
+                                                                    </p>
+                                                                </div>
+                                                            )}
+                                                            <div className="w-full h-full flex items-center justify-center">
+                                                                <p className={cn("w-1/2 h-full flex items-center justify-center", {
+                                                                    "text-destructive": totals?.net_win && String(totals?.net_win).includes("-"),
+                                                                    "text-chart-2": totals?.net_win && !String(totals?.net_win).includes("-"),
+                                                                })}>
+                                                                    {totals?.net_win ? totals?.net_win.toFixed(2) : "-"}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                            );
+                                        })}
+                                    </Accordion>
+                                ) : (
+                                    <Accordion type="single" value={openAccordionItems[0]}
+                                               onValueChange={(val) => setOpenAccordionItems(val ? [val] : [])}>
+                                        {data.filter((group) => String(group.id) === category)
+                                            .map((group) => (
+                                                <AccordionItem key={group.id} value={String(group.id)} className="border-none">
+                                                    <AccordionTrigger onClick={() => handleToggleCategory(group)}>
+                                                        {group.category}
+                                                    </AccordionTrigger>
+                                                    <AccordionContent>
+                                                        <ReportTable type={group.id} categoryName={group.category}
+                                                                     group={group.data ? group : { data: accordionData[group.id] }}
+                                                                     dates={dates} navigate={navigate} isFetching={isFetching}/>
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                            ))}
+                                    </Accordion>
+                                )
+                            ) : (
+                                <div className="text-center text-xs py-3 text-muted-foreground">
+                                    <Trans>No categories available</Trans>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
+            <Footer />
         </div>
     );
 }

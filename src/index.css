@@ -170,6 +170,8 @@
     --border-radius-lg: 4rem;
     --border-radius-0-15: .15rem;
 
+    --tw-leading: calc(2rem - var(--border-thin));
+
     --text-size-10xl: 7rem;
     --text-size-9xl: 6.25rem;
     --text-size-8xl: 5.5rem;
@@ -336,6 +338,32 @@
     }
     .closed {
         @apply cursor-pointer;
+    }
+    .scrollX {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--grey-400)transparent;
+        overflow: auto hidden;
+        transform: translate(0);
+        -moz-transform: none !important;
+    }
+
+    .scrollX::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+    }
+
+    .scrollY::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: var(--grey-400);
+    }
+
+    .scrollX::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: var(--grey-400);
+    }
+
+    .scrollX::-webkit-scrollbar {
+        height: var(--scrollbar-size);
     }
   /* Hide scrollbar for Chrome, Safari and Opera */
   /*.no-scrollbar::-webkit-scrollbar {*/

@@ -211,10 +211,8 @@ const SubcategoryGames = () => {
                 </SheetTrigger>
               </div>
 
-              <SheetContent
-                className="border-none w-full border-r sm:max-w-sm"
-                closeIconClassName="text-primary-foreground focus:ring-0"
-              >
+              <SheetContent className="border-none w-full border-r sm:max-w-sm h-[calc(100vh_-_128px)] top-[60px]"
+                closeClassName="text-primary-foreground focus:ring-0">
                 <SheetHeader className="h-26 flex items-center justify-end">
                   <SheetTitle className="text-2xl font-semibold text-primary-foreground">
                     <Trans>Filters</Trans>
@@ -269,7 +267,7 @@ const SubcategoryGames = () => {
                   onOpenChange={() => setSearchModal(false)}>
                   <DialogContent
                     showCloseButton={false}
-                    className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+                    className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
                     <Search
                       setSearchModal={setSearchModal}
                       onCloseSearchModal={() => setSearchModal(false)}

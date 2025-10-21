@@ -7,12 +7,19 @@ import { Trans, useLingui } from "@lingui/react/macro";
 import { Calendar } from "@/components/ui/calendar.tsx";
 import { formatDateToDMY } from "@/utils/formatDate.ts";
 import Loading from "@/components/shared/v2/loading.tsx";
-import { CalendarIcon, ChevronLeftIcon } from "lucide-react";
+import { CalendarIcon, X } from "lucide-react";
 import { MultiSelect } from "@/components/ui/multi-select.tsx";
 import type { TransactionResponse, UsersResponse } from "@/types/auth.ts";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
 import { useLazyGetSingleUserQuery, useLazyGetSingleUserTransactionQuery } from '@/services/authApi.ts';
 
+// interface TransactionApiResponse {
+//     data?: TransactionResponse['data'];
+// }
+//
+// interface UserApiResponse {
+//     data?: UsersResponse['user'];
+// }
 
 function UserListRender() {
     const { userId } = useParams()
@@ -68,39 +75,44 @@ function UserListRender() {
         return null;
     }
 
+    interface TransactionItem {
+        created_at: string;
+        in_amount: number | null;
+        out_amount: number | null;
+        user: string;
+        raw_data: {
+            type_raw: string;
+        };
+    }
+
 
     return (
        <div className={cn("min-h-screen text-muted-foreground bg-popover ")}>
-            <div className={'h-10  flex  border-b border-popover items-center'}>
-                <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={()=>navigate(-1)}>
-                    <ChevronLeftIcon className={'w-10 '} />
-                </div>
-                <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
+            <div className={'h-10 w-full flex items-center mt-6'}>
+                <div className={'w-max text-2xl font-bold text-white text-center pr-10 space-x-1 flex gap-1 justify-center mr-auto'}>
                     <p className={"mr-1"}><Trans>Transactions</Trans></p>
                     <span>-</span>
                     <p>{user?.username ?? ''}</p>
+                </div>
+                <div className={'w-10 h-full text-[var(--grey-200)] hover:text-white flex items-center'} onClick={()=>navigate(-1)}>
+                    <X className={'w-10'} />
                 </div>
             </div>
             <div className="grid grid-cols-3 container mx-auto py-3 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button
-                            variant="outline"
-                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                        >
+                        <Button variant="outline"
+                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                             <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                             {format(dates.startDate, "dd/MM/yyyy")}
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="p-0 bg-white">
-                        <Calendar
-                            className="w-full"
-                            mode="single"
+                        <Calendar className="w-full" mode="single"
                             selected={dates.startDate}
                             onSelect={(date) =>
                                 date && setDates((prev) => ({ ...prev, startDate: date }))
-                            }
-                        />
+                            }/>
                     </PopoverContent>
                 </Popover>
 
@@ -129,7 +141,7 @@ function UserListRender() {
                 {currencyOptions && (
                     <MultiSelect
                         options={currencyOptions}
-                        className={'h-8 rounded-none bg-muted hover:bg-muted  placeholder:text-accent-foreground'}
+                        className={'h-8 rounded-none bg-muted hover:bg-muted  data-[placeholder]:text-white placeholder:text-white-foreground'}
                         value={selectedCurrencies}
                         onValueChange={setSelectedCurrencies}
                         placeholder={t`All currencies`}
@@ -145,7 +157,7 @@ function UserListRender() {
                 <div className={'px-2'}>
                     <div className={'bg-popover'}>
                         {
-                            data && data.length > 0 ? data?.map((singleTransaction : any)  => {
+                            data && data.length > 0 ? data?.map((singleTransaction : TransactionItem)  => {
                                 const {created_at , in_amount , out_amount ,  user , raw_data} = singleTransaction
                                 return (
                                     <div className={'flex flex-row py-2 border-b border-b-muted-foreground pl-2 justify-between'}>

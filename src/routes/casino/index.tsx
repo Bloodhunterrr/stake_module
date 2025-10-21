@@ -7,100 +7,114 @@ import Jackpot from "@/components/shared/v2/jackpot";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
 import ProviderSliderFromApi from "@/components/casino/provider-slider-from-api";
 import LobbySlider from "@/components/casino/lobbySlider";
+import CategoriesSlider from "@/routes/casino/categoriesSlider.tsx";
+import {useState} from "react";
 
-const Lobby = () => {
-  const { data, error, isLoading } = useGetMainQuery();
-  const { categorySlug } = useParams();
-  const navigate = useNavigate();
+export default function Lobby() {
+    const { data, error, isLoading } = useGetMainQuery();
+    const { categorySlug } = useParams();
+    const navigate = useNavigate();
+    const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null);
 
-  const {
-    data: providerData,
-    isLoading: isProvidersLoading,
-    isFetching: isProvidersFetching,
-  } = useGetProviderListQuery({
-    device: "desktop",
-    offset: 0,
-    limit: 300,
-    order_by: "order",
-    order_dir: "asc",
-    ...(categorySlug ? { routeSlug: [categorySlug] } : {}),
-  });
+    const {
+        data: providerData,
+        isLoading: isProvidersLoading,
+        isFetching: isProvidersFetching,
+    } = useGetProviderListQuery({
+        device: "desktop",
+        offset: 0,
+        limit: 300,
+        order_by: "order",
+        order_dir: "asc",
+        ...(categorySlug ? { routeSlug: [categorySlug] } : {}),
+    });
 
-  if (isLoading || error || isProvidersLoading || isProvidersFetching) {
-    return null;
-  }
+    const handleSubcategoryClick = (subcategoryId: string | null) => {
+        setActiveSubcategory(subcategoryId);
+    };
 
-  if (!data || !Array.isArray(data)) {
-    navigate("/");
-    return null;
-  }
+    if (isLoading || error || isProvidersLoading || isProvidersFetching) {
+        return null;
+    }
 
-  const isValidCategory = data.some((el) => el.slug === categorySlug);
+    if (!data || !Array.isArray(data)) {
+        navigate("/");
+        return null;
+    }
 
-  if (!isValidCategory && categorySlug) {
-    navigate("/");
-  }
+    const isValidCategory = data.some((el) => el.slug === categorySlug);
 
-  const activeCategory = data.find((el) => el.slug === categorySlug) ?? data[0];
+    if (!isValidCategory && categorySlug) {
+        navigate("/");
+    }
 
-  if (activeCategory?.is_sportbook) {
-    return <Sport />;
-  }
+    const activeCategory = data.find((el) => el.slug === categorySlug) ?? data[0];
 
-  const categoryProviders = providerData?.providers ?? [];
+    if (activeCategory?.is_sportbook) {
+        return <Sport />;
+    }
 
-  return (
-    <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 px-3 gap-5 flex flex-col w-[calc(94dvw_-_60px)] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
-      <section className="w-full mx-auto">
-        <SingleSubcategorySlider
-          data={data.map((category) => ({
-            [category.slug]: {
-              subcategories: category.subcategories || [],
-            },
-          }))}
-        />
-      </section>
+    const categoryProviders = providerData?.providers ?? [];
 
+    const filteredSubcategories = activeSubcategory
+        ? activeCategory?.subcategories.filter(sub => sub.id.toString() === activeSubcategory)
+        : activeCategory?.subcategories;
 
-      {activeCategory && <ProviderSliderFromApi categorySlug={categorySlug} />}
+    return (
+        <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 px-3 gap-5 flex flex-col w-[calc(94dvw_-_60px)] max-md:w-[94dvw] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
+            <section className="w-full mx-auto">
+                <SingleSubcategorySlider data={data.map((category) => ({
+                    [category.slug]: {
+                        subcategories: category.subcategories || [],
+                    },
+                }))} />
+            </section>
 
-      <section className="w-full space-y-4 mx-auto">
-        <LobbyBannerSlider />
-      </section>
+            <section className="w-full space-y-4 mx-auto">
+                <LobbyBannerSlider />
+            </section>
 
-      {categorySlug === "casino" && <Jackpot />}
+            {categorySlug === "casino" && <Jackpot />}
 
-      <div>
-        {activeCategory?.subcategories.map((subcategory, index) => {
-          const middleIndex = Math.floor(
-            activeCategory.subcategories.length / 2
-          );
+            <CategoriesSlider categories={activeCategory}
+                onSubcategoryClick={handleSubcategoryClick}
+                activeSubcategory={activeSubcategory}
+                casino={categorySlug}/>
 
-          if (index === middleIndex - 1) {
-            return (
-              <section className="conteiner mx-auto">
-                <LobbySlider
-                  categorySlug={categorySlug ?? data[0]?.slug}
-                  subcategory={subcategory}
-                  providers={categoryProviders}
-                />
-                <InstallAppBanner key="install-app-banner" />
-              </section>
-            );
-          }
+            <div>
+                {filteredSubcategories?.map((subcategory, index) => {
+                    const middleIndex = Math.floor(
+                        activeCategory.subcategories.length / 2
+                    );
 
-          return (
-            <LobbySlider
-              key={subcategory.id}
-              providers={categoryProviders}
-              categorySlug={categorySlug ?? data[0]?.slug}
-              subcategory={subcategory}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
+                    // Only show InstallAppBanner when showing all categories and at the middle
+                    const shouldShowInstallAppBanner = !activeSubcategory && index === middleIndex - 1;
+
+                    if (shouldShowInstallAppBanner) {
+                        return (
+                            <section className="container mx-auto" key={`section-${subcategory.id}`}>
+                                <LobbySlider
+                                    key={subcategory.id}
+                                    categorySlug={categorySlug ?? data[0]?.slug}
+                                    subcategory={subcategory}
+                                    providers={categoryProviders}/>
+                                <InstallAppBanner key="install-app-banner" />
+                            </section>
+                        );
+                    }
+
+                    return (
+                        <LobbySlider
+                            key={subcategory.id}
+                            providers={categoryProviders}
+                            categorySlug={categorySlug ?? data[0]?.slug}
+                            subcategory={subcategory}
+                        />
+                    );
+                })}
+            </div>
+
+            {activeCategory && <ProviderSliderFromApi categorySlug={categorySlug} />}
+        </div>
+    );
 };
-
-export default Lobby;

@@ -12,7 +12,7 @@ import { Calendar } from "@/components/ui/calendar.tsx";
 import Loading from "@/components/shared/v2/loading.tsx";
 import { MultiSelect } from "@/components/ui/multi-select.tsx";
 import { useLazyGetReportsQuery } from "@/services/authApi.ts";
-import { CalendarIcon, ChevronLeftIcon, Search } from "lucide-react";
+import {CalendarIcon, Search, X} from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover.tsx";
 
 
@@ -66,12 +66,12 @@ function Reports() {
 
     return (
         <div className={cn("min-h-screen text-muted-foreground bg-popover ")}>
-            <div className={'h-10  flex  border-b border-popover items-center'}>
-                <div className={'w-10 h-full border-r text-muted border-popover flex items-center'} onClick={()=>navigate(-1)}>
-                    <ChevronLeftIcon className={'w-10 '} />
-                </div>
-                <div className={'w-full text-muted text-center pr-10 space-x-1 flex justify-center'}>
+            <div className={'h-10 w-full flex items-center mt-6'}>
+                <div className={'w-max text-2xl font-bold text-white text-center pr-10 space-x-1 flex gap-1 justify-center mr-auto'}>
                     <p><Trans>Reports</Trans></p>
+                </div>
+                <div className={'w-10 h-full text-[var(--grey-200)] hover:text-white flex items-center'} onClick={()=>navigate(-1)}>
+                    <X className={'w-10'} />
                 </div>
             </div>
             <div className="grid grid-cols-3 container mx-auto py-3 md:grid-cols-4 gap-2 md:gap-4 items-center px-4 md:px-0">
@@ -113,7 +113,7 @@ function Reports() {
 
                 {currencyOptions && (
                     <MultiSelect options={currencyOptions}
-                        className={'h-8 rounded-none bg-muted hover:bg-muted placeholder:text-accent-foreground'}
+                        className={'h-8 rounded-none bg-muted hover:bg-muted data-[placeholder]:text-white placeholder:text-white-foreground'}
                         value={selectedCurrencies}
                         onValueChange={setSelectedCurrencies}
                         placeholder={t`All currencies`}

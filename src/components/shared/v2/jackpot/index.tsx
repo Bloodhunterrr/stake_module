@@ -99,7 +99,7 @@ export default function Jackpot() {
                 `}
             </style>
             <Card
-                className="relative w-full  overflow-hidden rounded-[2rem] border-none bg-zinc-900 lg:p-6 px-6 pt-3  md:p-8">
+                className="relative w-full  overflow-hidden rounded-[2rem] border-none bg-[var(--grey-800)] lg:p-6 px-6 pt-3  md:p-8">
                 <div
                     className="absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle,rgba(255,193,7,0.15)_0%,rgba(255,193,7,0)_70%)] animate-[jackpot-pulse_4s_infinite_ease-in-out]"></div>
                 <div className="relative z-10 flex flex-col items-center gap-2 lg:gap-6">
@@ -127,9 +127,9 @@ export default function Jackpot() {
                         {jackpotData.map((jackpot) => (
                             <Card
                                 key={jackpot.id}
-                                className="group flex flex-1 flex-col items-center gap-3 rounded-xl border-2 border-zinc-700 bg-zinc-800/50 p-3 sm:p-4 lg:flex-row backdrop-blur-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-white/20">
+                                className="group flex flex-1 flex-col items-center gap-3 rounded-xl border-2 border-[var(--grey-300)] bg-[var(--grey-500)] p-3 sm:p-4 lg:flex-row backdrop-blur-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-[rgb(85,112,134)]">
                                 <div
-                                    className="flex w-7 h-7 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-amber-400 p-1.5 shadow-lg transition-all duration-300 lg:group-hover:translate-y-[-4%]">
+                                    className="flex w-7 h-7 lg:h-10 lg:w-10 items-center justify-center rounded-full bg-amber-400 p-1.5 shadow-lg transition-all duration-300 lg:group-hover:scale-105">
                                     {jackpot.icon}
                                 </div>
                                 <CardContent className="p-0 text-center lg:text-left">

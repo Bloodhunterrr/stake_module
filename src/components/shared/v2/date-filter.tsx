@@ -82,13 +82,13 @@ const DateFilter: React.FC<DateFilterProps> = ({ selected, onSelect , className 
 
 
   return (
-    <div className="flex w-full gap-x-3 overflow-x-auto border-b border-b-popover">
+    <div className="flex w-full gap-x-3 overflow-x-auto border-b border-b-[var(--grey-400)]">
       {filters.map((f) => (
         <div
           key={f.key}
           className={cn(` flex-1  text-center text-xs lg:text-base py-2 cursor-pointer ${
             selected === f.key
-              ? "border-b-card border-b text-black"
+              ? "border-b-[var(--color-blue-500)] border-b border-b-2"
               : "text-gray-700 border-b border-b-transparent"
           }`,className)}
           onClick={() => onSelect(f.start, f.end, f.key)}

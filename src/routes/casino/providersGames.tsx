@@ -29,22 +29,22 @@ const ProvidersGames = () => {
         <section id="category-section" className="CategorySection">
           <div className="category-games-section">
             <div className="items-grid-wrapper">
-              <div className={cn("sticky top-10 lg:top-16 bg-background  z-10 py-2 ", {
-                      "top-22 lg:top-16": optionalSideBarOpen,
+              <div className={cn("sticky top-15 bg-[var(--grey-600)] z-10 py-2 ", {
+                      "top-22 lg:top-15": optionalSideBarOpen,
                   })}>
                 <div className="p-3 flex items-center justify-between">
                   <div className={"flex items-center gap-x-3 "}>
                     <button onClick={() => navigate(-1)}
-                      className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card cursor-pointer hover:border-card hover:bg-popover hover:text-white transition">
+                      className="flex items-center justify-center w-10 h-10 rounded-full text-white border border-white cursor-pointer hover:border-white hover:bg-[var(--grey-500)] hover:text-white transition">
                       <ArrowUpIcon className="w-4 h-4 -rotate-90" />
                     </button>
 
                     <div>
-                      <h1 className="font-bold text-lg text-primary-foreground">
+                      <h1 className="font-bold text-lg text-primary-foreground capitalize">
                         {providerCode}
                       </h1>
                       {totalGames > 0 && (
-                        <p className="text-card text-sm">
+                        <p className="text-[var(--grey-200)] text-md leading-6">
                           <Plural value={totalGames}
                             one="# game"
                             other="# games"/>
@@ -85,7 +85,7 @@ const ProvidersGames = () => {
       </div>
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent showCloseButton={false}
-          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 min-w-screen top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] !min-w-[calc(100%-60px)] !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
           <Search setSearchModal={setSearchModal}
             onCloseSearchModal={() => setSearchModal(false)}/>
         </DialogContent>

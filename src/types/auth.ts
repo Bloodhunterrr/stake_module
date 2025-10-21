@@ -197,6 +197,7 @@ export interface User {
     wallets:         Wallet[];
     is_agent:        boolean;
     children_count?: number;
+    roles: Array<{ name: string; }>;
 }
 
 export interface Wallet {

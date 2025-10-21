@@ -12,6 +12,7 @@ import WalletPage from "./account/wallet";
 import CasinoPageHistory from "./account/casino";
 import PaymentsHistoryPage from "./account/payments";
 import BetsHistoryPage from "./account/bets";
+import LobbyFooter from "@/routes/casino/lobbyFooter.tsx";
 import UserListRender from "@/components/profile/profile/UserListRender.tsx";
 import EditUser from "@/components/shared/v2/user/edit-user.tsx";
 import TransactionList from "@/components/profile/profile/TransactionList.tsx";
@@ -26,7 +27,6 @@ import SingleUserTransaction from "@/components/profile/profile/SingleUserTransa
 import AgentPayments from "@/components/profile/profile/AgentPayments.tsx";
 import CreateUser from "@/components/shared/v2/user/create-user.tsx";
 import SingleTicketReportPage from "@/components/profile/profile/ReportsSingleCategory.tsx";
-import LobbyFooter from "@/routes/casino/lobbyFooter.tsx";
 
 const routes = createBrowserRouter(
   [
