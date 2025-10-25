@@ -169,7 +169,7 @@ function UserListRender() {
                                 setNewPassword(event.target.value)
                             }}
                         />
-                        <Button className={'bg-chart-2 hover:bg-chart-2'} onClick={handleChangePassword}>
+                        <Button className={'bg-chart-2 lg:hover:bg-chart-2'} onClick={handleChangePassword}>
                             Change Password
                         </Button>
                     </DialogContent>
@@ -195,7 +195,7 @@ function UserListRender() {
                                     content : event.target.value
                                 })
                             }}/>
-                            <Button className={'bg-chart-2 hover:bg-chart-2'} onClick={test}>
+                            <Button className={'bg-chart-2 lg:hover:bg-chart-2'} onClick={test}>
                                 Send
                             </Button>
                         </DialogContent>
@@ -238,7 +238,7 @@ function UserListRender() {
                                         <Input placeholder={"+/- to deposit or withdraw"} value={walletInput} className={'border-popover'} onInput={(event : React.ChangeEvent<HTMLInputElement>)=>{
                                             setWalletInput(event.target.value)
                                         }} />
-                                        <Button className={'bg-chart-2 hover:bg-chart-2'} onClick={()=>{
+                                        <Button className={'bg-chart-2 lg:hover:bg-chart-2'} onClick={()=>{
                                             transferCreditFunction({
                                                 wallet_slug : wallet?.slug,
                                                 user_id : userId ?? 0,

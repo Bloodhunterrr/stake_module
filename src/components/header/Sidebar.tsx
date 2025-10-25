@@ -24,7 +24,7 @@ export default function Sidebar({
 
     return (
         <Sheet>
-            <div className="hidden md:block fixed top-0 h-[calc(100%)] w-max bg-[var(--grey-700)] z-[900]">
+            <div className="hidden md:block fixed top-0 h-[calc(100%)] w-max bg-[var(--grey-700)] z-[100]">
                 <SheetTrigger asChild>
                     <button className="w-15 relative t-0 -mb-2 aspect-[1/1] order-[-3] z-[901] rounded-[8px] shadow-[0_10px_15px_-3px_rgba(0,0,0,0.2),0_4px_6px_-2px_rgba(0,0,0,0.1))]">
                         <Menu className="m-auto w-5 h-5 transition-filter duration-200"
@@ -55,7 +55,7 @@ export default function Sidebar({
                                     <img src={R.name === "Sport"
                                                 ? "https://stake.com/_app/immutable/assets/default-casino-mini.CQlEkEv9.svg"
                                                 : "https://stake.com/_app/immutable/assets/default-sports-mini.BJ4yNOA9.svg"
-                                        } className={cn("block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[1] rounded-lg left-2/4 top-2/4 group-hover:hidden",
+                                        } className={cn("block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[1] rounded-lg left-2/4 top-2/4 lg:group-hover:hidden",
                                             {
                                                 hidden: location.split("/")[1] === R.slug,
                                             }
@@ -65,7 +65,7 @@ export default function Sidebar({
                                     <img src={R.name === "Sport"
                                             ? "https://stake.com/_app/immutable/assets/active-casino-mini.C2xccerq.svg"
                                             : "https://stake.com/_app/immutable/assets/active-sports-mini.DzJgZyvU.svg"
-                                        } className={cn("hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[1] rounded-lg left-2/4 top-2/4 group-hover:block",
+                                        } className={cn("hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[1] rounded-lg left-2/4 top-2/4 lg:group-hover:block",
                                             {
                                                 block: location.split("/")[1] === R.slug,
                                             }
@@ -151,7 +151,7 @@ export default function Sidebar({
                                                     ? "https://stake.com/_app/immutable/assets/default-casino.CqlOLRkM.svg"
                                                     : "https://stake.com/_app/immutable/assets/default-sports.KM8Zs5_U.svg"
                                             } className={cn(
-                                                "block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 group-hover:hidden",
+                                                "block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:hidden",
                                                 {
                                                     hidden: location.split("/")[1] === R.slug,
                                                 }
@@ -160,12 +160,12 @@ export default function Sidebar({
                                                     ? "https://stake.com/_app/immutable/assets/active-casino.D98ZVQ96.svg"
                                                     : "https://stake.com/_app/immutable/assets/active-sports.CxIU50TW.svg"
                                             } className={cn(
-                                                "hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 group-hover:block",
+                                                "hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:block",
                                                 {
                                                     block: location.split("/")[1] === R.slug,
                                                 }
                                             )}/>
-                                        <span className={cn("color-white group-hover:text-shadow-md", {
+                                        <span className={cn("color-white lg:group-hover:text-shadow-md", {
                                                 "text-shadow-md": location.split("/")[1] === R.slug,
                                             })}>
                                             {R.name}

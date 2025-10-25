@@ -143,7 +143,7 @@ export default function LobbyBannerSlider() {
                           }
                         </p>
                       </div>
-                      <Button variant="outline" className={'absolute bottom-3 left-3 md:bottom-4 md:left-4 px-4 py-2 min-w-[7.5rem] max-w-[10.625rem] h-max bg-transparent rounded-lg text-md text-white border-white hover:text-white hover:bg-popover/80'}>
+                      <Button variant="outline" className={'absolute bottom-3 left-3 md:bottom-4 md:left-4 px-4 py-2 min-w-[7.5rem] max-w-[10.625rem] h-max bg-transparent rounded-lg text-md text-white border-white lg:hover:text-white lg:hover:bg-popover/80'}>
                         {
                             // buttonTranslations[
                                 slide.buttonTitle
@@ -160,8 +160,8 @@ export default function LobbyBannerSlider() {
             ))}
           </CarouselContent>
 
-          <CarouselPrevious className="hidden lg:flex top-1/2 px-6 border-none bg-transparent hover:bg-transparent hover:text-primary-foreground opacity-0 group-hover:opacity-100 h-full disabled:hidden rounded-none -left-9 z-10" />
-          <CarouselNext className="hidden lg:flex absolute top-1/2 px-6 h-full border-none bg-transparent hover:bg-transparent hover:text-primary-foreground opacity-0 group-hover:opacity-100 disabled:hidden rounded-none -right-9 z-10" />
+          <CarouselPrevious className="hidden lg:flex top-1/2 px-6 border-none bg-transparent lg:hover:bg-transparent lg:hover:text-primary-foreground opacity-0 lg:group-hover:opacity-100 h-full disabled:hidden rounded-none -left-9 z-10" />
+          <CarouselNext className="hidden lg:flex absolute top-1/2 px-6 h-full border-none bg-transparent lg:hover:bg-transparent lg:hover:text-primary-foreground opacity-0 lg:group-hover:opacity-100 disabled:hidden rounded-none -right-9 z-10" />
         </Carousel>
       </section>
   );

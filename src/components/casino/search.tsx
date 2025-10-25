@@ -192,7 +192,7 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
               <span>{item.name}</span>
               <button
                 onClick={() => removeSelectedItem(item)}
-                className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full hover:bg-muted"
+                className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full lg:hover:bg-muted"
                 aria-label={`Remove ${item.name}`}
               >
                 <X className="h-3 w-3" />

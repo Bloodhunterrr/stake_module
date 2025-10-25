@@ -248,11 +248,11 @@ export default function Withdraw({ isOpen, onClose, wallet }: WithdrawProps) {
         <div className="flex flex-col gap-4">
           <Button onClick={handleSubmit}
             disabled={isWithdrawing}
-            className="w-full bg-card hover:bg-card/70 text-accent-foreground">
+            className="w-full bg-card lg:hover:bg-card/70 text-accent-foreground">
             {isWithdrawing ? "Withdrawing..." : "Withdraw"}
           </Button>
           <div onClick={() => console.log("chat")}
-            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground lg:hover:text-primary transition-colors">
             <Trans>Need Help?</Trans>
             <Support className="h-4 w-4" />
             <Trans>Live Chat</Trans>
@@ -310,7 +310,7 @@ const WithdrawChips = ({ selectedWallet, handleChipClick }: ChipsProps) => {
         <button
           key={chip}
           onClick={() => handleChipClick(chip.toString())}
-          className="flex-shrink-0 rounded-full bg-secondary px-4 py-2 text-sm font-semibold transition-colors hover:bg-secondary/80">
+          className="flex-shrink-0 rounded-full bg-secondary px-4 py-2 text-sm font-semibold transition-colors lg:hover:bg-secondary/80">
           {chip.toLocaleString("en-EN")} {selectedSymbol}
         </button>
       ))}

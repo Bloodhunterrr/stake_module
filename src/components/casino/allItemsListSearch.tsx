@@ -64,7 +64,7 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
   return (
     <div className="flex flex-col h-full w-full">
       <div className="sticky top-0 z-20 bg-[#1a2e38]/90 p-2 pt-4 pb-3">
-        <div className="relative flex items-center pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full gap-2">
+        <div className="relative flex items-center pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] lg:hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full gap-2">
           <SearchIcon className="size-6 text-[var(--grey-300)]" />
           <input onChange={handleSearchChange}
             value={searchVal}
@@ -106,7 +106,7 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
                       navigate(`/${categorySlug}/provider/` + provider.code);
                       onClose();
                     }}>
-                    <div className="provider-card all-providers bg-popover/50 hover:bg-popover transition flex items-center justify-center cursor-pointer h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
+                    <div className="provider-card all-providers bg-popover/50 lg:hover:bg-popover transition flex items-center justify-center cursor-pointer h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
                       <img className="provider-card__img h-[calc(100%-15px)]"
                         src={`${config.baseUrl}/storage/${provider.logo}`}
                         loading="lazy"
@@ -126,7 +126,7 @@ const AllItemsList = ({ items, onClose, type, params }: Props) => {
                         );
                         onClose();
                       }}>
-                      <div className="provider-card all-providers all-subcategories bg-popover/50 hover:bg-popover transition flex gap-2.5 items-center justify-start px-5 h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
+                      <div className="provider-card all-providers all-subcategories bg-popover/50 lg:hover:bg-popover transition flex gap-2.5 items-center justify-start px-5 h-[50px] max-[960px]:h-[68px] min-w-[130px] rounded-xl">
                         <img className="provider-card__icon h-[calc(100%-15px)]"
                           src={`${config.baseUrl}/storage/${subcategory.icon}`}
                           alt={subcategory.name}

@@ -62,16 +62,16 @@ export default function Lobby() {
 
     return (
         <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 gap-5 flex flex-col w-[calc(94dvw_-_60px)] max-md:w-[94dvw] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
+            <section className="w-full space-y-4 mx-auto">
+                <LobbyBannerSlider />
+            </section>
+
             <section className="w-full mx-auto">
                 <SingleSubcategorySlider data={data.map((category) => ({
                     [category.slug]: {
                         subcategories: category.subcategories || [],
                     },
                 }))} />
-            </section>
-
-            <section className="w-full space-y-4 mx-auto">
-                <LobbyBannerSlider />
             </section>
 
             {categorySlug === "casino" && <Jackpot />}

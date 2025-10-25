@@ -114,7 +114,7 @@ export default function Header(props: HeaderProps) {
                             "w-12": props.isNoCategoryOrSportsbook && !isDesktop,
                         })}>
                         {!props.isNoCategoryOrSportsbook || isDesktop ? (
-                            <Button variant="ghost" className="p-0 hover:bg-transparent" asChild>
+                            <Button variant="ghost" className="p-0 lg:hover:bg-transparent" asChild>
                                 <Link to="/">
                                     <img src={logo} alt="logo" className="h-[16px]" />
                                 </Link>
@@ -168,7 +168,7 @@ export default function Header(props: HeaderProps) {
                         ) : (
                             <section className="space-x-3">
                                 <Button variant="secondary"
-                                    className="bg-[var(--grey-400)] h-11 py-2.5 px-4.5 text-primary-foreground rounded-[0.5rem] font-semibold text-[15px] hover:bg-[var(--grey-300)] cursor-pointer"
+                                    className="bg-[var(--grey-400)] h-11 py-2.5 px-4.5 text-primary-foreground rounded-[0.5rem] font-semibold text-[15px] lg:hover:bg-[var(--grey-300)] cursor-pointer"
                                     onClick={() => setLoginModalOpen(true)}>
                                     <Trans>Login</Trans>
                                 </Button>

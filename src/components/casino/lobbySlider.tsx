@@ -115,7 +115,7 @@ const DesktopSlider = ({
                 </SheetHeader>
 
                 <div onClick={() => setSearchModal(true)}
-                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition">
+                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover lg:hover:bg-popover/80 transition">
                   <SearchIcon className="size-5 text-[var(--grey-300)]" />
                   <span className="font-semibold text-primary-foreground text-sm">
                   <Trans>Search</Trans>
@@ -125,7 +125,7 @@ const DesktopSlider = ({
                 <div className="pl-4">
                   <Accordion type="single" defaultValue="providers" collapsible>
                     <AccordionItem value="providers" className="no-underline">
-                      <AccordionTrigger className="flex text-primary-foreground items-center justify-start text-lg hover:no-underline">
+                      <AccordionTrigger className="flex text-primary-foreground items-center justify-start text-lg lg:hover:no-underline">
                         <Trans>Providers</Trans>
                       </AccordionTrigger>
                       <AccordionContent className="flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2">
@@ -153,7 +153,7 @@ const DesktopSlider = ({
                 <Dialog open={searchModal}
                     onOpenChange={() => setSearchModal(false)}>
                   <DialogContent showCloseButton={false}
-                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-100 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
                     <Search setSearchModal={setSearchModal}
                         onCloseSearchModal={() => setSearchModal(false)}/>
                   </DialogContent>
@@ -187,9 +187,9 @@ const DesktopSlider = ({
           </CarouselContent>
 
           <CarouselPrevious onClick={handlePrev} disabled={Number(data?.offset ?? 0) === 0}
-              className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"/>
+              className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"/>
           <CarouselNext onClick={handleNext} disabled={shouldNext}
-              className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"/>
+              className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"/>
         </Carousel>
       </section>
   );
@@ -269,7 +269,7 @@ const MobileSlider = ({categorySlug, subcategory, providers}: LobbySliderProps) 
                 </SheetHeader>
 
                 <div onClick={() => setSearchModal(true)}
-                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition">
+                    className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover lg:hover:bg-popover/80 transition">
                   <SearchIcon className="size-5 text-[var(--grey-300)]" />
                   <span className="font-semibold text-primary-foreground text-sm">
                   <Trans>Search</Trans>
@@ -279,7 +279,7 @@ const MobileSlider = ({categorySlug, subcategory, providers}: LobbySliderProps) 
                 <div className="pl-4">
                   <Accordion type="single" defaultValue="providers" collapsible>
                     <AccordionItem value="providers" className="no-underline">
-                      <AccordionTrigger className="flex text-primary-foreground items-center justify-start text-lg hover:no-underline">
+                      <AccordionTrigger className="flex text-primary-foreground items-center justify-start text-lg lg:hover:no-underline">
                         <Trans>Providers</Trans>
                       </AccordionTrigger>
                       <AccordionContent className="flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2">
@@ -305,7 +305,7 @@ const MobileSlider = ({categorySlug, subcategory, providers}: LobbySliderProps) 
 
                 <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
                   <DialogContent showCloseButton={false}
-                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+                      className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-100 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
                     <Search setSearchModal={setSearchModal}
                         onCloseSearchModal={() => setSearchModal(false)}/>
                   </DialogContent>

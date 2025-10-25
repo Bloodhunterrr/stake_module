@@ -269,10 +269,8 @@ const SingleUserBets = () => {
                     <div className={'w-full border-b border-b-popover  flex flex-row items-center justify-evenly'}>
                         <Popover>
                             <PopoverTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                                >
+                                <Button variant="outline"
+                                    className="justify-start w-1/3 text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                                     <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4 " />
                                     {startDate ? format(startDate, "dd/MM/yyyy") : "Start Date"}
                                 </Button>

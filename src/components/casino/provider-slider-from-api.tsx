@@ -72,13 +72,13 @@ const ProviderSliderFromApi = ({
           </h2>
 
           <button onClick={() => navigate(categorySlug ? `/${categorySlug}/providers` : "/providers")}
-            disabled={isFetching || isLoading} className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50">
+            disabled={isFetching || isLoading} className="flex items-center gap-1 text-sm lg:hover:underline disabled:opacity-50">
             <span>
               <Trans>View all</Trans>
             </span>
             {isDesktop && total > 0 && <span>({total})</span>}
           </button>
-            <CarouselBtns className={"hidden md:flex relative size-8 rounded-full box-content bg-transparent hover:bg-popover/50 border border-[color:var(--grey-400)] items-center cursor-pointer text-white hover:text-white border-solid h-[40px] w-[56px] m-0"}
+            <CarouselBtns className={"hidden md:flex relative size-8 rounded-full box-content bg-transparent lg:hover:bg-popover/50 border border-[color:var(--grey-400)] items-center cursor-pointer text-white lg:hover:text-white border-solid h-[40px] w-[56px] m-0"}
                           prevClassName={"rounded-tr-none rounded-br-none top-0 left-0"}
                           nextClassName={"rounded-tl-none rounded-bl-none top-0 right-0"}
                           prevOnClick={() => setOffset(Math.max(0, offset - limit))}
@@ -97,7 +97,7 @@ const ProviderSliderFromApi = ({
                 }).map((_, i) => (
                   <CarouselItem key={`sk-${i}`}
                     className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 basis-1/4`}>
-                    <div className="flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 h-[50px] md:h-[55px]" />
+                    <div className="flex items-center justify-center rounded-lg bg-popover/50 lg:hover:bg-popover/80 h-[50px] md:h-[55px]" />
                   </CarouselItem>
                 ))
               : providers.filter(
@@ -110,11 +110,11 @@ const ProviderSliderFromApi = ({
                         navigate(`/${categorySlug}/provider/${p.general_code}`)
                       }>
                       <div
-                        className={`flex items-center justify-center rounded-lg bg-[var(--grey-400)]/80 hover:lg:translate-y-[-6%] transition-transform duration-300 max-w-[169px] max-h-[67px] aspect-[2.52239_/_1] group ${
+                        className={`flex items-center justify-center rounded-lg bg-[var(--grey-400)]/80 lg:hover:lg:translate-y-[-6%] transition-transform duration-300 max-w-[169px] max-h-[67px] aspect-[2.52239_/_1] group ${
                           providerCode === p.general_code ? "!bg-popover" : ""
                         }`}>
                         <img
-                          className="max-w-[80%] max-h-9 md:max-w-[156px] grayscale-[1] mix-blend-hard-light duration-300 transition-all group-hover:grayscale-[0] group-hover:mix-blend-initial"
+                          className="max-w-[80%] max-h-9 md:max-w-[156px] grayscale-[1] mix-blend-hard-light duration-300 transition-all lg:group-hover:grayscale-[0] lg:group-hover:mix-blend-initial"
                           src={
                             p.logo ? `${config.baseUrl}/storage/${p.logo}` : ""
                           } loading="lazy"

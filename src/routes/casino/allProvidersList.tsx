@@ -122,7 +122,7 @@ const AllProvidersList = () => {
                 <div className="flex items-center gap-x-3">
                   <button
                     onClick={() => navigate(-1)}
-                    className="flex items-center justify-center w-10 h-10 rounded-full text-white border border-white cursor-pointer hover:border-white hover:bg-[var(--grey-500)] hover:text-white transition">
+                    className="flex items-center justify-center w-10 h-10 rounded-full text-white border border-white cursor-pointer lg:lg:group-hover:border-white lg:hover:bg-[var(--grey-500)] lg:hover:text-white transition">
                     <ArrowUpIcon className="w-4 h-4 -rotate-90" />
                   </button>
 
@@ -139,24 +139,20 @@ const AllProvidersList = () => {
                 </div>
 
                 <div className="flex gap-2 items-center">
-                  <button
-                    onClick={() => setSearchModal(true)}
+                  <button onClick={() => setSearchModal(true)}
                     className="flex items-center justify-center gap-1.5 px-3 py-1 w-[60px] rounded-[24px] border text-sm font-semibold transition
-                   border-gray-600 text-gray-300 hover:border-card hover:text-white hover:bg-popover/50"
-                  >
+                   border-gray-600 text-gray-300 lg:hover:border-card lg:hover:text-white lg:hover:bg-popover/50">
                     <SearchIcon className="size-5" />
                   </button>
 
-                  <button
-                    onClick={() => setIsSortingEnabled((prev) => !prev)}
+                  <button onClick={() => setIsSortingEnabled((prev) => !prev)}
                     className={cn(
                       "px-3 py-1 rounded-[24px] border w-[60px] text-sm font-semibold transition",
                       isSortingEnabled
                         ? "border-card text-card bg-popover/50"
-                        : "border border-gray-600 text-gray-300 hover:border-card hover:text-white"
+                        : "border border-gray-600 text-gray-300 lg:hover:border-card lg:hover:text-white"
                     )}
-                    disabled={isLoading || isFetching}
-                  >
+                    disabled={isLoading || isFetching}>
                     A-Z
                   </button>
                 </div>
@@ -172,7 +168,7 @@ const AllProvidersList = () => {
                 .map((provider) => (
                   <div
                     key={provider.id}
-                    className="cursor-pointer h-[50px] md:h-[55px]  flex items-center justify-center rounded-lg bg-popover/50 hover:bg-popover/80 transition p-4"
+                    className="cursor-pointer h-[50px] md:h-[55px]  flex items-center justify-center rounded-lg bg-popover/50 lg:hover:bg-popover/80 transition p-4"
                     onClick={() => {
                       console.log(provider);
                       navigate(
@@ -210,7 +206,7 @@ const AllProvidersList = () => {
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent
           showCloseButton={false}
-          className="border-none rounded-none overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]"
+          className="border-none rounded-none overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-100 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]"
         >
           <Search
             setSearchModal={setSearchModal}

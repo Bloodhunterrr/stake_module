@@ -51,15 +51,15 @@ export interface AnimationConfig {
 const multiSelectVariants = cva("m-1 transition-all duration-300 ease-in-out", {
   variants: {
     variant: {
-      default: "border-foreground/10 text-foreground bg-card hover:bg-card/80",
+      default: "border-foreground/10 text-foreground bg-card lg:hover:bg-card/80",
       secondary:
-        "border-foreground/10 bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        "border-foreground/10 bg-secondary text-secondary-foreground lg:hover:bg-secondary/80",
       destructive:
-        "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        "border-transparent bg-destructive text-destructive-foreground lg:hover:bg-destructive/80",
       inverted: "inverted",
     },
     badgeAnimation: {
-      bounce: "hover:-translate-y-1 hover:scale-110",
+      bounce: "hover:-translate-y-1 lg:hover:scale-110",
       pulse: "hover:animate-pulse",
       wiggle: "hover:animate-wiggle",
       fade: "hover:opacity-80",
@@ -492,7 +492,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
           case "bounce":
             return isAnimating
               ? "animate-bounce"
-              : "hover:-translate-y-1 hover:scale-110";
+              : "hover:-translate-y-1 lg:hover:scale-110";
           case "pulse":
             return "hover:animate-pulse";
           case "wiggle":
@@ -806,7 +806,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                 getAllOptions().length
               } options selected. ${placeholder}`}
               className={cn(
-                "flex p-1 rounded-md border min-h-8 h-[36px] items-center justify-between bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto",
+                "flex p-1 rounded-md border min-h-8 h-[36px] items-center justify-between bg-inherit lg:hover:bg-inherit [&_svg]:pointer-events-auto",
                 autoSize ? "w-auto" : "w-full",
                 responsiveSettings.compactMode && "min-h-8 text-sm",
                 screenSize === "mobile" && "min-h-8 h-[36px] text-base",
@@ -907,7 +907,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                                 }
                               }}
                               aria-label={`Remove ${option.label} from selection`}
-                              className="ml-1 mb-[2px] h-4 w-4 cursor-pointer hover:bg-white/20 rounded-sm p-0.5 -m-0.5 flex-shrink-0 focus:outline-none focus:ring-1 focus:ring-white/50"
+                              className="ml-1 mb-[2px] h-4 w-4 cursor-pointer lg:hover:bg-white/20 rounded-sm p-0.5 -m-0.5 flex-shrink-0 focus:outline-none focus:ring-1 focus:ring-white/50"
                             >
                               <XCircle className="h-3 w-3" />
                             </div>
@@ -919,7 +919,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                     {selectedValues.length > responsiveSettings.maxCount && (
                       <Badge
                         className={cn(
-                          "bg-transparent text-foreground border-foreground/1 hover:bg-transparent",
+                          "bg-transparent text-foreground border-foreground/1 lg:hover:bg-transparent",
                           getBadgeAnimationClass(),
                           multiSelectVariants({ variant }),
                           responsiveSettings.compactMode &&
@@ -968,7 +968,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                         }
                       }}
                       aria-label={`Clear all ${selectedValues.length} selected options`}
-                      className="flex items-center justify-center h-4 w-4 cursor-pointer text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 rounded-sm">
+                      className="flex items-center justify-center h-4 w-4 cursor-pointer text-muted-foreground lg:hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 rounded-sm">
                       <XIcon className="h-4 w-4"/>
                     </div>
                     <Separator orientation="vertical" className="h-4"/>

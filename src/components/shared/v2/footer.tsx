@@ -6,14 +6,14 @@ import logo from "@/assets/images/logo.svg";
 export default function Footer() {
     return (
         <section className="w-full md:w-[calc(100vw-60px)] ml-auto bg-[var(--grey-800)] relative bottom-0">
-            <div className="w-[calc(94dvw_-_60px)] mx-auto pb-8">
-                <nav className="border-b-2 border-[var(--grey-500)] mb-10 py-2.5 sm:py-[30px] pb-[20px]">
+            <div className="w-[calc(94dvw_-_60px)] mx-auto pb-8 max-md:mb-17">
+                <nav className="border-b-2 border-[var(--grey-500)] mb-10 py-2.5 pt-7.5 sm:py-[30px] pb-[20px]">
                     <div className="flex flex-col sm:flex-row sm:justify-between gap-y-6">
                         <div className="grid gap-3 gap-x-6 text-sm font-semibold text-[var(--grey-200)] w-full grid-cols-2 sm:grid-cols-4 sm:[grid-template-rows:repeat(5,auto)]">
-                            <a href="#" className="block hover:text-white hover:[text-decoration-line:underline] hover:[text-decoration-style:solid] hover:[text-underline-offset:25%] transition-colors">
+                            <a href="#" className="block lg:hover:text-white lg:hover:[text-decoration-line:underline] lg:hover:[text-decoration-style:solid] lg:hover:[text-underline-offset:25%] transition-colors">
                                 <Trans>Promotions</Trans>
                             </a>
-                            <a href="#" className="block hover:text-white hover:[text-decoration-line:underline] hover:[text-decoration-style:solid] hover:[text-underline-offset:25%] transition-colors">
+                            <a href="#" className="block lg:hover:text-white lg:hover:[text-decoration-line:underline] hover:[text-decoration-style:solid] hover:[text-underline-offset:25%] transition-colors">
                                 <Trans>About Us</Trans>
                             </a>
                             <a href="#" className="block hover:text-white hover:[text-decoration-line:underline] hover:[text-decoration-style:solid] hover:[text-underline-offset:25%] transition-colors">
@@ -85,32 +85,20 @@ export default function Footer() {
 
                     <div className="flex items-center gap-6 ml-auto">
                         <div className="hidden sm:flex items-center gap-1.5 bg-gray-800 rounded py-0 px-2 relative cursor-pointer">
-                            <img
-                                className="w-7 m-0.5 z-10"
-                                src="https://cdn.beton-static.com/front/components/home/app/appButton-icon.png"
-                                alt="App"
-                            />
+                            <img className="w-7 m-0.5 z-10" alt="App"
+                                src="https://cdn.beton-static.com/front/components/home/app/appButton-icon.png"/>
                             <div className="flex flex-col">
                                 <p className="text-xs font-bold leading-6">Casino App</p>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-4">
-                            <img
-                                src="https://cdnwl.beton-static.com/front/components/landings/icons/18.svg?react"
-                                alt="18+"
-                                className="h-6"
-                            />
-                            <img
-                                src="https://cdnwl.beton-static.com/front/components/landings/icons/ssl.svg?react"
-                                alt="SSL"
-                                className="h-6"
-                            />
-                            <img
-                                src="https://cdnwl.beton-static.com/front/components/landings/icons/identity.svg?react"
-                                alt="Identity"
-                                className="h-6"
-                            />
+                            <img src="https://cdnwl.beton-static.com/front/components/landings/icons/18.svg?react"
+                                alt="18+" className="h-6"/>
+                            <img src="https://cdnwl.beton-static.com/front/components/landings/icons/ssl.svg?react"
+                                alt="SSL" className="h-6"/>
+                            <img src="https://cdnwl.beton-static.com/front/components/landings/icons/identity.svg?react"
+                                alt="Identity" className="h-6"/>
                         </div>
                     </div>
                 </div>

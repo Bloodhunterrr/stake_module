@@ -78,7 +78,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                     <CardHeader className="h-15 w-full bg-[var(--grey-600)] shadow-[#0003_0_4px_6px_-1px,#0000001f_0_2px_4px_-1px] px-4 grid-cols-2 grid-rows-1">
                         <img src={logo} alt="logo" className="h-[16px] my-auto" />
                         <div className="h-full flex items-center justify-end">
-                            <XIcon className="h-6 w-6 text-[var(--grey-200)] hover:text-white transition-all duration-300" />
+                            <XIcon className="h-6 w-6 text-[var(--grey-200)] lg:hover:text-white transition-all duration-300" />
                         </div>
                     </CardHeader>
                     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 px-4 pt-8">
@@ -90,7 +90,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     type={'text'}
                                     placeholder={t`Enter your email/username`}
                                     className="placeholder:text-transparent bg-primary-foreground pr-10 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-2 focus-visible:border-[color:var(--grey-300)]
-                                               w-full text-[white] bg-[var(--grey-700)] border-[color:var(--grey-400)] hover:border-[color:var(--grey-300)] transition-all duration-[0.25s] cursor-text appearance-none
+                                               w-full text-[white] bg-[var(--grey-700)] border-[color:var(--grey-400)] lg:hover:border-[color:var(--grey-300)] transition-all duration-[0.25s] cursor-text appearance-none
                                                font-normal text-lg shadow-none m-0 p-2 rounded-lg border-2 border-solid outline-none touch-auto dark:aria-invalid:border-3 dark:aria-invalid:border-destructive"
                                     {...register('email')}
                                     autoFocus={false}
@@ -110,7 +110,7 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     autoComplete="current-password"
                                     placeholder={t`Password`}
                                     className="placeholder:text-transparent bg-primary-foreground h-11 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-2 focus-visible:border-[color:var(--grey-300)]
-                                               w-full text-[white] bg-[var(--grey-700)] border-[color:var(--grey-400)] hover:border-[color:var(--grey-300)] transition-all duration-[0.25s] cursor-text appearance-none
+                                               w-full text-[white] bg-[var(--grey-700)] border-[color:var(--grey-400)] lg:hover:border-[color:var(--grey-300)] transition-all duration-[0.25s] cursor-text appearance-none
                                                font-normal text-lg shadow-none m-0 p-2 pr-10 rounded-lg border-2 border-solid outline-none touch-auto aria-invalid:border-3 aria-invalid:border-destructive"
                                     {...register('password')}
                                     autoFocus={false}/>
@@ -121,9 +121,9 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                     aria-label={showPass ? 'Hide password' : 'Show password'}
                                     className="absolute inset-y-0 right-0 flex items-center pr-3 h-12">
                                     {showPass ? (
-                                        <Eye className="h-5 w-5 text-[var(--grey-200)] hover:text-white transition-all duration-300" />
+                                        <Eye className="h-5 w-5 text-[var(--grey-200)] lg:hover:text-white transition-all duration-300" />
                                     ) : (
-                                        <EyeOff className="h-5 w-5 text-[var(--grey-200)] hover:text-white transition-all duration-300" />
+                                        <EyeOff className="h-5 w-5 text-[var(--grey-200)] lg:hover:text-white transition-all duration-300" />
                                     )}
                                 </button>
                                 {errors.password && (
@@ -133,8 +133,8 @@ export default function Login({setLoginModalOpen}: {setLoginModalOpen: React.Dis
                                 )}
                             </div>
                         </div>
-                        <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 rounded-lg mt-2 focus-visible:ring-none focus-visible:ring-offset-none focus-visible:border-none
-                                                         h-12 text-primary-foreground text-base hover:text-primary-foreground" disabled={isLoading}>
+                        <Button type="submit" className="w-full bg-blue-500 lg:hover:bg-blue-600 rounded-lg mt-2 focus-visible:ring-none focus-visible:ring-offset-none focus-visible:border-none
+                                                         h-12 text-primary-foreground text-base lg:hover:text-primary-foreground" disabled={isLoading}>
                             {isLoading ? t`Signing in...` : t`Sign In`}
                         </Button>
                     </form>

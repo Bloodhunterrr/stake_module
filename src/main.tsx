@@ -28,7 +28,7 @@ async function bootstrap() {
       <Provider store={store}>
         <I18nProvider i18n={i18n}>
           <ThemeProvider>
-            <RouterProvider router={routes} />
+            <RouterProvider router={routes}/>
           </ThemeProvider>
         </I18nProvider>
       </Provider>

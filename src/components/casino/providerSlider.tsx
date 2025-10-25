@@ -47,7 +47,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
               navigate(
                 categorySlug ? `/${categorySlug}/providers` : "/providers"
               )
-            } className="flex items-center gap-1 text-sm hover:underline disabled:opacity-50">
+            } className="flex items-center gap-1 text-sm lg:hover:underline disabled:opacity-50">
             <span>
               <Trans>View all</Trans>
             </span>
@@ -75,7 +75,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
                 className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 basis-1/4 cursor-pointer`}
                 onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
               >
-                <div className="flex items-center justify-center rounded-lg bg-card/10 hover:bg-card/20 transition h-[68px] md:h-[88px]">
+                <div className="flex items-center justify-center rounded-lg bg-card/10 lg:hover:bg-card/20 transition h-[68px] md:h-[88px]">
                   <img
                     className="max-w-[80%] max-h-9 md:max-w-[156px] md:max-h-14"
                     src={config.baseUrl + "/storage/" + p.logo}

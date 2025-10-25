@@ -46,8 +46,8 @@ const PaginationComponent: React.FC<PaginationProps> = ({
             }}
             className={`px-3 py-1 ${
               localPage === index + 1
-                ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                ? "bg-blue-500 text-white font-semibold lg:hover:bg-blue-500/80"
+                : "bg-gray-100 text-gray-600 lg:hover:bg-gray-200"
             }`}
           >
             {index + 1}
@@ -68,8 +68,8 @@ const PaginationComponent: React.FC<PaginationProps> = ({
             }}
             className={`px-3 py-1 ${
               localPage === 1
-                ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                ? "bg-blue-500 text-white font-semibold lg:hover:bg-blue-500/80"
+                : "bg-gray-100 text-gray-600 lg:hover:bg-gray-200"
             }`}
           >
             1
@@ -98,8 +98,8 @@ const PaginationComponent: React.FC<PaginationProps> = ({
                 }}
                 className={`px-3 py-1 ${
                   localPage === i
-                    ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "bg-blue-500 text-white font-semibold lg:hover:bg-blue-500/80"
+                    : "bg-gray-100 text-gray-600 lg:hover:bg-gray-200"
                 }`}
               >
                 {i}
@@ -127,8 +127,8 @@ const PaginationComponent: React.FC<PaginationProps> = ({
             }}
             className={`px-3 py-1 ${
               localPage === totalPages
-                ? "bg-blue-500 text-white font-semibold hover:bg-blue-500/80"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                ? "bg-blue-500 text-white font-semibold lg:hover:bg-blue-500/80"
+                : "bg-gray-100 text-gray-600 lg:hover:bg-gray-200"
             }`}
           >
             {totalPages}

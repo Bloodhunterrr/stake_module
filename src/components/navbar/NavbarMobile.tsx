@@ -27,8 +27,8 @@ export default function NavbarMobile({
 
     return (
         <Sheet>
-            <div className="hidden max-md:flex fixed bottom-0 h-[68px] w-full bg-[var(--grey-700)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] px-[3vw] max-[500px]:px-4 z-900">
-                <div className={cn("h-full w-full min-w-full z-900 transition-all no-scrollbar overflow-x-auto flex items-center flex-row gap-[8px] container duration-300 ease-in-out " +
+            <div className="hidden max-md:flex fixed bottom-0 h-[68px] w-full bg-[var(--grey-700)] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] px-[3vw] max-[500px]:px-4 z-49">
+                <div className={cn("h-full w-full min-w-full z-50 transition-all no-scrollbar overflow-x-auto flex items-center flex-row gap-[8px] container duration-300 ease-in-out " +
                     "bg-[var(--grey-700)] data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left"
                 )}>
                     <div className="w-full h-full grid grid-cols-8 max-[600px]:grid-cols-3 gap-2">
@@ -38,6 +38,9 @@ export default function NavbarMobile({
                                       onMouseEnter={() => setIsHovered(true)}
                                       onMouseLeave={() => setIsHovered(false)}
                                       style={filterStyle}/>
+                                <div className="text-white">
+                                    {headersTranslations["Browse"]}
+                                </div>
                             </button>
                         </SheetTrigger>
                         {data?.map((R) =>
@@ -95,7 +98,7 @@ export default function NavbarMobile({
                                         ? "https://stake.com/_app/immutable/assets/default-casino.CqlOLRkM.svg"
                                         : "https://stake.com/_app/immutable/assets/default-sports.KM8Zs5_U.svg"
                                     } className={cn(
-                                        "block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 group-hover:hidden",
+                                        "block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:hidden",
                                         {
                                             hidden: location.split("/")[1] === R.slug,
                                         }
@@ -104,16 +107,16 @@ export default function NavbarMobile({
                                         ? "https://stake.com/_app/immutable/assets/active-casino.D98ZVQ96.svg"
                                         : "https://stake.com/_app/immutable/assets/active-sports.CxIU50TW.svg"
                                     } className={cn(
-                                        "hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 group-hover:block",
+                                        "hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:block",
                                         {
                                             block: location.split("/")[1] === R.slug,
                                         }
                                     )}/>
-                                    <span className={cn("color-white group-hover:text-shadow-md", {
+                                    <span className={cn("color-white lg:group-hover:text-shadow-md", {
                                         "text-shadow-md": location.split("/")[1] === R.slug,
                                     })}>
-                                            {R.name}
-                                        </span>
+                                        {R.name}
+                                    </span>
                                 </Button>
                             ))}
                     </div>

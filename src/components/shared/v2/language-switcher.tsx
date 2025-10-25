@@ -39,8 +39,8 @@ const LanguageSwitcher = ({ triggerClassName }: { triggerClassName?: string }) =
                                     "before:border-t-[6px] before:border-t-muted before:border-b-0 before:border-b-transparent before:border-solid before:left-1/2 before:bottom-[-6px] before:mb-1")}>
         {Object.entries(ALLOWED_LANGUAGES).map(([key, lang]) => (
           <button key={key}
-            className={`text-left w-max min-w-25 p-3 rounded-none hover:bg-[var(--grey-200)] flex items-center justify-between gap-2 cursor-pointer ${
-              currentLang === key ? "text-blue-500 hover:bg-muted " : ""
+            className={`text-left w-max min-w-25 p-3 rounded-none lg:hover:bg-[var(--grey-200)] flex items-center justify-between gap-2 cursor-pointer ${
+              currentLang === key ? "text-blue-500 lg:hover:bg-muted " : ""
             }`} onClick={() => handleChange(key as Language)}>
             <span>{lang.name}</span>
             {currentLang === key && (

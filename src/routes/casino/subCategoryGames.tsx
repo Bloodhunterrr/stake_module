@@ -142,8 +142,7 @@ const SubcategoryGames = () => {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => navigate(-1)}
-                className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card hover:border-card hover:bg-popover hover:text-white transition"
-              >
+                className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card lg:hover:border-card lg:hover:bg-popover lg:hover:text-white transition">
                 <ArrowUpIcon className="w-4 h-4 -rotate-90" />
               </button>
               <div>
@@ -221,7 +220,7 @@ const SubcategoryGames = () => {
 
                 <div
                   onClick={() => setSearchModal(true)}
-                  className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover hover:bg-popover/80 transition">
+                  className="flex h-10 min-h-10 container mx-auto rounded-full w-[calc(100%-1rem)] items-center mt-4 cursor-pointer px-3 gap-2 bg-popover lg:hover:bg-popover/80 transition">
                   <SearchIcon className="size-5 text-[var(--grey-300)]" />
                   <span className="font-semibold text-primary-foreground text-sm">
                     <Trans>Search</Trans>
@@ -231,7 +230,7 @@ const SubcategoryGames = () => {
                 <div className="pl-4">
                   <Accordion type="single" defaultValue="providers" collapsible>
                     <AccordionItem value="providers" className="no-underline">
-                      <AccordionTrigger className="flex text-primary-foreground items-center justify-start text-lg hover:no-underline">
+                      <AccordionTrigger className="flex text-primary-foreground items-center justify-start text-lg lg:hover:no-underline">
                         <Trans>Providers</Trans>
                       </AccordionTrigger>
                       <AccordionContent className="flex-1 space-x-2 space-y-2 overflow-y-scroll h-[calc(100vh-260px)] gap-2">
@@ -267,7 +266,7 @@ const SubcategoryGames = () => {
                   onOpenChange={() => setSearchModal(false)}>
                   <DialogContent
                     showCloseButton={false}
-                    className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+                    className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-100 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
                     <Search
                       setSearchModal={setSearchModal}
                       onCloseSearchModal={() => setSearchModal(false)}

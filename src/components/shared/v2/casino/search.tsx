@@ -205,9 +205,9 @@ const Search = ({
   const { t } = useLingui();
   const params = useParams();
   return (
-    <div className="flex flex-col items-start w-full container mx-auto gap-4">
+    <div className="flex flex-col items-start w-full container mx-auto gap-4 z-101">
       <div className="flex sticky top-0 z-20 bg-[#1a2e38]/90 flex-col pb-2 pt-5 items-center w-full gap-2 px-[10px] max-md:px-[3vw]">
-        <div className="relative flex items-center px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full">
+        <div className="relative flex items-center px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] lg:hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full">
           <SearchIcon className="size-6 text-[var(--grey-300)]" />
           <Input
             tabIndex={1}
@@ -221,10 +221,10 @@ const Search = ({
           {/*    type="button"*/}
           {/*    variant="ghost"*/}
           {/*    size="icon"*/}
-          {/*    className="absolute right-10 hover:bg-transparent border-0 border-transparent top-1/2 -translate-y-1/2"*/}
+          {/*    className="absolute right-10 lg:hover:bg-transparent border-0 border-transparent top-1/2 -translate-y-1/2"*/}
           {/*    onClick={() => setSearchQuery("")}*/}
           {/*    aria-label="Clear search">*/}
-          {/*    <X className="size-5 text-[#ffffff80] hover:text-white transition-all duration-[0.1s]" />*/}
+          {/*    <X className="size-5 text-[#ffffff80] lg:hover:text-white transition-all duration-[0.1s]" />*/}
           {/*  </Button>*/}
           {/*)}*/}
           <div
@@ -244,7 +244,7 @@ const Search = ({
         {/*    <span className="flex items-center gap-2">*/}
         {/*      <Trans>Provider</Trans>*/}
         {/*    </span>*/}
-        {/*    <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">*/}
+        {/*    <div className="flex items-center gap-2 relative left-1 lg:group-hover:!bg-black">*/}
         {/*      {selectedProviderItems.length > 0 && (*/}
         {/*        <Badge variant="secondary" className="rounded-full">*/}
         {/*          {selectedProviderItems.length}*/}
@@ -259,7 +259,7 @@ const Search = ({
         {/*    <span className="flex items-center gap-2">*/}
         {/*      <Trans>Category</Trans>*/}
         {/*    </span>*/}
-        {/*    <div className="flex items-center gap-2 relative left-1 group-hover:!bg-black">*/}
+        {/*    <div className="flex items-center gap-2 relative left-1 lg:group-hover:!bg-black">*/}
         {/*      {selectedCategoryItems.length > 0 && (*/}
         {/*        <Badge variant="secondary" className="rounded-full">*/}
         {/*          {selectedCategoryItems.length}*/}
@@ -367,8 +367,7 @@ const Search = ({
         <DialogContent
           overlayClassName={"bg-black/80"}
           className="lg:max-h-[80vh]  h-full gap-0 rounded-none border-none overflow-hidden p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full"
-          closeButtonClassName="text-primary-foreground w-[20px] h-[20px]"
-        >
+          closeButtonClassName="text-primary-foreground w-[20px] h-[20px]">
           <DialogHeader className="lg:px-6 h-14 lg:h-9 flex items-center justify-center pb-0 border-none lg:pt-5">
             <DialogTitle className="text-white/70">
               <Trans>Providers</Trans>

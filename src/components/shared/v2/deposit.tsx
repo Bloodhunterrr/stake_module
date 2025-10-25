@@ -77,7 +77,7 @@ const DepositChips = ({ selectedWallet, handleChipClick }: ChipsProps) => {
         <button
           key={chip}
           onClick={() => handleChipClick(chip.toString())}
-          className="flex-shrink-0 rounded-full bg-secondary px-4 py-2 text-sm font-semibold transition-colors hover:bg-secondary/80"
+          className="flex-shrink-0 rounded-full bg-secondary px-4 py-2 text-sm font-semibold transition-colors lg:hover:bg-secondary/80"
         >
           {chip.toLocaleString("en-EN")} {selectedSymbol}
         </button>
@@ -199,12 +199,12 @@ const Deposit = ({ isOpen, onClose, wallet }: DepositProps) => {
           <Button
             onClick={handleSubmit}
             disabled={isLoading}
-            className="w-full bg-card hover:bg-card/70 text-accent-foreground">
+            className="w-full bg-card lg:hover:bg-card/70 text-accent-foreground">
             {isLoading ? t`Depositing...` : t`Deposit`}
           </Button>
           <div
             onClick={() => console.log("chat")}
-            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+            className="flex cursor-pointer items-center justify-center space-x-2 text-sm text-muted-foreground lg:hover:text-primary transition-colors">
             <Trans>Need Help?</Trans>
             <Support className="h-4 w-4"/>
             <Trans>Live Chat</Trans>

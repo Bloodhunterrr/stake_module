@@ -118,10 +118,8 @@ function UserListRender() {
 
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button
-                            variant="outline"
-                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground"
-                        >
+                        <Button variant="outline"
+                            className="justify-start text-left font-normal bg-muted rounded-none h-8 text-accent-foreground">
                             <CalendarIcon className="sm:mr-2 sm:ml-0 -mr-1 -ml-2 h-4 w-4" />
                             {format(dates.endDate, "dd/MM/yyyy")}
                         </Button>

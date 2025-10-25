@@ -84,8 +84,8 @@ export default function BigWinsSlider() {
         </CarouselContent>
 
         <div className="flex justify-between mt-2">
-          <CarouselPrevious className="hidden lg:flex top-1/2 px-6 border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 h-full disabled:hidden rounded-none left-0 z-10" />
-          <CarouselNext className="hidden lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 hover:bg-background hover:text-primary-foreground opacity-0 group-hover:opacity-100 disabled:hidden rounded-none right-0 z-10" />
+          <CarouselPrevious className="hidden lg:flex top-1/2 px-6 border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 lg:group-hover:opacity-100 h-full disabled:hidden rounded-none left-0 z-10" />
+          <CarouselNext className="hidden lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 lg:group-hover:opacity-100 disabled:hidden rounded-none right-0 z-10" />
         </div>
       </Carousel>
     </section>

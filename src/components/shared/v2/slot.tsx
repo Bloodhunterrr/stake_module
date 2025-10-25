@@ -45,7 +45,7 @@ export const ModalBalanceInfo = ({
             onClose();
             dispatch(setModal({ modal: "deposit" }));
           }}
-          className="px-6 py-2 bg-card rounded-lg hover:bg-card/80 text-accent-foreground transition">
+          className="px-6 py-2 bg-card rounded-lg lg:hover:bg-card/80 text-accent-foreground transition">
           <Trans>Deposit now</Trans>
         </button>
 
@@ -60,7 +60,7 @@ export const ModalBalanceInfo = ({
                 });
               }
             }}
-            className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
+            className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg lg:hover:bg-gray-300 transition"
           >
             <Trans>Or play demo</Trans>
           </button>
@@ -138,7 +138,7 @@ const GameSlot = ({
     <>
         <div className="flex flex-col">
             <div
-                className="relative aspect-[4496/6031] rounded-lg overflow-hidden hover:lg:translate-y-[-4%] transition-transform duration-300 shadow-lg cursor-pointer group"
+                className="relative aspect-[4496/6031] rounded-lg overflow-hidden lg:hover:lg:translate-y-[-4%] transition-transform duration-300 shadow-lg cursor-pointer group"
                 onClick={handleGameClick}>
                 <div className="absolute inset-0 bg-center bg-cover opacity-40"
                      style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}/>
@@ -148,7 +148,7 @@ const GameSlot = ({
                      loading="lazy"
                      alt={game?.name}/>
 
-                <HeartIcon className="absolute top-2 right-2 w-5 h-5 text-white opacity-80 hover:opacity-100" />
+                <HeartIcon className="absolute top-2 right-2 w-5 h-5 text-white opacity-80 lg:hover:opacity-100" />
                 {playLoading && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                         <Loading />

@@ -35,7 +35,7 @@ const ProvidersGames = () => {
                 <div className="p-3 flex items-center justify-between">
                   <div className={"flex items-center gap-x-3 "}>
                     <button onClick={() => navigate(-1)}
-                      className="flex items-center justify-center w-10 h-10 rounded-full text-white border border-white cursor-pointer hover:border-white hover:bg-[var(--grey-500)] hover:text-white transition">
+                      className="flex items-center justify-center w-10 h-10 rounded-full text-white border border-white cursor-pointer lg:hover:border-white lg:hover:bg-[var(--grey-500)] lg:hover:text-white transition">
                       <ArrowUpIcon className="w-4 h-4 -rotate-90" />
                     </button>
 
@@ -56,7 +56,7 @@ const ProvidersGames = () => {
                   <div className="flex gap-1.5 items-center">
                     <button onClick={() => setSearchModal(true)}
                       className="flex items-center justify-center gap-2 px-3 py-1 w-[60px] rounded-[24px] border text-sm font-semibold transition
-                   border-gray-600 text-gray-300 hover:border-card hover:text-white hover:bg-popover/50">
+                   border-gray-600 text-gray-300 lg:hover:border-card lg:hover:text-white lg:hover:bg-popover/50">
                       <SearchIcon className="size-5" />
                     </button>
 
@@ -64,7 +64,7 @@ const ProvidersGames = () => {
                       className={`px-3 py-1 rounded-[24px] border w-[60px] text-sm font-semibold transition ${
                         isSortingEnabled
                           ? "border-card text-card bg-popover"
-                          : "border border-gray-600 text-gray-300 hover:border-card hover:text-white"
+                          : "border border-gray-600 text-gray-300 lg:hover:border-card lg:hover:text-white"
                       }`}>
                       A-Z
                     </button>
@@ -85,7 +85,7 @@ const ProvidersGames = () => {
       </div>
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent showCloseButton={false}
-          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-50 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-100 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
           <Search setSearchModal={setSearchModal}
             onCloseSearchModal={() => setSearchModal(false)}/>
         </DialogContent>

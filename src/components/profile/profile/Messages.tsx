@@ -75,7 +75,7 @@ export default function Messages() {
 
 
     return (
-        <div className={'bg-background'}>
+        <div className={'bg-[var(--grey-700)]'}>
            <section className={'container mx-auto flex flex-row'}>
                <Tabs onValueChange={() => { setRefresh(true) }} defaultValue="received" className="w-full px-2 pt-2">
                    <TabsList>
@@ -105,18 +105,18 @@ export default function Messages() {
                        </div>
                    </TabsContent>
                    <TabsContent value="received">
-                       <div className={'w-full min-h-screen text-accent gap-y-2 flex flex-col justify-start pt-2'}>
+                       <div className={'w-full min-h-[calc(100vh-140px)] text-accent gap-y-2 flex flex-col justify-start pt-2'}>
                            <div className={cn('w-full h-full', {
                                "animate-pulse min-h-12 bg-accent/40" : isFetching
                            })}>
-                               <div className={'flex flex-col py-2 gap-y-3'}>
+                               <div className={'flex flex-col py-2 gap-y-3 min-h-[calc(100vh-140px)]'}>
                                { isLoading
                                    ? <Loading/>
                                    : messages?.received.length > 0
                                        ? messages.received.map((message:any) => {
                                            return <SingleMessage message={message} type={'received'} />
                                        })
-                                       : <p className={'py-2 pl-2 bg-popover '}><Trans>Not Received any messages yet</Trans></p>
+                                       : <p className={'m-auto bg-transparent'}><Trans>Not Received any messages yet</Trans></p>
                                }
                                </div>
                            </div>

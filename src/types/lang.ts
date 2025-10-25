@@ -3,7 +3,7 @@ export const ALLOWED_LANGUAGES = {
     it: { name: "Italiano", code: "it" },
     es: { name: "Español", code: "es" },
     fr: { name: "Français", code: "fr" },
-    al: { name: "Shqip", code: "al" },
+    sq: { name: "Shqip", code: "sq" },
   } as const;
   
   export type Language = keyof typeof ALLOWED_LANGUAGES;

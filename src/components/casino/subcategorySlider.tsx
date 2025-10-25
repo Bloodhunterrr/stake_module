@@ -39,7 +39,7 @@ export default function SubcategorySlider({ data }: Props) {
               <CarouselItem key={subcategory.id}
                 className="basis-full sm:basis-1/2 md:basis-1/4 lg:basis-1/7 pl-2"
                 onClick = {() => navigate(`/${categorySlug}/games/${subcategory.slug}`) }>
-                <div className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-accent transition">
+                <div className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer lg:hover:bg-accent transition">
                   {subcategory.icon && (
                     <img src={`${config.baseUrl}/storage/${subcategory.icon}`}
                       alt={subcategory.name}
@@ -54,7 +54,7 @@ export default function SubcategorySlider({ data }: Props) {
           <CarouselNext />
         </Carousel>
         <div onClick={() => setSearchModal(true)}
-          className="flex items-center gap-2 mt-4 cursor-pointer p-3 border rounded-lg hover:bg-accent transition">
+          className="flex items-center gap-2 mt-4 cursor-pointer p-3 border rounded-lg lg:hover:bg-accent transition">
           <FeedbackIcon className="w-6 h-6" />
           <Trans>Providers</Trans>
         </div>

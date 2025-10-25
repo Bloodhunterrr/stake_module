@@ -94,7 +94,7 @@ const SingleUserTransaction = () => {
                                     {format(dates.startDate, "dd/MM/yyyy")}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="p-0 bg-white z-[900]">
+                            <PopoverContent className="p-0 bg-white z-[100]">
                                 <Calendar className="w-full"
                                           mode="single"
                                           selected={dates.startDate}
@@ -112,7 +112,7 @@ const SingleUserTransaction = () => {
                                     {format(dates.endDate, "dd/MM/yyyy")}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="p-0 bg-white z-[900]">
+                            <PopoverContent className="p-0 bg-white z-[100]">
                                 <Calendar className="w-full"
                                           mode="single"
                                           selected={dates.endDate}

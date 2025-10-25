@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
+    "@lingui/cli": "^5.5.1",
     "@lingui/format-po": "^5.4.1",
     "@lingui/react": "^5.4.1",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -54,7 +55,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
-    "@lingui/cli": "^5.4.1",
     "@lingui/macro": "^5.4.1",
     "@lingui/vite-plugin": "^5.4.1",
     "@tailwindcss/postcss": "^4.1.13",
