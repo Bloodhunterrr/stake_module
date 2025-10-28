@@ -1,4 +1,3 @@
-import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -107,7 +106,7 @@ export default function Header(props: HeaderProps) {
 
     return (
         <div className="sticky top-0 z-100 header-shadow h-15">
-            <div className="sticky w-[calc(100%_-_60px)] max-md:w-full ml-auto top-0 z-100 bg-[var(--grey-600)] h-15 min-[1024px]:px-[3vw] min-[1440px]:px-[calc((100%_-_1260px)_/_2)]">
+            <div className="sticky w-[calc(100%_-_60px)] max-md:w-full ml-auto top-0 z-100 bg-[var(--navbar-bg)] h-15 min-[1024px]:px-[3vw] min-[1440px]:px-[calc((100%_-_1260px)_/_2)]">
                 <div className={cn("relative flex items-center mx-auto justify-between h-15 px-[10px] max-md:px-[3vw]")}>
                     <div className={cn("flex items-center", {
                             "justify-start": !props.isNoCategoryOrSportsbook || isDesktop,
@@ -168,7 +167,7 @@ export default function Header(props: HeaderProps) {
                         ) : (
                             <section className="space-x-3">
                                 <Button variant="secondary"
-                                    className="bg-[var(--grey-400)] h-11 py-2.5 px-4.5 text-primary-foreground rounded-[0.5rem] font-semibold text-[15px] lg:hover:bg-[var(--grey-300)] cursor-pointer"
+                                    className="bg-[var(--navbar-login)] h-11 py-2.5 px-4.5 text-[var(--navbar-text)] rounded-[0.5rem] font-semibold text-[15px] lg:hover:bg-[var(--navbar-login-hover)] cursor-pointer"
                                     onClick={() => setLoginModalOpen(true)}>
                                     <Trans>Login</Trans>
                                 </Button>
@@ -219,14 +218,6 @@ export default function Header(props: HeaderProps) {
                 headersTranslations={headersTranslations}
                 accordionValue={accordionValue}
                 setAccordionValue={setAccordionValue}/>
-            <div className="hidden md:data-[state=open]:fixed h-full w-[260px] flex items-center flex-col data-[state=open]:duration-300 data-[state=closed]:duration-500 data-[state=open]:slide-out-to-left data-[state=closed]:slide-in-from-left" data-state="open">
-                <button className="w-15 relative -top-2 -mb-2 aspect-[1/1] order-[-3]" onClick={() => { /* Placeholder */ }}>
-                    <Menu className="m-auto w-5 h-5 transition-filter duration-200"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                        style={filterStyle}/>
-                </button>
-            </div>
             <NavbarMobile data={data}
                           location={props.location}
                           isHovered={isHovered}

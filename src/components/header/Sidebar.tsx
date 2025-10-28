@@ -24,7 +24,7 @@ export default function Sidebar({
 
     return (
         <Sheet>
-            <div className="hidden md:block fixed top-0 h-[calc(100%)] w-max bg-[var(--grey-700)] z-[100]">
+            <div className="hidden md:block fixed top-0 h-[calc(100%)] w-max bg-[var(--sidebar-bg)] z-[100]">
                 <SheetTrigger asChild>
                     <button className="w-15 relative t-0 -mb-2 aspect-[1/1] order-[-3] z-[901] rounded-[8px] shadow-[0_10px_15px_-3px_rgba(0,0,0,0.2),0_4px_6px_-2px_rgba(0,0,0,0.1))]">
                         <Menu className="m-auto w-5 h-5 transition-filter duration-200"
@@ -34,16 +34,16 @@ export default function Sidebar({
                     </button>
                 </SheetTrigger>
                 <div className={cn("h-[calc(100%_-_60px)] p-2 z-900 transition-all no-scrollbar overflow-x-auto flex items-center flex-col gap-[8px] container mx-auto duration-300 ease-in-out " +
-                        "bg-[var(--grey-700)] top-15 w-15 data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left"
+                        "top-15 w-15 data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left"
                     )}>
                     <div className="w-[calc(100%_-_16px)] h-0 border-t-[2px] border-t-[var(--grey-400)] mt-1.75 mb-1.5"></div>
                     {data?.map((R) =>
                         !R.is_sportbook && R.subcategories.length === 0 ? null : (
                             <Button key={R.id} variant="ghost" className={cn(
-                                    "flex w-11 h-11 relative items-center rounded-[6px] bg-[var(--grey-700)] hover:bg-[var(--grey-700)] text-primary-foreground text-[11px] px-2 font-medium",
+                                    "flex w-11 h-11 relative items-center rounded-[6px] bg-[var(--sidebar-bg)] hover:bg-[var(--sidebar-bg)] text-primary-foreground text-[11px] px-2 font-medium",
                                     {
                                         "hover:text-primary-foreground hover:bg-[var(--grey-400)]": R.name !== "Sport" && R.name !== "Casino",
-                                        "text-[var(--grey-100)] hover:text-[var(--grey-100)] bg-[var(--grey-400)]": location.split("/")[1] === R.slug && R.name !== "Sport" && R.name !== "Casino",
+                                        "text-[var(--grey-100)] lg:hover:text-[var(--grey-100)] bg-[var(--grey-400)]": location.split("/")[1] === R.slug && R.name !== "Sport" && R.name !== "Casino",
                                         "order-[-2] group": R.name === "Sport",
                                         "order-[-1] group": R.name === "Casino",
                                     }
@@ -89,8 +89,8 @@ export default function Sidebar({
                     )}
                     <div className="w-[calc(100%_-_16px)] h-0 border-t-[2px] border-t-[var(--grey-400)] mt-1.75 mb-1.5"></div>
                     <SheetTrigger asChild>
-                        <Button key="-1" variant="ghost" className={cn("flex w-11 h-11 relative items-center rounded-[6px] bg-[var(--grey-700)] hover:bg-[var(--grey-700)] text-primary-foreground text-[11px] px-2 font-medium",
-                                "hover:text-primary-foreground hover:bg-[var(--grey-400)] text-[var(--grey-100)] hover:text-[var(--grey-100)] bg-[var(--grey-400)]"
+                        <Button key="-1" variant="ghost" className={cn("flex w-11 h-11 relative items-center rounded-[6px] bg-[var(--sidebar-bg)] lg:hover:bg-[var(--sidebar-bg)] text-primary-foreground text-[11px] px-2 font-medium",
+                                "text-[var(--navbar-text)] lg:hover:text-white bg-[var(--navbar-login)]"
                             )} onMouseEnter={(e) => handleMouseEnter(e, {
                                     id: 11,
                                     name: "Language",
@@ -181,7 +181,7 @@ export default function Sidebar({
                                 <Button key={R.id} variant="ghost"
                                     className={cn("flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md hover:text-primary-foreground hover:bg-[var(--grey-400)] px-4 py-3 font-medium",
                                         {
-                                            "text-[var(--grey-100)] hover:text-[var(--grey-100)] bg-[var(--grey-400)]": location.split("/")[1] === R.slug,
+                                            "text-[var(--grey-100)] lg:hover:text-[var(--grey-100)] bg-[var(--grey-400)]": location.split("/")[1] === R.slug,
                                         }
                                     )} onMouseEnter={(e) => handleMouseEnter(e, R)}
                                     onMouseLeave={(e) => handleMouseLeave(e, R)}

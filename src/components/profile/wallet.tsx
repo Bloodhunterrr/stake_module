@@ -37,15 +37,13 @@ export default function Wallet() {
     <>
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {user.wallets?.map((w: Wallet) => (
-          <Card key={w.slug} className="relative overflow-hidden bg-white py-0 pt-4">
+          <Card key={w.slug} className="relative overflow-hidden bg-[var(--grey-500)] text-white py-0 pt-4">
             <CardHeader className="flex flex-row items-center justify-between p-4 pb-0">
               <Badge variant="secondary" className="text-sm font-semibold">
                 {w.slug.toUpperCase()}
               </Badge>
-              <Button
-                variant={w.default ? "secondary" : "default"}
-                size="sm"
-                onClick={() => {
+              <Button variant={w.default ? "secondary" : "default"}
+                size="sm" onClick={() => {
                   if (w.default) {
                     toast.warn(t`This wallet is already default`);
                     return;
@@ -73,21 +71,21 @@ export default function Wallet() {
               </div>
               <div className="flex space-x-2">
                 <Button
-                  className="flex-1 bg-gray-200"
+                  className="flex-1 bg-blue-500 lg:hover:bg-blue-500/70"
                   variant="outline"
                   disabled={!w.limits.can_pay_with_now_payments}
                   onClick={() => handleOpenWithdraw(w)}>
                   <Trans>Withdraw</Trans>
                 </Button>
                 <Button
-                  className="flex-1 bg-card hover:bg-card/70 text-accent-foreground"
+                  className="flex-1 bg-card lg:hover:bg-card/70 text-accent-foreground"
                   disabled={!w.limits.can_pay_with_now_payments}
                   onClick={() => handleOpenDeposit(w)}>
                   <Trans>Deposit</Trans>
                 </Button>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between border-t bg-gray-50 p-4">
+            <CardFooter className="flex justify-between border-t bg-[var(--grey-600)] text-white p-4">
               <div className="flex flex-col items-start">
                 <span className="text-xs text-gray-500"><Trans>Real money</Trans></span>
                 <div className="mt-1 flex items-center">

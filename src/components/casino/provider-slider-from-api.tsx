@@ -72,13 +72,13 @@ const ProviderSliderFromApi = ({
           </h2>
 
           <button onClick={() => navigate(categorySlug ? `/${categorySlug}/providers` : "/providers")}
-            disabled={isFetching || isLoading} className="flex items-center gap-1 text-sm lg:hover:underline disabled:opacity-50">
+            disabled={isFetching || isLoading} className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50">
             <span>
               <Trans>View all</Trans>
             </span>
             {isDesktop && total > 0 && <span>({total})</span>}
           </button>
-            <CarouselBtns className={"hidden md:flex relative size-8 rounded-full box-content bg-transparent lg:hover:bg-popover/50 border border-[color:var(--grey-400)] items-center cursor-pointer text-white lg:hover:text-white border-solid h-[40px] w-[56px] m-0"}
+            <CarouselBtns className={"flex relative size-8 rounded-full box-content bg-transparent lg:hover:bg-popover/50 border border-[color:var(--grey-400)] items-center cursor-pointer text-white lg:hover:text-white border-solid h-[40px] w-[56px] m-0"}
                           prevClassName={"rounded-tr-none rounded-br-none top-0 left-0"}
                           nextClassName={"rounded-tl-none rounded-bl-none top-0 right-0"}
                           prevOnClick={() => setOffset(Math.max(0, offset - limit))}
@@ -110,7 +110,7 @@ const ProviderSliderFromApi = ({
                         navigate(`/${categorySlug}/provider/${p.general_code}`)
                       }>
                       <div
-                        className={`flex items-center justify-center rounded-lg bg-[var(--grey-400)]/80 lg:hover:lg:translate-y-[-6%] transition-transform duration-300 max-w-[169px] max-h-[67px] aspect-[2.52239_/_1] group ${
+                        className={`flex items-center justify-center rounded-lg bg-[var(--grey-400)]/80 lg:hover:lg:translate-y-[-6%] transition-transform duration-300 max-w-[169px] max-h-[67px] aspect-[2.52239_/_1] cursor-pointer group ${
                           providerCode === p.general_code ? "!bg-popover" : ""
                         }`}>
                         <img

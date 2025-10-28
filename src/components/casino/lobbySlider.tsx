@@ -10,10 +10,10 @@ import { SearchIcon, Settings2 } from "lucide-react";
 import type { Provider } from "@/types/provider_list";
 import { useGetGameListQuery } from "@/services/mainApi";
 import React, { useEffect, useRef, useState } from "react";
-import ArrowUpIcon from "@/assets/icons/arrow-up.svg?react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import CarouselBtns from "@/components/ui/carouselBtns.tsx";
 
 type LobbySliderProps = {
   categorySlug: string;
@@ -68,7 +68,7 @@ const DesktopSlider = ({
   const isNextDisabled =
       isFetching || (data?.total !== undefined && offset + limit >= data.total);
 
-  const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
+  // const shouldNext = (data?.offset ?? 0) + columns > (data?.total ?? columns);
 
   const subcategoryTranslations: Record<string, string | React.ReactNode> = {
     "Megaways": <Trans>Megaways</Trans>,
@@ -88,7 +88,7 @@ const DesktopSlider = ({
 
   return (
       <section className="w-full mb-8">
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-between gap-4">
           <h2 className="font-bold mr-auto text-xl leading-7 px-3">
             {subcategoryTranslations[subcategory.name] ?? subcategory.name}
           </h2>
@@ -162,14 +162,21 @@ const DesktopSlider = ({
             </Sheet>
           </div>
 
-          <div className="hidden md:flex gap-2">
-            <button onClick={handlePrev} disabled={isPrevDisabled}>
-              <ArrowUpIcon className="rotate-270" />
-            </button>
-            <button onClick={handleNext} disabled={isNextDisabled}>
-              <ArrowUpIcon className="rotate-90" />
-            </button>
-          </div>
+          {/*<div className="hidden md:flex gap-2">*/}
+          {/*  <button onClick={handlePrev} disabled={isPrevDisabled}>*/}
+          {/*    <ArrowUpIcon className="rotate-270" />*/}
+          {/*  </button>*/}
+          {/*  <button onClick={handleNext} disabled={isNextDisabled}>*/}
+          {/*    <ArrowUpIcon className="rotate-90" />*/}
+          {/*  </button>*/}
+          {/*</div>*/}
+            <CarouselBtns className={"flex relative size-8 rounded-full box-content bg-transparent lg:hover:bg-popover/50 border border-[color:var(--grey-400)] items-center cursor-pointer text-white lg:hover:text-white border-solid h-[40px] w-[56px] m-0"}
+                          prevClassName={"rounded-tr-none rounded-br-none top-0 left-0"}
+                          nextClassName={"rounded-tl-none rounded-bl-none top-0 right-0"}
+                          prevOnClick={handlePrev}
+                          prevDisabled={isPrevDisabled}
+                          nextOnClick={handleNext}
+                          nextDisabled={isNextDisabled} />
         </div>
 
         <Carousel
@@ -186,10 +193,10 @@ const DesktopSlider = ({
             ))}
           </CarouselContent>
 
-          <CarouselPrevious onClick={handlePrev} disabled={Number(data?.offset ?? 0) === 0}
-              className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"/>
-          <CarouselNext onClick={handleNext} disabled={shouldNext}
-              className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"/>
+          {/*<CarouselPrevious onClick={handlePrev} disabled={Number(data?.offset ?? 0) === 0}*/}
+          {/*    className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"/>*/}
+          {/*<CarouselNext onClick={handleNext} disabled={shouldNext}*/}
+          {/*    className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"/>*/}
         </Carousel>
       </section>
   );

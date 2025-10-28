@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #. js-lingui-explicit-id
 #~ msgid "Unauthorized request!!"
@@ -231,6 +231,10 @@ msgstr "{placeholder}"
 msgid "{totalGames, plural, one {# game} other {# games}}"
 msgstr "{totalGames, plural, one {# jeu} other {# jeux}}"
 
+#: src/components/casino/lobbyBannerSlider.tsx:113
+msgid "$500,000 In Prizes!"
+msgstr "$500,000 de prix à gagner !"
+
 #~ msgid "€2,500 Daily"
 #~ msgstr "2 500 € par jour"
 
@@ -284,6 +288,10 @@ msgstr "Toutes les Actions"
 #: src/components/profile/v2/payments-history-table.tsx:149
 msgid "All currencies"
 msgstr "Toutes les devises"
+
+#: src/components/casino/lobbyBannerSlider.tsx:100
+msgid "All in or Fold Jackpot"
+msgstr "Jackpot All In ou Fold"
 
 #: src/routes/casino/allProvidersList.tsx:109
 msgid "All Providers"
@@ -387,7 +395,7 @@ msgstr "Bientôt disponible"
 msgid "Blackjack"
 msgstr "Blackjack"
 
-#: src/components/profile/wallet.tsx:105
+#: src/components/profile/wallet.tsx:103
 msgid "Bonus money"
 msgstr "Argent bonus"
 
@@ -487,6 +495,10 @@ msgstr "Confirmer le nouveau mot de Passe"
 #~ msgid "Congratulations"
 #~ msgstr "Félicitations"
 
+#: src/components/casino/lobbyBannerSlider.tsx:103
+msgid "Conquer the Casino"
+msgstr "Conquérir le Casino"
+
 #: src/components/shared/v2/footer.tsx:50
 msgid "Cookie Policy"
 msgstr "Politique relative aux Cookies"
@@ -535,6 +547,10 @@ msgstr "Devises"
 msgid "Currency"
 msgstr "Devise"
 
+#: src/components/casino/lobbyBannerSlider.tsx:102
+msgid "Daily Races"
+msgstr "Courses Quotidiennes"
+
 #~ msgid "Date"
 #~ msgstr "Date"
 
@@ -546,12 +562,12 @@ msgstr "Date de naissance"
 msgid "December"
 msgstr "Décembre"
 
-#: src/components/profile/wallet.tsx:57
+#: src/components/profile/wallet.tsx:55
 msgid "Default"
 msgstr "Par défaut"
 
 #: src/components/header/ProfileDropdown.tsx:129
-#: src/components/profile/wallet.tsx:86
+#: src/components/profile/wallet.tsx:84
 #: src/components/shared/v2/deposit.tsx:152
 #: src/components/shared/v2/deposit.tsx:203
 msgid "Deposit"
@@ -620,6 +636,10 @@ msgstr "Entrez votre email/nom d'utilisateur"
 #: src/components/shared/v2/signup.tsx:112
 msgid "Enter your password"
 msgstr "Entrez votre mot de Passe"
+
+#: src/components/casino/lobbyBannerSlider.tsx:93
+msgid "Exclusive Promotion"
+msgstr "Promotion Exclusive"
 
 #~ msgid "Exit"
 #~ msgstr "Quitter"
@@ -746,6 +766,10 @@ msgstr "Jeux Instantanés"
 msgid "Invalid wallet address format"
 msgstr "Format d'adresse de portefeuille invalide"
 
+#: src/components/casino/lobbyBannerSlider.tsx:99
+msgid "It's Money Time"
+msgstr "C'est l'Heure de l'Argent"
+
 #~ msgid "Jackpot"
 #~ msgstr "Jackpot"
 
@@ -785,6 +809,14 @@ msgstr "Langue"
 #: src/components/profile/profile/UserInfo.tsx:40
 msgid "Last Name"
 msgstr "Nom de Famille"
+
+#: src/components/casino/lobbyBannerSlider.tsx:98
+msgid "Le Cowboy"
+msgstr "Le Cowboy"
+
+#: src/components/casino/lobbyBannerSlider.tsx:87
+msgid "Learn More"
+msgstr "Apprendre Encore Plus"
 
 #: src/components/casino/feedbackForm.tsx:103
 msgid "Leave a message"
@@ -918,12 +950,20 @@ msgstr "Besoin d'aide ?"
 msgid "Net Win"
 msgstr "Gain Net"
 
+#: src/components/casino/lobbyBannerSlider.tsx:111
+msgid "New Early Access Game!"
+msgstr "Nouveau Jeu en Accès Anticipé !"
+
 #~ msgid "New password"
 #~ msgstr "Nouveau mot de passe"
 
 #: src/components/profile/v2/change-password-form.tsx:139
 msgid "New Password"
 msgstr "Nouveau mot de Passe"
+
+#: src/components/casino/lobbyBannerSlider.tsx:92
+msgid "New releases"
+msgstr "Nouvelles versions"
 
 #: src/components/casino/allItemsListSearch.tsx:50
 #: src/components/casino/lobbySlider.tsx:78
@@ -1038,6 +1078,10 @@ msgstr "Ancien mot de Passe"
 msgid "Or play demo"
 msgstr "Ou jouer à la démo"
 
+#: src/components/casino/lobbyBannerSlider.tsx:107
+msgid "Originals Ascent"
+msgstr "Originaux Ascension"
+
 #~ msgid "Page you were looking for was not found."
 #~ msgstr "La page que vous recherchiez n'a pas été trouvée."
 
@@ -1089,6 +1133,18 @@ msgstr "Choisir la date de fin"
 #: src/components/profile/v2/payments-history-table.tsx:112
 msgid "Pick start date"
 msgstr "Choisir la date de début"
+
+#: src/components/casino/lobbyBannerSlider.tsx:115
+msgid "Play in our $100,000 Daily Race"
+msgstr "Participez à notre course quotidienne de $100,000"
+
+#: src/components/casino/lobbyBannerSlider.tsx:86
+msgid "Play Now"
+msgstr "Jouer Maintenant"
+
+#: src/components/casino/lobbyBannerSlider.tsx:85
+msgid "Play Now!"
+msgstr "Jouer Maintenant!"
 
 #: src/components/profile/profile/ReportsSingleCategory.tsx:183
 #: src/components/profile/profile/SingleTicketPage.tsx:227
@@ -1167,6 +1223,10 @@ msgstr "Informations sur le Profil"
 msgid "Promo Code (optional)"
 msgstr "Code Promotionnel (facultatif)"
 
+#: src/components/casino/lobbyBannerSlider.tsx:94
+msgid "Promotion"
+msgstr "Promotion"
+
 #: src/components/shared/v2/footer.tsx:14
 msgid "Promotions"
 msgstr "Promotions"
@@ -1188,10 +1248,14 @@ msgstr "Promotions"
 msgid "Providers"
 msgstr "Fournisseurs"
 
+#: src/components/casino/lobbyBannerSlider.tsx:88
+msgid "Race Now"
+msgstr "Course Maintenant"
+
 #~ msgid "Read More"
 #~ msgstr "En savoir plus"
 
-#: src/components/profile/wallet.tsx:92
+#: src/components/profile/wallet.tsx:90
 msgid "Real money"
 msgstr "Argent réel"
 
@@ -1206,6 +1270,10 @@ msgstr "Reçu"
 #: src/components/casino/bottomBanner.tsx:21
 msgid "Recharge et retire en Crypto."
 msgstr "Rechargez et retirez en Crypto."
+
+#: src/components/casino/lobbyBannerSlider.tsx:105
+msgid "Reel Rumble"
+msgstr "Reel Rumble"
 
 #: src/components/profile/profile/Messages.tsx:82
 msgid "Refresh"
@@ -1346,9 +1414,17 @@ msgstr "Envoyé"
 msgid "September"
 msgstr "Septembre"
 
-#: src/components/profile/wallet.tsx:57
+#: src/components/profile/wallet.tsx:55
 msgid "Set default"
 msgstr "Définir par défaut"
+
+#: src/components/casino/lobbyBannerSlider.tsx:112
+msgid "Share in $50,000!"
+msgstr "Participez au partage de $50,000 !"
+
+#: src/components/casino/lobbyBannerSlider.tsx:114
+msgid "Share in $75,000 each week"
+msgstr "Partagez-vous $75,000 chaque semaine"
 
 #: src/components/header/HeaderTop.tsx:60
 #: src/components/shared/v2/header.tsx:135
@@ -1393,6 +1469,10 @@ msgstr "Sport"
 msgid "Sport Betting Terms"
 msgstr "Conditions des paris sportifs"
 
+#: src/components/casino/lobbyBannerSlider.tsx:104
+msgid "Stake vs Eddie"
+msgstr "Stake contre Eddie"
+
 #: src/components/profile/profile/AgentPaymentTable.tsx:190
 #: src/components/profile/profile/NewBettingHistory.tsx:297
 #: src/components/profile/profile/SingleTicketPage.tsx:191
@@ -1428,6 +1508,10 @@ msgstr "testpopok"
 msgid "Thank you for making our service better"
 msgstr "Merci de nous aider à améliorer notre service"
 
+#: src/components/casino/lobbyBannerSlider.tsx:106
+msgid "The Level Up"
+msgstr "Le Niveau Supérieur"
+
 #: src/components/profile/profile/Messages.tsx:169
 msgid "There has been an error"
 msgstr "Il y a eu une erreur"
@@ -1436,7 +1520,7 @@ msgstr "Il y a eu une erreur"
 msgid "There is no other user"
 msgstr "Il n'y a pas d'autre utilisateur"
 
-#: src/components/profile/wallet.tsx:50
+#: src/components/profile/wallet.tsx:48
 msgid "This wallet is already default"
 msgstr "Ce portefeuille est déjà par défaut"
 
@@ -1481,7 +1565,7 @@ msgstr "Meilleurs Jeux"
 msgid "Total"
 msgstr "Total"
 
-#: src/components/profile/wallet.tsx:64
+#: src/components/profile/wallet.tsx:62
 msgid "Total balance"
 msgstr "Solde total"
 
@@ -1604,16 +1688,28 @@ msgstr "Adresse du portefeuille"
 #~ msgid "WEEKLY CASHBACK"
 #~ msgstr "REMBOURSEMENT HEBDOMADAIRE"
 
+#: src/components/casino/lobbyBannerSlider.tsx:101
+msgid "Weekly Raffle"
+msgstr "Tombola Hebdomadaire"
+
 #~ msgid "Welcome back"
 #~ msgstr "Bienvenue"
 
 #~ msgid "Win"
 #~ msgstr "Gagner"
 
+#: src/components/casino/lobbyBannerSlider.tsx:117
+msgid "Win a share in $40,000 every week"
+msgstr "Gagnez une part des $40,000 mis en jeu chaque semaine"
+
+#: src/components/casino/lobbyBannerSlider.tsx:116
+msgid "Win a share in $50,000 every week"
+msgstr "Gagnez une part des $40,000 mis en jeu chaque semaine"
+
 #~ msgid "Win Amount"
 #~ msgstr "Montant gagné"
 
-#: src/components/profile/wallet.tsx:80
+#: src/components/profile/wallet.tsx:78
 #: src/components/shared/v2/withdraw.tsx:154
 msgid "Withdraw"
 msgstr "Retirer"

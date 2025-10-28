@@ -30,7 +30,7 @@ export default function HeaderTop({
                                       toggleShowBalance
                                   }: HeaderTopProps) {
     return (
-        <div className="sticky w-[calc(100%_-_60px)] max-md:w-full ml-auto top-0 z-100 bg-[var(--grey-600)] h-15 min-[1024px]:px-[3vw] min-[1440px]:px-[calc((100%_-_1260px)_/_2)]">
+        <div className="sticky w-[calc(100%_-_60px)] max-md:w-full ml-auto top-0 z-100 bg-[var(--navbar-bg)] h-15 min-[1024px]:px-[3vw] min-[1440px]:px-[calc((100%_-_1260px)_/_2)]">
             <div className={cn("relative flex items-center mx-auto justify-between h-15 px-[10px] max-md:px-[3vw]")}>
                 <div className={cn("flex items-center", {
                     "justify-start": !isNoCategoryOrSportsbook || isDesktop,
@@ -69,9 +69,9 @@ export default function HeaderTop({
                             toggleShowBalance={toggleShowBalance} />
                     ) : (
                         <section className="space-x-3">
-                            <Button variant="secondary"
-                                className="bg-[var(--grey-400)] h-11 py-2.5 px-4.5 text-primary-foreground rounded-[0.5rem] font-semibold text-[15px] hover:bg-[var(--grey-300)] cursor-pointer"
-                                onClick={() => setLoginModalOpen(true)}>
+                            <Button variant="secondary" onClick={() => setLoginModalOpen(true)}
+                                className="bg-[var(--navbar-login)] h-11 py-2.5 px-4.5 text-[var(--navbar-text)]
+                                rounded-[0.5rem] font-semibold text-[15px] hover:bg-[var(--navbar-login-hover)] cursor-pointer">
                                 <Trans>Login</Trans>
                             </Button>
                         </section>

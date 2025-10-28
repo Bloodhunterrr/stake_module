@@ -1,6 +1,6 @@
-// import React from "react";
+import React from "react";
 import { Button } from "../ui/button";
-// import { Trans } from "@lingui/react/macro";
+import { Trans } from "@lingui/react/macro";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const slides = [
@@ -77,32 +77,45 @@ const slides = [
   },
 ] as const;
 
-// type ButtonTitle = typeof slides[number]['buttonTitle'];
-// type SlideTitle = typeof slides[number]['title'];
-// type SlideDescription = typeof slides[number]['description'];
+type ButtonTitle = typeof slides[number]['buttonTitle'];
+type SlideTitle = typeof slides[number]['title'];
+type SlideDescription = typeof slides[number]['description'];
 
-// const buttonTranslations: Record<ButtonTitle, React.ReactNode> = {
-//   "Deposit Now": <Trans>Deposit Now</Trans>,
-//   "Begin Now": <Trans>Begin Now</Trans>,
-//   "Read More": <Trans>Read More</Trans>,
-// };
-//
-// const titleTranslations: Record<SlideTitle, React.ReactNode> = {
-//     "SECOND DEPOSIT BONUS": <Trans>SECOND DEPOSIT BONUS</Trans>,
-//     "ROOKIE RUMBLE TOURNAMENT": <Trans>ROOKIE RUMBLE TOURNAMENT</Trans>,
-//     "WEEKLY CASHBACK": <Trans>WEEKLY CASHBACK</Trans>,
-// };
-//
-// const descriptionTranslations: Record<SlideDescription, React.ReactNode> = {
-//   "55% up to": <Trans>55% up to</Trans>,
-//   "€2,500 Daily": <Trans>€2,500 Daily</Trans>,
-//   "up to 25%": <Trans>up to 25%</Trans>,
-// };
-//
-// const subDescriptionTranslations: Record<string, React.ReactNode> = {
-//   "€500 + 100 Free Spins": <Trans>€500 + 100 Free Spins</Trans>,
-//   "": "",
-// };
+const buttonTranslations: Record<ButtonTitle, React.ReactNode> = {
+    "Play Now!": <Trans>Play Now!</Trans>,
+    "Play Now": <Trans>Play Now</Trans>,
+    "Learn More": <Trans>Learn More</Trans>,
+    "Race Now": <Trans>Race Now</Trans>,
+};
+
+const titleTranslations: Record<SlideTitle, React.ReactNode> = {
+    "New releases": <Trans>New releases</Trans>,
+    "Exclusive Promotion": <Trans>Exclusive Promotion</Trans>,
+    "Promotion": <Trans>Promotion</Trans>,
+};
+
+const descriptionTranslations: Record<SlideDescription, React.ReactNode> = {
+    "Le Cowboy": <Trans>Le Cowboy</Trans>,
+    "It's Money Time": <Trans>It's Money Time</Trans>,
+    "All in or Fold Jackpot": <Trans>All in or Fold Jackpot</Trans>,
+    "Weekly Raffle": <Trans>Weekly Raffle</Trans>,
+    "Daily Races": <Trans>Daily Races</Trans>,
+    "Conquer the Casino": <Trans>Conquer the Casino</Trans>,
+    "Stake vs Eddie": <Trans>Stake vs Eddie</Trans>,
+    "Reel Rumble": <Trans>Reel Rumble</Trans>,
+    "The Level Up": <Trans>The Level Up</Trans>,
+    "Originals Ascent": <Trans>Originals Ascent</Trans>,
+};
+
+const subDescriptionTranslations: Record<string, React.ReactNode> = {
+    "New Early Access Game!": <Trans>New Early Access Game!</Trans>,
+    "Share in $50,000!": <Trans>Share in $50,000!</Trans>,
+    "$500,000 In Prizes!": <Trans>$500,000 In Prizes!</Trans>,
+    "Share in $75,000 each week": <Trans>Share in $75,000 each week</Trans>,
+    "Play in our $100,000 Daily Race": <Trans>Play in our $100,000 Daily Race</Trans>,
+    "Win a share in $50,000 every week": <Trans>Win a share in $50,000 every week</Trans>,
+    "Win a share in $40,000 every week": <Trans>Win a share in $40,000 every week</Trans>,
+};
 
 export default function LobbyBannerSlider() {
   return (
@@ -116,38 +129,37 @@ export default function LobbyBannerSlider() {
           <CarouselContent>
             {slides.map((slide) => (
                 <CarouselItem key={slide.id}
-                    className="md:basis-1/3 sm:basis-1/2 basis-full py-2 px-[5px] lg:hover:brightness-92 transition-all duration-300">
+                    className="xl:basis-1/3 md:basis-1/2 basis-full py-2 px-[5px] lg:hover:brightness-92 transition-all duration-300">
                   <div className="grid items-center aspect-[364.18/220] grid-cols-[45%_55%] max-h-[220px] min-h-[220px] w-full transition-all duration-200 rounded-[20px] bg-cover bg-center bg-no-repeat relative overflow-hidden bg-[var(--grey-500)]"
                        // style={{ backgroundImage: `url(${slide.image})` }}
                   >
                     <div className="flex flex-col items-start justify-start h-full relative z-[1] rounded-[4px] p-4">
                       <Button variant="outline" className={'w-max max-w-full h-[16px] justify-start text-xs leading-4 overflow-hidden truncate px-1 py-0 mb-2 text-[var(--grey-900)] rounded-[4px] bg-white border-none'}>
                         {
-                            // titleTranslations[
+                            titleTranslations[
                                 slide.title
-                                // ]
+                                ]
                         }
                       </Button>
                       <div className="flex flex-col gap-y-0.5">
                         <h4 className="font-medium text-white text-xl">
                           {
-                              // descriptionTranslations[
+                              descriptionTranslations[
                                   slide.description
-                                  // ]
+                                  ]
                           }
                         </h4>
                         <p className="text-white font-[500] text-sm leading-6.5">
                           {
-                              // subDescriptionTranslations[slide.subDescription] ||
-                              slide.subDescription
+                              subDescriptionTranslations[slide.subDescription]
                           }
                         </p>
                       </div>
                       <Button variant="outline" className={'absolute bottom-3 left-3 md:bottom-4 md:left-4 px-4 py-2 min-w-[7.5rem] max-w-[10.625rem] h-max bg-transparent rounded-lg text-md text-white border-white lg:hover:text-white lg:hover:bg-popover/80'}>
                         {
-                            // buttonTranslations[
+                            buttonTranslations[
                                 slide.buttonTitle
-                                // ]
+                                ]
                         }
                       </Button>
                     </div>

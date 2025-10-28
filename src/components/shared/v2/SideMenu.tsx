@@ -105,7 +105,7 @@ const SideMenu = (props :any) => {
                                 "flex w-11 h-11 relative items-center rounded-[6px] bg-[var(--grey-700)] hover:bg-[var(--grey-700)] text-primary-foreground text-[11px] px-2 font-medium",
                                 {
                                     "hover:text-primary-foreground hover:bg-[var(--grey-400)]": R.name !== "Sport" && R.name !== "Casino",
-                                    "text-[var(--grey-100)] hover:text-[var(--grey-100)] bg-[var(--grey-400)]": props.location.split("/")[1] === R.slug && R.name !== "Sport" && R.name !== "Casino",
+                                    "text-[var(--grey-100)] lg:hover:text-[var(--grey-100)] bg-[var(--grey-400)]": props.location.split("/")[1] === R.slug && R.name !== "Sport" && R.name !== "Casino",
                                     "order-[-2] group" : R.name === "Sport",
                                     "order-[-1] group" : R.name === "Casino",
                                 }
@@ -159,7 +159,7 @@ const SideMenu = (props :any) => {
                             variant="ghost"
                             className={cn(
                                 "flex w-11 h-11 relative items-center rounded-[6px] bg-[var(--grey-700)] hover:bg([var(--grey-700)] text-primary-foreground text-[11px] px-2 font-medium",
-                                "hover:text-primary-foreground hover:bg-[var(--grey-400)] text-[var(--grey-100)] hover:text-[var(--grey-100)] bg-[var(--grey-400)]",
+                                "hover:text-primary-foreground hover:bg-[var(--grey-400)] text-[var(--grey-100)] lg:hover:text-[var(--grey-100)] bg-[var(--grey-400)]",
                             )}
                             onMouseEnter={(e) => handleMouseEnter(e, {
                                 id: 11,
@@ -245,7 +245,7 @@ const SideMenu = (props :any) => {
                                     variant="ghost"
                                     className={cn(
                                         "flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md hover:text-primary-foreground hover:bg-[var(--grey-400)] px-4 py-3 font-medium", {
-                                            "text-[var(--grey-100)] hover:text-[var(--grey-100)] bg-[var(--grey-400)]": props.location.split("/")[1] === R.slug,
+                                            "text-[var(--grey-100)] lg:hover:text-[var(--grey-100)] bg-[var(--grey-400)]": props.location.split("/")[1] === R.slug,
                                         }
                                     )}
                                     onMouseEnter={(e) => handleMouseEnter(e, R)}

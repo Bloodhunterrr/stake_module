@@ -126,9 +126,9 @@ export default function NavbarMobile({
                         {data?.map((R) =>
                             !R.is_sportbook && R.subcategories.length === 0 ? null : R.name === "Sport" || R.name === "Casino" ? null : (
                                 <Button key={R.id} variant="ghost"
-                                        className={cn("flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md hover:text-primary-foreground hover:bg-[var(--grey-400)] px-4 py-3 font-medium",
+                                        className={cn("flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md hover:text-primary-foreground hover:bg-[var(--navbar-login)] px-4 py-3 font-medium",
                                             {
-                                                "text-[var(--grey-100)] hover:text-[var(--grey-100)] bg-[var(--grey-400)]": location.split("/")[1] === R.slug,
+                                                "text-[var(--navbar-text)] lg:hover:text-white bg-[var(--navbar-login)]": location.split("/")[1] === R.slug,
                                             }
                                         )} onMouseEnter={(e) => handleMouseEnter(e, R)}
                                         onMouseLeave={(e) => handleMouseLeave(e, R)}
