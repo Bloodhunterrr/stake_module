@@ -36,7 +36,7 @@ const ProviderSliderFromApi = ({
   };
 
   const width = useWindowWidth();
-  const limit = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : 4;
+  const limit = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : width >= 500 ? 4 : 3;
 
   const request: ProviderListRequest = React.useMemo(
     () => ({
@@ -68,7 +68,7 @@ const ProviderSliderFromApi = ({
       <div className="flex flex-col gap-4 mb-5">
         <div className="flex items-center justify-between gap-4">
           <h2 className={`font-bold flex-1 ${isDesktop ? "text-lg" : "text-sm"}`}>
-            <Trans>Providers</Trans>
+            <Trans>Publishers</Trans>
           </h2>
 
           <button onClick={() => navigate(categorySlug ? `/${categorySlug}/providers` : "/providers")}
@@ -96,7 +96,7 @@ const ProviderSliderFromApi = ({
                   length: limit,
                 }).map((_, i) => (
                   <CarouselItem key={`sk-${i}`}
-                    className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 basis-1/4`}>
+                    className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 min-[500px]:basis-1/4 basis-1/3`}>
                     <div className="flex items-center justify-center rounded-lg bg-popover/50 lg:hover:bg-popover/80 h-[50px] md:h-[55px]" />
                   </CarouselItem>
                 ))
@@ -105,7 +105,7 @@ const ProviderSliderFromApi = ({
                       index === self.findIndex((p) => p.id === provider.id)
                   ).map((p: Provider) => (
                     <CarouselItem key={p.id}
-                      className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 basis-1/4`}
+                      className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 min-[500px]:basis-1/4 basis-1/3`}
                       onClick={() =>
                         navigate(`/${categorySlug}/provider/${p.general_code}`)
                       }>

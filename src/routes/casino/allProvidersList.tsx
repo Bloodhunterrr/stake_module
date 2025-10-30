@@ -112,7 +112,7 @@ const AllProvidersList = () => {
     <>
       <div className="min-h-screen">
         <section>
-          <div className="container mx-auto px-2 lg:px-0">
+          <div className="w-[94dvw] md:w-[calc(94dvw_-_60px)] min-[1440px]:max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto mx-auto px-2 lg:px-0">
             <div
                 className={cn("sticky top-15 bg-[var(--grey-600)] z-10 py-2 ", {
                     "top-22 lg:top-15": optionalSideBarOpen,

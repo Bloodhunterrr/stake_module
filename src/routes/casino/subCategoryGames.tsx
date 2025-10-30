@@ -7,7 +7,6 @@ import Footer from "@/components/shared/v2/footer.tsx";
 import GameListRenderer from "./gameListRenderer";
 import LiveCasinoGameListRenderer from "@/components/shared/v2/casino/single-live-casino-category.tsx";
 import SingleSubcategorySlider from "@/components/shared/v2/casino/single-subcategory-slider.tsx";
-import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
 import {
   Sheet,
   SheetContent,
@@ -115,7 +114,7 @@ const SubcategoryGames = () => {
   };
 
   return (
-    <div className="lg:px-0 flex flex-col container mx-auto">
+    <div className="lg:px-0 flex flex-col mx-auto mt-5">
       {mainData && (
         <SingleSubcategorySlider
           showBanner={false}
@@ -123,26 +122,25 @@ const SubcategoryGames = () => {
           data={mainData.map((cat) => ({
             [cat.slug]: { subcategories: cat.subcategories || [] },
           }))}
-        />
+          searchClassName={"w-[94dvw]! md:w-[calc(94dvw_-_60px)]! min-[1440px]:max-w-300! ml-auto mr-[3dvw] min-[1440px]:mr-auto"}/>
       )}
 
       {categoryProviders.length > 0 && (
-        <section className="container mx-auto pt-5">
+        <section className="w-[94dvw] md:w-[calc(94dvw_-_60px)] min-[1440px]:max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto pt-5">
           <ProviderSliderFromApi categorySlug={categorySlug} />
         </section>
       )}
 
-      <section className="container pt-5 pb-4 mx-auto">
-        <LobbyBannerSlider />
-      </section>
+      {/*<section className="w-full pt-5 pb-4 mx-auto">*/}
+      {/*  <LobbyBannerSlider />*/}
+      {/*</section>*/}
 
-      <div className="container mx-auto">
+      <div className="w-[94dvw] md:w-[calc(94dvw_-_60px)] min-[1440px]:max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
         <section id="category-section">
           <div className="py-3 flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <button
-                onClick={() => navigate(-1)}
-                className="flex items-center justify-center w-10 h-10 rounded-full text-card border border-card lg:hover:border-card lg:hover:bg-popover lg:hover:text-white transition">
+              <button onClick={() => navigate(-1)}
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-[var(--grey-100)]/80 text-[var(--grey-100)]/80 lg:hover:border-white lg:hover:bg-popover lg:hover:text-white transition">
                 <ArrowUpIcon className="w-4 h-4 -rotate-90" />
               </button>
               <div>
@@ -152,7 +150,7 @@ const SubcategoryGames = () => {
                     : t`Top Games`}
                 </h1>
                 {totalGames > 0 && (
-                  <p className="text-card text-sm">
+                  <p className="text-primary-foreground text-sm">
                     {totalGames} <Trans>games</Trans>
                   </p>
                 )}
@@ -283,14 +281,13 @@ const SubcategoryGames = () => {
                 categoryId={subcategory?.id}
                 order_by={isSortingEnabled ? "name" : "order"}
                 onTotalChange={setTotalGames}
-                gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
-              />
+                gameDynamicClass="grid grid-cols-3 min-[500px]:grid-cols-4 min-[718px]:grid-cols-5 min-[910px]:grid-cols-6 min-[1060px]:grid-cols-7 min-[1210px]:grid-cols-8 gap-x-2 gap-y-4"/>
             ) : (
               <GameListRenderer
                 categoryId={subcategory?.id}
                 order_by={isSortingEnabled ? "name" : "order"}
                 onTotalChange={setTotalGames}
-                gameDynamicClass="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2"
+                gameDynamicClass="grid grid-cols-3 min-[500px]:grid-cols-4 min-[718px]:grid-cols-5 min-[910px]:grid-cols-6 min-[1060px]:grid-cols-7 min-[1210px]:grid-cols-8 gap-x-2 gap-y-4"
               />
             )}
           </div>

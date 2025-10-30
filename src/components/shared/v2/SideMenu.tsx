@@ -211,7 +211,7 @@ const SideMenu = (props :any) => {
                         {data?.map((R) =>
                             !R.is_sportbook && R.subcategories.length === 0  ? null : R.name !== "Sport" && R.name !== "Casino" ? null : (
                                 <Button key={R.id} variant="ghost"
-                                        className={cn("flex w-22 h-9 relative items-center rounded-[6px] text-primary-foreground text-md hover:text-primary-foreground bg-transparent hover:bg-transparent px-2 font-medium cursor-pointer overflow-hidden group",
+                                        className={cn("flex w-22 h-9 relative items-center rounded-[6px] text-primary-foreground text-md lg:hover:text-primary-foreground bg-transparent lg:hover:bg-transparent px-2 font-medium cursor-pointer overflow-hidden group",
                                             {
                                                 'order-[-2]' : R.name === "Sport",
                                                 "order-[-1]" : R.name === "Casino",
@@ -244,7 +244,7 @@ const SideMenu = (props :any) => {
                                     key={R.id}
                                     variant="ghost"
                                     className={cn(
-                                        "flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md hover:text-primary-foreground hover:bg-[var(--grey-400)] px-4 py-3 font-medium", {
+                                        "flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md lg:hover:text-primary-foreground lg:hover:bg-[var(--grey-400)] px-4 py-3 font-medium", {
                                             "text-[var(--grey-100)] lg:hover:text-[var(--grey-100)] bg-[var(--grey-400)]": props.location.split("/")[1] === R.slug,
                                         }
                                     )}
@@ -267,8 +267,8 @@ const SideMenu = (props :any) => {
                             )
                         )}
                         <div className="w-[calc(100%_-_16px)] h-0 border-t-[2px] border-t-[var(--grey-400)] mt-2.5 mb-2.25 mx-auto"></div>
-                        <LanguageAccordion triggerClassName="flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md hover:text-primary-foreground hover:bg-[var(--grey-400)] px-4 py-3 font-medium"
-                                           extraText={false} objectClassName={"text-white hover:bg-[var(--grey-400)] py-3 h-12"} contentClassName={"ml-4 border-l-2 border-[var(--grey-400)] my-2"}
+                        <LanguageAccordion triggerClassName="flex justify-start w-full h-12 relative rounded-[0] bg-transparent text-primary-foreground text-md lg:hover:text-primary-foreground lg:hover:bg-[var(--grey-400)] px-4 py-3 font-medium"
+                                           extraText={false} objectClassName={"text-white lg:hover:bg-[var(--grey-400)] py-3 h-12"} contentClassName={"ml-4 border-l-2 border-[var(--grey-400)] my-2"}
                                            accordionValue={accordionValue} setAccordionValue={setAccordionValue} />
                     </div>
 

@@ -106,8 +106,8 @@ export default function Header(props: HeaderProps) {
 
     return (
         <div className="sticky top-0 z-100 header-shadow h-15">
-            <div className="sticky w-[calc(100%_-_60px)] max-md:w-full ml-auto top-0 z-100 bg-[var(--navbar-bg)] h-15 min-[1024px]:px-[3vw] min-[1440px]:px-[calc((100%_-_1260px)_/_2)]">
-                <div className={cn("relative flex items-center mx-auto justify-between h-15 px-[10px] max-md:px-[3vw]")}>
+            <div className="sticky w-[calc(100%_-_60px)] max-md:w-full ml-auto top-0 z-100 bg-[var(--navbar-bg)] h-15 px-[3vw] min-[1440px]:px-[calc((100%_-_1320px)_/_2)]">
+                <div className={cn("relative flex items-center mx-auto justify-between h-15 min-[1440px]:pr-[60px]")}>
                     <div className={cn("flex items-center", {
                             "justify-start": !props.isNoCategoryOrSportsbook || isDesktop,
                             "w-12": props.isNoCategoryOrSportsbook && !isDesktop,
@@ -122,7 +122,7 @@ export default function Header(props: HeaderProps) {
                     </div>
 
                     {props.isNoCategoryOrSportsbook && !isDesktop && (
-                        <div className="absolute left-1/2 top-1 -translate-x-1/2">
+                        <div className="absolute left-0 top-1 ">
                             <img src={logoMobileSportbook} alt="logo" className="h-[36px] mt-2"
                                 onClick={() => props.setOpenOptionalSideBar(!props.openOptionalSideBar)}/>
                         </div>

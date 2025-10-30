@@ -8,7 +8,6 @@ import Search from "@/components/casino/search";
 import {useNavigate, useLocation} from "react-router";
 import CloseIcon from "@/assets/icons/close.svg?react";
 import SearchIcon from "@/assets/icons/search.svg?react";
-import GameBGImg from "./../../assets/images/game-bg.png";
 import FullScreenIcon from "@/assets/icons/fullscreen.svg?react";
 import {Dialog, DialogContent, DialogTrigger} from "@/components/ui/dialog";
 import Loading from "@/components/shared/v2/loading.tsx";
@@ -19,13 +18,12 @@ export default function GamesIframe() {
     const navigate = useNavigate();
     const {gameData} = useGameLoader();
     const {play_url, game} = gameData;
+    console.log(game);
 
     if (!play_url || !game) {
         return (
             <div
-                className="gameview-wrapper relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center"
-                style={{backgroundImage: `url(${GameBGImg})`}}
-            >
+                className="gameview-wrapper relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center">
                 <div className="flex h-full w-full items-center justify-center">
                     <Loading/>
                 </div>
@@ -43,55 +41,54 @@ export default function GamesIframe() {
         }
     };
 
+    console.log(game);
+
     return (
-        <div
-            className="bg-relative flex h-[calc(100vh-64px)] w-screen flex-col items-center justify-center gap-4"
-            style={{backgroundImage: `url(${GameBGImg})`}}>
-            <header className="container mx-auto flex w-full items-center justify-between">
-                <div className="flex items-center space-x-4">
-                    <h1 className="text-xl font-bold text-white md:text-2xl">{game.name}</h1>
-                </div>
-                <nav className="flex items-center space-x-2">
+        <div className="bg-relative flex h-[calc(100vh-64px)] w-screen md:w-[calc(100svw-60px)] ml-auto flex-col items-center pt-10">
+            <main className="mx-auto relative z-0 flex aspect-[1200/675] w-[calc(94svw-60px)] max-w-[1700px] items-center justify-center">
+                <iframe id="game-iframe" title={game.name} src={play_url} allowFullScreen
+                    className="h-full w-full rounded-t-lg rounded-b-none shadow-2xl"></iframe>
+            </main>
+            <footer className="mx-auto flex h-[63px] w-[calc(94svw-60px)] max-w-[1700px] items-center justify-between bg-[var(--grey-900)] px-3 py-2 rounded-b-lg">
+                <nav className="flex items-center justify-center space-x-2 h-full">
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button>
+                            <Button className="bg-transparent">
                                 <SearchIcon className="h-4 w-4"/>
                                 <span className="hidden sm:inline">
                                     <Trans>Switch Game</Trans>
                                 </span>
                             </Button>
                         </DialogTrigger>
-                        <DialogContent
-                            className="sm:max-w-[700px] rounded-lg border-gray-700 bg-gray-900 text-white shadow-lg">
+                        <DialogContent className="sm:max-w-[700px] border-gray-700 bg-gray-900 text-white shadow-lg z-100 h-[calc(100svh_-_60px)]
+                                                  top-[calc(50%+30px)] w-screen min-w-screen md:left-[calc(50%+30px)] md:w-[calc(100vw-60px)] md:min-w-[calc(100vw-60px)] rounded-none border-none"
+                            closeButtonClassName="z-2">
                             <Search/>
                         </DialogContent>
                     </Dialog>
 
                     <Button
                         onClick={toggleFullScreen}
-                        aria-label="Toggle Fullscreen">
+                        aria-label="Toggle Fullscreen"
+                        className="bg-transparent">
                         <FullScreenIcon className="h-4 w-4 text-white"/>
                     </Button>
                     <Button
-                        aria-label="Add to Favorites">
+                        aria-label="Add to Favorites"
+                        className="bg-transparent">
                         <Heart/>
                     </Button>
                     <Button
                         onClick={handleGoBack}
-                        aria-label="Go Back">
+                        aria-label="Go Back"
+                        className="bg-transparent">
                         <CloseIcon className="h-4 w-4 text-white"/>
                     </Button>
                 </nav>
-            </header>
-            <main className="container mx-auto relative z-0 flex h-9/10 w-full items-center justify-center ">
-                <iframe
-                    id="game-iframe"
-                    title={game.name}
-                    src={play_url}
-                    allowFullScreen
-                    className="h-full w-full rounded-lg shadow-2xl"
-                ></iframe>
-            </main>
+                <div className="flex items-center space-x-4">
+                    <h1 className="text-xl font-bold text-white md:text-2xl">{game.name}</h1>
+                </div>
+            </footer>
         </div>
     );
 };

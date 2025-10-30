@@ -1,71 +1,33 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import type { Subcategory } from "@/types/main";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils.ts";
 import { SearchIcon } from "lucide-react";
 import Search from "@/components/shared/v2/casino/search.tsx";
 import LobbyBannerSlider from "@/components/casino/lobbyBannerSlider";
-import { useTheme } from "@/hooks/useTheme.tsx";
 import { Trans } from "@lingui/react/macro";
 
 type Props = {
   data: Record<string, { subcategories: Subcategory[] }>[];
   paramsSubcategory?: string;
   showBanner?: boolean;
+  searchClassName?: string;
 };
 
 const SubcategorySlider = ({
-  data,
-  paramsSubcategory,
   showBanner = false,
+  searchClassName,
 }: Props) => {
   const [searchModal, setSearchModal] = useState(false);
-  const navigate = useNavigate();
-  const { categorySlug } = useParams();
-  const { optionalSideBarOpen } = useTheme();
-
-  const selectedCategory = data.find(
-    (entry) => Object.keys(entry)[0] === categorySlug
-  );
-
-  const subcategories =
-    selectedCategory?.[categorySlug as string]?.subcategories ?? [];
-
-
-  // if (subcategories.length <= 1) {
-  //   return null;
-  // }
-
-  const subcategoryTranslations: Record<string, any> = {
-    "Video Slots": <Trans>Video Slots</Trans>,
-    "Megaways": <Trans>Megaways</Trans>,
-    "Instant Games": <Trans>Instant Games</Trans>,
-    "Egyptian Theme": <Trans>Egyptian Theme</Trans>,
-    "Rome": <Trans>Rome</Trans>,
-    "New Trend": <Trans>New Trend</Trans>,
-    "y2worldsoft": <Trans>y2worldsoft</Trans>,
-    "testpopok": <Trans>testpopok</Trans>,
-    "Nexu": <Trans>Nexu</Trans>,
-    "Baccarat": <Trans>Baccarat</Trans>,
-    "Game Show": <Trans>Game Show</Trans>,
-    "Roulette": <Trans>Roulette</Trans>,
-    "Blackjack": <Trans>Blackjack</Trans>,
-    "Lobby": <Trans>Lobby</Trans>,
-    "Lobby Crash": <Trans>Lobby Crash</Trans>,
-    "Virtual Games": <Trans>Virtual Games</Trans>,
-    "Keno & Lottery": <Trans>Keno & Lottery</Trans>,
-  };
 
   return (
     <>
       <div onClick={() => setSearchModal(true)}
-        className="relative flex items-center gap-4 pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)]
+        className={`relative flex items-center gap-4 pl-3.5 px-3 h-12 rounded-lg bg-[var(--grey-700)]
         border-2 border-solid border-[var(--grey-400)] lg:hover:border-[var(--grey-300)]
-        transition-all duration-[0.25s] w-full">
-        <SearchIcon className="size-5" />
-        <span className={"font-normal text-md text-white/40"}>
-          <Trans>Search your game/event</Trans>
+        transition-all duration-[0.25s] w-full${searchClassName ? ` ${searchClassName}` : ""}`}>
+        <SearchIcon className="size-5 text-[var(--grey-300)]" />
+        <span className={"font-normal text-md text-[#566671]"}>
+          <Trans>Search your game or event</Trans>
         </span>
       </div>
       {showBanner && (
@@ -73,53 +35,11 @@ const SubcategorySlider = ({
           <LobbyBannerSlider />
         </div>
       )}
-      {subcategories.length > 1 && (
-        <section className={cn(
-            "sticky transition-all duration-300 bg-background top-10 z-10 px-4",
-            {
-              "top-27 lg:top-16": optionalSideBarOpen,
-            }
-          )}>
-          <div className={"flex items-center justify-center w-full"}>
-            <div className="overflow-x-auto items-center flex  no-scrollbar py-5">
-              <div className={cn(
-                  "w-fit ml-3 shrink-0  text-[11px] cursor-pointer  ",
-                  {
-                    "decoration-2 select-none text-card underline underline-offset-8 ":
-                      paramsSubcategory === undefined,
-                  }
-                )}
-                onClick={() => navigate(`/${categorySlug}`)}>
-                <Trans>All</Trans>
-              </div>
-              {subcategories.map((subcategory: Subcategory, index: number) => {
-                return (
-                  <div key={subcategory.id}
-                    className={cn(
-                      "w-fit select-none ml-3 shrink-0  text-[11px] cursor-pointer ",
-                      {
-                        "ml-3": index === 0,
-                        "mr-3": index === subcategories.length - 1,
-                        "decoration-2 text-card underline underline-offset-8 ":
-                          subcategory.slug === paramsSubcategory,
-                      }
-                    )}
-                    onClick={() =>
-                      navigate(`/${categorySlug}/games/${subcategory.slug}`)
-                    }>
-                    {subcategoryTranslations[subcategory.name] ?? subcategory.name}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
 
       <Dialog open={searchModal} onOpenChange={() => setSearchModal(false)}>
         <DialogContent
           showCloseButton={false}
-          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-100 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
+          className="border-none rounded-none pt-0 px-3.5 overflow-y-auto shrink-0 p-0 top-[calc(50%_+_30px)] left-[calc(50%_+_30px)] z-100 grid w-[calc(100%-60px)] max-w-[calc(100%-60px)] min-w-[calc(100%-60px)] max-md:left-1/2 max-md:w-full max-md:max-w-full max-md:min-w-full !h-[calc(100%-60px)] translate-x-[-50%] translate-y-[-50%]">
           <Search setSearchModal={setSearchModal}
             onCloseSearchModal={() => setSearchModal(false)}/>
         </DialogContent>

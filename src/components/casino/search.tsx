@@ -132,90 +132,89 @@ const Search = ({ onCloseSearchModal = () => {} }: { onCloseSearchModal?: () => 
   const selectedCount = useMemo(() => selectedCategoryItems.length + selectedProviderItems.length, [selectedCategoryItems, selectedProviderItems]);
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Search input */}
-      <div className="flex items-center gap-2">
-        <div className="relative w-full max-w-xl">
-          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 opacity-60" />
-          <Input
-            aria-label="Search games"
-            placeholder="Search"
-            value={searchQuery ?? ""}
-            onChange={handleSearchChange}
-            className="pl-10"
-          />
-          {searchQuery && (
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="absolute right-1 top-1/2 -translate-y-1/2"
-              onClick={() => setSearchQuery("")}
-              aria-label="Clear search"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          )}
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Button variant="outline" onClick={() => setProviderModal(true)} className="min-w-[9rem] justify-between">
-            <span className="flex items-center gap-2 text-white/70">Provider</span>
+    <div className="flex flex-col gap-4 overflow-y-auto min-[1024px]:px-[3vw] w-full min-[1440px]:px-[calc((100%_-_1260px)_/_2)] mx-auto relative">
+        <div className="flex flex-col gap-4 bg-gray-900 fixed z-1 w-[calc(100%-50px)] max-w-[1260px] py-4 px-3 top-5.5">
+            {/* Search input */}
             <div className="flex items-center gap-2">
-              {selectedProviderItems.length > 0 && (
-                <Badge variant="secondary" className="rounded-full">{selectedProviderItems.length}</Badge>
-              )}
-              <ChevronDown className="h-4 w-4 opacity-70" />
+                <div className="relative w-full max-w-xl">
+                    <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 opacity-60" />
+                    <Input
+                        aria-label="Search games"
+                        placeholder="Search"
+                        value={searchQuery ?? ""}
+                        onChange={handleSearchChange}
+                        className="pl-10"/>
+                    {searchQuery && (
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="absolute right-1 top-1/2 -translate-y-1/2"
+                            onClick={() => setSearchQuery("")}
+                            aria-label="Clear search">
+                            <X className="h-4 w-4" />
+                        </Button>
+                    )}
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <Button variant="outline" onClick={() => setProviderModal(true)} className="min-w-[9rem] justify-between">
+                        <span className="flex items-center gap-2 text-white/70">Provider</span>
+                        <div className="flex items-center gap-2">
+                            {selectedProviderItems.length > 0 && (
+                                <Badge variant="secondary" className="rounded-full">{selectedProviderItems.length}</Badge>
+                            )}
+                            <ChevronDown className="h-4 w-4 opacity-70" />
+                        </div>
+                    </Button>
+
+                    <Button variant="outline" onClick={() => setCategoryModal(true)} className="min-w-[9rem] justify-between">
+                        <span className="flex items-center gap-2 text-white/70">Category</span>
+                        <div className="flex items-center gap-2">
+                            {selectedCategoryItems.length > 0 && (
+                                <Badge variant="secondary" className="rounded-full">{selectedCategoryItems.length}</Badge>
+                            )}
+                            <ChevronDown className="h-4 w-4 opacity-70" />
+                        </div>
+                    </Button>
+                </div>
             </div>
-          </Button>
 
-          <Button variant="outline" onClick={() => setCategoryModal(true)} className="min-w-[9rem] justify-between">
-            <span className="flex items-center gap-2 text-white/70">Category</span>
-            <div className="flex items-center gap-2">
-              {selectedCategoryItems.length > 0 && (
-                <Badge variant="secondary" className="rounded-full">{selectedCategoryItems.length}</Badge>
-              )}
-              <ChevronDown className="h-4 w-4 opacity-70" />
+            {/* Active tags */}
+            {selectedCount > 0 && (
+                <div className="flex flex-wrap items-center gap-2">
+                    {[
+                        ...selectedCategoryItems.map((i) => ({ ...i, _type: "category" as const })),
+                        ...selectedProviderItems.map((i) => ({ ...i, _type: "provider" as const })),
+                    ].map((item) => (
+                        <Badge key={`selected-${item.combinedId}`} variant="secondary" className="flex items-center gap-1">
+                            <span>{item.name}</span>
+                            <button
+                                onClick={() => removeSelectedItem(item)}
+                                className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full lg:hover:bg-muted"
+                                aria-label={`Remove ${item.name}`}>
+                                <X className="h-3 w-3" />
+                            </button>
+                        </Badge>
+                    ))}
+
+                    <Button variant="link" className="px-1" onClick={clearAllSelected}>
+                        Clear all
+                    </Button>
+                </div>
+            )}
+
+            {/* Results header */}
+            <div className="flex items-center gap-3">
+                <h3 className="text-sm font-semibold text-muted-foreground">Search results</h3>
+                {totalGames > 0 && (
+                    <Badge variant="outline" className="text-sm h-6 text-white/70">{totalGames}</Badge>
+                )}
             </div>
-          </Button>
         </div>
-      </div>
-
-      {/* Active tags */}
-      {selectedCount > 0 && (
-        <div className="flex flex-wrap items-center gap-2">
-          {[
-            ...selectedCategoryItems.map((i) => ({ ...i, _type: "category" as const })),
-            ...selectedProviderItems.map((i) => ({ ...i, _type: "provider" as const })),
-          ].map((item) => (
-            <Badge key={`selected-${item.combinedId}`} variant="secondary" className="flex items-center gap-1">
-              <span>{item.name}</span>
-              <button
-                onClick={() => removeSelectedItem(item)}
-                className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full lg:hover:bg-muted"
-                aria-label={`Remove ${item.name}`}
-              >
-                <X className="h-3 w-3" />
-              </button>
-            </Badge>
-          ))}
-
-          <Button variant="link" className="px-1" onClick={clearAllSelected}>
-            Clear all
-          </Button>
-        </div>
-      )}
-
-      {/* Results header */}
-      <div className="flex items-center gap-3">
-        <h3 className="text-sm font-semibold text-muted-foreground">Search results</h3>
-        {totalGames > 0 && (
-          <Badge variant="outline" className="text-sm h-6 text-white/70">{totalGames}</Badge>
-        )}
-      </div>
 
       {/* Results grid */}
-      <div>
+      <div className="pt-26">
         <div className="p-3">
           {isLoading ? (
             <div className="flex h-40 items-center justify-center">

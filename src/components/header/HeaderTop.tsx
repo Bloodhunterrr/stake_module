@@ -31,7 +31,7 @@ export default function HeaderTop({
                                   }: HeaderTopProps) {
     return (
         <div className="sticky w-[calc(100%_-_60px)] max-md:w-full ml-auto top-0 z-100 bg-[var(--navbar-bg)] h-15 min-[1024px]:px-[3vw] min-[1440px]:px-[calc((100%_-_1260px)_/_2)]">
-            <div className={cn("relative flex items-center mx-auto justify-between h-15 px-[10px] max-md:px-[3vw]")}>
+            <div className={cn("relative flex items-center mx-auto justify-between h-15 px-[16px] max-md:px-[3vw]")}>
                 <div className={cn("flex items-center", {
                     "justify-start": !isNoCategoryOrSportsbook || isDesktop,
                     "w-12": isNoCategoryOrSportsbook && !isDesktop,

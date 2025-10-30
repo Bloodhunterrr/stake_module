@@ -61,7 +61,7 @@ export default function Lobby() {
         : activeCategory?.subcategories;
 
     return (
-        <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 gap-5 flex flex-col w-[calc(94dvw_-_60px)] max-md:w-[94dvw] max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto">
+        <div className="min-h-[calc(100dvh_-_450px)] lg:px-0 gap-5 flex flex-col w-[94dvw] md:w-[calc(94dvw_-_60px)] min-[1440px]:max-w-300 ml-auto mr-[3dvw] min-[1440px]:mr-auto mt-5">
             <section className="w-full space-y-4 mx-auto">
                 <LobbyBannerSlider />
             </section>
@@ -75,7 +75,6 @@ export default function Lobby() {
             </section>
 
             {categorySlug === "casino" && <Jackpot />}
-
             <CategoriesSlider categories={activeCategory}
                 onSubcategoryClick={handleSubcategoryClick}
                 activeSubcategory={activeSubcategory}
@@ -92,7 +91,7 @@ export default function Lobby() {
 
                     if (shouldShowInstallAppBanner) {
                         return (
-                            <section className="container mx-auto" key={`section-${subcategory.id}`}>
+                            <section key={`section-${subcategory.id}`}>
                                 <LobbySlider
                                     key={subcategory.id}
                                     categorySlug={categorySlug ?? data[0]?.slug}

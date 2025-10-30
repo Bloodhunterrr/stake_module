@@ -31,7 +31,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
         return width;
     };
     const width = useWindowWidth();
-    const limit = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : 4;
+    const limit = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : width >= 500 ? 4 : 3;
 
   return (
     <section>
@@ -39,7 +39,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
         <div className="flex items-center justify-between gap-4">
           <h2
             className={`font-bold flex-1 ${isDesktop ? "text-lg" : "text-sm"}`}>
-            <Trans>Providers</Trans>
+            <Trans>Publishers</Trans>
           </h2>
 
           <button
@@ -72,7 +72,7 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
             {providers.map((p) => (
               <CarouselItem
                 key={p.id}
-                className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 basis-1/4 cursor-pointer`}
+                className={`pl-2 min-[1210px]:basis-1/8 min-[1060px]:basis-1/7 min-[910px]:basis-1/6 min-[718px]:basis-1/5 min-[500px]:basis-1/4 basis-1/3 cursor-pointer`}
                 onClick={() => navigate(`/${categorySlug}/provider/${p.code}`)}
               >
                 <div className="flex items-center justify-center rounded-lg bg-card/10 lg:hover:bg-card/20 transition h-[68px] md:h-[88px]">

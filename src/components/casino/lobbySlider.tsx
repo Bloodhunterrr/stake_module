@@ -54,7 +54,7 @@ const DesktopSlider = ({
     return width;
   };
     const width = useWindowWidth();
-    const columns = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : 4;
+    const columns = width >= 1210 ? 8 : width >= 1060 ? 7 : width >= 910 ? 6 : width >= 718 ? 5 : width >= 500 ? 4 : 3;
 
   const handlePrev = () => {
     setOffset((prev) => Math.max(prev - limit, 0));
@@ -179,25 +179,20 @@ const DesktopSlider = ({
                           nextDisabled={isNextDisabled} />
         </div>
 
-        <Carousel
-            opts={{ align: "start", loop: false }}
-            className="w-full relative group/items">
-          <CarouselContent className="py-2 flex flex-row">
-            {games.map((game, index) => (
-                <CarouselItem
-                    style={{ flexBasis: `${100 / columns}%` }}
-                    key={game?.id ?? `skeleton-${index}`}
-                    className={`lg:hover:translate-y-[-4%] transition-all duration-300 py-3`}>
-                  <GameSlot game={game} isLoading={isLoading || isFetching} />
-                </CarouselItem>
-            ))}
-          </CarouselContent>
-
-          {/*<CarouselPrevious onClick={handlePrev} disabled={Number(data?.offset ?? 0) === 0}*/}
-          {/*    className="hidden cursor-pointer lg:flex top-1/2 px-6 border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 h-full disabled:hidden rounded-none left-0 z-10"/>*/}
-          {/*<CarouselNext onClick={handleNext} disabled={shouldNext}*/}
-          {/*    className="hidden cursor-pointer lg:flex absolute top-1/2 px-6 h-full border-none bg-background/80 lg:hover:bg-background lg:hover:text-primary-foreground opacity-0 group-hover/items:opacity-100 disabled:hidden rounded-none right-0 z-10"/>*/}
-        </Carousel>
+          <Carousel
+              opts={{ align: "start", loop: false }}
+              className="w-full relative group/items">
+              <CarouselContent className="py-2 flex flex-row gap-2"> {/* Keep gap-2 */}
+                  {games.map((game, index) => (
+                      <CarouselItem
+                          style={{ flex: `0 0 calc(100% / ${columns} - 0.5rem * ${(columns - 1) / columns})` }}
+                          key={game?.id ?? `skeleton-${index}`}
+                          className={`lg:hover:translate-y-[-4%] transition-all duration-300 py-3 pl-0`}>
+                          <GameSlot game={game} isLoading={isLoading || isFetching} />
+                      </CarouselItem>
+                  ))}
+              </CarouselContent>
+          </Carousel>
       </section>
   );
 };

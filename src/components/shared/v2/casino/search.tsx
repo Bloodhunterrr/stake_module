@@ -205,8 +205,8 @@ const Search = ({
   const { t } = useLingui();
   const params = useParams();
   return (
-    <div className="flex flex-col items-start w-full container mx-auto gap-4 z-101">
-      <div className="flex sticky top-0 z-20 bg-[#1a2e38]/90 flex-col pb-2 pt-5 items-center w-full gap-2 px-[10px] max-md:px-[3vw]">
+    <div className="flex flex-col items-start w-[94dvw] md:w-[calc(94dvw_-_60px)] min-[1440px]:max-w-315 ml-auto mr-[3dvw] min-[1440px]:mr-auto min-[1440px]:pr-15 mx-auto gap-4 z-101">
+      <div className="flex sticky top-0 z-20 bg-[#1a2e38]/90 flex-col pb-2 pt-5 items-center w-full gap-2 max-md:px-[3vw]">
         <div className="relative flex items-center px-3 h-12 rounded-lg bg-[var(--grey-700)] border-2 border-solid border-[var(--grey-400)] lg:hover:border-[var(--grey-300)] transition-all duration-[0.25s] w-full">
           <SearchIcon className="size-6 text-[var(--grey-300)]" />
           <Input
@@ -215,7 +215,7 @@ const Search = ({
             placeholder={t`Search`}
             value={searchQuery ?? ""}
             onChange={handleSearchChange}
-            className="flex placeholder:text-white/40 text-white placeholder:text-md placeholder:font-normal h-12 border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0 rounded-full items-center gap-2 px-3 transition"/>
+            className="flex placeholder:text-[#566671] text-white placeholder:text-md placeholder:font-normal h-12 border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0 rounded-full items-center gap-2 px-3 transition"/>
           {/*{searchQuery && (*/}
           {/*  <Button*/}
           {/*    type="button"*/}
@@ -317,7 +317,7 @@ const Search = ({
               )}
           </div>
           <div className={"w-full flex flex-col items-center justify-center"}>
-              <div className="py-3 px-[10px] max-md:px-[3vw] w-full">
+              <div className="py-3 max-md:px-[3vw] w-full">
                   {isLoading ? (
                       <div className="flex h-40 items-center justify-center">
                           <LoaderCircle className="w-10 h-10 animate-spin text-card stroke-[1px]" />
@@ -330,7 +330,7 @@ const Search = ({
                           order_by="order"
                           onTotalChange={setTotalGames}
                           skip={false}
-                          gameDynamicClass="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+                          gameDynamicClass="grid grid-cols-3 min-[500px]:grid-cols-4 min-[718px]:grid-cols-5 min-[910px]:grid-cols-6 min-[1060px]:grid-cols-7 min-[1210px]:grid-cols-8 gap-x-2 gap-y-4"
                           showNoData={true}
                       />
                   )}
