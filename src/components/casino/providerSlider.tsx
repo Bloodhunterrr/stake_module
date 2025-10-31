@@ -47,9 +47,9 @@ const ProviderSlider: React.FC<Props> = ({ providers }) => {
               navigate(
                 categorySlug ? `/${categorySlug}/providers` : "/providers"
               )
-            } className="flex items-center gap-1 text-sm lg:hover:underline disabled:opacity-50">
+            } className="flex items-center gap-1 text-md lg:hover:underline disabled:opacity-50">
             <span>
-              <Trans>View all</Trans>
+              <Trans>See All</Trans>
             </span>
             {isDesktop && <span>({providers.length})</span>}
           </button>

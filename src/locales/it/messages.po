@@ -1669,7 +1669,7 @@ msgstr "Video Slots"
 #: src/components/casino/lobbySlider.tsx:256
 #: src/components/casino/provider-slider-from-api.tsx:77
 #: src/components/casino/providerSlider.tsx:52
-msgid "View all"
+msgid "See All"
 msgstr "Visualizza tutto"
 
 #~ msgid "View more"

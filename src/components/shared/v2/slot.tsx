@@ -5,16 +5,17 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "@/hooks/rtk.ts";
 import { useEffect, useState } from "react";
-
 import type { User, Wallet } from "@/types/auth.ts";
 import { setModal } from "@/slices/sharedSlice.ts";
-import { Info } from "lucide-react";
+import {ExternalLink, Info} from "lucide-react";
 import Login from "@/components/shared/v2/login";
 import Loading from "@/components/shared/v2/loading";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Trans } from "@lingui/react/macro";
 import WindowGame from "@/components/casino/windowGame";
 import { Portal } from '@/components/casino/portal';
+
+let openWindowGameCount = 0;
 
 export const ModalBalanceInfo = ({
                                      game,
@@ -86,6 +87,9 @@ const GameSlot = ({
     const [depositModal, setDepositModal] = useState(false);
     const [showWindowGame, setShowWindowGame] = useState(false);
     const [windowGameData, setWindowGameData] = useState<{title: string; url: string; provider: string} | null>(null);
+    const [limitReachedModal, setLimitReachedModal] = useState(false);
+    const isDesktopAtMinimum = useIsDesktop(1024);
+
 
     const closeLogin = () => setLoginModal(false);
 
@@ -114,17 +118,22 @@ const GameSlot = ({
                 currency: (defaultWallet?.slug || "eur")?.toUpperCase(),
             }).unwrap();
 
-            if (!isDesktop) {
+            if (!isDesktopAtMinimum) {
                 window.location.href = data?.play_url;
             } else {
                 if (popupActivate) {
-                    // Set state to show WindowGame component
+                    if (openWindowGameCount >= 3) {
+                        setLimitReachedModal(true);
+                        return;
+                    }
+
                     setWindowGameData({
                         title: game.name,
                         url: data?.play_url,
                         provider: (game as any).provider.name
                     });
                     setShowWindowGame(true);
+                    openWindowGameCount++;
                 } else {
                     navigate(`/game/${game?.id}?previousPage=${window.location.pathname}`, {
                         state: { play_url: data?.play_url, game }
@@ -139,7 +148,7 @@ const GameSlot = ({
 
     const handleMainClick = () => handleGameClick(false);
     const handleButtonClick = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent triggering the main div click
+        e.stopPropagation();
         handleGameClick(true);
     };
 
@@ -162,18 +171,15 @@ const GameSlot = ({
                     onClick={handleMainClick}>
                     <div
                         className="absolute inset-0 bg-center bg-cover opacity-40"
-                        style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}
-                    />
-                    <img
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300"
+                        style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}/>
+                    <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-300"
                         src={game?.image}
                         loading="lazy"
-                        alt={game?.name}
-                    />
-                    <button
-                        onClick={handleButtonClick}
-                        className="w-10 h-10 rounded-md absolute bottom-2 right-2 opacity-0 bg-[var(--grey-400)] lg:group-hover:opacity-100 transition-opacity duration-300"
-                    ></button>
+                        alt={game?.name}/>
+                    <button onClick={handleButtonClick}
+                            className="w-10 h-10 rounded-md absolute bottom-2 right-2 opacity-0 bg-[var(--grey-400)] lg:group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
+                        <ExternalLink className="size-5 ml-0.5 mb-1"/>
+                    </button>
                     {playLoading && (
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                             <Loading />
@@ -194,9 +200,28 @@ const GameSlot = ({
                     <WindowGame
                         title={windowGameData.title}
                         url={windowGameData.url}
-                        provider={windowGameData.provider}/>
+                        provider={windowGameData.provider}
+                        backBtn={() => setShowWindowGame(false)}/>
                 </Portal>
             )}
+
+            <Dialog open={limitReachedModal} onOpenChange={() => setLimitReachedModal(false)}>
+                <DialogContent className="lg:w-[450px] rounded-lg z-100" overlayClassName={"z-100"} closeButtonClassName={"text-[var(--grey-100)]"}>
+                    <div className="flex items-center flex-col">
+                        <Info className="text-yellow-500 mb-4" size={50} />
+                        <h2 className="text-2xl font-semibold mb-4 text-white text-center">
+                            <Trans>Maximum windows reached</Trans>
+                        </h2>
+                        <p className="text-gray-400 mb-6 text-lg text-center">
+                            <Trans>You can only open up to 3 game windows at a time. Please close one of the existing windows to open a new one.</Trans>
+                        </p>
+                        <button onClick={() => setLimitReachedModal(false)}
+                            className="px-8 py-2 h-max bg-transparent rounded-lg text-md text-white border border-white lg:hover:text-white lg:hover:bg-popover/80 transition">
+                            <Trans>OK</Trans>
+                        </button>
+                    </div>
+                </DialogContent>
+            </Dialog>
 
             <Dialog open={depositModal} onOpenChange={() => setDepositModal(false)}>
                 <DialogContent className="lg:w-[450px] rounded-lg">

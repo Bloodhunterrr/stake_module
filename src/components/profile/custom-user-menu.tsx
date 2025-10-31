@@ -14,6 +14,8 @@ import {cn} from "@/lib/utils.ts";
 import {useLogoutMutation} from "@/services/authApi.ts";
 import {Input} from "@/components/ui/input.tsx";
 import { Search } from 'lucide-react';
+import LanguageAccordion from "@/components/shared/v2/language-accordion.tsx";
+
 function CustomUserMenu({isNoCategoryOrSportsbook , menuItems, isDesktop , showBalance , user , defaultWallet , otherWallets , toggleShowBalance} : any) {
     const [logout] = useLogoutMutation();
 
@@ -33,7 +35,7 @@ function CustomUserMenu({isNoCategoryOrSportsbook , menuItems, isDesktop , showB
                         : showBalance
                             ? 4
                             : 4
-                } className="md:w-96 w-screen min-w-90 max-[380px]:min-w-full mt-6 p-0 bg-white rounded-none" align="end" forceMount>
+                } className="md:w-96 w-screen min-w-90 max-[380px]:min-w-full mt-6 lg:mt-3.5 p-0 bg-white rounded-none" align="end" forceMount>
                 <div className="flex flex-col w-full h-full pt-2">
                     <DropdownMenuLabel className="font-normal py-0 h-8 flex flex-row items-center justify-between">
                         <div className={'flex flex-row items-center h-5 relative gap-x-2 pr-1 w-2/3'}>
@@ -114,6 +116,9 @@ function CustomUserMenu({isNoCategoryOrSportsbook , menuItems, isDesktop , showB
                                 </div>
                             ))}
                         </div>
+                        <div className={"border-t w-full py-2"}>
+                            <LanguageAccordion/>
+                        </div>
                     </div>
                 </div>
                 <DropdownMenuItem
@@ -145,35 +150,30 @@ function CustomUserMenu({isNoCategoryOrSportsbook , menuItems, isDesktop , showB
                 })}
                 <DropdownMenuItem
                     className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/90 hover:bg-black/10"
-                    onClick={() => navigate("/account/general")}
-                >
+                    onClick={() => navigate("/account/general")}>
                     <Trans>Profile</Trans>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
                     className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/90 hover:bg-black/10"
-                    onClick={() => navigate("/account/notifications")}
-                >
+                    onClick={() => navigate("/account/notifications")}>
                     <Trans>Messages</Trans>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
                     className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/90 hover:bg-black/10"
-                    onClick={() => navigate("/")}
-                >
+                    onClick={() => navigate("/")}>
                     <Trans>Responsible Gambling</Trans>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
                     className="w-full border-t rounded-none px-2 py-2 cursor-pointer text-black/90 hover:bg-black/10"
-                    onClick={() => navigate("/account/change-password")}
-                >
+                    onClick={() => navigate("/account/change-password")}>
                     <Trans>Password</Trans>
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     className="w-full border-t rounded-none px-2 py-2 cursor-pointer hover:bg-black/10 text-black/70"
-                    onClick={() => logout()}
-                >
+                    onClick={() => logout()}>
                     <Trans>Log out</Trans>
                 </DropdownMenuItem>
             </DropdownMenuContent>

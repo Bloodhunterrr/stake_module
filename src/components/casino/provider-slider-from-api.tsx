@@ -72,9 +72,9 @@ const ProviderSliderFromApi = ({
           </h2>
 
           <button onClick={() => navigate(categorySlug ? `/${categorySlug}/providers` : "/providers")}
-            disabled={isFetching || isLoading} className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50">
+            disabled={isFetching || isLoading} className="flex items-center gap-1 border px-3 py-1 rounded-lg text-md text-primary-foreground cursor-pointer disabled:opacity-50">
             <span>
-              <Trans>View all</Trans>
+              <Trans>See All</Trans>
             </span>
             {isDesktop && total > 0 && <span>({total})</span>}
           </button>

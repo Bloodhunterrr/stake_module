@@ -74,7 +74,7 @@ export default function NavbarMobile({
             <SheetContent side="bottom" className={cn("h-[calc(100vh-128px)] top-15 w-full min-w-full p-0 z-99 transition-all no-scrollbar overflow-x-auto flex items-center flex-col gap-[0] container mx-auto duration-300 ease-in-out bg-[var(--grey-700)] " +
                 "md:fixed data-[state=open]:duration-300 data-[state=closed]:duration-500 data-[state=open]:slide-out-to-left data-[state=closed]:slide-in-from-left"
             )} style={{filter: "drop-shadow(0 0 5px rgba(25, 25, 25, 0.25))"}}
-                          overlayClassName="bg-[#0e1224b3]" closeClassName="hidden closeBtn">
+                          overlayClassName="bg-transparent" closeClassName="hidden closeBtn">
                 <SheetHeader className="flex flex-col gap-y-4 p-x-4 h-max w-full touch-action-none">
                     <button className="w-full h-12 relative aspect-[1/1] order-[-3] text-white bg-[var(--grey-500)] rounded-md flex justify-between items-center px-4 gap-4"
                             onClick={() => (document.querySelector(".closeBtn") as HTMLElement)?.click()}>

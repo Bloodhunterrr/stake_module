@@ -97,11 +97,11 @@ const DesktopSlider = ({
             <button onClick={() =>
                     navigate(`/${categorySlug}/games/${subcategory.slug}`)
                 } disabled={isLoading}
-                className="flex items-center gap-1 text-sm border px-1.5 py-1 rounded-lg text-[13px] text-primary-foreground cursor-pointer disabled:opacity-50">
-              <Trans>View all</Trans>
+                className="flex items-center gap-1 border px-3 py-1 rounded-lg text-md text-primary-foreground cursor-pointer disabled:opacity-50">
+              <Trans>See All</Trans>
             </button>
             <Sheet>
-              <SheetTrigger className="border px-1.5 py-1 rounded-lg flex gap-1 text-xs items-center justify-center">
+              <SheetTrigger className="border px-2.5 py-1 rounded-lg flex gap-1 text-md items-center justify-center">
                 <Settings2 size={20} />
                 <Trans>Filter</Trans>
               </SheetTrigger>
@@ -252,13 +252,13 @@ const MobileSlider = ({categorySlug, subcategory, providers}: LobbySliderProps) 
           <div className="flex gap-2">
             <button onClick={() =>
                     navigate(`/${categorySlug}/games/${subcategory.slug}`)
-                } className=" text-primary-foreground border rounded-full py-1 px-1.5 text-xs">
+                } className=" text-primary-foreground border rounded-full py-1 px-3 text-md">
               {/*Deleted Totals*/}
               {/*{data?.total != null && <span>({data.total})</span>}*/}
-              <Trans>View all</Trans>
+              <Trans>See All</Trans>
             </button>
             <Sheet>
-              <SheetTrigger className="border px-1.5 py-1 rounded-full flex gap-1 text-xs ">
+              <SheetTrigger className="border px-2.5 py-1 rounded-full flex gap-1 text-md ">
                 <Settings2 size={20} />
               </SheetTrigger>
 
