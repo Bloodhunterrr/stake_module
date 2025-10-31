@@ -89,7 +89,7 @@ const DesktopSlider = ({
   return (
       <section className="w-full mb-8">
         <div className="flex w-full items-center justify-between gap-4">
-          <h2 className="font-bold mr-auto text-xl leading-7 px-3">
+          <h2 className="font-bold mr-auto text-xl leading-7">
             {subcategoryTranslations[subcategory.name] ?? subcategory.name}
           </h2>
           <div className="flex flex-row gap-2">
@@ -109,7 +109,7 @@ const DesktopSlider = ({
               <SheetContent className="border-none w-full border-r sm:max-w-sm h-[calc(100vh_-_128px)] top-[60px]"
                 closeClassName="text-primary-foreground focus:ring-0">
                 <SheetHeader className="h-26 flex items-center justify-end">
-                  <SheetTitle className="text-xl leading-7 font-Wbold text-primary-foreground">
+                  <SheetTitle className="text-xl leading-7 font-bold text-primary-foreground">
                     <Trans>Filters</Trans>
                   </SheetTitle>
                 </SheetHeader>

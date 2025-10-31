@@ -11,8 +11,8 @@ interface CategoriesSliderProps {
 
 export default function CategoriesSlider({ categories, onSubcategoryClick, activeSubcategory, casino }: CategoriesSliderProps) {
     return (
-        <div className="bg-[var(--grey-700)] p-1.5 rounded-full overflow-auto scrollX">
-            <div className="relative flex gap-3">
+        <div className="bg-[var(--grey-700)] p-1.5 rounded-full overflow-auto scrollX w-max">
+            <div className="relative flex gap-1 w-max max-w-full">
                 <div className={`inline-flex relative items-center gap-2 justify-center py-[0.625rem] px-[1.25rem] rounded-full 
                                 ${!activeSubcategory ? 'bg-[var(--grey-400)] ' : 'bg-transparent'} 
                                 lg:hover:bg-[var(--grey-400)] text-white [&_svg]:text-white cursor-pointer capitalize`}

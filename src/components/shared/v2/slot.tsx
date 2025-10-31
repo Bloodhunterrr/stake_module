@@ -12,10 +12,8 @@ import Login from "@/components/shared/v2/login";
 import Loading from "@/components/shared/v2/loading";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Trans } from "@lingui/react/macro";
-import WindowGame from "@/components/casino/windowGame";
-import { Portal } from '@/components/casino/portal';
+import {useGameWindowsManager} from "@/contexts/gameWindowsManagerContext.tsx";
 
-let openWindowGameCount = 0;
 
 export const ModalBalanceInfo = ({
                                      game,
@@ -86,9 +84,9 @@ const GameSlot = ({
     const [loginModal, setLoginModal] = useState(false);
     const [depositModal, setDepositModal] = useState(false);
     const [showWindowGame, setShowWindowGame] = useState(false);
-    const [windowGameData, setWindowGameData] = useState<{title: string; url: string; provider: string} | null>(null);
     const [limitReachedModal, setLimitReachedModal] = useState(false);
     const isDesktopAtMinimum = useIsDesktop(1024);
+    const { addGame, gameList } = useGameWindowsManager()
 
 
     const closeLogin = () => setLoginModal(false);
@@ -122,18 +120,19 @@ const GameSlot = ({
                 window.location.href = data?.play_url;
             } else {
                 if (popupActivate) {
-                    if (openWindowGameCount >= 3) {
+                    if (gameList.length >= 3) {
                         setLimitReachedModal(true);
                         return;
                     }
 
-                    setWindowGameData({
+                    addGame({
+                        id: game.id,
                         title: game.name,
                         url: data?.play_url,
                         provider: (game as any).provider.name
                     });
+
                     setShowWindowGame(true);
-                    openWindowGameCount++;
                 } else {
                     navigate(`/game/${game?.id}?previousPage=${window.location.pathname}`, {
                         state: { play_url: data?.play_url, game }
@@ -163,6 +162,8 @@ const GameSlot = ({
         );
     }
 
+    console.log(showWindowGame)
+
     return (
         <>
             <div className="flex flex-col">
@@ -173,11 +174,11 @@ const GameSlot = ({
                         className="absolute inset-0 bg-center bg-cover opacity-40"
                         style={{ backgroundImage: `url(${`images/logo-game-loader.svg`})` }}/>
                     <img className="absolute inset-0 w-full h-full object-cover transition-transform duration-300"
-                        src={game?.image}
-                        loading="lazy"
-                        alt={game?.name}/>
+                         src={game?.image}
+                         loading="lazy"
+                         alt={game?.name}/>
                     <button onClick={handleButtonClick}
-                            className="w-10 h-10 rounded-md absolute bottom-2 right-2 opacity-0 bg-[var(--grey-400)] lg:group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
+                            className="w-10 h-10 rounded-md absolute bottom-2 right-2 opacity-0 bg-[var(--grey-400)] lg:group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center text-[var(--grey-100)]">
                         <ExternalLink className="size-5 ml-0.5 mb-1"/>
                     </button>
                     {playLoading && (
@@ -194,17 +195,6 @@ const GameSlot = ({
                 </div>
             </div>
 
-            {/* WindowGame modal */}
-            {showWindowGame && windowGameData && (
-                <Portal>
-                    <WindowGame
-                        title={windowGameData.title}
-                        url={windowGameData.url}
-                        provider={windowGameData.provider}
-                        backBtn={() => setShowWindowGame(false)}/>
-                </Portal>
-            )}
-
             <Dialog open={limitReachedModal} onOpenChange={() => setLimitReachedModal(false)}>
                 <DialogContent className="lg:w-[450px] rounded-lg z-100" overlayClassName={"z-100"} closeButtonClassName={"text-[var(--grey-100)]"}>
                     <div className="flex items-center flex-col">
@@ -216,7 +206,7 @@ const GameSlot = ({
                             <Trans>You can only open up to 3 game windows at a time. Please close one of the existing windows to open a new one.</Trans>
                         </p>
                         <button onClick={() => setLimitReachedModal(false)}
-                            className="px-8 py-2 h-max bg-transparent rounded-lg text-md text-white border border-white lg:hover:text-white lg:hover:bg-popover/80 transition">
+                                className="px-8 py-2 h-max bg-transparent rounded-lg text-md text-white border border-white lg:hover:text-white lg:hover:bg-popover/80 transition">
                             <Trans>OK</Trans>
                         </button>
                     </div>

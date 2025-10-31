@@ -130,7 +130,7 @@ export default function LobbyBannerSlider() {
             {slides.map((slide) => (
                 <CarouselItem key={slide.id}
                     className="xl:basis-1/3 md:basis-1/2 basis-full py-2 px-[5px] lg:hover:brightness-92 transition-all duration-300">
-                  <div className="grid items-center aspect-[364.18/220] grid-cols-[45%_55%] max-h-[220px] min-h-[220px] w-full transition-all duration-200 rounded-[20px] bg-cover bg-center bg-no-repeat relative overflow-hidden bg-[var(--grey-500)]"
+                  <div className="grid items-center aspect-[364.18/220] grid-cols-[45%_55%] max-h-[220px] min-h-[220px] w-full transition-all duration-200 rounded-md bg-cover bg-center bg-no-repeat relative overflow-hidden bg-[var(--grey-500)]"
                        // style={{ backgroundImage: `url(${slide.image})` }}
                   >
                     <div className="flex flex-col items-start justify-start h-full relative z-[1] rounded-[4px] p-4">
