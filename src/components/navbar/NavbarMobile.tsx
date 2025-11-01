@@ -95,8 +95,8 @@ export default function NavbarMobile({
                                             }
                                         )} onClick={() => handleNavigation(R.slug)}>
                                     <img src={R.name === "Sport"
-                                        ? "https://stake.com/_app/immutable/assets/default-casino.CqlOLRkM.svg"
-                                        : "https://stake.com/_app/immutable/assets/default-sports.KM8Zs5_U.svg"
+                                        ? "/public/default-casino.CqlOLRkM.svg"
+                                        : "/public/default-sports.KM8Zs5_U.svg"
                                     } className={cn(
                                         "block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:hidden",
                                         {
@@ -104,8 +104,8 @@ export default function NavbarMobile({
                                         }
                                     )}/>
                                     <img src={R.name === "Sport"
-                                        ? "https://stake.com/_app/immutable/assets/active-casino.D98ZVQ96.svg"
-                                        : "https://stake.com/_app/immutable/assets/active-sports.CxIU50TW.svg"
+                                        ? "/public/active-casino.D98ZVQ96.svg"
+                                        : "/public/active-sports.CxIU50TW.svg"
                                     } className={cn(
                                         "hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:block",
                                         {

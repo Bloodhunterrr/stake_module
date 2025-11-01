@@ -53,8 +53,8 @@ export default function Sidebar({
                                 onClick={() => navigate(`/${R.slug}`)}>
                                 {R.name !== "Sport" && R.name !== "Casino" ? null : (
                                     <img src={R.name === "Sport"
-                                                ? "https://stake.com/_app/immutable/assets/default-casino-mini.CQlEkEv9.svg"
-                                                : "https://stake.com/_app/immutable/assets/default-sports-mini.BJ4yNOA9.svg"
+                                                ? "/public/default-casino-mini.CQlEkEv9.svg"
+                                                : "/public/default-sports-mini.BJ4yNOA9.svg"
                                         } className={cn("block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[1] rounded-lg left-2/4 top-2/4 lg:group-hover:hidden",
                                             {
                                                 hidden: location.split("/")[1] === R.slug,
@@ -63,8 +63,8 @@ export default function Sidebar({
                                 )}
                                 {R.name !== "Sport" && R.name !== "Casino" ? null : (
                                     <img src={R.name === "Sport"
-                                            ? "https://stake.com/_app/immutable/assets/active-casino-mini.C2xccerq.svg"
-                                            : "https://stake.com/_app/immutable/assets/active-sports-mini.DzJgZyvU.svg"
+                                            ? "/public/active-casino-mini.C2xccerq.svg"
+                                            : "/public/active-sports-mini.DzJgZyvU.svg"
                                         } className={cn("hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[1] rounded-lg left-2/4 top-2/4 lg:group-hover:block",
                                             {
                                                 block: location.split("/")[1] === R.slug,
@@ -148,8 +148,8 @@ export default function Sidebar({
                                             }
                                         )} onClick={() => navigate(`/${R.slug}`)}>
                                         <img src={R.name === "Sport"
-                                                    ? "https://stake.com/_app/immutable/assets/default-casino.CqlOLRkM.svg"
-                                                    : "https://stake.com/_app/immutable/assets/default-sports.KM8Zs5_U.svg"
+                                                    ? "/public/default-casino.CqlOLRkM.svg"
+                                                    : "/public/default-sports.KM8Zs5_U.svg"
                                             } className={cn(
                                                 "block min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:hidden",
                                                 {
@@ -157,8 +157,8 @@ export default function Sidebar({
                                                 }
                                             )}/>
                                         <img src={R.name === "Sport"
-                                                    ? "https://stake.com/_app/immutable/assets/active-casino.D98ZVQ96.svg"
-                                                    : "https://stake.com/_app/immutable/assets/active-sports.CxIU50TW.svg"
+                                                    ? "/public/active-casino.D98ZVQ96.svg"
+                                                    : "/public/active-sports.CxIU50TW.svg"
                                             } className={cn(
                                                 "hidden min-w-full w-full absolute -translate-x-2/4 -translate-y-2/4 z-[-1] rounded-lg left-2/4 top-2/4 lg:group-hover:block",
                                                 {

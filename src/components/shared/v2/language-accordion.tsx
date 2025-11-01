@@ -29,7 +29,7 @@ const LanguageAccordion = (
         <Accordion type="single" collapsible value={accordionValue} onValueChange={setAccordionValue}>
             <AccordionItem value="item-1">
                 <AccordionTrigger className={'flex px-2 py-0 flex-row hover:no-underline items-center ' + triggerClassName}
-                                  iconClassName={"text-[var(--grey-200)]"}>
+                                  iconClassName={"text-[var(--grey-100)]!"}>
                     <div className={cn('w-full h-9 flex items-end relative', {
                         "items-center": !extraText
                     })}>
